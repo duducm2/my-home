@@ -111,7 +111,7 @@ class ExpenseHandler(BaseHTTPRequestHandler):
                     "ok": True,
                     "service": "expense_server",
                     "port": DEFAULT_PORT,
-                    "features": ["state", "crud", "push", "prompts", "import", "house"],
+                    "features": ["state", "crud", "push", "prompts", "import", "house", "house_3d"],
                 },
             )
             return
@@ -126,6 +126,26 @@ class ExpenseHandler(BaseHTTPRequestHandler):
 
         if path == "/app.js":
             self._serve_static("app.js", "application/javascript; charset=utf-8")
+            return
+
+        if path == "/house-3d.js":
+            self._serve_static("house-3d.js", "application/javascript; charset=utf-8")
+            return
+
+        if path.startswith("/vendor/three/"):
+            filename = path.rsplit("/", 1)[-1]
+            allowed = {
+                "three.module.js",
+                "three.core.js",
+                "OrbitControls.js",
+                "LICENSE.txt",
+                "VERSION.txt",
+            }
+            if filename not in allowed:
+                self._json(404, {"ok": False, "error": "vendor asset not found"})
+                return
+            content_type = "application/javascript; charset=utf-8" if filename.endswith(".js") else "text/plain; charset=utf-8"
+            self._serve_static(f"vendor/three/{filename}", content_type)
             return
 
         if path == "/api/state":

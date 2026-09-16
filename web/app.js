@@ -93,6 +93,8 @@
     houseExterior: $("house-exterior"),
     houseRooms: $("house-rooms"),
     houseAudit: $("house-audit"),
+    house3dStatus: $("house-3d-status"),
+    house3dAssumptions: $("house-3d-assumptions"),
     projectOverview: $("project-overview"),
   };
 
@@ -805,6 +807,26 @@
       <p class="project-financial-priority">${escapeHtml(project.financial_priority || "")}</p>`;
   }
 
+  async function renderHouse3D(house) {
+    const model = house && house.model_3d;
+    if (els.house3dAssumptions) {
+      els.house3dAssumptions.innerHTML = (model && model.assumptions || [])
+        .map((item) => `<li>${escapeHtml(item)}</li>`)
+        .join("");
+    }
+    if (!model) {
+      setStatus(els.house3dStatus, "err", "Geometria 3D ainda não disponível.");
+      return;
+    }
+    setStatus(els.house3dStatus, "", "Carregando modelo 3D…");
+    try {
+      const module = await import("/house-3d.js?v=20260915-4");
+      module.mountHouse3D(model);
+    } catch (err) {
+      setStatus(els.house3dStatus, "err", `Não foi possível abrir o modelo 3D: ${err.message || err}`);
+    }
+  }
+
   function renderHouse(payload) {
     if (!payload || !payload.ok || !payload.house) {
       if (els.houseAudit) {
@@ -813,6 +835,7 @@
       return;
     }
     const house = payload.house;
+    renderHouse3D(house);
     state.project = payload.project || null;
     renderProject(state.project);
     renderDashboard();

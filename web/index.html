@@ -5,7 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="color-scheme" content="dark" />
     <title>Despesas da Casa</title>
-    <link rel="stylesheet" href="/styles.css?v=20260915-7" />
+    <link rel="stylesheet" href="/styles.css?v=20260915-11" />
+    <script type="importmap">
+      {"imports":{"three":"/vendor/three/three.module.js"}}
+    </script>
   </head>
   <body>
     <div class="page">
@@ -180,6 +183,34 @@
           <img id="house-blueprint" class="blueprint-img" alt="Planta da casa" src="/api/house/blueprint.jpg" />
         </div>
 
+        <h2 class="section-title">Casa em 3D</h2>
+        <p class="section-sub">Modelo esquemático baseado nas medidas da planta. Arraste para girar, role para aproximar e clique em um cômodo.</p>
+        <section class="house-3d-panel panel" aria-label="Visualizador 3D da casa">
+          <div id="house-3d-toolbar" class="house-3d-toolbar" role="toolbar" aria-label="Controles do modelo 3D">
+            <button type="button" class="btn" data-3d-action="perspective" aria-pressed="true">Perspectiva</button>
+            <button type="button" class="btn" data-3d-action="top" aria-pressed="false">Vista superior</button>
+            <button type="button" class="btn" data-3d-action="reset">Centralizar</button>
+            <button type="button" class="btn" data-3d-action="roof" aria-pressed="false">Cobertura</button>
+            <button type="button" class="btn" data-3d-action="walls" aria-pressed="false">Paredes transparentes</button>
+            <button type="button" class="btn" data-3d-action="labels" aria-pressed="true">Nomes</button>
+          </div>
+          <div class="house-3d-stage">
+            <div id="house-3d-canvas" class="house-3d-canvas"></div>
+            <p id="house-3d-status" class="house-3d-status" aria-live="polite">Carregando modelo 3D…</p>
+          </div>
+          <div class="house-3d-meta">
+            <div id="house-3d-room-detail" class="house-3d-room-detail">
+              <strong>Explore a casa</strong>
+              <span>Clique em um cômodo para ver suas medidas.</span>
+            </div>
+            <div id="house-3d-legend" class="house-3d-legend" aria-label="Legenda dos cômodos"></div>
+          </div>
+          <details class="house-3d-assumptions-wrap">
+            <summary>O que é medido e o que é aproximado?</summary>
+            <ul id="house-3d-assumptions" class="house-3d-assumptions"></ul>
+          </details>
+        </section>
+
         <h2 class="section-title">Lote</h2>
         <div id="house-lot" class="summary"></div>
 
@@ -265,6 +296,6 @@
 
     <datalist id="phase-suggestions"></datalist>
     <datalist id="category-suggestions"></datalist>
-    <script src="/app.js?v=20260915-7"></script>
+    <script src="/app.js?v=20260915-11"></script>
   </body>
 </html>

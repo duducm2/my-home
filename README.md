@@ -94,3 +94,12 @@ my-home/
   web/styles.css
   web/app.js
 ```
+
+
+## Modelo 3D da casa
+
+A tela **Casa** inclui um modelo arquitetônico esquemático interativo criado com Three.js 0.186.0 e OrbitControls. A dependência está fixada e armazenada em `web/vendor/three/`, portanto o visualizador funciona localmente sem CDN, instalação de Node.js ou etapa de build.
+
+O modelo usa as dimensões consolidadas da planta para os cômodos. Espessura geral das paredes, alturas não cotadas, posição exata no lote, tamanhos de algumas aberturas e forma do telhado são aproximações explicitamente registradas em `data/house.json`. O modelo serve para navegação e planejamento visual, não substitui um levantamento arquitetônico executivo.
+
+Controles: arraste para girar, botão direito para deslocar, roda do mouse para aproximar e clique em um cômodo para consultar suas medidas. Há atalhos visuais para perspectiva, vista superior, cobertura, transparência das paredes e nomes dos ambientes.
