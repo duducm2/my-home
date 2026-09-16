@@ -502,10 +502,50 @@ class HouseViewer {
     const frameWidth = Math.min(0.07, Math.max(0.045, (to - from) * 0.04));
     const frameDepth = thickness * 1.35;
     const frameColor = "#506776";
-    this.addWallPiece(start, direction, from, from + frameWidth, 0, height, frameDepth, frameColor, wall);
-    this.addWallPiece(start, direction, to - frameWidth, to, 0, height, frameDepth, frameColor, wall);
-    this.addWallPiece(start, direction, from, to, height - frameWidth, frameWidth, frameDepth, frameColor, wall);
-    this.addWallPiece(start, direction, from, to, 0, 0.045, frameDepth, frameColor, wall);
+    this.addWallPiece(
+      start,
+      direction,
+      from,
+      from + frameWidth,
+      0,
+      height,
+      frameDepth,
+      frameColor,
+      wall,
+    );
+    this.addWallPiece(
+      start,
+      direction,
+      to - frameWidth,
+      to,
+      0,
+      height,
+      frameDepth,
+      frameColor,
+      wall,
+    );
+    this.addWallPiece(
+      start,
+      direction,
+      from,
+      to,
+      height - frameWidth,
+      frameWidth,
+      frameDepth,
+      frameColor,
+      wall,
+    );
+    this.addWallPiece(
+      start,
+      direction,
+      from,
+      to,
+      0,
+      0.045,
+      frameDepth,
+      frameColor,
+      wall,
+    );
   }
 
   addOpeningGlass(
@@ -573,6 +613,8 @@ class HouseViewer {
       if (action === "perspective") this.setPerspective();
       if (action === "top") this.setTopView();
       if (action === "reset") this.setPerspective();
+      if (action === "zoom-in") this.zoomCamera(0.82);
+      if (action === "zoom-out") this.zoomCamera(1.22);
       if (action === "roof") {
         this.roofVisible = !this.roofVisible;
         this.roof.visible = this.roofVisible;
@@ -686,9 +728,23 @@ class HouseViewer {
     this.requestRender();
   }
 
+  zoomCamera(factor) {
+    const target = this.controls.target;
+    const offset = this.camera.position.clone().sub(target);
+    const distance = THREE.MathUtils.clamp(
+      offset.length() * factor,
+      this.controls.minDistance,
+      this.controls.maxDistance,
+    );
+    offset.setLength(distance);
+    this.camera.position.copy(target).add(offset);
+    this.controls.update();
+    this.requestRender();
+  }
+
   resize() {
     const width = Math.max(1, this.host.clientWidth);
-    const height = Math.max(320, this.host.clientHeight);
+    const height = Math.max(1, this.host.clientHeight);
     this.camera.aspect = width / height;
     this.camera.updateProjectionMatrix();
     this.renderer.setSize(width, height, false);
@@ -759,4 +815,8 @@ export function mountHouse3D(model) {
     }
     throw error;
   }
+}
+
+export function resizeHouse3D() {
+  activeViewer?.resize();
 }

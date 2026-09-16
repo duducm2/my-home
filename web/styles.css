@@ -1691,6 +1691,211 @@ th { font-size: 10px; }
   }
 }
 
+/* Dedicated full-screen 3D view and document overflow boundaries */
+html,
+body {
+  max-width: 100%;
+  overflow-x: clip;
+}
+
+.page,
+.view,
+.view > * {
+  min-width: 0;
+}
+
+body.model3d-active {
+  width: 100%;
+  height: 100dvh;
+  overflow: hidden;
+}
+
+.house-view-heading {
+  margin-bottom: 10px;
+}
+
+.house-view-heading .section-title {
+  margin-bottom: 3px;
+}
+
+.blueprint-wrap {
+  overflow: hidden;
+}
+
+.blueprint-wrap .blueprint {
+  display: block;
+  width: min(100%, 1200px);
+  max-width: 100%;
+  height: auto;
+  margin-inline: auto;
+}
+
+.model3d-view {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  width: 100dvw;
+  height: 100dvh;
+  min-width: 0;
+  padding: 8px;
+  overflow: hidden;
+  background: #0d0f10;
+}
+
+.model3d-header,
+.model3d-footer,
+.model3d-title {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  gap: 8px;
+}
+
+.model3d-header {
+  position: relative;
+  z-index: 3;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 0 0 8px;
+}
+
+.model3d-title {
+  flex: 0 0 auto;
+}
+
+.model3d-title div {
+  min-width: 0;
+}
+
+.model3d-title span {
+  color: var(--gold);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.model3d-title h2 {
+  margin: 1px 0 0;
+  font-size: 14px;
+}
+
+.model3d-home-btn {
+  border-color: rgba(241, 196, 15, .5);
+}
+
+.model3d-header .house-3d-toolbar {
+  flex: 1 1 520px;
+  justify-content: center;
+  min-width: 0;
+}
+
+.model3d-escape-hint {
+  flex: 0 0 auto;
+  color: var(--muted);
+  background: #171719;
+  border: 1px solid var(--line);
+}
+
+.model3d-view .house-3d-stage {
+  position: relative;
+  min-width: 0;
+  min-height: 0;
+  height: auto;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: #0d0f10;
+}
+
+.model3d-view .house-3d-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.model3d-footer {
+  display: grid;
+  grid-template-columns: minmax(180px, .7fr) minmax(260px, 1.3fr) auto;
+  align-items: stretch;
+  padding-top: 8px;
+}
+
+.model3d-footer .house-3d-room-detail,
+.model3d-footer .house-3d-legend,
+.model3d-footer .house-3d-assumptions-wrap {
+  min-height: 48px;
+  max-height: 132px;
+}
+
+.model3d-footer .house-3d-assumptions-wrap {
+  min-width: 130px;
+  overflow-y: auto;
+}
+
+@media (max-width: 900px) {
+  .model3d-view {
+    padding: 6px;
+  }
+
+  .model3d-header .house-3d-toolbar {
+    order: 3;
+    flex-basis: 100%;
+    justify-content: flex-start;
+  }
+
+  .model3d-header .house-3d-toolbar .btn {
+    flex: 1 1 auto;
+  }
+
+  .model3d-footer {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
+  }
+
+  .model3d-footer .house-3d-assumptions-wrap {
+    display: none;
+  }
+}
+
+@media (max-width: 560px) {
+  .model3d-title h2,
+  .model3d-title span {
+    display: none;
+  }
+
+  .model3d-escape-hint {
+    font-size: 9px;
+  }
+
+  .model3d-header .house-3d-toolbar {
+    gap: 4px;
+  }
+
+  .model3d-header .house-3d-toolbar .btn {
+    flex: 1 1 calc(25% - 4px);
+    padding-inline: 5px;
+    font-size: 9px;
+  }
+
+  .model3d-footer {
+    grid-template-columns: 1fr;
+  }
+
+  .model3d-footer .house-3d-legend {
+    display: none;
+  }
+
+  .model3d-footer .house-3d-room-detail {
+    min-height: 42px;
+  }
+}
+
 
 /* Dashboard blueprint miniature */
 .bento-blueprint {

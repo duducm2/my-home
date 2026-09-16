@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
   <head>
     <meta charset="utf-8" />
@@ -8,84 +8,186 @@
     <link rel="stylesheet" href="/styles.css?v=20260916-1" />
     <link rel="stylesheet" href="/tasks.css?v=20260916-1" />
     <script type="importmap">
-      {"imports":{"three":"/vendor/three/three.module.js"}}
+      { "imports": { "three": "/vendor/three/three.module.js" } }
     </script>
   </head>
   <body>
     <div class="page">
       <header class="hero">
         <div class="hero-top">
-          <a id="home-link" class="eyebrow brand-home" href="#dashboard" aria-label="Ir para o Dashboard">my-home</a>
+          <a
+            id="home-link"
+            class="eyebrow brand-home"
+            href="#dashboard"
+            aria-label="Ir para o Dashboard"
+            >my-home</a
+          >
           <nav class="nav" aria-label="Navegação">
-            <button type="button" class="nav-btn active" data-view="dashboard"><span>Dashboard</span><kbd>Alt+1</kbd></button>
-            <button type="button" class="nav-btn" data-view="expenses"><span>Despesas</span><kbd>Alt+2</kbd></button>
-            <button type="button" class="nav-btn" data-view="house"><span>Casa</span><kbd>Alt+3</kbd></button>
-            <button type="button" class="nav-btn" data-view="prices"><span>Preços / Import</span><kbd>Alt+4</kbd></button>
+            <button type="button" class="nav-btn active" data-view="dashboard">
+              <span>Dashboard</span><kbd>Alt+1</kbd>
+            </button>
+            <button type="button" class="nav-btn" data-view="expenses">
+              <span>Despesas</span><kbd>Alt+2</kbd>
+            </button>
+            <button type="button" class="nav-btn" data-view="house">
+              <span>Casa</span><kbd>Alt+3</kbd>
+            </button>
+            <button type="button" class="nav-btn" data-view="prices">
+              <span>Preços / Import</span><kbd>Alt+4</kbd>
+            </button>
+            <button type="button" class="nav-btn" data-view="model3d">
+              <span>Modelo 3D</span><kbd>Alt+5</kbd>
+            </button>
           </nav>
           <div class="global-save">
-            <button type="button" id="btn-push" class="btn primary global-save-btn">Salvar tudo</button>
-            <span id="push-status" class="global-save-help">Local + cópia segura</span>
+            <button
+              type="button"
+              id="btn-push"
+              class="btn primary global-save-btn"
+            >
+              Salvar tudo
+            </button>
+            <span id="push-status" class="global-save-help"
+              >Local + cópia segura</span
+            >
           </div>
         </div>
       </header>
 
-      <p id="app-status" class="push-status global-push-status hidden" aria-live="polite"></p>
+      <p
+        id="app-status"
+        class="push-status global-push-status hidden"
+        aria-live="polite"
+      ></p>
 
       <section id="view-dashboard" class="view">
         <section class="cockpit-grid" aria-label="Cockpit financeiro">
           <article class="panel bento-card bento-overview">
-            <div class="panel-head"><h2>Visão financeira</h2><span class="panel-kicker">Agora</span></div>
+            <div class="panel-head">
+              <h2>Visão financeira</h2>
+              <span class="panel-kicker">Agora</span>
+            </div>
             <span class="metric-label">Orçamento completo</span>
             <strong id="dash-total-all" class="hero-metric">R$ 0,00</strong>
-            <div class="metric-pair"><div><span>Materiais</span><strong id="dash-total-materials">R$ 0,00</strong></div><div><span>Serviços</span><strong id="dash-total-services">R$ 0,00</strong></div></div>
+            <div class="metric-pair">
+              <div>
+                <span>Materiais</span
+                ><strong id="dash-total-materials">R$ 0,00</strong>
+              </div>
+              <div>
+                <span>Serviços</span
+                ><strong id="dash-total-services">R$ 0,00</strong>
+              </div>
+            </div>
           </article>
           <article class="panel bento-card">
-            <div class="panel-head"><h2>Recursos</h2><span class="panel-kicker">Disponível</span></div>
+            <div class="panel-head">
+              <h2>Recursos</h2>
+              <span class="panel-kicker">Disponível</span>
+            </div>
             <strong id="funds-total" class="hero-metric">R$ 0,00</strong>
             <p id="funds-detail" class="section-sub"></p>
           </article>
           <article class="panel bento-card">
-            <div class="panel-head"><h2>Cobertura</h2><span class="panel-kicker">Plano</span></div>
+            <div class="panel-head">
+              <h2>Cobertura</h2>
+              <span class="panel-kicker">Plano</span>
+            </div>
             <div class="coverage-donut-layout">
-              <div id="coverage-donut" class="coverage-donut" role="img" aria-label="Percentual do orçamento coberto pelos recursos disponíveis">
-                <div><strong id="overall-coverage">0%</strong><span>coberto</span></div>
+              <div
+                id="coverage-donut"
+                class="coverage-donut"
+                role="img"
+                aria-label="Percentual do orçamento coberto pelos recursos disponíveis"
+              >
+                <div>
+                  <strong id="overall-coverage">0%</strong><span>coberto</span>
+                </div>
               </div>
-              <div class="coverage-donut-copy"><strong id="coverage-funded">R$ 0,00</strong><span>disponível</span><p id="overall-gap" class="section-sub"></p></div>
+              <div class="coverage-donut-copy">
+                <strong id="coverage-funded">R$ 0,00</strong
+                ><span>disponível</span>
+                <p id="overall-gap" class="section-sub"></p>
+              </div>
             </div>
           </article>
           <article class="panel bento-card bento-categories">
-            <div class="panel-head"><h2>Orçamento por categoria</h2><span class="panel-kicker">Distribuição</span></div>
+            <div class="panel-head">
+              <h2>Orçamento por categoria</h2>
+              <span class="panel-kicker">Distribuição</span>
+            </div>
             <div id="category-chart" class="budget-chart"></div>
           </article>
           <article class="panel bento-card bento-blueprint">
-            <a href="#house" data-view-link="house" class="blueprint-mini-link">
-              <img src="/api/house/blueprint.jpg" alt="Miniatura da planta da casa" />
-              <span><strong>Planta e modelo 3D</strong><small>Abrir a casa</small></span>
+            <a
+              href="#house"
+              data-view-link="house"
+              class="dashboard-blueprint-link"
+            >
+              <img
+                src="/api/house/blueprint.jpg"
+                alt="Miniatura da planta da casa"
+              />
+              <span
+                ><strong>Planta da casa</strong
+                ><small>Abrir a casa</small></span
+              >
             </a>
           </article>
           <article class="panel bento-card dashboard-people-card">
-            <div class="panel-head"><h2>Pessoas do projeto</h2><a href="#house" data-view-link="house" class="panel-kicker">Ver detalhes</a></div>
+            <div class="panel-head">
+              <h2>Pessoas do projeto</h2>
+              <a href="#house" data-view-link="house" class="panel-kicker"
+                >Ver detalhes</a
+              >
+            </div>
             <div id="dashboard-people" class="dashboard-people-grid"></div>
           </article>
         </section>
 
-        <section class="financial-projection-section" aria-labelledby="financial-projection-title">
+        <section
+          class="financial-projection-section"
+          aria-labelledby="financial-projection-title"
+        >
           <div class="section-heading-row">
-            <div><h2 id="financial-projection-title" class="section-title">Projeção financeira familiar</h2><p class="section-sub">Setembro de 2026 a dezembro de 2027 · renda conjunta de R$ 11.500/mês</p></div>
+            <div>
+              <h2 id="financial-projection-title" class="section-title">
+                Projeção financeira familiar
+              </h2>
+              <p class="section-sub">
+                Setembro de 2026 a dezembro de 2027 · renda conjunta de R$
+                11.500/mês
+              </p>
+            </div>
             <span class="date-badge">16 meses</span>
           </div>
           <div class="cashflow-metrics">
-            <article><span>Economia projetada</span><strong id="cashflow-total-savings">R$ 0,00</strong></article>
-            <article><span>Média mensal</span><strong id="cashflow-average-savings">R$ 0,00</strong></article>
-            <article><span>Despesas no período</span><strong id="cashflow-total-expenses">R$ 0,00</strong></article>
+            <article>
+              <span>Economia projetada</span
+              ><strong id="cashflow-total-savings">R$ 0,00</strong>
+            </article>
+            <article>
+              <span>Média mensal</span
+              ><strong id="cashflow-average-savings">R$ 0,00</strong>
+            </article>
+            <article>
+              <span>Despesas no período</span
+              ><strong id="cashflow-total-expenses">R$ 0,00</strong>
+            </article>
           </div>
           <div class="projection-grid">
             <article class="projection-panel">
-              <div class="projection-title"><h3>Distribuição das despesas</h3><span>Treemap do período completo</span></div>
+              <div class="projection-title">
+                <h3>Distribuição das despesas</h3>
+                <span>Treemap do período completo</span>
+              </div>
               <div id="expense-treemap" class="expense-treemap"></div>
             </article>
             <article class="projection-panel">
-              <div class="projection-title"><h3>Fluxo de caixa mensal</h3><span>Valor líquido disponível para guardar</span></div>
+              <div class="projection-title">
+                <h3>Fluxo de caixa mensal</h3>
+                <span>Valor líquido disponível para guardar</span>
+              </div>
               <div id="cashflow-line-chart" class="cashflow-line-chart"></div>
             </article>
           </div>
@@ -98,138 +200,560 @@
 
         <section class="task-section">
           <div class="section-heading-row">
-            <div><h2 class="section-title">Tarefas</h2><p class="section-sub">Prioridade 1 primeiro. Arraste barras e alças para ajustar datas.</p></div>
+            <div>
+              <h2 class="section-title">Tarefas</h2>
+              <p class="section-sub">
+                Prioridade 1 primeiro. Arraste barras e alças para ajustar
+                datas.
+              </p>
+            </div>
             <div class="gantt-actions">
-              <label>Escala <select id="gantt-zoom"><option value="day">Dia</option><option value="week" selected>Semana</option><option value="month">Mês</option></select></label>
-              <button type="button" id="btn-gantt-today" class="btn">Hoje</button>
-              <button type="button" id="btn-new-task" class="btn primary">Nova tarefa</button>
+              <label
+                >Escala
+                <select id="gantt-zoom">
+                  <option value="day">Dia</option>
+                  <option value="week" selected>Semana</option>
+                  <option value="month">Mês</option>
+                </select></label
+              >
+              <button type="button" id="btn-gantt-today" class="btn">
+                Hoje
+              </button>
+              <button type="button" id="btn-new-task" class="btn primary">
+                Nova tarefa
+              </button>
             </div>
           </div>
           <div class="task-summary" id="task-summary"></div>
-          <div id="gantt" class="gantt-shell" aria-label="Gráfico de Gantt interativo"></div>
+          <div
+            id="gantt"
+            class="gantt-shell"
+            aria-label="Gráfico de Gantt interativo"
+          ></div>
         </section>
 
-        <section class="panel general-notes-section" aria-labelledby="general-notes-title">
+        <section
+          class="panel general-notes-section"
+          aria-labelledby="general-notes-title"
+        >
           <div class="section-heading-row">
-            <div><h2 id="general-notes-title" class="section-title">Notas gerais</h2><p class="section-sub">Um espaço livre para lembretes, decisões e observações sobre a casa.</p></div>
-            <span id="general-notes-status" class="notes-save-status">Salvo automaticamente</span>
+            <div>
+              <h2 id="general-notes-title" class="section-title">
+                Notas gerais
+              </h2>
+              <p class="section-sub">
+                Um espaço livre para lembretes, decisões e observações sobre a
+                casa.
+              </p>
+            </div>
+            <span id="general-notes-status" class="notes-save-status"
+              >Salvo automaticamente</span
+            >
           </div>
-          <textarea id="general-notes" class="general-notes-input" rows="7" maxlength="100000" placeholder="Escreva aqui suas notas gerais..." aria-label="Notas gerais"></textarea>
+          <textarea
+            id="general-notes"
+            class="general-notes-input"
+            rows="7"
+            maxlength="100000"
+            placeholder="Escreva aqui suas notas gerais..."
+            aria-label="Notas gerais"
+          ></textarea>
         </section>
 
         <h2 class="section-title">Materiais</h2>
         <div class="table-wrap">
-          <table><thead><tr><th>Pri</th><th>Descrição</th><th class="num">Qtd</th><th>Un</th><th class="num">Orçado</th><th>Fornecedor</th></tr></thead><tbody id="dash-materials"></tbody></table>
+          <table>
+            <thead>
+              <tr>
+                <th>Pri</th>
+                <th>Descrição</th>
+                <th class="num">Qtd</th>
+                <th>Un</th>
+                <th class="num">Orçado</th>
+                <th>Fornecedor</th>
+              </tr>
+            </thead>
+            <tbody id="dash-materials"></tbody>
+          </table>
         </div>
       </section>
 
       <section id="view-expenses" class="view hidden">
         <section class="toolbar">
-          <label>Prioridade <select id="filter-priority"><option value="">Todas</option></select></label>
-          <label>Categoria <select id="filter-category"><option value="">Todas</option></select></label>
-          <label class="grow">Busca <input id="filter-search" type="search" placeholder="Descrição, categoria, fornecedor..." /></label>
-          <button type="button" id="btn-new" class="btn primary">Nova despesa</button>
+          <label
+            >Prioridade
+            <select id="filter-priority">
+              <option value="">Todas</option>
+            </select></label
+          >
+          <label
+            >Categoria
+            <select id="filter-category">
+              <option value="">Todas</option>
+            </select></label
+          >
+          <label class="grow"
+            >Busca
+            <input
+              id="filter-search"
+              type="search"
+              placeholder="Descrição, categoria, fornecedor..."
+          /></label>
+          <button type="button" id="btn-new" class="btn primary">
+            Nova despesa
+          </button>
         </section>
-        <section class="summary"><div><span class="summary-label">Total filtrado</span><strong id="total-filtered">R$ 0,00</strong></div><div><span class="summary-label">Total geral</span><strong id="total-all">R$ 0,00</strong></div><div><span class="summary-label">Itens</span><strong id="count-filtered">0</strong></div></section>
+        <section class="summary">
+          <div>
+            <span class="summary-label">Total filtrado</span
+            ><strong id="total-filtered">R$ 0,00</strong>
+          </div>
+          <div>
+            <span class="summary-label">Total geral</span
+            ><strong id="total-all">R$ 0,00</strong>
+          </div>
+          <div>
+            <span class="summary-label">Itens</span
+            ><strong id="count-filtered">0</strong>
+          </div>
+        </section>
         <section class="table-wrap">
-          <table><thead><tr><th>Pri</th><th>Categoria</th><th>Descrição</th><th class="num">Valor</th><th>Preço</th><th class="actions">Ações</th></tr></thead><tbody id="expense-rows"></tbody></table>
-          <p id="empty-state" class="empty hidden">Nenhuma despesa encontrada.</p>
+          <table>
+            <thead>
+              <tr>
+                <th>Pri</th>
+                <th>Categoria</th>
+                <th>Descrição</th>
+                <th class="num">Valor</th>
+                <th>Preço</th>
+                <th class="actions">Ações</th>
+              </tr>
+            </thead>
+            <tbody id="expense-rows"></tbody>
+          </table>
+          <p id="empty-state" class="empty hidden">
+            Nenhuma despesa encontrada.
+          </p>
         </section>
       </section>
 
       <section id="view-house" class="view hidden">
-        <h2 class="section-title">Planta da casa</h2>
-        <div class="blueprint-wrap"><img id="house-blueprint" class="blueprint" alt="Planta da casa" /></div>
-        <section class="house-3d-panel">
-          <div class="section-heading-row"><div><h2 class="section-title">Modelo 3D</h2><p id="house-3d-status" class="section-sub">Carregando...</p></div>
-            <div id="house-3d-toolbar" class="house-3d-toolbar">
-              <button type="button" class="btn" data-3d-action="perspective">Perspectiva</button>
-              <button type="button" class="btn" data-3d-action="top">Superior</button>
-              <button type="button" class="btn" data-3d-action="reset">Centralizar</button>
-              <button type="button" class="btn" data-3d-action="roof">Cobertura</button>
-              <button type="button" class="btn" data-3d-action="walls">Paredes</button>
-              <button type="button" class="btn" data-3d-action="labels">Nomes</button>
-            </div>
+        <div class="section-heading-row house-view-heading">
+          <div>
+            <h2 class="section-title">Planta da casa</h2>
+            <p class="section-sub">
+              Informações, cômodos, pessoas, contratos e documentos do imóvel.
+            </p>
           </div>
-          <div id="house-3d-canvas" class="house-3d-canvas"></div>
-          <div id="house-3d-room-detail" class="house-3d-room-detail"></div>
-          <div id="house-3d-legend" class="house-3d-legend"></div>
-          <details><summary>Premissas do modelo</summary><ul id="house-3d-assumptions"></ul></details>
-        </section>
-        <h2 class="section-title">Lote</h2><div id="house-lot" class="summary"></div>
-        <h2 class="section-title">Espaços externos</h2><div id="house-exterior" class="card-grid"></div>
-        <h2 class="section-title">Cômodos</h2><div id="house-rooms" class="card-grid"></div>
-        <h2 class="section-title">Resumo do projeto</h2><div id="project-overview" class="project-overview"></div>
+          <button type="button" class="btn primary" data-view="model3d">
+            Abrir modelo 3D <kbd>Alt+5</kbd>
+          </button>
+        </div>
+        <div class="blueprint-wrap">
+          <img id="house-blueprint" class="blueprint" alt="Planta da casa" />
+        </div>
+        <h2 class="section-title">Lote</h2>
+        <div id="house-lot" class="summary"></div>
+        <h2 class="section-title">Espaços externos</h2>
+        <div id="house-exterior" class="card-grid"></div>
+        <h2 class="section-title">Cômodos</h2>
+        <div id="house-rooms" class="card-grid"></div>
+        <h2 class="section-title">Resumo do projeto</h2>
+        <div id="project-overview" class="project-overview"></div>
         <section class="contract-center">
           <div class="section-heading-row">
-            <div><h2 class="section-title">Contratos e prestadores</h2><p class="section-sub">Documentos versionados, vínculos com serviços e histórico preservado.</p></div>
-            <div class="contract-actions"><label class="check"><input id="show-archived-contracts" type="checkbox" /> Mostrar arquivados</label><button type="button" id="btn-new-provider" class="btn">Novo prestador</button><button type="button" id="btn-new-contract" class="btn primary">Novo contrato</button></div>
+            <div>
+              <h2 class="section-title">Contratos e prestadores</h2>
+              <p class="section-sub">
+                Documentos versionados, vínculos com serviços e histórico
+                preservado.
+              </p>
+            </div>
+            <div class="contract-actions">
+              <label class="check"
+                ><input id="show-archived-contracts" type="checkbox" /> Mostrar
+                arquivados</label
+              ><button type="button" id="btn-new-provider" class="btn">
+                Novo prestador</button
+              ><button type="button" id="btn-new-contract" class="btn primary">
+                Novo contrato
+              </button>
+            </div>
           </div>
           <div id="contract-summary" class="contract-summary"></div>
-          <h3 class="project-heading">Contratos</h3><div id="contract-list" class="contract-grid"></div>
-          <h3 class="project-heading">Prestadores reutilizáveis</h3><div id="provider-list" class="provider-grid"></div>
+          <h3 class="project-heading">Contratos</h3>
+          <div id="contract-list" class="contract-grid"></div>
+          <h3 class="project-heading">Prestadores reutilizáveis</h3>
+          <div id="provider-list" class="provider-grid"></div>
         </section>
-        <h2 class="section-title">Auditoria da planta</h2><div id="house-audit" class="timeline-card"></div>
+        <h2 class="section-title">Auditoria da planta</h2>
+        <div id="house-audit" class="timeline-card"></div>
+      </section>
+
+      <section
+        id="view-model3d"
+        class="view model3d-view hidden"
+        aria-label="Modelo 3D da casa"
+      >
+        <header class="model3d-header">
+          <div class="model3d-title">
+            <button
+              type="button"
+              id="btn-model3d-home"
+              class="btn model3d-home-btn"
+            >
+              ← Início
+            </button>
+            <div>
+              <span>my-home</span>
+              <h2>Modelo 3D da casa</h2>
+            </div>
+          </div>
+          <div
+            id="house-3d-toolbar"
+            class="house-3d-toolbar"
+            aria-label="Controles do modelo 3D"
+          >
+            <button type="button" class="btn" data-3d-action="perspective">
+              Perspectiva
+            </button>
+            <button type="button" class="btn" data-3d-action="top">
+              Superior
+            </button>
+            <button type="button" class="btn" data-3d-action="reset">
+              Centralizar
+            </button>
+            <button type="button" class="btn" data-3d-action="zoom-in">
+              Aproximar
+            </button>
+            <button type="button" class="btn" data-3d-action="zoom-out">
+              Afastar
+            </button>
+            <button type="button" class="btn" data-3d-action="roof">
+              Cobertura
+            </button>
+            <button type="button" class="btn" data-3d-action="walls">
+              Paredes
+            </button>
+            <button type="button" class="btn" data-3d-action="labels">
+              Nomes
+            </button>
+          </div>
+          <kbd class="model3d-escape-hint">Esc · voltar ao início</kbd>
+        </header>
+        <div class="house-3d-stage">
+          <div id="house-3d-canvas" class="house-3d-canvas"></div>
+          <p id="house-3d-status" class="house-3d-status">Carregando...</p>
+        </div>
+        <footer class="model3d-footer">
+          <div id="house-3d-room-detail" class="house-3d-room-detail"></div>
+          <div id="house-3d-legend" class="house-3d-legend"></div>
+          <details class="house-3d-assumptions-wrap">
+            <summary>Premissas</summary>
+            <ul id="house-3d-assumptions" class="house-3d-assumptions"></ul>
+          </details>
+        </footer>
       </section>
 
       <section id="view-prices" class="view hidden">
         <h2 class="section-title">Gerar prompt de preços</h2>
-        <div class="panel-row"><label class="check"><input type="checkbox" id="prompt-missing-only" checked /> Somente materiais sem preço</label><button type="button" id="btn-gen-prompt" class="btn primary">Gerar prompt</button><button type="button" id="btn-copy-prompt" class="btn">Copiar</button><button type="button" id="btn-dl-prompt" class="btn">Baixar</button></div>
-        <textarea id="prompt-output" class="code-box" rows="12" readonly></textarea>
+        <div class="panel-row">
+          <label class="check"
+            ><input type="checkbox" id="prompt-missing-only" checked /> Somente
+            materiais sem preço</label
+          ><button type="button" id="btn-gen-prompt" class="btn primary">
+            Gerar prompt</button
+          ><button type="button" id="btn-copy-prompt" class="btn">Copiar</button
+          ><button type="button" id="btn-dl-prompt" class="btn">Baixar</button>
+        </div>
+        <textarea
+          id="prompt-output"
+          class="code-box"
+          rows="12"
+          readonly
+        ></textarea>
         <h2 class="section-title">Importar resposta</h2>
-        <div class="panel-row"><input id="pack-file" type="file" accept=".txt,text/plain" /><button type="button" id="btn-preview-import" class="btn primary">Validar</button><button type="button" id="btn-commit-import" class="btn" disabled>Salvar e enviar</button></div>
-        <textarea id="pack-input" class="code-box" rows="12" placeholder="Cole o pack aqui..."></textarea>
+        <div class="panel-row">
+          <input id="pack-file" type="file" accept=".txt,text/plain" /><button
+            type="button"
+            id="btn-preview-import"
+            class="btn primary"
+          >
+            Validar</button
+          ><button type="button" id="btn-commit-import" class="btn" disabled>
+            Salvar e enviar
+          </button>
+        </div>
+        <textarea
+          id="pack-input"
+          class="code-box"
+          rows="12"
+          placeholder="Cole o pack aqui..."
+        ></textarea>
         <p id="import-status" class="push-status hidden"></p>
-        <div class="table-wrap"><table><thead><tr><th>ID</th><th>Descrição</th><th>Unitário</th><th>Fornecedor</th><th>Link</th></tr></thead><tbody id="import-preview-rows"></tbody></table></div>
-        <textarea id="fix-output" class="code-box hidden" rows="8" readonly></textarea>
-        <button type="button" id="btn-copy-fix" class="btn hidden">Copiar correção</button><button type="button" id="btn-dl-fix" class="btn hidden">Baixar correção</button>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Descrição</th>
+                <th>Unitário</th>
+                <th>Fornecedor</th>
+                <th>Link</th>
+              </tr>
+            </thead>
+            <tbody id="import-preview-rows"></tbody>
+          </table>
+        </div>
+        <textarea
+          id="fix-output"
+          class="code-box hidden"
+          rows="8"
+          readonly
+        ></textarea>
+        <button type="button" id="btn-copy-fix" class="btn hidden">
+          Copiar correção</button
+        ><button type="button" id="btn-dl-fix" class="btn hidden">
+          Baixar correção
+        </button>
       </section>
     </div>
 
-    <dialog id="expense-dialog"><form id="expense-form" method="dialog">
-      <h2 id="dialog-title">Nova despesa</h2><input type="hidden" id="field-id" />
-      <div class="form-grid"><label>Tipo <select id="field-record-type"><option value="material">Material</option><option value="service">Serviço</option></select></label><label>Prioridade <input id="field-priority" type="number" min="1" required value="1" /></label><label>Categoria <input id="field-category" required list="category-suggestions" /></label></div>
-      <label>Descrição <textarea id="field-description" rows="2" required></textarea></label>
-      <section id="icon-editor" class="icon-editor"><input type="hidden" id="field-icon-key" /><div id="icon-preview" class="icon-preview"></div><div id="icon-picker" class="icon-picker"></div></section>
-      <div class="form-grid"><label>Valor <input id="field-value" type="number" min="0" step="0.01" required /></label><label>Quantidade <input id="field-quantity" type="number" min="0" step="any" /></label><label>Unidade <input id="field-unit" /></label><label>Preço unitário <input id="field-unit-price" type="number" min="0" step="0.01" /></label><label>Fornecedor <input id="field-vendor" /></label><label>URL <input id="field-product-url" type="url" /></label></div>
-      <div id="expense-service-links" class="form-grid"><label>Prestador <select id="field-provider"><option value="">Nenhum</option></select></label><label>Contrato <select id="field-contract"><option value="">Nenhum</option></select></label></div>
-      <label>Notas <textarea id="field-price-notes" rows="2"></textarea></label><p id="form-error" class="error hidden"></p>
-      <div class="dialog-actions"><button type="button" id="btn-cancel" class="btn">Cancelar</button><button type="submit" class="btn primary">Salvar e enviar</button></div>
-    </form></dialog>
+    <dialog id="expense-dialog">
+      <form id="expense-form" method="dialog">
+        <h2 id="dialog-title">Nova despesa</h2>
+        <input type="hidden" id="field-id" />
+        <div class="form-grid">
+          <label
+            >Tipo
+            <select id="field-record-type">
+              <option value="material">Material</option>
+              <option value="service">Serviço</option>
+            </select></label
+          ><label
+            >Prioridade
+            <input
+              id="field-priority"
+              type="number"
+              min="1"
+              required
+              value="1" /></label
+          ><label
+            >Categoria
+            <input id="field-category" required list="category-suggestions"
+          /></label>
+        </div>
+        <label
+          >Descrição
+          <textarea id="field-description" rows="2" required></textarea>
+        </label>
+        <section id="icon-editor" class="icon-editor">
+          <input type="hidden" id="field-icon-key" />
+          <div id="icon-preview" class="icon-preview"></div>
+          <div id="icon-picker" class="icon-picker"></div>
+        </section>
+        <div class="form-grid">
+          <label
+            >Valor
+            <input
+              id="field-value"
+              type="number"
+              min="0"
+              step="0.01"
+              required /></label
+          ><label
+            >Quantidade
+            <input
+              id="field-quantity"
+              type="number"
+              min="0"
+              step="any" /></label
+          ><label>Unidade <input id="field-unit" /></label
+          ><label
+            >Preço unitário
+            <input
+              id="field-unit-price"
+              type="number"
+              min="0"
+              step="0.01" /></label
+          ><label>Fornecedor <input id="field-vendor" /></label
+          ><label>URL <input id="field-product-url" type="url" /></label>
+        </div>
+        <div id="expense-service-links" class="form-grid">
+          <label
+            >Prestador
+            <select id="field-provider">
+              <option value="">Nenhum</option>
+            </select></label
+          ><label
+            >Contrato
+            <select id="field-contract">
+              <option value="">Nenhum</option>
+            </select></label
+          >
+        </div>
+        <label
+          >Notas <textarea id="field-price-notes" rows="2"></textarea>
+        </label>
+        <p id="form-error" class="error hidden"></p>
+        <div class="dialog-actions">
+          <button type="button" id="btn-cancel" class="btn">Cancelar</button
+          ><button type="submit" class="btn primary">Salvar e enviar</button>
+        </div>
+      </form>
+    </dialog>
 
-    <dialog id="provider-dialog"><form id="provider-form" method="dialog">
-      <h2 id="provider-dialog-title">Novo prestador</h2><input id="provider-id" type="hidden" />
-      <label>Nome <input id="provider-name" required maxlength="140" /></label>
-      <label>Profissão / serviço <input id="provider-service-type" maxlength="140" /></label>
-      <label>Contato <input id="provider-contact" maxlength="240" /></label>
-      <label>Notas <textarea id="provider-notes" rows="3"></textarea></label>
-      <p id="provider-form-error" class="error hidden"></p>
-      <div class="dialog-actions"><button id="btn-archive-provider" type="button" class="btn danger hidden">Arquivar</button><span class="grow"></span><button id="btn-cancel-provider" type="button" class="btn">Cancelar</button><button type="submit" class="btn primary">Salvar prestador</button></div>
-    </form></dialog>
+    <dialog id="provider-dialog">
+      <form id="provider-form" method="dialog">
+        <h2 id="provider-dialog-title">Novo prestador</h2>
+        <input id="provider-id" type="hidden" />
+        <label
+          >Nome <input id="provider-name" required maxlength="140"
+        /></label>
+        <label
+          >Profissão / serviço
+          <input id="provider-service-type" maxlength="140"
+        /></label>
+        <label>Contato <input id="provider-contact" maxlength="240" /></label>
+        <label>Notas <textarea id="provider-notes" rows="3"></textarea></label>
+        <p id="provider-form-error" class="error hidden"></p>
+        <div class="dialog-actions">
+          <button
+            id="btn-archive-provider"
+            type="button"
+            class="btn danger hidden"
+          >
+            Arquivar</button
+          ><span class="grow"></span
+          ><button id="btn-cancel-provider" type="button" class="btn">
+            Cancelar</button
+          ><button type="submit" class="btn primary">Salvar prestador</button>
+        </div>
+      </form>
+    </dialog>
 
-    <dialog id="contract-dialog"><form id="contract-form" method="dialog">
-      <h2 id="contract-dialog-title">Novo contrato</h2><input id="contract-id" type="hidden" />
-      <div class="form-grid"><label>Tipo <select id="contract-type"><option value="service">Serviço</option><option value="purchase">Compra</option></select></label><label>Status <select id="contract-status"><option value="draft">Rascunho</option><option value="signed">Assinado</option><option value="active">Ativo</option><option value="completed">Concluído</option><option value="cancelled">Cancelado</option></select></label></div>
-      <label>Título <input id="contract-title" required maxlength="180" /></label>
-      <label>Prestador <select id="contract-provider"><option value="">Nenhum</option></select></label>
-      <div class="form-grid"><label>Valor <input id="contract-amount" type="number" min="0" step="0.01" /></label><label>Início <input id="contract-start" type="date" /></label><label>Fim <input id="contract-end" type="date" /></label></div>
-      <label>Serviços/despesas vinculados <select id="contract-expenses" multiple size="5"></select></label>
-      <label>Notas <textarea id="contract-notes" rows="3"></textarea></label>
-      <label>Nova versão do PDF <input id="contract-pdf" type="file" accept=".pdf,application/pdf" /></label>
-      <p id="contract-form-error" class="error hidden"></p>
-      <div class="dialog-actions"><button id="btn-archive-contract" type="button" class="btn danger hidden">Arquivar</button><span class="grow"></span><button id="btn-cancel-contract" type="button" class="btn">Cancelar</button><button type="submit" class="btn primary">Salvar contrato</button></div>
-    </form></dialog>
+    <dialog id="contract-dialog">
+      <form id="contract-form" method="dialog">
+        <h2 id="contract-dialog-title">Novo contrato</h2>
+        <input id="contract-id" type="hidden" />
+        <div class="form-grid">
+          <label
+            >Tipo
+            <select id="contract-type">
+              <option value="service">Serviço</option>
+              <option value="purchase">Compra</option>
+            </select></label
+          ><label
+            >Status
+            <select id="contract-status">
+              <option value="draft">Rascunho</option>
+              <option value="signed">Assinado</option>
+              <option value="active">Ativo</option>
+              <option value="completed">Concluído</option>
+              <option value="cancelled">Cancelado</option>
+            </select></label
+          >
+        </div>
+        <label
+          >Título <input id="contract-title" required maxlength="180"
+        /></label>
+        <label
+          >Prestador
+          <select id="contract-provider">
+            <option value="">Nenhum</option>
+          </select></label
+        >
+        <div class="form-grid">
+          <label
+            >Valor
+            <input
+              id="contract-amount"
+              type="number"
+              min="0"
+              step="0.01" /></label
+          ><label>Início <input id="contract-start" type="date" /></label
+          ><label>Fim <input id="contract-end" type="date" /></label>
+        </div>
+        <label
+          >Serviços/despesas vinculados
+          <select id="contract-expenses" multiple size="5"></select
+        ></label>
+        <label>Notas <textarea id="contract-notes" rows="3"></textarea></label>
+        <label
+          >Nova versão do PDF
+          <input id="contract-pdf" type="file" accept=".pdf,application/pdf"
+        /></label>
+        <p id="contract-form-error" class="error hidden"></p>
+        <div class="dialog-actions">
+          <button
+            id="btn-archive-contract"
+            type="button"
+            class="btn danger hidden"
+          >
+            Arquivar</button
+          ><span class="grow"></span
+          ><button id="btn-cancel-contract" type="button" class="btn">
+            Cancelar</button
+          ><button type="submit" class="btn primary">Salvar contrato</button>
+        </div>
+      </form>
+    </dialog>
 
-    <dialog id="task-dialog"><form id="task-form" method="dialog">
-      <div class="dialog-title-row"><h2 id="task-dialog-title">Nova tarefa</h2><span id="task-date-badge" class="date-badge"></span></div>
-      <input type="hidden" id="task-id" />
-      <label>Título <input id="task-title" required maxlength="140" /></label>
-      <label>Descrição <textarea id="task-description" rows="3"></textarea></label>
-      <div class="form-grid"><label>Prioridade <input id="task-priority" type="number" min="1" required value="1" /></label><label>Sequência <input id="task-sequence" type="number" min="1" required /></label><label>Início <input id="task-start" type="date" required /></label><label>Fim <input id="task-end" type="date" required /></label><label>Status <select id="task-status"><option value="pending">Pendente</option><option value="in_progress">Em andamento</option><option value="blocked">Bloqueada</option><option value="completed">Concluída</option></select></label><label>Despesa vinculada <select id="task-expense"><option value="">Nenhuma</option></select></label></div>
-      <label>Ícone <select id="task-icon"></select></label>
-      <p id="task-form-error" class="error hidden"></p>
-      <div class="dialog-actions"><button type="button" id="btn-delete-task" class="btn danger hidden">Excluir</button><span class="grow"></span><button type="button" id="btn-cancel-task" class="btn">Cancelar</button><button type="submit" class="btn primary">Salvar tarefa</button></div>
-    </form></dialog>
+    <dialog id="task-dialog">
+      <form id="task-form" method="dialog">
+        <div class="dialog-title-row">
+          <h2 id="task-dialog-title">Nova tarefa</h2>
+          <span id="task-date-badge" class="date-badge"></span>
+        </div>
+        <input type="hidden" id="task-id" />
+        <label>Título <input id="task-title" required maxlength="140" /></label>
+        <label
+          >Descrição <textarea id="task-description" rows="3"></textarea>
+        </label>
+        <div class="form-grid">
+          <label
+            >Prioridade
+            <input
+              id="task-priority"
+              type="number"
+              min="1"
+              required
+              value="1" /></label
+          ><label
+            >Sequência
+            <input id="task-sequence" type="number" min="1" required /></label
+          ><label>Início <input id="task-start" type="date" required /></label
+          ><label>Fim <input id="task-end" type="date" required /></label
+          ><label
+            >Status
+            <select id="task-status">
+              <option value="pending">Pendente</option>
+              <option value="in_progress">Em andamento</option>
+              <option value="blocked">Bloqueada</option>
+              <option value="completed">Concluída</option>
+            </select></label
+          ><label
+            >Despesa vinculada
+            <select id="task-expense">
+              <option value="">Nenhuma</option>
+            </select></label
+          >
+        </div>
+        <label
+          >Ícone
+          <select id="task-icon"></select
+        ></label>
+        <p id="task-form-error" class="error hidden"></p>
+        <div class="dialog-actions">
+          <button type="button" id="btn-delete-task" class="btn danger hidden">
+            Excluir</button
+          ><span class="grow"></span
+          ><button type="button" id="btn-cancel-task" class="btn">
+            Cancelar</button
+          ><button type="submit" class="btn primary">Salvar tarefa</button>
+        </div>
+      </form>
+    </dialog>
 
     <datalist id="category-suggestions"></datalist>
     <script src="/app.js?v=20260916-1"></script>
