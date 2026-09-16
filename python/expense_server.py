@@ -70,6 +70,7 @@ class ExpenseHandler(BaseHTTPRequestHandler):
     def _bytes(self, code: int, data: bytes, content_type: str) -> None:
         self.send_response(code)
         self.send_header("Content-Type", content_type)
+        self.send_header("Cache-Control", "no-store, max-age=0")
         self._cors()
         self.send_header("Content-Length", str(len(data)))
         self.end_headers()
