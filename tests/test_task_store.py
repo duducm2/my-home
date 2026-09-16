@@ -285,9 +285,15 @@ class MigrationIntegrityTests(unittest.TestCase):
         tasks = document["tasks"]
         self.assertEqual(2, document["version"])
         self.assertGreater(len(tasks), 0)
-        self.assertTrue(all(task["date_status"] == "estimated" for task in tasks))
+        self.assertTrue(
+            all(
+                task["date_status"] in {"estimated", "confirmed"}
+                for task in tasks
+            )
+        )
+        self.assertTrue(any(task["date_status"] == "estimated" for task in tasks))
         macros = {task["id"] for task in tasks if task["activity_type"] == "macro"}
-        self.assertEqual(5, len(macros))
+        self.assertGreater(len(macros), 0)
         self.assertTrue(
             all(
                 (

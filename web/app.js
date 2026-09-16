@@ -23,6 +23,8 @@
     editingPayments: [],
     editingContractPayments: [],
     zoom: "week",
+    ganttStatusFilter: "",
+    ganttPriorityFilter: 0,
     expandedMacros: new Set(),
   };
   const statusLabels = {
@@ -69,6 +71,7 @@
     cashflowMethod: $("cashflow-method"),
     macroTimeline: $("macro-timeline"),
     taskSummary: $("task-summary"),
+    taskPriorityFilter: $("task-priority-filter"),
     gantt: $("gantt"),
     ganttZoom: $("gantt-zoom"),
     btnGanttToday: $("btn-gantt-today"),
@@ -847,12 +850,27 @@
     return state.tasks.filter((task) => task.parent_id === macroId);
   }
 
+  function matchesGanttFilters(task) {
+    return (
+      (!state.ganttStatusFilter ||
+        task.status === state.ganttStatusFilter) &&
+      (!state.ganttPriorityFilter ||
+        Number(task.priority) === state.ganttPriorityFilter)
+    );
+  }
+
   function visibleGanttTasks() {
     const visible = [];
     macroTasks().forEach((macro) => {
+      const children = childTasks(macro.id).filter(matchesGanttFilters);
+      if (
+        (state.ganttStatusFilter || state.ganttPriorityFilter) &&
+        !children.length
+      )
+        return;
       visible.push(macro);
       if (state.expandedMacros.has(macro.id))
-        visible.push(...childTasks(macro.id));
+        visible.push(...children);
     });
     return visible;
   }
@@ -984,11 +1002,27 @@
     els.taskSummary.innerHTML = Object.entries(statusLabels)
       .map(
         ([key, label]) =>
-          `<span class="task-count status-${key}"><strong>${counts[key] || 0}</strong>${label}</span>`,
+          `<button type="button" class="task-count status-${key}${state.ganttStatusFilter === key ? " active" : ""}" data-gantt-status="${key}" aria-pressed="${state.ganttStatusFilter === key}"><strong>${counts[key] || 0}</strong>${label}</button>`,
+      )
+      .join("");
+    const priorityCounts = allDetails.reduce(
+      (map, task) => (
+        (map[task.priority] = (map[task.priority] || 0) + 1), map
+      ),
+      {},
+    );
+    els.taskPriorityFilter.innerHTML = [1, 2, 3]
+      .map(
+        (priority) =>
+          `<button type="button" class="task-count priority-filter${state.ganttPriorityFilter === priority ? " active" : ""}" data-gantt-priority="${priority}" aria-pressed="${state.ganttPriorityFilter === priority}"><strong>${priorityCounts[priority] || 0}</strong>P${priority}</button>`,
       )
       .join("");
     if (!tasks.length) {
-      els.gantt.innerHTML = `<div class="gantt-empty">Nenhuma tarefa. Crie a primeira para começar o cronograma.</div>`;
+      els.gantt.innerHTML = `<div class="gantt-empty">${
+        state.ganttStatusFilter || state.ganttPriorityFilter
+          ? "Nenhuma atividade corresponde aos filtros selecionados."
+          : "Nenhuma tarefa. Crie a primeira para começar o cronograma."
+      }</div>`;
       return;
     }
     const geometry = ganttGeometry(state.tasks);
@@ -1059,7 +1093,13 @@
                 `${formatPaymentDate(payment.date)} ${formatMoney(payment.amount)}`,
             )
             .join(" + ");
-          const detail = `${task.activity_type === "macro" ? `${childTasks(task.id).length} atividades · ${task.progress || 0}%` : `P${task.priority} · #${task.sequence}`} · ${escapeHtml(statusLabels[task.status])}${task.date_status === "estimated" ? " · estimada" : ""}${scheduled ? ` · paga ${scheduled}` : ""}`;
+          const macroChildren = childTasks(task.id);
+          const filteredChildren = macroChildren.filter(matchesGanttFilters);
+          const macroCount =
+            state.ganttStatusFilter || state.ganttPriorityFilter
+              ? `${filteredChildren.length} de ${macroChildren.length} atividades`
+              : `${macroChildren.length} atividades`;
+          const detail = `${task.activity_type === "macro" ? `${macroCount} · ${task.progress || 0}%` : `P${task.priority} · #${task.sequence}`} · ${escapeHtml(statusLabels[task.status])}${task.date_status === "estimated" ? " · estimada" : ""}${scheduled ? ` · paga ${scheduled}` : ""}`;
           const content = `${iconMarkup(task.icon_key, task.title)}<span><strong>${escapeHtml(task.title)}</strong><small>${detail}</small></span>`;
           if (task.activity_type === "macro")
             return `<div class="gantt-label-row macro">
@@ -3251,8 +3291,27 @@
     persistExpandedMacros();
     renderGantt();
   });
+  els.taskSummary.addEventListener("click", (event) => {
+    const button = event.target.closest("[data-gantt-status]");
+    if (!button) return;
+    state.ganttStatusFilter =
+      state.ganttStatusFilter === button.dataset.ganttStatus
+        ? ""
+        : button.dataset.ganttStatus;
+    renderGantt();
+  });
+  els.taskPriorityFilter.addEventListener("click", (event) => {
+    const button = event.target.closest("[data-gantt-priority]");
+    if (!button) return;
+    const priority = Number(button.dataset.ganttPriority);
+    state.ganttPriorityFilter =
+      state.ganttPriorityFilter === priority ? 0 : priority;
+    renderGantt();
+  });
   els.ganttZoom.addEventListener("change", () => {
-    state.zoom = els.ganttZoom.value;
+    state.zoom =
+      els.ganttZoom.querySelector('input[name="gantt-zoom"]:checked')?.value ||
+      "week";
     renderGantt();
   });
   els.btnGanttToday.addEventListener("click", () => {

@@ -6,7 +6,7 @@
     <meta name="color-scheme" content="dark" />
     <title>my-home</title>
     <link rel="stylesheet" href="/styles.css?v=20260916-13" />
-    <link rel="stylesheet" href="/tasks.css?v=20260916-9" />
+    <link rel="stylesheet" href="/tasks.css?v=20260916-10" />
     <script type="importmap">
       { "imports": { "three": "/vendor/three/three.module.js" } }
     </script>
@@ -344,23 +344,53 @@
               <button type="button" id="btn-collapse-all" class="btn">
                 Recolher tudo
               </button>
-              <label
-                >Escala
-                <select id="gantt-zoom">
-                  <option value="day">Dia</option>
-                  <option value="week" selected>Semana</option>
-                  <option value="month">Mês</option>
-                </select>
-              </label>
+              <fieldset id="gantt-zoom" class="gantt-segmented">
+                <legend>Escala</legend>
+                <label
+                  ><input type="radio" name="gantt-zoom" value="day" /><span
+                    >Dia</span
+                  ></label
+                >
+                <label
+                  ><input
+                    type="radio"
+                    name="gantt-zoom"
+                    value="week"
+                    checked /><span>Semana</span></label
+                >
+                <label
+                  ><input type="radio" name="gantt-zoom" value="month" /><span
+                    >Mês</span
+                  ></label
+                >
+              </fieldset>
               <button type="button" id="btn-gantt-today" class="btn">
                 Hoje
               </button>
-              <button type="button" id="btn-new-task" class="btn primary">
-                Nova atividade
+              <button
+                type="button"
+                id="btn-new-task"
+                class="btn primary gantt-add-task"
+                aria-label="Nova atividade"
+                title="Nova atividade"
+              >
+                <span aria-hidden="true">+</span
+                ><span class="sr-only">Nova atividade</span>
               </button>
             </div>
           </div>
-          <div class="task-summary" id="task-summary"></div>
+          <div class="gantt-filter-row">
+            <div
+              class="task-summary"
+              id="task-summary"
+              aria-label="Filtrar por status"
+            ></div>
+            <div
+              class="task-priority-filter"
+              id="task-priority-filter"
+              aria-label="Filtrar por prioridade"
+            ></div>
+          </div>
           <div
             id="gantt"
             class="gantt-shell"
@@ -1373,6 +1403,6 @@
     </dialog>
 
     <datalist id="category-suggestions"></datalist>
-    <script src="/app.js?v=20260916-20"></script>
+    <script src="/app.js?v=20260916-21"></script>
   </body>
 </html>

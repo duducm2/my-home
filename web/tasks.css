@@ -274,6 +274,77 @@ select[multiple] { min-height: 110px; }
   flex-wrap: wrap;
 }
 
+.gantt-segmented {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.gantt-segmented legend {
+  float: left;
+  margin-right: 4px;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.gantt-segmented label {
+  position: relative;
+  display: block;
+}
+
+.gantt-segmented input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.gantt-segmented span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
+  padding: 5px 9px;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  color: var(--muted);
+  font-size: 11px;
+  cursor: pointer;
+  background: #1b1b1e;
+  transition:
+    border-color 120ms ease,
+    color 120ms ease,
+    background 120ms ease;
+}
+
+.gantt-segmented span:hover {
+  border-color: #77777f;
+  color: var(--text);
+}
+
+.gantt-segmented input:checked + span {
+  border-color: var(--gold);
+  color: var(--gold);
+  background: #f1c40f12;
+}
+
+.gantt-segmented input:focus-visible + span {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+
+.gantt-add-task {
+  width: 34px;
+  min-width: 34px;
+  height: 34px;
+  padding: 0;
+  font-size: 23px;
+  line-height: 1;
+}
+
 .gantt-actions label {
   display: flex;
   align-items: center;
@@ -288,6 +359,23 @@ select[multiple] { min-height: 110px; }
   margin: 10px 0;
 }
 
+.gantt-filter-row,
+.task-priority-filter {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  flex-wrap: wrap;
+}
+
+.gantt-filter-row {
+  justify-content: space-between;
+  margin: 10px 0;
+}
+
+.gantt-filter-row .task-summary {
+  margin: 0;
+}
+
 .task-count {
   display: inline-flex;
   align-items: center;
@@ -297,6 +385,35 @@ select[multiple] { min-height: 110px; }
   border-radius: 999px;
   color: var(--muted);
   font-size: 11px;
+  font-family: inherit;
+  cursor: pointer;
+  background: transparent;
+  transition:
+    border-color 120ms ease,
+    color 120ms ease,
+    background 120ms ease,
+    transform 120ms ease;
+}
+
+.task-count:hover {
+  border-color: #77777f;
+  color: var(--text);
+  transform: translateY(-1px);
+}
+
+.task-count:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+
+.task-count.active {
+  color: var(--text);
+  background: #ffffff0b;
+}
+
+.task-count.status-pending.active {
+  border-color: #b69a2c;
+  background: #b69a2c18;
 }
 
 .task-count strong {
@@ -306,11 +423,34 @@ select[multiple] { min-height: 110px; }
 .task-count.status-in_progress {
   border-color: #3498db66;
 }
+.task-count.status-in_progress.active {
+  border-color: #3498db;
+  background: #3498db18;
+}
 .task-count.status-blocked {
   border-color: #e74c3c66;
 }
+.task-count.status-blocked.active {
+  border-color: #e74c3c;
+  background: #e74c3c18;
+}
 .task-count.status-completed {
   border-color: #2ecc7166;
+}
+.task-count.status-completed.active {
+  border-color: #2ecc71;
+  background: #2ecc7118;
+}
+
+.task-count.priority-filter {
+  min-width: 54px;
+  justify-content: center;
+}
+
+.task-count.priority-filter.active {
+  border-color: var(--gold);
+  color: var(--gold);
+  background: #f1c40f12;
 }
 
 .gantt-shell {
