@@ -98,7 +98,35 @@
         "planned_amount": 7500.0,
         "materials_paid_by": "Eduardo",
         "common_tools_paid_by": "Gelson",
-        "material_list_notice_business_days": 5
+        "material_list_notice_business_days": 5,
+        "required_tools": [
+          {
+            "id": "drill",
+            "name": "Furadeira",
+            "purpose": "Perfurações e fixações necessárias durante os serviços da obra.",
+            "responsibility": "Gelson / contratado, salvo ajuste escrito em contrário",
+            "related_expense_id": "EXP_0018"
+          },
+          {
+            "id": "angle_grinder",
+            "name": "Esmerilhadeira",
+            "purpose": "Cortes, desbastes e acabamentos compatíveis com os serviços executados.",
+            "responsibility": "Gelson / contratado, salvo ajuste escrito em contrário",
+            "related_expense_id": "EXP_0018"
+          },
+          {
+            "id": "wheelbarrow",
+            "name": "Carrinho de mão",
+            "purpose": "Transporte de materiais e entulho dentro da obra.",
+            "responsibility": "Confirmar entre Eduardo e Gelson antes da compra",
+            "related_expense_id": "EXP_0020"
+          }
+        ],
+        "tools_source": {
+          "type": "user_confirmed_work_requirements",
+          "captured_at": "2026-09-15",
+          "contract_reference": "Cláusula 5.4 dos rascunhos de empreitada"
+        }
       },
       "services": [
         "Demolição total da edícula dos fundos — primeiro serviço",

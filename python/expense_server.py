@@ -195,19 +195,21 @@ class ExpenseHandler(BaseHTTPRequestHandler):
             self._bytes(200, image.read_bytes(), mime_type)
             return
 
-        if path == "/api/project/documents/purchase-contract.pdf":
-            document = (
-                self.data_dir
-                / "documents"
-                / "purchase-contract-2026-09-08.pdf"
-            ).resolve()
+        project_documents = {
+            "/api/project/documents/purchase-contract.pdf": "purchase-contract-2026-09-08.pdf",
+            "/api/project/documents/gelson-phase-1.pdf": "gelson-phase-1-draft.pdf",
+            "/api/project/documents/gelson-phase-2.pdf": "gelson-phase-2-draft.pdf",
+        }
+        if path in project_documents:
+            documents_dir = (self.data_dir / "documents").resolve()
+            document = (documents_dir / project_documents[path]).resolve()
             try:
-                document.relative_to(self.data_dir.resolve())
+                document.relative_to(documents_dir)
             except ValueError:
                 self._json(403, {"ok": False, "error": "forbidden"})
                 return
             if not document.is_file():
-                self._json(404, {"ok": False, "error": "contract missing"})
+                self._json(404, {"ok": False, "error": "document missing"})
                 return
             self._bytes(200, document.read_bytes(), "application/pdf")
             return

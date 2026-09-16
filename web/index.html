@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="color-scheme" content="dark" />
     <title>Despesas da Casa</title>
-    <link rel="stylesheet" href="/styles.css?v=20260915-11" />
+    <link rel="stylesheet" href="/styles.css?v=20260915-14" />
     <script type="importmap">
       {"imports":{"three":"/vendor/three/three.module.js"}}
     </script>
@@ -93,6 +93,14 @@
           <article class="panel bento-card bento-insight">
             <div class="panel-head"><h2>Leitura rápida</h2><span class="panel-kicker">Decisão</span></div>
             <div id="finance-insight" class="insight-stack"></div>
+          </article>
+
+          <article class="panel bento-card bento-blueprint">
+            <div class="panel-head"><h2>Planta da casa</h2><span class="panel-kicker">12 × 27 m</span></div>
+            <a id="dashboard-house-link" class="dashboard-blueprint-link" href="#house" aria-label="Abrir planta e modelo 3D na página Casa">
+              <img src="/api/house/blueprint.jpg" alt="Miniatura da planta da casa" loading="eager" />
+              <span><strong>50,56 m² internos</strong><small>Abrir planta e modelo 3D</small></span>
+            </a>
           </article>
         </section>
 
@@ -296,6 +304,6 @@
 
     <datalist id="phase-suggestions"></datalist>
     <datalist id="category-suggestions"></datalist>
-    <script src="/app.js?v=20260915-11"></script>
+    <script src="/app.js?v=20260915-14"></script>
   </body>
 </html>

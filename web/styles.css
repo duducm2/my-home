@@ -779,9 +779,10 @@ dialog {
 .bento-overview { grid-column: span 3; }
 .bento-donut { grid-column: span 3; }
 .bento-coverage { grid-column: span 6; }
-.bento-costs { grid-column: span 4; }
-.bento-phases { grid-column: span 5; }
+.bento-costs { grid-column: span 3; }
+.bento-phases { grid-column: span 3; }
 .bento-insight { grid-column: span 3; }
+.bento-blueprint { grid-column: span 3; }
 
 .panel-head {
   display: flex;
@@ -1138,7 +1139,8 @@ th { font-size: 10px; }
   .bento-coverage { grid-column: span 6; }
   .bento-costs,
   .bento-phases { grid-column: span 3; }
-  .bento-insight { grid-column: span 6; }
+  .bento-insight,
+  .bento-blueprint { grid-column: span 3; }
   .insight-stack { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
@@ -1151,7 +1153,8 @@ th { font-size: 10px; }
   .bento-coverage,
   .bento-costs,
   .bento-phases,
-  .bento-insight { grid-column: 1; }
+  .bento-insight,
+  .bento-blueprint { grid-column: 1; }
   .bento-card { min-height: auto; }
   .insight-stack { grid-template-columns: 1fr; }
   .timeline { grid-template-columns: 1fr; }
@@ -1685,5 +1688,410 @@ th { font-size: 10px; }
 @media (max-width: 420px) {
   .house-3d-stage {
     min-height: 390px;
+  }
+}
+
+
+/* Dashboard blueprint miniature */
+.bento-blueprint {
+  min-height: 190px;
+}
+
+.dashboard-blueprint-link {
+  display: grid;
+  grid-template-columns: minmax(76px, .8fr) minmax(100px, 1.2fr);
+  align-items: center;
+  gap: 10px;
+  min-height: 140px;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.dashboard-blueprint-link img {
+  width: 100%;
+  height: 138px;
+  object-fit: contain;
+  object-position: center;
+  background: #f4f2ed;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  transition: border-color .15s ease, transform .15s ease;
+}
+
+.dashboard-blueprint-link span,
+.dashboard-blueprint-link strong,
+.dashboard-blueprint-link small {
+  display: block;
+}
+
+.dashboard-blueprint-link strong {
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+}
+
+.dashboard-blueprint-link small {
+  margin-top: 5px;
+  color: var(--gold);
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.dashboard-blueprint-link:hover img,
+.dashboard-blueprint-link:focus-visible img {
+  border-color: var(--gold);
+  transform: scale(1.015);
+}
+
+.dashboard-blueprint-link:focus-visible {
+  outline: 1px solid var(--gold);
+  outline-offset: 3px;
+}
+
+@media (max-width: 700px) {
+  .dashboard-blueprint-link {
+    grid-template-columns: minmax(110px, .7fr) minmax(120px, 1.3fr);
+  }
+}
+
+
+/* Gelson work contract drafts */
+.work-contracts-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.work-contract-card {
+  display: grid;
+  align-content: start;
+  gap: 8px;
+  min-width: 0;
+  padding: 10px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-top: 2px solid #e39a35;
+  border-radius: var(--radius);
+}
+
+.work-contract-head,
+.work-contract-metrics {
+  display: grid;
+  gap: 8px;
+}
+
+.work-contract-head {
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: start;
+}
+
+.work-contract-head > div > span {
+  color: var(--muted);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+}
+
+.work-contract-head h4 {
+  margin: 3px 0 0;
+  color: var(--text);
+  font-size: 13px;
+  line-height: 1.3;
+}
+
+.draft-badge {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  padding: 3px 6px;
+  color: #f0ad4e;
+  background: rgba(227, 154, 53, .08);
+  border: 1px solid rgba(227, 154, 53, .38);
+  border-radius: 4px;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .03em;
+  text-transform: uppercase;
+}
+
+.draft-badge.compact {
+  padding: 2px 5px;
+}
+
+.work-summary-warning {
+  display: block;
+  margin-top: 6px;
+  color: #e7ad5d;
+  font-size: 9px;
+}
+
+.work-contract-metrics {
+  grid-template-columns: .8fr 1.2fr 1.2fr;
+}
+
+.work-contract-metrics > div {
+  min-width: 0;
+  padding: 7px 8px;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 5px;
+}
+
+.work-contract-metrics span,
+.work-contract-metrics strong {
+  display: block;
+}
+
+.work-contract-metrics span {
+  margin-bottom: 3px;
+  color: var(--muted);
+  font-size: 9px;
+  text-transform: uppercase;
+}
+
+.work-contract-metrics strong {
+  font-size: 10px;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.35;
+}
+
+.work-draft-warning {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 8px;
+  padding: 7px 8px;
+  color: #e8b66d;
+  background: rgba(227, 154, 53, .07);
+  border-left: 3px solid #e39a35;
+  font-size: 10px;
+}
+
+.work-contract-detail {
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 5px;
+}
+
+.work-contract-detail summary {
+  padding: 7px 8px;
+  color: #c8c8c8;
+  cursor: pointer;
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.work-scope {
+  display: grid;
+  gap: 5px;
+  margin: 0;
+  padding: 0 8px 8px;
+  list-style: none;
+}
+
+.work-scope li {
+  display: grid;
+  grid-template-columns: 20px minmax(0, 1fr);
+  gap: 6px;
+  padding-top: 5px;
+  border-top: 1px solid var(--line);
+}
+
+.work-scope li > span {
+  display: grid;
+  place-items: center;
+  width: 18px;
+  height: 18px;
+  color: var(--gold);
+  background: rgba(241, 196, 15, .06);
+  border: 1px solid rgba(241, 196, 15, .25);
+  border-radius: 50%;
+  font-size: 9px;
+  font-weight: 700;
+}
+
+.work-scope strong,
+.work-scope small {
+  display: block;
+}
+
+.work-scope strong {
+  font-size: 10px;
+  line-height: 1.35;
+}
+
+.work-scope small {
+  margin-top: 2px;
+  color: var(--muted);
+  font-size: 9px;
+  line-height: 1.4;
+}
+
+.work-blank-list {
+  display: grid;
+  gap: 3px;
+  margin: 0;
+  padding: 0 22px 8px;
+  color: var(--muted);
+  font-size: 9px;
+}
+
+.work-terms {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 5px;
+  padding: 0 7px 7px;
+}
+
+.work-term {
+  padding: 6px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+}
+
+.work-term strong,
+.work-term small {
+  font-size: 9px;
+}
+
+.work-term p {
+  margin: 3px 0;
+  color: var(--muted);
+  font-size: 9px;
+  line-height: 1.35;
+}
+
+.work-term small {
+  color: #8eaad0;
+}
+
+.work-conflicts {
+  display: grid;
+  gap: 5px;
+}
+
+.work-conflicts h5 {
+  margin: 1px 0;
+  color: #c9c9c9;
+  font-size: 10px;
+}
+
+.work-conflict {
+  padding: 7px 8px;
+  background: rgba(231, 76, 60, .055);
+  border: 1px solid rgba(231, 76, 60, .28);
+  border-left: 3px solid #e74c3c;
+  border-radius: 4px;
+}
+
+.work-conflict.info {
+  background: rgba(52, 152, 219, .05);
+  border-color: rgba(52, 152, 219, .25);
+  border-left-color: #3498db;
+}
+
+.work-conflict strong {
+  color: #f0c9c5;
+  font-size: 10px;
+}
+
+.work-conflict p {
+  margin: 3px 0;
+  color: var(--muted);
+  font-size: 9px;
+  line-height: 1.35;
+}
+
+.work-conflict p span {
+  color: #bbb;
+  font-weight: 600;
+}
+
+.work-conflict small {
+  display: block;
+  margin-top: 4px;
+  color: #e9b5af;
+  font-size: 9px;
+  line-height: 1.4;
+}
+
+@media (max-width: 1000px) {
+  .work-contracts-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 620px) {
+  .work-contract-head,
+  .work-contract-metrics,
+  .work-terms {
+    grid-template-columns: 1fr;
+  }
+
+  .work-contract-head {
+    gap: 6px;
+  }
+}
+
+
+/* Required contractor tools */
+.phase-required-tools {
+  display: grid;
+  gap: 6px;
+  margin: 8px 0;
+  padding: 8px;
+  background: rgba(241, 196, 15, .035);
+  border: 1px solid rgba(241, 196, 15, .18);
+  border-radius: 5px;
+}
+
+.phase-required-tools h4 {
+  margin: 0;
+  color: var(--gold);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .03em;
+  text-transform: uppercase;
+}
+
+.phase-required-tools > div {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 5px;
+}
+
+.required-tool {
+  min-width: 0;
+  padding: 7px;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--gold);
+  border-radius: 4px;
+}
+
+.required-tool strong,
+.required-tool small {
+  display: block;
+}
+
+.required-tool strong {
+  font-size: 10px;
+}
+
+.required-tool p {
+  margin: 3px 0 5px;
+  color: var(--muted);
+  font-size: 9px;
+  line-height: 1.35;
+}
+
+.required-tool small {
+  color: #9a9a9a;
+  font-size: 8px;
+  line-height: 1.35;
+}
+
+@media (max-width: 700px) {
+  .phase-required-tools > div {
+    grid-template-columns: 1fr;
   }
 }

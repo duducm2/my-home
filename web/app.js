@@ -642,6 +642,7 @@
     const address = property.address || {};
     const financing = property.financing || {};
     const contracts = project.contracts || {};
+    const workContracts = project.work_contracts || [];
     const people = project.people || [];
     const purchaseContract = project.purchase_contract || {};
     const contractDocument = purchaseContract.document || {};
@@ -660,6 +661,7 @@
     const phaseCards = (project.phases || []).map((phase) => {
       const labor = phase.labor || {};
       const services = phase.services || [];
+      const requiredTools = labor.required_tools || [];
       const priorityWork = phase.priority_work || [];
       const workHtml = priorityWork.map((work) => `
         <details class="project-detail">
@@ -667,6 +669,12 @@
           ${listHtml(work.items || work.current_priority || [])}
           ${work.deferred_finishings ? `<p class="project-note">Pode ficar para depois:</p>${listHtml(work.deferred_finishings)}` : ""}
         </details>`).join("");
+      const toolsHtml = requiredTools.map((tool) => `
+        <article class="required-tool">
+          <strong>${escapeHtml(tool.name)}</strong>
+          <p>${escapeHtml(tool.purpose || "")}</p>
+          <small>${escapeHtml(tool.responsibility || "")}${tool.related_expense_id ? ` · ${escapeHtml(tool.related_expense_id)}` : ""}</small>
+        </article>`).join("");
       return `
         <article class="project-phase">
           <div class="project-phase-head">
@@ -676,6 +684,7 @@
           <p><strong>Início:</strong> ${escapeHtml(phase.trigger || "")}</p>
           <p>${escapeHtml(phase.objective || "")}</p>
           ${phase.deadline && phase.deadline.duration_days ? `<p><strong>Prazo:</strong> ${phase.deadline.duration_days} dias a partir de ${escapeHtml(phase.deadline.starts_from)}.</p>` : ""}
+          ${toolsHtml ? `<div class="phase-required-tools"><h4>Ferramentas necessárias do pedreiro</h4><div>${toolsHtml}</div></div>` : ""}
           ${services.length ? `<details class="project-detail"><summary>${services.length} serviços</summary>${listHtml(services)}</details>` : ""}
           ${workHtml}
         </article>`;
@@ -716,6 +725,61 @@
       return `<div class="penalty-row"><span>${escapeHtml(item.title)}</span><strong>${escapeHtml(value)}</strong><small>Cl. ${escapeHtml(item.clause)}</small></div>`;
     }).join("");
 
+    const workContractCards = workContracts.map((contract) => {
+      const document = contract.document || {};
+      const deadline = contract.deadline || {};
+      const start = contract.start_condition || {};
+      const scope = (contract.scope || []).map((item) => `
+        <li><span>${item.number}</span><div><strong>${escapeHtml(item.title)}</strong><small>${escapeHtml(item.note || "")}</small></div></li>`).join("");
+      const terms = (contract.common_operational_terms || []).map((item) => `
+        <article class="work-term"><strong>${escapeHtml(item.title)}</strong><p>${escapeHtml(item.summary)}</p><small>Cl. ${escapeHtml(item.clause)}</small></article>`).join("");
+      const blanks = (contract.unfilled_fields || []).map((item) => `<li>${escapeHtml(item)}</li>`).join("");
+      const discrepancies = (contract.discrepancies || []).map((item) => `
+        <article class="work-conflict ${escapeAttr(item.severity || "attention")}">
+          <strong>${escapeHtml(item.topic)}</strong>
+          <p><span>Plano:</span> ${escapeHtml(item.project_plan || "")}</p>
+          <p><span>Rascunho:</span> ${escapeHtml(item.draft_contract || "")}</p>
+          <small>${escapeHtml(item.recommended_action || "")}</small>
+        </article>`).join("");
+      const deadlineText = deadline.duration_days
+        ? `${deadline.duration_days} dias corridos a partir do ${deadline.starts_from}`
+        : (deadline.summary || "Sem prazo global definido");
+      return `
+        <article class="work-contract-card">
+          <div class="work-contract-head">
+            <div><span>${escapeHtml(contract.phase_id === "phase_1" ? "Contrato 01" : "Contrato 02")}</span><h4>${escapeHtml(contract.label)}</h4></div>
+            <span class="draft-badge">Rascunho não assinado</span>
+          </div>
+          <div class="work-contract-metrics">
+            <div><span>Mão de obra</span><strong>${formatMoney(contract.labor_price)}</strong></div>
+            <div><span>Início</span><strong>${escapeHtml(start.summary || "A definir")}</strong></div>
+            <div><span>Prazo</span><strong>${escapeHtml(deadlineText)}</strong></div>
+          </div>
+          <div class="document-actions">
+            <a class="btn primary" href="${escapeAttr(document.url || "#")}" target="_blank" rel="noopener">Abrir rascunho</a>
+            <a class="btn" href="${escapeAttr(document.url || "#")}" download="${escapeAttr(document.filename || "contrato.pdf")}">Baixar PDF</a>
+          </div>
+          <div class="work-draft-warning"><strong>Antes de assinar</strong><span>Preencher e conferir os campos em branco.</span></div>
+          <details class="work-contract-detail" open>
+            <summary>Escopo contratado · ${(contract.scope || []).length} itens</summary>
+            <ol class="work-scope">${scope}</ol>
+          </details>
+          <details class="work-contract-detail">
+            <summary>Campos ainda não preenchidos</summary>
+            <ul class="work-blank-list">${blanks}</ul>
+          </details>
+          <details class="work-contract-detail">
+            <summary>Regras e responsabilidades</summary>
+            <div class="work-terms">${terms}</div>
+          </details>
+          <div class="work-conflicts">
+            <h5>Pontos para reconciliar antes da assinatura</h5>
+            ${discrepancies}
+          </div>
+          <p class="contract-source-note">Resumo operacional do rascunho. Consulte o PDF e formalize alterações por escrito.</p>
+        </article>`;
+    }).join("");
+
     const contractUrl = contractDocument.url || "/api/project/documents/purchase-contract.pdf";
     const contractStatus = purchaseContract.status === "signed" ? "Assinado" : "Pendente";
     const peopleCards = people.map((person) => `
@@ -748,10 +812,11 @@
           <p>Cobertura maior em estudo: ${largerRear.width_m || "—"} × ${largerRear.depth_m || "—"} m = ${largerRear.area_m2 || "—"} m²</p>
         </article>
         <article class="house-card">
-          <h3>Contratos Gelson</h3>
+          <div class="contract-card-head"><h3>Contratos de obra — Gelson</h3><span class="draft-badge compact">2 rascunhos</span></div>
           <p>Fase 1: ${formatMoney(contracts.phase_1_amount)}</p>
           <p>Fase 2: ${formatMoney(contracts.phase_2_amount)}</p>
           <p><strong>Total: ${formatMoney(contracts.total_labor_amount)}</strong></p>
+          <small class="work-summary-warning">Não assinados · preencher antes da execução</small>
         </article>
         <article class="house-card contract-summary-card">
           <div class="contract-card-head"><h3>Contrato de compra e venda</h3><span class="contract-status">${contractStatus}</span></div>
@@ -765,7 +830,11 @@
         </article>
       </div>
 
-      <h3 class="project-heading">Contrato assinado</h3>
+      <h3 class="project-heading">Contratos de obra — Gelson</h3>
+      <p class="section-sub">Dois rascunhos separados. Ambos precisam ser preenchidos, conferidos e assinados antes da execução.</p>
+      <section class="work-contracts-grid">${workContractCards}</section>
+
+      <h3 class="project-heading">Contrato de compra e venda assinado</h3>
       <section class="contract-panel panel">
         <div class="contract-overview">
           <div><span>Imóvel</span><strong>Lote ${escapeHtml(contractProperty.lot || "—")} · Quadra ${escapeHtml(contractProperty.block || "—")}</strong><small>Matrícula ${escapeHtml(contractProperty.registry_number || "—")} · cadastro ${escapeHtml(contractProperty.municipal_registration || "—")}</small></div>
@@ -904,6 +973,13 @@
   document.getElementById("home-link").addEventListener("click", (event) => {
     event.preventDefault();
     navigateTo("dashboard");
+  });
+
+
+  document.getElementById("dashboard-house-link").addEventListener("click", (event) => {
+    event.preventDefault();
+    navigateTo("house");
+    window.scrollTo({ top: 0, behavior: "smooth" });
   });
 
   const navigationShortcuts = {
