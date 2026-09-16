@@ -395,5 +395,241 @@
         "restriction_note": "Disponível para documentação, obras, mudança, reservas e demais custos do projeto."
       }
     ]
-  }
+  },
+  "purchase_contract": {
+    "title": "Instrumento Particular de Promessa de Venda e Compra de Bem Imóvel e Outras Avenças",
+    "status": "signed",
+    "status_source": "user_confirmed",
+    "contract_date": "2026-09-08",
+    "document": {
+      "filename": "purchase-contract-2026-09-08.pdf",
+      "repository_path": "data/documents/purchase-contract-2026-09-08.pdf",
+      "url": "/api/project/documents/purchase-contract.pdf",
+      "mime_type": "application/pdf",
+      "pages": 17,
+      "sha256": "ab8dcdbee4ac8aa2af8e56d5f61fdb07a1fd04f5b2d081f25e545a679131ac93"
+    },
+    "parties": {
+      "buyer": "Eduardo Matos de Assis Figueiredo",
+      "buyer_role": "Promissário comprador",
+      "intermediary": "Pereira Neves Imobiliária",
+      "sellers_summary": "Titulares de direitos hereditários e espólios qualificados no preâmbulo"
+    },
+    "property_legal_identification": {
+      "lot": "26",
+      "block": "B",
+      "development": "Parque Fabrício",
+      "city": "Nova Odessa",
+      "state": "SP",
+      "frontage_m": 12.0,
+      "depth_m": 27.0,
+      "area_m2": 324.0,
+      "registry_number": "28.775",
+      "registry_office": "Registro de Imóveis de Nova Odessa/SP",
+      "municipal_registration": "24.00485.0159.00",
+      "clause": "1.2"
+    },
+    "financial_terms": {
+      "purchase_price": 310000.0,
+      "contract_payment_wording": "Pagamento integral por financiamento bancário habitacional.",
+      "funding_reconciliation_note": "O texto contratual foi preservado como fonte jurídica. O planejamento do app mantém separadamente FGTS e recursos livres confirmados pelo comprador.",
+      "brokerage_fee_paid_by_sellers": 18600.0,
+      "brokerage_clause": "2.3"
+    },
+    "deadlines": [
+      {
+        "id": "seller_registry_regularization",
+        "label": "Regularizações registrais dos vendedores",
+        "responsible_party": "Promitentes vendedores",
+        "trigger": "Assinatura do contrato",
+        "duration_days": 30,
+        "calculated_due_date": "2026-10-08",
+        "clause": "1.2.2"
+      },
+      {
+        "id": "buyer_structural_interventions",
+        "label": "Intervenções estruturais para aprovação",
+        "responsible_party": "Promissário comprador",
+        "trigger": "Assinatura do contrato",
+        "duration_days": 60,
+        "calculated_due_date": "2026-11-07",
+        "clause": "1.2.3",
+        "extension_note": "Prorrogação automática pelo período de impedimento de acesso imputável aos vendedores ou à ocupante."
+      },
+      {
+        "id": "financing_formalization",
+        "label": "Formalização e assinatura do financiamento",
+        "responsible_party": "Promissário comprador",
+        "trigger": "Assinatura do contrato",
+        "duration_days": 120,
+        "calculated_due_date": "2027-01-06",
+        "clause": "2.1",
+        "extension_note": "Atraso da instituição financeira não gera penalidade por si só quando não imputável ao comprador."
+      },
+      {
+        "id": "financing_long_stop_notice",
+        "label": "Marco para notificação por financiamento pendente",
+        "responsible_party": "Qualquer parte",
+        "trigger": "Assinatura do contrato",
+        "duration_days": 180,
+        "calculated_due_date": "2027-03-07",
+        "additional_response_days": 15,
+        "clause": "2.1.1.1"
+      },
+      {
+        "id": "possession_delivery",
+        "label": "Entrega da posse e desocupação",
+        "responsible_party": "Promitentes vendedores",
+        "trigger": "Assinatura do financiamento",
+        "duration_days": 60,
+        "calculated_due_date": null,
+        "clause": "3.1"
+      },
+      {
+        "id": "title_filing",
+        "label": "Prenotação do título no Registro de Imóveis",
+        "responsible_party": "Promissário comprador",
+        "trigger": "Assinatura do financiamento",
+        "duration_days": 30,
+        "calculated_due_date": null,
+        "clause": "7.2"
+      }
+    ],
+    "operational_obligations": [
+      {
+        "title": "Acesso para obras antes da posse",
+        "summary": "Os vendedores devem garantir acesso razoável do comprador, profissionais, materiais, ferramentas, equipamentos e entulho, sem restrições injustificadas.",
+        "clauses": [
+          "1.2.3.1",
+          "1.2.3.2"
+        ]
+      },
+      {
+        "title": "Conservação de materiais e intervenções",
+        "summary": "Vendedores e ocupante devem preservar materiais, ferramentas, equipamentos e intervenções custeadas pelo comprador.",
+        "clauses": [
+          "1.2.3.4",
+          "3.1.2"
+        ]
+      },
+      {
+        "title": "Documentos para financiamento",
+        "summary": "Vendedores devem apresentar documentos solicitados em até 5 dias de cada solicitação.",
+        "clauses": [
+          "2.1.2"
+        ]
+      },
+      {
+        "title": "Despesas após a posse",
+        "summary": "Tributos, consumos e alterações cadastrais passam ao comprador conforme a transferência da posse; ITBI, registro e financiamento ficam a cargo do comprador.",
+        "clauses": [
+          "3.2",
+          "4.2",
+          "4.3",
+          "7.1"
+        ]
+      }
+    ],
+    "buyer_protections": [
+      {
+        "title": "Ressarcimento das intervenções",
+        "summary": "Se irregularidade atribuível aos vendedores inviabilizar o financiamento ou o negócio, despesas comprovadas com demolição, infiltrações, materiais, mão de obra e regularização devem ser integralmente ressarcidas.",
+        "clauses": [
+          "1.2.3.5",
+          "9.1.2",
+          "9.1.2.1",
+          "9.1.3"
+        ]
+      },
+      {
+        "title": "Preservação e recomposição",
+        "summary": "Danos às reformas ou instalações antes da posse devem ser recompostos ou ressarcidos pelos vendedores quando lhes forem imputáveis.",
+        "clauses": [
+          "3.1.2"
+        ]
+      },
+      {
+        "title": "Negativa sem culpa das partes",
+        "summary": "Se o financiamento for negado por motivo exclusivamente bancário e sem culpa das partes, não há multa; valores pagos devem ser restituídos corrigidos pelo INPC.",
+        "clauses": [
+          "9.3",
+          "9.3.1"
+        ]
+      }
+    ],
+    "penalties": [
+      {
+        "title": "Atraso na entrega da posse",
+        "value_type": "monthly_percentage",
+        "value": 1.0,
+        "calculated_monthly_amount": 3100.0,
+        "basis": "Valor total do imóvel",
+        "clause": "3.1.1"
+      },
+      {
+        "title": "Atraso na prenotação do título",
+        "value_type": "daily_amount",
+        "value": 100.0,
+        "maximum_amount": 36500.0,
+        "clause": "7.2"
+      },
+      {
+        "title": "Rescisão injustificada ou violação contratual",
+        "value_type": "percentage",
+        "value": 10.0,
+        "calculated_base_amount": 31000.0,
+        "adjustment": "INPC e juros de mora de 1% ao mês",
+        "clause": "9.1"
+      },
+      {
+        "title": "Honorários advocatícios por inadimplência",
+        "value_type": "percentage_of_updated_penalty",
+        "value": 10.0,
+        "clause": "9.2"
+      }
+    ],
+    "forum": "Comarca de Nova Odessa/SP",
+    "forum_clause": "11.9",
+    "source": {
+      "type": "signed_purchase_contract",
+      "document_date": "2026-09-08",
+      "captured_at": "2026-09-15",
+      "note": "Resumo operacional; consultar o PDF assinado para o teor jurídico integral."
+    }
+  },
+  "people": [
+    {
+      "id": "eduardo",
+      "name": "Eduardo",
+      "full_name": "Eduardo Matos de Assis Figueiredo",
+      "role": "Comprador e responsável pelo financiamento",
+      "story_role": "Conduz a compra, o financiamento e as decisões do projeto.",
+      "image_path": "data/people/eduardo.jpg",
+      "image_url": "/api/project/people/eduardo.jpg"
+    },
+    {
+      "id": "leo",
+      "name": "Leo",
+      "role": "Participante da compra e do projeto",
+      "story_role": "Participa com Eduardo da jornada de aquisição e preparação da casa.",
+      "image_path": "data/people/leo.jpg",
+      "image_url": "/api/project/people/leo.jpg"
+    },
+    {
+      "id": "jane",
+      "name": "Jane",
+      "role": "Moradora atual",
+      "story_role": "Uma das filhas e a única pessoa que atualmente mora na casa.",
+      "image_path": "data/people/jane.png",
+      "image_url": "/api/project/people/jane.png"
+    },
+    {
+      "id": "gelson",
+      "name": "Gelson",
+      "role": "Pedreiro da obra",
+      "story_role": "Profissional que apoia Eduardo e Leo na execução das obras.",
+      "image_path": "data/people/gelson.jpg",
+      "image_url": "/api/project/people/gelson.jpg"
+    }
+  ]
 }

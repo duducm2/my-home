@@ -151,6 +151,47 @@ class ExpenseHandler(BaseHTTPRequestHandler):
             self._bytes(200, bp.read_bytes(), "image/jpeg")
             return
 
+        if path.startswith("/api/project/people/"):
+            filename = path.rsplit("/", 1)[-1]
+            allowed = {
+                "eduardo.jpg": "image/jpeg",
+                "gelson.jpg": "image/jpeg",
+                "jane.png": "image/png",
+                "leo.jpg": "image/jpeg",
+            }
+            mime_type = allowed.get(filename)
+            if not mime_type:
+                self._json(404, {"ok": False, "error": "person image not found"})
+                return
+            image = (self.data_dir / "people" / filename).resolve()
+            try:
+                image.relative_to((self.data_dir / "people").resolve())
+            except ValueError:
+                self._json(403, {"ok": False, "error": "forbidden"})
+                return
+            if not image.is_file():
+                self._json(404, {"ok": False, "error": "person image missing"})
+                return
+            self._bytes(200, image.read_bytes(), mime_type)
+            return
+
+        if path == "/api/project/documents/purchase-contract.pdf":
+            document = (
+                self.data_dir
+                / "documents"
+                / "purchase-contract-2026-09-08.pdf"
+            ).resolve()
+            try:
+                document.relative_to(self.data_dir.resolve())
+            except ValueError:
+                self._json(403, {"ok": False, "error": "forbidden"})
+                return
+            if not document.is_file():
+                self._json(404, {"ok": False, "error": "contract missing"})
+                return
+            self._bytes(200, document.read_bytes(), "application/pdf")
+            return
+
         if path.startswith("/assets/"):
             rel = path[len("/assets/") :]
             self._serve_static(f"assets/{rel}", "image/jpeg" if rel.lower().endswith((".jpg", ".jpeg")) else "application/octet-stream")

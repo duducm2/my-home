@@ -98,6 +98,11 @@
 
   const brl = new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" });
   const formatMoney = (v) => brl.format(Number(v) || 0);
+  const formatDate = (value) => {
+    if (!value) return "Data definida após o evento de referência";
+    const date = new Date(`${value}T12:00:00`);
+    return new Intl.DateTimeFormat("pt-BR", { dateStyle: "long" }).format(date);
+  };
 
   function escapeHtml(value) {
     return String(value)
@@ -632,6 +637,12 @@
     const address = property.address || {};
     const financing = property.financing || {};
     const contracts = project.contracts || {};
+    const people = project.people || [];
+    const purchaseContract = project.purchase_contract || {};
+    const contractDocument = purchaseContract.document || {};
+    const contractParties = purchaseContract.parties || {};
+    const contractProperty = purchaseContract.property_legal_identification || {};
+    const contractFinancial = purchaseContract.financial_terms || {};
     const financial = project.financial_strategy || {};
     const rear = (project.official_dimensions || {}).rear_area || {};
     const currentRear = rear.current_effective_space || {};
@@ -669,7 +680,54 @@
       .map((row) => `<tr><td>${escapeHtml(row.system)}</td><td class="num">${formatMoney(row.min)}</td><td class="num">${formatMoney(row.max)}</td></tr>`)
       .join("");
 
+    const contractDeadlines = (purchaseContract.deadlines || []).map((deadline) => `
+      <article class="contract-deadline">
+        <div class="contract-deadline-head"><strong>${escapeHtml(deadline.label)}</strong><span>Cl. ${escapeHtml(deadline.clause)}</span></div>
+        <p>${deadline.duration_days} dias · ${escapeHtml(deadline.trigger)}</p>
+        <p class="contract-date">${escapeHtml(formatDate(deadline.calculated_due_date))}</p>
+        <small>${escapeHtml(deadline.responsible_party || "")}</small>
+        ${deadline.extension_note ? `<p class="contract-note">${escapeHtml(deadline.extension_note)}</p>` : ""}
+      </article>`).join("");
+
+    const contractObligations = (purchaseContract.operational_obligations || []).map((item) => `
+      <article class="contract-item">
+        <strong>${escapeHtml(item.title)}</strong>
+        <p>${escapeHtml(item.summary)}</p>
+        <small>Cláusulas ${escapeHtml((item.clauses || []).join(", "))}</small>
+      </article>`).join("");
+
+    const contractProtections = (purchaseContract.buyer_protections || []).map((item) => `
+      <article class="contract-item protection">
+        <strong>${escapeHtml(item.title)}</strong>
+        <p>${escapeHtml(item.summary)}</p>
+        <small>Cláusulas ${escapeHtml((item.clauses || []).join(", "))}</small>
+      </article>`).join("");
+
+    const contractPenalties = (purchaseContract.penalties || []).map((item) => {
+      let value = `${item.value}%`;
+      if (item.value_type === "daily_amount") value = `${formatMoney(item.value)}/dia`;
+      if (item.value_type === "monthly_percentage") value = `${item.value}%/mês · ${formatMoney(item.calculated_monthly_amount)}`;
+      if (item.value_type === "percentage" && item.calculated_base_amount != null) value = `${item.value}% · base ${formatMoney(item.calculated_base_amount)}`;
+      return `<div class="penalty-row"><span>${escapeHtml(item.title)}</span><strong>${escapeHtml(value)}</strong><small>Cl. ${escapeHtml(item.clause)}</small></div>`;
+    }).join("");
+
+    const contractUrl = contractDocument.url || "/api/project/documents/purchase-contract.pdf";
+    const contractStatus = purchaseContract.status === "signed" ? "Assinado" : "Pendente";
+    const peopleCards = people.map((person) => `
+      <article class="person-card">
+        <img src="${escapeAttr(person.image_url || "")}" alt="Foto de ${escapeAttr(person.name || "participante")}" loading="lazy" />
+        <div class="person-card-body">
+          <span>${escapeHtml(person.role || "Participante")}</span>
+          <h4>${escapeHtml(person.name || "")}</h4>
+          <p>${escapeHtml(person.story_role || "")}</p>
+        </div>
+      </article>`).join("");
+
     els.projectOverview.innerHTML = `
+      <h3 class="project-heading people-heading">Pessoas do projeto</h3>
+      <div class="people-grid">${peopleCards}</div>
+
+      <h3 class="project-heading">Resumo da casa e da compra</h3>
       <div class="project-summary-grid">
         <article class="house-card">
           <h3>Imóvel e compra</h3>
@@ -690,7 +748,36 @@
           <p>Fase 2: ${formatMoney(contracts.phase_2_amount)}</p>
           <p><strong>Total: ${formatMoney(contracts.total_labor_amount)}</strong></p>
         </article>
+        <article class="house-card contract-summary-card">
+          <div class="contract-card-head"><h3>Contrato de compra e venda</h3><span class="contract-status">${contractStatus}</span></div>
+          <p>${escapeHtml(formatDate(purchaseContract.contract_date))}</p>
+          <p>${escapeHtml(contractParties.buyer || "")} · ${escapeHtml(contractParties.intermediary || "")}</p>
+          <p><strong>${formatMoney(contractFinancial.purchase_price)}</strong> · lote ${escapeHtml(contractProperty.lot || "—")}, quadra ${escapeHtml(contractProperty.block || "—")}</p>
+          <div class="document-actions">
+            <a class="btn primary" href="${escapeAttr(contractUrl)}" target="_blank" rel="noopener">Abrir contrato</a>
+            <a class="btn" href="${escapeAttr(contractUrl)}" download="${escapeAttr(contractDocument.filename || "contrato.pdf")}">Baixar PDF</a>
+          </div>
+        </article>
       </div>
+
+      <h3 class="project-heading">Contrato assinado</h3>
+      <section class="contract-panel panel">
+        <div class="contract-overview">
+          <div><span>Imóvel</span><strong>Lote ${escapeHtml(contractProperty.lot || "—")} · Quadra ${escapeHtml(contractProperty.block || "—")}</strong><small>Matrícula ${escapeHtml(contractProperty.registry_number || "—")} · cadastro ${escapeHtml(contractProperty.municipal_registration || "—")}</small></div>
+          <div><span>Preço contratual</span><strong>${formatMoney(contractFinancial.purchase_price)}</strong><small>${escapeHtml(contractFinancial.contract_payment_wording || "")}</small></div>
+          <div><span>Foro</span><strong>${escapeHtml(purchaseContract.forum || "—")}</strong><small>Cláusula ${escapeHtml(purchaseContract.forum_clause || "—")}</small></div>
+        </div>
+        <p class="contract-reconciliation">${escapeHtml(contractFinancial.funding_reconciliation_note || "")}</p>
+        <h4>Prazos contratuais</h4>
+        <div class="contract-deadlines">${contractDeadlines}</div>
+        <div class="contract-columns">
+          <div><h4>Obrigações operacionais</h4><div class="contract-items">${contractObligations}</div></div>
+          <div><h4>Proteções do comprador</h4><div class="contract-items">${contractProtections}</div></div>
+        </div>
+        <h4>Penalidades e valores de atenção</h4>
+        <div class="penalty-grid">${contractPenalties}</div>
+        <p class="contract-source-note">${escapeHtml((purchaseContract.source || {}).note || "Consulte o documento assinado para o teor integral.")}</p>
+      </section>
 
       <h3 class="project-heading">Sequência da compra</h3>
       <ol class="project-workflow">${workflow}</ol>

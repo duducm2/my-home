@@ -48,6 +48,11 @@ def push_expenses(repo_root: Path, data_files: list[Path] | None = None) -> dict
             Path("data") / "house.json",
             Path("data") / "project.json",
             Path("data") / "blueprint.jpg",
+            Path("data") / "documents" / "purchase-contract-2026-09-08.pdf",
+            Path("data") / "people" / "eduardo.jpg",
+            Path("data") / "people" / "gelson.jpg",
+            Path("data") / "people" / "jane.png",
+            Path("data") / "people" / "leo.jpg",
         ]
     rels = []
     for data_file in data_files:
