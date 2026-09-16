@@ -200,17 +200,47 @@ class HouseViewer {
     this.sceneRoot.add(lotEdges);
 
     for (const zone of this.model.outdoor_zones || []) {
+      const zoneCenterX = zone.x_m + zone.width_m / 2;
+      const zoneCenterZ = zone.z_m + zone.depth_m / 2;
       const slab = this.addBox({
         width: zone.width_m,
         height: 0.035,
         depth: zone.depth_m,
-        x: this.worldX(zone.x_m + zone.width_m / 2),
+        x: this.worldX(zoneCenterX),
         y: 0.005,
-        z: this.worldZ(zone.z_m + zone.depth_m / 2),
+        z: this.worldZ(zoneCenterZ),
         color: zone.color || "#315f3b",
         opacity: zone.status?.includes("schematic") ? 0.7 : 0.9,
       });
+      slab.userData.zone = zone;
       this.sceneRoot.add(slab);
+
+      for (const fixture of zone.fixtures || []) {
+        this.addOutdoorFixture(zone, fixture);
+      }
+
+      if (zone.label_visible) {
+        const label = new THREE.Sprite(
+          new THREE.SpriteMaterial({
+            map: createLabelTexture(zone.label, zone.color || "#526c78"),
+            transparent: true,
+            depthTest: false,
+          }),
+        );
+        label.scale.set(
+          Math.min(2.7, Math.max(1.45, zone.width_m * 1.05)),
+          0.54,
+          1,
+        );
+        label.position.set(
+          this.worldX(zoneCenterX),
+          Number(zone.label_y_m) || 0.42,
+          this.worldZ(zoneCenterZ),
+        );
+        label.renderOrder = 11;
+        this.labelSprites.push(label);
+        this.sceneRoot.add(label);
+      }
     }
 
     for (const room of this.model.rooms || []) {
@@ -371,6 +401,17 @@ class HouseViewer {
           wallColor,
           wall,
         );
+        if (opening.frame) {
+          this.addOpeningFrame(
+            start,
+            direction,
+            openingStart,
+            openingEnd,
+            doorHeight,
+            thickness,
+            wall,
+          );
+        }
       }
       cursor = openingEnd;
     }
@@ -419,6 +460,52 @@ class HouseViewer {
     mesh.userData.wall = wall;
     this.wallMeshes.push(mesh);
     this.sceneRoot.add(mesh);
+  }
+
+  addOutdoorFixture(zone, fixture) {
+    const width = Math.max(0.08, Number(fixture.width_m) || 0.5);
+    const depth = Math.max(0.08, Number(fixture.depth_m) || 0.5);
+    const height = Math.max(0.02, Number(fixture.height_m) || 0.5);
+    const globalX = zone.x_m + (Number(fixture.x_m) || 0);
+    const globalZ = zone.z_m + (Number(fixture.z_m) || 0);
+    const mesh = this.addBox({
+      width,
+      height,
+      depth,
+      x: this.worldX(globalX + width / 2),
+      y: height / 2 + 0.035,
+      z: this.worldZ(globalZ + depth / 2),
+      color: fixture.color || "#9aa4a8",
+      roughness: fixture.type === "appliance" ? 0.42 : 0.8,
+    });
+    mesh.castShadow = true;
+    mesh.userData.zone = zone;
+    mesh.userData.fixture = fixture;
+    this.sceneRoot.add(mesh);
+
+    if (fixture.accent_color) {
+      const accent = this.addBox({
+        width: width * 0.58,
+        height: height * 0.44,
+        depth: 0.025,
+        x: this.worldX(globalX + width / 2),
+        y: 0.035 + height * 0.56,
+        z: this.worldZ(globalZ + 0.012),
+        color: fixture.accent_color,
+        roughness: 0.28,
+      });
+      this.sceneRoot.add(accent);
+    }
+  }
+
+  addOpeningFrame(start, direction, from, to, height, thickness, wall) {
+    const frameWidth = Math.min(0.07, Math.max(0.045, (to - from) * 0.04));
+    const frameDepth = thickness * 1.35;
+    const frameColor = "#506776";
+    this.addWallPiece(start, direction, from, from + frameWidth, 0, height, frameDepth, frameColor, wall);
+    this.addWallPiece(start, direction, to - frameWidth, to, 0, height, frameDepth, frameColor, wall);
+    this.addWallPiece(start, direction, from, to, height - frameWidth, frameWidth, frameDepth, frameColor, wall);
+    this.addWallPiece(start, direction, from, to, 0, 0.045, frameDepth, frameColor, wall);
   }
 
   addOpeningGlass(

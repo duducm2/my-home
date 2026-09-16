@@ -66,7 +66,12 @@
       "label": "LAVANDERIA NO CORREDOR",
       "location": "Right side exterior corridor",
       "kind": "service",
-      "architectural_notes": "No numeric dimensions labeled on the blueprint."
+      "architectural_notes": "A planta identifica a lavanderia no corredor exterior direito sem cotas próprias. O volume 3D usa 1,30 × 5,40 m apenas para tornar a área legível e deve ser conferido em campo.",
+      "approx_dimensions_meters": {
+        "width": 1.3,
+        "depth": 5.4
+      },
+      "dimension_status": "undimensioned_schematic_from_blueprint_label_and_corridor_extent"
     }
   ],
   "interior_rooms": [
@@ -81,15 +86,25 @@
       },
       "approx_area_m2": 9.0,
       "features": [
-        "Future approximately 2.00 m balcony door on a wall of approximately 2.35 m",
-        "Door to hallway (corredor)"
+        "Janela na parede lateral esquerda conforme símbolo da planta",
+        "Abertura futura de aproximadamente 2,00 m na parede superior, em parede total aproximada de 2,35 m",
+        "Porta para o corredor central"
       ],
       "openings": [
         {
           "type": "window",
+          "wall": "left",
+          "width_m": 1.2,
+          "sill_m": 1.0,
+          "height_m": 1.1,
+          "dimension_status": "proportional_estimate_from_blueprint"
+        },
+        {
+          "type": "door",
           "wall": "top",
           "width_m": 2.0,
-          "future_use": "balcony_door"
+          "future_use": "balcony_door",
+          "dimension_status": "measured_on_blueprint"
         },
         {
           "type": "door",
@@ -108,13 +123,17 @@
       },
       "approx_area_m2": 10.7,
       "features": [
-        "Window on right wall",
-        "Door to hallway (corredor)"
+        "Janela na parede lateral direita conforme símbolo da planta",
+        "Porta para o corredor central"
       ],
       "openings": [
         {
           "type": "window",
-          "wall": "right"
+          "wall": "right",
+          "width_m": 1.0,
+          "sill_m": 1.0,
+          "height_m": 1.1,
+          "dimension_status": "proportional_estimate_from_blueprint"
         },
         {
           "type": "door",
@@ -151,11 +170,15 @@
         "Small window on left wall",
         "Door to hallway (corredor)"
       ],
-      "architectural_notes": "Dimensões oficiais consolidadas no resumo-mestre: 1,89 × 1,86 m. Altura de parede anotada na planta: 2,70 m.",
+      "architectural_notes": "Dimensões oficiais consolidadas no resumo-mestre: 1,89 × 1,86 m. Altura de parede anotada na planta: 2,70 m. A janela lateral esquerda não possui cota própria; largura, peitoril e altura permanecem estimativas proporcionais explícitas.",
       "openings": [
         {
           "type": "window",
-          "wall": "left"
+          "wall": "left",
+          "width_m": 0.6,
+          "sill_m": 1.5,
+          "height_m": 0.6,
+          "dimension_status": "proportional_estimate_from_blueprint"
         },
         {
           "type": "door",
@@ -180,7 +203,11 @@
       "openings": [
         {
           "type": "window",
-          "wall": "right"
+          "wall": "right",
+          "width_m": 1.0,
+          "sill_m": 1.0,
+          "height_m": 1.1,
+          "dimension_status": "proportional_estimate_from_blueprint"
         },
         {
           "type": "door",
@@ -199,14 +226,18 @@
       },
       "approx_area_m2": 9.54,
       "features": [
-        "Front-facing window on bottom wall",
-        "Door to hallway (corredor)",
-        "Door to suite bathroom"
+        "Janela frontal na parede inferior conforme símbolo da planta",
+        "Porta para o corredor central",
+        "Porta para a Suíte Quarto Casal"
       ],
       "openings": [
         {
           "type": "window",
-          "wall": "bottom"
+          "wall": "bottom",
+          "width_m": 1.4,
+          "sill_m": 1.0,
+          "height_m": 1.1,
+          "dimension_status": "proportional_estimate_from_blueprint"
         },
         {
           "type": "door",
@@ -230,13 +261,17 @@
       },
       "approx_area_m2": 7.26,
       "features": [
-        "Window on right wall",
-        "Accessed from Quarto Casal (en-suite)"
+        "Janela na parede lateral direita conforme símbolo da planta",
+        "Acesso pelo Quarto Casal"
       ],
       "openings": [
         {
           "type": "window",
-          "wall": "right"
+          "wall": "right",
+          "width_m": 1.0,
+          "sill_m": 1.0,
+          "height_m": 1.1,
+          "dimension_status": "proportional_estimate_from_blueprint"
         },
         {
           "type": "door",
@@ -310,6 +345,11 @@
         "id": "rear_area_scope",
         "severity": "O JSON original tratava 7,80 × 5,20 m como área gourmet atual.",
         "resolution": "A área efetiva atual é 7,80 × 2,60 m = 20,28 m²; 7,80 × 5,20 m foi preservado apenas como cenário de cobertura em estudo."
+      },
+      {
+        "id": "confirmed_3d_window_orientation",
+        "severity": "A orientação das janelas foi revisada novamente antes da correção 3D.",
+        "resolution": "Configuração confirmada pela planta: Sala à esquerda; Quarto 2, Escritório e Suíte à direita; Quarto Casal na frente; WC à esquerda."
       }
     ],
     "represented_on_blueprint": [
@@ -329,9 +369,9 @@
     ]
   },
   "notes": "",
-  "updated_at": "2026-09-15 22:15:08",
+  "updated_at": "2026-09-15 23:42:00",
   "model_3d": {
-    "version": 1,
+    "version": 2,
     "model_type": "schematic_architectural_dollhouse",
     "units": "meters",
     "coordinate_system": {
@@ -469,7 +509,10 @@
             "type": "window",
             "offset_m": 0.72,
             "width_m": 1.4,
-            "room_id": "quarto_casal"
+            "sill_m": 1.0,
+            "height_m": 1.1,
+            "room_id": "quarto_casal",
+            "dimension_status": "proportional_estimate_from_blueprint"
           }
         ]
       },
@@ -489,26 +532,63 @@
             "type": "window",
             "offset_m": 0.7,
             "width_m": 1.0,
-            "room_id": "suite_quarto_casal"
+            "sill_m": 1.0,
+            "height_m": 1.1,
+            "room_id": "suite_quarto_casal",
+            "dimension_status": "proportional_estimate_from_blueprint"
           },
           {
             "type": "window",
             "offset_m": 3.25,
             "width_m": 1.0,
-            "room_id": "escritorio"
+            "sill_m": 1.0,
+            "height_m": 1.1,
+            "room_id": "escritorio",
+            "dimension_status": "proportional_estimate_from_blueprint"
           },
           {
             "type": "window",
             "offset_m": 6.62,
             "width_m": 1.0,
-            "room_id": "quarto_2"
+            "sill_m": 1.0,
+            "height_m": 1.1,
+            "room_id": "quarto_2",
+            "dimension_status": "proportional_estimate_from_blueprint"
           }
         ]
       },
       {
-        "id": "outer_rear",
+        "id": "outer_rear_quarto_2",
         "start": [
           5.94,
+          9.11
+        ],
+        "end": [
+          3.0,
+          9.11
+        ],
+        "kind": "exterior",
+        "openings": [],
+        "geometry_source": "solid rear wall shown on blueprint"
+      },
+      {
+        "id": "outer_rear_transition",
+        "start": [
+          3.0,
+          9.11
+        ],
+        "end": [
+          2.35,
+          9.11
+        ],
+        "kind": "exterior",
+        "openings": [],
+        "geometry_source": "solid transition preserving continuous rear facade across schematic room-coordinate gap"
+      },
+      {
+        "id": "outer_rear_sala",
+        "start": [
+          2.35,
           9.11
         ],
         "end": [
@@ -519,12 +599,16 @@
         "openings": [
           {
             "type": "door",
-            "offset_m": 3.76,
+            "offset_m": 0.175,
             "width_m": 2.0,
+            "height_m": 2.1,
             "room_id": "sala_tv",
-            "status": "future_balcony_door"
+            "status": "future_balcony_door",
+            "frame": true,
+            "dimension_status": "2.00 m measured opening centered in approximately 2.35 m wall"
           }
-        ]
+        ],
+        "geometry_source": "approximately 2.35 m wall and 2.00 m opening annotated on blueprint"
       },
       {
         "id": "outer_left",
@@ -540,9 +624,21 @@
         "openings": [
           {
             "type": "window",
+            "offset_m": 1.35,
+            "width_m": 1.2,
+            "sill_m": 1.0,
+            "height_m": 1.1,
+            "room_id": "sala_tv",
+            "dimension_status": "proportional_estimate_from_blueprint"
+          },
+          {
+            "type": "window",
             "offset_m": 4.28,
             "width_m": 0.6,
-            "room_id": "wc"
+            "sill_m": 1.5,
+            "height_m": 0.6,
+            "room_id": "wc",
+            "dimension_status": "proportional_estimate_from_blueprint"
           }
         ]
       },
@@ -690,14 +786,57 @@
       },
       {
         "id": "laundry",
-        "label": "LAVANDERIA",
+        "label": "LAVANDERIA NO CORREDOR",
         "x_m": 9.15,
         "z_m": 6.0,
         "width_m": 1.3,
         "depth_m": 5.4,
         "kind": "service",
         "status": "undimensioned_schematic",
-        "color": "#526c78"
+        "color": "#526c78",
+        "label_visible": true,
+        "label_y_m": 1.45,
+        "dimension_status": "undimensioned_schematic_from_blueprint",
+        "geometry_source": "right exterior corridor label and visible extent on blueprint; dimensions remain approximate",
+        "fixtures": [
+          {
+            "id": "laundry_counter",
+            "label": "Tanque / bancada",
+            "type": "counter",
+            "x_m": 0.12,
+            "z_m": 0.35,
+            "width_m": 1.06,
+            "depth_m": 0.55,
+            "height_m": 0.86,
+            "color": "#8aa0aa",
+            "status": "schematic_fixture"
+          },
+          {
+            "id": "washing_machine",
+            "label": "Máquina de lavar",
+            "type": "appliance",
+            "x_m": 0.25,
+            "z_m": 1.25,
+            "width_m": 0.8,
+            "depth_m": 0.72,
+            "height_m": 0.86,
+            "color": "#d7dde0",
+            "accent_color": "#56758a",
+            "status": "schematic_fixture"
+          },
+          {
+            "id": "floor_drain",
+            "label": "Ralo",
+            "type": "drain",
+            "x_m": 0.55,
+            "z_m": 2.45,
+            "width_m": 0.2,
+            "depth_m": 0.2,
+            "height_m": 0.025,
+            "color": "#6e7b80",
+            "status": "schematic_fixture"
+          }
+        ]
       },
       {
         "id": "gourmet",
@@ -727,15 +866,15 @@
       "Paredes internas e externas usam espessura esquemática de 0,14 m.",
       "A altura de 2,70 m medida no WC foi aplicada aos demais ambientes para visualização.",
       "Portas sem largura indicada foram representadas com 0,72 m a 0,80 m.",
-      "Janelas sem dimensões foram representadas com medidas residenciais típicas.",
       "A forma e a inclinação do telhado não estão documentadas; a cobertura exibida é apenas um envelope translúcido.",
-      "Quintais, lavanderia, portão e recuos sem cotas foram posicionados de modo aproximado.",
-      "O cenário de cobertura 7,80 x 5,20 m em estudo não foi tratado como construção existente."
+      "O cenário de cobertura 7,80 x 5,20 m em estudo não foi tratado como construção existente.",
+      "Janelas sem cotas próprias seguem proporções visíveis da planta e são marcadas como estimativas; nenhuma dimensão estimada é tratada como medida oficial.",
+      "Quintais, portão e recuos sem cotas foram posicionados de modo aproximado; a Lavanderia no Corredor também usa footprint e equipamentos esquemáticos para ficar visível no modelo."
     ],
     "source": {
       "blueprint": "data/blueprint.jpg",
       "normalized_at": "2026-09-15",
-      "accuracy": "schematic_with_measured_room_dimensions"
+      "accuracy": "blueprint_aligned_with_measured_rooms_and_marked_proportional_openings"
     }
   }
 }

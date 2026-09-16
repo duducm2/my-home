@@ -941,7 +941,7 @@
     }
     setStatus(els.house3dStatus, "", "Carregando modelo 3D…");
     try {
-      const module = await import("/house-3d.js?v=20260915-4");
+      const module = await import("/house-3d.js?v=20260915-5");
       module.mountHouse3D(model);
     } catch (err) {
       setStatus(els.house3dStatus, "err", `Não foi possível abrir o modelo 3D: ${err.message || err}`);
