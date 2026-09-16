@@ -2258,3 +2258,20 @@ th { font-size: 10px; }
   .item-icon-tool { width: 58px; height: 58px; }
   .item-label { min-width: 160px; }
 }
+
+.timeline-service-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 5px 0;
+  list-style: none;
+}
+
+.timeline-service-item .item-icon {
+  width: 36px;
+  height: 36px;
+}
+
+.timeline-service-item > span {
+  min-width: 0;
+}

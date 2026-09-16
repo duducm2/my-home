@@ -205,9 +205,7 @@ class ExpenseStore:
             fieldnames = list(reader.fieldnames or [])
             rows_raw = list(reader)
         associations = self._icon_manifest().get("expense_associations", {})
-        if fieldnames == HEADERS and all(
-            raw.get("icon_key") or raw.get("category") != "Material" for raw in rows_raw
-        ):
+        if fieldnames == HEADERS and all(raw.get("icon_key") for raw in rows_raw):
             return
         migrated: list[dict[str, Any]] = []
         for raw in rows_raw:
@@ -216,9 +214,9 @@ class ExpenseStore:
                 continue
             if not row["quantity"] and row["category"] == "Material":
                 row["quantity"] = "1"
-            if row["category"] == "Material" and not row["icon_key"]:
+            if not row["icon_key"]:
                 row["icon_key"] = associations.get(
-                    row["id"], self._default_icon_key("Material")
+                    row["id"], self._default_icon_key(row["category"])
                 )
             migrated.append(row)
         self._write_rows(migrated)
@@ -233,13 +231,11 @@ class ExpenseStore:
         return payload if isinstance(payload, dict) else {}
 
     def _default_icon_key(self, category: str) -> str:
-        if category != "Material":
-            return ""
-        return str(self._icon_manifest().get("defaults", {}).get("material") or "")
+        defaults = self._icon_manifest().get("defaults", {})
+        default_name = "material" if category == "Material" else "expense"
+        return str(defaults.get(default_name) or "")
 
     def _validated_icon_key(self, icon_key: Any, category: str) -> str:
-        if category != "Material":
-            return ""
         key = str(icon_key or "").strip() or self._default_icon_key(category)
         icons = self._icon_manifest().get("icons", {})
         if key not in icons:

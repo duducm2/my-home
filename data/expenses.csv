@@ -1,17 +1,17 @@
 id,phase,priority,category,description,icon_key,value,quantity,unit,unit_price,vendor,product_url,price_checked_at,price_notes,created_at,updated_at
-EXP_0001,Compra,1,Financiamento,Entrada,,62000.00,,,,,,,,2026-09-15 21:49:56,2026-09-15 21:49:56
-EXP_0002,Na formalização,1,Impostos,ITBI — Nova Odessa (2%),,6200.00,,,,,,,,2026-09-15 21:49:56,2026-09-15 21:49:56
-EXP_0003,Na formalização,1,Cartório,"Custos de cartório (Emolumentos de registro no Cartório de Registro de Imóveis; Taxas de certidão, autenticação e reconhecimento de firma)",,1000.00,,,,,,,,2026-09-15 21:49:56,2026-09-15 21:49:56
-EXP_0004,Na formalização,1,Financiamento,Registro do contrato de financiamento / alienação fiduciária,,3300.00,,,,,,,,2026-09-15 21:49:56,2026-09-15 21:49:56
-EXP_0005,Pós-mudança,1,Mudança,Transporte / empresa de mudança,,700.00,,,,,,,,2026-09-15 21:49:56,2026-09-15 21:49:56
-EXP_0006,Pós-mudança,1,Instalação,"Taxas de ligação (água, esgoto, energia, gás, internet)",,300.00,,,,,,,,2026-09-15 21:49:56,2026-09-15 21:49:56
-EXP_0007,Primeiro ano,1,Reserva,Reserva de emergência pós-compra,,4500.00,,,,,,,,2026-09-15 21:49:56,2026-09-15 21:49:56
-EXP_0008,Pré-compra,1,Diligência,Taxa de relacionamento da Caixa,,7000.00,,,,,,,,2026-09-15 21:49:56,2026-09-15 21:49:56
-EXP_0009,Pré-compra,1,Diligência,Multa do contrato de aluguel atual,,2400.00,,,,,,,,2026-09-15 21:49:56,2026-09-15 21:49:56
-EXP_0010,Pré-compra,1,Diligência,Reforma do apartamento atual,,1000.00,,,,,,,,2026-09-15 21:49:56,2026-09-15 21:49:56
-EXP_0011,Pré-compra,1,Diligência,Parcela do Financiamento,,2200.00,,,,,,,,2026-09-15 21:49:56,2026-09-15 21:49:56
-EXP_0012,Pré-compra,1,Diligência,Aluguel do imóvel atual,,1500.00,,,,,,,,2026-09-15 21:49:56,2026-09-15 21:49:56
-EXP_0013,Manutenção,1,Mão de obra,Pedreiro,,15000.00,,,,,,,,2026-09-15 21:49:56,2026-09-15 21:49:56
+EXP_0001,Compra,1,Financiamento,Entrada,down-payment,62000.00,,,,,,,,2026-09-15 21:49:56,2026-09-15 21:49:56
+EXP_0002,Na formalização,1,Impostos,ITBI — Nova Odessa (2%),property-tax,6200.00,,,,,,,,2026-09-15 21:49:56,2026-09-15 21:49:56
+EXP_0003,Na formalização,1,Cartório,"Custos de cartório (Emolumentos de registro no Cartório de Registro de Imóveis; Taxas de certidão, autenticação e reconhecimento de firma)",notary-services,1000.00,,,,,,,,2026-09-15 21:49:56,2026-09-15 21:49:56
+EXP_0004,Na formalização,1,Financiamento,Registro do contrato de financiamento / alienação fiduciária,mortgage-contract,3300.00,,,,,,,,2026-09-15 21:49:56,2026-09-15 21:49:56
+EXP_0005,Pós-mudança,1,Mudança,Transporte / empresa de mudança,moving-service,700.00,,,,,,,,2026-09-15 21:49:56,2026-09-15 21:49:56
+EXP_0006,Pós-mudança,1,Instalação,"Taxas de ligação (água, esgoto, energia, gás, internet)",utility-connections,300.00,,,,,,,,2026-09-15 21:49:56,2026-09-15 21:49:56
+EXP_0007,Primeiro ano,1,Reserva,Reserva de emergência pós-compra,emergency-reserve,4500.00,,,,,,,,2026-09-15 21:49:56,2026-09-15 21:49:56
+EXP_0008,Pré-compra,1,Diligência,Taxa de relacionamento da Caixa,bank-service-fee,7000.00,,,,,,,,2026-09-15 21:49:56,2026-09-15 21:49:56
+EXP_0009,Pré-compra,1,Diligência,Multa do contrato de aluguel atual,rental-penalty,2400.00,,,,,,,,2026-09-15 21:49:56,2026-09-15 21:49:56
+EXP_0010,Pré-compra,1,Diligência,Reforma do apartamento atual,apartment-renovation,1000.00,,,,,,,,2026-09-15 21:49:56,2026-09-15 21:49:56
+EXP_0011,Pré-compra,1,Diligência,Parcela do Financiamento,mortgage-installment,2200.00,,,,,,,,2026-09-15 21:49:56,2026-09-15 21:49:56
+EXP_0012,Pré-compra,1,Diligência,Aluguel do imóvel atual,home-rent,1500.00,,,,,,,,2026-09-15 21:49:56,2026-09-15 21:49:56
+EXP_0013,Manutenção,1,Mão de obra,Pedreiro,mason-service,15000.00,,,,,,,,2026-09-15 21:49:56,2026-09-15 21:49:56
 EXP_0014,Manutenção,1,Material,Impermeabilizante (bianco),waterproofing-additive,320.00,1,un,45.90,Leroy Merlin,https://example.com/bianco,2026-09-15 22:11:43,promo,2026-09-15 21:49:56,2026-09-15 22:11:43
 EXP_0015,Manutenção,1,Material,"Areia grossa, fina e pedrisco",aggregates,700.00,1,,,,,,,2026-09-15 21:49:56,2026-09-15 21:49:56
 EXP_0016,Manutenção,1,Material,Cimento,cement,650.00,1,,,,,,,2026-09-15 21:49:56,2026-09-15 21:49:56
@@ -28,9 +28,9 @@ EXP_0026,Manutenção,2,Material,Portas internas,interior-door,1500.00,1,,,,,,,2
 EXP_0027,Manutenção,2,Material,Porta Balcão (R$2000),sliding-door,0.00,1,,,,,,,2026-09-15 21:49:56,2026-09-15 21:49:56
 EXP_0028,Manutenção,2,Material,Vaso,toilet,400.00,1,,,,,,,2026-09-15 21:49:56,2026-09-15 21:49:56
 EXP_0029,Manutenção,2,Material,Janela (quartos e escritório),window,1700.00,1,,,,,,,2026-09-15 21:49:56,2026-09-15 21:49:56
-EXP_0030,Manutenção,2,Material,Vitrô Sala,window,520.00,1,,,,,,,2026-09-15 21:49:56,2026-09-15 21:49:56
+EXP_0030,Manutenção,2,Material,Vitrô Sala,living-room-window,520.00,1,,,,,,,2026-09-15 21:49:56,2026-09-15 21:49:56
 EXP_0031,Manutenção,2,Material,Vitrôs banheiros,bathroom-window,400.00,1,,,,,,,2026-09-15 21:49:56,2026-09-15 21:49:56
-EXP_0032,Manutenção,2,Mão de obra,Eletricista,,3500.00,,,,,,,,2026-09-15 21:49:56,2026-09-15 21:49:56
+EXP_0032,Manutenção,2,Mão de obra,Eletricista,electrician-service,3500.00,,,,,,,,2026-09-15 21:49:56,2026-09-15 21:49:56
 EXP_0033,Manutenção,2,Material,Quadro de distribuição,breaker-panel,700.00,1,,,,,,,2026-09-15 21:49:56,2026-09-15 21:49:56
 EXP_0034,Manutenção,2,Material,Conduítes,conduit,2800.00,1,,,,,,,2026-09-15 21:49:56,2026-09-15 21:49:56
 EXP_0035,Manutenção,2,Material,Lâmpadas,light-bulbs,400.00,1,,,,,,,2026-09-15 21:49:56,2026-09-15 21:49:56

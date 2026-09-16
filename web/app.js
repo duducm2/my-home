@@ -141,15 +141,11 @@
 
   function renderIconPicker(selectedKey = "") {
     if (!els.iconEditor || !els.iconPicker || !els.fieldIconKey) return;
-    const isMaterial = els.fieldCategory.value.trim() === "Material";
-    els.iconEditor.classList.toggle("hidden", !isMaterial);
-    if (!isMaterial) {
-      els.fieldIconKey.value = "";
-      return;
-    }
+    els.iconEditor.classList.remove("hidden");
+    const kind = els.fieldCategory.value.trim() === "Material" ? "material" : "expense";
     const icons = Object.entries((state.iconCatalog || {}).icons || {})
       .sort(([, a], [, b]) => String(a.label).localeCompare(String(b.label), "pt-BR"));
-    const selected = iconEntry(selectedKey || els.fieldIconKey.value);
+    const selected = iconEntry(selectedKey || els.fieldIconKey.value, kind);
     els.fieldIconKey.value = selected ? selected.key : "";
     els.iconPreview.innerHTML = selected
       ? `${itemIconMarkup(selected.key, selected.label, "lg")}<span>${escapeHtml(selected.label)}</span>`
@@ -268,9 +264,7 @@
         <td>${escapeHtml(expense.phase)}</td>
         <td><span class="badge">${escapeHtml(String(expense.priority))}</span></td>
         <td>${escapeHtml(expense.category)}</td>
-        <td>${expense.category === "Material"
-          ? itemLabelMarkup(expense.description, expense.icon_key, expense.price_notes || "")
-          : `${escapeHtml(expense.description)}${expense.price_notes ? `<div class="price-cell">${escapeHtml(expense.price_notes)}</div>` : ""}`}</td>
+        <td>${itemLabelMarkup(expense.description, expense.icon_key, expense.price_notes || "")}</td>
         <td class="num">${formatMoney(expense.value)}</td>
         <td>${priceCell(expense)}</td>
         <td class="actions">
@@ -392,7 +386,7 @@
         ? `<ul>${services
             .map(
               (s) =>
-                `<li><strong>${escapeHtml(s.category)}</strong> — ${escapeHtml(s.description)} (${formatMoney(s.value)})</li>`
+                `<li class="timeline-service-item">${itemIconMarkup(s.icon_key, s.description)}<span><strong>${escapeHtml(s.category)}</strong> — ${escapeHtml(s.description)} (${formatMoney(s.value)})</span></li>`
             )
             .join("")}</ul>`
         : `<p class="section-sub">Sem serviços pendentes nesta etapa (somente materiais ou itens já listados).</p>`;

@@ -12,11 +12,13 @@
     "generated_with": "Cursor GenerateImage",
     "generated_at": "2026-09-15",
     "source_layout": "Three 4x3 generated sheets, chroma-keyed and cropped into individual assets",
-    "generation_prompt_template": "Isolated construction inventory item, polished mobile strategy-game art, soft isometric 3D cartoon style, warm gold and dark navy accents, chunky readable silhouette, no text; generated on chroma-key magenta and converted to transparent RGBA PNG."
+    "generation_prompt_template": "Isolated construction inventory item, polished mobile strategy-game art, soft isometric 3D cartoon style, warm gold and dark navy accents, chunky readable silhouette, no text; generated on chroma-key magenta and converted to transparent RGBA PNG.",
+    "catalog_scope": "48 current expense records plus 25 additional construction, renovation, home and professional service choices"
   },
   "defaults": {
     "material": "materials-crate",
-    "tool": "toolbox"
+    "tool": "toolbox",
+    "expense": "home-expense"
   },
   "icons": {
     "waterproofing-additive": {
@@ -270,6 +272,286 @@
       "url": "/assets/item-icons/materials-crate.png",
       "source_sheet": "c",
       "source_cell": 12
+    },
+    "down-payment": {
+      "label": "Entrada da casa",
+      "filename": "down-payment.png",
+      "url": "/assets/item-icons/down-payment.png",
+      "source_sheet": "d2",
+      "source_cell": 1
+    },
+    "property-tax": {
+      "label": "ITBI e impostos",
+      "filename": "property-tax.png",
+      "url": "/assets/item-icons/property-tax.png",
+      "source_sheet": "d2",
+      "source_cell": 2
+    },
+    "notary-services": {
+      "label": "Serviços de cartório",
+      "filename": "notary-services.png",
+      "url": "/assets/item-icons/notary-services.png",
+      "source_sheet": "d2",
+      "source_cell": 3
+    },
+    "mortgage-contract": {
+      "label": "Contrato de financiamento",
+      "filename": "mortgage-contract.png",
+      "url": "/assets/item-icons/mortgage-contract.png",
+      "source_sheet": "d2",
+      "source_cell": 4
+    },
+    "moving-service": {
+      "label": "Serviço de mudança",
+      "filename": "moving-service.png",
+      "url": "/assets/item-icons/moving-service.png",
+      "source_sheet": "d2",
+      "source_cell": 5
+    },
+    "utility-connections": {
+      "label": "Ligações de serviços",
+      "filename": "utility-connections.png",
+      "url": "/assets/item-icons/utility-connections.png",
+      "source_sheet": "d2",
+      "source_cell": 6
+    },
+    "emergency-reserve": {
+      "label": "Reserva de emergência",
+      "filename": "emergency-reserve.png",
+      "url": "/assets/item-icons/emergency-reserve.png",
+      "source_sheet": "d2",
+      "source_cell": 7
+    },
+    "bank-service-fee": {
+      "label": "Taxa bancária",
+      "filename": "bank-service-fee.png",
+      "url": "/assets/item-icons/bank-service-fee.png",
+      "source_sheet": "d2",
+      "source_cell": 8
+    },
+    "rental-penalty": {
+      "label": "Multa de aluguel",
+      "filename": "rental-penalty.png",
+      "url": "/assets/item-icons/rental-penalty.png",
+      "source_sheet": "d2",
+      "source_cell": 9
+    },
+    "apartment-renovation": {
+      "label": "Reforma de apartamento",
+      "filename": "apartment-renovation.png",
+      "url": "/assets/item-icons/apartment-renovation.png",
+      "source_sheet": "d2",
+      "source_cell": 10
+    },
+    "mortgage-installment": {
+      "label": "Parcela do financiamento",
+      "filename": "mortgage-installment.png",
+      "url": "/assets/item-icons/mortgage-installment.png",
+      "source_sheet": "d2",
+      "source_cell": 11
+    },
+    "home-rent": {
+      "label": "Aluguel da moradia",
+      "filename": "home-rent.png",
+      "url": "/assets/item-icons/home-rent.png",
+      "source_sheet": "d2",
+      "source_cell": 12
+    },
+    "mason-service": {
+      "label": "Pedreiro",
+      "filename": "mason-service.png",
+      "url": "/assets/item-icons/mason-service.png",
+      "source_sheet": "e",
+      "source_cell": 1
+    },
+    "electrician-service": {
+      "label": "Eletricista",
+      "filename": "electrician-service.png",
+      "url": "/assets/item-icons/electrician-service.png",
+      "source_sheet": "e",
+      "source_cell": 2
+    },
+    "living-room-window": {
+      "label": "Vitrô da sala",
+      "filename": "living-room-window.png",
+      "url": "/assets/item-icons/living-room-window.png",
+      "source_sheet": "e",
+      "source_cell": 3
+    },
+    "concrete-mixer": {
+      "label": "Betoneira",
+      "filename": "concrete-mixer.png",
+      "url": "/assets/item-icons/concrete-mixer.png",
+      "source_sheet": "e",
+      "source_cell": 4
+    },
+    "ladder": {
+      "label": "Escada",
+      "filename": "ladder.png",
+      "url": "/assets/item-icons/ladder.png",
+      "source_sheet": "e",
+      "source_cell": 5
+    },
+    "hammer": {
+      "label": "Martelo",
+      "filename": "hammer.png",
+      "url": "/assets/item-icons/hammer.png",
+      "source_sheet": "e",
+      "source_cell": 6
+    },
+    "measuring-tape": {
+      "label": "Trena",
+      "filename": "measuring-tape.png",
+      "url": "/assets/item-icons/measuring-tape.png",
+      "source_sheet": "e",
+      "source_cell": 7
+    },
+    "spirit-level": {
+      "label": "Nível",
+      "filename": "spirit-level.png",
+      "url": "/assets/item-icons/spirit-level.png",
+      "source_sheet": "e",
+      "source_cell": 8
+    },
+    "shovel": {
+      "label": "Pá",
+      "filename": "shovel.png",
+      "url": "/assets/item-icons/shovel.png",
+      "source_sheet": "e",
+      "source_cell": 9
+    },
+    "safety-gear": {
+      "label": "Equipamentos de proteção",
+      "filename": "safety-gear.png",
+      "url": "/assets/item-icons/safety-gear.png",
+      "source_sheet": "e",
+      "source_cell": 10
+    },
+    "plumbing-pipes": {
+      "label": "Tubos hidráulicos",
+      "filename": "plumbing-pipes.png",
+      "url": "/assets/item-icons/plumbing-pipes.png",
+      "source_sheet": "e",
+      "source_cell": 11
+    },
+    "electrical-wires": {
+      "label": "Fiação elétrica",
+      "filename": "electrical-wires.png",
+      "url": "/assets/item-icons/electrical-wires.png",
+      "source_sheet": "e",
+      "source_cell": 12
+    },
+    "insulation": {
+      "label": "Isolamento térmico",
+      "filename": "insulation.png",
+      "url": "/assets/item-icons/insulation.png",
+      "source_sheet": "f",
+      "source_cell": 1
+    },
+    "drywall": {
+      "label": "Drywall",
+      "filename": "drywall.png",
+      "url": "/assets/item-icons/drywall.png",
+      "source_sheet": "f",
+      "source_cell": 2
+    },
+    "laminate-flooring": {
+      "label": "Piso laminado",
+      "filename": "laminate-flooring.png",
+      "url": "/assets/item-icons/laminate-flooring.png",
+      "source_sheet": "f",
+      "source_cell": 3
+    },
+    "demolition": {
+      "label": "Demolição",
+      "filename": "demolition.png",
+      "url": "/assets/item-icons/demolition.png",
+      "source_sheet": "f",
+      "source_cell": 4
+    },
+    "masonry-work": {
+      "label": "Alvenaria",
+      "filename": "masonry-work.png",
+      "url": "/assets/item-icons/masonry-work.png",
+      "source_sheet": "f",
+      "source_cell": 5
+    },
+    "welding": {
+      "label": "Soldagem",
+      "filename": "welding.png",
+      "url": "/assets/item-icons/welding.png",
+      "source_sheet": "f",
+      "source_cell": 6
+    },
+    "landscaping": {
+      "label": "Paisagismo",
+      "filename": "landscaping.png",
+      "url": "/assets/item-icons/landscaping.png",
+      "source_sheet": "f",
+      "source_cell": 7
+    },
+    "plumber-service": {
+      "label": "Encanador",
+      "filename": "plumber-service.png",
+      "url": "/assets/item-icons/plumber-service.png",
+      "source_sheet": "f",
+      "source_cell": 8
+    },
+    "painter-service": {
+      "label": "Pintor",
+      "filename": "painter-service.png",
+      "url": "/assets/item-icons/painter-service.png",
+      "source_sheet": "f",
+      "source_cell": 9
+    },
+    "carpenter-service": {
+      "label": "Carpinteiro",
+      "filename": "carpenter-service.png",
+      "url": "/assets/item-icons/carpenter-service.png",
+      "source_sheet": "f",
+      "source_cell": 10
+    },
+    "architect-service": {
+      "label": "Arquiteto",
+      "filename": "architect-service.png",
+      "url": "/assets/item-icons/architect-service.png",
+      "source_sheet": "f",
+      "source_cell": 11
+    },
+    "cleaning-service": {
+      "label": "Limpeza residencial",
+      "filename": "cleaning-service.png",
+      "url": "/assets/item-icons/cleaning-service.png",
+      "source_sheet": "f",
+      "source_cell": 12
+    },
+    "home-expense": {
+      "label": "Despesa da casa",
+      "filename": "home-expense.png",
+      "url": "/assets/item-icons/home-expense.png",
+      "source_sheet": "g",
+      "source_cell": 1
+    },
+    "roofer-service": {
+      "label": "Telhadista",
+      "filename": "roofer-service.png",
+      "url": "/assets/item-icons/roofer-service.png",
+      "source_sheet": "g",
+      "source_cell": 2
+    },
+    "engineer-service": {
+      "label": "Engenheiro civil",
+      "filename": "engineer-service.png",
+      "url": "/assets/item-icons/engineer-service.png",
+      "source_sheet": "g",
+      "source_cell": 3
+    },
+    "locksmith-service": {
+      "label": "Chaveiro",
+      "filename": "locksmith-service.png",
+      "url": "/assets/item-icons/locksmith-service.png",
+      "source_sheet": "g",
+      "source_cell": 4
     }
   },
   "expense_associations": {
@@ -289,7 +571,7 @@
     "EXP_0027": "sliding-door",
     "EXP_0028": "toilet",
     "EXP_0029": "window",
-    "EXP_0030": "window",
+    "EXP_0030": "living-room-window",
     "EXP_0031": "bathroom-window",
     "EXP_0033": "breaker-panel",
     "EXP_0034": "conduit",
@@ -306,7 +588,21 @@
     "EXP_0045": "security-devices",
     "EXP_0046": "paint",
     "EXP_0047": "fasteners",
-    "EXP_0048": "sealants"
+    "EXP_0048": "sealants",
+    "EXP_0001": "down-payment",
+    "EXP_0002": "property-tax",
+    "EXP_0003": "notary-services",
+    "EXP_0004": "mortgage-contract",
+    "EXP_0005": "moving-service",
+    "EXP_0006": "utility-connections",
+    "EXP_0007": "emergency-reserve",
+    "EXP_0008": "bank-service-fee",
+    "EXP_0009": "rental-penalty",
+    "EXP_0010": "apartment-renovation",
+    "EXP_0011": "mortgage-installment",
+    "EXP_0012": "home-rent",
+    "EXP_0013": "mason-service",
+    "EXP_0032": "electrician-service"
   },
   "tool_associations": {
     "drill": "drill",
