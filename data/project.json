@@ -23,13 +23,13 @@
   "purchase_workflow": [
     "Contrato de compra e venda com a imobiliária",
     "Regularizações do imóvel e dos herdeiros",
-    "Fase 1 da obra",
+    "regularização e preparação da obra",
     "Acionamento da Caixa",
     "Avaliação e aprovação",
     "Assinatura do financiamento",
-    "Fase 2",
+    "reforma e melhorias",
     "Saída da ocupante",
-    "Fase 3",
+    "pintura e acabamentos",
     "Mudança"
   ],
   "official_dimensions": {
@@ -82,267 +82,6 @@
       ]
     }
   },
-  "phases": [
-    {
-      "id": "phase_1",
-      "label": "Fase 1",
-      "trigger": "Após assinatura do contrato com a imobiliária",
-      "objective": "Regularizar, corrigir problemas existentes, melhorar a conservação e deixar o imóvel adequado para Prefeitura e Caixa.",
-      "deadline": {
-        "duration_days": 60,
-        "starts_from": "Celebração do contrato de compra e venda",
-        "clarification": "Não começa quando o prestador decidir iniciar a obra."
-      },
-      "labor": {
-        "contractor": "Gelson",
-        "planned_amount": 7500.0,
-        "materials_paid_by": "Eduardo",
-        "common_tools_paid_by": "Gelson",
-        "material_list_notice_business_days": 5,
-        "required_tools": [
-          {
-            "id": "drill",
-            "name": "Furadeira",
-            "purpose": "Perfurações e fixações necessárias durante os serviços da obra.",
-            "responsibility": "Gelson / contratado, salvo ajuste escrito em contrário",
-            "related_expense_id": "EXP_0018",
-            "icon_key": "drill"
-          },
-          {
-            "id": "angle_grinder",
-            "name": "Esmerilhadeira",
-            "purpose": "Cortes, desbastes e acabamentos compatíveis com os serviços executados.",
-            "responsibility": "Gelson / contratado, salvo ajuste escrito em contrário",
-            "related_expense_id": "EXP_0018",
-            "icon_key": "angle-grinder"
-          },
-          {
-            "id": "wheelbarrow",
-            "name": "Carrinho de mão",
-            "purpose": "Transporte de materiais e entulho dentro da obra.",
-            "responsibility": "Confirmar entre Eduardo e Gelson antes da compra",
-            "related_expense_id": "EXP_0020",
-            "icon_key": "wheelbarrow"
-          }
-        ],
-        "tools_source": {
-          "type": "user_confirmed_work_requirements",
-          "captured_at": "2026-09-15",
-          "contract_reference": "Cláusula 5.4 dos rascunhos de empreitada"
-        }
-      },
-      "services": [
-        "Demolição total da edícula dos fundos — primeiro serviço",
-        "Correção da infiltração na parte de trás da casa",
-        "Reparos internos decorrentes da infiltração traseira",
-        "Correção da infiltração no banheiro",
-        "Correção da infiltração na lateral esquerda",
-        "Pequenos reparos de rejuntes",
-        "Reboco da lateral esquerda com chapisco de pedrisco e Bianco",
-        "Contrapiso do corredor dos fundos",
-        "Avaliar água e esgoto da futura lavanderia antes do contrapiso",
-        "Revisão completa das telhas e substituição das quebradas",
-        "Reparos provisórios no telhado atual dos fundos, sem ampliação",
-        "Remoção da caixa vazia do registro de água no muro frontal",
-        "Remoção da caixa de energia do poste adicional",
-        "Reboco da parede de trás da casa",
-        "Reboco do muro lateral esquerdo",
-        "Reparos e regularização do muro da frente"
-      ],
-      "contract": {
-        "source_reference": "data/documents/gelson-phase-1-draft.pdf",
-        "document_url": "/api/project/documents/gelson-phase-1.pdf",
-        "document_available_in_repository": true,
-        "status": "unsigned_draft",
-        "deadline_source_conflict": "O plano do projeto e o rascunho usam marcos iniciais diferentes para o prazo de 60 dias.",
-        "scope_items_to_reconcile": [
-          "Infiltração do banheiro",
-          "Infiltração da lateral esquerda",
-          "Pequenos reparos de rejuntes",
-          "Chapisco com pedrisco e Bianco"
-        ]
-      }
-    },
-    {
-      "id": "phase_2",
-      "label": "Fase 2",
-      "trigger": "Após assinatura do financiamento com a Caixa",
-      "objective": "Resolver segurança, infraestrutura e toda obra que gera quebra e sujeira antes da mudança.",
-      "execution_note": "Pode começar enquanto a ocupante ainda estiver na casa, conforme os ambientes forem liberados.",
-      "deadline": {
-        "rigid_general_deadline": false
-      },
-      "labor": {
-        "contractor": "Gelson",
-        "planned_amount": 7500.0
-      },
-      "priority_work": [
-        {
-          "id": "electrical",
-          "label": "Elétrica",
-          "priority": 1,
-          "qualified_professional_required": true,
-          "current_condition": "Não há quadro de distribuição interno adequado; a instalação está praticamente ligada diretamente ao poste.",
-          "items": [
-            "Revisão elétrica completa",
-            "Avaliação da fiação existente",
-            "Quadro de distribuição interno",
-            "Separação de circuitos",
-            "Disjuntores adequados",
-            "DR e DPS",
-            "Aterramento",
-            "Novos conduítes",
-            "Novas tomadas",
-            "Tomadas 20 A onde necessário",
-            "Pontos para lavanderia, cozinha, geladeira, TV e equipamentos"
-          ]
-        },
-        {
-          "id": "new_suite",
-          "label": "Nova suíte",
-          "conversion_note": "O atual quarto será transformado em suíte, com infraestrutura criada praticamente do zero.",
-          "items": [
-            "Nova alimentação de água",
-            "Esgoto",
-            "Ponto de chuveiro",
-            "Ponto para futura pia",
-            "Alimentação e esgoto do vaso",
-            "Ralo ou caixa sifonada",
-            "Registros",
-            "Impermeabilização",
-            "Fechamento da janela frontal",
-            "Abertura de novo vitrô lateral",
-            "Piso",
-            "Revestimento das paredes"
-          ],
-          "deferred_finishings": [
-            "Box",
-            "Bancada sofisticada",
-            "Gabinete",
-            "Espelho",
-            "Metais caros",
-            "Acessórios"
-          ]
-        },
-        {
-          "id": "social_bathroom",
-          "label": "Banheiro social",
-          "existing_infrastructure": [
-            "Água",
-            "Esgoto"
-          ],
-          "items": [
-            "Remover piso e revestimentos",
-            "Corrigir apenas o necessário na hidráulica existente",
-            "Impermeabilizar",
-            "Assentar porcelanato",
-            "Revestir paredes até o teto"
-          ],
-          "temporary_reuse": [
-            "Vaso",
-            "Pia",
-            "Box",
-            "Metais"
-          ],
-          "procurement_note": "Se houver revestimentos por bom preço, reformar os dois banheiros de uma vez para evitar trabalho com a casa ocupada e mobiliada."
-        },
-        {
-          "id": "floors",
-          "label": "Pisos",
-          "porcelain_planned_quantity_m2": 115.0,
-          "procurement_strategy": "Usar o mesmo padrão na maior parte da casa e comprar em promoção, preferencialmente todo o volume do mesmo lote, tonalidade e calibre.",
-          "installation_after": [
-            "Elétrica",
-            "Hidráulica",
-            "Quebras de alvenaria",
-            "Portas e janelas",
-            "Regularização do piso"
-          ]
-        },
-        {
-          "id": "doors_windows",
-          "label": "Portas e janelas",
-          "planned_before_move": {
-            "replacement_windows": 5,
-            "new_suite_window": 1,
-            "internal_doors": 5,
-            "close_old_front_door": true,
-            "close_old_suite_window": true
-          },
-          "cost_flexibility": "Manter temporariamente peças em bom estado se necessário."
-        },
-        {
-          "id": "balcony_door",
-          "label": "Porta-balcão da Sala de TV",
-          "approx_width_m": 2.0,
-          "status": "opportunity_item",
-          "decision_rule": "Instalar antes da pintura e mudança se houver bom preço; caso contrário, adiar."
-        },
-        {
-          "id": "laundry",
-          "label": "Lavanderia mínima antes da mudança",
-          "items": [
-            "Água da pia ou tanque",
-            "Água da máquina",
-            "Esgoto da pia ou tanque",
-            "Esgoto da máquina",
-            "Ralo",
-            "Tomada adequada",
-            "Piso"
-          ]
-        },
-        {
-          "id": "rear_area",
-          "label": "Área dos fundos",
-          "current_priority": [
-            "Água",
-            "Esgoto",
-            "Elétrica",
-            "Regularização",
-            "Piso se compensar junto com o restante"
-          ],
-          "roof_note": "Telhado existente reparado na Fase 1; grande ampliação não é prioridade atual."
-        }
-      ],
-      "contract": {
-        "source_reference": "data/documents/gelson-phase-2-draft.pdf",
-        "document_url": "/api/project/documents/gelson-phase-2.pdf",
-        "document_available_in_repository": true,
-        "status": "unsigned_draft",
-        "scope_note": "Itens elétricos completos além de conduítes, caixas e tomadas exigem inclusão escrita ou aditivo."
-      }
-    },
-    {
-      "id": "phase_3",
-      "label": "Fase 3",
-      "trigger": "Após toda a obra pesada",
-      "objective": "Pintura e acabamentos.",
-      "services": [
-        "Pintura interna",
-        "Pintura externa",
-        "Rodapés",
-        "Arremates",
-        "Acabamento de portas e janelas",
-        "Louças e metais adiados",
-        "Iluminação",
-        "Pequenos detalhes finais"
-      ]
-    },
-    {
-      "id": "phase_4",
-      "label": "Fase 4",
-      "trigger": "Casa estruturalmente pronta",
-      "objective": "Mudança.",
-      "services": [
-        "Limpeza pós-obra",
-        "Instalação de móveis",
-        "Eletrodomésticos",
-        "Organização dos ambientes",
-        "Ajustes finais",
-        "Mudança"
-      ]
-    }
-  ],
   "roof_study": {
     "status": "not_confirmed",
     "scenario_dimensions_m": {
@@ -387,9 +126,9 @@
     "diagnosis": "A sensação de falta de recursos veio de tentar financiar mentalmente a compra e a casa praticamente pronta de uma vez.",
     "priorities": [
       "Proteger o dinheiro da compra e documentação",
-      "Garantir integralmente a Fase 1",
+      "Garantir integralmente a regularização e preparação",
       "Preservar reserva para transição e imprevistos",
-      "Priorizar elétrica, hidráulica e serviços que geram quebra na Fase 2",
+      "Priorizar elétrica, hidráulica e serviços que geram quebra na reforma e melhorias",
       "Aproveitar promoções de pisos, revestimentos, portas e janelas",
       "Adiar itens instaláveis depois sem quebrar a casa"
     ],
@@ -398,37 +137,37 @@
   "contracts": {
     "strategy": "Dois contratos separados, mesmo que assinados juntos.",
     "contractor": "Gelson",
-    "phase_1_amount": 7500.0,
-    "phase_2_amount": 7500.0,
     "total_labor_amount": 15000.0,
-    "phase_1_legal_purpose": "Comprovar serviços e valores empregados antes do financiamento e apoiar eventual ressarcimento se a operação não prosseguir por irregularidades atribuíveis ao imóvel ou vendedores.",
+    "pre_financing_legal_purpose": "Comprovar serviços e valores empregados antes do financiamento e apoiar eventual ressarcimento se a operação não prosseguir por irregularidades atribuíveis ao imóvel ou vendedores.",
     "status": "unsigned_drafts",
     "status_label": "Dois rascunhos não assinados",
     "documents": [
       {
-        "filename": "gelson-phase-1-draft.pdf",
-        "repository_path": "data/documents/gelson-phase-1-draft.pdf",
-        "url": "/api/project/documents/gelson-phase-1.pdf",
+        "filename": "gelson-contract-01-draft.pdf",
+        "repository_path": "data/documents/gelson-contract-01-draft.pdf",
+        "url": "/api/project/documents/gelson-contract-01.pdf",
         "mime_type": "application/pdf",
         "pages": 5,
         "sha256": "2b5dd502b79c0ab6c0129217da902e0f680728f43cffa4913a99a69ebcfe5462"
       },
       {
-        "filename": "gelson-phase-2-draft.pdf",
-        "repository_path": "data/documents/gelson-phase-2-draft.pdf",
-        "url": "/api/project/documents/gelson-phase-2.pdf",
+        "filename": "gelson-contract-02-draft.pdf",
+        "repository_path": "data/documents/gelson-contract-02-draft.pdf",
+        "url": "/api/project/documents/gelson-contract-02.pdf",
         "mime_type": "application/pdf",
         "pages": 6,
         "sha256": "79c483cf917f9905630c3380d422b0975c6c9b1a97babd0ead16f8e88552a3f1"
       }
     ],
-    "unfilled_fields_warning": "Preencher datas, parcelas, qualificações e assinaturas antes da execução."
+    "unfilled_fields_warning": "Preencher datas, parcelas, qualificações e assinaturas antes da execução.",
+    "contract_01_amount": 7500.0,
+    "contract_02_amount": 7500.0
   },
   "principles": [
-    "Fase 1: aprovar e valorizar.",
-    "Fase 2: segurança, infraestrutura e obra pesada.",
-    "Fase 3: deixar bonita.",
-    "Fase 4: mudar."
+    "regularização e preparação: aprovar e valorizar.",
+    "reforma e melhorias: segurança, infraestrutura e obra pesada.",
+    "pintura e acabamentos: deixar bonita.",
+    "mudança: mudar."
   ],
   "financial_priority": "Chegar ao final com uma casa segura, regularizada e funcional sem consumir todo o dinheiro antes de começar a morar nela.",
   "source": {
@@ -444,6 +183,7 @@
       {
         "id": "fgts",
         "label": "FGTS",
+        "amount": 55440.4,
         "balance": 55440.4,
         "restriction": "house_entry_only",
         "restriction_note": "Uso restrito ao pagamento da entrada do imóvel."
@@ -451,6 +191,7 @@
       {
         "id": "flexible_funds",
         "label": "Recursos livres",
+        "amount": 66046.6,
         "balance": 66046.6,
         "restriction": "other_project_costs",
         "restriction_note": "Disponível para documentação, obras, mudança, reservas e demais custos do projeto."
@@ -777,13 +518,12 @@
           "summary": "Comarca de Nova Odessa/SP."
         }
       ],
-      "id": "gelson_phase_1",
-      "phase_id": "phase_1",
-      "label": "Fase 1 — Regularização e preparação do imóvel",
+      "id": "gelson_contract_01",
+      "label": "Contrato 01 — Regularização e preparação do imóvel",
       "document": {
-        "filename": "gelson-phase-1-draft.pdf",
-        "repository_path": "data/documents/gelson-phase-1-draft.pdf",
-        "url": "/api/project/documents/gelson-phase-1.pdf",
+        "filename": "gelson-contract-01-draft.pdf",
+        "repository_path": "data/documents/gelson-contract-01-draft.pdf",
+        "url": "/api/project/documents/gelson-contract-01.pdf",
         "mime_type": "application/pdf",
         "pages": 5,
         "sha256": "2b5dd502b79c0ab6c0129217da902e0f680728f43cffa4913a99a69ebcfe5462"
@@ -806,7 +546,7 @@
         {
           "number": 1,
           "title": "Demolição total da edícula dos fundos",
-          "note": "Primeiro serviço da Fase 1; retirada final do entulho deve ser definida entre as partes."
+          "note": "Primeiro serviço da regularização e preparação; retirada final do entulho deve ser definida entre as partes."
         },
         {
           "number": 2,
@@ -856,7 +596,7 @@
         {
           "number": 11,
           "title": "Infraestrutura da futura lavanderia",
-          "note": "Água e esgoto entram na Fase 1 apenas se tecnicamente necessários antes do contrapiso; caso contrário permanecem na Fase 2."
+          "note": "Água e esgoto entram na regularização e preparação apenas se tecnicamente necessários antes do contrapiso; caso contrário permanecem na reforma e melhorias."
         }
       ],
       "discrepancies": [
@@ -976,13 +716,12 @@
           "summary": "Comarca de Nova Odessa/SP."
         }
       ],
-      "id": "gelson_phase_2",
-      "phase_id": "phase_2",
-      "label": "Fase 2 — Reforma e melhorias definitivas",
+      "id": "gelson_contract_02",
+      "label": "Contrato 02 — Reforma e melhorias definitivas",
       "document": {
-        "filename": "gelson-phase-2-draft.pdf",
-        "repository_path": "data/documents/gelson-phase-2-draft.pdf",
-        "url": "/api/project/documents/gelson-phase-2.pdf",
+        "filename": "gelson-contract-02-draft.pdf",
+        "repository_path": "data/documents/gelson-contract-02-draft.pdf",
+        "url": "/api/project/documents/gelson-contract-02.pdf",
         "mime_type": "application/pdf",
         "pages": 6,
         "sha256": "79c483cf917f9905630c3380d422b0975c6c9b1a97babd0ead16f8e88552a3f1"
@@ -1040,7 +779,7 @@
         {
           "number": 8,
           "title": "Infraestrutura da lavanderia no corredor dos fundos",
-          "note": "Executada na Fase 2 se não tiver sido tecnicamente antecipada na Fase 1."
+          "note": "Executada na reforma e melhorias se não tiver sido tecnicamente antecipada na regularização e preparação."
         },
         {
           "number": 9,
@@ -1063,7 +802,7 @@
         },
         {
           "severity": "info",
-          "topic": "Prazo da Fase 2",
+          "topic": "Prazo da reforma e melhorias",
           "project_plan": "Sequência de prioridades sem data rígida.",
           "draft_contract": "Também não estabelece prazo global de conclusão.",
           "recommended_action": "Definir marcos parciais por mensagem ou aditivo para acompanhar a execução."
@@ -1087,5 +826,94 @@
         ]
       }
     }
-  ]
+  ],
+  "execution_milestones": [
+    {
+      "name": "Regularização e preparação",
+      "trigger": "Após assinatura do contrato com a imobiliária",
+      "objective": "Regularizar, corrigir problemas existentes, melhorar a conservação e deixar o imóvel adequado para Prefeitura e Caixa.",
+      "deadline": {
+        "duration_days": 60,
+        "starts_from": "Celebração do contrato de compra e venda",
+        "clarification": "Não começa quando o prestador decidir iniciar a obra."
+      }
+    },
+    {
+      "name": "Reforma e melhorias",
+      "trigger": "Após assinatura do financiamento com a Caixa",
+      "objective": "Resolver segurança, infraestrutura e toda obra que gera quebra e sujeira antes da mudança.",
+      "deadline": {
+        "rigid_general_deadline": false
+      },
+      "execution_note": "Pode começar enquanto a ocupante ainda estiver na casa, conforme os ambientes forem liberados."
+    },
+    {
+      "name": "Pintura e acabamentos",
+      "trigger": "Após toda a obra pesada",
+      "objective": "Pintura e acabamentos.",
+      "deadline": {}
+    },
+    {
+      "name": "Mudança",
+      "trigger": "Casa estruturalmente pronta",
+      "objective": "Mudança.",
+      "deadline": {}
+    }
+  ],
+  "construction_resources": {
+    "required_tools": [
+      {
+        "id": "drill",
+        "name": "Furadeira",
+        "purpose": "Perfurações e fixações necessárias durante os serviços da obra.",
+        "responsibility": "Gelson / contratado, salvo ajuste escrito em contrário",
+        "related_expense_id": "EXP_0018",
+        "icon_key": "drill"
+      },
+      {
+        "id": "angle_grinder",
+        "name": "Esmerilhadeira",
+        "purpose": "Cortes, desbastes e acabamentos compatíveis com os serviços executados.",
+        "responsibility": "Gelson / contratado, salvo ajuste escrito em contrário",
+        "related_expense_id": "EXP_0018",
+        "icon_key": "angle-grinder"
+      },
+      {
+        "id": "wheelbarrow",
+        "name": "Carrinho de mão",
+        "purpose": "Transporte de materiais e entulho dentro da obra.",
+        "responsibility": "Confirmar entre Eduardo e Gelson antes da compra",
+        "related_expense_id": "EXP_0020",
+        "icon_key": "wheelbarrow"
+      }
+    ],
+    "labor": [
+      {
+        "contractor": "Gelson",
+        "planned_amount": 7500.0,
+        "materials_paid_by": "Eduardo",
+        "common_tools_paid_by": "Gelson",
+        "material_list_notice_business_days": 5,
+        "tools_source": {
+          "type": "user_confirmed_work_requirements",
+          "captured_at": "2026-09-15",
+          "contract_reference": "Cláusula 5.4 dos rascunhos de empreitada"
+        }
+      },
+      {
+        "contractor": "Gelson",
+        "planned_amount": 7500.0
+      }
+    ]
+  },
+  "task_system": {
+    "source": "data/tasks.json",
+    "priority_rule": "1 is highest",
+    "default_order": [
+      "priority",
+      "sequence"
+    ],
+    "initial_dates": "estimated"
+  },
+  "updated_at": "2026-09-15 23:51:00"
 }

@@ -1,0 +1,205 @@
+{
+  "version": 1,
+  "currency": "BRL",
+  "period": {
+    "start": "2026-09",
+    "end": "2027-12"
+  },
+  "income": {
+    "eduardo_monthly": 7000.0,
+    "leonardo_monthly": 4500.0,
+    "combined_monthly": 11500.0
+  },
+  "categories": [
+    { "key": "rent_bills", "label": "Aluguel + contas" },
+    { "key": "leonardo_card", "label": "Cartão do Leonardo" },
+    { "key": "leonardo_things", "label": "Coisas do Leonardo" },
+    { "key": "eduardo_things", "label": "Coisas do Eduardo" },
+    { "key": "market", "label": "Mercado" },
+    { "key": "buffer", "label": "Gordurinha" }
+  ],
+  "interpolation": {
+    "month": "2026-09",
+    "method": "Extrapolação linear reversa a partir de outubro e novembro de 2026, que possuem valores iguais.",
+    "result": "Setembro de 2026 repete a base de outubro de 2026."
+  },
+  "months": [
+    {
+      "month": "2026-09",
+      "rent_bills": 2370.0,
+      "leonardo_card": 500.0,
+      "leonardo_things": 1000.0,
+      "eduardo_things": 700.0,
+      "market": 2000.0,
+      "buffer": 2000.0,
+      "gross_income": 11500.0,
+      "net_savings": 2930.0,
+      "estimated": true
+    },
+    {
+      "month": "2026-10",
+      "rent_bills": 2370.0,
+      "leonardo_card": 500.0,
+      "leonardo_things": 1000.0,
+      "eduardo_things": 700.0,
+      "market": 2000.0,
+      "buffer": 2000.0,
+      "gross_income": 11500.0,
+      "net_savings": 2930.0
+    },
+    {
+      "month": "2026-11",
+      "rent_bills": 2370.0,
+      "leonardo_card": 500.0,
+      "leonardo_things": 1000.0,
+      "eduardo_things": 700.0,
+      "market": 2000.0,
+      "buffer": 2000.0,
+      "gross_income": 11500.0,
+      "net_savings": 2930.0
+    },
+    {
+      "month": "2026-12",
+      "rent_bills": 4370.0,
+      "leonardo_card": 500.0,
+      "leonardo_things": 1000.0,
+      "eduardo_things": 700.0,
+      "market": 2000.0,
+      "buffer": 2000.0,
+      "gross_income": 11500.0,
+      "net_savings": 930.0
+    },
+    {
+      "month": "2027-01",
+      "rent_bills": 4370.0,
+      "leonardo_card": 500.0,
+      "leonardo_things": 1000.0,
+      "eduardo_things": 700.0,
+      "market": 2000.0,
+      "buffer": 2000.0,
+      "gross_income": 11500.0,
+      "net_savings": 930.0
+    },
+    {
+      "month": "2027-02",
+      "rent_bills": 3570.0,
+      "leonardo_card": 0.0,
+      "leonardo_things": 1000.0,
+      "eduardo_things": 700.0,
+      "market": 2000.0,
+      "buffer": 2000.0,
+      "gross_income": 11500.0,
+      "net_savings": 2230.0
+    },
+    {
+      "month": "2027-03",
+      "rent_bills": 3570.0,
+      "leonardo_card": 0.0,
+      "leonardo_things": 1000.0,
+      "eduardo_things": 700.0,
+      "market": 2000.0,
+      "buffer": 2000.0,
+      "gross_income": 11500.0,
+      "net_savings": 2230.0
+    },
+    {
+      "month": "2027-04",
+      "rent_bills": 3570.0,
+      "leonardo_card": 0.0,
+      "leonardo_things": 1000.0,
+      "eduardo_things": 700.0,
+      "market": 2000.0,
+      "buffer": 2000.0,
+      "gross_income": 11500.0,
+      "net_savings": 2230.0
+    },
+    {
+      "month": "2027-05",
+      "rent_bills": 3570.0,
+      "leonardo_card": 0.0,
+      "leonardo_things": 1000.0,
+      "eduardo_things": 700.0,
+      "market": 2000.0,
+      "buffer": 2000.0,
+      "gross_income": 11500.0,
+      "net_savings": 2230.0
+    },
+    {
+      "month": "2027-06",
+      "rent_bills": 3570.0,
+      "leonardo_card": 0.0,
+      "leonardo_things": 1000.0,
+      "eduardo_things": 700.0,
+      "market": 2000.0,
+      "buffer": 2000.0,
+      "gross_income": 11500.0,
+      "net_savings": 2230.0
+    },
+    {
+      "month": "2027-07",
+      "rent_bills": 3570.0,
+      "leonardo_card": 0.0,
+      "leonardo_things": 1000.0,
+      "eduardo_things": 700.0,
+      "market": 2000.0,
+      "buffer": 2000.0,
+      "gross_income": 11500.0,
+      "net_savings": 2230.0
+    },
+    {
+      "month": "2027-08",
+      "rent_bills": 3570.0,
+      "leonardo_card": 0.0,
+      "leonardo_things": 1000.0,
+      "eduardo_things": 700.0,
+      "market": 2000.0,
+      "buffer": 2000.0,
+      "gross_income": 11500.0,
+      "net_savings": 2230.0
+    },
+    {
+      "month": "2027-09",
+      "rent_bills": 3570.0,
+      "leonardo_card": 0.0,
+      "leonardo_things": 1000.0,
+      "eduardo_things": 700.0,
+      "market": 2000.0,
+      "buffer": 2000.0,
+      "gross_income": 11500.0,
+      "net_savings": 2230.0
+    },
+    {
+      "month": "2027-10",
+      "rent_bills": 3570.0,
+      "leonardo_card": 0.0,
+      "leonardo_things": 1000.0,
+      "eduardo_things": 700.0,
+      "market": 2000.0,
+      "buffer": 2000.0,
+      "gross_income": 11500.0,
+      "net_savings": 2230.0
+    },
+    {
+      "month": "2027-11",
+      "rent_bills": 3570.0,
+      "leonardo_card": 0.0,
+      "leonardo_things": 1000.0,
+      "eduardo_things": 700.0,
+      "market": 2000.0,
+      "buffer": 2000.0,
+      "gross_income": 11500.0,
+      "net_savings": 2230.0
+    },
+    {
+      "month": "2027-12",
+      "rent_bills": 3570.0,
+      "leonardo_card": 0.0,
+      "leonardo_things": 1000.0,
+      "eduardo_things": 700.0,
+      "market": 2000.0,
+      "buffer": 2000.0,
+      "gross_income": 11500.0,
+      "net_savings": 2230.0
+    }
+  ]
+}

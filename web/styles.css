@@ -602,7 +602,7 @@ dialog h2 {
 }
 
 .project-summary-grid,
-.project-phases {
+.project-groups {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
   gap: 8px;
@@ -632,31 +632,31 @@ dialog h2 {
   font-size: 12px;
 }
 
-.project-phase {
+.project-group {
   background: var(--card);
   border: 1px solid var(--line);
   border-radius: 8px;
   padding: 10px 12px;
 }
 
-.project-phase-head {
+.project-group-head {
   display: flex;
   justify-content: space-between;
   gap: 8px;
   align-items: baseline;
 }
 
-.project-phase h3,
-.project-phase p {
+.project-group h3,
+.project-group p {
   margin: 0 0 7px;
 }
 
-.project-phase h3 {
+.project-group h3 {
   color: var(--gold);
   font-size: 15px;
 }
 
-.project-phase p,
+.project-group p,
 .project-detail,
 .project-detail li {
   color: var(--muted);
@@ -753,7 +753,7 @@ textarea,
 .table-wrap,
 .timeline-card,
 .house-card,
-.project-phase,
+.project-group,
 .project-workflow li,
 .principle,
 dialog {
@@ -780,7 +780,7 @@ dialog {
 .bento-donut { grid-column: span 3; }
 .bento-coverage { grid-column: span 6; }
 .bento-costs { grid-column: span 3; }
-.bento-phases { grid-column: span 3; }
+.bento-categories { grid-column: span 3; }
 .bento-insight { grid-column: span 3; }
 .bento-blueprint { grid-column: span 3; }
 
@@ -980,7 +980,7 @@ dialog {
 }
 
 .meter,
-.phase-bar-track {
+.budget-bar-track {
   height: 7px;
   overflow: hidden;
   background: #333;
@@ -988,7 +988,7 @@ dialog {
 }
 
 .meter-fill,
-.phase-bar-track span {
+.budget-bar-track span {
   display: block;
   height: 100%;
   border-radius: inherit;
@@ -1030,12 +1030,12 @@ dialog {
 .cost-breakdown small { color: var(--muted); }
 .cost-breakdown small { min-width: 34px; text-align: right; }
 
-.phase-chart {
+.budget-chart {
   display: grid;
   gap: 7px;
 }
 
-.phase-bar-head {
+.budget-bar-head {
   display: flex;
   justify-content: space-between;
   gap: 8px;
@@ -1044,14 +1044,14 @@ dialog {
   font-size: 10px;
 }
 
-.phase-bar-head strong {
+.budget-bar-head strong {
   color: var(--text);
   font-weight: 600;
   font-variant-numeric: tabular-nums;
 }
 
-.phase-bar-track { height: 5px; }
-.phase-bar-track span { background: #f1c40f; }
+.budget-bar-track { height: 5px; }
+.budget-bar-track span { background: #f1c40f; }
 
 .insight-stack {
   display: grid;
@@ -1122,13 +1122,13 @@ th { font-size: 10px; }
 .panel { padding: 10px 12px; }
 .card-grid,
 .project-summary-grid,
-.project-phases,
+.project-groups,
 .project-workflow,
 .principle-grid,
 .project-overview { gap: 10px; }
 
 .house-card,
-.project-phase { padding: 9px 10px; }
+.project-group { padding: 9px 10px; }
 .house-card h3 { color: #bbb; font-size: 12px; }
 .project-heading { color: #bbb; font-size: 12px; }
 
@@ -1138,7 +1138,7 @@ th { font-size: 10px; }
   .bento-donut { grid-column: span 3; }
   .bento-coverage { grid-column: span 6; }
   .bento-costs,
-  .bento-phases { grid-column: span 3; }
+  .bento-categories { grid-column: span 3; }
   .bento-insight,
   .bento-blueprint { grid-column: span 3; }
   .insight-stack { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -1152,7 +1152,7 @@ th { font-size: 10px; }
   .bento-donut,
   .bento-coverage,
   .bento-costs,
-  .bento-phases,
+  .bento-categories,
   .bento-insight,
   .bento-blueprint { grid-column: 1; }
   .bento-card { min-height: auto; }
@@ -2034,7 +2034,7 @@ th { font-size: 10px; }
 
 
 /* Required contractor tools */
-.phase-required-tools {
+.work-required-tools {
   display: grid;
   gap: 6px;
   margin: 8px 0;
@@ -2044,7 +2044,7 @@ th { font-size: 10px; }
   border-radius: 5px;
 }
 
-.phase-required-tools h4 {
+.work-required-tools h4 {
   margin: 0;
   color: var(--gold);
   font-size: 10px;
@@ -2053,7 +2053,7 @@ th { font-size: 10px; }
   text-transform: uppercase;
 }
 
-.phase-required-tools > div {
+.work-required-tools > div {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 5px;
@@ -2091,7 +2091,7 @@ th { font-size: 10px; }
 }
 
 @media (max-width: 700px) {
-  .phase-required-tools > div {
+  .work-required-tools > div {
     grid-template-columns: 1fr;
   }
 }

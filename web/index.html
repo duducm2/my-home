@@ -4,8 +4,9 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="color-scheme" content="dark" />
-    <title>Despesas da Casa</title>
-    <link rel="stylesheet" href="/styles.css?v=20260915-16" />
+    <title>my-home</title>
+    <link rel="stylesheet" href="/styles.css?v=20260916-1" />
+    <link rel="stylesheet" href="/tasks.css?v=20260916-1" />
     <script type="importmap">
       {"imports":{"three":"/vendor/three/three.module.js"}}
     </script>
@@ -14,307 +15,190 @@
     <div class="page">
       <header class="hero">
         <div class="hero-top">
-          <div>
-            <a class="eyebrow brand-home" id="home-link" href="#dashboard" aria-label="Ir para o Dashboard" title="Início — Alt+H">my-home</a>
-          </div>
+          <a id="home-link" class="eyebrow brand-home" href="#dashboard" aria-label="Ir para o Dashboard">my-home</a>
           <nav class="nav" aria-label="Navegação">
-            <button type="button" class="nav-btn active" data-view="dashboard" title="Alt+1"><span>Dashboard</span><kbd>Alt+1</kbd></button>
-            <button type="button" class="nav-btn" data-view="expenses" title="Alt+2"><span>Despesas</span><kbd>Alt+2</kbd></button>
-            <button type="button" class="nav-btn" data-view="house" title="Alt+3"><span>Casa</span><kbd>Alt+3</kbd></button>
-            <button type="button" class="nav-btn" data-view="prices" title="Alt+4"><span>Preços / Import</span><kbd>Alt+4</kbd></button>
+            <button type="button" class="nav-btn active" data-view="dashboard"><span>Dashboard</span><kbd>Alt+1</kbd></button>
+            <button type="button" class="nav-btn" data-view="expenses"><span>Despesas</span><kbd>Alt+2</kbd></button>
+            <button type="button" class="nav-btn" data-view="house"><span>Casa</span><kbd>Alt+3</kbd></button>
+            <button type="button" class="nav-btn" data-view="prices"><span>Preços / Import</span><kbd>Alt+4</kbd></button>
           </nav>
           <div class="global-save">
-            <button type="button" id="btn-push" class="btn primary global-save-btn" title="Salva todos os dados no computador e envia uma cópia segura ao repositório">Salvar tudo</button>
-            <span class="global-save-help">Local + cópia segura</span>
+            <button type="button" id="btn-push" class="btn primary global-save-btn">Salvar tudo</button>
+            <span id="push-status" class="global-save-help">Local + cópia segura</span>
           </div>
         </div>
-        <p id="push-status" class="push-status global-push-status hidden" aria-live="polite"></p>
       </header>
 
+      <p id="app-status" class="push-status global-push-status hidden" aria-live="polite"></p>
+
       <section id="view-dashboard" class="view">
-        <section class="cockpit-grid" aria-label="Cockpit financeiro" aria-live="polite">
+        <section class="cockpit-grid" aria-label="Cockpit financeiro">
           <article class="panel bento-card bento-overview">
             <div class="panel-head"><h2>Visão financeira</h2><span class="panel-kicker">Agora</span></div>
-            <span class="metric-label">Recursos disponíveis</span>
-            <strong class="hero-metric" id="funds-total">R$ 0,00</strong>
-            <div class="metric-pair">
-              <div><span>Plano completo</span><strong id="dash-total-all">R$ 0,00</strong></div>
-              <div><span>Cobertura</span><strong id="overall-coverage">0%</strong></div>
-            </div>
-            <div class="status-line" id="overall-gap">Calculando...</div>
+            <span class="metric-label">Orçamento completo</span>
+            <strong id="dash-total-all" class="hero-metric">R$ 0,00</strong>
+            <div class="metric-pair"><div><span>Materiais</span><strong id="dash-total-materials">R$ 0,00</strong></div><div><span>Serviços</span><strong id="dash-total-services">R$ 0,00</strong></div></div>
           </article>
-
-          <article class="panel bento-card bento-donut">
-            <div class="panel-head"><h2>Origem dos recursos</h2><span class="panel-kicker">Disponível</span></div>
-            <div class="donut-layout">
-              <div id="funds-donut" class="donut-chart" role="img" aria-label="Distribuição dos recursos">
-                <div><strong id="funds-donut-total">R$ 0</strong><span>Total</span></div>
+          <article class="panel bento-card">
+            <div class="panel-head"><h2>Recursos</h2><span class="panel-kicker">Disponível</span></div>
+            <strong id="funds-total" class="hero-metric">R$ 0,00</strong>
+            <p id="funds-detail" class="section-sub"></p>
+          </article>
+          <article class="panel bento-card">
+            <div class="panel-head"><h2>Cobertura</h2><span class="panel-kicker">Plano</span></div>
+            <div class="coverage-donut-layout">
+              <div id="coverage-donut" class="coverage-donut" role="img" aria-label="Percentual do orçamento coberto pelos recursos disponíveis">
+                <div><strong id="overall-coverage">0%</strong><span>coberto</span></div>
               </div>
-              <div class="chart-legend">
-                <div><i class="swatch swatch-fgts"></i><span>FGTS</span><strong id="funds-donut-fgts">0%</strong></div>
-                <div><i class="swatch swatch-flex"></i><span>Livres</span><strong id="funds-donut-flexible">0%</strong></div>
-              </div>
+              <div class="coverage-donut-copy"><strong id="coverage-funded">R$ 0,00</strong><span>disponível</span><p id="overall-gap" class="section-sub"></p></div>
             </div>
           </article>
-
-          <article class="panel bento-card bento-coverage">
-            <div class="panel-head"><h2>Cobertura por finalidade</h2><span class="panel-kicker">Restrições respeitadas</span></div>
-            <div class="coverage-row">
-              <div class="coverage-head"><span>Entrada com FGTS</span><strong id="entry-coverage">0%</strong></div>
-              <div class="meter"><span id="entry-bar" class="meter-fill fill-blue"></span></div>
-              <div class="coverage-meta"><span id="fgts-balance">R$ 0,00 disponíveis</span><span id="entry-target">R$ 0,00 planejados</span></div>
-              <div class="coverage-gap" id="entry-gap"></div>
-            </div>
-            <div class="coverage-row">
-              <div class="coverage-head"><span>Demais custos com recursos livres</span><strong id="other-coverage">0%</strong></div>
-              <div class="meter"><span id="other-bar" class="meter-fill fill-green"></span></div>
-              <div class="coverage-meta"><span id="flexible-balance">R$ 0,00 disponíveis</span><span id="other-target">R$ 0,00 planejados</span></div>
-              <div class="coverage-gap" id="other-gap"></div>
-            </div>
+          <article class="panel bento-card bento-categories">
+            <div class="panel-head"><h2>Orçamento por categoria</h2><span class="panel-kicker">Distribuição</span></div>
+            <div id="category-chart" class="budget-chart"></div>
           </article>
-
-          <article class="panel bento-card bento-costs">
-            <div class="panel-head"><h2>Composição do plano</h2><span class="panel-kicker">Orçamento</span></div>
-            <div class="stacked-bar" role="img" aria-label="Materiais versus serviços e demais custos">
-              <span id="budget-material-bar" class="stack-material"></span>
-              <span id="budget-service-bar" class="stack-service"></span>
-            </div>
-            <div class="cost-breakdown">
-              <div><i class="swatch swatch-material"></i><span>Materiais</span><strong id="dash-total-materials">R$ 0,00</strong><small id="material-share">0%</small></div>
-              <div><i class="swatch swatch-service"></i><span>Serviços / demais</span><strong id="dash-total-services">R$ 0,00</strong><small id="service-share">0%</small></div>
-            </div>
-          </article>
-
-          <article class="panel bento-card bento-phases">
-            <div class="panel-head"><h2>Orçamento por fase</h2><span class="panel-kicker">Distribuição</span></div>
-            <div id="phase-chart" class="phase-chart"></div>
-          </article>
-
-          <article class="panel bento-card bento-insight">
-            <div class="panel-head"><h2>Leitura rápida</h2><span class="panel-kicker">Decisão</span></div>
-            <div id="finance-insight" class="insight-stack"></div>
-          </article>
-
           <article class="panel bento-card bento-blueprint">
-            <div class="panel-head"><h2>Planta da casa</h2><span class="panel-kicker">12 × 27 m</span></div>
-            <a id="dashboard-house-link" class="dashboard-blueprint-link" href="#house" aria-label="Abrir planta e modelo 3D na página Casa">
-              <img src="/api/house/blueprint.jpg" alt="Miniatura da planta da casa" loading="eager" />
-              <span><strong>50,56 m² internos</strong><small>Abrir planta e modelo 3D</small></span>
+            <a href="#house" data-view-link="house" class="blueprint-mini-link">
+              <img src="/api/house/blueprint.jpg" alt="Miniatura da planta da casa" />
+              <span><strong>Planta e modelo 3D</strong><small>Abrir a casa</small></span>
             </a>
+          </article>
+          <article class="panel bento-card dashboard-people-card">
+            <div class="panel-head"><h2>Pessoas do projeto</h2><a href="#house" data-view-link="house" class="panel-kicker">Ver detalhes</a></div>
+            <div id="dashboard-people" class="dashboard-people-grid"></div>
           </article>
         </section>
 
-        <h2 class="section-title">Linha do tempo</h2>
-        <p class="section-sub">Ordem fixa de fases; Manutenção em ondas por prioridade.</p>
-        <div id="timeline-groups" class="timeline"></div>
+        <section class="financial-projection-section" aria-labelledby="financial-projection-title">
+          <div class="section-heading-row">
+            <div><h2 id="financial-projection-title" class="section-title">Projeção financeira familiar</h2><p class="section-sub">Setembro de 2026 a dezembro de 2027 · renda conjunta de R$ 11.500/mês</p></div>
+            <span class="date-badge">16 meses</span>
+          </div>
+          <div class="cashflow-metrics">
+            <article><span>Economia projetada</span><strong id="cashflow-total-savings">R$ 0,00</strong></article>
+            <article><span>Média mensal</span><strong id="cashflow-average-savings">R$ 0,00</strong></article>
+            <article><span>Despesas no período</span><strong id="cashflow-total-expenses">R$ 0,00</strong></article>
+          </div>
+          <div class="projection-grid">
+            <article class="projection-panel">
+              <div class="projection-title"><h3>Distribuição das despesas</h3><span>Treemap do período completo</span></div>
+              <div id="expense-treemap" class="expense-treemap"></div>
+            </article>
+            <article class="projection-panel">
+              <div class="projection-title"><h3>Fluxo de caixa mensal</h3><span>Valor líquido disponível para guardar</span></div>
+              <div id="cashflow-line-chart" class="cashflow-line-chart"></div>
+            </article>
+          </div>
+          <details class="monthly-savings-details">
+            <summary>Economia projetada por mês</summary>
+            <div id="monthly-savings-grid" class="monthly-savings-grid"></div>
+          </details>
+          <p id="cashflow-method" class="projection-method"></p>
+        </section>
+
+        <section class="task-section">
+          <div class="section-heading-row">
+            <div><h2 class="section-title">Tarefas</h2><p class="section-sub">Prioridade 1 primeiro. Arraste barras e alças para ajustar datas.</p></div>
+            <div class="gantt-actions">
+              <label>Escala <select id="gantt-zoom"><option value="day">Dia</option><option value="week" selected>Semana</option><option value="month">Mês</option></select></label>
+              <button type="button" id="btn-gantt-today" class="btn">Hoje</button>
+              <button type="button" id="btn-new-task" class="btn primary">Nova tarefa</button>
+            </div>
+          </div>
+          <div class="task-summary" id="task-summary"></div>
+          <div id="gantt" class="gantt-shell" aria-label="Gráfico de Gantt interativo"></div>
+        </section>
+
+        <section class="panel general-notes-section" aria-labelledby="general-notes-title">
+          <div class="section-heading-row">
+            <div><h2 id="general-notes-title" class="section-title">Notas gerais</h2><p class="section-sub">Um espaço livre para lembretes, decisões e observações sobre a casa.</p></div>
+            <span id="general-notes-status" class="notes-save-status">Salvo automaticamente</span>
+          </div>
+          <textarea id="general-notes" class="general-notes-input" rows="7" maxlength="100000" placeholder="Escreva aqui suas notas gerais..." aria-label="Notas gerais"></textarea>
+        </section>
 
         <h2 class="section-title">Materiais</h2>
-        <p class="section-sub">Quantidades, orçamento e preços pesquisados.</p>
         <div class="table-wrap">
-          <table>
-            <thead>
-              <tr>
-                <th>Fase</th>
-                <th>Pri</th>
-                <th>Descrição</th>
-                <th class="num">Qtd</th>
-                <th>Un</th>
-                <th class="num">Orçado</th>
-                <th class="num">Unitário</th>
-                <th>Fornecedor</th>
-                <th>Link</th>
-              </tr>
-            </thead>
-            <tbody id="dash-materials"></tbody>
-          </table>
+          <table><thead><tr><th>Pri</th><th>Descrição</th><th class="num">Qtd</th><th>Un</th><th class="num">Orçado</th><th>Fornecedor</th></tr></thead><tbody id="dash-materials"></tbody></table>
         </div>
       </section>
 
       <section id="view-expenses" class="view hidden">
-        <section class="toolbar" aria-label="Filtros">
-          <label>
-            Fase
-            <select id="filter-phase"><option value="">Todas</option></select>
-          </label>
-          <label>
-            Prioridade
-            <select id="filter-priority"><option value="">Todas</option></select>
-          </label>
-          <label>
-            Categoria
-            <select id="filter-category"><option value="">Todas</option></select>
-          </label>
-          <label class="grow">
-            Busca
-            <input id="filter-search" type="search" placeholder="Descrição, categoria..." autocomplete="off" />
-          </label>
+        <section class="toolbar">
+          <label>Prioridade <select id="filter-priority"><option value="">Todas</option></select></label>
+          <label>Categoria <select id="filter-category"><option value="">Todas</option></select></label>
+          <label class="grow">Busca <input id="filter-search" type="search" placeholder="Descrição, categoria, fornecedor..." /></label>
           <button type="button" id="btn-new" class="btn primary">Nova despesa</button>
         </section>
-        <section class="summary" aria-live="polite">
-          <div>
-            <span class="summary-label">Total filtrado</span>
-            <strong id="total-filtered">R$ 0,00</strong>
-          </div>
-          <div>
-            <span class="summary-label">Total geral</span>
-            <strong id="total-all">R$ 0,00</strong>
-          </div>
-          <div>
-            <span class="summary-label">Itens</span>
-            <strong id="count-filtered">0</strong>
-          </div>
-        </section>
+        <section class="summary"><div><span class="summary-label">Total filtrado</span><strong id="total-filtered">R$ 0,00</strong></div><div><span class="summary-label">Total geral</span><strong id="total-all">R$ 0,00</strong></div><div><span class="summary-label">Itens</span><strong id="count-filtered">0</strong></div></section>
         <section class="table-wrap">
-          <table>
-            <thead>
-              <tr>
-                <th>Fase</th>
-                <th>Pri</th>
-                <th>Categoria</th>
-                <th>Descrição</th>
-                <th class="num">Valor</th>
-                <th>Preco</th>
-                <th class="actions">Acoes</th>
-              </tr>
-            </thead>
-            <tbody id="expense-rows"></tbody>
-          </table>
-          <p id="empty-state" class="empty hidden">Nenhuma despesa corresponde aos filtros.</p>
+          <table><thead><tr><th>Pri</th><th>Categoria</th><th>Descrição</th><th class="num">Valor</th><th>Preço</th><th class="actions">Ações</th></tr></thead><tbody id="expense-rows"></tbody></table>
+          <p id="empty-state" class="empty hidden">Nenhuma despesa encontrada.</p>
         </section>
       </section>
 
-      
       <section id="view-house" class="view hidden">
-        <h2 class="section-title">Planta / blueprint</h2>
-        <p class="section-sub">Planta persistida no repositório com as propriedades do lote e dos cômodos.</p>
-        <div class="blueprint-wrap panel">
-          <img id="house-blueprint" class="blueprint-img" alt="Planta da casa" src="/api/house/blueprint.jpg" />
-        </div>
-
-        <h2 class="section-title">Casa em 3D</h2>
-        <p class="section-sub">Modelo esquemático baseado nas medidas da planta. Arraste para girar, role para aproximar e clique em um cômodo.</p>
-        <section class="house-3d-panel panel" aria-label="Visualizador 3D da casa">
-          <div id="house-3d-toolbar" class="house-3d-toolbar" role="toolbar" aria-label="Controles do modelo 3D">
-            <button type="button" class="btn" data-3d-action="perspective" aria-pressed="true">Perspectiva</button>
-            <button type="button" class="btn" data-3d-action="top" aria-pressed="false">Vista superior</button>
-            <button type="button" class="btn" data-3d-action="reset">Centralizar</button>
-            <button type="button" class="btn" data-3d-action="roof" aria-pressed="false">Cobertura</button>
-            <button type="button" class="btn" data-3d-action="walls" aria-pressed="false">Paredes transparentes</button>
-            <button type="button" class="btn" data-3d-action="labels" aria-pressed="true">Nomes</button>
-          </div>
-          <div class="house-3d-stage">
-            <div id="house-3d-canvas" class="house-3d-canvas"></div>
-            <p id="house-3d-status" class="house-3d-status" aria-live="polite">Carregando modelo 3D…</p>
-          </div>
-          <div class="house-3d-meta">
-            <div id="house-3d-room-detail" class="house-3d-room-detail">
-              <strong>Explore a casa</strong>
-              <span>Clique em um cômodo para ver suas medidas.</span>
+        <h2 class="section-title">Planta da casa</h2>
+        <div class="blueprint-wrap"><img id="house-blueprint" class="blueprint" alt="Planta da casa" /></div>
+        <section class="house-3d-panel">
+          <div class="section-heading-row"><div><h2 class="section-title">Modelo 3D</h2><p id="house-3d-status" class="section-sub">Carregando...</p></div>
+            <div id="house-3d-toolbar" class="house-3d-toolbar">
+              <button type="button" class="btn" data-3d-action="perspective">Perspectiva</button>
+              <button type="button" class="btn" data-3d-action="top">Superior</button>
+              <button type="button" class="btn" data-3d-action="reset">Centralizar</button>
+              <button type="button" class="btn" data-3d-action="roof">Cobertura</button>
+              <button type="button" class="btn" data-3d-action="walls">Paredes</button>
+              <button type="button" class="btn" data-3d-action="labels">Nomes</button>
             </div>
-            <div id="house-3d-legend" class="house-3d-legend" aria-label="Legenda dos cômodos"></div>
           </div>
-          <details class="house-3d-assumptions-wrap">
-            <summary>O que é medido e o que é aproximado?</summary>
-            <ul id="house-3d-assumptions" class="house-3d-assumptions"></ul>
-          </details>
+          <div id="house-3d-canvas" class="house-3d-canvas"></div>
+          <div id="house-3d-room-detail" class="house-3d-room-detail"></div>
+          <div id="house-3d-legend" class="house-3d-legend"></div>
+          <details><summary>Premissas do modelo</summary><ul id="house-3d-assumptions"></ul></details>
         </section>
-
-        <h2 class="section-title">Lote</h2>
-        <div id="house-lot" class="summary"></div>
-
-        <h2 class="section-title">Espaços externos</h2>
-        <div id="house-exterior" class="card-grid"></div>
-
-        <h2 class="section-title">Cômodos</h2>
-        <div id="house-rooms" class="card-grid"></div>
-
-        <h2 class="section-title">Resumo-mestre do projeto</h2>
-        <p class="section-sub">Compra, sequência, obras, contratos e estratégia financeira.</p>
-        <div id="project-overview" class="project-overview"></div>
-
-        <h2 class="section-title">Auditoria da planta vs JSON</h2>
-        <div id="house-audit" class="timeline-card"></div>
+        <h2 class="section-title">Lote</h2><div id="house-lot" class="summary"></div>
+        <h2 class="section-title">Espaços externos</h2><div id="house-exterior" class="card-grid"></div>
+        <h2 class="section-title">Cômodos</h2><div id="house-rooms" class="card-grid"></div>
+        <h2 class="section-title">Resumo do projeto</h2><div id="project-overview" class="project-overview"></div>
+        <h2 class="section-title">Auditoria da planta</h2><div id="house-audit" class="timeline-card"></div>
       </section>
 
       <section id="view-prices" class="view hidden">
         <h2 class="section-title">Gerar prompt de preços</h2>
-        <p class="section-sub">Cria um pack-prompt para IA com busca web. Por padrão: materiais sem preço unitário.</p>
-        <div class="panel-row">
-          <label class="check">
-            <input type="checkbox" id="prompt-missing-only" checked />
-            Somente sem preço pesquisado
-          </label>
-          <button type="button" id="btn-gen-prompt" class="btn primary">Gerar prompt</button>
-          <button type="button" id="btn-copy-prompt" class="btn" disabled>Copiar</button>
-          <button type="button" id="btn-dl-prompt" class="btn" disabled>Baixar .txt</button>
-        </div>
-        <textarea id="prompt-output" class="code-box" rows="10" readonly placeholder="O prompt gerado aparece aqui..."></textarea>
-
-        <h2 class="section-title">Importar PRICE_PACK</h2>
-        <p class="section-sub">Cole a resposta da IA ou envie o arquivo PRICE_PACK.txt. Preview, confirme, ou baixe o fix.</p>
-        <div class="panel-row">
-          <input type="file" id="pack-file" accept=".txt,text/plain" />
-          <button type="button" id="btn-preview-import" class="btn primary">Validar pack</button>
-          <button type="button" id="btn-commit-import" class="btn" disabled>Confirmar, salvar e enviar</button>
-          <button type="button" id="btn-copy-fix" class="btn danger" disabled>Copiar AI_FIX</button>
-          <button type="button" id="btn-dl-fix" class="btn danger" disabled>Baixar AI_FIX</button>
-        </div>
-        <textarea id="pack-input" class="code-box" rows="8" placeholder="Cole aqui o PRICE_PACK.txt completo..."></textarea>
-        <p id="import-status" class="push-status hidden" aria-live="polite"></p>
-        <div class="table-wrap">
-          <table>
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>Descrição</th>
-                <th class="num">Unitário</th>
-                <th>Fornecedor</th>
-                <th>Link</th>
-              </tr>
-            </thead>
-            <tbody id="import-preview-rows"></tbody>
-          </table>
-        </div>
+        <div class="panel-row"><label class="check"><input type="checkbox" id="prompt-missing-only" checked /> Somente materiais sem preço</label><button type="button" id="btn-gen-prompt" class="btn primary">Gerar prompt</button><button type="button" id="btn-copy-prompt" class="btn">Copiar</button><button type="button" id="btn-dl-prompt" class="btn">Baixar</button></div>
+        <textarea id="prompt-output" class="code-box" rows="12" readonly></textarea>
+        <h2 class="section-title">Importar resposta</h2>
+        <div class="panel-row"><input id="pack-file" type="file" accept=".txt,text/plain" /><button type="button" id="btn-preview-import" class="btn primary">Validar</button><button type="button" id="btn-commit-import" class="btn" disabled>Salvar e enviar</button></div>
+        <textarea id="pack-input" class="code-box" rows="12" placeholder="Cole o pack aqui..."></textarea>
+        <p id="import-status" class="push-status hidden"></p>
+        <div class="table-wrap"><table><thead><tr><th>ID</th><th>Descrição</th><th>Unitário</th><th>Fornecedor</th><th>Link</th></tr></thead><tbody id="import-preview-rows"></tbody></table></div>
         <textarea id="fix-output" class="code-box hidden" rows="8" readonly></textarea>
+        <button type="button" id="btn-copy-fix" class="btn hidden">Copiar correção</button><button type="button" id="btn-dl-fix" class="btn hidden">Baixar correção</button>
       </section>
     </div>
 
-    <dialog id="expense-dialog">
-      <form id="expense-form" method="dialog">
-        <h2 id="dialog-title">Nova despesa</h2>
-        <input type="hidden" id="field-id" />
-        <label>Fase <input id="field-phase" required list="phase-suggestions" /></label>
-        <label>Prioridade <input id="field-priority" type="number" min="1" step="1" required value="1" /></label>
-        <label>Categoria <input id="field-category" required list="category-suggestions" /></label>
-        <label>Descrição <textarea id="field-description" rows="3" required></textarea></label>
-        <section id="icon-editor" class="icon-editor" aria-labelledby="icon-editor-title">
-          <input type="hidden" id="field-icon-key" />
-          <div class="icon-editor-head">
-            <div>
-              <strong id="icon-editor-title">Ícone do item</strong>
-              <small>Escolha a ilustração que representa esta despesa.</small>
-            </div>
-            <div id="icon-preview" class="icon-preview" aria-live="polite"></div>
-          </div>
-          <div id="icon-picker" class="icon-picker" role="radiogroup" aria-label="Ícones disponíveis"></div>
-        </section>
-        <label>Valor (R$) <input id="field-value" type="number" min="0" step="0.01" required value="0" /></label>
-        <label>Quantidade <input id="field-quantity" type="number" min="0" step="any" /></label>
-        <label>Unidade <input id="field-unit" /></label>
-        <label>Preco unitario <input id="field-unit-price" type="number" min="0" step="0.01" /></label>
-        <label>Fornecedor <input id="field-vendor" /></label>
-        <label>URL do produto <input id="field-product-url" type="url" /></label>
-        <label>Notas de preco <textarea id="field-price-notes" rows="2"></textarea></label>
-        <p id="form-error" class="error hidden"></p>
-        <div class="dialog-actions">
-          <button type="button" id="btn-cancel" class="btn">Cancelar</button>
-          <button type="submit" class="btn primary">Salvar e enviar</button>
-        </div>
-      </form>
-    </dialog>
+    <dialog id="expense-dialog"><form id="expense-form" method="dialog">
+      <h2 id="dialog-title">Nova despesa</h2><input type="hidden" id="field-id" />
+      <div class="form-grid"><label>Prioridade <input id="field-priority" type="number" min="1" required value="1" /></label><label>Categoria <input id="field-category" required list="category-suggestions" /></label></div>
+      <label>Descrição <textarea id="field-description" rows="2" required></textarea></label>
+      <section id="icon-editor" class="icon-editor"><input type="hidden" id="field-icon-key" /><div id="icon-preview" class="icon-preview"></div><div id="icon-picker" class="icon-picker"></div></section>
+      <div class="form-grid"><label>Valor <input id="field-value" type="number" min="0" step="0.01" required /></label><label>Quantidade <input id="field-quantity" type="number" min="0" step="any" /></label><label>Unidade <input id="field-unit" /></label><label>Preço unitário <input id="field-unit-price" type="number" min="0" step="0.01" /></label><label>Fornecedor <input id="field-vendor" /></label><label>URL <input id="field-product-url" type="url" /></label></div>
+      <label>Notas <textarea id="field-price-notes" rows="2"></textarea></label><p id="form-error" class="error hidden"></p>
+      <div class="dialog-actions"><button type="button" id="btn-cancel" class="btn">Cancelar</button><button type="submit" class="btn primary">Salvar e enviar</button></div>
+    </form></dialog>
 
-    <datalist id="phase-suggestions"></datalist>
+    <dialog id="task-dialog"><form id="task-form" method="dialog">
+      <div class="dialog-title-row"><h2 id="task-dialog-title">Nova tarefa</h2><span id="task-date-badge" class="date-badge"></span></div>
+      <input type="hidden" id="task-id" />
+      <label>Título <input id="task-title" required maxlength="140" /></label>
+      <label>Descrição <textarea id="task-description" rows="3"></textarea></label>
+      <div class="form-grid"><label>Prioridade <input id="task-priority" type="number" min="1" required value="1" /></label><label>Sequência <input id="task-sequence" type="number" min="1" required /></label><label>Início <input id="task-start" type="date" required /></label><label>Fim <input id="task-end" type="date" required /></label><label>Status <select id="task-status"><option value="pending">Pendente</option><option value="in_progress">Em andamento</option><option value="blocked">Bloqueada</option><option value="completed">Concluída</option></select></label><label>Despesa vinculada <select id="task-expense"><option value="">Nenhuma</option></select></label></div>
+      <label>Ícone <select id="task-icon"></select></label>
+      <p id="task-form-error" class="error hidden"></p>
+      <div class="dialog-actions"><button type="button" id="btn-delete-task" class="btn danger hidden">Excluir</button><span class="grow"></span><button type="button" id="btn-cancel-task" class="btn">Cancelar</button><button type="submit" class="btn primary">Salvar tarefa</button></div>
+    </form></dialog>
+
     <datalist id="category-suggestions"></datalist>
-    <script src="/app.js?v=20260915-17"></script>
+    <script src="/app.js?v=20260916-1"></script>
   </body>
 </html>

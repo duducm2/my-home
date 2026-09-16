@@ -1,0 +1,1740 @@
+{
+  "version": 1,
+  "tasks": [
+    {
+      "id": "TASK_0001",
+      "title": "Contrato de compra e venda com a imobiliária",
+      "description": "Marco da compra e transição do imóvel.",
+      "priority": 1,
+      "sequence": 1,
+      "start_date": "2026-09-16",
+      "end_date": "2026-09-18",
+      "status": "pending",
+      "expense_id": "",
+      "icon_key": "home-expense",
+      "date_status": "estimated",
+      "source_refs": [
+        "project.purchase_workflow"
+      ],
+      "created_at": "2026-09-15 23:51:00",
+      "updated_at": "2026-09-15 23:51:00"
+    },
+    {
+      "id": "TASK_0002",
+      "title": "Regularizações do imóvel e dos herdeiros",
+      "description": "Marco da compra e transição do imóvel.",
+      "priority": 1,
+      "sequence": 2,
+      "start_date": "2026-09-19",
+      "end_date": "2026-09-21",
+      "status": "pending",
+      "expense_id": "",
+      "icon_key": "home-expense",
+      "date_status": "estimated",
+      "source_refs": [
+        "project.purchase_workflow"
+      ],
+      "created_at": "2026-09-15 23:51:00",
+      "updated_at": "2026-09-15 23:51:00"
+    },
+    {
+      "id": "TASK_0003",
+      "title": "regularização e preparação da obra",
+      "description": "Marco da compra e transição do imóvel.",
+      "priority": 1,
+      "sequence": 3,
+      "start_date": "2026-09-22",
+      "end_date": "2026-09-24",
+      "status": "pending",
+      "expense_id": "",
+      "icon_key": "home-expense",
+      "date_status": "estimated",
+      "source_refs": [
+        "project.purchase_workflow"
+      ],
+      "created_at": "2026-09-15 23:51:00",
+      "updated_at": "2026-09-15 23:51:00"
+    },
+    {
+      "id": "TASK_0004",
+      "title": "Acionamento da Caixa",
+      "description": "Marco da compra e transição do imóvel.",
+      "priority": 1,
+      "sequence": 4,
+      "start_date": "2026-09-25",
+      "end_date": "2026-09-27",
+      "status": "pending",
+      "expense_id": "",
+      "icon_key": "home-expense",
+      "date_status": "estimated",
+      "source_refs": [
+        "project.purchase_workflow"
+      ],
+      "created_at": "2026-09-15 23:51:00",
+      "updated_at": "2026-09-15 23:51:00"
+    },
+    {
+      "id": "TASK_0005",
+      "title": "Avaliação e aprovação",
+      "description": "Marco da compra e transição do imóvel.",
+      "priority": 1,
+      "sequence": 5,
+      "start_date": "2026-09-28",
+      "end_date": "2026-09-30",
+      "status": "pending",
+      "expense_id": "",
+      "icon_key": "home-expense",
+      "date_status": "estimated",
+      "source_refs": [
+        "project.purchase_workflow"
+      ],
+      "created_at": "2026-09-15 23:51:00",
+      "updated_at": "2026-09-15 23:51:00"
+    },
+    {
+      "id": "TASK_0006",
+      "title": "Assinatura do financiamento",
+      "description": "Marco da compra e transição do imóvel.",
+      "priority": 1,
+      "sequence": 6,
+      "start_date": "2026-10-01",
+      "end_date": "2026-10-03",
+      "status": "pending",
+      "expense_id": "",
+      "icon_key": "home-expense",
+      "date_status": "estimated",
+      "source_refs": [
+        "project.purchase_workflow"
+      ],
+      "created_at": "2026-09-15 23:51:00",
+      "updated_at": "2026-09-15 23:51:00"
+    },
+    {
+      "id": "TASK_0007",
+      "title": "reforma e melhorias",
+      "description": "Marco da compra e transição do imóvel.",
+      "priority": 1,
+      "sequence": 7,
+      "start_date": "2026-10-04",
+      "end_date": "2026-10-06",
+      "status": "pending",
+      "expense_id": "",
+      "icon_key": "home-expense",
+      "date_status": "estimated",
+      "source_refs": [
+        "project.purchase_workflow"
+      ],
+      "created_at": "2026-09-15 23:51:00",
+      "updated_at": "2026-09-15 23:51:00"
+    },
+    {
+      "id": "TASK_0008",
+      "title": "Saída da ocupante",
+      "description": "Marco da compra e transição do imóvel.",
+      "priority": 1,
+      "sequence": 8,
+      "start_date": "2026-10-07",
+      "end_date": "2026-10-09",
+      "status": "pending",
+      "expense_id": "",
+      "icon_key": "home-expense",
+      "date_status": "estimated",
+      "source_refs": [
+        "project.purchase_workflow"
+      ],
+      "created_at": "2026-09-15 23:51:00",
+      "updated_at": "2026-09-15 23:51:00"
+    },
+    {
+      "id": "TASK_0009",
+      "title": "pintura e acabamentos",
+      "description": "Marco da compra e transição do imóvel.",
+      "priority": 1,
+      "sequence": 9,
+      "start_date": "2026-10-10",
+      "end_date": "2026-10-12",
+      "status": "pending",
+      "expense_id": "",
+      "icon_key": "home-expense",
+      "date_status": "estimated",
+      "source_refs": [
+        "project.purchase_workflow"
+      ],
+      "created_at": "2026-09-15 23:51:00",
+      "updated_at": "2026-09-15 23:51:00"
+    },
+    {
+      "id": "TASK_0010",
+      "title": "Mudança",
+      "description": "Marco da compra e transição do imóvel.",
+      "priority": 1,
+      "sequence": 10,
+      "start_date": "2026-10-13",
+      "end_date": "2026-10-15",
+      "status": "pending",
+      "expense_id": "",
+      "icon_key": "home-expense",
+      "date_status": "estimated",
+      "source_refs": [
+        "project.purchase_workflow",
+        "project.work_plan"
+      ],
+      "created_at": "2026-09-15 23:51:00",
+      "updated_at": "2026-09-15 23:51:00"
+    },
+    {
+      "id": "TASK_0011",
+      "title": "Demolição total da edícula dos fundos — primeiro serviço",
+      "description": "Regularizar, corrigir problemas existentes, melhorar a conservação e deixar o imóvel adequado para Prefeitura e Caixa. Após assinatura do contrato com a imobiliária",
+      "priority": 1,
+      "sequence": 11,
+      "start_date": "2026-10-16",
+      "end_date": "2026-10-18",
+      "status": "pending",
+      "expense_id": "",
+      "icon_key": "home-expense",
+      "date_status": "estimated",
+      "source_refs": [
+        "project.work_plan"
+      ],
+      "created_at": "2026-09-15 23:51:00",
+      "updated_at": "2026-09-15 23:51:00"
+    },
+    {
+      "id": "TASK_0012",
+      "title": "Correção da infiltração na parte de trás da casa",
+      "description": "Regularizar, corrigir problemas existentes, melhorar a conservação e deixar o imóvel adequado para Prefeitura e Caixa. Após assinatura do contrato com a imobiliária",
+      "priority": 1,
+      "sequence": 12,
+      "start_date": "2026-10-19",
+      "end_date": "2026-10-21",
+      "status": "pending",
+      "expense_id": "",
+      "icon_key": "home-expense",
+      "date_status": "estimated",
+      "source_refs": [
+        "project.work_contracts.contract_01",
+        "project.work_plan"
+      ],
+      "created_at": "2026-09-15 23:51:00",
+      "updated_at": "2026-09-15 23:51:00"
+    },
+    {
+      "id": "TASK_0013",
+      "title": "Reparos internos decorrentes da infiltração traseira",
+      "description": "Regularizar, corrigir problemas existentes, melhorar a conservação e deixar o imóvel adequado para Prefeitura e Caixa. Após assinatura do contrato com a imobiliária",
+      "priority": 1,
+      "sequence": 13,
+      "start_date": "2026-10-22",
+      "end_date": "2026-10-24",
+      "status": "pending",
+      "expense_id": "",
+      "icon_key": "home-expense",
+      "date_status": "estimated",
+      "source_refs": [
+        "project.work_plan"
+      ],
+      "created_at": "2026-09-15 23:51:00",
+      "updated_at": "2026-09-15 23:51:00"
+    },
+    {
+      "id": "TASK_0014",
+      "title": "Correção da infiltração no banheiro",
+      "description": "Regularizar, corrigir problemas existentes, melhorar a conservação e deixar o imóvel adequado para Prefeitura e Caixa. Após assinatura do contrato com a imobiliária",
+      "priority": 1,
+      "sequence": 14,
+      "start_date": "2026-10-25",
+      "end_date": "2026-10-27",
+      "status": "pending",
+      "expense_id": "",
+      "icon_key": "home-expense",
+      "date_status": "estimated",
+      "source_refs": [
+        "project.work_plan"
+      ],
+      "created_at": "2026-09-15 23:51:00",
+      "updated_at": "2026-09-15 23:51:00"
+    },
+    {
+      "id": "TASK_0015",
+      "title": "Correção da infiltração na lateral esquerda",
+      "description": "Regularizar, corrigir problemas existentes, melhorar a conservação e deixar o imóvel adequado para Prefeitura e Caixa. Após assinatura do contrato com a imobiliária",
+      "priority": 1,
+      "sequence": 15,
+      "start_date": "2026-10-28",
+      "end_date": "2026-10-30",
+      "status": "pending",
+      "expense_id": "",
+      "icon_key": "home-expense",
+      "date_status": "estimated",
+      "source_refs": [
+        "project.work_plan"
+      ],
+      "created_at": "2026-09-15 23:51:00",
+      "updated_at": "2026-09-15 23:51:00"
+    },
+    {
+      "id": "TASK_0016",
+      "title": "Pequenos reparos de rejuntes",
+      "description": "Regularizar, corrigir problemas existentes, melhorar a conservação e deixar o imóvel adequado para Prefeitura e Caixa. Após assinatura do contrato com a imobiliária",
+      "priority": 1,
+      "sequence": 16,
+      "start_date": "2026-10-31",
+      "end_date": "2026-11-02",
+      "status": "pending",
+      "expense_id": "",
+      "icon_key": "home-expense",
+      "date_status": "estimated",
+      "source_refs": [
+        "project.work_plan"
+      ],
+      "created_at": "2026-09-15 23:51:00",
+      "updated_at": "2026-09-15 23:51:00"
+    },
+    {
+      "id": "TASK_0017",
+      "title": "Reboco da lateral esquerda com chapisco de pedrisco e Bianco",
+      "description": "Regularizar, corrigir problemas existentes, melhorar a conservação e deixar o imóvel adequado para Prefeitura e Caixa. Após assinatura do contrato com a imobiliária",
+      "priority": 1,
+      "sequence": 17,
+      "start_date": "2026-11-03",
+      "end_date": "2026-11-05",
+      "status": "pending",
+      "expense_id": "",
+      "icon_key": "home-expense",
+      "date_status": "estimated",
+      "source_refs": [
+        "project.work_plan"
+      ],
+      "created_at": "2026-09-15 23:51:00",
+      "updated_at": "2026-09-15 23:51:00"
+    },
+    {
+      "id": "TASK_0018",
+      "title": "Contrapiso do corredor dos fundos",
+      "description": "Regularizar, corrigir problemas existentes, melhorar a conservação e deixar o imóvel adequado para Prefeitura e Caixa. Após assinatura do contrato com a imobiliária",
+      "priority": 1,
+      "sequence": 18,
+      "start_date": "2026-11-06",
+      "end_date": "2026-11-08",
+      "status": "pending",
+      "expense_id": "",
+      "icon_key": "home-expense",
+      "date_status": "estimated",
+      "source_refs": [
+        "project.work_plan"
+      ],
+      "created_at": "2026-09-15 23:51:00",
+      "updated_at": "2026-09-15 23:51:00"
+    },
+    {
+      "id": "TASK_0019",
+      "title": "Avaliar água e esgoto da futura lavanderia antes do contrapiso",
+      "description": "Regularizar, corrigir problemas existentes, melhorar a conservação e deixar o imóvel adequado para Prefeitura e Caixa. Após assinatura do contrato com a imobiliária",
+      "priority": 1,
+      "sequence": 19,
+      "start_date": "2026-11-09",
+      "end_date": "2026-11-11",
+      "status": "pending",
+      "expense_id": "",
+      "icon_key": "home-expense",
+      "date_status": "estimated",
+      "source_refs": [
+        "project.work_plan"
+      ],
+      "created_at": "2026-09-15 23:51:00",
+      "updated_at": "2026-09-15 23:51:00"
+    },
+    {
+      "id": "TASK_0020",
+      "title": "Revisão completa das telhas e substituição das quebradas",
+      "description": "Regularizar, corrigir problemas existentes, melhorar a conservação e deixar o imóvel adequado para Prefeitura e Caixa. Após assinatura do contrato com a imobiliária",
+      "priority": 1,
+      "sequence": 20,
+      "start_date": "2026-11-12",
+      "end_date": "2026-11-14",
+      "status": "pending",
+      "expense_id": "",
+      "icon_key": "home-expense",
+      "date_status": "estimated",
+      "source_refs": [
+        "project.work_plan"
+      ],
+      "created_at": "2026-09-15 23:51:00",
+      "updated_at": "2026-09-15 23:51:00"
+    },
+    {
+      "id": "TASK_0021",
+      "title": "Reparos provisórios no telhado atual dos fundos, sem ampliação",
+      "description": "Regularizar, corrigir problemas existentes, melhorar a conservação e deixar o imóvel adequado para Prefeitura e Caixa. Após assinatura do contrato com a imobiliária",
+      "priority": 1,
+      "sequence": 21,
+      "start_date": "2026-11-15",
+      "end_date": "2026-11-17",
+      "status": "pending",
+      "expense_id": "",
+      "icon_key": "home-expense",
+      "date_status": "estimated",
+      "source_refs": [
+        "project.work_plan"
+      ],
+      "created_at": "2026-09-15 23:51:00",
+      "updated_at": "2026-09-15 23:51:00"
+    },
+    {
+      "id": "TASK_0022",
+      "title": "Remoção da caixa vazia do registro de água no muro frontal",
+      "description": "Regularizar, corrigir problemas existentes, melhorar a conservação e deixar o imóvel adequado para Prefeitura e Caixa. Após assinatura do contrato com a imobiliária",
+      "priority": 1,
+      "sequence": 22,
+      "start_date": "2026-11-18",
+      "end_date": "2026-11-20",
+      "status": "pending",
+      "expense_id": "",
+      "icon_key": "home-expense",
+      "date_status": "estimated",
+      "source_refs": [
+        "project.work_plan"
+      ],
+      "created_at": "2026-09-15 23:51:00",
+      "updated_at": "2026-09-15 23:51:00"
+    },
+    {
+      "id": "TASK_0023",
+      "title": "Remoção da caixa de energia do poste adicional",
+      "description": "Regularizar, corrigir problemas existentes, melhorar a conservação e deixar o imóvel adequado para Prefeitura e Caixa. Após assinatura do contrato com a imobiliária",
+      "priority": 1,
+      "sequence": 23,
+      "start_date": "2026-11-21",
+      "end_date": "2026-11-23",
+      "status": "pending",
+      "expense_id": "",
+      "icon_key": "home-expense",
+      "date_status": "estimated",
+      "source_refs": [
+        "project.work_contracts.contract_01",
+        "project.work_plan"
+      ],
+      "created_at": "2026-09-15 23:51:00",
+      "updated_at": "2026-09-15 23:51:00"
+    },
+    {
+      "id": "TASK_0024",
+      "title": "Reboco da parede de trás da casa",
+      "description": "Regularizar, corrigir problemas existentes, melhorar a conservação e deixar o imóvel adequado para Prefeitura e Caixa. Após assinatura do contrato com a imobiliária",
+      "priority": 1,
+      "sequence": 24,
+      "start_date": "2026-11-24",
+      "end_date": "2026-11-26",
+      "status": "pending",
+      "expense_id": "",
+      "icon_key": "home-expense",
+      "date_status": "estimated",
+      "source_refs": [
+        "project.work_contracts.contract_01",
+        "project.work_plan"
+      ],
+      "created_at": "2026-09-15 23:51:00",
+      "updated_at": "2026-09-15 23:51:00"
+    },
+    {
+      "id": "TASK_0025",
+      "title": "Reboco do muro lateral esquerdo",
+      "description": "Regularizar, corrigir problemas existentes, melhorar a conservação e deixar o imóvel adequado para Prefeitura e Caixa. Após assinatura do contrato com a imobiliária",
+      "priority": 1,
+      "sequence": 25,
+      "start_date": "2026-11-27",
+      "end_date": "2026-11-29",
+      "status": "pending",
+      "expense_id": "",
+      "icon_key": "home-expense",
+      "date_status": "estimated",
+      "source_refs": [
+        "project.work_contracts.contract_01",
+        "project.work_plan"
+      ],
+      "created_at": "2026-09-15 23:51:00",
+      "updated_at": "2026-09-15 23:51:00"
+    },
+    {
+      "id": "TASK_0026",
+      "title": "Reparos e regularização do muro da frente",
+      "description": "Regularizar, corrigir problemas existentes, melhorar a conservação e deixar o imóvel adequado para Prefeitura e Caixa. Após assinatura do contrato com a imobiliária",
+      "priority": 1,
+      "sequence": 26,
+      "start_date": "2026-11-30",
+      "end_date": "2026-12-02",
+      "status": "pending",
+      "expense_id": "",
+      "icon_key": "home-expense",
+      "date_status": "estimated",
+      "source_refs": [
+        "project.work_contracts.contract_01",
+        "project.work_plan"
+      ],
+      "created_at": "2026-09-15 23:51:00",
+      "updated_at": "2026-09-15 23:51:00"
+    },
+    {
+      "id": "TASK_0027",
+      "title": "Revisão elétrica completa",
+      "description": "Elétrica",
+      "priority": 1,
+      "sequence": 27,
+      "start_date": "2026-12-03",
+      "end_date": "2026-12-05",
+      "status": "pending",
+      "expense_id": "",
+      "icon_key": "home-expense",
+      "date_status": "estimated",
+      "source_refs": [
+        "project.priority_work"
+      ],
+      "created_at": "2026-09-15 23:51:00",
+      "updated_at": "2026-09-15 23:51:00"
+    },
+    {
+      "id": "TASK_0028",
+      "title": "Avaliação da fiação existente",
+      "description": "Elétrica",
+      "priority": 1,
+      "sequence": 28,
+      "start_date": "2026-12-06",
+      "end_date": "2026-12-08",
+      "status": "pending",
+      "expense_id": "",
+      "icon_key": "home-expense",
+      "date_status": "estimated",
+      "source_refs": [
+        "project.priority_work"
+      ],
+      "created_at": "2026-09-15 23:51:00",
+      "updated_at": "2026-09-15 23:51:00"
+    },
+    {
+      "id": "TASK_0029",
+      "title": "Quadro de distribuição interno",
+      "description": "Elétrica",
+      "priority": 1,
+      "sequence": 29,
+      "start_date": "2026-12-09",
+      "end_date": "2026-12-11",
+      "status": "pending",
+      "expense_id": "",
+      "icon_key": "home-expense",
+      "date_status": "estimated",
+      "source_refs": [
+        "project.priority_work"
+      ],
+      "created_at": "2026-09-15 23:51:00",
+      "updated_at": "2026-09-15 23:51:00"
+    },
+    {
+      "id": "TASK_0030",
+      "title": "Separação de circuitos",
+      "description": "Elétrica",
+      "priority": 1,
+      "sequence": 30,
+      "start_date": "2026-12-12",
+      "end_date": "2026-12-14",
+      "status": "pending",
+      "expense_id": "",
+      "icon_key": "home-expense",
+      "date_status": "estimated",
+      "source_refs": [
+        "project.priority_work"
+      ],
+      "created_at": "2026-09-15 23:51:00",
+      "updated_at": "2026-09-15 23:51:00"
+    },
+    {
+      "id": "TASK_0031",
+      "title": "Disjuntores adequados",
+      "description": "Elétrica",
+      "priority": 1,
+      "sequence": 31,
+      "start_date": "2026-12-15",
+      "end_date": "2026-12-17",
+      "status": "pending",
+      "expense_id": "",
+      "icon_key": "home-expense",
+      "date_status": "estimated",
+      "source_refs": [
+        "project.priority_work"
+      ],
+      "created_at": "2026-09-15 23:51:00",
+      "updated_at": "2026-09-15 23:51:00"
+    },
+    {
+      "id": "TASK_0032",
+      "title": "DR e DPS",
+      "description": "Elétrica",
+      "priority": 1,
+      "sequence": 32,
+      "start_date": "2026-12-18",
+      "end_date": "2026-12-20",
+      "status": "pending",
+      "expense_id": "",
+      "icon_key": "home-expense",
+      "date_status": "estimated",
+      "source_refs": [
+        "project.priority_work"
+      ],
+      "created_at": "2026-09-15 23:51:00",
+      "updated_at": "2026-09-15 23:51:00"
+    },
+    {
+      "id": "TASK_0033",
+      "title": "Aterramento",
+      "description": "Elétrica",
+      "priority": 1,
+      "sequence": 33,
+      "start_date": "2026-12-21",
+      "end_date": "2026-12-23",
+      "status": "pending",
+      "expense_id": "",
+      "icon_key": "home-expense",
+      "date_status": "estimated",
+      "source_refs": [
+        "project.priority_work"
+      ],
+      "created_at": "2026-09-15 23:51:00",
+      "updated_at": "2026-09-15 23:51:00"
+    },
+    {
+      "id": "TASK_0034",
+      "title": "Novos conduítes",
+      "description": "Elétrica",
+      "priority": 1,
+      "sequence": 34,
+      "start_date": "2026-12-24",
+      "end_date": "2026-12-26",
+      "status": "pending",
+      "expense_id": "",
+      "icon_key": "home-expense",
+      "date_status": "estimated",
+      "source_refs": [
+        "project.priority_work"
+      ],
+      "created_at": "2026-09-15 23:51:00",
+      "updated_at": "2026-09-15 23:51:00"
+    },
+    {
+      "id": "TASK_0035",
+      "title": "Novas tomadas",
+      "description": "Elétrica",
+      "priority": 1,
+      "sequence": 35,
+      "start_date": "2026-12-27",
+      "end_date": "2026-12-29",
+      "status": "pending",
+      "expense_id": "",
+      "icon_key": "home-expense",
+      "date_status": "estimated",
+      "source_refs": [
+        "project.priority_work"
+      ],
+      "created_at": "2026-09-15 23:51:00",
+      "updated_at": "2026-09-15 23:51:00"
+    },
+    {
+      "id": "TASK_0036",
+      "title": "Tomadas 20 A onde necessário",
+      "description": "Elétrica",
+      "priority": 1,
+      "sequence": 36,
+      "start_date": "2026-12-30",
+      "end_date": "2027-01-01",
+      "status": "pending",
+      "expense_id": "",
+      "icon_key": "home-expense",
+      "date_status": "estimated",
+      "source_refs": [
+        "project.priority_work"
+      ],
+      "created_at": "2026-09-15 23:51:00",
+      "updated_at": "2026-09-15 23:51:00"
+    },
+    {
+      "id": "TASK_0037",
+      "title": "Pontos para lavanderia, cozinha, geladeira, TV e equipamentos",
+      "description": "Elétrica",
+      "priority": 1,
+      "sequence": 37,
+      "start_date": "2027-01-02",
+      "end_date": "2027-01-04",
+      "status": "pending",
+      "expense_id": "",
+      "icon_key": "home-expense",
+      "date_status": "estimated",
+      "source_refs": [
+        "project.priority_work"
+      ],
+      "created_at": "2026-09-15 23:51:00",
+      "updated_at": "2026-09-15 23:51:00"
+    },
+    {
+      "id": "TASK_0081",
+      "title": "Demolição total da edícula dos fundos",
+      "description": "Primeiro serviço da regularização e preparação; retirada final do entulho deve ser definida entre as partes.",
+      "priority": 1,
+      "sequence": 38,
+      "start_date": "2027-08-08",
+      "end_date": "2027-08-10",
+      "status": "pending",
+      "expense_id": "",
+      "icon_key": "home-expense",
+      "date_status": "estimated",
+      "source_refs": [
+        "project.work_contracts.contract_01"
+      ],
+      "created_at": "2026-09-15 23:51:00",
+      "updated_at": "2026-09-15 23:51:00"
+    },
+    {
+      "id": "TASK_0082",
+      "title": "Contrapiso do corredor atrás da casa",
+      "description": "Infraestrutura necessária deve ser avaliada antes do fechamento.",
+      "priority": 1,
+      "sequence": 39,
+      "start_date": "2027-08-11",
+      "end_date": "2027-08-13",
+      "status": "pending",
+      "expense_id": "",
+      "icon_key": "home-expense",
+      "date_status": "estimated",
+      "source_refs": [
+        "project.work_contracts.contract_01"
+      ],
+      "created_at": "2026-09-15 23:51:00",
+      "updated_at": "2026-09-15 23:51:00"
+    },
+    {
+      "id": "TASK_0083",
+      "title": "Revisão das telhas da casa",
+      "description": "Substituição das unidades quebradas, trincadas ou inadequadas com material do contratante.",
+      "priority": 1,
+      "sequence": 40,
+      "start_date": "2027-08-14",
+      "end_date": "2027-08-16",
+      "status": "pending",
+      "expense_id": "",
+      "icon_key": "home-expense",
+      "date_status": "estimated",
+      "source_refs": [
+        "project.work_contracts.contract_01"
+      ],
+      "created_at": "2026-09-15 23:51:00",
+      "updated_at": "2026-09-15 23:51:00"
+    },
+    {
+      "id": "TASK_0084",
+      "title": "Reparos provisórios no telhado da área dos fundos",
+      "description": "Não inclui novo telhado definitivo nem ampliação da área coberta.",
+      "priority": 1,
+      "sequence": 41,
+      "start_date": "2027-08-17",
+      "end_date": "2027-08-19",
+      "status": "pending",
+      "expense_id": "",
+      "icon_key": "home-expense",
+      "date_status": "estimated",
+      "source_refs": [
+        "project.work_contracts.contract_01"
+      ],
+      "created_at": "2026-09-15 23:51:00",
+      "updated_at": "2026-09-15 23:51:00"
+    },
+    {
+      "id": "TASK_0085",
+      "title": "Remoção da caixa vazia do registro de água",
+      "description": "Inclui recomposição e acabamento da área afetada.",
+      "priority": 1,
+      "sequence": 42,
+      "start_date": "2027-08-20",
+      "end_date": "2027-08-22",
+      "status": "pending",
+      "expense_id": "",
+      "icon_key": "home-expense",
+      "date_status": "estimated",
+      "source_refs": [
+        "project.work_contracts.contract_01"
+      ],
+      "created_at": "2026-09-15 23:51:00",
+      "updated_at": "2026-09-15 23:51:00"
+    },
+    {
+      "id": "TASK_0086",
+      "title": "Infraestrutura da futura lavanderia",
+      "description": "Água e esgoto entram na regularização e preparação apenas se tecnicamente necessários antes do contrapiso; caso contrário permanecem na reforma e melhorias.",
+      "priority": 1,
+      "sequence": 43,
+      "start_date": "2027-08-23",
+      "end_date": "2027-08-25",
+      "status": "pending",
+      "expense_id": "",
+      "icon_key": "home-expense",
+      "date_status": "estimated",
+      "source_refs": [
+        "project.work_contracts.contract_01"
+      ],
+      "created_at": "2026-09-15 23:51:00",
+      "updated_at": "2026-09-15 23:51:00"
+    },
+    {
+      "id": "TASK_0038",
+      "title": "Nova alimentação de água",
+      "description": "Nova suíte",
+      "priority": 2,
+      "sequence": 44,
+      "start_date": "2027-01-05",
+      "end_date": "2027-01-09",
+      "status": "pending",
+      "expense_id": "",
+      "icon_key": "home-expense",
+      "date_status": "estimated",
+      "source_refs": [
+        "project.priority_work"
+      ],
+      "created_at": "2026-09-15 23:51:00",
+      "updated_at": "2026-09-15 23:51:00"
+    },
+    {
+      "id": "TASK_0039",
+      "title": "Esgoto",
+      "description": "Área dos fundos",
+      "priority": 2,
+      "sequence": 45,
+      "start_date": "2027-01-10",
+      "end_date": "2027-01-14",
+      "status": "pending",
+      "expense_id": "",
+      "icon_key": "home-expense",
+      "date_status": "estimated",
+      "source_refs": [
+        "project.priority_work"
+      ],
+      "created_at": "2026-09-15 23:51:00",
+      "updated_at": "2026-09-15 23:51:00"
+    },
+    {
+      "id": "TASK_0040",
+      "title": "Ponto de chuveiro",
+      "description": "Nova suíte",
+      "priority": 2,
+      "sequence": 46,
+      "start_date": "2027-01-15",
+      "end_date": "2027-01-19",
+      "status": "pending",
+      "expense_id": "",
+      "icon_key": "home-expense",
+      "date_status": "estimated",
+      "source_refs": [
+        "project.priority_work"
+      ],
+      "created_at": "2026-09-15 23:51:00",
+      "updated_at": "2026-09-15 23:51:00"
+    },
+    {
+      "id": "TASK_0041",
+      "title": "Ponto para futura pia",
+      "description": "Nova suíte",
+      "priority": 2,
+      "sequence": 47,
+      "start_date": "2027-01-20",
+      "end_date": "2027-01-24",
+      "status": "pending",
+      "expense_id": "",
+      "icon_key": "home-expense",
+      "date_status": "estimated",
+      "source_refs": [
+        "project.priority_work"
+      ],
+      "created_at": "2026-09-15 23:51:00",
+      "updated_at": "2026-09-15 23:51:00"
+    },
+    {
+      "id": "TASK_0042",
+      "title": "Alimentação e esgoto do vaso",
+      "description": "Nova suíte",
+      "priority": 2,
+      "sequence": 48,
+      "start_date": "2027-01-25",
+      "end_date": "2027-01-29",
+      "status": "pending",
+      "expense_id": "",
+      "icon_key": "home-expense",
+      "date_status": "estimated",
+      "source_refs": [
+        "project.priority_work"
+      ],
+      "created_at": "2026-09-15 23:51:00",
+      "updated_at": "2026-09-15 23:51:00"
+    },
+    {
+      "id": "TASK_0043",
+      "title": "Ralo ou caixa sifonada",
+      "description": "Nova suíte",
+      "priority": 2,
+      "sequence": 49,
+      "start_date": "2027-01-30",
+      "end_date": "2027-02-03",
+      "status": "pending",
+      "expense_id": "",
+      "icon_key": "home-expense",
+      "date_status": "estimated",
+      "source_refs": [
+        "project.priority_work"
+      ],
+      "created_at": "2026-09-15 23:51:00",
+      "updated_at": "2026-09-15 23:51:00"
+    },
+    {
+      "id": "TASK_0044",
+      "title": "Registros",
+      "description": "Nova suíte",
+      "priority": 2,
+      "sequence": 50,
+      "start_date": "2027-02-04",
+      "end_date": "2027-02-08",
+      "status": "pending",
+      "expense_id": "",
+      "icon_key": "home-expense",
+      "date_status": "estimated",
+      "source_refs": [
+        "project.priority_work"
+      ],
+      "created_at": "2026-09-15 23:51:00",
+      "updated_at": "2026-09-15 23:51:00"
+    },
+    {
+      "id": "TASK_0045",
+      "title": "Impermeabilização",
+      "description": "Nova suíte",
+      "priority": 2,
+      "sequence": 51,
+      "start_date": "2027-02-09",
+      "end_date": "2027-02-13",
+      "status": "pending",
+      "expense_id": "",
+      "icon_key": "home-expense",
+      "date_status": "estimated",
+      "source_refs": [
+        "project.priority_work"
+      ],
+      "created_at": "2026-09-15 23:51:00",
+      "updated_at": "2026-09-15 23:51:00"
+    },
+    {
+      "id": "TASK_0046",
+      "title": "Fechamento da janela frontal",
+      "description": "Nova suíte",
+      "priority": 2,
+      "sequence": 52,
+      "start_date": "2027-02-14",
+      "end_date": "2027-02-18",
+      "status": "pending",
+      "expense_id": "",
+      "icon_key": "home-expense",
+      "date_status": "estimated",
+      "source_refs": [
+        "project.priority_work"
+      ],
+      "created_at": "2026-09-15 23:51:00",
+      "updated_at": "2026-09-15 23:51:00"
+    },
+    {
+      "id": "TASK_0047",
+      "title": "Abertura de novo vitrô lateral",
+      "description": "Nova suíte",
+      "priority": 2,
+      "sequence": 53,
+      "start_date": "2027-02-19",
+      "end_date": "2027-02-23",
+      "status": "pending",
+      "expense_id": "",
+      "icon_key": "home-expense",
+      "date_status": "estimated",
+      "source_refs": [
+        "project.priority_work"
+      ],
+      "created_at": "2026-09-15 23:51:00",
+      "updated_at": "2026-09-15 23:51:00"
+    },
+    {
+      "id": "TASK_0048",
+      "title": "Piso",
+      "description": "Lavanderia mínima antes da mudança",
+      "priority": 2,
+      "sequence": 54,
+      "start_date": "2027-02-24",
+      "end_date": "2027-02-28",
+      "status": "pending",
+      "expense_id": "",
+      "icon_key": "home-expense",
+      "date_status": "estimated",
+      "source_refs": [
+        "project.priority_work"
+      ],
+      "created_at": "2026-09-15 23:51:00",
+      "updated_at": "2026-09-15 23:51:00"
+    },
+    {
+      "id": "TASK_0049",
+      "title": "Revestimento das paredes",
+      "description": "Nova suíte",
+      "priority": 2,
+      "sequence": 55,
+      "start_date": "2027-03-01",
+      "end_date": "2027-03-05",
+      "status": "pending",
+      "expense_id": "",
+      "icon_key": "home-expense",
+      "date_status": "estimated",
+      "source_refs": [
+        "project.priority_work"
+      ],
+      "created_at": "2026-09-15 23:51:00",
+      "updated_at": "2026-09-15 23:51:00"
+    },
+    {
+      "id": "TASK_0050",
+      "title": "Remover piso e revestimentos",
+      "description": "Banheiro social",
+      "priority": 2,
+      "sequence": 56,
+      "start_date": "2027-03-06",
+      "end_date": "2027-03-10",
+      "status": "pending",
+      "expense_id": "",
+      "icon_key": "home-expense",
+      "date_status": "estimated",
+      "source_refs": [
+        "project.priority_work"
+      ],
+      "created_at": "2026-09-15 23:51:00",
+      "updated_at": "2026-09-15 23:51:00"
+    },
+    {
+      "id": "TASK_0051",
+      "title": "Corrigir apenas o necessário na hidráulica existente",
+      "description": "Banheiro social",
+      "priority": 2,
+      "sequence": 57,
+      "start_date": "2027-03-11",
+      "end_date": "2027-03-15",
+      "status": "pending",
+      "expense_id": "",
+      "icon_key": "home-expense",
+      "date_status": "estimated",
+      "source_refs": [
+        "project.priority_work"
+      ],
+      "created_at": "2026-09-15 23:51:00",
+      "updated_at": "2026-09-15 23:51:00"
+    },
+    {
+      "id": "TASK_0052",
+      "title": "Impermeabilizar",
+      "description": "Banheiro social",
+      "priority": 2,
+      "sequence": 58,
+      "start_date": "2027-03-16",
+      "end_date": "2027-03-20",
+      "status": "pending",
+      "expense_id": "",
+      "icon_key": "home-expense",
+      "date_status": "estimated",
+      "source_refs": [
+        "project.priority_work"
+      ],
+      "created_at": "2026-09-15 23:51:00",
+      "updated_at": "2026-09-15 23:51:00"
+    },
+    {
+      "id": "TASK_0053",
+      "title": "Assentar porcelanato",
+      "description": "Banheiro social",
+      "priority": 2,
+      "sequence": 59,
+      "start_date": "2027-03-21",
+      "end_date": "2027-03-25",
+      "status": "pending",
+      "expense_id": "",
+      "icon_key": "home-expense",
+      "date_status": "estimated",
+      "source_refs": [
+        "project.priority_work"
+      ],
+      "created_at": "2026-09-15 23:51:00",
+      "updated_at": "2026-09-15 23:51:00"
+    },
+    {
+      "id": "TASK_0054",
+      "title": "Revestir paredes até o teto",
+      "description": "Banheiro social",
+      "priority": 2,
+      "sequence": 60,
+      "start_date": "2027-03-26",
+      "end_date": "2027-03-30",
+      "status": "pending",
+      "expense_id": "",
+      "icon_key": "home-expense",
+      "date_status": "estimated",
+      "source_refs": [
+        "project.priority_work"
+      ],
+      "created_at": "2026-09-15 23:51:00",
+      "updated_at": "2026-09-15 23:51:00"
+    },
+    {
+      "id": "TASK_0055",
+      "title": "Pisos",
+      "description": "Resolver segurança, infraestrutura e toda obra que gera quebra e sujeira antes da mudança. Após assinatura do financiamento com a Caixa",
+      "priority": 2,
+      "sequence": 61,
+      "start_date": "2027-03-31",
+      "end_date": "2027-04-04",
+      "status": "pending",
+      "expense_id": "",
+      "icon_key": "home-expense",
+      "date_status": "estimated",
+      "source_refs": [
+        "project.priority_work"
+      ],
+      "created_at": "2026-09-15 23:51:00",
+      "updated_at": "2026-09-15 23:51:00"
+    },
+    {
+      "id": "TASK_0056",
+      "title": "Portas e janelas",
+      "description": "Resolver segurança, infraestrutura e toda obra que gera quebra e sujeira antes da mudança. Após assinatura do financiamento com a Caixa",
+      "priority": 2,
+      "sequence": 62,
+      "start_date": "2027-04-05",
+      "end_date": "2027-04-09",
+      "status": "pending",
+      "expense_id": "",
+      "icon_key": "home-expense",
+      "date_status": "estimated",
+      "source_refs": [
+        "project.priority_work"
+      ],
+      "created_at": "2026-09-15 23:51:00",
+      "updated_at": "2026-09-15 23:51:00"
+    },
+    {
+      "id": "TASK_0057",
+      "title": "Porta-balcão da Sala de TV",
+      "description": "Resolver segurança, infraestrutura e toda obra que gera quebra e sujeira antes da mudança. Após assinatura do financiamento com a Caixa",
+      "priority": 2,
+      "sequence": 63,
+      "start_date": "2027-04-10",
+      "end_date": "2027-04-14",
+      "status": "pending",
+      "expense_id": "",
+      "icon_key": "home-expense",
+      "date_status": "estimated",
+      "source_refs": [
+        "project.priority_work"
+      ],
+      "created_at": "2026-09-15 23:51:00",
+      "updated_at": "2026-09-15 23:51:00"
+    },
+    {
+      "id": "TASK_0058",
+      "title": "Água da pia ou tanque",
+      "description": "Lavanderia mínima antes da mudança",
+      "priority": 2,
+      "sequence": 64,
+      "start_date": "2027-04-15",
+      "end_date": "2027-04-19",
+      "status": "pending",
+      "expense_id": "",
+      "icon_key": "home-expense",
+      "date_status": "estimated",
+      "source_refs": [
+        "project.priority_work"
+      ],
+      "created_at": "2026-09-15 23:51:00",
+      "updated_at": "2026-09-15 23:51:00"
+    },
+    {
+      "id": "TASK_0059",
+      "title": "Água da máquina",
+      "description": "Lavanderia mínima antes da mudança",
+      "priority": 2,
+      "sequence": 65,
+      "start_date": "2027-04-20",
+      "end_date": "2027-04-24",
+      "status": "pending",
+      "expense_id": "",
+      "icon_key": "home-expense",
+      "date_status": "estimated",
+      "source_refs": [
+        "project.priority_work"
+      ],
+      "created_at": "2026-09-15 23:51:00",
+      "updated_at": "2026-09-15 23:51:00"
+    },
+    {
+      "id": "TASK_0060",
+      "title": "Esgoto da pia ou tanque",
+      "description": "Lavanderia mínima antes da mudança",
+      "priority": 2,
+      "sequence": 66,
+      "start_date": "2027-04-25",
+      "end_date": "2027-04-29",
+      "status": "pending",
+      "expense_id": "",
+      "icon_key": "home-expense",
+      "date_status": "estimated",
+      "source_refs": [
+        "project.priority_work"
+      ],
+      "created_at": "2026-09-15 23:51:00",
+      "updated_at": "2026-09-15 23:51:00"
+    },
+    {
+      "id": "TASK_0061",
+      "title": "Esgoto da máquina",
+      "description": "Lavanderia mínima antes da mudança",
+      "priority": 2,
+      "sequence": 67,
+      "start_date": "2027-04-30",
+      "end_date": "2027-05-04",
+      "status": "pending",
+      "expense_id": "",
+      "icon_key": "home-expense",
+      "date_status": "estimated",
+      "source_refs": [
+        "project.priority_work"
+      ],
+      "created_at": "2026-09-15 23:51:00",
+      "updated_at": "2026-09-15 23:51:00"
+    },
+    {
+      "id": "TASK_0062",
+      "title": "Ralo",
+      "description": "Lavanderia mínima antes da mudança",
+      "priority": 2,
+      "sequence": 68,
+      "start_date": "2027-05-05",
+      "end_date": "2027-05-09",
+      "status": "pending",
+      "expense_id": "",
+      "icon_key": "home-expense",
+      "date_status": "estimated",
+      "source_refs": [
+        "project.priority_work"
+      ],
+      "created_at": "2026-09-15 23:51:00",
+      "updated_at": "2026-09-15 23:51:00"
+    },
+    {
+      "id": "TASK_0063",
+      "title": "Tomada adequada",
+      "description": "Lavanderia mínima antes da mudança",
+      "priority": 2,
+      "sequence": 69,
+      "start_date": "2027-05-10",
+      "end_date": "2027-05-14",
+      "status": "pending",
+      "expense_id": "",
+      "icon_key": "home-expense",
+      "date_status": "estimated",
+      "source_refs": [
+        "project.priority_work"
+      ],
+      "created_at": "2026-09-15 23:51:00",
+      "updated_at": "2026-09-15 23:51:00"
+    },
+    {
+      "id": "TASK_0064",
+      "title": "Água",
+      "description": "Área dos fundos",
+      "priority": 2,
+      "sequence": 70,
+      "start_date": "2027-05-15",
+      "end_date": "2027-05-19",
+      "status": "pending",
+      "expense_id": "",
+      "icon_key": "home-expense",
+      "date_status": "estimated",
+      "source_refs": [
+        "project.priority_work"
+      ],
+      "created_at": "2026-09-15 23:51:00",
+      "updated_at": "2026-09-15 23:51:00"
+    },
+    {
+      "id": "TASK_0065",
+      "title": "Elétrica",
+      "description": "Área dos fundos",
+      "priority": 2,
+      "sequence": 71,
+      "start_date": "2027-05-20",
+      "end_date": "2027-05-24",
+      "status": "pending",
+      "expense_id": "",
+      "icon_key": "home-expense",
+      "date_status": "estimated",
+      "source_refs": [
+        "project.priority_work"
+      ],
+      "created_at": "2026-09-15 23:51:00",
+      "updated_at": "2026-09-15 23:51:00"
+    },
+    {
+      "id": "TASK_0066",
+      "title": "Regularização",
+      "description": "Área dos fundos",
+      "priority": 2,
+      "sequence": 72,
+      "start_date": "2027-05-25",
+      "end_date": "2027-05-29",
+      "status": "pending",
+      "expense_id": "",
+      "icon_key": "home-expense",
+      "date_status": "estimated",
+      "source_refs": [
+        "project.priority_work"
+      ],
+      "created_at": "2026-09-15 23:51:00",
+      "updated_at": "2026-09-15 23:51:00"
+    },
+    {
+      "id": "TASK_0067",
+      "title": "Piso se compensar junto com o restante",
+      "description": "Área dos fundos",
+      "priority": 2,
+      "sequence": 73,
+      "start_date": "2027-05-30",
+      "end_date": "2027-06-03",
+      "status": "pending",
+      "expense_id": "",
+      "icon_key": "home-expense",
+      "date_status": "estimated",
+      "source_refs": [
+        "project.priority_work"
+      ],
+      "created_at": "2026-09-15 23:51:00",
+      "updated_at": "2026-09-15 23:51:00"
+    },
+    {
+      "id": "TASK_0087",
+      "title": "Remoção e substituição dos pisos por porcelanato",
+      "description": "Abrange os ambientes listados; referência aproximada de 115 m² para compra e escopo, sem reajuste da mão de obra.",
+      "priority": 2,
+      "sequence": 74,
+      "start_date": "2027-08-26",
+      "end_date": "2027-08-30",
+      "status": "pending",
+      "expense_id": "",
+      "icon_key": "home-expense",
+      "date_status": "estimated",
+      "source_refs": [
+        "project.work_contracts.contract_02"
+      ],
+      "created_at": "2026-09-15 23:51:00",
+      "updated_at": "2026-09-15 23:51:00"
+    },
+    {
+      "id": "TASK_0088",
+      "title": "Ampliação da cozinha externa com área gourmet",
+      "description": "Referência 7,80 × 5,20 m; inclui novo telhado de barro em duas águas e pontos de água e esgoto da pia.",
+      "priority": 2,
+      "sequence": 75,
+      "start_date": "2027-08-31",
+      "end_date": "2027-09-04",
+      "status": "pending",
+      "expense_id": "",
+      "icon_key": "home-expense",
+      "date_status": "estimated",
+      "source_refs": [
+        "project.work_contracts.contract_02"
+      ],
+      "created_at": "2026-09-15 23:51:00",
+      "updated_at": "2026-09-15 23:51:00"
+    },
+    {
+      "id": "TASK_0089",
+      "title": "Transformação do Quarto do Casal e criação da suíte",
+      "description": "Inclui hidráulica completa, fechamentos, nova janela lateral e arremates.",
+      "priority": 2,
+      "sequence": 76,
+      "start_date": "2027-09-05",
+      "end_date": "2027-09-09",
+      "status": "pending",
+      "expense_id": "",
+      "icon_key": "home-expense",
+      "date_status": "estimated",
+      "source_refs": [
+        "project.work_contracts.contract_02"
+      ],
+      "created_at": "2026-09-15 23:51:00",
+      "updated_at": "2026-09-15 23:51:00"
+    },
+    {
+      "id": "TASK_0090",
+      "title": "Reforma completa do banheiro social",
+      "description": "Piso e paredes em porcelanato, vaso, pia e ajustes hidráulicos e civis.",
+      "priority": 2,
+      "sequence": 77,
+      "start_date": "2027-09-10",
+      "end_date": "2027-09-14",
+      "status": "pending",
+      "expense_id": "",
+      "icon_key": "home-expense",
+      "date_status": "estimated",
+      "source_refs": [
+        "project.work_contracts.contract_02"
+      ],
+      "created_at": "2026-09-15 23:51:00",
+      "updated_at": "2026-09-15 23:51:00"
+    },
+    {
+      "id": "TASK_0091",
+      "title": "Instalação de porta-balcão na nova Sala de TV",
+      "description": "Porta de vidro com aproximadamente 2,00 m e acesso à área gourmet.",
+      "priority": 2,
+      "sequence": 78,
+      "start_date": "2027-09-15",
+      "end_date": "2027-09-19",
+      "status": "pending",
+      "expense_id": "",
+      "icon_key": "home-expense",
+      "date_status": "estimated",
+      "source_refs": [
+        "project.work_contracts.contract_02"
+      ],
+      "created_at": "2026-09-15 23:51:00",
+      "updated_at": "2026-09-15 23:51:00"
+    },
+    {
+      "id": "TASK_0092",
+      "title": "Troca de 5 janelas",
+      "description": "Inclui adequação de vãos, alvenaria, reboco e arremates.",
+      "priority": 2,
+      "sequence": 79,
+      "start_date": "2027-09-20",
+      "end_date": "2027-09-24",
+      "status": "pending",
+      "expense_id": "",
+      "icon_key": "home-expense",
+      "date_status": "estimated",
+      "source_refs": [
+        "project.work_contracts.contract_02"
+      ],
+      "created_at": "2026-09-15 23:51:00",
+      "updated_at": "2026-09-15 23:51:00"
+    },
+    {
+      "id": "TASK_0093",
+      "title": "Troca de 5 portas internas",
+      "description": "Inclui remoção, instalação, adequações de vãos e arremates.",
+      "priority": 2,
+      "sequence": 80,
+      "start_date": "2027-09-25",
+      "end_date": "2027-09-29",
+      "status": "pending",
+      "expense_id": "",
+      "icon_key": "home-expense",
+      "date_status": "estimated",
+      "source_refs": [
+        "project.work_contracts.contract_02"
+      ],
+      "created_at": "2026-09-15 23:51:00",
+      "updated_at": "2026-09-15 23:51:00"
+    },
+    {
+      "id": "TASK_0094",
+      "title": "Infraestrutura da lavanderia no corredor dos fundos",
+      "description": "Executada na reforma e melhorias se não tiver sido tecnicamente antecipada na regularização e preparação.",
+      "priority": 2,
+      "sequence": 81,
+      "start_date": "2027-09-30",
+      "end_date": "2027-10-04",
+      "status": "pending",
+      "expense_id": "",
+      "icon_key": "home-expense",
+      "date_status": "estimated",
+      "source_refs": [
+        "project.work_contracts.contract_02"
+      ],
+      "created_at": "2026-09-15 23:51:00",
+      "updated_at": "2026-09-15 23:51:00"
+    },
+    {
+      "id": "TASK_0095",
+      "title": "Adequações elétricas — conduítes e novas tomadas",
+      "description": "Inclui adequações civis, conduítes, caixas, tomadas, rasgos e recomposição. Quadro, aumento de carga ou troca integral da fiação exigem inclusão escrita.",
+      "priority": 2,
+      "sequence": 82,
+      "start_date": "2027-10-05",
+      "end_date": "2027-10-09",
+      "status": "pending",
+      "expense_id": "",
+      "icon_key": "home-expense",
+      "date_status": "estimated",
+      "source_refs": [
+        "project.work_contracts.contract_02"
+      ],
+      "created_at": "2026-09-15 23:51:00",
+      "updated_at": "2026-09-15 23:51:00"
+    },
+    {
+      "id": "TASK_0096",
+      "title": "Proteção superior dos muros",
+      "description": "Instalação de telhas ou telinhas de proteção conforme modelo escolhido pelo contratante.",
+      "priority": 2,
+      "sequence": 83,
+      "start_date": "2027-10-10",
+      "end_date": "2027-10-14",
+      "status": "pending",
+      "expense_id": "",
+      "icon_key": "home-expense",
+      "date_status": "estimated",
+      "source_refs": [
+        "project.work_contracts.contract_02"
+      ],
+      "created_at": "2026-09-15 23:51:00",
+      "updated_at": "2026-09-15 23:51:00"
+    },
+    {
+      "id": "TASK_0068",
+      "title": "Pintura interna",
+      "description": "Pintura e acabamentos. Após toda a obra pesada",
+      "priority": 3,
+      "sequence": 84,
+      "start_date": "2027-06-04",
+      "end_date": "2027-06-08",
+      "status": "pending",
+      "expense_id": "",
+      "icon_key": "home-expense",
+      "date_status": "estimated",
+      "source_refs": [
+        "project.work_plan"
+      ],
+      "created_at": "2026-09-15 23:51:00",
+      "updated_at": "2026-09-15 23:51:00"
+    },
+    {
+      "id": "TASK_0069",
+      "title": "Pintura externa",
+      "description": "Pintura e acabamentos. Após toda a obra pesada",
+      "priority": 3,
+      "sequence": 85,
+      "start_date": "2027-06-09",
+      "end_date": "2027-06-13",
+      "status": "pending",
+      "expense_id": "",
+      "icon_key": "home-expense",
+      "date_status": "estimated",
+      "source_refs": [
+        "project.work_plan"
+      ],
+      "created_at": "2026-09-15 23:51:00",
+      "updated_at": "2026-09-15 23:51:00"
+    },
+    {
+      "id": "TASK_0070",
+      "title": "Rodapés",
+      "description": "Pintura e acabamentos. Após toda a obra pesada",
+      "priority": 3,
+      "sequence": 86,
+      "start_date": "2027-06-14",
+      "end_date": "2027-06-18",
+      "status": "pending",
+      "expense_id": "",
+      "icon_key": "home-expense",
+      "date_status": "estimated",
+      "source_refs": [
+        "project.work_plan"
+      ],
+      "created_at": "2026-09-15 23:51:00",
+      "updated_at": "2026-09-15 23:51:00"
+    },
+    {
+      "id": "TASK_0071",
+      "title": "Arremates",
+      "description": "Pintura e acabamentos. Após toda a obra pesada",
+      "priority": 3,
+      "sequence": 87,
+      "start_date": "2027-06-19",
+      "end_date": "2027-06-23",
+      "status": "pending",
+      "expense_id": "",
+      "icon_key": "home-expense",
+      "date_status": "estimated",
+      "source_refs": [
+        "project.work_plan"
+      ],
+      "created_at": "2026-09-15 23:51:00",
+      "updated_at": "2026-09-15 23:51:00"
+    },
+    {
+      "id": "TASK_0072",
+      "title": "Acabamento de portas e janelas",
+      "description": "Pintura e acabamentos. Após toda a obra pesada",
+      "priority": 3,
+      "sequence": 88,
+      "start_date": "2027-06-24",
+      "end_date": "2027-06-28",
+      "status": "pending",
+      "expense_id": "",
+      "icon_key": "home-expense",
+      "date_status": "estimated",
+      "source_refs": [
+        "project.work_plan"
+      ],
+      "created_at": "2026-09-15 23:51:00",
+      "updated_at": "2026-09-15 23:51:00"
+    },
+    {
+      "id": "TASK_0073",
+      "title": "Louças e metais adiados",
+      "description": "Pintura e acabamentos. Após toda a obra pesada",
+      "priority": 3,
+      "sequence": 89,
+      "start_date": "2027-06-29",
+      "end_date": "2027-07-03",
+      "status": "pending",
+      "expense_id": "",
+      "icon_key": "home-expense",
+      "date_status": "estimated",
+      "source_refs": [
+        "project.work_plan"
+      ],
+      "created_at": "2026-09-15 23:51:00",
+      "updated_at": "2026-09-15 23:51:00"
+    },
+    {
+      "id": "TASK_0074",
+      "title": "Iluminação",
+      "description": "Pintura e acabamentos. Após toda a obra pesada",
+      "priority": 3,
+      "sequence": 90,
+      "start_date": "2027-07-04",
+      "end_date": "2027-07-08",
+      "status": "pending",
+      "expense_id": "",
+      "icon_key": "home-expense",
+      "date_status": "estimated",
+      "source_refs": [
+        "project.work_plan"
+      ],
+      "created_at": "2026-09-15 23:51:00",
+      "updated_at": "2026-09-15 23:51:00"
+    },
+    {
+      "id": "TASK_0075",
+      "title": "Pequenos detalhes finais",
+      "description": "Pintura e acabamentos. Após toda a obra pesada",
+      "priority": 3,
+      "sequence": 91,
+      "start_date": "2027-07-09",
+      "end_date": "2027-07-13",
+      "status": "pending",
+      "expense_id": "",
+      "icon_key": "home-expense",
+      "date_status": "estimated",
+      "source_refs": [
+        "project.work_plan"
+      ],
+      "created_at": "2026-09-15 23:51:00",
+      "updated_at": "2026-09-15 23:51:00"
+    },
+    {
+      "id": "TASK_0076",
+      "title": "Limpeza pós-obra",
+      "description": "Mudança. Casa estruturalmente pronta",
+      "priority": 3,
+      "sequence": 92,
+      "start_date": "2027-07-14",
+      "end_date": "2027-07-18",
+      "status": "pending",
+      "expense_id": "",
+      "icon_key": "home-expense",
+      "date_status": "estimated",
+      "source_refs": [
+        "project.work_plan"
+      ],
+      "created_at": "2026-09-15 23:51:00",
+      "updated_at": "2026-09-15 23:51:00"
+    },
+    {
+      "id": "TASK_0077",
+      "title": "Instalação de móveis",
+      "description": "Mudança. Casa estruturalmente pronta",
+      "priority": 3,
+      "sequence": 93,
+      "start_date": "2027-07-19",
+      "end_date": "2027-07-23",
+      "status": "pending",
+      "expense_id": "",
+      "icon_key": "home-expense",
+      "date_status": "estimated",
+      "source_refs": [
+        "project.work_plan"
+      ],
+      "created_at": "2026-09-15 23:51:00",
+      "updated_at": "2026-09-15 23:51:00"
+    },
+    {
+      "id": "TASK_0078",
+      "title": "Eletrodomésticos",
+      "description": "Mudança. Casa estruturalmente pronta",
+      "priority": 3,
+      "sequence": 94,
+      "start_date": "2027-07-24",
+      "end_date": "2027-07-28",
+      "status": "pending",
+      "expense_id": "",
+      "icon_key": "home-expense",
+      "date_status": "estimated",
+      "source_refs": [
+        "project.work_plan"
+      ],
+      "created_at": "2026-09-15 23:51:00",
+      "updated_at": "2026-09-15 23:51:00"
+    },
+    {
+      "id": "TASK_0079",
+      "title": "Organização dos ambientes",
+      "description": "Mudança. Casa estruturalmente pronta",
+      "priority": 3,
+      "sequence": 95,
+      "start_date": "2027-07-29",
+      "end_date": "2027-08-02",
+      "status": "pending",
+      "expense_id": "",
+      "icon_key": "home-expense",
+      "date_status": "estimated",
+      "source_refs": [
+        "project.work_plan"
+      ],
+      "created_at": "2026-09-15 23:51:00",
+      "updated_at": "2026-09-15 23:51:00"
+    },
+    {
+      "id": "TASK_0080",
+      "title": "Ajustes finais",
+      "description": "Mudança. Casa estruturalmente pronta",
+      "priority": 3,
+      "sequence": 96,
+      "start_date": "2027-08-03",
+      "end_date": "2027-08-07",
+      "status": "pending",
+      "expense_id": "",
+      "icon_key": "home-expense",
+      "date_status": "estimated",
+      "source_refs": [
+        "project.work_plan"
+      ],
+      "created_at": "2026-09-15 23:51:00",
+      "updated_at": "2026-09-15 23:51:00"
+    }
+  ],
+  "updated_at": "2026-09-16 00:14:31"
+}

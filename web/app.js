@@ -1,22 +1,72 @@
 (() => {
-  const state = {
-    expenses: [],
-    totals: { all: 0, materials: 0, services: 0, by_phase: {}, by_priority: {} },
-    timeline: [],
-    materials: [],
-    project: null,
-    iconCatalog: { defaults: {}, icons: {} },
-    view: "dashboard",
-    pendingImportRows: null,
-    pendingPackText: "",
-    lastPrompt: "",
-    lastFix: "",
-  };
+  "use strict";
 
   const $ = (id) => document.getElementById(id);
+  const state = {
+    expenses: [],
+    tasks: [],
+    totals: { all: 0, materials: 0, services: 0, by_category: {}, by_priority: {} },
+    materials: [],
+    iconCatalog: { defaults: {}, icons: {} },
+    house: null,
+    project: null,
+    importRows: [],
+    zoom: "week",
+  };
+  const statusLabels = {
+    pending: "Pendente",
+    in_progress: "Em andamento",
+    blocked: "Bloqueada",
+    completed: "Concluída",
+  };
 
   const els = {
-    phase: $("filter-phase"),
+    appStatus: $("app-status"),
+    btnPush: $("btn-push"),
+    pushStatus: $("push-status"),
+    dashTotalAll: $("dash-total-all"),
+    dashTotalMaterials: $("dash-total-materials"),
+    dashTotalServices: $("dash-total-services"),
+    fundsTotal: $("funds-total"),
+    fundsDetail: $("funds-detail"),
+    overallCoverage: $("overall-coverage"),
+    coverageDonut: $("coverage-donut"),
+    coverageFunded: $("coverage-funded"),
+    overallGap: $("overall-gap"),
+    categoryChart: $("category-chart"),
+    dashMaterials: $("dash-materials"),
+    dashboardPeople: $("dashboard-people"),
+    cashflowTotalSavings: $("cashflow-total-savings"),
+    cashflowAverageSavings: $("cashflow-average-savings"),
+    cashflowTotalExpenses: $("cashflow-total-expenses"),
+    expenseTreemap: $("expense-treemap"),
+    cashflowLineChart: $("cashflow-line-chart"),
+    monthlySavingsGrid: $("monthly-savings-grid"),
+    cashflowMethod: $("cashflow-method"),
+    taskSummary: $("task-summary"),
+    gantt: $("gantt"),
+    ganttZoom: $("gantt-zoom"),
+    btnGanttToday: $("btn-gantt-today"),
+    btnNewTask: $("btn-new-task"),
+    generalNotes: $("general-notes"),
+    generalNotesStatus: $("general-notes-status"),
+    taskDialog: $("task-dialog"),
+    taskForm: $("task-form"),
+    taskDialogTitle: $("task-dialog-title"),
+    taskDateBadge: $("task-date-badge"),
+    taskId: $("task-id"),
+    taskTitle: $("task-title"),
+    taskDescription: $("task-description"),
+    taskPriority: $("task-priority"),
+    taskSequence: $("task-sequence"),
+    taskStart: $("task-start"),
+    taskEnd: $("task-end"),
+    taskStatus: $("task-status"),
+    taskExpense: $("task-expense"),
+    taskIcon: $("task-icon"),
+    taskFormError: $("task-form-error"),
+    btnDeleteTask: $("btn-delete-task"),
+    btnCancelTask: $("btn-cancel-task"),
     priority: $("filter-priority"),
     category: $("filter-category"),
     search: $("filter-search"),
@@ -26,18 +76,14 @@
     totalAll: $("total-all"),
     countFiltered: $("count-filtered"),
     btnNew: $("btn-new"),
-    btnPush: $("btn-push"),
-    pushStatus: $("push-status"),
     dialog: $("expense-dialog"),
     form: $("expense-form"),
     dialogTitle: $("dialog-title"),
     fieldId: $("field-id"),
-    fieldPhase: $("field-phase"),
     fieldPriority: $("field-priority"),
     fieldCategory: $("field-category"),
     fieldDescription: $("field-description"),
     fieldIconKey: $("field-icon-key"),
-    iconEditor: $("icon-editor"),
     iconPreview: $("icon-preview"),
     iconPicker: $("icon-picker"),
     fieldValue: $("field-value"),
@@ -49,36 +95,15 @@
     fieldPriceNotes: $("field-price-notes"),
     formError: $("form-error"),
     btnCancel: $("btn-cancel"),
-    phaseSuggestions: $("phase-suggestions"),
     categorySuggestions: $("category-suggestions"),
-    dashTotalAll: $("dash-total-all"),
-    dashTotalMaterials: $("dash-total-materials"),
-    dashTotalServices: $("dash-total-services"),
-    timelineGroups: $("timeline-groups"),
-    dashMaterials: $("dash-materials"),
-    fundsTotal: $("funds-total"),
-    overallCoverage: $("overall-coverage"),
-    overallGap: $("overall-gap"),
-    fundsDonut: $("funds-donut"),
-    fundsDonutTotal: $("funds-donut-total"),
-    fundsDonutFgts: $("funds-donut-fgts"),
-    fundsDonutFlexible: $("funds-donut-flexible"),
-    entryCoverage: $("entry-coverage"),
-    entryBar: $("entry-bar"),
-    fgtsBalance: $("fgts-balance"),
-    entryTarget: $("entry-target"),
-    entryGap: $("entry-gap"),
-    otherCoverage: $("other-coverage"),
-    otherBar: $("other-bar"),
-    flexibleBalance: $("flexible-balance"),
-    otherTarget: $("other-target"),
-    otherGap: $("other-gap"),
-    budgetMaterialBar: $("budget-material-bar"),
-    budgetServiceBar: $("budget-service-bar"),
-    materialShare: $("material-share"),
-    serviceShare: $("service-share"),
-    phaseChart: $("phase-chart"),
-    financeInsight: $("finance-insight"),
+    houseBlueprint: $("house-blueprint"),
+    houseLot: $("house-lot"),
+    houseExterior: $("house-exterior"),
+    houseRooms: $("house-rooms"),
+    houseAudit: $("house-audit"),
+    house3dStatus: $("house-3d-status"),
+    house3dAssumptions: $("house-3d-assumptions"),
+    projectOverview: $("project-overview"),
     promptOutput: $("prompt-output"),
     promptMissingOnly: $("prompt-missing-only"),
     btnGenPrompt: $("btn-gen-prompt"),
@@ -88,1025 +113,684 @@
     packFile: $("pack-file"),
     btnPreviewImport: $("btn-preview-import"),
     btnCommitImport: $("btn-commit-import"),
-    btnCopyFix: $("btn-copy-fix"),
-    btnDlFix: $("btn-dl-fix"),
     importStatus: $("import-status"),
     importPreviewRows: $("import-preview-rows"),
     fixOutput: $("fix-output"),
-    houseBlueprint: $("house-blueprint"),
-    houseLot: $("house-lot"),
-    houseExterior: $("house-exterior"),
-    houseRooms: $("house-rooms"),
-    houseAudit: $("house-audit"),
-    house3dStatus: $("house-3d-status"),
-    house3dAssumptions: $("house-3d-assumptions"),
-    projectOverview: $("project-overview"),
+    btnCopyFix: $("btn-copy-fix"),
+    btnDlFix: $("btn-dl-fix"),
   };
 
-  const brl = new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" });
-  const formatMoney = (v) => brl.format(Number(v) || 0);
-  const formatDate = (value) => {
-    if (!value) return "Data definida após o evento de referência";
-    const date = new Date(`${value}T12:00:00`);
-    return new Intl.DateTimeFormat("pt-BR", { dateStyle: "long" }).format(date);
+  const money = new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" });
+  const formatMoney = (value) => money.format(Number(value || 0));
+  const escapeHtml = (value) => String(value ?? "").replace(/[&<>"']/g, (char) => ({
+    "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;",
+  })[char]);
+  const escapeAttr = escapeHtml;
+  const iso = (date) => date.toISOString().slice(0, 10);
+  const parseDate = (value) => new Date(`${value}T12:00:00`);
+  const addDays = (value, days) => {
+    const date = typeof value === "string" ? parseDate(value) : new Date(value);
+    date.setDate(date.getDate() + days);
+    return iso(date);
   };
+  const dayDiff = (from, to) => Math.round((parseDate(to) - parseDate(from)) / 86400000);
 
-  function escapeHtml(value) {
-    return String(value)
-      .replaceAll("&", "&amp;")
-      .replaceAll("<", "&lt;")
-      .replaceAll(">", "&gt;")
-      .replaceAll('"', "&quot;");
-  }
-  function escapeAttr(value) {
-    return escapeHtml(value).replaceAll("'", "&#39;");
+  function setStatus(element, tone, text) {
+    if (!element) return;
+    element.textContent = text;
+    element.classList.remove("hidden", "ok", "err", "warn");
+    if (tone) element.classList.add(tone);
   }
 
-  function iconEntry(iconKey, kind = "material") {
-    const catalog = state.iconCatalog || { defaults: {}, icons: {} };
-    const fallbackKey = (catalog.defaults || {})[kind] || "";
-    const key = iconKey && catalog.icons[iconKey] ? iconKey : fallbackKey;
-    return key && catalog.icons[key] ? { key, ...catalog.icons[key] } : null;
+  async function request(url, options = {}) {
+    const response = await fetch(url, options);
+    const payload = await response.json();
+    if (!response.ok || payload.ok === false) throw new Error(payload.error || "Falha na operação");
+    return payload;
   }
 
-  function itemIconMarkup(iconKey, altText, size = "sm", kind = "material") {
-    const icon = iconEntry(iconKey, kind);
+  function iconEntry(key, kind = "expense") {
+    const catalog = state.iconCatalog;
+    const fallback = (catalog.defaults || {})[kind] || catalog.defaults.expense || "home-expense";
+    return catalog.icons[key] || catalog.icons[fallback] || null;
+  }
+
+  function iconMarkup(key, alt, size = "sm") {
+    const icon = iconEntry(key);
     if (!icon) return "";
-    return `<span class="item-icon item-icon-${escapeAttr(size)}" title="${escapeAttr(icon.label || altText)}"><img src="${escapeAttr(icon.url)}" alt="" loading="lazy" /></span>`;
+    return `<span class="item-icon item-icon-${size}"><img src="${escapeAttr(icon.url)}" alt="${escapeAttr(alt || icon.label || "")}" loading="lazy"></span>`;
   }
 
-  function itemLabelMarkup(description, iconKey, note = "") {
-    return `<div class="item-label">${itemIconMarkup(iconKey, description)}<div><strong>${escapeHtml(description)}</strong>${note ? `<small>${escapeHtml(note)}</small>` : ""}</div></div>`;
-  }
-
-  function renderIconPicker(selectedKey = "") {
-    if (!els.iconEditor || !els.iconPicker || !els.fieldIconKey) return;
-    els.iconEditor.classList.remove("hidden");
-    const kind = els.fieldCategory.value.trim() === "Material" ? "material" : "expense";
-    const icons = Object.entries((state.iconCatalog || {}).icons || {})
-      .sort(([, a], [, b]) => String(a.label).localeCompare(String(b.label), "pt-BR"));
-    const selected = iconEntry(selectedKey || els.fieldIconKey.value, kind);
-    els.fieldIconKey.value = selected ? selected.key : "";
-    els.iconPreview.innerHTML = selected
-      ? `${itemIconMarkup(selected.key, selected.label, "lg")}<span>${escapeHtml(selected.label)}</span>`
-      : "";
-    els.iconPicker.innerHTML = icons.map(([key, icon]) => `
-      <button type="button" class="icon-choice${key === els.fieldIconKey.value ? " selected" : ""}"
-        data-icon-key="${escapeAttr(key)}" role="radio" aria-checked="${key === els.fieldIconKey.value}"
-        title="${escapeAttr(icon.label)}">
-        ${itemIconMarkup(key, icon.label, "picker")}<span>${escapeHtml(icon.label)}</span>
-      </button>`).join("");
-  }
-
-  function uniqueSorted(values) {
-    return [...new Set(values.filter(Boolean))].sort((a, b) =>
-      String(a).localeCompare(String(b), "pt-BR", { sensitivity: "base" })
-    );
+  function itemLabel(description, key, note = "") {
+    return `<div class="item-label">${iconMarkup(key, description)}<span><strong>${escapeHtml(description)}</strong>${note ? `<small>${escapeHtml(note)}</small>` : ""}</span></div>`;
   }
 
   function fillSelect(select, values, allLabel) {
     const current = select.value;
-    select.innerHTML = "";
-    const all = document.createElement("option");
-    all.value = "";
-    all.textContent = allLabel;
-    select.appendChild(all);
-    for (const value of values) {
-      const opt = document.createElement("option");
-      opt.value = String(value);
-      opt.textContent = String(value);
-      select.appendChild(opt);
-    }
-    if ([...select.options].some((o) => o.value === current)) select.value = current;
-  }
-
-  function fillDatalist(datalist, values) {
-    datalist.innerHTML = "";
-    for (const value of values) {
-      const opt = document.createElement("option");
-      opt.value = String(value);
-      datalist.appendChild(opt);
-    }
-  }
-
-  function setStatus(el, kind, text) {
-    el.classList.remove("hidden", "ok", "err");
-    if (kind) el.classList.add(kind);
-    el.textContent = text;
-  }
-
-  function showView(name) {
-    state.view = name;
-    document.querySelectorAll(".view").forEach((v) => v.classList.add("hidden"));
-    const target = document.getElementById(`view-${name}`);
-    if (target) target.classList.remove("hidden");
-    document.querySelectorAll(".nav-btn").forEach((btn) => {
-      btn.classList.toggle("active", btn.getAttribute("data-view") === name);
+    select.innerHTML = allLabel ? `<option value="">${escapeHtml(allLabel)}</option>` : "";
+    values.forEach((value) => {
+      const option = document.createElement("option");
+      option.value = String(value);
+      option.textContent = String(value);
+      select.appendChild(option);
     });
-  }
-
-  function filteredExpenses() {
-    const phase = els.phase.value;
-    const priority = els.priority.value;
-    const category = els.category.value;
-    const search = els.search.value.trim().toLowerCase();
-    return state.expenses.filter((expense) => {
-      if (phase && expense.phase !== phase) return false;
-      if (priority && String(expense.priority) !== priority) return false;
-      if (category && expense.category !== category) return false;
-      if (search) {
-        const hay = `${expense.phase} ${expense.category} ${expense.description} ${expense.vendor || ""}`.toLowerCase();
-        if (!hay.includes(search)) return false;
-      }
-      return true;
-    });
+    if ([...select.options].some((option) => option.value === current)) select.value = current;
   }
 
   function renderFilters() {
-    fillSelect(els.phase, uniqueSorted(state.expenses.map((e) => e.phase)), "Todas");
-    fillSelect(
-      els.priority,
-      uniqueSorted(state.expenses.map((e) => String(e.priority))).sort((a, b) => Number(a) - Number(b)),
-      "Todas"
-    );
-    fillSelect(els.category, uniqueSorted(state.expenses.map((e) => e.category)), "Todas");
-    fillDatalist(els.phaseSuggestions, uniqueSorted(state.expenses.map((e) => e.phase)));
-    fillDatalist(els.categorySuggestions, uniqueSorted(state.expenses.map((e) => e.category)));
+    fillSelect(els.priority, [...new Set(state.expenses.map((item) => item.priority))].sort((a, b) => a - b), "Todas");
+    fillSelect(els.category, [...new Set(state.expenses.map((item) => item.category))].sort(), "Todas");
+    els.categorySuggestions.innerHTML = [...new Set(state.expenses.map((item) => item.category))]
+      .sort().map((value) => `<option value="${escapeAttr(value)}"></option>`).join("");
   }
 
-  function priceCell(expense) {
-    const bits = [];
-    if (expense.unit_price != null) bits.push(formatMoney(expense.unit_price));
-    if (expense.vendor) bits.push(escapeHtml(expense.vendor));
-    if (expense.product_url) {
-      bits.push(`<a class="link-btn" href="${escapeAttr(expense.product_url)}" target="_blank" rel="noopener">abrir</a>`);
-    }
-    if (expense.price_checked_at) bits.push(`<span title="verificado">${escapeHtml(expense.price_checked_at)}</span>`);
-    return bits.length ? `<div class="price-cell">${bits.join(" · ")}</div>` : "—";
+  function filteredExpenses() {
+    const term = els.search.value.trim().toLowerCase();
+    return state.expenses.filter((item) => {
+      if (els.priority.value && String(item.priority) !== els.priority.value) return false;
+      if (els.category.value && item.category !== els.category.value) return false;
+      return !term || `${item.category} ${item.description} ${item.vendor || ""}`.toLowerCase().includes(term);
+    });
+  }
+
+  function priceCell(item) {
+    const parts = [];
+    if (item.unit_price != null) parts.push(formatMoney(item.unit_price));
+    if (item.vendor) parts.push(escapeHtml(item.vendor));
+    if (item.product_url) parts.push(`<a class="link-btn" href="${escapeAttr(item.product_url)}" target="_blank" rel="noopener">abrir</a>`);
+    return parts.join(" · ") || "—";
   }
 
   function renderExpenseTable() {
     const rows = filteredExpenses();
-    const filteredTotal = rows.reduce((sum, e) => sum + Number(e.value || 0), 0);
-    els.totalFiltered.textContent = formatMoney(filteredTotal);
-    els.totalAll.textContent = formatMoney(state.totals.all || 0);
+    els.totalFiltered.textContent = formatMoney(rows.reduce((sum, item) => sum + Number(item.value || 0), 0));
+    els.totalAll.textContent = formatMoney(state.totals.all);
     els.countFiltered.textContent = String(rows.length);
-    els.rows.innerHTML = "";
-    if (!rows.length) {
-      els.empty.classList.remove("hidden");
-      return;
+    els.empty.classList.toggle("hidden", rows.length > 0);
+    els.rows.innerHTML = rows.map((item) => `<tr>
+      <td><span class="badge">${item.priority}</span></td><td>${escapeHtml(item.category)}</td>
+      <td>${itemLabel(item.description, item.icon_key)}</td><td class="num">${formatMoney(item.value)}</td>
+      <td>${priceCell(item)}</td><td class="actions"><button class="btn" data-edit-expense="${item.id}">Editar</button><button class="btn danger" data-delete-expense="${item.id}">Excluir</button></td>
+    </tr>`).join("");
+  }
+
+  function cashflowMonthLabel(value) {
+    const [year, month] = value.split("-").map(Number);
+    return new Intl.DateTimeFormat("pt-BR", { month: "short", year: "2-digit", timeZone: "UTC" })
+      .format(new Date(Date.UTC(year, month - 1, 1))).replace(".", "");
+  }
+
+  function treemapLayout(items, x = 0, y = 0, width = 1000, height = 360) {
+    if (!items.length) return [];
+    if (items.length === 1) return [{ ...items[0], x, y, width, height }];
+    const total = items.reduce((sum, item) => sum + item.value, 0);
+    let split = 1;
+    let running = items[0].value;
+    while (split < items.length - 1 && running + items[split].value <= total / 2) {
+      running += items[split].value;
+      split += 1;
     }
-    els.empty.classList.add("hidden");
-    const fragment = document.createDocumentFragment();
-    for (const expense of rows) {
-      const tr = document.createElement("tr");
-      tr.innerHTML = `
-        <td>${escapeHtml(expense.phase)}</td>
-        <td><span class="badge">${escapeHtml(String(expense.priority))}</span></td>
-        <td>${escapeHtml(expense.category)}</td>
-        <td>${itemLabelMarkup(expense.description, expense.icon_key, expense.price_notes || "")}</td>
-        <td class="num">${formatMoney(expense.value)}</td>
-        <td>${priceCell(expense)}</td>
-        <td class="actions">
-          <div class="row-actions">
-            <button type="button" class="btn" data-edit="${escapeAttr(expense.id)}">Editar</button>
-            <button type="button" class="btn danger" data-delete="${escapeAttr(expense.id)}">Excluir</button>
-          </div>
-        </td>`;
-      fragment.appendChild(tr);
+    const first = items.slice(0, split);
+    const second = items.slice(split);
+    const firstTotal = first.reduce((sum, item) => sum + item.value, 0);
+    const ratio = firstTotal / total;
+    if (width >= height) {
+      const firstWidth = width * ratio;
+      return [...treemapLayout(first, x, y, firstWidth, height), ...treemapLayout(second, x + firstWidth, y, width - firstWidth, height)];
     }
-    els.rows.appendChild(fragment);
+    const firstHeight = height * ratio;
+    return [...treemapLayout(first, x, y, width, firstHeight), ...treemapLayout(second, x, y + firstHeight, width, height - firstHeight)];
   }
 
-  function clampPercent(value) {
-    return Math.max(0, Math.min(100, Number.isFinite(value) ? value : 0));
-  }
+  function renderCashflow(payload) {
+    const months = payload.months || [];
+    const categories = payload.categories || [];
+    const totalSavings = months.reduce((sum, item) => sum + Number(item.net_savings || 0), 0);
+    const totalIncome = months.reduce((sum, item) => sum + Number(item.gross_income || 0), 0);
+    const totalExpenses = totalIncome - totalSavings;
+    els.cashflowTotalSavings.textContent = formatMoney(totalSavings);
+    els.cashflowAverageSavings.textContent = formatMoney(months.length ? totalSavings / months.length : 0);
+    els.cashflowTotalExpenses.textContent = formatMoney(totalExpenses);
 
-  function percentOf(part, whole) {
-    return whole > 0 ? (part / whole) * 100 : 0;
-  }
+    const categoryTotals = categories.map((category, index) => ({
+      ...category,
+      value: months.reduce((sum, month) => sum + Number(month[category.key] || 0), 0),
+      color: ["#f1c40f", "#3498db", "#9b59b6", "#e67e22", "#2ecc71", "#e74c3c"][index % 6],
+    })).sort((a, b) => b.value - a.value);
+    const rectangles = treemapLayout(categoryTotals);
+    els.expenseTreemap.innerHTML = `<svg viewBox="0 0 1000 360" role="img" aria-label="Treemap da distribuição das despesas">${rectangles.map((item) => `
+      <g><rect x="${item.x + 2}" y="${item.y + 2}" width="${Math.max(0, item.width - 4)}" height="${Math.max(0, item.height - 4)}" rx="8" fill="${item.color}" fill-opacity=".78"></rect>
+      <text x="${item.x + 15}" y="${item.y + 27}" class="treemap-label">${escapeHtml(item.label)}</text>
+      <text x="${item.x + 15}" y="${item.y + 49}" class="treemap-value">${formatMoney(item.value)}</text>
+      <title>${escapeHtml(item.label)}: ${formatMoney(item.value)}</title></g>`).join("")}</svg>`;
 
-  function formatPercent(value) {
-    return `${new Intl.NumberFormat("pt-BR", { maximumFractionDigits: 1 }).format(value)}%`;
-  }
-
-  function setGap(element, available, planned) {
-    const difference = available - planned;
-    element.classList.toggle("positive", difference >= 0);
-    element.classList.toggle("negative", difference < 0);
-    element.textContent = difference >= 0
-      ? `Sobra projetada: ${formatMoney(difference)}`
-      : `Lacuna: ${formatMoney(Math.abs(difference))}`;
-    return difference;
-  }
-
-  function renderFinancialCockpit() {
-    const project = state.project || {};
-    const funding = project.funding || {};
-    const sources = funding.sources || [];
-    const fgts = sources.find((source) => source.id === "fgts") || {};
-    const flexible = sources.find((source) => source.id === "flexible_funds") || {};
-    const fgtsBalance = Number(fgts.balance) || 0;
-    const flexibleBalance = Number(flexible.balance) || 0;
-    const fundsTotal = fgtsBalance + flexibleBalance;
-    const plannedTotal = Number(state.totals.all) || 0;
-    const entryExpense = state.expenses.find((expense) => expense.id === funding.entry_expense_id)
-      || state.expenses.find((expense) => String(expense.description).toLowerCase() === "entrada");
-    const entryTarget = Number(entryExpense && entryExpense.value) || 0;
-    const otherTarget = Math.max(0, plannedTotal - entryTarget);
-    const entryPct = percentOf(fgtsBalance, entryTarget);
-    const otherPct = percentOf(flexibleBalance, otherTarget);
-    const overallPct = percentOf(fundsTotal, plannedTotal);
-    const materialPct = percentOf(Number(state.totals.materials) || 0, plannedTotal);
-    const servicePct = Math.max(0, 100 - materialPct);
-    const fgtsShare = percentOf(fgtsBalance, fundsTotal);
-    const flexibleShare = Math.max(0, 100 - fgtsShare);
-
-    els.fundsTotal.textContent = formatMoney(fundsTotal);
-    els.overallCoverage.textContent = formatPercent(overallPct);
-    setGap(els.overallGap, fundsTotal, plannedTotal);
-
-    els.fundsDonut.style.setProperty("--fgts-angle", `${clampPercent(fgtsShare) * 3.6}deg`);
-    els.fundsDonutTotal.textContent = formatMoney(fundsTotal);
-    els.fundsDonutFgts.textContent = formatPercent(fgtsShare);
-    els.fundsDonutFlexible.textContent = formatPercent(flexibleShare);
-    els.fundsDonut.setAttribute("aria-label", `FGTS ${formatPercent(fgtsShare)}; recursos livres ${formatPercent(flexibleShare)}`);
-
-    els.entryCoverage.textContent = formatPercent(entryPct);
-    els.entryBar.style.width = `${clampPercent(entryPct)}%`;
-    els.fgtsBalance.textContent = `${formatMoney(fgtsBalance)} disponíveis`;
-    els.entryTarget.textContent = `${formatMoney(entryTarget)} planejados`;
-    const entryGap = setGap(els.entryGap, fgtsBalance, entryTarget);
-
-    els.otherCoverage.textContent = formatPercent(otherPct);
-    els.otherBar.style.width = `${clampPercent(otherPct)}%`;
-    els.flexibleBalance.textContent = `${formatMoney(flexibleBalance)} disponíveis`;
-    els.otherTarget.textContent = `${formatMoney(otherTarget)} planejados`;
-    const otherGap = setGap(els.otherGap, flexibleBalance, otherTarget);
-
-    els.budgetMaterialBar.style.width = `${clampPercent(materialPct)}%`;
-    els.budgetServiceBar.style.width = `${clampPercent(servicePct)}%`;
-    els.materialShare.textContent = formatPercent(materialPct);
-    els.serviceShare.textContent = formatPercent(servicePct);
-
-    const phaseTotals = Object.entries(state.totals.by_phase || {});
-    const maxPhase = Math.max(1, ...phaseTotals.map(([, amount]) => Number(amount) || 0));
-    els.phaseChart.innerHTML = phaseTotals.map(([phase, amount]) => {
-      const value = Number(amount) || 0;
-      const width = clampPercent((value / maxPhase) * 100);
-      return `<div class="phase-bar-row">
-        <div class="phase-bar-head"><span>${escapeHtml(phase)}</span><strong>${formatMoney(value)}</strong></div>
-        <div class="phase-bar-track"><span style="width:${width}%"></span></div>
-      </div>`;
+    const width = 1000;
+    const height = 280;
+    const margin = { left: 62, right: 22, top: 20, bottom: 42 };
+    const plotWidth = width - margin.left - margin.right;
+    const plotHeight = height - margin.top - margin.bottom;
+    const maximum = Math.max(3000, ...months.map((item) => Number(item.net_savings || 0)));
+    const point = (item, index) => ({
+      x: margin.left + (months.length > 1 ? index / (months.length - 1) * plotWidth : 0),
+      y: margin.top + plotHeight - Number(item.net_savings || 0) / maximum * plotHeight,
+      item,
+    });
+    const points = months.map(point);
+    const polyline = points.map(({ x, y }) => `${x},${y}`).join(" ");
+    const area = `${margin.left},${margin.top + plotHeight} ${polyline} ${margin.left + plotWidth},${margin.top + plotHeight}`;
+    const grid = [0, .25, .5, .75, 1].map((ratio) => {
+      const y = margin.top + plotHeight - ratio * plotHeight;
+      return `<line x1="${margin.left}" y1="${y}" x2="${margin.left + plotWidth}" y2="${y}" class="cashflow-grid-line"></line><text x="${margin.left - 9}" y="${y + 4}" text-anchor="end" class="cashflow-axis-label">${formatMoney(maximum * ratio).replace(",00", "")}</text>`;
     }).join("");
+    els.cashflowLineChart.innerHTML = `<svg viewBox="0 0 ${width} ${height}" role="img" aria-label="Fluxo de caixa líquido mensal projetado">${grid}<polygon points="${area}" class="cashflow-area"></polygon><polyline points="${polyline}" class="cashflow-line"></polyline>${points.map(({ x, y, item }, index) => `<g><circle cx="${x}" cy="${y}" r="5" class="cashflow-point"></circle><title>${cashflowMonthLabel(item.month)}: ${formatMoney(item.net_savings)}</title>${index % 2 === 0 || index === points.length - 1 ? `<text x="${x}" y="${height - 15}" text-anchor="middle" class="cashflow-axis-label">${cashflowMonthLabel(item.month)}</text>` : ""}</g>`).join("")}</svg>`;
 
-    const decisionRule = ((project.financial_strategy || {}).decision_rule || "").trim();
-    const insights = [
-      { tone: "info", title: "FGTS é restrito", text: `${formatMoney(fgtsBalance)} só pode financiar a entrada.` },
-      { tone: entryGap < 0 ? "warn" : "ok", title: entryGap < 0 ? "Entrada ainda não coberta" : "Entrada coberta", text: entryGap < 0 ? `Faltam ${formatMoney(Math.abs(entryGap))}.` : `Margem de ${formatMoney(entryGap)}.` },
-      { tone: otherGap < 0 ? "warn" : "ok", title: otherGap < 0 ? "Demais custos exigem priorização" : "Demais custos cobertos", text: otherGap < 0 ? `Lacuna de ${formatMoney(Math.abs(otherGap))} nos recursos livres.` : `Margem de ${formatMoney(otherGap)}.` },
-    ];
-    if (decisionRule) insights.push({ tone: "rule", title: "Regra do projeto", text: decisionRule });
-    els.financeInsight.innerHTML = insights.map((item) => `
-      <div class="insight ${item.tone}"><strong>${escapeHtml(item.title)}</strong><span>${escapeHtml(item.text)}</span></div>`).join("");
+    let cumulative = 0;
+    els.monthlySavingsGrid.innerHTML = months.map((item) => {
+      cumulative += Number(item.net_savings || 0);
+      return `<article><span>${cashflowMonthLabel(item.month)}${item.estimated ? " · estimado" : ""}</span><strong>${formatMoney(item.net_savings)}</strong><small>Acumulado ${formatMoney(cumulative)}</small></article>`;
+    }).join("");
+    els.cashflowMethod.textContent = (payload.interpolation || {}).method || "";
   }
 
   function renderDashboard() {
-    els.dashTotalAll.textContent = formatMoney(state.totals.all || 0);
-    els.dashTotalMaterials.textContent = formatMoney(state.totals.materials || 0);
-    els.dashTotalServices.textContent = formatMoney(state.totals.services || 0);
-    renderFinancialCockpit();
+    els.dashTotalAll.textContent = formatMoney(state.totals.all);
+    els.dashTotalMaterials.textContent = formatMoney(state.totals.materials);
+    els.dashTotalServices.textContent = formatMoney(state.totals.services);
+    const funding = (state.project || {}).funding || {};
+    const sources = funding.sources || [];
+    const fundsTotal = sources.reduce((sum, item) => sum + Number(item.amount || 0), 0);
+    els.fundsTotal.textContent = formatMoney(fundsTotal);
+    els.fundsDetail.textContent = sources.map((item) => `${item.label}: ${formatMoney(item.amount)}`).join(" · ");
+    const coverage = state.totals.all ? Math.min(999, fundsTotal / state.totals.all * 100) : 0;
+    els.overallCoverage.textContent = `${coverage.toFixed(1).replace(".", ",")}%`;
+    els.coverageDonut.style.setProperty("--coverage-angle", `${Math.min(100, coverage) * 3.6}deg`);
+    els.coverageDonut.setAttribute("aria-label", `${coverage.toFixed(1).replace(".", ",")}% do orçamento coberto`);
+    els.coverageFunded.textContent = formatMoney(fundsTotal);
+    const gap = fundsTotal - Number(state.totals.all || 0);
+    els.overallGap.textContent = gap >= 0 ? `Margem de ${formatMoney(gap)}` : `Lacuna de ${formatMoney(Math.abs(gap))}`;
+    const categories = Object.entries(state.totals.by_category || {});
+    const maximum = Math.max(1, ...categories.map(([, value]) => Number(value)));
+    els.categoryChart.innerHTML = categories.map(([label, value]) => `<div class="budget-bar-row"><div class="budget-bar-head"><span>${escapeHtml(label)}</span><strong>${formatMoney(value)}</strong></div><div class="budget-bar-track"><span style="width:${Math.max(1, Number(value) / maximum * 100)}%"></span></div></div>`).join("");
+    const people = ((state.project || {}).people || []);
+    els.dashboardPeople.innerHTML = people.map((person) => `<article class="dashboard-person">
+      <img src="${escapeAttr(person.image_url)}" alt="${escapeAttr(person.name)}" loading="lazy">
+      <div><strong>${escapeHtml(person.name)}</strong><span>${escapeHtml(person.role || person.story_role || "")}</span></div>
+    </article>`).join("");
+    els.dashMaterials.innerHTML = state.materials.map((item) => `<tr><td><span class="badge">${item.priority}</span></td><td>${itemLabel(item.description, item.icon_key)}</td><td class="num">${item.quantity ?? "—"}</td><td>${escapeHtml(item.unit || "—")}</td><td class="num">${formatMoney(item.value)}</td><td>${escapeHtml(item.vendor || "—")}</td></tr>`).join("");
+    renderGantt();
+  }
 
-    els.timelineGroups.innerHTML = "";
-    for (const group of state.timeline || []) {
-      const card = document.createElement("article");
-      card.className = "timeline-card";
-      const services = group.pending_services || [];
-      const serviceList = services.length
-        ? `<ul>${services
-            .map(
-              (s) =>
-                `<li class="timeline-service-item">${itemIconMarkup(s.icon_key, s.description)}<span><strong>${escapeHtml(s.category)}</strong> — ${escapeHtml(s.description)} (${formatMoney(s.value)})</span></li>`
-            )
-            .join("")}</ul>`
-        : `<p class="section-sub">Sem serviços pendentes nesta etapa (somente materiais ou itens já listados).</p>`;
-      card.innerHTML = `
-        <h3>${escapeHtml(group.label)}</h3>
-        <div class="timeline-meta">${group.count} itens · ${formatMoney(group.total)} · ${services.length} pendência(s)</div>
-        ${serviceList}`;
-      els.timelineGroups.appendChild(card);
+  function sortedTasks() {
+    return [...state.tasks].sort((a, b) => a.priority - b.priority || a.sequence - b.sequence || a.start_date.localeCompare(b.start_date));
+  }
+
+  function ganttGeometry(tasks) {
+    const dates = tasks.flatMap((task) => [parseDate(task.start_date), parseDate(task.end_date)]);
+    const today = parseDate(iso(new Date()));
+    const start = new Date(Math.min(today, ...dates));
+    start.setDate(start.getDate() - 7);
+    const end = new Date(Math.max(today, ...dates));
+    end.setDate(end.getDate() + 14);
+    const dayWidth = { day: 34, week: 14, month: 5 }[state.zoom] || 14;
+    return { start: iso(start), end: iso(end), days: dayDiff(iso(start), iso(end)) + 1, dayWidth };
+  }
+
+  function ganttHeader(geometry) {
+    const chunks = [];
+    let cursor = geometry.start;
+    while (cursor <= geometry.end) {
+      const date = parseDate(cursor);
+      const isMajor = state.zoom === "day" ? date.getDate() === 1 : date.getDay() === 1;
+      if (state.zoom === "month") {
+        if (date.getDate() === 1) chunks.push({ date: cursor, label: date.toLocaleDateString("pt-BR", { month: "short", year: "2-digit" }) });
+      } else if (state.zoom === "week") {
+        if (date.getDay() === 1) chunks.push({ date: cursor, label: date.toLocaleDateString("pt-BR", { day: "2-digit", month: "short" }) });
+      } else {
+        chunks.push({ date: cursor, label: isMajor ? date.toLocaleDateString("pt-BR", { day: "2-digit", month: "short" }) : String(date.getDate()) });
+      }
+      cursor = addDays(cursor, 1);
     }
+    return chunks.map((chunk) => `<span class="gantt-tick" style="left:${dayDiff(geometry.start, chunk.date) * geometry.dayWidth}px">${escapeHtml(chunk.label)}</span>`).join("");
+  }
 
-    els.dashMaterials.innerHTML = "";
-    const frag = document.createDocumentFragment();
-    for (const m of state.materials || []) {
-      const tr = document.createElement("tr");
-      const link = m.product_url
-        ? `<a class="link-btn" href="${escapeAttr(m.product_url)}" target="_blank" rel="noopener">abrir</a>`
-        : "—";
-      tr.innerHTML = `
-        <td>${escapeHtml(m.phase)}</td>
-        <td><span class="badge">${escapeHtml(String(m.priority))}</span></td>
-        <td>${itemLabelMarkup(m.description, m.icon_key)}</td>
-        <td class="num">${m.quantity == null ? "—" : m.quantity}</td>
-        <td>${escapeHtml(m.unit || "—")}</td>
-        <td class="num">${formatMoney(m.value)}</td>
-        <td class="num">${m.unit_price == null ? "—" : formatMoney(m.unit_price)}</td>
-        <td>${escapeHtml(m.vendor || "—")}</td>
-        <td>${link}</td>`;
-      frag.appendChild(tr);
+  function renderGantt() {
+    if (!els.gantt) return;
+    const tasks = sortedTasks();
+    const counts = tasks.reduce((map, task) => ((map[task.status] = (map[task.status] || 0) + 1), map), {});
+    els.taskSummary.innerHTML = Object.entries(statusLabels).map(([key, label]) => `<span class="task-count status-${key}"><strong>${counts[key] || 0}</strong>${label}</span>`).join("");
+    if (!tasks.length) {
+      els.gantt.innerHTML = `<div class="gantt-empty">Nenhuma tarefa. Crie a primeira para começar o cronograma.</div>`;
+      return;
     }
-    els.dashMaterials.appendChild(frag);
+    const geometry = ganttGeometry(tasks);
+    els.gantt.style.setProperty("--day-width", `${geometry.dayWidth}px`);
+    els.gantt.style.setProperty("--timeline-width", `${geometry.days * geometry.dayWidth}px`);
+    const todayLeft = dayDiff(geometry.start, iso(new Date())) * geometry.dayWidth;
+    els.gantt.innerHTML = `<div class="gantt-label-head">Tarefa / prioridade</div>
+      <div class="gantt-scroll" id="gantt-scroll"><div class="gantt-timeline">
+        <div class="gantt-header">${ganttHeader(geometry)}</div>
+        <div class="gantt-today" style="left:${todayLeft}px"><span>Hoje</span></div>
+        ${tasks.map((task) => {
+          const left = dayDiff(geometry.start, task.start_date) * geometry.dayWidth;
+          const width = Math.max(geometry.dayWidth, (dayDiff(task.start_date, task.end_date) + 1) * geometry.dayWidth);
+          return `<div class="gantt-track" data-track-id="${task.id}">
+            <button type="button" class="gantt-bar status-${task.status}" data-task-bar="${task.id}" style="left:${left}px;width:${width}px" title="${escapeAttr(`${task.title} · ${task.start_date} — ${task.end_date}`)}">
+              <i class="gantt-handle start" data-resize="start"></i><span>${escapeHtml(task.title)}</span><i class="gantt-handle end" data-resize="end"></i>
+            </button></div>`;
+        }).join("")}
+      </div></div>
+      <div class="gantt-labels">${tasks.map((task) => `<button type="button" class="gantt-label-row" draggable="true" data-task-label="${task.id}" title="Arraste para trocar a sequência">
+        ${iconMarkup(task.icon_key, task.title)}<span><strong>${escapeHtml(task.title)}</strong><small>P${task.priority} · #${task.sequence} · ${escapeHtml(statusLabels[task.status])}${task.date_status === "estimated" ? " · estimada" : ""}</small></span>
+      </button>`).join("")}</div>`;
+    bindGanttInteractions(geometry);
   }
 
-  function applyState(payload) {
-    state.expenses = payload.expenses || [];
-    state.totals = payload.totals || { all: 0, materials: 0, services: 0 };
-    state.timeline = payload.timeline || [];
-    state.materials = payload.materials || [];
-    state.iconCatalog = payload.icon_catalog || { defaults: {}, icons: {} };
-    renderFilters();
-    renderExpenseTable();
-    renderDashboard();
-    if (state.project) renderProject(state.project);
+  function bindGanttInteractions(geometry) {
+    let draggedLabel = "";
+    els.gantt.querySelectorAll("[data-task-label]").forEach((row) => {
+      row.addEventListener("click", () => openTaskDialog(state.tasks.find((task) => task.id === row.dataset.taskLabel)));
+      row.addEventListener("dragstart", () => { draggedLabel = row.dataset.taskLabel; row.classList.add("dragging"); });
+      row.addEventListener("dragend", () => row.classList.remove("dragging"));
+      row.addEventListener("dragover", (event) => event.preventDefault());
+      row.addEventListener("drop", async (event) => {
+        event.preventDefault();
+        const targetId = row.dataset.taskLabel;
+        if (!draggedLabel || draggedLabel === targetId) return;
+        const first = state.tasks.find((task) => task.id === draggedLabel);
+        const second = state.tasks.find((task) => task.id === targetId);
+        if (!first || !second) return;
+        const firstSequence = first.sequence;
+        first.sequence = second.sequence;
+        second.sequence = firstSequence;
+        renderGantt();
+        try {
+          await saveTaskRecord(first);
+          await saveTaskRecord(second);
+        } catch (error) {
+          await loadTasks();
+          setStatus(els.appStatus, "err", error.message);
+        }
+      });
+    });
+    els.gantt.querySelectorAll("[data-task-bar]").forEach((bar) => {
+      bar.addEventListener("pointerdown", (event) => {
+        event.preventDefault();
+        const task = state.tasks.find((item) => item.id === bar.dataset.taskBar);
+        if (!task) return;
+        const mode = event.target.dataset.resize || "move";
+        const originX = event.clientX;
+        let moved = false;
+        bar.setPointerCapture(event.pointerId);
+        const onMove = (moveEvent) => {
+          const delta = moveEvent.clientX - originX;
+          moved ||= Math.abs(delta) > 3;
+          bar.style.transform = `translateX(${delta}px)`;
+        };
+        const onUp = async (upEvent) => {
+          bar.removeEventListener("pointermove", onMove);
+          bar.removeEventListener("pointerup", onUp);
+          bar.style.transform = "";
+          if (!moved) {
+            openTaskDialog(task);
+            return;
+          }
+          const deltaDays = Math.round((upEvent.clientX - originX) / geometry.dayWidth);
+          if (!deltaDays) return;
+          const previous = { start_date: task.start_date, end_date: task.end_date, date_status: task.date_status };
+          if (mode === "move") {
+            task.start_date = addDays(task.start_date, deltaDays);
+            task.end_date = addDays(task.end_date, deltaDays);
+          } else if (mode === "start") {
+            const next = addDays(task.start_date, deltaDays);
+            if (next <= task.end_date) task.start_date = next;
+          } else {
+            const next = addDays(task.end_date, deltaDays);
+            if (next >= task.start_date) task.end_date = next;
+          }
+          task.date_status = "confirmed";
+          renderGantt();
+          try {
+            await saveTaskRecord(task);
+          } catch (error) {
+            Object.assign(task, previous);
+            renderGantt();
+            setStatus(els.appStatus, "err", error.message);
+          }
+        };
+        bar.addEventListener("pointermove", onMove);
+        bar.addEventListener("pointerup", onUp);
+      });
+    });
   }
 
-  async function loadState() {
-    const response = await fetch("/api/state");
-    const payload = await response.json();
-    if (!response.ok || payload.ok === false) throw new Error(payload.error || "Falha ao carregar");
-    applyState(payload);
+  async function saveTaskRecord(task) {
+    const payload = await request("/api/tasks", {
+      method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(task),
+    });
+    state.tasks = payload.tasks || state.tasks;
+    return payload;
   }
 
-  function openDialog(expense) {
-    els.formError.classList.add("hidden");
-    els.formError.textContent = "";
-    if (expense) {
-      els.dialogTitle.textContent = "Editar despesa";
-      els.fieldId.value = expense.id;
-      els.fieldPhase.value = expense.phase;
-      els.fieldPriority.value = expense.priority;
-      els.fieldCategory.value = expense.category;
-      els.fieldDescription.value = expense.description;
-      els.fieldIconKey.value = expense.icon_key || "";
-      els.fieldValue.value = Number(expense.value).toFixed(2);
-      els.fieldQuantity.value = expense.quantity == null ? "" : expense.quantity;
-      els.fieldUnit.value = expense.unit || "";
-      els.fieldUnitPrice.value = expense.unit_price == null ? "" : Number(expense.unit_price).toFixed(2);
-      els.fieldVendor.value = expense.vendor || "";
-      els.fieldProductUrl.value = expense.product_url || "";
-      els.fieldPriceNotes.value = expense.price_notes || "";
-    } else {
-      els.dialogTitle.textContent = "Nova despesa";
-      els.fieldId.value = "";
-      els.fieldPhase.value = els.phase.value || "";
-      els.fieldPriority.value = els.priority.value || "1";
-      els.fieldCategory.value = els.category.value || "";
-      els.fieldDescription.value = "";
-      els.fieldIconKey.value = "";
-      els.fieldValue.value = "0.00";
-      els.fieldQuantity.value = "";
-      els.fieldUnit.value = "";
-      els.fieldUnitPrice.value = "";
-      els.fieldVendor.value = "";
-      els.fieldProductUrl.value = "";
-      els.fieldPriceNotes.value = "";
-    }
-    renderIconPicker(els.fieldIconKey.value);
-    els.dialog.showModal();
-    els.fieldPhase.focus();
+  function fillTaskOptions() {
+    els.taskExpense.innerHTML = `<option value="">Nenhuma</option>${state.expenses.map((item) => `<option value="${item.id}">${escapeHtml(`${item.id} · ${item.description}`)}</option>`).join("")}`;
+    els.taskIcon.innerHTML = Object.entries(state.iconCatalog.icons || {}).sort((a, b) => String(a[1].label).localeCompare(String(b[1].label), "pt-BR")).map(([key, item]) => `<option value="${escapeAttr(key)}">${escapeHtml(item.label || key)}</option>`).join("");
   }
 
-  async function saveExpense(event) {
+  function openTaskDialog(task = null) {
+    fillTaskOptions();
+    const tomorrow = addDays(iso(new Date()), 1);
+    els.taskDialogTitle.textContent = task ? "Editar tarefa" : "Nova tarefa";
+    els.taskId.value = task?.id || "";
+    els.taskTitle.value = task?.title || "";
+    els.taskDescription.value = task?.description || "";
+    els.taskPriority.value = task?.priority || 1;
+    els.taskSequence.value = task?.sequence || (Math.max(0, ...state.tasks.map((item) => item.sequence)) + 1);
+    els.taskStart.value = task?.start_date || tomorrow;
+    els.taskEnd.value = task?.end_date || addDays(tomorrow, 2);
+    els.taskStatus.value = task?.status || "pending";
+    els.taskExpense.value = task?.expense_id || "";
+    els.taskIcon.value = task?.icon_key || "home-expense";
+    els.taskDateBadge.textContent = task?.date_status === "estimated" ? "Datas estimadas" : "Datas confirmadas";
+    els.btnDeleteTask.classList.toggle("hidden", !task);
+    els.taskFormError.classList.add("hidden");
+    els.taskDialog.showModal();
+    els.taskTitle.focus();
+  }
+
+  async function submitTask(event) {
     event.preventDefault();
-    els.formError.classList.add("hidden");
     const payload = {
-      phase: els.fieldPhase.value.trim(),
+      id: els.taskId.value,
+      title: els.taskTitle.value.trim(),
+      description: els.taskDescription.value.trim(),
+      priority: Number(els.taskPriority.value),
+      sequence: Number(els.taskSequence.value),
+      start_date: els.taskStart.value,
+      end_date: els.taskEnd.value,
+      status: els.taskStatus.value,
+      expense_id: els.taskExpense.value,
+      icon_key: els.taskIcon.value,
+      date_status: "confirmed",
+    };
+    try {
+      const result = await saveTaskRecord(payload);
+      state.tasks = result.tasks;
+      els.taskDialog.close();
+      renderGantt();
+      setStatus(els.appStatus, "ok", "Tarefa salva. Clique em “Salvar tudo” para enviar a cópia segura.");
+    } catch (error) {
+      setStatus(els.taskFormError, "err", error.message);
+    }
+  }
+
+  async function deleteTask() {
+    const id = els.taskId.value;
+    if (!id || !window.confirm("Excluir esta tarefa?")) return;
+    try {
+      const result = await request(`/api/tasks/${encodeURIComponent(id)}`, { method: "DELETE" });
+      state.tasks = result.tasks;
+      els.taskDialog.close();
+      renderGantt();
+      setStatus(els.appStatus, "ok", "Tarefa excluída.");
+    } catch (error) {
+      setStatus(els.taskFormError, "err", error.message);
+    }
+  }
+
+  function renderIconPicker(selected) {
+    const icons = Object.entries(state.iconCatalog.icons || {}).sort((a, b) => String(a[1].label).localeCompare(String(b[1].label), "pt-BR"));
+    const key = state.iconCatalog.icons[selected] ? selected : (state.iconCatalog.defaults.expense || "home-expense");
+    els.fieldIconKey.value = key;
+    const entry = iconEntry(key);
+    els.iconPreview.innerHTML = entry ? `${iconMarkup(key, entry.label, "lg")}<span>${escapeHtml(entry.label)}</span>` : "";
+    els.iconPicker.innerHTML = icons.map(([iconKey, icon]) => `<button type="button" class="icon-choice ${iconKey === key ? "selected" : ""}" data-icon-key="${escapeAttr(iconKey)}" title="${escapeAttr(icon.label)}">${iconMarkup(iconKey, icon.label, "picker")}<span>${escapeHtml(icon.label)}</span></button>`).join("");
+  }
+
+  function openExpenseDialog(item = null) {
+    els.dialogTitle.textContent = item ? "Editar despesa" : "Nova despesa";
+    els.fieldId.value = item?.id || "";
+    els.fieldPriority.value = item?.priority || 1;
+    els.fieldCategory.value = item?.category || "";
+    els.fieldDescription.value = item?.description || "";
+    els.fieldValue.value = item ? Number(item.value).toFixed(2) : "0.00";
+    els.fieldQuantity.value = item?.quantity ?? "";
+    els.fieldUnit.value = item?.unit || "";
+    els.fieldUnitPrice.value = item?.unit_price ?? "";
+    els.fieldVendor.value = item?.vendor || "";
+    els.fieldProductUrl.value = item?.product_url || "";
+    els.fieldPriceNotes.value = item?.price_notes || "";
+    renderIconPicker(item?.icon_key || "");
+    els.formError.classList.add("hidden");
+    els.dialog.showModal();
+    els.fieldDescription.focus();
+  }
+
+  async function submitExpense(event) {
+    event.preventDefault();
+    const payload = {
+      id: els.fieldId.value,
       priority: Number(els.fieldPriority.value),
       category: els.fieldCategory.value.trim(),
       description: els.fieldDescription.value.trim(),
       icon_key: els.fieldIconKey.value,
       value: Number(els.fieldValue.value),
+      quantity: els.fieldQuantity.value,
       unit: els.fieldUnit.value.trim(),
+      unit_price: els.fieldUnitPrice.value,
       vendor: els.fieldVendor.value.trim(),
       product_url: els.fieldProductUrl.value.trim(),
       price_notes: els.fieldPriceNotes.value.trim(),
     };
-    if (els.fieldId.value) payload.id = els.fieldId.value;
-    if (els.fieldQuantity.value !== "") payload.quantity = Number(els.fieldQuantity.value);
-    if (els.fieldUnitPrice.value !== "") payload.unit_price = Number(els.fieldUnitPrice.value);
     try {
-      const response = await fetch("/api/expenses", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-      });
-      const result = await response.json();
-      if (!response.ok || result.ok === false) throw new Error(result.error || "Nao foi possivel salvar");
-      applyState(result.state);
+      const result = await request("/api/expenses", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) });
+      applyExpenseState(result.state);
       els.dialog.close();
       await pushToRemote();
-    } catch (err) {
-      els.formError.textContent = err.message || String(err);
-      els.formError.classList.remove("hidden");
+    } catch (error) {
+      setStatus(els.formError, "err", error.message);
     }
   }
 
   async function deleteExpense(id) {
-    const expense = state.expenses.find((e) => e.id === id);
-    const label = expense ? expense.description : id;
-    if (!window.confirm(`Excluir a despesa "${label}"?`)) return;
-    const response = await fetch(`/api/expenses/${encodeURIComponent(id)}`, { method: "DELETE" });
-    const result = await response.json();
-    if (!response.ok || result.ok === false) {
-      window.alert(result.error || "Nao foi possivel excluir");
-      return;
-    }
-    applyState(result.state);
+    const item = state.expenses.find((expense) => expense.id === id);
+    if (!window.confirm(`Excluir “${item?.description || id}”?`)) return;
+    const result = await request(`/api/expenses/${encodeURIComponent(id)}`, { method: "DELETE" });
+    applyExpenseState(result.state);
     await pushToRemote();
+  }
+
+  function applyExpenseState(payload) {
+    state.expenses = payload.expenses || [];
+    state.totals = payload.totals || state.totals;
+    state.materials = payload.materials || [];
+    state.iconCatalog = payload.icon_catalog || state.iconCatalog;
+    renderFilters();
+    renderExpenseTable();
+    renderDashboard();
+  }
+
+  async function loadState() {
+    applyExpenseState(await request("/api/state"));
+  }
+
+  async function loadCashflow() {
+    renderCashflow(await request("/api/cashflow"));
+  }
+
+  async function loadTasks() {
+    const payload = await request("/api/tasks");
+    state.tasks = payload.tasks || [];
+    renderGantt();
+  }
+
+  async function loadNotes() {
+    const payload = await request("/api/notes");
+    els.generalNotes.value = payload.text || "";
+    els.generalNotesStatus.textContent = payload.updated_at ? `Salvo em ${payload.updated_at}` : "Salvo automaticamente";
+  }
+
+  let notesSaveTimer = null;
+  async function saveNotes() {
+    els.generalNotesStatus.textContent = "Salvando...";
+    try {
+      const payload = await request("/api/notes", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ text: els.generalNotes.value }),
+      });
+      els.generalNotesStatus.textContent = `Salvo em ${payload.updated_at}`;
+    } catch (error) {
+      els.generalNotesStatus.textContent = `Erro ao salvar: ${error.message}`;
+      els.generalNotesStatus.classList.add("err");
+    }
   }
 
   async function pushToRemote() {
     els.btnPush.disabled = true;
-    setStatus(els.pushStatus, "", "Salvando todos os dados e enviando a cópia segura…");
+    setStatus(els.appStatus, "", "Salvando e enviando...");
     try {
-      const response = await fetch("/api/push", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: "{}",
-      });
-      const result = await response.json();
-      if (!response.ok || result.ok === false) throw new Error(result.error || "Falha ao enviar");
-      if (result.pushed) {
-        setStatus(els.pushStatus, "ok", `Tudo salvo e enviado com segurança.${result.commit ? " Versão " + result.commit + "." : ""}`);
-      } else {
-        setStatus(els.pushStatus, "ok", result.message || "Tudo já estava salvo e atualizado.");
-      }
-    } catch (err) {
-      setStatus(els.pushStatus, "err", err.message || String(err));
+      const result = await request("/api/push", { method: "POST", headers: { "Content-Type": "application/json" }, body: "{}" });
+      setStatus(els.appStatus, "ok", result.message || "Dados salvos e enviados.");
+      els.pushStatus.textContent = result.pushed ? "Cópia segura atualizada" : "Tudo já estava salvo";
+    } catch (error) {
+      setStatus(els.appStatus, "err", `Dados locais salvos; envio pendente: ${error.message}`);
     } finally {
       els.btnPush.disabled = false;
     }
   }
 
-  async function generatePrompt() {
-    els.btnGenPrompt.disabled = true;
-    try {
-      let ids = null;
-      if (!els.promptMissingOnly.checked) {
-        ids = state.materials.map((m) => m.id);
-      }
-      const response = await fetch("/api/prompts/price-discovery", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(ids ? { ids } : {}),
-      });
-      const result = await response.json();
-      if (!response.ok || result.ok === false) throw new Error(result.error || "Falha ao gerar prompt");
-      state.lastPrompt = result.prompt || "";
-      els.promptOutput.value = state.lastPrompt;
-      els.btnCopyPrompt.disabled = !state.lastPrompt;
-      els.btnDlPrompt.disabled = !state.lastPrompt;
-    } catch (err) {
-      window.alert(err.message || String(err));
-    } finally {
-      els.btnGenPrompt.disabled = false;
-    }
-  }
-
-  function downloadText(filename, text) {
-    const blob = new Blob([text], { type: "text/plain;charset=utf-8" });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = filename;
-    a.click();
-    URL.revokeObjectURL(url);
-  }
-
-  async function previewImport() {
-    const pack_text = els.packInput.value;
-    state.pendingImportRows = null;
-    state.pendingPackText = pack_text;
-    els.btnCommitImport.disabled = true;
-    els.btnCopyFix.disabled = true;
-    els.btnDlFix.disabled = true;
-    els.fixOutput.classList.add("hidden");
-    els.importPreviewRows.innerHTML = "";
-    setStatus(els.importStatus, "", "Validando pack…");
-    try {
-      const response = await fetch("/api/import/preview", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ pack_text, pack_id: "price" }),
-      });
-      const result = await response.json();
-      if (!result.ok) {
-        state.lastFix = result.fix_text || "";
-        els.fixOutput.value = state.lastFix;
-        els.fixOutput.classList.remove("hidden");
-        els.btnCopyFix.disabled = !state.lastFix;
-        els.btnDlFix.disabled = !state.lastFix;
-        setStatus(els.importStatus, "err", result.error || "Pack rejeitado — use o AI_FIX");
-        return;
-      }
-      state.pendingImportRows = result.rows || [];
-      els.btnCommitImport.disabled = !state.pendingImportRows.length;
-      const frag = document.createDocumentFragment();
-      for (const row of state.pendingImportRows) {
-        const tr = document.createElement("tr");
-        const link = row.product_url
-          ? `<a class="link-btn" href="${escapeAttr(row.product_url)}" target="_blank" rel="noopener">abrir</a>`
-          : "—";
-        tr.innerHTML = `
-          <td>${escapeHtml(row.id || "")}</td>
-          <td>${(() => {
-            const current = state.expenses.find((expense) => expense.id === row.id)
-              || state.expenses.find((expense) => expense.description === row.description);
-            return itemLabelMarkup(row.description || "", current && current.icon_key);
-          })()}</td>
-          <td class="num">${formatMoney(row.unit_price)}</td>
-          <td>${escapeHtml(row.vendor || "—")}</td>
-          <td>${link}</td>`;
-        frag.appendChild(tr);
-      }
-      els.importPreviewRows.appendChild(frag);
-      setStatus(els.importStatus, "ok", `${state.pendingImportRows.length} linha(s) prontas para importar.`);
-    } catch (err) {
-      setStatus(els.importStatus, "err", err.message || String(err));
-    }
-  }
-
-  async function commitImport() {
-    if (!state.pendingImportRows || !state.pendingImportRows.length) return;
-    els.btnCommitImport.disabled = true;
-    setStatus(els.importStatus, "", "Importando…");
-    try {
-      const response = await fetch("/api/import/commit", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          rows: state.pendingImportRows,
-          pack_text: state.pendingPackText,
-          pack_id: "price",
-        }),
-      });
-      const result = await response.json();
-      if (!response.ok || result.ok === false) throw new Error(result.error || "Falha na importacao");
-      applyState(result.state);
-      const extra = result.errors && result.errors.length ? ` Avisos: ${result.errors.length}.` : "";
-      setStatus(
-        els.importStatus,
-        "ok",
-        `Importados ${result.updated.length} item(ns).${result.archived ? " Arquivo: " + result.archived + "." : ""}${extra}`
-      );
-      state.pendingImportRows = null;
-      await pushToRemote();
-    } catch (err) {
-      setStatus(els.importStatus, "err", err.message || String(err));
-      els.btnCommitImport.disabled = false;
-    }
-  }
-
-
-  function dimsText(obj) {
-    if (!obj || typeof obj !== "object") return "—";
-    return Object.entries(obj)
-      .map(([k, v]) => `${k}: ${v} m`)
-      .join(" · ");
-  }
-
-
-  function listHtml(items) {
-    if (!items || !items.length) return "";
-    return `<ul>${items.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>`;
-  }
-
   function renderProject(project) {
-    if (!els.projectOverview) return;
-    if (!project) {
-      els.projectOverview.innerHTML = '<p class="section-sub">Resumo do projeto não disponível.</p>';
-      return;
-    }
-
-    const property = project.property || {};
-    const address = property.address || {};
-    const financing = property.financing || {};
-    const contracts = project.contracts || {};
-    const workContracts = project.work_contracts || [];
-    const people = project.people || [];
-    const purchaseContract = project.purchase_contract || {};
-    const contractDocument = purchaseContract.document || {};
-    const contractParties = purchaseContract.parties || {};
-    const contractProperty = purchaseContract.property_legal_identification || {};
-    const contractFinancial = purchaseContract.financial_terms || {};
-    const financial = project.financial_strategy || {};
-    const rear = (project.official_dimensions || {}).rear_area || {};
-    const currentRear = rear.current_effective_space || {};
-    const largerRear = rear.larger_coverage_scenario || {};
-
-    const workflow = (project.purchase_workflow || [])
-      .map((step, index) => `<li><span class="badge">${index + 1}</span> ${escapeHtml(step)}</li>`)
-      .join("");
-
-    const phaseCards = (project.phases || []).map((phase) => {
-      const labor = phase.labor || {};
-      const services = phase.services || [];
-      const requiredTools = labor.required_tools || [];
-      const priorityWork = phase.priority_work || [];
-      const workHtml = priorityWork.map((work) => `
-        <details class="project-detail">
-          <summary>${escapeHtml(work.label)}</summary>
-          ${listHtml(work.items || work.current_priority || [])}
-          ${work.deferred_finishings ? `<p class="project-note">Pode ficar para depois:</p>${listHtml(work.deferred_finishings)}` : ""}
-        </details>`).join("");
-      const toolsHtml = requiredTools.map((tool) => `
-        <article class="required-tool">
-          ${itemIconMarkup(tool.icon_key, tool.name, "tool", "tool")}
-          <div class="required-tool-copy"><strong>${escapeHtml(tool.name)}</strong>
-          <p>${escapeHtml(tool.purpose || "")}</p>
-          <small>${escapeHtml(tool.responsibility || "")}${tool.related_expense_id ? ` · ${escapeHtml(tool.related_expense_id)}` : ""}</small></div>
-        </article>`).join("");
-      return `
-        <article class="project-phase">
-          <div class="project-phase-head">
-            <h3>${escapeHtml(phase.label)}</h3>
-            ${labor.planned_amount != null ? `<strong>${formatMoney(labor.planned_amount)} mão de obra</strong>` : ""}
-          </div>
-          <p><strong>Início:</strong> ${escapeHtml(phase.trigger || "")}</p>
-          <p>${escapeHtml(phase.objective || "")}</p>
-          ${phase.deadline && phase.deadline.duration_days ? `<p><strong>Prazo:</strong> ${phase.deadline.duration_days} dias a partir de ${escapeHtml(phase.deadline.starts_from)}.</p>` : ""}
-          ${toolsHtml ? `<div class="phase-required-tools"><h4>Ferramentas necessárias do pedreiro</h4><div>${toolsHtml}</div></div>` : ""}
-          ${services.length ? `<details class="project-detail"><summary>${services.length} serviços</summary>${listHtml(services)}</details>` : ""}
-          ${workHtml}
-        </article>`;
-    }).join("");
-
-    const roofRows = ((project.roof_study || {}).materials_only_estimates || [])
-      .map((row) => `<tr><td>${escapeHtml(row.system)}</td><td class="num">${formatMoney(row.min)}</td><td class="num">${formatMoney(row.max)}</td></tr>`)
-      .join("");
-
-    const contractDeadlines = (purchaseContract.deadlines || []).map((deadline) => `
-      <article class="contract-deadline">
-        <div class="contract-deadline-head"><strong>${escapeHtml(deadline.label)}</strong><span>Cl. ${escapeHtml(deadline.clause)}</span></div>
-        <p>${deadline.duration_days} dias · ${escapeHtml(deadline.trigger)}</p>
-        <p class="contract-date">${escapeHtml(formatDate(deadline.calculated_due_date))}</p>
-        <small>${escapeHtml(deadline.responsible_party || "")}</small>
-        ${deadline.extension_note ? `<p class="contract-note">${escapeHtml(deadline.extension_note)}</p>` : ""}
-      </article>`).join("");
-
-    const contractObligations = (purchaseContract.operational_obligations || []).map((item) => `
-      <article class="contract-item">
-        <strong>${escapeHtml(item.title)}</strong>
-        <p>${escapeHtml(item.summary)}</p>
-        <small>Cláusulas ${escapeHtml((item.clauses || []).join(", "))}</small>
-      </article>`).join("");
-
-    const contractProtections = (purchaseContract.buyer_protections || []).map((item) => `
-      <article class="contract-item protection">
-        <strong>${escapeHtml(item.title)}</strong>
-        <p>${escapeHtml(item.summary)}</p>
-        <small>Cláusulas ${escapeHtml((item.clauses || []).join(", "))}</small>
-      </article>`).join("");
-
-    const contractPenalties = (purchaseContract.penalties || []).map((item) => {
-      let value = `${item.value}%`;
-      if (item.value_type === "daily_amount") value = `${formatMoney(item.value)}/dia`;
-      if (item.value_type === "monthly_percentage") value = `${item.value}%/mês · ${formatMoney(item.calculated_monthly_amount)}`;
-      if (item.value_type === "percentage" && item.calculated_base_amount != null) value = `${item.value}% · base ${formatMoney(item.calculated_base_amount)}`;
-      return `<div class="penalty-row"><span>${escapeHtml(item.title)}</span><strong>${escapeHtml(value)}</strong><small>Cl. ${escapeHtml(item.clause)}</small></div>`;
-    }).join("");
-
-    const workContractCards = workContracts.map((contract) => {
-      const document = contract.document || {};
-      const deadline = contract.deadline || {};
-      const start = contract.start_condition || {};
-      const scope = (contract.scope || []).map((item) => `
-        <li><span>${item.number}</span><div><strong>${escapeHtml(item.title)}</strong><small>${escapeHtml(item.note || "")}</small></div></li>`).join("");
-      const terms = (contract.common_operational_terms || []).map((item) => `
-        <article class="work-term"><strong>${escapeHtml(item.title)}</strong><p>${escapeHtml(item.summary)}</p><small>Cl. ${escapeHtml(item.clause)}</small></article>`).join("");
-      const blanks = (contract.unfilled_fields || []).map((item) => `<li>${escapeHtml(item)}</li>`).join("");
-      const discrepancies = (contract.discrepancies || []).map((item) => `
-        <article class="work-conflict ${escapeAttr(item.severity || "attention")}">
-          <strong>${escapeHtml(item.topic)}</strong>
-          <p><span>Plano:</span> ${escapeHtml(item.project_plan || "")}</p>
-          <p><span>Rascunho:</span> ${escapeHtml(item.draft_contract || "")}</p>
-          <small>${escapeHtml(item.recommended_action || "")}</small>
-        </article>`).join("");
-      const deadlineText = deadline.duration_days
-        ? `${deadline.duration_days} dias corridos a partir do ${deadline.starts_from}`
-        : (deadline.summary || "Sem prazo global definido");
-      return `
-        <article class="work-contract-card">
-          <div class="work-contract-head">
-            <div><span>${escapeHtml(contract.phase_id === "phase_1" ? "Contrato 01" : "Contrato 02")}</span><h4>${escapeHtml(contract.label)}</h4></div>
-            <span class="draft-badge">Rascunho não assinado</span>
-          </div>
-          <div class="work-contract-metrics">
-            <div><span>Mão de obra</span><strong>${formatMoney(contract.labor_price)}</strong></div>
-            <div><span>Início</span><strong>${escapeHtml(start.summary || "A definir")}</strong></div>
-            <div><span>Prazo</span><strong>${escapeHtml(deadlineText)}</strong></div>
-          </div>
-          <div class="document-actions">
-            <a class="btn primary" href="${escapeAttr(document.url || "#")}" target="_blank" rel="noopener">Abrir rascunho</a>
-            <a class="btn" href="${escapeAttr(document.url || "#")}" download="${escapeAttr(document.filename || "contrato.pdf")}">Baixar PDF</a>
-          </div>
-          <div class="work-draft-warning"><strong>Antes de assinar</strong><span>Preencher e conferir os campos em branco.</span></div>
-          <details class="work-contract-detail" open>
-            <summary>Escopo contratado · ${(contract.scope || []).length} itens</summary>
-            <ol class="work-scope">${scope}</ol>
-          </details>
-          <details class="work-contract-detail">
-            <summary>Campos ainda não preenchidos</summary>
-            <ul class="work-blank-list">${blanks}</ul>
-          </details>
-          <details class="work-contract-detail">
-            <summary>Regras e responsabilidades</summary>
-            <div class="work-terms">${terms}</div>
-          </details>
-          <div class="work-conflicts">
-            <h5>Pontos para reconciliar antes da assinatura</h5>
-            ${discrepancies}
-          </div>
-          <p class="contract-source-note">Resumo operacional do rascunho. Consulte o PDF e formalize alterações por escrito.</p>
-        </article>`;
-    }).join("");
-
-    const contractUrl = contractDocument.url || "/api/project/documents/purchase-contract.pdf";
-    const contractStatus = purchaseContract.status === "signed" ? "Assinado" : "Pendente";
-    const peopleCards = people.map((person) => `
-      <article class="person-card">
-        <img src="${escapeAttr(person.image_url || "")}" alt="Foto de ${escapeAttr(person.name || "participante")}" loading="lazy" />
-        <div class="person-card-body">
-          <span>${escapeHtml(person.role || "Participante")}</span>
-          <h4>${escapeHtml(person.name || "")}</h4>
-          <p>${escapeHtml(person.story_role || "")}</p>
-        </div>
-      </article>`).join("");
-
-    els.projectOverview.innerHTML = `
-      <h3 class="project-heading people-heading">Pessoas do projeto</h3>
-      <div class="people-grid">${peopleCards}</div>
-
-      <h3 class="project-heading">Resumo da casa e da compra</h3>
-      <div class="project-summary-grid">
-        <article class="house-card">
-          <h3>Imóvel e compra</h3>
-          <p>${escapeHtml([address.street, address.neighborhood, address.city, address.state].filter(Boolean).join(" · "))}</p>
-          <p><strong>${formatMoney(property.purchase_price)}</strong> · ${escapeHtml(financing.institution || "")}</p>
-          <p>${escapeHtml(financing.ownership_note || "")}</p>
-          <p>Ocupante: até ${property.occupancy_after_financing_signature_days || 0} dias após assinatura do financiamento.</p>
-        </article>
-        <article class="house-card">
-          <h3>Áreas consolidadas</h3>
-          <p>Área interna útil: ${(project.official_dimensions || {}).interior_useful_area_m2 || "—"} m²</p>
-          <p>Fundos agora: ${currentRear.width_m || "—"} × ${currentRear.depth_m || "—"} m = ${currentRear.area_m2 || "—"} m²</p>
-          <p>Cobertura maior em estudo: ${largerRear.width_m || "—"} × ${largerRear.depth_m || "—"} m = ${largerRear.area_m2 || "—"} m²</p>
-        </article>
-        <article class="house-card">
-          <div class="contract-card-head"><h3>Contratos de obra — Gelson</h3><span class="draft-badge compact">2 rascunhos</span></div>
-          <p>Fase 1: ${formatMoney(contracts.phase_1_amount)}</p>
-          <p>Fase 2: ${formatMoney(contracts.phase_2_amount)}</p>
-          <p><strong>Total: ${formatMoney(contracts.total_labor_amount)}</strong></p>
-          <small class="work-summary-warning">Não assinados · preencher antes da execução</small>
-        </article>
-        <article class="house-card contract-summary-card">
-          <div class="contract-card-head"><h3>Contrato de compra e venda</h3><span class="contract-status">${contractStatus}</span></div>
-          <p>${escapeHtml(formatDate(purchaseContract.contract_date))}</p>
-          <p>${escapeHtml(contractParties.buyer || "")} · ${escapeHtml(contractParties.intermediary || "")}</p>
-          <p><strong>${formatMoney(contractFinancial.purchase_price)}</strong> · lote ${escapeHtml(contractProperty.lot || "—")}, quadra ${escapeHtml(contractProperty.block || "—")}</p>
-          <div class="document-actions">
-            <a class="btn primary" href="${escapeAttr(contractUrl)}" target="_blank" rel="noopener">Abrir contrato</a>
-            <a class="btn" href="${escapeAttr(contractUrl)}" download="${escapeAttr(contractDocument.filename || "contrato.pdf")}">Baixar PDF</a>
-          </div>
-        </article>
-      </div>
-
-      <h3 class="project-heading">Contratos de obra — Gelson</h3>
-      <p class="section-sub">Dois rascunhos separados. Ambos precisam ser preenchidos, conferidos e assinados antes da execução.</p>
-      <section class="work-contracts-grid">${workContractCards}</section>
-
-      <h3 class="project-heading">Contrato de compra e venda assinado</h3>
-      <section class="contract-panel panel">
-        <div class="contract-overview">
-          <div><span>Imóvel</span><strong>Lote ${escapeHtml(contractProperty.lot || "—")} · Quadra ${escapeHtml(contractProperty.block || "—")}</strong><small>Matrícula ${escapeHtml(contractProperty.registry_number || "—")} · cadastro ${escapeHtml(contractProperty.municipal_registration || "—")}</small></div>
-          <div><span>Preço contratual</span><strong>${formatMoney(contractFinancial.purchase_price)}</strong><small>${escapeHtml(contractFinancial.contract_payment_wording || "")}</small></div>
-          <div><span>Foro</span><strong>${escapeHtml(purchaseContract.forum || "—")}</strong><small>Cláusula ${escapeHtml(purchaseContract.forum_clause || "—")}</small></div>
-        </div>
-        <p class="contract-reconciliation">${escapeHtml(contractFinancial.funding_reconciliation_note || "")}</p>
-        <h4>Prazos contratuais</h4>
-        <div class="contract-deadlines">${contractDeadlines}</div>
-        <div class="contract-columns">
-          <div><h4>Obrigações operacionais</h4><div class="contract-items">${contractObligations}</div></div>
-          <div><h4>Proteções do comprador</h4><div class="contract-items">${contractProtections}</div></div>
-        </div>
-        <h4>Penalidades e valores de atenção</h4>
-        <div class="penalty-grid">${contractPenalties}</div>
-        <p class="contract-source-note">${escapeHtml((purchaseContract.source || {}).note || "Consulte o documento assinado para o teor integral.")}</p>
-      </section>
-
-      <h3 class="project-heading">Sequência da compra</h3>
-      <ol class="project-workflow">${workflow}</ol>
-
-      <h3 class="project-heading">Plano de obras</h3>
-      <div class="project-phases">${phaseCards}</div>
-
-      <h3 class="project-heading">Estudo de novo telhado</h3>
-      <p class="section-sub">Não confirmado; estimativas preliminares somente de materiais.</p>
-      <div class="table-wrap">
-        <table><thead><tr><th>Sistema</th><th class="num">Mínimo</th><th class="num">Máximo</th></tr></thead><tbody>${roofRows}</tbody></table>
-      </div>
-
-      <h3 class="project-heading">Estratégia financeira</h3>
-      <article class="timeline-card">
-        <p><strong>Regra:</strong> ${escapeHtml(financial.decision_rule || "")}</p>
-        ${listHtml(financial.priorities || [])}
-      </article>
-
-      <h3 class="project-heading">Princípios</h3>
-      <div class="principle-grid">${(project.principles || []).map((p) => `<div class="principle">${escapeHtml(p)}</div>`).join("")}</div>
-      <p class="project-financial-priority">${escapeHtml(project.financial_priority || "")}</p>`;
+    if (!els.projectOverview || !project) return;
+    const people = (project.people || []).map((person) => `<article class="person-card"><img src="${escapeAttr(person.image_url)}" alt="${escapeAttr(person.name)}"><div><strong>${escapeHtml(person.name)}</strong><span>${escapeHtml(person.role || person.story_role || "")}</span><p>${escapeHtml(person.story_role || "")}</p></div></article>`).join("");
+    const contracts = (project.work_contracts || []).map((contract, index) => `<article class="work-contract-card"><div class="work-contract-head"><div><span>Contrato ${String(index + 1).padStart(2, "0")}</span><h4>${escapeHtml(contract.label)}</h4></div><span class="draft-badge">Rascunho não assinado</span></div><p>${escapeHtml((contract.scope || []).length)} itens de escopo</p><a class="btn primary" href="${escapeAttr((contract.document || {}).url)}" target="_blank">Abrir PDF</a></article>`).join("");
+    const tools = ((project.construction_resources || {}).required_tools || []).map((tool) => `<article class="required-tool">${iconMarkup(tool.icon_key, tool.name, "tool")}<div><strong>${escapeHtml(tool.name)}</strong><p>${escapeHtml(tool.purpose || "")}</p></div></article>`).join("");
+    els.projectOverview.innerHTML = `<h3 class="project-heading">Pessoas do projeto</h3><div class="people-grid">${people}</div><h3 class="project-heading">Contratos de obra</h3><div class="work-contracts-grid">${contracts}</div><h3 class="project-heading">Ferramentas necessárias</h3><div class="required-tools-grid">${tools || "<p>Nenhuma ferramenta cadastrada.</p>"}</div>`;
   }
 
   async function renderHouse3D(house) {
-    const model = house && house.model_3d;
-    if (els.house3dAssumptions) {
-      els.house3dAssumptions.innerHTML = (model && model.assumptions || [])
-        .map((item) => `<li>${escapeHtml(item)}</li>`)
-        .join("");
-    }
-    if (!model) {
-      setStatus(els.house3dStatus, "err", "Geometria 3D ainda não disponível.");
-      return;
-    }
-    setStatus(els.house3dStatus, "", "Carregando modelo 3D…");
+    const model = house?.model_3d;
+    els.house3dAssumptions.innerHTML = (model?.assumptions || []).map((item) => `<li>${escapeHtml(item)}</li>`).join("");
+    if (!model) return setStatus(els.house3dStatus, "warn", "Geometria 3D indisponível.");
     try {
-      const module = await import("/house-3d.js?v=20260915-5");
+      const module = await import("/house-3d.js?v=20260916-1");
       module.mountHouse3D(model);
-    } catch (err) {
-      setStatus(els.house3dStatus, "err", `Não foi possível abrir o modelo 3D: ${err.message || err}`);
+    } catch (error) {
+      setStatus(els.house3dStatus, "err", `Não foi possível abrir o modelo 3D: ${error.message}`);
     }
   }
 
   function renderHouse(payload) {
-    if (!payload || !payload.ok || !payload.house) {
-      if (els.houseAudit) {
-        els.houseAudit.innerHTML = `<p class="section-sub">${escapeHtml((payload && payload.error) || "Casa não carregada.")}</p>`;
-      }
-      return;
-    }
+    if (!payload.ok || !payload.house) return;
     const house = payload.house;
-    renderHouse3D(house);
+    state.house = house;
     state.project = payload.project || null;
+    els.houseBlueprint.src = payload.blueprint_url || "/api/house/blueprint.jpg";
+    const lot = house.lot_dimensions_meters || {};
+    els.houseLot.innerHTML = `<div><span class="summary-label">Largura</span><strong>${lot.width ?? "—"} m</strong></div><div><span class="summary-label">Comprimento</span><strong>${lot.length ?? "—"} m</strong></div><div><span class="summary-label">Área</span><strong>${lot.area_m2 ?? "—"} m²</strong></div>`;
+    els.houseExterior.innerHTML = (house.exterior_spaces || []).map((space) => `<article class="house-card"><h3>${escapeHtml(space.label || space.name)}</h3><p>${escapeHtml(space.notes || space.description || "")}</p></article>`).join("");
+    els.houseRooms.innerHTML = (house.interior_rooms || []).map((room) => `<article class="house-card"><h3>${escapeHtml(room.label || room.name)}</h3><p>${escapeHtml(room.measured_dimensions || room.dimensions || "")}</p></article>`).join("");
+    const audit = house.blueprint_audit || {};
+    els.houseAudit.innerHTML = `<h3>${escapeHtml(audit.status || "Auditoria")}</h3><p>${escapeHtml(audit.summary || "")}</p>`;
     renderProject(state.project);
     renderDashboard();
-    if (els.houseBlueprint) {
-      els.houseBlueprint.src = payload.blueprint_url || "/api/house/blueprint.jpg";
-    }
-
-    const lot = house.lot_dimensions_meters || {};
-    els.houseLot.innerHTML = `
-      <div><span class="summary-label">Largura</span><strong>${lot.width ?? "—"} m</strong></div>
-      <div><span class="summary-label">Comprimento</span><strong>${lot.length ?? "—"} m</strong></div>
-      <div><span class="summary-label">Área</span><strong>${lot.area_m2 ?? "—"} m²</strong></div>`;
-
-    els.houseExterior.innerHTML = "";
-    for (const space of house.exterior_spaces || []) {
-      const card = document.createElement("article");
-      card.className = "house-card";
-      const usable = space.usable_dimensions_meters
-        ? `<p>${escapeHtml(dimsText(space.usable_dimensions_meters))}${space.area_m2 != null ? ` · ${space.area_m2} m²` : ""}</p>`
-        : "";
-      const notes = space.architectural_notes ? `<p>${escapeHtml(space.architectural_notes)}</p>` : "";
-      card.innerHTML = `<h3>${escapeHtml(space.label)}</h3><p>${escapeHtml(space.location || "")}</p>${usable}${notes}`;
-      els.houseExterior.appendChild(card);
-    }
-
-    els.houseRooms.innerHTML = "";
-    for (const room of house.interior_rooms || []) {
-      const card = document.createElement("article");
-      card.className = "house-card";
-      const feats = (room.features || []).map((f) => `<li>${escapeHtml(f)}</li>`).join("");
-      const area = room.approx_area_m2 != null ? `<p>Área aprox.: ${room.approx_area_m2} m²</p>` : "";
-      const height = room.wall_height_m != null ? `<p>Pé-direito: ${room.wall_height_m} m</p>` : "";
-      card.innerHTML = `
-        <h3>${escapeHtml(room.label)}</h3>
-        <p>${escapeHtml(dimsText(room.measured_walls_meters))}</p>
-        ${area}${height}
-        ${feats ? `<ul>${feats}</ul>` : ""}`;
-      els.houseRooms.appendChild(card);
-    }
-
-    const audit = house.blueprint_audit || {};
-    const issues = (audit.issues_found_in_source_json || [])
-      .map((i) => `<li><strong>${escapeHtml(i.id)}</strong> — ${escapeHtml(i.severity)} <em>${escapeHtml(i.resolution || "")}</em></li>`)
-      .join("");
-    els.houseAudit.innerHTML = `
-      <h3>${escapeHtml(audit.status || "audit")}</h3>
-      <p class="section-sub">${escapeHtml(audit.summary || "")}</p>
-      <ul class="audit-list">${issues || "<li>Sem pendências registradas.</li>"}</ul>`;
+    renderHouse3D(house);
   }
 
   async function loadHouse() {
-    const response = await fetch("/api/house");
-    const payload = await response.json();
-    renderHouse(payload);
+    try { renderHouse(await request("/api/house")); } catch (error) { setStatus(els.appStatus, "err", error.message); }
   }
 
-  function navigateTo(view) {
-    showView(view);
-    if (view === "house") loadHouse();
+  async function generatePrompt() {
+    const ids = els.promptMissingOnly.checked ? state.materials.filter((item) => item.unit_price == null).map((item) => item.id) : state.materials.map((item) => item.id);
+    const result = await request("/api/prompts/price-discovery", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ ids }) });
+    els.promptOutput.value = result.prompt || result.text || "";
   }
 
-  document.querySelectorAll(".nav-btn").forEach((btn) => {
-    btn.addEventListener("click", () => navigateTo(btn.getAttribute("data-view")));
-  });
+  async function previewImport() {
+    const result = await request("/api/import/preview", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ pack_text: els.packInput.value, pack_id: "price" }) });
+    state.importRows = result.rows || [];
+    els.btnCommitImport.disabled = !result.ok || !state.importRows.length;
+    setStatus(els.importStatus, result.ok ? "ok" : "err", result.ok ? `${state.importRows.length} linha(s) pronta(s).` : (result.errors || []).join(" · "));
+    els.importPreviewRows.innerHTML = state.importRows.map((row) => `<tr><td>${escapeHtml(row.id || "")}</td><td>${escapeHtml(row.description || "")}</td><td>${formatMoney(row.unit_price)}</td><td>${escapeHtml(row.vendor || "")}</td><td>${row.product_url ? `<a href="${escapeAttr(row.product_url)}" target="_blank">abrir</a>` : "—"}</td></tr>`).join("");
+    const fix = result.fix_pack || result.fix_output || "";
+    els.fixOutput.value = fix;
+    els.fixOutput.classList.toggle("hidden", !fix);
+    els.btnCopyFix.classList.toggle("hidden", !fix);
+    els.btnDlFix.classList.toggle("hidden", !fix);
+  }
 
-  document.getElementById("home-link").addEventListener("click", (event) => {
-    event.preventDefault();
-    navigateTo("dashboard");
-  });
+  async function commitImport() {
+    const result = await request("/api/import/commit", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ rows: state.importRows, pack_text: els.packInput.value, pack_id: "price" }) });
+    if (result.state) applyExpenseState(result.state);
+    await pushToRemote();
+  }
 
+  function downloadText(filename, text) {
+    const url = URL.createObjectURL(new Blob([text], { type: "text/plain;charset=utf-8" }));
+    const anchor = document.createElement("a");
+    anchor.href = url; anchor.download = filename; anchor.click(); URL.revokeObjectURL(url);
+  }
 
-  document.getElementById("dashboard-house-link").addEventListener("click", (event) => {
-    event.preventDefault();
-    navigateTo("house");
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  });
+  function showView(name) {
+    document.querySelectorAll(".view").forEach((view) => view.classList.toggle("hidden", view.id !== `view-${name}`));
+    document.querySelectorAll(".nav-btn").forEach((button) => button.classList.toggle("active", button.dataset.view === name));
+    history.replaceState(null, "", `#${name}`);
+  }
 
-  const navigationShortcuts = {
-    h: "dashboard",
-    "1": "dashboard",
-    "2": "expenses",
-    "3": "house",
-    "4": "prices",
-  };
-
+  document.querySelectorAll("[data-view]").forEach((button) => button.addEventListener("click", () => showView(button.dataset.view)));
+  document.querySelectorAll("[data-view-link]").forEach((link) => link.addEventListener("click", (event) => { event.preventDefault(); showView(link.dataset.viewLink); }));
+  $("home-link").addEventListener("click", (event) => { event.preventDefault(); showView("dashboard"); });
   document.addEventListener("keydown", (event) => {
     if (!event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) return;
-    const view = navigationShortcuts[event.key.toLowerCase()];
-    if (!view) return;
-    event.preventDefault();
-    navigateTo(view);
+    const view = { "1": "dashboard", "2": "expenses", "3": "house", "4": "prices", h: "dashboard" }[event.key.toLowerCase()];
+    if (view) { event.preventDefault(); showView(view); }
   });
 
-  els.phase.addEventListener("change", renderExpenseTable);
   els.priority.addEventListener("change", renderExpenseTable);
   els.category.addEventListener("change", renderExpenseTable);
   els.search.addEventListener("input", renderExpenseTable);
-  els.btnNew.addEventListener("click", () => openDialog(null));
-  els.btnPush.addEventListener("click", pushToRemote);
+  els.btnNew.addEventListener("click", () => openExpenseDialog());
+  els.form.addEventListener("submit", submitExpense);
   els.btnCancel.addEventListener("click", () => els.dialog.close());
-  els.form.addEventListener("submit", saveExpense);
-  els.fieldCategory.addEventListener("change", () => renderIconPicker(els.fieldIconKey.value));
   els.iconPicker.addEventListener("click", (event) => {
     const button = event.target.closest("[data-icon-key]");
-    if (!button) return;
-    renderIconPicker(button.getAttribute("data-icon-key") || "");
+    if (button) renderIconPicker(button.dataset.iconKey);
   });
-  els.rows.addEventListener("click", (event) => {
-    const target = event.target;
-    if (!(target instanceof HTMLElement)) return;
-    const editId = target.getAttribute("data-edit");
-    const deleteId = target.getAttribute("data-delete");
-    if (editId) {
-      const expense = state.expenses.find((e) => e.id === editId);
-      if (expense) openDialog(expense);
-      return;
+  els.rows.addEventListener("click", async (event) => {
+    const edit = event.target.closest("[data-edit-expense]");
+    const remove = event.target.closest("[data-delete-expense]");
+    if (edit) openExpenseDialog(state.expenses.find((item) => item.id === edit.dataset.editExpense));
+    if (remove) {
+      try { await deleteExpense(remove.dataset.deleteExpense); } catch (error) { setStatus(els.appStatus, "err", error.message); }
     }
-    if (deleteId) deleteExpense(deleteId);
   });
+  els.btnPush.addEventListener("click", pushToRemote);
+  els.generalNotes.addEventListener("input", () => {
+    els.generalNotesStatus.classList.remove("err");
+    els.generalNotesStatus.textContent = "Alterações pendentes...";
+    clearTimeout(notesSaveTimer);
+    notesSaveTimer = setTimeout(saveNotes, 700);
+  });
+  els.btnNewTask.addEventListener("click", () => openTaskDialog());
+  els.taskForm.addEventListener("submit", submitTask);
+  els.btnCancelTask.addEventListener("click", () => els.taskDialog.close());
+  els.btnDeleteTask.addEventListener("click", deleteTask);
+  els.ganttZoom.addEventListener("change", () => { state.zoom = els.ganttZoom.value; renderGantt(); });
+  els.btnGanttToday.addEventListener("click", () => {
+    const scroll = $("gantt-scroll");
+    const line = els.gantt.querySelector(".gantt-today");
+    if (scroll && line) scroll.scrollTo({ left: Math.max(0, parseFloat(line.style.left) - scroll.clientWidth / 2), behavior: "smooth" });
+  });
+  els.btnGenPrompt.addEventListener("click", () => generatePrompt().catch((error) => setStatus(els.appStatus, "err", error.message)));
+  els.btnCopyPrompt.addEventListener("click", () => navigator.clipboard.writeText(els.promptOutput.value));
+  els.btnDlPrompt.addEventListener("click", () => downloadText("price-discovery-prompt.txt", els.promptOutput.value));
+  els.packFile.addEventListener("change", async () => { if (els.packFile.files[0]) els.packInput.value = await els.packFile.files[0].text(); });
+  els.btnPreviewImport.addEventListener("click", () => previewImport().catch((error) => setStatus(els.importStatus, "err", error.message)));
+  els.btnCommitImport.addEventListener("click", () => commitImport().catch((error) => setStatus(els.importStatus, "err", error.message)));
+  els.btnCopyFix.addEventListener("click", () => navigator.clipboard.writeText(els.fixOutput.value));
+  els.btnDlFix.addEventListener("click", () => downloadText("price-pack-fix.txt", els.fixOutput.value));
 
-  els.btnGenPrompt.addEventListener("click", generatePrompt);
-  els.btnCopyPrompt.addEventListener("click", async () => {
-    if (!state.lastPrompt) return;
-    await navigator.clipboard.writeText(state.lastPrompt);
-    setStatus(els.importStatus, "ok", "Prompt copiado.");
-  });
-  els.btnDlPrompt.addEventListener("click", () => {
-    if (!state.lastPrompt) return;
-    downloadText("price-discovery-prompt.txt", state.lastPrompt);
-  });
-  els.packFile.addEventListener("change", async () => {
-    const file = els.packFile.files && els.packFile.files[0];
-    if (!file) return;
-    els.packInput.value = await file.text();
-  });
-  els.btnPreviewImport.addEventListener("click", previewImport);
-  els.btnCommitImport.addEventListener("click", commitImport);
-  els.btnCopyFix.addEventListener("click", async () => {
-    if (!state.lastFix) return;
-    await navigator.clipboard.writeText(state.lastFix);
-  });
-  els.btnDlFix.addEventListener("click", () => {
-    if (!state.lastFix) return;
-    downloadText("PRICE_AI_FIX.txt", state.lastFix);
-  });
-
-  showView("dashboard");
-  loadHouse().catch(() => {});
-  loadState().catch((err) => {
-    els.empty.classList.remove("hidden");
-    els.empty.textContent = err.message || String(err);
-  });
+  Promise.all([loadState(), loadTasks(), loadNotes(), loadCashflow(), loadHouse()])
+    .then(() => showView(location.hash.slice(1) || "dashboard"))
+    .catch((error) => setStatus(els.appStatus, "err", error.message));
 })();

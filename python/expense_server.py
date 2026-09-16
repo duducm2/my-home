@@ -1,9 +1,10 @@
-"""Local HTTP server for the home expenses web app (port 8768)."""
+"""Local HTTP server for the my-home application."""
 
 from __future__ import annotations
 
 import argparse
 import json
+import mimetypes
 import sys
 import traceback
 import webbrowser
@@ -14,44 +15,75 @@ from urllib.parse import unquote, urlparse
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
+from expense_git import GitError, push_expenses  # noqa: E402
 from expense_store import ExpenseStore  # noqa: E402
 from house_store import HouseStore  # noqa: E402
-from expense_git import GitError, push_expenses  # noqa: E402
-from import_pipeline import (  # noqa: E402
-    build_price_discovery_prompt,
-    commit_rows,
-    preview_pack,
-)
+from import_pipeline import build_price_discovery_prompt, commit_rows, preview_pack  # noqa: E402
+from note_store import NoteStore  # noqa: E402
+from note_store import NoteStore  # noqa: E402
+from note_store import NoteStore  # noqa: E402
+from task_store import TaskStore  # noqa: E402
+
 
 DEFAULT_PORT = 8768
 ROOT_DIR = Path(__file__).resolve().parent.parent
 WEB_DIR = ROOT_DIR / "web"
 DATA_DIR = ROOT_DIR / "data"
 _STORE: ExpenseStore | None = None
+_TASKS: TaskStore | None = None
 _HOUSE: HouseStore | None = None
+_NOTES: NoteStore | None = None
+_NOTES: NoteStore | None = None
+_NOTES: NoteStore | None = None
 
 
 def get_store(data_dir: Path) -> ExpenseStore:
     global _STORE
-    resolved = data_dir.resolve()
-    if _STORE is None or _STORE.data_dir.resolve() != resolved:
-        _STORE = ExpenseStore(resolved)
+    if _STORE is None or _STORE.data_dir != data_dir.resolve():
+        _STORE = ExpenseStore(data_dir)
     return _STORE
+
+
+def get_tasks(data_dir: Path) -> TaskStore:
+    global _TASKS
+    if _TASKS is None or _TASKS.data_dir != data_dir.resolve():
+        _TASKS = TaskStore(data_dir)
+    return _TASKS
+
+
+def get_notes(data_dir: Path) -> NoteStore:
+    global _NOTES
+    if _NOTES is None or _NOTES.data_dir != data_dir.resolve():
+        _NOTES = NoteStore(data_dir)
+    return _NOTES
+
+
+def get_notes(data_dir: Path) -> NoteStore:
+    global _NOTES
+    if _NOTES is None or _NOTES.data_dir != data_dir.resolve():
+        _NOTES = NoteStore(data_dir)
+    return _NOTES
+
+
+def get_notes(data_dir: Path) -> NoteStore:
+    global _NOTES
+    if _NOTES is None or _NOTES.data_dir != data_dir.resolve():
+        _NOTES = NoteStore(data_dir)
+    return _NOTES
 
 
 def get_house(data_dir: Path) -> HouseStore:
     global _HOUSE
-    resolved = data_dir.resolve()
-    if _HOUSE is None or _HOUSE.data_dir.resolve() != resolved:
-        _HOUSE = HouseStore(resolved)
+    if _HOUSE is None or _HOUSE.data_dir != data_dir.resolve():
+        _HOUSE = HouseStore(data_dir)
     return _HOUSE
 
 
 class ExpenseHandler(BaseHTTPRequestHandler):
-    data_dir: Path
+    data_dir = DATA_DIR
 
     def log_message(self, format: str, *args: Any) -> None:
-        sys.stderr.write("[expense_server] " + (format % args) + "\n")
+        sys.stderr.write("[my-home] " + format % args + "\n")
 
     def _cors(self) -> None:
         self.send_header("Access-Control-Allow-Origin", "*")
@@ -59,41 +91,45 @@ class ExpenseHandler(BaseHTTPRequestHandler):
         self.send_header("Access-Control-Allow-Headers", "Content-Type")
 
     def _json(self, code: int, payload: dict[str, Any]) -> None:
-        body = json.dumps(payload, ensure_ascii=False).encode("utf-8")
+        data = json.dumps(payload, ensure_ascii=False).encode("utf-8")
         self.send_response(code)
-        self.send_header("Content-Type", "application/json; charset=utf-8")
         self._cors()
-        self.send_header("Content-Length", str(len(body)))
+        self.send_header("Content-Type", "application/json; charset=utf-8")
+        self.send_header("Content-Length", str(len(data)))
+        self.send_header("Cache-Control", "no-store")
         self.end_headers()
-        self.wfile.write(body)
+        self.wfile.write(data)
 
     def _bytes(self, code: int, data: bytes, content_type: str) -> None:
         self.send_response(code)
-        self.send_header("Content-Type", content_type)
-        self.send_header("Cache-Control", "no-store, max-age=0")
         self._cors()
+        self.send_header("Content-Type", content_type)
         self.send_header("Content-Length", str(len(data)))
+        self.send_header("Cache-Control", "no-store")
         self.end_headers()
         self.wfile.write(data)
 
     def _read_json(self) -> dict[str, Any]:
-        length = int(self.headers.get("Content-Length", "0") or 0)
+        length = int(self.headers.get("Content-Length", "0") or "0")
         raw = self.rfile.read(length) if length else b"{}"
-        if not raw:
-            return {}
-        return json.loads(raw.decode("utf-8"))
+        payload = json.loads(raw.decode("utf-8"))
+        if not isinstance(payload, dict):
+            raise ValueError("request body must be an object")
+        return payload
 
-    def _serve_static(self, relative: str, content_type: str) -> None:
-        path = (WEB_DIR / relative).resolve()
+    def _serve_file(self, path: Path, content_type: str | None = None) -> None:
         try:
-            path.relative_to(WEB_DIR.resolve())
+            path.resolve().relative_to(ROOT_DIR.resolve())
         except ValueError:
             self._json(403, {"ok": False, "error": "forbidden"})
             return
         if not path.is_file():
             self._json(404, {"ok": False, "error": "not found"})
             return
-        self._bytes(200, path.read_bytes(), content_type)
+        guessed = content_type or mimetypes.guess_type(path.name)[0] or "application/octet-stream"
+        if guessed.startswith(("text/", "application/javascript", "application/json")):
+            guessed += "; charset=utf-8"
+        self._bytes(200, path.read_bytes(), guessed)
 
     def do_OPTIONS(self) -> None:
         self.send_response(204)
@@ -101,37 +137,22 @@ class ExpenseHandler(BaseHTTPRequestHandler):
         self.end_headers()
 
     def do_GET(self) -> None:
-        parsed = urlparse(self.path)
-        path = unquote(parsed.path)
-
+        path = unquote(urlparse(self.path).path)
         if path.rstrip("/") == "/health":
-            self._json(
-                200,
-                {
-                    "ok": True,
-                    "service": "expense_server",
-                    "port": DEFAULT_PORT,
-                    "features": ["state", "crud", "push", "prompts", "import", "house", "house_3d"],
-                },
-            )
+            self._json(200, {"ok": True, "service": "my-home", "port": DEFAULT_PORT})
             return
-
-        if path in ("/", "/index.html"):
-            self._serve_static("index.html", "text/html; charset=utf-8")
+        if path in {"/", "/index.html"}:
+            self._serve_file(WEB_DIR / "index.html", "text/html")
             return
-
-        if path == "/styles.css":
-            self._serve_static("styles.css", "text/css; charset=utf-8")
+        static = {
+            "/styles.css": WEB_DIR / "styles.css",
+            "/tasks.css": WEB_DIR / "tasks.css",
+            "/app.js": WEB_DIR / "app.js",
+            "/house-3d.js": WEB_DIR / "house-3d.js",
+        }
+        if path in static:
+            self._serve_file(static[path])
             return
-
-        if path == "/app.js":
-            self._serve_static("app.js", "application/javascript; charset=utf-8")
-            return
-
-        if path == "/house-3d.js":
-            self._serve_static("house-3d.js", "application/javascript; charset=utf-8")
-            return
-
         if path.startswith("/vendor/three/"):
             filename = path.rsplit("/", 1)[-1]
             allowed = {
@@ -144,208 +165,163 @@ class ExpenseHandler(BaseHTTPRequestHandler):
             if filename not in allowed:
                 self._json(404, {"ok": False, "error": "vendor asset not found"})
                 return
-            content_type = "application/javascript; charset=utf-8" if filename.endswith(".js") else "text/plain; charset=utf-8"
-            self._serve_static(f"vendor/three/{filename}", content_type)
+            self._serve_file(WEB_DIR / "vendor" / "three" / filename)
             return
-
         if path == "/api/state":
-            store = get_store(self.data_dir)
-            self._json(200, store.state())
+            self._json(200, get_store(self.data_dir).state())
             return
-
+        if path == "/api/tasks":
+            self._json(200, get_tasks(self.data_dir).state())
+            return
+        if path == "/api/notes":
+            self._json(200, get_notes(self.data_dir).load())
+            return
+        if path == "/api/cashflow":
+            payload = json.loads((self.data_dir / "cashflow-projection.json").read_text(encoding="utf-8-sig"))
+            self._json(200, payload)
+            return
+        if path == "/api/notes":
+            self._json(200, get_notes(self.data_dir).load())
+            return
+        if path == "/api/notes":
+            self._json(200, get_notes(self.data_dir).load())
+            return
         if path == "/api/house":
-            house = get_house(self.data_dir)
-            self._json(200, house.load())
+            self._json(200, get_house(self.data_dir).load())
             return
-
-        if path in ("/api/house/blueprint.jpg", "/data/blueprint.jpg"):
-            bp = (self.data_dir / "blueprint.jpg").resolve()
-            try:
-                bp.relative_to(self.data_dir.resolve())
-            except ValueError:
-                self._json(403, {"ok": False, "error": "forbidden"})
-                return
-            if not bp.is_file():
-                self._json(404, {"ok": False, "error": "blueprint missing"})
-                return
-            self._bytes(200, bp.read_bytes(), "image/jpeg")
+        if path == "/api/house/blueprint.jpg":
+            self._serve_file(self.data_dir / "blueprint.jpg", "image/jpeg")
             return
-
-        if path.startswith("/api/project/people/"):
-            filename = path.rsplit("/", 1)[-1]
-            allowed = {
-                "eduardo.jpg": "image/jpeg",
-                "gelson.jpg": "image/jpeg",
-                "jane.png": "image/png",
-                "leo.jpg": "image/jpeg",
-            }
-            mime_type = allowed.get(filename)
-            if not mime_type:
-                self._json(404, {"ok": False, "error": "person image not found"})
-                return
-            image = (self.data_dir / "people" / filename).resolve()
-            try:
-                image.relative_to((self.data_dir / "people").resolve())
-            except ValueError:
-                self._json(403, {"ok": False, "error": "forbidden"})
-                return
-            if not image.is_file():
-                self._json(404, {"ok": False, "error": "person image missing"})
-                return
-            self._bytes(200, image.read_bytes(), mime_type)
-            return
-
-        project_documents = {
-            "/api/project/documents/purchase-contract.pdf": "purchase-contract-2026-09-08.pdf",
-            "/api/project/documents/gelson-phase-1.pdf": "gelson-phase-1-draft.pdf",
-            "/api/project/documents/gelson-phase-2.pdf": "gelson-phase-2-draft.pdf",
+        people = {
+            "/api/project/people/eduardo.jpg": "eduardo.jpg",
+            "/api/project/people/gelson.jpg": "gelson.jpg",
+            "/api/project/people/jane.png": "jane.png",
+            "/api/project/people/leo.jpg": "leo.jpg",
         }
-        if path in project_documents:
-            documents_dir = (self.data_dir / "documents").resolve()
-            document = (documents_dir / project_documents[path]).resolve()
-            try:
-                document.relative_to(documents_dir)
-            except ValueError:
-                self._json(403, {"ok": False, "error": "forbidden"})
-                return
-            if not document.is_file():
-                self._json(404, {"ok": False, "error": "document missing"})
-                return
-            self._bytes(200, document.read_bytes(), "application/pdf")
+        if path in people:
+            self._serve_file(self.data_dir / "people" / people[path])
             return
-
+        documents = {
+            "/api/project/documents/purchase-contract.pdf": "purchase-contract-2026-09-08.pdf",
+            "/api/project/documents/gelson-contract-01.pdf": "gelson-contract-01-draft.pdf",
+            "/api/project/documents/gelson-contract-02.pdf": "gelson-contract-02-draft.pdf",
+        }
+        if path in documents:
+            self._serve_file(self.data_dir / "documents" / documents[path], "application/pdf")
+            return
         if path.startswith("/assets/item-icons/"):
             filename = path.rsplit("/", 1)[-1]
             manifest = get_store(self.data_dir)._icon_manifest()
             allowed = {
-                str(icon.get("filename") or "")
-                for icon in manifest.get("icons", {}).values()
-                if isinstance(icon, dict)
+                str(item.get("filename") or "")
+                for item in (manifest.get("icons") or {}).values()
+                if isinstance(item, dict)
             }
             if filename not in allowed:
                 self._json(404, {"ok": False, "error": "item icon not found"})
                 return
-            self._serve_static(f"assets/item-icons/{filename}", "image/png")
+            self._serve_file(WEB_DIR / "assets" / "item-icons" / filename, "image/png")
             return
-
         if path.startswith("/assets/"):
-            rel = path[len("/assets/") :]
-            mime_type = "image/jpeg" if rel.lower().endswith((".jpg", ".jpeg")) else "application/octet-stream"
-            self._serve_static(f"assets/{rel}", mime_type)
+            self._serve_file(WEB_DIR / "assets" / path[len("/assets/") :])
             return
-
         self._json(404, {"ok": False, "error": "not found"})
 
     def do_POST(self) -> None:
-        parsed = urlparse(self.path)
-        path = unquote(parsed.path)
-        store = get_store(self.data_dir)
+        path = unquote(urlparse(self.path).path)
         try:
             payload = self._read_json()
-        except json.JSONDecodeError:
-            self._json(400, {"ok": False, "error": "invalid JSON"})
-            return
-        try:
+            store = get_store(self.data_dir)
             if path == "/api/expenses":
                 self._json(200, store.upsert_expense(payload))
-                return
-            if path == "/api/push":
-                result = push_expenses(ROOT_DIR)
-                self._json(200, result)
-                return
-            if path == "/api/house":
+            elif path == "/api/tasks":
+                self._json(200, get_tasks(self.data_dir).upsert(payload))
+            elif path == "/api/notes":
+                self._json(200, get_notes(self.data_dir).save(payload))
+            elif path == "/api/notes":
+                self._json(200, get_notes(self.data_dir).save(payload))
+            elif path == "/api/notes":
+                self._json(200, get_notes(self.data_dir).save(payload))
+            elif path == "/api/push":
+                self._json(200, push_expenses(ROOT_DIR))
+            elif path == "/api/house":
                 house_payload = payload.get("house") if isinstance(payload.get("house"), dict) else payload
                 self._json(200, get_house(self.data_dir).save(house_payload))
-                return
-            if path == "/api/prompts/price-discovery":
+            elif path == "/api/prompts/price-discovery":
                 ids = payload.get("ids") if isinstance(payload.get("ids"), list) else None
                 self._json(200, build_price_discovery_prompt(store, ids))
-                return
-            if path == "/api/import/preview":
-                pack_text = str(payload.get("pack_text") or "")
-                pack_id = str(payload.get("pack_id") or "price")
-                self._json(200, preview_pack(pack_text, pack_id=pack_id))
-                return
-            if path == "/api/import/commit":
+            elif path == "/api/import/preview":
+                self._json(
+                    200,
+                    preview_pack(
+                        str(payload.get("pack_text") or ""),
+                        pack_id=str(payload.get("pack_id") or "price"),
+                    ),
+                )
+            elif path == "/api/import/commit":
                 rows = payload.get("rows")
-                if not isinstance(rows, list) or not rows:
-                    self._json(400, {"ok": False, "error": "rows required"})
-                    return
-                pack_text = str(payload.get("pack_text") or "")
-                pack_id = str(payload.get("pack_id") or "price")
-                self._json(200, commit_rows(store, rows, pack_text=pack_text, pack_id=pack_id))
-                return
-            self._json(404, {"ok": False, "error": "not found"})
-        except ValueError as exc:
+                if not isinstance(rows, list):
+                    raise ValueError("rows is required")
+                self._json(
+                    200,
+                    commit_rows(
+                        store,
+                        rows,
+                        pack_text=str(payload.get("pack_text") or ""),
+                        pack_id=str(payload.get("pack_id") or "price"),
+                    ),
+                )
+            else:
+                self._json(404, {"ok": False, "error": "not found"})
+        except (json.JSONDecodeError, ValueError) as exc:
             self._json(400, {"ok": False, "error": str(exc)})
         except GitError as exc:
             self._json(500, {"ok": False, "error": str(exc)})
         except Exception as exc:
-            self._json(
-                500,
-                {"ok": False, "error": str(exc), "trace": traceback.format_exc()},
-            )
+            self._json(500, {"ok": False, "error": str(exc), "trace": traceback.format_exc()})
 
     def do_DELETE(self) -> None:
-        parsed = urlparse(self.path)
-        path = unquote(parsed.path)
-        store = get_store(self.data_dir)
+        path = unquote(urlparse(self.path).path)
         try:
             if path.startswith("/api/expenses/"):
-                expense_id = path[len("/api/expenses/") :]
-                self._json(200, store.delete_expense(expense_id))
-                return
-            self._json(404, {"ok": False, "error": "not found"})
+                self._json(200, get_store(self.data_dir).delete_expense(path[len("/api/expenses/") :]))
+            elif path.startswith("/api/tasks/"):
+                self._json(200, get_tasks(self.data_dir).delete(path[len("/api/tasks/") :]))
+            else:
+                self._json(404, {"ok": False, "error": "not found"})
         except ValueError as exc:
             self._json(400, {"ok": False, "error": str(exc)})
         except Exception as exc:
-            self._json(
-                500,
-                {"ok": False, "error": str(exc), "trace": traceback.format_exc()},
-            )
+            self._json(500, {"ok": False, "error": str(exc), "trace": traceback.format_exc()})
 
 
 def make_handler(data_dir: Path):
     class BoundHandler(ExpenseHandler):
         pass
 
-    BoundHandler.data_dir = data_dir
+    BoundHandler.data_dir = data_dir.resolve()
     return BoundHandler
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser(description="Home expenses local server")
+    parser = argparse.ArgumentParser(description="my-home local server")
     parser.add_argument("--host", default="127.0.0.1")
     parser.add_argument("--port", type=int, default=DEFAULT_PORT)
-    parser.add_argument(
-        "--data-dir",
-        type=Path,
-        default=DATA_DIR,
-        help="Directory for expenses.csv",
-    )
-    parser.add_argument(
-        "--open",
-        action="store_true",
-        help="Open the app in the default browser",
-    )
+    parser.add_argument("--data-dir", type=Path, default=DATA_DIR)
+    parser.add_argument("--open", action="store_true")
     args = parser.parse_args()
-
-    data_dir = args.data_dir.resolve()
-    get_store(data_dir)
-
-    handler = make_handler(data_dir)
-    server = ThreadingHTTPServer((args.host, args.port), handler)
+    get_store(args.data_dir)
+    get_tasks(args.data_dir)
+    server = ThreadingHTTPServer((args.host, args.port), make_handler(args.data_dir))
     url = f"http://{args.host}:{args.port}/"
-    print(f"Home expenses server listening on {url}", flush=True)
-    print(f"Data: {data_dir / 'expenses.csv'}", flush=True)
-
+    print(f"my-home server listening on {url}", flush=True)
+    print(f"Data: {args.data_dir.resolve()}", flush=True)
     if args.open:
         webbrowser.open(url)
-
     try:
         server.serve_forever()
     except KeyboardInterrupt:
-        print("\nShutting down…", flush=True)
+        print("\nShutting down", flush=True)
     finally:
         server.server_close()
     return 0
