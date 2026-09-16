@@ -65,6 +65,21 @@ class HouseStore:
             self._write(house)
         return self.load()
 
+    def save_name(self, name: Any) -> dict[str, Any]:
+        display_name = " ".join(str(name or "").split())
+        if not display_name:
+            raise ValueError("house name is required")
+        if len(display_name) > 80:
+            raise ValueError("house name must have at most 80 characters")
+        with self._lock:
+            if not self.json_path.is_file():
+                raise ValueError("house.json missing")
+            house = json.loads(self.json_path.read_text(encoding="utf-8-sig"))
+            house["display_name"] = display_name
+            house["updated_at"] = now_stamp()
+            self._write(house)
+        return self.load()
+
     def _write(self, house: dict[str, Any]) -> None:
         temporary = self.json_path.with_suffix(".json.tmp")
         temporary.write_text(

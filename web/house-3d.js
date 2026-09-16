@@ -1,6 +1,7 @@
 import * as THREE from "three";
 import { OrbitControls } from "/vendor/three/OrbitControls.js";
 import { TransformControls } from "/vendor/three/TransformControls.js";
+import { GLTFLoader } from "/vendor/three/GLTFLoader.js";
 
 let activeViewer = null;
 let activeFingerprint = "";
@@ -8,83 +9,117 @@ let activeFingerprint = "";
 const ASSET_CATALOG = {
   sofa: {
     label: "Sofá",
+    group: "Sala",
     width: 2.0,
     depth: 0.85,
     height: 0.78,
     color: "#8f6f61",
+    modelUrl: "/assets/models/sofa.glb",
+    previewUrl: "/assets/models/previews/sofa.png",
   },
   bed: {
-    label: "Cama",
+    label: "Cama de casal",
+    group: "Quarto",
     width: 1.4,
     depth: 1.9,
-    height: 0.48,
+    height: 0.6,
     color: "#a7b8cc",
+    modelUrl: "/assets/models/bed.glb",
+    previewUrl: "/assets/models/previews/bed.png",
   },
   table: {
-    label: "Mesa",
+    label: "Mesa de jantar",
+    group: "Sala",
     width: 1.4,
     depth: 0.8,
     height: 0.76,
     color: "#8b6542",
+    modelUrl: "/assets/models/table.glb",
+    previewUrl: "/assets/models/previews/table.png",
   },
   chair: {
     label: "Cadeira",
+    group: "Sala",
     width: 0.48,
     depth: 0.48,
     height: 0.9,
     color: "#9a7655",
+    modelUrl: "/assets/models/chair.glb",
+    previewUrl: "/assets/models/previews/chair.png",
   },
   wardrobe: {
     label: "Guarda-roupa",
+    group: "Quarto",
     width: 1.6,
     depth: 0.58,
     height: 2.1,
     color: "#b7a58c",
+    modelUrl: "/assets/models/wardrobe.glb",
+    previewUrl: "/assets/models/previews/wardrobe.png",
   },
   refrigerator: {
     label: "Geladeira",
+    group: "Cozinha e serviço",
     width: 0.72,
     depth: 0.7,
     height: 1.85,
     color: "#d7dde0",
+    modelUrl: "/assets/models/refrigerator.glb",
+    previewUrl: "/assets/models/previews/refrigerator.jpg",
   },
   stove: {
     label: "Fogão",
+    group: "Cozinha e serviço",
     width: 0.62,
     depth: 0.64,
     height: 0.9,
     color: "#646b70",
-  },
-  sink: { label: "Pia", width: 1.2, depth: 0.6, height: 0.9, color: "#98a9ae" },
-  washer: {
-    label: "Lavadora",
-    width: 0.68,
-    depth: 0.72,
-    height: 0.88,
-    color: "#d9e0e3",
-  },
-  cabinet: {
-    label: "Armário",
-    width: 1.2,
-    depth: 0.48,
-    height: 1.9,
-    color: "#a78e6e",
+    modelUrl: "/assets/models/stove.glb",
+    previewUrl: "/assets/models/previews/stove.png",
   },
   plant: {
-    label: "Planta",
+    label: "Planta em vaso",
+    group: "Decoração",
     width: 0.5,
     depth: 0.5,
     height: 1.1,
     color: "#4f8c58",
+    modelUrl: "/assets/models/plant.glb",
+    previewUrl: "/assets/models/previews/plant.png",
+  },
+  tree: {
+    label: "Árvore",
+    group: "Exterior",
+    width: 3.2,
+    depth: 3.2,
+    height: 5.0,
+    color: "#477a4f",
+    modelUrl: "/assets/models/tree.glb",
+    previewUrl: "/assets/models/previews/tree.png",
   },
   box: {
     label: "Caixa",
+    group: "Utilitários",
     width: 0.6,
     depth: 0.6,
     height: 0.6,
     color: "#a87945",
   },
 };
+
+const assetLoader = new GLTFLoader();
+const assetModelCache = new Map();
+
+function loadAssetTemplate(definition) {
+  if (!definition?.modelUrl) return Promise.resolve(null);
+  if (!assetModelCache.has(definition.modelUrl)) {
+    assetModelCache.set(
+      definition.modelUrl,
+      assetLoader.loadAsync(definition.modelUrl).then((gltf) => gltf.scene),
+    );
+  }
+  return assetModelCache.get(definition.modelUrl);
+}
 
 const byId = (id) => document.getElementById(id);
 
@@ -148,6 +183,7 @@ class HouseViewer {
     this.roofVisible = false;
     this.labelsVisible = true;
     this.wallsTransparent = false;
+    this.disposed = false;
 
     if (!this.host) throw new Error("Área do modelo 3D não encontrada.");
     this.init();
@@ -511,8 +547,77 @@ class HouseViewer {
     );
   }
 
+  async hydrateAssetGroup(group, definition, dimensions) {
+    try {
+      const template = await loadAssetTemplate(definition);
+      if (!template || this.disposed || !group.parent) return;
+      const model = template.clone(true);
+      model.updateMatrixWorld(true);
+      const sourceBounds = new THREE.Box3().setFromObject(model);
+      const sourceSize = sourceBounds.getSize(new THREE.Vector3());
+      if (
+        !Number.isFinite(sourceSize.x) ||
+        sourceSize.x <= 0 ||
+        sourceSize.y <= 0 ||
+        sourceSize.z <= 0
+      ) {
+        throw new Error("o arquivo não contém uma geometria dimensionável");
+      }
+      model.scale.set(
+        dimensions.width / sourceSize.x,
+        dimensions.height / sourceSize.y,
+        dimensions.depth / sourceSize.z,
+      );
+      model.updateMatrixWorld(true);
+      const fittedBounds = new THREE.Box3().setFromObject(model);
+      const fittedCenter = fittedBounds.getCenter(new THREE.Vector3());
+      model.position.set(
+        -fittedCenter.x,
+        -dimensions.height / 2 - fittedBounds.min.y,
+        -fittedCenter.z,
+      );
+      model.name = `${definition.label} model`;
+      model.userData.localAssetModel = true;
+      model.traverse((child) => {
+        child.userData.editorTarget = group;
+        child.userData.sharedAssetResource = true;
+        if (child.isMesh) {
+          child.castShadow = true;
+          child.receiveShadow = true;
+        }
+      });
+      const placeholders = group.children.filter(
+        (child) => child.userData.assetPlaceholder,
+      );
+      for (const placeholder of placeholders) {
+        group.remove(placeholder);
+        placeholder.geometry?.dispose();
+        disposeMaterial(placeholder.material);
+      }
+      group.add(model);
+      group.userData.editor.modelState = "ready";
+      if (this.selectedTarget === group) {
+        this.selectionBox.update();
+        this.notifyEditor(`${definition.label} carregado do acervo local.`);
+      }
+      this.requestRender();
+    } catch (error) {
+      group.userData.editor.modelState = "fallback";
+      group.userData.editor.modelError = String(error?.message || error);
+      this.setStatus(
+        `${definition.label}: modelo local indisponível; exibindo volume de segurança.`,
+        "err",
+      );
+      if (this.selectedTarget === group)
+        this.notifyEditor(
+          `${definition.label}: falha ao carregar; usando volume de segurança.`,
+        );
+    }
+  }
+
   createAssetGroup(asset, ghost = false) {
     const group = new THREE.Group();
+    const definition = ASSET_CATALOG[asset.asset_type] || {};
     const width = Number(asset.width_m) || 0.6;
     const height = Number(asset.height_m) || 0.6;
     const depth = Number(asset.depth_m) || 0.6;
@@ -528,6 +633,7 @@ class HouseViewer {
       roughness: 0.72,
     });
     body.castShadow = !ghost;
+    body.userData.assetPlaceholder = true;
     group.add(body);
     if (!ghost) {
       const edge = new THREE.LineSegments(
@@ -538,6 +644,7 @@ class HouseViewer {
           opacity: 0.38,
         }),
       );
+      edge.userData.assetPlaceholder = true;
       group.add(edge);
     }
     group.position.set(
@@ -558,10 +665,13 @@ class HouseViewer {
       baseScale: group.scale.clone(),
       baseDimensions: new THREE.Vector3(width, height, depth),
       isPlacedAsset: true,
+      modelState: definition.modelUrl ? "loading" : "primitive",
     };
     group.traverse((child) => {
       child.userData.editorTarget = group;
     });
+    if (!ghost && definition.modelUrl)
+      this.hydrateAssetGroup(group, definition, { width, height, depth });
     return group;
   }
 
@@ -913,6 +1023,7 @@ class HouseViewer {
       (item) => item.id !== editor.asset.id,
     );
     target.traverse((object) => {
+      if (object.userData.sharedAssetResource) return;
       object.geometry?.dispose();
       disposeMaterial(object.material);
     });
@@ -1687,6 +1798,7 @@ class HouseViewer {
   }
 
   dispose() {
+    this.disposed = true;
     this.stopRecording();
     this.resizeObserver?.disconnect();
     for (const button of this.toolbarButtons || []) {
@@ -1709,6 +1821,7 @@ class HouseViewer {
     this.transform?.dispose();
     this.controls?.dispose();
     this.scene?.traverse((object) => {
+      if (object.userData.sharedAssetResource) return;
       object.geometry?.dispose();
       disposeMaterial(object.material);
     });
@@ -1769,6 +1882,13 @@ export function setSceneSnap(value) {
 
 export function beginSceneAssetPlacement(assetType) {
   activeViewer?.beginPlacement(assetType);
+}
+
+export function getSceneAssetCatalog() {
+  return Object.entries(ASSET_CATALOG).map(([id, definition]) => ({
+    id,
+    ...definition,
+  }));
 }
 
 export function duplicateSceneSelection() {

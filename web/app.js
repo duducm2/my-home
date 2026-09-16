@@ -31,6 +31,9 @@
 
   const els = {
     appStatus: $("app-status"),
+    houseNameInput: $("house-name-input"),
+    houseNameStatus: $("house-name-status"),
+    model3dHouseName: $("model3d-house-name"),
     btnPush: $("btn-push"),
     pushStatus: $("push-status"),
     dashTotalAll: $("dash-total-all"),
@@ -1583,6 +1586,84 @@
   let mediaBlob = null;
   let mediaFilename = "";
   let mediaObjectUrl = "";
+  let persistedHouseName = "my-home";
+
+  function applyHouseName(name, updateInput = true) {
+    const displayName = String(name || "").trim() || "my-home";
+    persistedHouseName = displayName;
+    if (updateInput) els.houseNameInput.value = displayName;
+    els.model3dHouseName.textContent = displayName;
+    document.title = displayName;
+  }
+
+  async function saveHouseName() {
+    const name = els.houseNameInput.value.replace(/\s+/g, " ").trim();
+    if (!name) {
+      els.houseNameStatus.textContent = "Digite um nome.";
+      els.houseNameInput.value = persistedHouseName;
+      return;
+    }
+    if (name === persistedHouseName) {
+      els.houseNameInput.value = name;
+      return;
+    }
+    els.houseNameInput.disabled = true;
+    els.houseNameStatus.textContent = "Salvando…";
+    try {
+      const result = await request("/api/house/name", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name }),
+      });
+      state.house = result.house;
+      applyHouseName(result.house?.display_name);
+      els.houseNameStatus.textContent = "Nome salvo.";
+      window.setTimeout(() => {
+        if (els.houseNameStatus.textContent === "Nome salvo.")
+          els.houseNameStatus.textContent = "";
+      }, 1800);
+    } catch (error) {
+      els.houseNameInput.value = persistedHouseName;
+      els.houseNameStatus.textContent = error.message;
+    } finally {
+      els.houseNameInput.disabled = false;
+    }
+  }
+
+  function renderSceneAssetPalette(catalog) {
+    const groups = new Map();
+    for (const asset of catalog || []) {
+      const group = asset.group || "Outros";
+      if (!groups.has(group)) groups.set(group, []);
+      groups.get(group).push(asset);
+    }
+    els.assetPalette.innerHTML = [...groups.entries()]
+      .map(
+        ([group, assets]) => `<section class="asset-palette-group">
+          <strong>${escapeHtml(group)}</strong>
+          <div>${assets
+            .map(
+              (asset) =>
+                `<button type="button" draggable="true" data-asset-type="${escapeAttr(asset.id)}" aria-label="Adicionar ${escapeAttr(asset.label)}" title="${escapeAttr(`${asset.label} · ${asset.width} × ${asset.depth} × ${asset.height} m`)}">
+                  ${
+                    asset.previewUrl
+                      ? `<img src="${escapeAttr(asset.previewUrl)}" alt="" loading="lazy"><span class="asset-preview-fallback" aria-hidden="true">3D</span>`
+                      : `<span class="asset-preview-fallback visible" aria-hidden="true">3D</span>`
+                  }
+                  <span>${escapeHtml(asset.label)}</span>
+                </button>`,
+            )
+            .join("")}</div>
+        </section>`,
+      )
+      .join("");
+    els.assetPalette.querySelectorAll("img").forEach((image) => {
+      image.addEventListener("error", () => {
+        image.classList.add("hidden");
+        image.nextElementSibling?.classList.add("visible");
+      });
+    });
+  }
 
   async function renderHouse3D() {
     const model = state.house?.model_3d;
@@ -1592,7 +1673,8 @@
     if (!model)
       return setStatus(els.house3dStatus, "warn", "Geometria 3D indisponível.");
     try {
-      house3dModule ||= await import("/house-3d.js?v=20260916-5");
+      house3dModule ||= await import("/house-3d.js?v=20260916-6");
+      renderSceneAssetPalette(house3dModule.getSceneAssetCatalog());
       house3dModule.mountHouse3D(model);
       requestAnimationFrame(() => house3dModule.resizeHouse3D());
     } catch (error) {
@@ -1860,6 +1942,7 @@
     const house = payload.house;
     state.house = house;
     state.project = payload.project || null;
+    applyHouseName(house.display_name);
     els.houseBlueprint.src =
       payload.blueprint_url || "/api/house/blueprint.jpg";
     const lot = house.lot_dimensions_meters || {};
@@ -2019,6 +2102,26 @@
   $("home-link").addEventListener("click", (event) => {
     event.preventDefault();
     showView("dashboard");
+  });
+  els.houseNameInput.addEventListener("input", () => {
+    const liveName = els.houseNameInput.value.trim() || "my-home";
+    els.model3dHouseName.textContent = liveName;
+    document.title = liveName;
+    els.houseNameStatus.textContent = "Enter ou clique fora para salvar";
+  });
+  els.houseNameInput.addEventListener("blur", saveHouseName);
+  els.houseNameInput.addEventListener("keydown", (event) => {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      els.houseNameInput.blur();
+    } else if (event.key === "Escape") {
+      event.preventDefault();
+      els.houseNameInput.value = persistedHouseName;
+      els.model3dHouseName.textContent = persistedHouseName;
+      document.title = persistedHouseName;
+      els.houseNameStatus.textContent = "";
+      els.houseNameInput.blur();
+    }
   });
   document.addEventListener(
     "keydown",

@@ -105,6 +105,15 @@ class HouseStoreEditorTests(unittest.TestCase):
                 }
             )
 
+    def test_inline_house_name_is_validated_and_preserves_house_data(self) -> None:
+        result = self.store.save_name("  Casa   dos Sonhos  ")
+        self.assertEqual(result["house"]["display_name"], "Casa dos Sonhos")
+        self.assertIn("model_3d", result["house"])
+        with self.assertRaisesRegex(ValueError, "required"):
+            self.store.save_name("   ")
+        with self.assertRaisesRegex(ValueError, "80"):
+            self.store.save_name("x" * 81)
+
     def test_repository_house_has_editor_collections(self) -> None:
         house = json.loads((ROOT / "data" / "house.json").read_text(encoding="utf-8"))
         self.assertIsInstance(house["model_3d"]["layout_overrides"], dict)

@@ -177,6 +177,7 @@ class ExpenseHandler(BaseHTTPRequestHandler):
                 "three.core.js",
                 "OrbitControls.js",
                 "TransformControls.js",
+                "GLTFLoader.js",
                 "LICENSE.txt",
                 "VERSION.txt",
             }
@@ -184,6 +185,13 @@ class ExpenseHandler(BaseHTTPRequestHandler):
                 self._json(404, {"ok": False, "error": "vendor asset not found"})
                 return
             self._serve_file(WEB_DIR / "vendor" / "three" / filename)
+            return
+        if path.startswith("/vendor/utils/"):
+            filename = path.rsplit("/", 1)[-1]
+            if filename not in {"BufferGeometryUtils.js", "SkeletonUtils.js"}:
+                self._json(404, {"ok": False, "error": "vendor utility not found"})
+                return
+            self._serve_file(WEB_DIR / "vendor" / "utils" / filename)
             return
         if path == "/api/state":
             self._json(200, get_store(self.data_dir).state())
@@ -303,6 +311,8 @@ class ExpenseHandler(BaseHTTPRequestHandler):
             elif path == "/api/house":
                 house_payload = payload.get("house") if isinstance(payload.get("house"), dict) else payload
                 self._json(200, get_house(self.data_dir).save(house_payload))
+            elif path == "/api/house/name":
+                self._json(200, get_house(self.data_dir).save_name(payload.get("name")))
             elif path == "/api/house/model3d-layout":
                 self._json(200, get_house(self.data_dir).save_model3d_layout(payload))
             elif path == "/api/prompts/price-discovery":
