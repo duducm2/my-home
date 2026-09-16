@@ -36,18 +36,28 @@ def _first_line(text: str) -> str:
     return ""
 
 
-def push_expenses(repo_root: Path, data_file: Path = Path("data") / "expenses.csv") -> dict[str, Any]:
-    """Stage expense CSV, commit if dirty, then push to origin."""
+def push_expenses(repo_root: Path, data_files: list[Path] | None = None) -> dict[str, Any]:
+    """Stage app data files, commit if dirty, then push to origin."""
     repo = repo_root.resolve()
     if not (repo / ".git").exists():
         raise GitError("not a git repository")
 
-    rel = data_file.as_posix()
-    absolute = (repo / data_file).resolve()
-    if not absolute.is_file():
-        raise GitError(f"missing data file: {rel}")
+    if data_files is None:
+        data_files = [
+            Path("data") / "expenses.csv",
+            Path("data") / "house.json",
+            Path("data") / "project.json",
+            Path("data") / "blueprint.jpg",
+        ]
+    rels = []
+    for data_file in data_files:
+        absolute = (repo / data_file).resolve()
+        if absolute.is_file():
+            rels.append(data_file.as_posix())
+    if not rels:
+        raise GitError("no data files found to push")
 
-    status = _run(repo, ["status", "--porcelain", "--", rel])
+    status = _run(repo, ["status", "--porcelain", "--", *rels])
     if status.returncode != 0:
         raise GitError(_first_line(status.stderr) or "status failed")
 
@@ -56,12 +66,12 @@ def push_expenses(repo_root: Path, data_file: Path = Path("data") / "expenses.cs
     message = ""
 
     if status.stdout.strip():
-        add = _run(repo, ["add", "--", rel])
+        add = _run(repo, ["add", "--", *rels])
         if add.returncode != 0:
             raise GitError(_first_line(add.stderr) or "add failed")
 
         stamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-        message = f"Update home expenses ({stamp})"
+        message = f"Update home data ({stamp})"
         commit = _run(repo, ["commit", "-m", message])
         if commit.returncode != 0:
             raise GitError(_first_line(commit.stderr or commit.stdout) or "comm" + "it failed")

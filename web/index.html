@@ -18,6 +18,7 @@
           <nav class="nav" aria-label="Navegação">
             <button type="button" class="nav-btn active" data-view="dashboard">Dashboard</button>
             <button type="button" class="nav-btn" data-view="expenses">Despesas</button>
+            <button type="button" class="nav-btn" data-view="house">Casa</button>
             <button type="button" class="nav-btn" data-view="prices">Preços / Import</button>
           </nav>
         </div>
@@ -119,6 +120,31 @@
           </table>
           <p id="empty-state" class="empty hidden">Nenhuma despesa corresponde aos filtros.</p>
         </section>
+      </section>
+
+      
+      <section id="view-house" class="view hidden">
+        <h2 class="section-title">Planta / blueprint</h2>
+        <p class="section-sub">Planta persistida no repositório com as propriedades do lote e dos cômodos.</p>
+        <div class="blueprint-wrap panel">
+          <img id="house-blueprint" class="blueprint-img" alt="Planta da casa" src="/api/house/blueprint.jpg" />
+        </div>
+
+        <h2 class="section-title">Lote</h2>
+        <div id="house-lot" class="summary"></div>
+
+        <h2 class="section-title">Espaços externos</h2>
+        <div id="house-exterior" class="card-grid"></div>
+
+        <h2 class="section-title">Cômodos</h2>
+        <div id="house-rooms" class="card-grid"></div>
+
+        <h2 class="section-title">Resumo-mestre do projeto</h2>
+        <p class="section-sub">Compra, sequência, obras, contratos e estratégia financeira.</p>
+        <div id="project-overview" class="project-overview"></div>
+
+        <h2 class="section-title">Auditoria da planta vs JSON</h2>
+        <div id="house-audit" class="timeline-card"></div>
       </section>
 
       <section id="view-prices" class="view hidden">

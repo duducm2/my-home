@@ -497,3 +497,179 @@ dialog h2 {
     display: none;
   }
 }
+
+
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 12px;
+}
+
+.blueprint-wrap {
+  overflow: auto;
+  margin-bottom: 12px;
+}
+
+.blueprint-img {
+  display: block;
+  width: 100%;
+  max-width: 980px;
+  height: auto;
+  margin: 0 auto;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+  background: #1a1a1c;
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.house-card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 10px 12px;
+}
+
+.house-card h3 {
+  margin: 0 0 6px;
+  font-size: 14px;
+  color: var(--gold);
+}
+
+.house-card p,
+.house-card li {
+  margin: 0;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.house-card ul {
+  margin: 6px 0 0;
+  padding-left: 1.1rem;
+}
+
+.audit-list {
+  margin: 8px 0 0;
+  padding-left: 1.1rem;
+  color: var(--text);
+  font-size: 13px;
+}
+
+.audit-list li {
+  margin: 6px 0;
+}
+
+
+.project-overview {
+  display: grid;
+  gap: 12px;
+}
+
+.project-summary-grid,
+.project-phases {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+  gap: 8px;
+}
+
+.project-heading {
+  margin: 12px 0 0;
+  color: var(--gold);
+  font-size: 15px;
+}
+
+.project-workflow {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.project-workflow li,
+.principle {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 8px 10px;
+  font-size: 12px;
+}
+
+.project-phase {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 10px 12px;
+}
+
+.project-phase-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  align-items: baseline;
+}
+
+.project-phase h3,
+.project-phase p {
+  margin: 0 0 7px;
+}
+
+.project-phase h3 {
+  color: var(--gold);
+  font-size: 15px;
+}
+
+.project-phase p,
+.project-detail,
+.project-detail li {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.project-detail {
+  border-top: 1px solid var(--line);
+  padding: 6px 0;
+}
+
+.project-detail summary {
+  cursor: pointer;
+  color: var(--text);
+  font-weight: 600;
+}
+
+.project-detail summary:hover {
+  color: var(--gold);
+}
+
+.project-detail ul {
+  margin: 7px 0 0;
+  padding-left: 1.1rem;
+}
+
+.project-note {
+  margin-top: 8px !important;
+  color: var(--gold) !important;
+}
+
+.principle-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 6px;
+}
+
+.project-financial-priority {
+  margin: 0;
+  padding: 10px 12px;
+  border-left: 3px solid var(--gold);
+  background: rgba(241, 196, 15, 0.08);
+  color: var(--text);
+}

@@ -64,6 +64,12 @@
     importStatus: $("import-status"),
     importPreviewRows: $("import-preview-rows"),
     fixOutput: $("fix-output"),
+    houseBlueprint: $("house-blueprint"),
+    houseLot: $("house-lot"),
+    houseExterior: $("house-exterior"),
+    houseRooms: $("house-rooms"),
+    houseAudit: $("house-audit"),
+    projectOverview: $("project-overview"),
   };
 
   const brl = new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" });
@@ -483,8 +489,182 @@
     }
   }
 
+
+  function dimsText(obj) {
+    if (!obj || typeof obj !== "object") return "—";
+    return Object.entries(obj)
+      .map(([k, v]) => `${k}: ${v} m`)
+      .join(" · ");
+  }
+
+
+  function listHtml(items) {
+    if (!items || !items.length) return "";
+    return `<ul>${items.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>`;
+  }
+
+  function renderProject(project) {
+    if (!els.projectOverview) return;
+    if (!project) {
+      els.projectOverview.innerHTML = '<p class="section-sub">Resumo do projeto não disponível.</p>';
+      return;
+    }
+
+    const property = project.property || {};
+    const address = property.address || {};
+    const financing = property.financing || {};
+    const contracts = project.contracts || {};
+    const financial = project.financial_strategy || {};
+    const rear = (project.official_dimensions || {}).rear_area || {};
+    const currentRear = rear.current_effective_space || {};
+    const largerRear = rear.larger_coverage_scenario || {};
+
+    const workflow = (project.purchase_workflow || [])
+      .map((step, index) => `<li><span class="badge">${index + 1}</span> ${escapeHtml(step)}</li>`)
+      .join("");
+
+    const phaseCards = (project.phases || []).map((phase) => {
+      const labor = phase.labor || {};
+      const services = phase.services || [];
+      const priorityWork = phase.priority_work || [];
+      const workHtml = priorityWork.map((work) => `
+        <details class="project-detail">
+          <summary>${escapeHtml(work.label)}</summary>
+          ${listHtml(work.items || work.current_priority || [])}
+          ${work.deferred_finishings ? `<p class="project-note">Pode ficar para depois:</p>${listHtml(work.deferred_finishings)}` : ""}
+        </details>`).join("");
+      return `
+        <article class="project-phase">
+          <div class="project-phase-head">
+            <h3>${escapeHtml(phase.label)}</h3>
+            ${labor.planned_amount != null ? `<strong>${formatMoney(labor.planned_amount)} mão de obra</strong>` : ""}
+          </div>
+          <p><strong>Início:</strong> ${escapeHtml(phase.trigger || "")}</p>
+          <p>${escapeHtml(phase.objective || "")}</p>
+          ${phase.deadline && phase.deadline.duration_days ? `<p><strong>Prazo:</strong> ${phase.deadline.duration_days} dias a partir de ${escapeHtml(phase.deadline.starts_from)}.</p>` : ""}
+          ${services.length ? `<details class="project-detail"><summary>${services.length} serviços</summary>${listHtml(services)}</details>` : ""}
+          ${workHtml}
+        </article>`;
+    }).join("");
+
+    const roofRows = ((project.roof_study || {}).materials_only_estimates || [])
+      .map((row) => `<tr><td>${escapeHtml(row.system)}</td><td class="num">${formatMoney(row.min)}</td><td class="num">${formatMoney(row.max)}</td></tr>`)
+      .join("");
+
+    els.projectOverview.innerHTML = `
+      <div class="project-summary-grid">
+        <article class="house-card">
+          <h3>Imóvel e compra</h3>
+          <p>${escapeHtml([address.street, address.neighborhood, address.city, address.state].filter(Boolean).join(" · "))}</p>
+          <p><strong>${formatMoney(property.purchase_price)}</strong> · ${escapeHtml(financing.institution || "")}</p>
+          <p>${escapeHtml(financing.ownership_note || "")}</p>
+          <p>Ocupante: até ${property.occupancy_after_financing_signature_days || 0} dias após assinatura do financiamento.</p>
+        </article>
+        <article class="house-card">
+          <h3>Áreas consolidadas</h3>
+          <p>Área interna útil: ${(project.official_dimensions || {}).interior_useful_area_m2 || "—"} m²</p>
+          <p>Fundos agora: ${currentRear.width_m || "—"} × ${currentRear.depth_m || "—"} m = ${currentRear.area_m2 || "—"} m²</p>
+          <p>Cobertura maior em estudo: ${largerRear.width_m || "—"} × ${largerRear.depth_m || "—"} m = ${largerRear.area_m2 || "—"} m²</p>
+        </article>
+        <article class="house-card">
+          <h3>Contratos Gelson</h3>
+          <p>Fase 1: ${formatMoney(contracts.phase_1_amount)}</p>
+          <p>Fase 2: ${formatMoney(contracts.phase_2_amount)}</p>
+          <p><strong>Total: ${formatMoney(contracts.total_labor_amount)}</strong></p>
+        </article>
+      </div>
+
+      <h3 class="project-heading">Sequência da compra</h3>
+      <ol class="project-workflow">${workflow}</ol>
+
+      <h3 class="project-heading">Plano de obras</h3>
+      <div class="project-phases">${phaseCards}</div>
+
+      <h3 class="project-heading">Estudo de novo telhado</h3>
+      <p class="section-sub">Não confirmado; estimativas preliminares somente de materiais.</p>
+      <div class="table-wrap">
+        <table><thead><tr><th>Sistema</th><th class="num">Mínimo</th><th class="num">Máximo</th></tr></thead><tbody>${roofRows}</tbody></table>
+      </div>
+
+      <h3 class="project-heading">Estratégia financeira</h3>
+      <article class="timeline-card">
+        <p><strong>Regra:</strong> ${escapeHtml(financial.decision_rule || "")}</p>
+        ${listHtml(financial.priorities || [])}
+      </article>
+
+      <h3 class="project-heading">Princípios</h3>
+      <div class="principle-grid">${(project.principles || []).map((p) => `<div class="principle">${escapeHtml(p)}</div>`).join("")}</div>
+      <p class="project-financial-priority">${escapeHtml(project.financial_priority || "")}</p>`;
+  }
+
+  function renderHouse(payload) {
+    if (!payload || !payload.ok || !payload.house) {
+      if (els.houseAudit) {
+        els.houseAudit.innerHTML = `<p class="section-sub">${escapeHtml((payload && payload.error) || "Casa não carregada.")}</p>`;
+      }
+      return;
+    }
+    const house = payload.house;
+    renderProject(payload.project);
+    if (els.houseBlueprint) {
+      els.houseBlueprint.src = payload.blueprint_url || "/api/house/blueprint.jpg";
+    }
+
+    const lot = house.lot_dimensions_meters || {};
+    els.houseLot.innerHTML = `
+      <div><span class="summary-label">Largura</span><strong>${lot.width ?? "—"} m</strong></div>
+      <div><span class="summary-label">Comprimento</span><strong>${lot.length ?? "—"} m</strong></div>
+      <div><span class="summary-label">Área</span><strong>${lot.area_m2 ?? "—"} m²</strong></div>`;
+
+    els.houseExterior.innerHTML = "";
+    for (const space of house.exterior_spaces || []) {
+      const card = document.createElement("article");
+      card.className = "house-card";
+      const usable = space.usable_dimensions_meters
+        ? `<p>${escapeHtml(dimsText(space.usable_dimensions_meters))}${space.area_m2 != null ? ` · ${space.area_m2} m²` : ""}</p>`
+        : "";
+      const notes = space.architectural_notes ? `<p>${escapeHtml(space.architectural_notes)}</p>` : "";
+      card.innerHTML = `<h3>${escapeHtml(space.label)}</h3><p>${escapeHtml(space.location || "")}</p>${usable}${notes}`;
+      els.houseExterior.appendChild(card);
+    }
+
+    els.houseRooms.innerHTML = "";
+    for (const room of house.interior_rooms || []) {
+      const card = document.createElement("article");
+      card.className = "house-card";
+      const feats = (room.features || []).map((f) => `<li>${escapeHtml(f)}</li>`).join("");
+      const area = room.approx_area_m2 != null ? `<p>Área aprox.: ${room.approx_area_m2} m²</p>` : "";
+      const height = room.wall_height_m != null ? `<p>Pé-direito: ${room.wall_height_m} m</p>` : "";
+      card.innerHTML = `
+        <h3>${escapeHtml(room.label)}</h3>
+        <p>${escapeHtml(dimsText(room.measured_walls_meters))}</p>
+        ${area}${height}
+        ${feats ? `<ul>${feats}</ul>` : ""}`;
+      els.houseRooms.appendChild(card);
+    }
+
+    const audit = house.blueprint_audit || {};
+    const issues = (audit.issues_found_in_source_json || [])
+      .map((i) => `<li><strong>${escapeHtml(i.id)}</strong> — ${escapeHtml(i.severity)} <em>${escapeHtml(i.resolution || "")}</em></li>`)
+      .join("");
+    els.houseAudit.innerHTML = `
+      <h3>${escapeHtml(audit.status || "audit")}</h3>
+      <p class="section-sub">${escapeHtml(audit.summary || "")}</p>
+      <ul class="audit-list">${issues || "<li>Sem pendências registradas.</li>"}</ul>`;
+  }
+
+  async function loadHouse() {
+    const response = await fetch("/api/house");
+    const payload = await response.json();
+    renderHouse(payload);
+  }
+
   document.querySelectorAll(".nav-btn").forEach((btn) => {
-    btn.addEventListener("click", () => showView(btn.getAttribute("data-view")));
+    btn.addEventListener("click", () => {
+      const view = btn.getAttribute("data-view");
+      showView(view);
+      if (view === "house") loadHouse();
+    });
   });
 
   els.phase.addEventListener("change", renderExpenseTable);
@@ -535,6 +715,7 @@
   });
 
   showView("dashboard");
+  loadHouse().catch(() => {});
   loadState().catch((err) => {
     els.empty.classList.remove("hidden");
     els.empty.textContent = err.message || String(err);

@@ -76,6 +76,12 @@ CSV headers: id,description,unit_price,quantity,unit,vendor,product_url,price_no
 
 APIs: POST /api/prompts/price-discovery, POST /api/import/preview, POST /api/import/commit.
 
+## Casa / blueprint
+
+- Planta: [`data/blueprint.jpg`](data/blueprint.jpg)
+- Propriedades: [`data/house.json`](data/house.json)
+- UI: aba **Casa** · API `GET/POST /api/house` · imagem `GET /api/house/blueprint.jpg`
+
 ## Layout
 
 ```

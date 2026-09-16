@@ -1,0 +1,378 @@
+{
+  "project_name": "Casa Parque Fabrício",
+  "property": {
+    "address": {
+      "street": "Rua Ângelo Príncipe Padella",
+      "neighborhood": "Parque Fabrício",
+      "city": "Nova Odessa",
+      "state": "SP"
+    },
+    "purchase_price": 310000.0,
+    "financing": {
+      "institution": "Caixa Econômica Federal",
+      "borrower": "Eduardo",
+      "ownership_note": "Financiamento exclusivamente em nome do Eduardo."
+    },
+    "lot": {
+      "width_m": 12.0,
+      "length_m": 27.0,
+      "area_m2": 324.0
+    },
+    "occupancy_after_financing_signature_days": 60
+  },
+  "purchase_workflow": [
+    "Contrato de compra e venda com a imobiliária",
+    "Regularizações do imóvel e dos herdeiros",
+    "Fase 1 da obra",
+    "Acionamento da Caixa",
+    "Avaliação e aprovação",
+    "Assinatura do financiamento",
+    "Fase 2",
+    "Saída da ocupante",
+    "Fase 3",
+    "Mudança"
+  ],
+  "official_dimensions": {
+    "interior_useful_area_m2": 50.56,
+    "rear_area": {
+      "current_effective_space": {
+        "width_m": 7.8,
+        "depth_m": 2.6,
+        "area_m2": 20.28,
+        "status": "current_planning_basis"
+      },
+      "larger_coverage_scenario": {
+        "width_m": 7.8,
+        "depth_m": 5.2,
+        "area_m2": 40.56,
+        "status": "under_study_not_committed"
+      }
+    }
+  },
+  "future_configuration": {
+    "spaces": [
+      "Quarto do casal com suíte",
+      "Escritório",
+      "Quarto 2",
+      "Banheiro social",
+      "Nova Sala de TV integrada à área dos fundos",
+      "Lavanderia coberta no corredor de trás",
+      "Futura cozinha externa"
+    ],
+    "living_room_balcony_door": {
+      "approx_width_m": 2.0,
+      "wall_approx_width_m": 2.35,
+      "status": "opportunity_item"
+    },
+    "laundry": {
+      "location": "Corredor dos fundos",
+      "required_infrastructure": [
+        "Pia ou tanque",
+        "Máquina de lavar",
+        "Água própria",
+        "Esgoto próprio",
+        "Ralo",
+        "Instalação elétrica adequada",
+        "Piso"
+      ],
+      "future_scope": [
+        "Cobertura completa",
+        "Armários",
+        "Bancada e acabamentos"
+      ]
+    }
+  },
+  "phases": [
+    {
+      "id": "phase_1",
+      "label": "Fase 1",
+      "trigger": "Após assinatura do contrato com a imobiliária",
+      "objective": "Regularizar, corrigir problemas existentes, melhorar a conservação e deixar o imóvel adequado para Prefeitura e Caixa.",
+      "deadline": {
+        "duration_days": 60,
+        "starts_from": "Celebração do contrato de compra e venda",
+        "clarification": "Não começa quando o prestador decidir iniciar a obra."
+      },
+      "labor": {
+        "contractor": "Gelson",
+        "planned_amount": 7500.0,
+        "materials_paid_by": "Eduardo",
+        "common_tools_paid_by": "Gelson",
+        "material_list_notice_business_days": 5
+      },
+      "services": [
+        "Demolição total da edícula dos fundos — primeiro serviço",
+        "Correção da infiltração na parte de trás da casa",
+        "Reparos internos decorrentes da infiltração traseira",
+        "Correção da infiltração no banheiro",
+        "Correção da infiltração na lateral esquerda",
+        "Pequenos reparos de rejuntes",
+        "Reboco da lateral esquerda com chapisco de pedrisco e Bianco",
+        "Contrapiso do corredor dos fundos",
+        "Avaliar água e esgoto da futura lavanderia antes do contrapiso",
+        "Revisão completa das telhas e substituição das quebradas",
+        "Reparos provisórios no telhado atual dos fundos, sem ampliação",
+        "Remoção da caixa vazia do registro de água no muro frontal",
+        "Remoção da caixa de energia do poste adicional",
+        "Reboco da parede de trás da casa",
+        "Reboco do muro lateral esquerdo",
+        "Reparos e regularização do muro da frente"
+      ],
+      "contract": {
+        "source_reference": "Contrato_Gelson_Fase_1_Ajustado_Prazo_Caixa.pdf",
+        "document_available_in_repository": false,
+        "status": "requires_final_revision_before_signature",
+        "missing_items_to_add": [
+          "Infiltração do banheiro",
+          "Infiltração da lateral esquerda",
+          "Pequenos reparos de rejuntes",
+          "Chapisco com pedrisco e Bianco"
+        ]
+      }
+    },
+    {
+      "id": "phase_2",
+      "label": "Fase 2",
+      "trigger": "Após assinatura do financiamento com a Caixa",
+      "objective": "Resolver segurança, infraestrutura e toda obra que gera quebra e sujeira antes da mudança.",
+      "execution_note": "Pode começar enquanto a ocupante ainda estiver na casa, conforme os ambientes forem liberados.",
+      "deadline": {
+        "rigid_general_deadline": false
+      },
+      "labor": {
+        "contractor": "Gelson",
+        "planned_amount": 7500.0
+      },
+      "priority_work": [
+        {
+          "id": "electrical",
+          "label": "Elétrica",
+          "priority": 1,
+          "qualified_professional_required": true,
+          "current_condition": "Não há quadro de distribuição interno adequado; a instalação está praticamente ligada diretamente ao poste.",
+          "items": [
+            "Revisão elétrica completa",
+            "Avaliação da fiação existente",
+            "Quadro de distribuição interno",
+            "Separação de circuitos",
+            "Disjuntores adequados",
+            "DR e DPS",
+            "Aterramento",
+            "Novos conduítes",
+            "Novas tomadas",
+            "Tomadas 20 A onde necessário",
+            "Pontos para lavanderia, cozinha, geladeira, TV e equipamentos"
+          ]
+        },
+        {
+          "id": "new_suite",
+          "label": "Nova suíte",
+          "conversion_note": "O atual quarto será transformado em suíte, com infraestrutura criada praticamente do zero.",
+          "items": [
+            "Nova alimentação de água",
+            "Esgoto",
+            "Ponto de chuveiro",
+            "Ponto para futura pia",
+            "Alimentação e esgoto do vaso",
+            "Ralo ou caixa sifonada",
+            "Registros",
+            "Impermeabilização",
+            "Fechamento da janela frontal",
+            "Abertura de novo vitrô lateral",
+            "Piso",
+            "Revestimento das paredes"
+          ],
+          "deferred_finishings": [
+            "Box",
+            "Bancada sofisticada",
+            "Gabinete",
+            "Espelho",
+            "Metais caros",
+            "Acessórios"
+          ]
+        },
+        {
+          "id": "social_bathroom",
+          "label": "Banheiro social",
+          "existing_infrastructure": [
+            "Água",
+            "Esgoto"
+          ],
+          "items": [
+            "Remover piso e revestimentos",
+            "Corrigir apenas o necessário na hidráulica existente",
+            "Impermeabilizar",
+            "Assentar porcelanato",
+            "Revestir paredes até o teto"
+          ],
+          "temporary_reuse": [
+            "Vaso",
+            "Pia",
+            "Box",
+            "Metais"
+          ],
+          "procurement_note": "Se houver revestimentos por bom preço, reformar os dois banheiros de uma vez para evitar trabalho com a casa ocupada e mobiliada."
+        },
+        {
+          "id": "floors",
+          "label": "Pisos",
+          "porcelain_planned_quantity_m2": 115.0,
+          "procurement_strategy": "Usar o mesmo padrão na maior parte da casa e comprar em promoção, preferencialmente todo o volume do mesmo lote, tonalidade e calibre.",
+          "installation_after": [
+            "Elétrica",
+            "Hidráulica",
+            "Quebras de alvenaria",
+            "Portas e janelas",
+            "Regularização do piso"
+          ]
+        },
+        {
+          "id": "doors_windows",
+          "label": "Portas e janelas",
+          "planned_before_move": {
+            "replacement_windows": 5,
+            "new_suite_window": 1,
+            "internal_doors": 5,
+            "close_old_front_door": true,
+            "close_old_suite_window": true
+          },
+          "cost_flexibility": "Manter temporariamente peças em bom estado se necessário."
+        },
+        {
+          "id": "balcony_door",
+          "label": "Porta-balcão da Sala de TV",
+          "approx_width_m": 2.0,
+          "status": "opportunity_item",
+          "decision_rule": "Instalar antes da pintura e mudança se houver bom preço; caso contrário, adiar."
+        },
+        {
+          "id": "laundry",
+          "label": "Lavanderia mínima antes da mudança",
+          "items": [
+            "Água da pia ou tanque",
+            "Água da máquina",
+            "Esgoto da pia ou tanque",
+            "Esgoto da máquina",
+            "Ralo",
+            "Tomada adequada",
+            "Piso"
+          ]
+        },
+        {
+          "id": "rear_area",
+          "label": "Área dos fundos",
+          "current_priority": [
+            "Água",
+            "Esgoto",
+            "Elétrica",
+            "Regularização",
+            "Piso se compensar junto com o restante"
+          ],
+          "roof_note": "Telhado existente reparado na Fase 1; grande ampliação não é prioridade atual."
+        }
+      ]
+    },
+    {
+      "id": "phase_3",
+      "label": "Fase 3",
+      "trigger": "Após toda a obra pesada",
+      "objective": "Pintura e acabamentos.",
+      "services": [
+        "Pintura interna",
+        "Pintura externa",
+        "Rodapés",
+        "Arremates",
+        "Acabamento de portas e janelas",
+        "Louças e metais adiados",
+        "Iluminação",
+        "Pequenos detalhes finais"
+      ]
+    },
+    {
+      "id": "phase_4",
+      "label": "Fase 4",
+      "trigger": "Casa estruturalmente pronta",
+      "objective": "Mudança.",
+      "services": [
+        "Limpeza pós-obra",
+        "Instalação de móveis",
+        "Eletrodomésticos",
+        "Organização dos ambientes",
+        "Ajustes finais",
+        "Mudança"
+      ]
+    }
+  ],
+  "roof_study": {
+    "status": "not_confirmed",
+    "scenario_dimensions_m": {
+      "width": 7.8,
+      "depth": 5.2
+    },
+    "materials_only_estimates": [
+      {
+        "system": "Metálica simples",
+        "min": 5500.0,
+        "max": 7500.0
+      },
+      {
+        "system": "Estrutura metálica + PVC Plan",
+        "min": 6000.0,
+        "max": 8500.0
+      },
+      {
+        "system": "Estrutura metálica + telha sanduíche",
+        "min": 9000.0,
+        "max": 12000.0
+      },
+      {
+        "system": "Madeira + telha cerâmica",
+        "min": 8500.0,
+        "max": 12500.0
+      }
+    ],
+    "systems_considered": [
+      "Pilares de concreto armado",
+      "Estrutura metálica",
+      "Telha galvanizada",
+      "Telha PVC Plan",
+      "Telha sanduíche",
+      "Madeira com telha cerâmica"
+    ],
+    "decision_rule": "Antecipar somente se uma solução realmente econômica for encontrada.",
+    "warning": "Valores preliminares de materiais; orçamento real obrigatório."
+  },
+  "financial_strategy": {
+    "perceived_gap_before_prioritization": 40000.0,
+    "diagnosis": "A sensação de falta de recursos veio de tentar financiar mentalmente a compra e a casa praticamente pronta de uma vez.",
+    "priorities": [
+      "Proteger o dinheiro da compra e documentação",
+      "Garantir integralmente a Fase 1",
+      "Preservar reserva para transição e imprevistos",
+      "Priorizar elétrica, hidráulica e serviços que geram quebra na Fase 2",
+      "Aproveitar promoções de pisos, revestimentos, portas e janelas",
+      "Adiar itens instaláveis depois sem quebrar a casa"
+    ],
+    "decision_rule": "Fazer agora o que evita retrabalho. Adiar o que é acabamento ou pode ser instalado depois."
+  },
+  "contracts": {
+    "strategy": "Dois contratos separados, mesmo que assinados juntos.",
+    "contractor": "Gelson",
+    "phase_1_amount": 7500.0,
+    "phase_2_amount": 7500.0,
+    "total_labor_amount": 15000.0,
+    "phase_1_legal_purpose": "Comprovar serviços e valores empregados antes do financiamento e apoiar eventual ressarcimento se a operação não prosseguir por irregularidades atribuíveis ao imóvel ou vendedores."
+  },
+  "principles": [
+    "Fase 1: aprovar e valorizar.",
+    "Fase 2: segurança, infraestrutura e obra pesada.",
+    "Fase 3: deixar bonita.",
+    "Fase 4: mudar."
+  ],
+  "financial_priority": "Chegar ao final com uma casa segura, regularizada e funcional sem consumir todo o dinheiro antes de começar a morar nela.",
+  "source": {
+    "type": "user_master_summary",
+    "captured_at": "2026-09-15",
+    "language": "pt-BR"
+  }
+}

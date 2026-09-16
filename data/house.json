@@ -1,0 +1,333 @@
+{
+  "document_type": "architectural_floor_plan",
+  "blueprint": {
+    "image_path": "data/blueprint.jpg",
+    "image_url": "/api/house/blueprint.jpg",
+    "source_filename": "2f2008e6-01ac-45f6-b334-3a33383494b7.jpg"
+  },
+  "lot_dimensions_meters": {
+    "width": 12.0,
+    "length": 27.0,
+    "area_m2": 324.0
+  },
+  "address": {
+    "street": "Rua Ângelo Príncipe Padella",
+    "neighborhood": "Parque Fabrício",
+    "city": "Nova Odessa",
+    "state": "SP"
+  },
+  "interior_useful_area_m2": 50.56,
+  "exterior_spaces": [
+    {
+      "id": "portao",
+      "label": "PORTÃO",
+      "location": "Front lot boundary, bottom left",
+      "kind": "access"
+    },
+    {
+      "id": "quintal_livre_lateral",
+      "label": "QUINTAL LIVRE",
+      "location": "Left side setback",
+      "kind": "yard",
+      "features": [
+        "Marked with dashed green bounding box"
+      ]
+    },
+    {
+      "id": "quintal_livre_fundo",
+      "label": "QUINTAL LIVRE",
+      "location": "Rear yard",
+      "kind": "yard",
+      "features": [
+        "Marked with dashed green bounding box"
+      ]
+    },
+    {
+      "id": "area_gourmet",
+      "label": "Área dos fundos / futura cozinha externa",
+      "location": "Rear center, adjacent to main structure",
+      "kind": "covered_open",
+      "usable_dimensions_meters": {
+        "width": 7.8,
+        "depth": 2.6
+      },
+      "area_m2": 20.28,
+      "status": "current_effective_space",
+      "larger_coverage_scenario": {
+        "width": 7.8,
+        "depth": 5.2,
+        "area_m2": 40.56,
+        "status": "under_study_not_committed"
+      },
+      "architectural_notes": "O espaço efetivo atualmente considerado mede 7,80 × 2,60 m. A cobertura de 7,80 × 5,20 m é apenas um cenário em estudo."
+    },
+    {
+      "id": "lavanderia",
+      "label": "LAVANDERIA NO CORREDOR",
+      "location": "Right side exterior corridor",
+      "kind": "service",
+      "architectural_notes": "No numeric dimensions labeled on the blueprint."
+    }
+  ],
+  "interior_rooms": [
+    {
+      "id": "sala_tv",
+      "label": "SALA DE TV",
+      "kind": "living",
+      "measured_walls_meters": {
+        "width": 2.32,
+        "depth": 3.88,
+        "balcony_door_wall_approx": 2.35
+      },
+      "approx_area_m2": 9.0,
+      "features": [
+        "Future approximately 2.00 m balcony door on a wall of approximately 2.35 m",
+        "Door to hallway (corredor)"
+      ],
+      "openings": [
+        {
+          "type": "window",
+          "wall": "top",
+          "width_m": 2.0,
+          "future_use": "balcony_door"
+        },
+        {
+          "type": "door",
+          "wall": "right",
+          "connects_to": "corredor"
+        }
+      ]
+    },
+    {
+      "id": "quarto_2",
+      "label": "QUARTO 2",
+      "kind": "bedroom",
+      "measured_walls_meters": {
+        "top": 2.94,
+        "right": 3.64
+      },
+      "approx_area_m2": 10.7,
+      "features": [
+        "Window on right wall",
+        "Door to hallway (corredor)"
+      ],
+      "openings": [
+        {
+          "type": "window",
+          "wall": "right"
+        },
+        {
+          "type": "door",
+          "wall": "left",
+          "connects_to": "corredor"
+        }
+      ]
+    },
+    {
+      "id": "corredor",
+      "label": "CORREDOR",
+      "kind": "circulation",
+      "measured_walls_meters": {
+        "top": 0.8,
+        "left": 2.15
+      },
+      "approx_area_m2": 1.72,
+      "features": [
+        "Central circulation spine"
+      ],
+      "openings": []
+    },
+    {
+      "id": "wc",
+      "label": "WC",
+      "kind": "bathroom",
+      "measured_walls_meters": {
+        "width": 1.89,
+        "depth": 1.86
+      },
+      "wall_height_m": 2.7,
+      "approx_area_m2": 3.52,
+      "features": [
+        "Small window on left wall",
+        "Door to hallway (corredor)"
+      ],
+      "architectural_notes": "Dimensões oficiais consolidadas no resumo-mestre: 1,89 × 1,86 m. Altura de parede anotada na planta: 2,70 m.",
+      "openings": [
+        {
+          "type": "window",
+          "wall": "left"
+        },
+        {
+          "type": "door",
+          "wall": "right",
+          "connects_to": "corredor"
+        }
+      ]
+    },
+    {
+      "id": "escritorio",
+      "label": "ESCRITÓRIO",
+      "kind": "office",
+      "measured_walls_meters": {
+        "bottom": 2.94,
+        "right": 3.0
+      },
+      "approx_area_m2": 8.82,
+      "features": [
+        "Window on right wall",
+        "Door to hallway (corredor)"
+      ],
+      "openings": [
+        {
+          "type": "window",
+          "wall": "right"
+        },
+        {
+          "type": "door",
+          "wall": "left",
+          "connects_to": "corredor"
+        }
+      ]
+    },
+    {
+      "id": "quarto_casal",
+      "label": "QUARTO CASAL",
+      "kind": "bedroom",
+      "measured_walls_meters": {
+        "left": 3.36,
+        "bottom": 2.84
+      },
+      "approx_area_m2": 9.54,
+      "features": [
+        "Front-facing window on bottom wall",
+        "Door to hallway (corredor)",
+        "Door to suite bathroom"
+      ],
+      "openings": [
+        {
+          "type": "window",
+          "wall": "bottom"
+        },
+        {
+          "type": "door",
+          "wall": "right",
+          "connects_to": "corredor"
+        },
+        {
+          "type": "door",
+          "wall": "right",
+          "connects_to": "suite_quarto_casal"
+        }
+      ]
+    },
+    {
+      "id": "suite_quarto_casal",
+      "label": "SUÍTE QUARTO CASAL",
+      "kind": "bathroom",
+      "measured_walls_meters": {
+        "bottom": 2.94,
+        "right": 2.47
+      },
+      "approx_area_m2": 7.26,
+      "features": [
+        "Window on right wall",
+        "Accessed from Quarto Casal (en-suite)"
+      ],
+      "openings": [
+        {
+          "type": "window",
+          "wall": "right"
+        },
+        {
+          "type": "door",
+          "wall": "left",
+          "connects_to": "quarto_casal"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "from": "sala_tv",
+      "to": "corredor"
+    },
+    {
+      "from": "wc",
+      "to": "corredor"
+    },
+    {
+      "from": "quarto_2",
+      "to": "corredor"
+    },
+    {
+      "from": "escritorio",
+      "to": "corredor"
+    },
+    {
+      "from": "quarto_casal",
+      "to": "corredor"
+    },
+    {
+      "from": "quarto_casal",
+      "to": "suite_quarto_casal"
+    }
+  ],
+  "blueprint_audit": {
+    "status": "reviewed",
+    "summary": "A planta, o JSON original e o resumo-mestre foram reconciliados. Os valores mais recentes do resumo-mestre prevalecem quando há conflito.",
+    "issues_found_in_source_json": [
+      {
+        "id": "wc_width",
+        "severity": "O JSON original registrava apenas 1,66 m; o resumo-mestre oficial informa 1,89 × 1,86 m.",
+        "resolution": "Atualizado para 1,89 × 1,86 m = 3,52 m²."
+      },
+      {
+        "id": "suite_window",
+        "severity": "SUÍTE listed 'Front-facing window on bottom wall'; blueprint shows window on the right wall and access from Quarto Casal.",
+        "resolution": "Corrected features/openings."
+      },
+      {
+        "id": "missing_openings",
+        "severity": "Quarto 2, Escritório, WC, Sala de TV doors/windows were incomplete or omitted.",
+        "resolution": "Added openings[] and connections[]."
+      },
+      {
+        "id": "file_reference",
+        "severity": "file_reference pointed to image_8fa166.jpg, not the provided blueprint file.",
+        "resolution": "Replaced with blueprint.image_path / source_filename."
+      },
+      {
+        "id": "undimensioned_exterior",
+        "severity": "PORTÃO, QUINTAL LIVRE (both), and LAVANDERIA have no numeric sizes on the plan.",
+        "resolution": "Kept as spaces without dimensions; noted on lavanderia."
+      },
+      {
+        "id": "sala_tv_dimensions",
+        "severity": "A leitura anterior usava 2,35 m como largura total e calculava 7,33 m².",
+        "resolution": "O resumo-mestre define 2,32 × 3,88 m = 9,00 m²; 2,35 m permanece como largura aproximada da parede da futura porta-balcão."
+      },
+      {
+        "id": "rear_area_scope",
+        "severity": "O JSON original tratava 7,80 × 5,20 m como área gourmet atual.",
+        "resolution": "A área efetiva atual é 7,80 × 2,60 m = 20,28 m²; 7,80 × 5,20 m foi preservado apenas como cenário de cobertura em estudo."
+      }
+    ],
+    "represented_on_blueprint": [
+      "lot 12.00 x 27.00",
+      "portao",
+      "quintal_livre_lateral",
+      "quintal_livre_fundo",
+      "rear area current 7.80 x 2.60; larger 7.80 x 5.20 scenario under study",
+      "lavanderia",
+      "sala_tv",
+      "quarto_2",
+      "wc",
+      "corredor",
+      "escritorio",
+      "quarto_casal",
+      "suite_quarto_casal"
+    ]
+  },
+  "notes": "",
+  "updated_at": "2026-09-15 22:15:08"
+}

@@ -15,6 +15,7 @@ from urllib.parse import unquote, urlparse
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from expense_store import ExpenseStore  # noqa: E402
+from house_store import HouseStore  # noqa: E402
 from expense_git import GitError, push_expenses  # noqa: E402
 from import_pipeline import (  # noqa: E402
     build_price_discovery_prompt,
@@ -27,6 +28,7 @@ ROOT_DIR = Path(__file__).resolve().parent.parent
 WEB_DIR = ROOT_DIR / "web"
 DATA_DIR = ROOT_DIR / "data"
 _STORE: ExpenseStore | None = None
+_HOUSE: HouseStore | None = None
 
 
 def get_store(data_dir: Path) -> ExpenseStore:
@@ -35,6 +37,14 @@ def get_store(data_dir: Path) -> ExpenseStore:
     if _STORE is None or _STORE.data_dir.resolve() != resolved:
         _STORE = ExpenseStore(resolved)
     return _STORE
+
+
+def get_house(data_dir: Path) -> HouseStore:
+    global _HOUSE
+    resolved = data_dir.resolve()
+    if _HOUSE is None or _HOUSE.data_dir.resolve() != resolved:
+        _HOUSE = HouseStore(resolved)
+    return _HOUSE
 
 
 class ExpenseHandler(BaseHTTPRequestHandler):
@@ -100,7 +110,7 @@ class ExpenseHandler(BaseHTTPRequestHandler):
                     "ok": True,
                     "service": "expense_server",
                     "port": DEFAULT_PORT,
-                    "features": ["state", "crud", "push", "prompts", "import"],
+                    "features": ["state", "crud", "push", "prompts", "import", "house"],
                 },
             )
             return
@@ -122,6 +132,29 @@ class ExpenseHandler(BaseHTTPRequestHandler):
             self._json(200, store.state())
             return
 
+        if path == "/api/house":
+            house = get_house(self.data_dir)
+            self._json(200, house.load())
+            return
+
+        if path in ("/api/house/blueprint.jpg", "/data/blueprint.jpg"):
+            bp = (self.data_dir / "blueprint.jpg").resolve()
+            try:
+                bp.relative_to(self.data_dir.resolve())
+            except ValueError:
+                self._json(403, {"ok": False, "error": "forbidden"})
+                return
+            if not bp.is_file():
+                self._json(404, {"ok": False, "error": "blueprint missing"})
+                return
+            self._bytes(200, bp.read_bytes(), "image/jpeg")
+            return
+
+        if path.startswith("/assets/"):
+            rel = path[len("/assets/") :]
+            self._serve_static(f"assets/{rel}", "image/jpeg" if rel.lower().endswith((".jpg", ".jpeg")) else "application/octet-stream")
+            return
+
         self._json(404, {"ok": False, "error": "not found"})
 
     def do_POST(self) -> None:
@@ -140,6 +173,10 @@ class ExpenseHandler(BaseHTTPRequestHandler):
             if path == "/api/push":
                 result = push_expenses(ROOT_DIR)
                 self._json(200, result)
+                return
+            if path == "/api/house":
+                house_payload = payload.get("house") if isinstance(payload.get("house"), dict) else payload
+                self._json(200, get_house(self.data_dir).save(house_payload))
                 return
             if path == "/api/prompts/price-discovery":
                 ids = payload.get("ids") if isinstance(payload.get("ids"), list) else None
