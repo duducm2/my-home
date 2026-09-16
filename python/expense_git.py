@@ -43,17 +43,12 @@ def push_expenses(repo_root: Path, data_files: list[Path] | None = None) -> dict
         raise GitError("not a git repository")
 
     if data_files is None:
-        data_files = [
-            Path("data") / "expenses.csv",
-            Path("data") / "house.json",
-            Path("data") / "project.json",
-            Path("data") / "blueprint.jpg",
-            Path("data") / "documents" / "purchase-contract-2026-09-08.pdf",
-            Path("data") / "people" / "eduardo.jpg",
-            Path("data") / "people" / "gelson.jpg",
-            Path("data") / "people" / "jane.png",
-            Path("data") / "people" / "leo.jpg",
-        ]
+        data_root = repo / "data"
+        data_files = sorted(
+            path.relative_to(repo)
+            for path in data_root.rglob("*")
+            if path.is_file()
+        )
     rels = []
     for data_file in data_files:
         absolute = (repo / data_file).resolve()

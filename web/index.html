@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="color-scheme" content="dark" />
     <title>Despesas da Casa</title>
-    <link rel="stylesheet" href="/styles.css?v=20260915-6" />
+    <link rel="stylesheet" href="/styles.css?v=20260915-7" />
   </head>
   <body>
     <div class="page">
@@ -20,7 +20,12 @@
             <button type="button" class="nav-btn" data-view="house" title="Alt+3"><span>Casa</span><kbd>Alt+3</kbd></button>
             <button type="button" class="nav-btn" data-view="prices" title="Alt+4"><span>Preços / Import</span><kbd>Alt+4</kbd></button>
           </nav>
+          <div class="global-save">
+            <button type="button" id="btn-push" class="btn primary global-save-btn" title="Salva todos os dados no computador e envia uma cópia segura ao repositório">Salvar tudo</button>
+            <span class="global-save-help">Local + cópia segura</span>
+          </div>
         </div>
+        <p id="push-status" class="push-status global-push-status hidden" aria-live="polite"></p>
       </header>
 
       <section id="view-dashboard" class="view">
@@ -133,9 +138,7 @@
             <input id="filter-search" type="search" placeholder="Descrição, categoria..." autocomplete="off" />
           </label>
           <button type="button" id="btn-new" class="btn primary">Nova despesa</button>
-          <button type="button" id="btn-push" class="btn">Salvar e enviar</button>
         </section>
-        <p id="push-status" class="push-status hidden" aria-live="polite"></p>
         <section class="summary" aria-live="polite">
           <div>
             <span class="summary-label">Total filtrado</span>
@@ -213,7 +216,7 @@
         <div class="panel-row">
           <input type="file" id="pack-file" accept=".txt,text/plain" />
           <button type="button" id="btn-preview-import" class="btn primary">Validar pack</button>
-          <button type="button" id="btn-commit-import" class="btn" disabled>Confirmar importação</button>
+          <button type="button" id="btn-commit-import" class="btn" disabled>Confirmar, salvar e enviar</button>
           <button type="button" id="btn-copy-fix" class="btn danger" disabled>Copiar AI_FIX</button>
           <button type="button" id="btn-dl-fix" class="btn danger" disabled>Baixar AI_FIX</button>
         </div>
@@ -255,13 +258,13 @@
         <p id="form-error" class="error hidden"></p>
         <div class="dialog-actions">
           <button type="button" id="btn-cancel" class="btn">Cancelar</button>
-          <button type="submit" class="btn primary">Salvar</button>
+          <button type="submit" class="btn primary">Salvar e enviar</button>
         </div>
       </form>
     </dialog>
 
     <datalist id="phase-suggestions"></datalist>
     <datalist id="category-suggestions"></datalist>
-    <script src="/app.js?v=20260915-6"></script>
+    <script src="/app.js?v=20260915-7"></script>
   </body>
 </html>

@@ -456,6 +456,7 @@
       if (!response.ok || result.ok === false) throw new Error(result.error || "Nao foi possivel salvar");
       applyState(result.state);
       els.dialog.close();
+      await pushToRemote();
     } catch (err) {
       els.formError.textContent = err.message || String(err);
       els.formError.classList.remove("hidden");
@@ -473,11 +474,12 @@
       return;
     }
     applyState(result.state);
+    await pushToRemote();
   }
 
   async function pushToRemote() {
     els.btnPush.disabled = true;
-    setStatus(els.pushStatus, "", "Salvando e enviando para o GitHub…");
+    setStatus(els.pushStatus, "", "Salvando todos os dados e enviando a cópia segura…");
     try {
       const response = await fetch("/api/push", {
         method: "POST",
@@ -487,9 +489,9 @@
       const result = await response.json();
       if (!response.ok || result.ok === false) throw new Error(result.error || "Falha ao enviar");
       if (result.pushed) {
-        setStatus(els.pushStatus, "ok", `Enviado ao remoto.${result.commit ? " Commit " + result.commit + "." : ""}`);
+        setStatus(els.pushStatus, "ok", `Tudo salvo e enviado com segurança.${result.commit ? " Versão " + result.commit + "." : ""}`);
       } else {
-        setStatus(els.pushStatus, "ok", result.message || "Nada novo para enviar.");
+        setStatus(els.pushStatus, "ok", result.message || "Tudo já estava salvo e atualizado.");
       }
     } catch (err) {
       setStatus(els.pushStatus, "err", err.message || String(err));
@@ -606,6 +608,7 @@
         `Importados ${result.updated.length} item(ns).${result.archived ? " Arquivo: " + result.archived + "." : ""}${extra}`
       );
       state.pendingImportRows = null;
+      await pushToRemote();
     } catch (err) {
       setStatus(els.importStatus, "err", err.message || String(err));
       els.btnCommitImport.disabled = false;
