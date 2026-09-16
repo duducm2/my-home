@@ -63,6 +63,8 @@
     cashflowTotalExpenses: $("cashflow-total-expenses"),
     expenseTreemap: $("expense-treemap"),
     cashflowLineChart: $("cashflow-line-chart"),
+    houseSavingsLineChart: $("house-savings-line-chart"),
+    houseSavingsPlanSummary: $("house-savings-plan-summary"),
     monthlySavingsGrid: $("monthly-savings-grid"),
     cashflowMethod: $("cashflow-method"),
     macroTimeline: $("macro-timeline"),
@@ -402,7 +404,9 @@
     els.empty.classList.toggle("hidden", rows.length > 0);
     els.rows.innerHTML = rows
       .map(
-        (item) => `<tr class="expense-row" data-open-quotations="${escapeAttr(item.id)}" tabindex="0" aria-label="Gerenciar cotações de ${escapeAttr(item.description)}">
+        (
+          item,
+        ) => `<tr class="expense-row" data-open-quotations="${escapeAttr(item.id)}" tabindex="0" aria-label="Gerenciar cotações de ${escapeAttr(item.description)}">
       <td><span class="badge">${item.priority}</span></td><td>${escapeHtml(item.category)}</td>
       <td>${itemLabel(item.description, item.icon_key)}</td><td class="num">${formatMoney(item.value)}</td>
       <td>${priceCell(item)}</td><td class="actions"><button class="btn" data-edit-expense="${item.id}">Editar</button><button class="btn danger" data-delete-expense="${item.id}">Excluir</button></td>
@@ -529,6 +533,52 @@
       .join("");
     els.cashflowLineChart.innerHTML = `<svg viewBox="0 0 ${width} ${height}" role="img" aria-label="Fluxo de caixa líquido mensal projetado">${grid}<polygon points="${area}" class="cashflow-area"></polygon><polyline points="${polyline}" class="cashflow-line"></polyline>${points.map(({ x, y, item }, index) => `<g><circle cx="${x}" cy="${y}" r="5" class="cashflow-point"></circle><title>${cashflowMonthLabel(item.month)}: ${formatMoney(item.net_savings)}</title>${index % 2 === 0 || index === points.length - 1 ? `<text x="${x}" y="${height - 15}" text-anchor="middle" class="cashflow-axis-label">${cashflowMonthLabel(item.month)}</text>` : ""}</g>`).join("")}</svg>`;
 
+    const savingsPlan = payload.house_savings_plan || {};
+    const monthlyContribution =
+      Number(savingsPlan.combined_monthly) ||
+      Number(savingsPlan.eduardo_monthly || 0) +
+        Number(savingsPlan.leonardo_monthly || 0);
+    let plannedSavings = 0;
+    const savingsMonths = months
+      .filter(
+        (item) =>
+          (!savingsPlan.start || item.month >= savingsPlan.start) &&
+          (!savingsPlan.end || item.month <= savingsPlan.end),
+      )
+      .map((item) => ({
+        month: item.month,
+        contribution: monthlyContribution,
+        cumulative: (plannedSavings += monthlyContribution),
+      }));
+    const savingsMaximum = Math.max(
+      monthlyContribution,
+      ...savingsMonths.map((item) => item.cumulative),
+    );
+    const savingsPoints = savingsMonths.map((item, index) => ({
+      x:
+        margin.left +
+        (savingsMonths.length > 1
+          ? (index / (savingsMonths.length - 1)) * plotWidth
+          : 0),
+      y:
+        margin.top +
+        plotHeight -
+        (item.cumulative / savingsMaximum) * plotHeight,
+      item,
+    }));
+    const savingsPolyline = savingsPoints
+      .map(({ x, y }) => `${x},${y}`)
+      .join(" ");
+    const savingsArea = `${margin.left},${margin.top + plotHeight} ${savingsPolyline} ${margin.left + plotWidth},${margin.top + plotHeight}`;
+    const savingsGrid = [0, 0.25, 0.5, 0.75, 1]
+      .map((ratio) => {
+        const y = margin.top + plotHeight - ratio * plotHeight;
+        return `<line x1="${margin.left}" y1="${y}" x2="${margin.left + plotWidth}" y2="${y}" class="cashflow-grid-line"></line><text x="${margin.left - 9}" y="${y + 4}" text-anchor="end" class="cashflow-axis-label">${formatMoney(savingsMaximum * ratio).replace(",00", "")}</text>`;
+      })
+      .join("");
+    els.houseSavingsPlanSummary.textContent = `${formatMoney(savingsPlan.eduardo_monthly || 0)} Eduardo + ${formatMoney(savingsPlan.leonardo_monthly || 0)} Leo/mês · total ${formatMoney(plannedSavings)}`;
+    els.houseSavingsLineChart.innerHTML = `<svg viewBox="0 0 ${width} ${height}" role="img" aria-label="Reserva acumulada para despesas da casa">${savingsGrid}<polygon points="${savingsArea}" class="house-savings-area"></polygon><polyline points="${savingsPolyline}" class="house-savings-line"></polyline>${savingsPoints.map(({ x, y, item }, index) => `<g><circle cx="${x}" cy="${y}" r="5" class="house-savings-point"></circle><title>${cashflowMonthLabel(item.month)}: aporte ${formatMoney(item.contribution)} · acumulado ${formatMoney(item.cumulative)}</title>${index % 2 === 0 || index === savingsPoints.length - 1 ? `<text x="${x}" y="${height - 15}" text-anchor="middle" class="cashflow-axis-label">${cashflowMonthLabel(item.month)}</text>` : ""}</g>`).join("")}</svg>`;
+
     let cumulative = 0;
     els.monthlySavingsGrid.innerHTML = months
       .map((item) => {
@@ -649,10 +699,7 @@
         .filter((item) => dashboardExpenseGroup(item) === group.id)
         .reduce((sum, item) => sum + Number(item.value || 0), 0),
     }));
-    const maximum = Math.max(
-      1,
-      ...categories.map((item) => item.value),
-    );
+    const maximum = Math.max(1, ...categories.map((item) => item.value));
     els.categoryChart.innerHTML = categories
       .map(
         (item) =>
@@ -1260,9 +1307,7 @@
   }
 
   function currentQuotationExpense() {
-    return state.expenses.find(
-      (item) => item.id === state.quotationExpenseId,
-    );
+    return state.expenses.find((item) => item.id === state.quotationExpenseId);
   }
 
   function renderQuotationManager() {
@@ -1300,8 +1345,7 @@
     els.quotationId.value = quotation?.id || "";
     els.quotationVendor.value = quotation?.vendor || "";
     els.quotationUnitPrice.value = quotation?.unit_price ?? "";
-    els.quotationQuantity.value =
-      quotation?.quantity ?? expense?.quantity ?? 1;
+    els.quotationQuantity.value = quotation?.quantity ?? expense?.quantity ?? 1;
     els.quotationUnit.value = quotation?.unit || expense?.unit || "";
     els.quotationShipping.value = quotation?.shipping_cost ?? 0;
     els.quotationTotal.value = quotation?.total_price ?? "";
@@ -1366,7 +1410,11 @@
   async function selectQuotation(quotationId) {
     const result = await request(
       `/api/expenses/${encodeURIComponent(state.quotationExpenseId)}/quotations/${encodeURIComponent(quotationId)}/select`,
-      { method: "POST", headers: { "Content-Type": "application/json" }, body: "{}" },
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: "{}",
+      },
     );
     applyExpenseState(result.state);
     renderQuotationManager();
@@ -1887,8 +1935,8 @@
     els.assetPalette.innerHTML =
       [...groups.entries()]
         .sort(([left], [right]) => left.localeCompare(right, "pt-BR"))
-      .map(
-        ([group, assets]) => `<section class="asset-palette-group">
+        .map(
+          ([group, assets]) => `<section class="asset-palette-group">
           <strong>${escapeHtml(group)}</strong>
           <div>${assets
             .sort((left, right) =>
@@ -1907,8 +1955,8 @@
             )
             .join("")}</div>
         </section>`,
-      )
-      .join("") ||
+        )
+        .join("") ||
       '<p class="asset-palette-empty">Nenhum objeto encontrado.</p>';
     els.assetPalette.querySelectorAll("img").forEach((image) => {
       image.addEventListener("error", () => {
@@ -2250,8 +2298,7 @@
       body: JSON.stringify({
         pack_text: els.packInput.value,
         pack_id: "price",
-        correction_instructions:
-          els.bulkCorrectionInstructions.value.trim(),
+        correction_instructions: els.bulkCorrectionInstructions.value.trim(),
       }),
     });
     state.importRows = result.rows || [];
@@ -2603,10 +2650,7 @@
         Number.isFinite(quantity) &&
         Number.isFinite(shipping)
       )
-        els.quotationTotal.value = (
-          unitPrice * quantity +
-          shipping
-        ).toFixed(2);
+        els.quotationTotal.value = (unitPrice * quantity + shipping).toFixed(2);
     }),
   );
   els.quotationList.addEventListener("click", (event) => {

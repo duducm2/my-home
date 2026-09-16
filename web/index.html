@@ -6,7 +6,7 @@
     <meta name="color-scheme" content="dark" />
     <title>my-home</title>
     <link rel="stylesheet" href="/styles.css?v=20260916-8" />
-    <link rel="stylesheet" href="/tasks.css?v=20260916-5" />
+    <link rel="stylesheet" href="/tasks.css?v=20260916-7" />
     <script type="importmap">
       { "imports": { "three": "/vendor/three/three.module.js" } }
     </script>
@@ -240,6 +240,18 @@
                 <span>Valor líquido disponível para guardar</span>
               </div>
               <div id="cashflow-line-chart" class="cashflow-line-chart"></div>
+            </article>
+            <article class="projection-panel">
+              <div class="projection-title">
+                <h3>Reserva para a casa</h3>
+                <span id="house-savings-plan-summary"
+                  >Eduardo + Leo · R$ 800/mês</span
+                >
+              </div>
+              <div
+                id="house-savings-line-chart"
+                class="cashflow-line-chart house-savings-line-chart"
+              ></div>
             </article>
           </div>
           <details class="monthly-savings-details">
@@ -712,7 +724,9 @@
               />
             </label>
             <div id="asset-palette" class="asset-palette">
-              <span class="asset-palette-loading">Carregando acervo local…</span>
+              <span class="asset-palette-loading"
+                >Carregando acervo local…</span
+              >
             </div>
             <p id="editor-status" class="editor-status">
               Ative um objeto para começar.
@@ -900,7 +914,9 @@
             <h2 id="quotation-expense-title">Cotações</h2>
             <p id="quotation-expense-meta" class="section-sub"></p>
           </div>
-          <button id="btn-close-quotations" type="button" class="btn">Fechar</button>
+          <button id="btn-close-quotations" type="button" class="btn">
+            Fechar
+          </button>
         </header>
         <div id="quotation-list" class="quotation-list"></div>
         <p id="quotation-empty" class="empty">Nenhuma cotação registrada.</p>
@@ -909,46 +925,124 @@
           <input id="quotation-id" type="hidden" />
           <h3 id="quotation-form-title">Nova cotação</h3>
           <div class="form-grid">
-            <label>Fornecedor <input id="quotation-vendor" required maxlength="160" /></label>
-            <label>Preço unitário <input id="quotation-unit-price" type="number" min="0" step="0.01" required /></label>
-            <label>Quantidade <input id="quotation-quantity" type="number" min="0" step="any" /></label>
+            <label
+              >Fornecedor <input id="quotation-vendor" required maxlength="160"
+            /></label>
+            <label
+              >Preço unitário
+              <input
+                id="quotation-unit-price"
+                type="number"
+                min="0"
+                step="0.01"
+                required
+            /></label>
+            <label
+              >Quantidade
+              <input id="quotation-quantity" type="number" min="0" step="any"
+            /></label>
             <label>Unidade <input id="quotation-unit" maxlength="40" /></label>
-            <label>Frete <input id="quotation-shipping" type="number" min="0" step="0.01" value="0" /></label>
-            <label>Total efetivo <input id="quotation-total" type="number" min="0" step="0.01" /></label>
-            <label>Data verificada <input id="quotation-checked-at" type="date" /></label>
+            <label
+              >Frete
+              <input
+                id="quotation-shipping"
+                type="number"
+                min="0"
+                step="0.01"
+                value="0"
+            /></label>
+            <label
+              >Total efetivo
+              <input id="quotation-total" type="number" min="0" step="0.01"
+            /></label>
+            <label
+              >Data verificada <input id="quotation-checked-at" type="date"
+            /></label>
             <label>URL <input id="quotation-url" type="url" /></label>
           </div>
-          <label>Notas <textarea id="quotation-notes" rows="2"></textarea></label>
+          <label
+            >Notas <textarea id="quotation-notes" rows="2"></textarea>
+          </label>
           <p id="quotation-form-error" class="error hidden"></p>
           <div class="dialog-actions">
-            <button id="btn-cancel-quotation" type="button" class="btn">Cancelar</button>
+            <button id="btn-cancel-quotation" type="button" class="btn">
+              Cancelar
+            </button>
             <button type="submit" class="btn primary">Salvar cotação</button>
           </div>
         </form>
 
         <details id="quotation-ai-panel" class="quotation-ai">
           <summary>Pesquisar com IA</summary>
-          <p class="section-sub">Gere o prompt, pesquise em sua IA e cole aqui a resposta completa.</p>
+          <p class="section-sub">
+            Gere o prompt, pesquise em sua IA e cole aqui a resposta completa.
+          </p>
           <div class="panel-row">
-            <button id="btn-quotation-prompt" type="button" class="btn primary">Gerar prompt</button>
-            <button id="btn-copy-quotation-prompt" type="button" class="btn">Copiar prompt</button>
+            <button id="btn-quotation-prompt" type="button" class="btn primary">
+              Gerar prompt
+            </button>
+            <button id="btn-copy-quotation-prompt" type="button" class="btn">
+              Copiar prompt
+            </button>
           </div>
-          <textarea id="quotation-prompt-output" class="code-box" rows="7" readonly></textarea>
-          <label>Resposta da IA <textarea id="quotation-pack-input" class="code-box" rows="7" placeholder="Cole o pack aqui..."></textarea></label>
-          <label>Instruções para corrigir <textarea id="quotation-correction-instructions" rows="2" placeholder="Opcional: explique à IA o que deve ajustar."></textarea></label>
+          <textarea
+            id="quotation-prompt-output"
+            class="code-box"
+            rows="7"
+            readonly
+          ></textarea>
+          <label
+            >Resposta da IA
+            <textarea
+              id="quotation-pack-input"
+              class="code-box"
+              rows="7"
+              placeholder="Cole o pack aqui..."
+            ></textarea>
+          </label>
+          <label
+            >Instruções para corrigir
+            <textarea
+              id="quotation-correction-instructions"
+              rows="2"
+              placeholder="Opcional: explique à IA o que deve ajustar."
+            ></textarea>
+          </label>
           <div class="panel-row">
-            <input id="quotation-pack-file" type="file" accept=".txt,text/plain" />
-            <button id="btn-preview-quotation-import" type="button" class="btn">Validar</button>
-            <button id="btn-commit-quotation-import" type="button" class="btn primary" disabled>Importar cotações</button>
+            <input
+              id="quotation-pack-file"
+              type="file"
+              accept=".txt,text/plain"
+            />
+            <button id="btn-preview-quotation-import" type="button" class="btn">
+              Validar
+            </button>
+            <button
+              id="btn-commit-quotation-import"
+              type="button"
+              class="btn primary"
+              disabled
+            >
+              Importar cotações
+            </button>
           </div>
           <p id="quotation-import-status" class="push-status hidden"></p>
-          <textarea id="quotation-fix-output" class="code-box hidden" rows="8" readonly></textarea>
-          <button id="btn-copy-quotation-fix" type="button" class="btn hidden">Copiar pedido de correção</button>
+          <textarea
+            id="quotation-fix-output"
+            class="code-box hidden"
+            rows="8"
+            readonly
+          ></textarea>
+          <button id="btn-copy-quotation-fix" type="button" class="btn hidden">
+            Copiar pedido de correção
+          </button>
         </details>
 
         <footer class="quotation-footer">
           <span id="quotation-limit-label">0 de 5 cotações</span>
-          <button id="btn-new-quotation" type="button" class="btn primary">Adicionar cotação</button>
+          <button id="btn-new-quotation" type="button" class="btn primary">
+            Adicionar cotação
+          </button>
         </footer>
       </div>
     </dialog>
@@ -1142,6 +1236,6 @@
     </dialog>
 
     <datalist id="category-suggestions"></datalist>
-    <script src="/app.js?v=20260916-10"></script>
+    <script src="/app.js?v=20260916-11"></script>
   </body>
 </html>

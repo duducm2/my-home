@@ -920,7 +920,7 @@ select[multiple] { min-height: 110px; }
 
 .projection-grid {
   display: grid;
-  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
   gap: 9px;
 }
 
@@ -995,6 +995,24 @@ select[multiple] { min-height: 110px; }
 .cashflow-point {
   fill: #171719;
   stroke: var(--gold);
+  stroke-width: 4;
+}
+
+.house-savings-area {
+  fill: #2ecc7118;
+}
+
+.house-savings-line {
+  fill: none;
+  stroke: #2ecc71;
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.house-savings-point {
+  fill: #171719;
+  stroke: #2ecc71;
   stroke-width: 4;
 }
 
@@ -1119,5 +1137,71 @@ select[multiple] { min-height: 110px; }
   .projection-title span {
     display: block;
     margin-top: 3px;
+  }
+}
+
+/* Dashboard categories: edge-to-edge, balanced bento layout. */
+#view-dashboard {
+  width: calc(100% + 24px);
+  margin-inline: -12px;
+}
+
+#view-dashboard .cockpit-grid {
+  width: 100%;
+  max-width: none;
+}
+
+.dashboard-category-sync-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.category-budget-panel,
+.dashboard-category-section {
+  box-sizing: border-box;
+  height: 100%;
+  min-width: 0;
+  margin: 0;
+}
+
+.dashboard-category-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.dashboard-expense-categories {
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  align-items: stretch;
+  flex: 1;
+}
+
+.dashboard-expense-category {
+  display: grid;
+  align-content: start;
+  min-width: 0;
+}
+
+.dashboard-expense-icons {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 34px);
+  align-content: start;
+  justify-content: start;
+  gap: 5px;
+  min-height: 34px;
+  padding: 0;
+  overflow: visible;
+}
+
+@media (max-width: 700px) {
+  #view-dashboard {
+    width: calc(100% + 16px);
+    margin-inline: -8px;
+  }
+
+  .dashboard-category-sync-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard-expense-categories {
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
   }
 }

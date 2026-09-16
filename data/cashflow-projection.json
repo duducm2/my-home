@@ -10,6 +10,15 @@
     "leonardo_monthly": 4500.0,
     "combined_monthly": 11500.0
   },
+  "house_savings_plan": {
+    "start": "2026-09",
+    "end": "2027-12",
+    "eduardo_monthly": 400.0,
+    "leonardo_monthly": 400.0,
+    "combined_monthly": 800.0,
+    "installments": 16,
+    "projected_total": 12800.0
+  },
   "categories": [
     { "key": "rent_bills", "label": "Aluguel + contas" },
     { "key": "leonardo_card", "label": "Cartão do Leonardo" },

@@ -268,6 +268,15 @@ class MigrationIntegrityTests(unittest.TestCase):
             148820.0,
             sum(month[key] for month in months for key in category_keys),
         )
+        savings_plan = projection["house_savings_plan"]
+        self.assertEqual(400.0, savings_plan["eduardo_monthly"])
+        self.assertEqual(400.0, savings_plan["leonardo_monthly"])
+        self.assertEqual(800.0, savings_plan["combined_monthly"])
+        self.assertEqual(12800.0, savings_plan["projected_total"])
+        self.assertEqual(
+            savings_plan["projected_total"],
+            savings_plan["installments"] * savings_plan["combined_monthly"],
+        )
 
     def test_repository_data_uses_tasks_without_phase_fields(self) -> None:
         document = json.loads(
