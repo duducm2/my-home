@@ -369,7 +369,7 @@
     ]
   },
   "notes": "",
-  "updated_at": "2026-09-15 23:42:00",
+  "updated_at": "2026-09-16 14:44:12",
   "model_3d": {
     "version": 2,
     "model_type": "schematic_architectural_dollhouse",
@@ -871,10 +871,13 @@
       "Janelas sem cotas próprias seguem proporções visíveis da planta e são marcadas como estimativas; nenhuma dimensão estimada é tratada como medida oficial.",
       "Quintais, portão e recuos sem cotas foram posicionados de modo aproximado; a Lavanderia no Corredor também usa footprint e equipamentos esquemáticos para ficar visível no modelo."
     ],
+    "layout_overrides": {},
+    "placed_assets": [],
     "source": {
       "blueprint": "data/blueprint.jpg",
       "normalized_at": "2026-09-15",
       "accuracy": "blueprint_aligned_with_measured_rooms_and_marked_proportional_openings"
-    }
+    },
+    "editor_updated_at": "2026-09-16 14:44:12"
   }
 }

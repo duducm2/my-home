@@ -116,6 +116,17 @@
     house3dStatus: $("house-3d-status"),
     house3dAssumptions: $("house-3d-assumptions"),
     btnModel3dHome: $("btn-model3d-home"),
+    btnToggleEditor: $("btn-toggle-editor"),
+    btnCloseEditor: $("btn-close-editor"),
+    sceneEditorPanel: $("scene-editor-panel"),
+    editorSelection: $("editor-selection"),
+    editorStatus: $("editor-status"),
+    editorSnap: $("editor-snap"),
+    assetPalette: $("asset-palette"),
+    btnDuplicateObject: $("btn-duplicate-object"),
+    btnResetObject: $("btn-reset-object"),
+    btnDeleteObject: $("btn-delete-object"),
+    btnSaveLayout: $("btn-save-layout"),
     projectOverview: $("project-overview"),
     showArchivedContracts: $("show-archived-contracts"),
     btnNewProvider: $("btn-new-provider"),
@@ -1261,6 +1272,7 @@
   }
 
   let house3dModule = null;
+  let sceneEditorOpen = false;
 
   async function renderHouse3D() {
     const model = state.house?.model_3d;
@@ -1270,7 +1282,7 @@
     if (!model)
       return setStatus(els.house3dStatus, "warn", "Geometria 3D indisponível.");
     try {
-      house3dModule ||= await import("/house-3d.js?v=20260916-2");
+      house3dModule ||= await import("/house-3d.js?v=20260916-3");
       house3dModule.mountHouse3D(model);
       requestAnimationFrame(() => house3dModule.resizeHouse3D());
     } catch (error) {
@@ -1279,6 +1291,50 @@
         "err",
         `Não foi possível abrir o modelo 3D: ${error.message}`,
       );
+    }
+  }
+
+  function setSceneEditorOpen(open) {
+    sceneEditorOpen = Boolean(open);
+    els.sceneEditorPanel.classList.toggle("hidden", !sceneEditorOpen);
+    els.btnToggleEditor.classList.toggle("active", sceneEditorOpen);
+    els.btnToggleEditor.setAttribute("aria-pressed", String(sceneEditorOpen));
+    house3dModule?.setSceneEditorEnabled(sceneEditorOpen);
+    if (sceneEditorOpen) {
+      house3dModule?.setSceneSnap(els.editorSnap.value);
+      els.editorStatus.textContent = "Clique em um elemento ou escolha um objeto.";
+    }
+  }
+
+  function updateEditorState(event) {
+    const detail = event.detail || {};
+    els.editorSelection.textContent = detail.selected?.label || "Nenhum objeto selecionado";
+    els.editorStatus.textContent = detail.message || "";
+    const hasSelection = Boolean(detail.selected);
+    els.btnDuplicateObject.disabled = !detail.selected?.isPlacedAsset;
+    els.btnDeleteObject.disabled = !detail.selected?.isPlacedAsset;
+    els.btnResetObject.disabled = !hasSelection;
+    els.assetPalette.classList.toggle("placing", Boolean(detail.placing));
+  }
+
+  async function saveSceneLayout() {
+    if (!house3dModule) return;
+    els.btnSaveLayout.disabled = true;
+    els.editorStatus.textContent = "Salvando layout…";
+    try {
+      const layout = house3dModule.getSceneLayoutState();
+      const result = await request("/api/house/model3d-layout", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(layout),
+      });
+      state.house.model_3d.layout_overrides = result.layout_overrides;
+      state.house.model_3d.placed_assets = result.placed_assets;
+      els.editorStatus.textContent = "Layout salvo localmente. Use “Salvar tudo” para enviar a cópia segura.";
+    } catch (error) {
+      els.editorStatus.textContent = `Erro ao salvar: ${error.message}`;
+    } finally {
+      els.btnSaveLayout.disabled = false;
     }
   }
 
@@ -1421,6 +1477,7 @@
         els.btnModel3dHome.focus({ preventScroll: true }),
       );
     } else {
+      if (sceneEditorOpen) setSceneEditorOpen(false);
       window.scrollTo(0, 0);
       if (wasModel3D)
         requestAnimationFrame(() =>
@@ -1453,6 +1510,20 @@
       showView("dashboard");
       return;
     }
+    const typing = ["INPUT", "TEXTAREA", "SELECT"].includes(document.activeElement?.tagName);
+    if (sceneEditorOpen && !typing && !event.altKey && !event.ctrlKey && !event.metaKey) {
+      const mode = { t: "translate", r: "rotate", s: "scale" }[event.key.toLowerCase()];
+      if (mode) {
+        event.preventDefault();
+        document.querySelector(`[data-editor-mode="${mode}"]`)?.click();
+        return;
+      }
+      if (event.key === "Delete") {
+        event.preventDefault();
+        els.btnDeleteObject.click();
+        return;
+      }
+    }
     if (!event.altKey || event.ctrlKey || event.metaKey || event.shiftKey)
       return;
     const view = {
@@ -1469,6 +1540,35 @@
     }
   });
   els.btnModel3dHome.addEventListener("click", () => showView("dashboard"));
+  els.btnToggleEditor.addEventListener("click", () => setSceneEditorOpen(!sceneEditorOpen));
+  els.btnCloseEditor.addEventListener("click", () => setSceneEditorOpen(false));
+  document.getElementById("house-3d-canvas").addEventListener("scene-editor-state", updateEditorState);
+  document.querySelectorAll("[data-editor-mode]").forEach((button) => {
+    button.addEventListener("click", () => {
+      document.querySelectorAll("[data-editor-mode]").forEach((item) => item.classList.toggle("active", item === button));
+      house3dModule?.setSceneTransformMode(button.dataset.editorMode);
+    });
+  });
+  els.editorSnap.addEventListener("change", () => house3dModule?.setSceneSnap(els.editorSnap.value));
+  els.assetPalette.addEventListener("click", (event) => {
+    const button = event.target.closest("[data-asset-type]");
+    if (button) house3dModule?.beginSceneAssetPlacement(button.dataset.assetType);
+  });
+  els.assetPalette.addEventListener("dragstart", (event) => {
+    const button = event.target.closest("[data-asset-type]");
+    if (!button) return;
+    event.dataTransfer.setData("application/x-my-home-asset", button.dataset.assetType);
+    event.dataTransfer.effectAllowed = "copy";
+    house3dModule?.beginSceneAssetPlacement(button.dataset.assetType);
+  });
+  els.btnDuplicateObject.addEventListener("click", () => {
+    if (!house3dModule?.duplicateSceneSelection()) els.editorStatus.textContent = "Somente objetos adicionados podem ser duplicados.";
+  });
+  els.btnDeleteObject.addEventListener("click", () => {
+    if (!house3dModule?.deleteSceneSelection()) els.editorStatus.textContent = "A arquitetura original não pode ser excluída.";
+  });
+  els.btnResetObject.addEventListener("click", () => house3dModule?.resetSceneSelection());
+  els.btnSaveLayout.addEventListener("click", saveSceneLayout);
 
   els.priority.addEventListener("change", renderExpenseTable);
   els.category.addEventListener("change", renderExpenseTable);

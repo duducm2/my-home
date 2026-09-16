@@ -159,6 +159,7 @@ class ExpenseHandler(BaseHTTPRequestHandler):
                 "three.module.js",
                 "three.core.js",
                 "OrbitControls.js",
+                "TransformControls.js",
                 "LICENSE.txt",
                 "VERSION.txt",
             }
@@ -271,6 +272,8 @@ class ExpenseHandler(BaseHTTPRequestHandler):
             elif path == "/api/house":
                 house_payload = payload.get("house") if isinstance(payload.get("house"), dict) else payload
                 self._json(200, get_house(self.data_dir).save(house_payload))
+            elif path == "/api/house/model3d-layout":
+                self._json(200, get_house(self.data_dir).save_model3d_layout(payload))
             elif path == "/api/prompts/price-discovery":
                 ids = payload.get("ids") if isinstance(payload.get("ids"), list) else None
                 self._json(200, build_price_discovery_prompt(store, ids))

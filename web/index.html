@@ -439,11 +439,56 @@
               Nomes
             </button>
           </div>
+          <button type="button" id="btn-toggle-editor" class="btn editor-toggle">
+            Editar cena
+          </button>
           <kbd class="model3d-escape-hint">Esc · voltar ao início</kbd>
         </header>
         <div class="house-3d-stage">
           <div id="house-3d-canvas" class="house-3d-canvas"></div>
           <p id="house-3d-status" class="house-3d-status">Carregando...</p>
+          <aside id="scene-editor-panel" class="scene-editor-panel hidden" aria-label="Editor da cena 3D">
+            <div class="editor-panel-head">
+              <div><span>Editor</span><strong id="editor-selection">Nenhum objeto selecionado</strong></div>
+              <button type="button" id="btn-close-editor" class="btn">Fechar</button>
+            </div>
+            <div class="editor-mode-row" role="group" aria-label="Modo de transformação">
+              <button type="button" class="btn active" data-editor-mode="translate">Mover</button>
+              <button type="button" class="btn" data-editor-mode="rotate">Girar</button>
+              <button type="button" class="btn" data-editor-mode="scale">Escalar</button>
+            </div>
+            <label class="editor-snap-label">Encaixe
+              <select id="editor-snap">
+                <option value="0">Livre</option>
+                <option value="0.1">10 cm</option>
+                <option value="0.25" selected>25 cm</option>
+                <option value="0.5">50 cm</option>
+                <option value="1">1 m</option>
+              </select>
+            </label>
+            <div class="editor-actions">
+              <button type="button" class="btn" id="btn-duplicate-object">Duplicar</button>
+              <button type="button" class="btn" id="btn-reset-object">Restaurar</button>
+              <button type="button" class="btn danger" id="btn-delete-object">Excluir</button>
+            </div>
+            <div class="asset-palette-head"><strong>Adicionar objeto</strong><small>Arraste ou clique e depois escolha o local.</small></div>
+            <div id="asset-palette" class="asset-palette">
+              <button type="button" draggable="true" data-asset-type="sofa">Sofá</button>
+              <button type="button" draggable="true" data-asset-type="bed">Cama</button>
+              <button type="button" draggable="true" data-asset-type="table">Mesa</button>
+              <button type="button" draggable="true" data-asset-type="chair">Cadeira</button>
+              <button type="button" draggable="true" data-asset-type="wardrobe">Guarda-roupa</button>
+              <button type="button" draggable="true" data-asset-type="refrigerator">Geladeira</button>
+              <button type="button" draggable="true" data-asset-type="stove">Fogão</button>
+              <button type="button" draggable="true" data-asset-type="sink">Pia</button>
+              <button type="button" draggable="true" data-asset-type="washer">Lavadora</button>
+              <button type="button" draggable="true" data-asset-type="cabinet">Armário</button>
+              <button type="button" draggable="true" data-asset-type="plant">Planta</button>
+              <button type="button" draggable="true" data-asset-type="box">Caixa</button>
+            </div>
+            <p id="editor-status" class="editor-status">Ative um objeto para começar.</p>
+            <button type="button" id="btn-save-layout" class="btn primary editor-save">Salvar layout</button>
+          </aside>
         </div>
         <footer class="model3d-footer">
           <div id="house-3d-room-detail" class="house-3d-room-detail"></div>

@@ -1,8 +1,24 @@
 import * as THREE from "three";
 import { OrbitControls } from "/vendor/three/OrbitControls.js";
+import { TransformControls } from "/vendor/three/TransformControls.js";
 
 let activeViewer = null;
 let activeFingerprint = "";
+
+const ASSET_CATALOG = {
+  sofa: { label: "Sofá", width: 2.0, depth: 0.85, height: 0.78, color: "#8f6f61" },
+  bed: { label: "Cama", width: 1.4, depth: 1.9, height: 0.48, color: "#a7b8cc" },
+  table: { label: "Mesa", width: 1.4, depth: 0.8, height: 0.76, color: "#8b6542" },
+  chair: { label: "Cadeira", width: 0.48, depth: 0.48, height: 0.9, color: "#9a7655" },
+  wardrobe: { label: "Guarda-roupa", width: 1.6, depth: 0.58, height: 2.1, color: "#b7a58c" },
+  refrigerator: { label: "Geladeira", width: 0.72, depth: 0.7, height: 1.85, color: "#d7dde0" },
+  stove: { label: "Fogão", width: 0.62, depth: 0.64, height: 0.9, color: "#646b70" },
+  sink: { label: "Pia", width: 1.2, depth: 0.6, height: 0.9, color: "#98a9ae" },
+  washer: { label: "Lavadora", width: 0.68, depth: 0.72, height: 0.88, color: "#d9e0e3" },
+  cabinet: { label: "Armário", width: 1.2, depth: 0.48, height: 1.9, color: "#a78e6e" },
+  plant: { label: "Planta", width: 0.5, depth: 0.5, height: 1.1, color: "#4f8c58" },
+  box: { label: "Caixa", width: 0.6, depth: 0.6, height: 0.6, color: "#a87945" },
+};
 
 const byId = (id) => document.getElementById(id);
 
@@ -52,6 +68,14 @@ class HouseViewer {
     this.roomMeshes = [];
     this.wallMeshes = [];
     this.labelSprites = [];
+    this.editorTargets = [];
+    this.targetParts = new Map();
+    this.placedAssetGroups = [];
+    this.editorEnabled = false;
+    this.selectedTarget = null;
+    this.placementType = "";
+    this.layoutOverrides = structuredClone(model.layout_overrides || {});
+    this.placedAssets = structuredClone(model.placed_assets || []);
     this.renderPending = false;
     this.pointerStart = null;
     this.selectedFloor = null;
@@ -107,6 +131,7 @@ class HouseViewer {
 
     this.buildLighting();
     this.buildModel();
+    this.buildEditor();
     this.buildLegend();
     this.bindInteractions();
     this.resizeObserver = new ResizeObserver(() => this.resize());
@@ -144,6 +169,27 @@ class HouseViewer {
 
   worldZ(value) {
     return value - Number(this.model.lot.depth_m) / 2;
+  }
+
+  lotX(value) {
+    return value + Number(this.model.lot.width_m) / 2;
+  }
+
+  lotZ(value) {
+    return value + Number(this.model.lot.depth_m) / 2;
+  }
+
+  registerTargetPart(key, label, kind, object, extra = {}) {
+    if (!object) return;
+    const entry = this.targetParts.get(key) || {
+      key,
+      label,
+      kind,
+      objects: [],
+      ...extra,
+    };
+    entry.objects.push(object);
+    this.targetParts.set(key, entry);
   }
 
   addBox({
@@ -214,6 +260,7 @@ class HouseViewer {
       });
       slab.userData.zone = zone;
       this.sceneRoot.add(slab);
+      this.registerTargetPart(`zone:${zone.id}`, zone.label, "zone", slab, { source: zone });
 
       for (const fixture of zone.fixtures || []) {
         this.addOutdoorFixture(zone, fixture);
@@ -240,6 +287,7 @@ class HouseViewer {
         label.renderOrder = 11;
         this.labelSprites.push(label);
         this.sceneRoot.add(label);
+        this.registerTargetPart(`zone:${zone.id}`, zone.label, "zone", label, { source: zone });
       }
     }
 
@@ -261,6 +309,7 @@ class HouseViewer {
       floor.material.emissiveIntensity = 0;
       this.roomMeshes.push(floor);
       this.sceneRoot.add(floor);
+      this.registerTargetPart(`room:${room.id}`, room.label, "room", floor, { source: room });
 
       const label = new THREE.Sprite(
         new THREE.SpriteMaterial({
@@ -282,6 +331,7 @@ class HouseViewer {
       label.renderOrder = 10;
       this.labelSprites.push(label);
       this.sceneRoot.add(label);
+      this.registerTargetPart(`room:${room.id}`, room.label, "room", label, { source: room });
     }
 
     for (const wall of this.model.walls || []) this.buildWall(wall);
@@ -299,6 +349,7 @@ class HouseViewer {
     });
     this.roof.visible = this.roofVisible;
     this.sceneRoot.add(this.roof);
+    this.registerTargetPart("roof:main", "Cobertura", "roof", this.roof, { source: building.roof || {} });
 
     const buildingCenterX = this.worldX(
       building.origin_x_m + building.width_m / 2,
@@ -307,6 +358,406 @@ class HouseViewer {
       building.origin_z_m + building.depth_m / 2,
     );
     this.target = new THREE.Vector3(buildingCenterX, 0.35, buildingCenterZ);
+  }
+
+  makeTargetGroup(entry) {
+    this.sceneRoot.updateMatrixWorld(true);
+    const bounds = new THREE.Box3();
+    for (const object of entry.objects) bounds.expandByObject(object);
+    const center = bounds.isEmpty() ? new THREE.Vector3() : bounds.getCenter(new THREE.Vector3());
+    const group = new THREE.Group();
+    group.name = `EditorTarget:${entry.key}`;
+    group.position.copy(center);
+    this.sceneRoot.add(group);
+    for (const object of entry.objects) {
+      group.attach(object);
+      object.traverse((child) => {
+        child.userData.editorTarget = group;
+      });
+    }
+    group.userData.editor = {
+      key: entry.key,
+      label: entry.label,
+      kind: entry.kind,
+      source: entry.source || {},
+      zone: entry.zone || null,
+      basePosition: group.position.clone(),
+      baseRotationY: group.rotation.y,
+      baseScale: group.scale.clone(),
+      isPlacedAsset: false,
+    };
+    const override = this.layoutOverrides[entry.key];
+    if (override) this.applyOverride(group, override);
+    this.editorTargets.push(group);
+    return group;
+  }
+
+  applyOverride(group, override) {
+    const editor = group.userData.editor;
+    const translation = override.translation_m || {};
+    const scale = override.scale || {};
+    group.position.copy(editor.basePosition).add(new THREE.Vector3(
+      Number(translation.x) || 0,
+      Number(translation.y) || 0,
+      Number(translation.z) || 0,
+    ));
+    group.rotation.y = editor.baseRotationY + THREE.MathUtils.degToRad(Number(override.rotation_y_deg) || 0);
+    group.scale.set(
+      Number(scale.x) || 1,
+      Number(scale.y) || 1,
+      Number(scale.z) || 1,
+    );
+  }
+
+  createAssetGroup(asset, ghost = false) {
+    const group = new THREE.Group();
+    const width = Number(asset.width_m) || 0.6;
+    const height = Number(asset.height_m) || 0.6;
+    const depth = Number(asset.depth_m) || 0.6;
+    const body = this.addBox({
+      width,
+      height,
+      depth,
+      x: 0,
+      y: 0,
+      z: 0,
+      color: asset.color || "#a88d72",
+      opacity: ghost ? 0.42 : 1,
+      roughness: 0.72,
+    });
+    body.castShadow = !ghost;
+    group.add(body);
+    if (!ghost) {
+      const edge = new THREE.LineSegments(
+        new THREE.EdgesGeometry(body.geometry),
+        new THREE.LineBasicMaterial({ color: "#f1c40f", transparent: true, opacity: 0.38 }),
+      );
+      group.add(edge);
+    }
+    group.position.set(
+      this.worldX(Number(asset.x_m) + width / 2),
+      Number(asset.y_m || 0) + height / 2,
+      this.worldZ(Number(asset.z_m) + depth / 2),
+    );
+    group.rotation.y = THREE.MathUtils.degToRad(Number(asset.rotation_y_deg) || 0);
+    group.userData.editor = {
+      key: `asset:${asset.id}`,
+      label: asset.label || asset.asset_type,
+      kind: "asset",
+      asset,
+      basePosition: group.position.clone(),
+      baseRotationY: group.rotation.y,
+      baseScale: group.scale.clone(),
+      isPlacedAsset: true,
+    };
+    group.traverse((child) => {
+      child.userData.editorTarget = group;
+    });
+    return group;
+  }
+
+  buildEditor() {
+    for (const entry of this.targetParts.values()) this.makeTargetGroup(entry);
+    for (const asset of this.placedAssets) {
+      const group = this.createAssetGroup(asset);
+      this.sceneRoot.add(group);
+      this.editorTargets.push(group);
+      this.placedAssetGroups.push(group);
+    }
+
+    this.selectionBox = new THREE.BoxHelper(new THREE.Group(), "#f1c40f");
+    this.selectionBox.visible = false;
+    this.selectionBox.material.depthTest = false;
+    this.selectionBox.material.transparent = true;
+    this.selectionBox.material.opacity = 0.9;
+    this.selectionBox.renderOrder = 998;
+    this.scene.add(this.selectionBox);
+
+    this.transform = new TransformControls(this.camera, this.renderer.domElement);
+    this.transform.visible = false;
+    this.transform.addEventListener("change", () => {
+      this.selectionBox.update();
+      this.transform.update();
+      this.requestRender();
+    });
+    this.transform.addEventListener("dragging-changed", (event) => {
+      this.controls.enabled = !event.value;
+      this.notifyEditor(event.value ? "Transformando objeto…" : "Objeto alterado.");
+    });
+    this.transform.addEventListener("objectChange", () => {
+      this.constrainSelected();
+      this.selectionBox.update();
+      this.notifyEditor("Alterações pendentes.");
+    });
+    this.scene.add(this.transform);
+  }
+
+  setEditorEnabled(enabled) {
+    this.editorEnabled = Boolean(enabled);
+    this.host.classList.toggle("editing", this.editorEnabled);
+    if (!this.editorEnabled) {
+      this.cancelPlacement();
+      this.selectTarget(null);
+    }
+    this.notifyEditor(this.editorEnabled ? "Clique em um elemento ou adicione um objeto." : "Editor desativado.");
+    this.requestRender();
+  }
+
+  setTransformMode(mode) {
+    this.transform.setMode(mode);
+    this.notifyEditor(`Modo ${mode === "translate" ? "mover" : mode === "rotate" ? "girar" : "escalar"}.`);
+  }
+
+  setSnap(value) {
+    const snap = Math.max(0, Number(value) || 0);
+    this.transform.setTranslationSnap(snap);
+    this.transform.setScaleSnap(snap);
+    this.transform.setRotationSnap(snap ? THREE.MathUtils.degToRad(15) : 0);
+    this.notifyEditor(snap ? `Encaixe de ${snap} m ativo.` : "Encaixe livre.");
+  }
+
+  selectTarget(target) {
+    this.selectedTarget = target || null;
+    if (target && this.editorEnabled) {
+      this.selectionBox.setFromObject(target);
+      this.selectionBox.visible = true;
+      this.transform.attach(target);
+    } else {
+      this.selectionBox.visible = false;
+      this.transform.detach();
+    }
+    this.notifyEditor(target ? `${target.userData.editor.label} selecionado.` : "Nenhum objeto selecionado.");
+    this.requestRender();
+  }
+
+  notifyEditor(message) {
+    const editor = this.selectedTarget?.userData.editor;
+    this.host.dispatchEvent(new CustomEvent("scene-editor-state", {
+      detail: {
+        message,
+        enabled: this.editorEnabled,
+        selected: editor ? {
+          key: editor.key,
+          label: editor.label,
+          kind: editor.kind,
+          isPlacedAsset: editor.isPlacedAsset,
+        } : null,
+        placing: this.placementType,
+      },
+    }));
+  }
+
+  constrainSelected() {
+    if (!this.selectedTarget) return;
+    const halfWidth = Number(this.model.lot.width_m) / 2;
+    const halfDepth = Number(this.model.lot.depth_m) / 2;
+    this.selectedTarget.position.x = THREE.MathUtils.clamp(this.selectedTarget.position.x, -halfWidth, halfWidth);
+    this.selectedTarget.position.z = THREE.MathUtils.clamp(this.selectedTarget.position.z, -halfDepth, halfDepth);
+    this.selectedTarget.position.y = THREE.MathUtils.clamp(this.selectedTarget.position.y, -2, 10);
+    this.selectedTarget.scale.set(
+      THREE.MathUtils.clamp(this.selectedTarget.scale.x, 0.1, 10),
+      THREE.MathUtils.clamp(this.selectedTarget.scale.y, 0.1, 10),
+      THREE.MathUtils.clamp(this.selectedTarget.scale.z, 0.1, 10),
+    );
+  }
+
+  editorTargetFromObject(object) {
+    let current = object;
+    while (current) {
+      if (current.userData?.editorTarget) return current.userData.editorTarget;
+      if (current.userData?.editor) return current;
+      current = current.parent;
+    }
+    return null;
+  }
+
+  pickEditorTarget(event) {
+    this.setPointerFromEvent(event);
+    const hits = this.raycaster.intersectObjects(this.editorTargets, true)
+      .filter((hit) => !hit.object.userData.isTransformGizmo);
+    this.selectTarget(hits.length ? this.editorTargetFromObject(hits[0].object) : null);
+  }
+
+  pointOnLot(event) {
+    this.setPointerFromEvent(event);
+    const plane = new THREE.Plane(new THREE.Vector3(0, 1, 0), 0);
+    return this.raycaster.ray.intersectPlane(plane, new THREE.Vector3());
+  }
+
+  beginPlacement(assetType) {
+    const definition = ASSET_CATALOG[assetType];
+    if (!definition) return;
+    this.setEditorEnabled(true);
+    this.cancelPlacement();
+    this.placementType = assetType;
+    this.placementGhost = this.createAssetGroup({
+      id: "asset_preview",
+      asset_type: assetType,
+      label: definition.label,
+      x_m: Number(this.model.lot.width_m) / 2,
+      z_m: Number(this.model.lot.depth_m) / 2,
+      y_m: 0,
+      width_m: definition.width,
+      height_m: definition.height,
+      depth_m: definition.depth,
+      color: definition.color,
+    }, true);
+    this.sceneRoot.add(this.placementGhost);
+    this.host.classList.add("placing");
+    this.notifyEditor(`${definition.label}: clique no terreno para posicionar.`);
+    this.requestRender();
+  }
+
+  updatePlacement(event) {
+    if (!this.placementType || !this.placementGhost) return;
+    const point = this.pointOnLot(event);
+    if (!point) return;
+    const definition = ASSET_CATALOG[this.placementType];
+    const halfWidth = Number(this.model.lot.width_m) / 2;
+    const halfDepth = Number(this.model.lot.depth_m) / 2;
+    this.placementGhost.position.set(
+      THREE.MathUtils.clamp(point.x, -halfWidth + definition.width / 2, halfWidth - definition.width / 2),
+      definition.height / 2,
+      THREE.MathUtils.clamp(point.z, -halfDepth + definition.depth / 2, halfDepth - definition.depth / 2),
+    );
+    this.requestRender();
+  }
+
+  commitPlacement(event) {
+    if (!this.placementType) return false;
+    this.updatePlacement(event);
+    const definition = ASSET_CATALOG[this.placementType];
+    const id = `asset_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 6)}`;
+    const center = this.placementGhost.position;
+    const asset = {
+      id,
+      asset_type: this.placementType,
+      label: definition.label,
+      x_m: this.lotX(center.x) - definition.width / 2,
+      y_m: 0,
+      z_m: this.lotZ(center.z) - definition.depth / 2,
+      width_m: definition.width,
+      height_m: definition.height,
+      depth_m: definition.depth,
+      rotation_y_deg: 0,
+      color: definition.color,
+      parent_kind: "lot",
+      parent_id: "",
+      status: "user_placed",
+    };
+    const group = this.createAssetGroup(asset);
+    this.sceneRoot.add(group);
+    this.editorTargets.push(group);
+    this.placedAssetGroups.push(group);
+    this.placedAssets.push(asset);
+    this.cancelPlacement();
+    this.selectTarget(group);
+    this.notifyEditor(`${definition.label} adicionado. Salve o layout para persistir.`);
+    return true;
+  }
+
+  cancelPlacement() {
+    if (this.placementGhost) {
+      this.sceneRoot.remove(this.placementGhost);
+      this.placementGhost.traverse((object) => {
+        object.geometry?.dispose();
+        disposeMaterial(object.material);
+      });
+    }
+    this.placementGhost = null;
+    this.placementType = "";
+    this.host.classList.remove("placing");
+  }
+
+  duplicateSelected() {
+    const editor = this.selectedTarget?.userData.editor;
+    if (!editor?.isPlacedAsset) return false;
+    const source = this.serializeAsset(this.selectedTarget);
+    source.id = `asset_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 6)}`;
+    source.label = `${source.label} cópia`;
+    source.x_m = Math.min(Number(this.model.lot.width_m) - source.width_m, source.x_m + 0.35);
+    source.z_m = Math.min(Number(this.model.lot.depth_m) - source.depth_m, source.z_m + 0.35);
+    const group = this.createAssetGroup(source);
+    this.sceneRoot.add(group);
+    this.editorTargets.push(group);
+    this.placedAssetGroups.push(group);
+    this.placedAssets.push(source);
+    this.selectTarget(group);
+    return true;
+  }
+
+  deleteSelected() {
+    const target = this.selectedTarget;
+    const editor = target?.userData.editor;
+    if (!editor?.isPlacedAsset) return false;
+    this.selectTarget(null);
+    this.sceneRoot.remove(target);
+    this.editorTargets = this.editorTargets.filter((item) => item !== target);
+    this.placedAssetGroups = this.placedAssetGroups.filter((item) => item !== target);
+    this.placedAssets = this.placedAssets.filter((item) => item.id !== editor.asset.id);
+    target.traverse((object) => {
+      object.geometry?.dispose();
+      disposeMaterial(object.material);
+    });
+    this.notifyEditor("Objeto excluído. Salve o layout para persistir.");
+    return true;
+  }
+
+  resetSelected() {
+    const target = this.selectedTarget;
+    const editor = target?.userData.editor;
+    if (!editor) return false;
+    target.position.copy(editor.basePosition);
+    target.rotation.y = editor.baseRotationY;
+    target.scale.copy(editor.baseScale);
+    if (!editor.isPlacedAsset) delete this.layoutOverrides[editor.key];
+    this.selectionBox.update();
+    this.transform.update();
+    this.notifyEditor("Transformação restaurada.");
+    this.requestRender();
+    return true;
+  }
+
+  serializeAsset(group) {
+    const editor = group.userData.editor;
+    const source = editor.asset;
+    const width = Number(source.width_m) * group.scale.x;
+    const height = Number(source.height_m) * group.scale.y;
+    const depth = Number(source.depth_m) * group.scale.z;
+    return {
+      ...source,
+      x_m: THREE.MathUtils.clamp(this.lotX(group.position.x) - width / 2, 0, Number(this.model.lot.width_m) - width),
+      y_m: Math.max(0, group.position.y - height / 2),
+      z_m: THREE.MathUtils.clamp(this.lotZ(group.position.z) - depth / 2, 0, Number(this.model.lot.depth_m) - depth),
+      width_m: width,
+      height_m: height,
+      depth_m: depth,
+      rotation_y_deg: THREE.MathUtils.radToDeg(group.rotation.y),
+    };
+  }
+
+  getLayoutState() {
+    const overrides = {};
+    for (const group of this.editorTargets) {
+      const editor = group.userData.editor;
+      if (!editor || editor.isPlacedAsset) continue;
+      const translation = group.position.clone().sub(editor.basePosition);
+      const rotation = THREE.MathUtils.radToDeg(group.rotation.y - editor.baseRotationY);
+      const changed = translation.lengthSq() > 0.000001
+        || Math.abs(rotation) > 0.001
+        || group.scale.distanceTo(editor.baseScale) > 0.0001;
+      if (changed) {
+        overrides[editor.key] = {
+          translation_m: { x: translation.x, y: translation.y, z: translation.z },
+          rotation_y_deg: rotation,
+          scale: { x: group.scale.x, y: group.scale.y, z: group.scale.z },
+        };
+      }
+    }
+    return {
+      layout_overrides: overrides,
+      placed_assets: this.placedAssetGroups.map((group) => this.serializeAsset(group)),
+    };
   }
 
   buildWall(wall) {
@@ -386,6 +837,7 @@ class HouseViewer {
           openingHeight,
           thickness,
           "#72b8d4",
+          wall,
         );
       } else {
         const doorHeight =
@@ -460,6 +912,7 @@ class HouseViewer {
     mesh.userData.wall = wall;
     this.wallMeshes.push(mesh);
     this.sceneRoot.add(mesh);
+    this.registerTargetPart(`wall:${wall.id}`, wall.label || wall.id, "wall", mesh, { source: wall });
   }
 
   addOutdoorFixture(zone, fixture) {
@@ -482,6 +935,8 @@ class HouseViewer {
     mesh.userData.zone = zone;
     mesh.userData.fixture = fixture;
     this.sceneRoot.add(mesh);
+    const fixtureKey = `fixture:${zone.id}:${fixture.id}`;
+    this.registerTargetPart(fixtureKey, fixture.label || fixture.id, "fixture", mesh, { source: fixture, zone });
 
     if (fixture.accent_color) {
       const accent = this.addBox({
@@ -495,6 +950,7 @@ class HouseViewer {
         roughness: 0.28,
       });
       this.sceneRoot.add(accent);
+      this.registerTargetPart(fixtureKey, fixture.label || fixture.id, "fixture", accent, { source: fixture, zone });
     }
   }
 
@@ -557,6 +1013,7 @@ class HouseViewer {
     height,
     thickness,
     color,
+    wall,
   ) {
     const width = to - from;
     const center = start
@@ -574,7 +1031,9 @@ class HouseViewer {
       roughness: 0.15,
     });
     glass.rotation.y = -Math.atan2(direction.y, direction.x);
+    glass.userData.wall = wall;
     this.sceneRoot.add(glass);
+    this.registerTargetPart(`wall:${wall.id}`, wall.label || wall.id, "wall", glass, { source: wall });
   }
 
   buildLegend() {
@@ -647,9 +1106,14 @@ class HouseViewer {
     }
 
     this.onPointerDown = (event) => {
+      if (this.transform.dragging) return;
       this.pointerStart = { x: event.clientX, y: event.clientY };
     };
+    this.onPointerMove = (event) => {
+      if (this.placementType) this.updatePlacement(event);
+    };
     this.onPointerUp = (event) => {
+      if (this.transform.dragging) return;
       if (!this.pointerStart) return;
       const distance = Math.hypot(
         event.clientX - this.pointerStart.x,
@@ -657,20 +1121,41 @@ class HouseViewer {
       );
       this.pointerStart = null;
       if (distance > 5) return;
-      this.pickRoom(event);
+      if (this.commitPlacement(event)) return;
+      if (this.editorEnabled) this.pickEditorTarget(event);
+      else this.pickRoom(event);
+    };
+    this.onDragOver = (event) => {
+      if (!event.dataTransfer?.types.includes("application/x-my-home-asset")) return;
+      event.preventDefault();
+      this.updatePlacement(event);
+    };
+    this.onDrop = (event) => {
+      const assetType = event.dataTransfer?.getData("application/x-my-home-asset");
+      if (!assetType) return;
+      event.preventDefault();
+      if (this.placementType !== assetType) this.beginPlacement(assetType);
+      this.commitPlacement(event);
     };
     this.renderer.domElement.addEventListener(
       "pointerdown",
       this.onPointerDown,
     );
+    this.renderer.domElement.addEventListener("pointermove", this.onPointerMove);
     this.renderer.domElement.addEventListener("pointerup", this.onPointerUp);
+    this.renderer.domElement.addEventListener("dragover", this.onDragOver);
+    this.renderer.domElement.addEventListener("drop", this.onDrop);
   }
 
-  pickRoom(event) {
+  setPointerFromEvent(event) {
     const rect = this.renderer.domElement.getBoundingClientRect();
     this.pointer.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
     this.pointer.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
     this.raycaster.setFromCamera(this.pointer, this.camera);
+  }
+
+  pickRoom(event) {
+    this.setPointerFromEvent(event);
     const hit = this.raycaster.intersectObjects(this.roomMeshes, false)[0];
     if (!hit) return;
     this.selectRoom(hit.object);
@@ -773,6 +1258,10 @@ class HouseViewer {
       "pointerup",
       this.onPointerUp,
     );
+    this.renderer?.domElement.removeEventListener("pointermove", this.onPointerMove);
+    this.renderer?.domElement.removeEventListener("dragover", this.onDragOver);
+    this.renderer?.domElement.removeEventListener("drop", this.onDrop);
+    this.transform?.dispose();
     this.controls?.dispose();
     this.scene?.traverse((object) => {
       object.geometry?.dispose();
@@ -819,4 +1308,36 @@ export function mountHouse3D(model) {
 
 export function resizeHouse3D() {
   activeViewer?.resize();
+}
+
+export function setSceneEditorEnabled(enabled) {
+  activeViewer?.setEditorEnabled(enabled);
+}
+
+export function setSceneTransformMode(mode) {
+  activeViewer?.setTransformMode(mode);
+}
+
+export function setSceneSnap(value) {
+  activeViewer?.setSnap(value);
+}
+
+export function beginSceneAssetPlacement(assetType) {
+  activeViewer?.beginPlacement(assetType);
+}
+
+export function duplicateSceneSelection() {
+  return activeViewer?.duplicateSelected() || false;
+}
+
+export function deleteSceneSelection() {
+  return activeViewer?.deleteSelected() || false;
+}
+
+export function resetSceneSelection() {
+  return activeViewer?.resetSelected() || false;
+}
+
+export function getSceneLayoutState() {
+  return activeViewer?.getLayoutState() || { layout_overrides: {}, placed_assets: [] };
 }

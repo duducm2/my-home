@@ -1473,6 +1473,181 @@ th { font-size: 10px; }
   }
 }
 
+/* Interactive 3D scene editor */
+.editor-toggle.active,
+.editor-mode-row .btn.active {
+  color: #17130a;
+  border-color: var(--gold);
+  background: var(--gold);
+}
+
+.scene-editor-panel {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 6;
+  display: grid;
+  width: min(330px, calc(100% - 16px));
+  max-height: calc(100% - 16px);
+  gap: 9px;
+  padding: 11px;
+  overflow-y: auto;
+  color: var(--text);
+  background: rgba(22, 22, 24, .96);
+  border: 1px solid rgba(241, 196, 15, .4);
+  border-radius: 7px;
+  box-shadow: 0 14px 36px rgba(0, 0, 0, .4);
+  backdrop-filter: blur(8px);
+}
+
+.scene-editor-panel.hidden {
+  display: none !important;
+}
+
+.editor-panel-head,
+.editor-mode-row,
+.editor-actions,
+.editor-snap-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.editor-panel-head {
+  justify-content: space-between;
+}
+
+.editor-panel-head > div {
+  display: grid;
+  min-width: 0;
+  gap: 2px;
+}
+
+.editor-panel-head span,
+.asset-palette-head small {
+  color: var(--muted);
+  font-size: 9px;
+}
+
+.editor-panel-head strong {
+  overflow: hidden;
+  font-size: 12px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.editor-mode-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.editor-snap-label {
+  justify-content: space-between;
+  color: var(--muted);
+  font-size: 10px;
+}
+
+.editor-snap-label select {
+  width: 120px;
+}
+
+.editor-actions {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.editor-actions .btn,
+.editor-mode-row .btn {
+  min-width: 0;
+  padding-inline: 6px;
+}
+
+.asset-palette-head {
+  display: grid;
+  gap: 2px;
+  padding-top: 3px;
+  border-top: 1px solid var(--line);
+}
+
+.asset-palette {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 5px;
+}
+
+.asset-palette button {
+  min-width: 0;
+  padding: 7px 4px;
+  overflow: hidden;
+  color: #d4d4d4;
+  font: inherit;
+  font-size: 9px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  cursor: grab;
+  background: #252528;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+}
+
+.asset-palette button:hover,
+.asset-palette button:focus-visible {
+  color: var(--gold);
+  border-color: rgba(241, 196, 15, .6);
+}
+
+.asset-palette.placing button {
+  cursor: copy;
+}
+
+.editor-status {
+  min-height: 28px;
+  margin: 0;
+  color: var(--muted);
+  font-size: 9px;
+  line-height: 1.4;
+}
+
+.editor-save {
+  width: 100%;
+}
+
+.house-3d-canvas.editing canvas {
+  cursor: pointer;
+}
+
+.house-3d-canvas.placing canvas {
+  cursor: copy;
+}
+
+@media (max-width: 700px) {
+  .scene-editor-panel {
+    top: auto;
+    right: 5px;
+    bottom: 5px;
+    left: 5px;
+    width: auto;
+    max-height: min(48dvh, 420px);
+    padding: 8px;
+    gap: 6px;
+  }
+
+  .asset-palette {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+@media (max-height: 650px) and (orientation: landscape) {
+  .scene-editor-panel {
+    top: 5px;
+    right: 5px;
+    bottom: 5px;
+    left: auto;
+    width: min(300px, 44vw);
+    max-height: none;
+  }
+}
+
 
 /* One-click save for non-technical users */
 .global-save {
