@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Despesas da Casa</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="page">
+      <header class="hero">
+        <p class="eyebrow">my-home</p>
+        <h1>Despesas da Casa</h1>
+        <p class="lede">
+          Cadastre, filtre e acompanhe materiais e serviços do imóvel.
+        </p>
+      </header>
+
+      <section class="toolbar" aria-label="Filtros">
+        <label>
+          Fase
+          <select id="filter-phase">
+            <option value="">Todas</option>
+          </select>
+        </label>
+        <label>
+          Prioridade
+          <select id="filter-priority">
+            <option value="">Todas</option>
+          </select>
+        </label>
+        <label>
+          Categoria
+          <select id="filter-category">
+            <option value="">Todas</option>
+          </select>
+        </label>
+        <label class="grow">
+          Busca
+          <input
+            id="filter-search"
+            type="search"
+            placeholder="Descrição, categoria…"
+            autocomplete="off"
+          />
+        </label>
+        <button type="button" id="btn-new" class="btn primary">Nova despesa</button>
+      </section>
+
+      <section class="summary" aria-live="polite">
+        <div>
+          <span class="summary-label">Total filtrado</span>
+          <strong id="total-filtered">R$&nbsp;0,00</strong>
+        </div>
+        <div>
+          <span class="summary-label">Total geral</span>
+          <strong id="total-all">R$&nbsp;0,00</strong>
+        </div>
+        <div>
+          <span class="summary-label">Itens</span>
+          <strong id="count-filtered">0</strong>
+        </div>
+      </section>
+
+      <section class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Fase</th>
+              <th>Prioridade</th>
+              <th>Categoria</th>
+              <th>Descrição</th>
+              <th class="num">Valor</th>
+              <th class="actions">Ações</th>
+            </tr>
+          </thead>
+          <tbody id="expense-rows"></tbody>
+        </table>
+        <p id="empty-state" class="empty hidden">Nenhuma despesa corresponde aos filtros.</p>
+      </section>
+    </div>
+
+    <dialog id="expense-dialog">
+      <form id="expense-form" method="dialog">
+        <h2 id="dialog-title">Nova despesa</h2>
+        <input type="hidden" id="field-id" />
+        <label>
+          Fase
+          <input id="field-phase" required list="phase-suggestions" />
+        </label>
+        <label>
+          Prioridade
+          <input id="field-priority" type="number" min="1" step="1" required value="1" />
+        </label>
+        <label>
+          Categoria
+          <input id="field-category" required list="category-suggestions" />
+        </label>
+        <label>
+          Descrição
+          <textarea id="field-description" rows="3" required></textarea>
+        </label>
+        <label>
+          Valor (R$)
+          <input id="field-value" type="number" min="0" step="0.01" required value="0" />
+        </label>
+        <p id="form-error" class="error hidden"></p>
+        <div class="dialog-actions">
+          <button type="button" id="btn-cancel" class="btn">Cancelar</button>
+          <button type="submit" class="btn primary">Salvar</button>
+        </div>
+      </form>
+    </dialog>
+
+    <datalist id="phase-suggestions"></datalist>
+    <datalist id="category-suggestions"></datalist>
+
+    <script src="/app.js"></script>
+  </body>
+</html>
