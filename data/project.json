@@ -105,21 +105,24 @@
             "name": "Furadeira",
             "purpose": "Perfurações e fixações necessárias durante os serviços da obra.",
             "responsibility": "Gelson / contratado, salvo ajuste escrito em contrário",
-            "related_expense_id": "EXP_0018"
+            "related_expense_id": "EXP_0018",
+            "icon_key": "drill"
           },
           {
             "id": "angle_grinder",
             "name": "Esmerilhadeira",
             "purpose": "Cortes, desbastes e acabamentos compatíveis com os serviços executados.",
             "responsibility": "Gelson / contratado, salvo ajuste escrito em contrário",
-            "related_expense_id": "EXP_0018"
+            "related_expense_id": "EXP_0018",
+            "icon_key": "angle-grinder"
           },
           {
             "id": "wheelbarrow",
             "name": "Carrinho de mão",
             "purpose": "Transporte de materiais e entulho dentro da obra.",
             "responsibility": "Confirmar entre Eduardo e Gelson antes da compra",
-            "related_expense_id": "EXP_0020"
+            "related_expense_id": "EXP_0020",
+            "icon_key": "wheelbarrow"
           }
         ],
         "tools_source": {

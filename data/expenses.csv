@@ -1,49 +1,49 @@
-id,phase,priority,category,description,value,quantity,unit,unit_price,vendor,product_url,price_checked_at,price_notes,created_at,updated_at
-EXP_0001,Compra,1,Financiamento,Entrada,62000.00,,,,,,,,2026-09-15 21:49:56,2026-09-15 21:49:56
-EXP_0002,Na formalização,1,Impostos,ITBI — Nova Odessa (2%),6200.00,,,,,,,,2026-09-15 21:49:56,2026-09-15 21:49:56
-EXP_0003,Na formalização,1,Cartório,"Custos de cartório (Emolumentos de registro no Cartório de Registro de Imóveis; Taxas de certidão, autenticação e reconhecimento de firma)",1000.00,,,,,,,,2026-09-15 21:49:56,2026-09-15 21:49:56
-EXP_0004,Na formalização,1,Financiamento,Registro do contrato de financiamento / alienação fiduciária,3300.00,,,,,,,,2026-09-15 21:49:56,2026-09-15 21:49:56
-EXP_0005,Pós-mudança,1,Mudança,Transporte / empresa de mudança,700.00,,,,,,,,2026-09-15 21:49:56,2026-09-15 21:49:56
-EXP_0006,Pós-mudança,1,Instalação,"Taxas de ligação (água, esgoto, energia, gás, internet)",300.00,,,,,,,,2026-09-15 21:49:56,2026-09-15 21:49:56
-EXP_0007,Primeiro ano,1,Reserva,Reserva de emergência pós-compra,4500.00,,,,,,,,2026-09-15 21:49:56,2026-09-15 21:49:56
-EXP_0008,Pré-compra,1,Diligência,Taxa de relacionamento da Caixa,7000.00,,,,,,,,2026-09-15 21:49:56,2026-09-15 21:49:56
-EXP_0009,Pré-compra,1,Diligência,Multa do contrato de aluguel atual,2400.00,,,,,,,,2026-09-15 21:49:56,2026-09-15 21:49:56
-EXP_0010,Pré-compra,1,Diligência,Reforma do apartamento atual,1000.00,,,,,,,,2026-09-15 21:49:56,2026-09-15 21:49:56
-EXP_0011,Pré-compra,1,Diligência,Parcela do Financiamento,2200.00,,,,,,,,2026-09-15 21:49:56,2026-09-15 21:49:56
-EXP_0012,Pré-compra,1,Diligência,Aluguel do imóvel atual,1500.00,,,,,,,,2026-09-15 21:49:56,2026-09-15 21:49:56
-EXP_0013,Manutenção,1,Mão de obra,Pedreiro,15000.00,,,,,,,,2026-09-15 21:49:56,2026-09-15 21:49:56
-EXP_0014,Manutenção,1,Material,Impermeabilizante (bianco),320.00,1,un,45.90,Leroy Merlin,https://example.com/bianco,2026-09-15 22:11:43,promo,2026-09-15 21:49:56,2026-09-15 22:11:43
-EXP_0015,Manutenção,1,Material,"Areia grossa, fina e pedrisco",700.00,1,,,,,,,2026-09-15 21:49:56,2026-09-15 21:49:56
-EXP_0016,Manutenção,1,Material,Cimento,650.00,1,,,,,,,2026-09-15 21:49:56,2026-09-15 21:49:56
-EXP_0017,Manutenção,1,Material,Telha,2000.00,1,,,,,,,2026-09-15 21:49:56,2026-09-15 21:49:56
-EXP_0018,Manutenção,1,Material,Ferramentas,1300.00,1,,,,,,,2026-09-15 21:49:56,2026-09-15 21:49:56
-EXP_0019,Manutenção,1,Material,Tijolinho de barro,120.00,1,,,,,,,2026-09-15 21:49:56,2026-09-15 21:49:56
-EXP_0020,Manutenção,1,Material,Carrinho de mão,200.00,1,,,,,,,2026-09-15 21:49:56,2026-09-15 21:49:56
-EXP_0021,Manutenção,1,Material,Arame recuzido,50.00,1,,,,,,,2026-09-15 21:49:56,2026-09-15 21:49:56
-EXP_0022,Manutenção,1,Material,Caçamba de entulho,350.00,1,,,,,,,2026-09-15 21:49:56,2026-09-15 21:49:56
-EXP_0023,Manutenção,2,Material,Porcelanato,5750.00,1,,,,,,,2026-09-15 21:49:56,2026-09-15 21:49:56
-EXP_0024,Manutenção,2,Material,Rejunte de porcelanato,400.00,1,,,,,,,2026-09-15 21:49:56,2026-09-15 21:49:56
-EXP_0025,Manutenção,2,Material,Argamassa para o porcelanato,1800.00,1,,,,,,,2026-09-15 21:49:56,2026-09-15 21:49:56
-EXP_0026,Manutenção,2,Material,Portas internas,1500.00,1,,,,,,,2026-09-15 21:49:56,2026-09-15 21:49:56
-EXP_0027,Manutenção,2,Material,Porta Balcão (R$2000),0.00,1,,,,,,,2026-09-15 21:49:56,2026-09-15 21:49:56
-EXP_0028,Manutenção,2,Material,Vaso,400.00,1,,,,,,,2026-09-15 21:49:56,2026-09-15 21:49:56
-EXP_0029,Manutenção,2,Material,Janela (quartos e escritório),1700.00,1,,,,,,,2026-09-15 21:49:56,2026-09-15 21:49:56
-EXP_0030,Manutenção,2,Material,Vitrô Sala,520.00,1,,,,,,,2026-09-15 21:49:56,2026-09-15 21:49:56
-EXP_0031,Manutenção,2,Material,Vitrôs banheiros,400.00,1,,,,,,,2026-09-15 21:49:56,2026-09-15 21:49:56
-EXP_0032,Manutenção,2,Mão de obra,Eletricista,3500.00,,,,,,,,2026-09-15 21:49:56,2026-09-15 21:49:56
-EXP_0033,Manutenção,2,Material,Quadro de distribuição,700.00,1,,,,,,,2026-09-15 21:49:56,2026-09-15 21:49:56
-EXP_0034,Manutenção,2,Material,Conduítes,2800.00,1,,,,,,,2026-09-15 21:49:56,2026-09-15 21:49:56
-EXP_0035,Manutenção,2,Material,Lâmpadas,400.00,1,,,,,,,2026-09-15 21:49:56,2026-09-15 21:49:56
-EXP_0036,Manutenção,2,Material,Torneiras,800.00,1,,,,,,,2026-09-15 21:49:56,2026-09-15 21:49:56
-EXP_0037,Manutenção,2,Material,Sifões e ralos,250.00,1,,,,,,,2026-09-15 21:49:56,2026-09-15 21:49:56
-EXP_0038,Manutenção,2,Material,Tomadas,900.00,1,,,,,,,2026-09-15 21:49:56,2026-09-15 21:49:56
-EXP_0039,Manutenção,2,Material,Pias e bancadas,3500.00,1,,,,,,,2026-09-15 21:49:56,2026-09-15 21:49:56
-EXP_0040,Manutenção,2,Material,Box de vidro para o banheiro (R$850),0.00,1,,,,,,,2026-09-15 21:49:56,2026-09-15 21:49:56
-EXP_0041,Manutenção,2,Material,Rodapés para acompanhar o porcelanato (R$1500),0.00,1,,,,,,,2026-09-15 21:49:56,2026-09-15 21:49:56
-EXP_0042,Manutenção,2,Material,Madeiramento ou estrutura metálica,4500.00,1,,,,,,,2026-09-15 21:49:56,2026-09-15 21:49:56
-EXP_0043,Manutenção,2,Material,Calhas e rufos,1200.00,1,,,,,,,2026-09-15 21:49:56,2026-09-15 21:49:56
-EXP_0044,Manutenção,2,Material,Caixa de água,450.00,1,,,,,,,2026-09-15 21:49:56,2026-09-15 21:49:56
-EXP_0045,Manutenção,2,Material,Dispositivos de segurança,2000.00,1,,,,,,,2026-09-15 21:49:56,2026-09-15 21:49:56
-EXP_0046,Manutenção,3,Material,Tinta,6000.00,1,,,,,,,2026-09-15 21:49:56,2026-09-15 21:49:56
-EXP_0047,Manutenção,3,Material,"Pregos, parafusos, buchas",200.00,1,,,,,,,2026-09-15 21:49:56,2026-09-15 21:49:56
-EXP_0048,Manutenção,3,Material,"Silicone, espuma expansiva, selante PU",300.00,1,,,,,,,2026-09-15 21:49:56,2026-09-15 21:49:56
+id,phase,priority,category,description,icon_key,value,quantity,unit,unit_price,vendor,product_url,price_checked_at,price_notes,created_at,updated_at
+EXP_0001,Compra,1,Financiamento,Entrada,,62000.00,,,,,,,,2026-09-15 21:49:56,2026-09-15 21:49:56
+EXP_0002,Na formalização,1,Impostos,ITBI — Nova Odessa (2%),,6200.00,,,,,,,,2026-09-15 21:49:56,2026-09-15 21:49:56
+EXP_0003,Na formalização,1,Cartório,"Custos de cartório (Emolumentos de registro no Cartório de Registro de Imóveis; Taxas de certidão, autenticação e reconhecimento de firma)",,1000.00,,,,,,,,2026-09-15 21:49:56,2026-09-15 21:49:56
+EXP_0004,Na formalização,1,Financiamento,Registro do contrato de financiamento / alienação fiduciária,,3300.00,,,,,,,,2026-09-15 21:49:56,2026-09-15 21:49:56
+EXP_0005,Pós-mudança,1,Mudança,Transporte / empresa de mudança,,700.00,,,,,,,,2026-09-15 21:49:56,2026-09-15 21:49:56
+EXP_0006,Pós-mudança,1,Instalação,"Taxas de ligação (água, esgoto, energia, gás, internet)",,300.00,,,,,,,,2026-09-15 21:49:56,2026-09-15 21:49:56
+EXP_0007,Primeiro ano,1,Reserva,Reserva de emergência pós-compra,,4500.00,,,,,,,,2026-09-15 21:49:56,2026-09-15 21:49:56
+EXP_0008,Pré-compra,1,Diligência,Taxa de relacionamento da Caixa,,7000.00,,,,,,,,2026-09-15 21:49:56,2026-09-15 21:49:56
+EXP_0009,Pré-compra,1,Diligência,Multa do contrato de aluguel atual,,2400.00,,,,,,,,2026-09-15 21:49:56,2026-09-15 21:49:56
+EXP_0010,Pré-compra,1,Diligência,Reforma do apartamento atual,,1000.00,,,,,,,,2026-09-15 21:49:56,2026-09-15 21:49:56
+EXP_0011,Pré-compra,1,Diligência,Parcela do Financiamento,,2200.00,,,,,,,,2026-09-15 21:49:56,2026-09-15 21:49:56
+EXP_0012,Pré-compra,1,Diligência,Aluguel do imóvel atual,,1500.00,,,,,,,,2026-09-15 21:49:56,2026-09-15 21:49:56
+EXP_0013,Manutenção,1,Mão de obra,Pedreiro,,15000.00,,,,,,,,2026-09-15 21:49:56,2026-09-15 21:49:56
+EXP_0014,Manutenção,1,Material,Impermeabilizante (bianco),waterproofing-additive,320.00,1,un,45.90,Leroy Merlin,https://example.com/bianco,2026-09-15 22:11:43,promo,2026-09-15 21:49:56,2026-09-15 22:11:43
+EXP_0015,Manutenção,1,Material,"Areia grossa, fina e pedrisco",aggregates,700.00,1,,,,,,,2026-09-15 21:49:56,2026-09-15 21:49:56
+EXP_0016,Manutenção,1,Material,Cimento,cement,650.00,1,,,,,,,2026-09-15 21:49:56,2026-09-15 21:49:56
+EXP_0017,Manutenção,1,Material,Telha,roof-tiles,2000.00,1,,,,,,,2026-09-15 21:49:56,2026-09-15 21:49:56
+EXP_0018,Manutenção,1,Material,Ferramentas,toolbox,1300.00,1,,,,,,,2026-09-15 21:49:56,2026-09-15 21:49:56
+EXP_0019,Manutenção,1,Material,Tijolinho de barro,clay-bricks,120.00,1,,,,,,,2026-09-15 21:49:56,2026-09-15 21:49:56
+EXP_0020,Manutenção,1,Material,Carrinho de mão,wheelbarrow,200.00,1,,,,,,,2026-09-15 21:49:56,2026-09-15 21:49:56
+EXP_0021,Manutenção,1,Material,Arame recuzido,construction-wire,50.00,1,,,,,,,2026-09-15 21:49:56,2026-09-15 21:49:56
+EXP_0022,Manutenção,1,Material,Caçamba de entulho,debris-dumpster,350.00,1,,,,,,,2026-09-15 21:49:56,2026-09-15 21:49:56
+EXP_0023,Manutenção,2,Material,Porcelanato,porcelain-tiles,5750.00,1,,,,,,,2026-09-15 21:49:56,2026-09-15 21:49:56
+EXP_0024,Manutenção,2,Material,Rejunte de porcelanato,grout,400.00,1,,,,,,,2026-09-15 21:49:56,2026-09-15 21:49:56
+EXP_0025,Manutenção,2,Material,Argamassa para o porcelanato,mortar,1800.00,1,,,,,,,2026-09-15 21:49:56,2026-09-15 21:49:56
+EXP_0026,Manutenção,2,Material,Portas internas,interior-door,1500.00,1,,,,,,,2026-09-15 21:49:56,2026-09-15 21:49:56
+EXP_0027,Manutenção,2,Material,Porta Balcão (R$2000),sliding-door,0.00,1,,,,,,,2026-09-15 21:49:56,2026-09-15 21:49:56
+EXP_0028,Manutenção,2,Material,Vaso,toilet,400.00,1,,,,,,,2026-09-15 21:49:56,2026-09-15 21:49:56
+EXP_0029,Manutenção,2,Material,Janela (quartos e escritório),window,1700.00,1,,,,,,,2026-09-15 21:49:56,2026-09-15 21:49:56
+EXP_0030,Manutenção,2,Material,Vitrô Sala,window,520.00,1,,,,,,,2026-09-15 21:49:56,2026-09-15 21:49:56
+EXP_0031,Manutenção,2,Material,Vitrôs banheiros,bathroom-window,400.00,1,,,,,,,2026-09-15 21:49:56,2026-09-15 21:49:56
+EXP_0032,Manutenção,2,Mão de obra,Eletricista,,3500.00,,,,,,,,2026-09-15 21:49:56,2026-09-15 21:49:56
+EXP_0033,Manutenção,2,Material,Quadro de distribuição,breaker-panel,700.00,1,,,,,,,2026-09-15 21:49:56,2026-09-15 21:49:56
+EXP_0034,Manutenção,2,Material,Conduítes,conduit,2800.00,1,,,,,,,2026-09-15 21:49:56,2026-09-15 21:49:56
+EXP_0035,Manutenção,2,Material,Lâmpadas,light-bulbs,400.00,1,,,,,,,2026-09-15 21:49:56,2026-09-15 21:49:56
+EXP_0036,Manutenção,2,Material,Torneiras,faucet,800.00,1,,,,,,,2026-09-15 21:49:56,2026-09-15 21:49:56
+EXP_0037,Manutenção,2,Material,Sifões e ralos,drains,250.00,1,,,,,,,2026-09-15 21:49:56,2026-09-15 21:49:56
+EXP_0038,Manutenção,2,Material,Tomadas,outlet,900.00,1,,,,,,,2026-09-15 21:49:56,2026-09-15 21:49:56
+EXP_0039,Manutenção,2,Material,Pias e bancadas,sink-countertop,3500.00,1,,,,,,,2026-09-15 21:49:56,2026-09-15 21:49:56
+EXP_0040,Manutenção,2,Material,Box de vidro para o banheiro (R$850),shower-enclosure,0.00,1,,,,,,,2026-09-15 21:49:56,2026-09-15 21:49:56
+EXP_0041,Manutenção,2,Material,Rodapés para acompanhar o porcelanato (R$1500),baseboards,0.00,1,,,,,,,2026-09-15 21:49:56,2026-09-15 21:49:56
+EXP_0042,Manutenção,2,Material,Madeiramento ou estrutura metálica,roof-framing,4500.00,1,,,,,,,2026-09-15 21:49:56,2026-09-15 21:49:56
+EXP_0043,Manutenção,2,Material,Calhas e rufos,gutters,1200.00,1,,,,,,,2026-09-15 21:49:56,2026-09-15 21:49:56
+EXP_0044,Manutenção,2,Material,Caixa de água,water-tank,450.00,1,,,,,,,2026-09-15 21:49:56,2026-09-15 21:49:56
+EXP_0045,Manutenção,2,Material,Dispositivos de segurança,security-devices,2000.00,1,,,,,,,2026-09-15 21:49:56,2026-09-15 21:49:56
+EXP_0046,Manutenção,3,Material,Tinta,paint,6000.00,1,,,,,,,2026-09-15 21:49:56,2026-09-15 21:49:56
+EXP_0047,Manutenção,3,Material,"Pregos, parafusos, buchas",fasteners,200.00,1,,,,,,,2026-09-15 21:49:56,2026-09-15 21:49:56
+EXP_0048,Manutenção,3,Material,"Silicone, espuma expansiva, selante PU",sealants,300.00,1,,,,,,,2026-09-15 21:49:56,2026-09-15 21:49:56

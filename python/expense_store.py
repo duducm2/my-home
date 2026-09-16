@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import csv
+import json
 from datetime import datetime
 from pathlib import Path
 from typing import Any
@@ -13,6 +14,7 @@ HEADERS = [
     "priority",
     "category",
     "description",
+    "icon_key",
     "value",
     "quantity",
     "unit",
@@ -155,6 +157,7 @@ class ExpenseStore:
     def __init__(self, data_dir: Path) -> None:
         self.data_dir = data_dir.resolve()
         self.csv_path = self.data_dir / "expenses.csv"
+        self.icon_manifest_path = self.data_dir / "icon-manifest.json"
         self.data_dir.mkdir(parents=True, exist_ok=True)
         self._ensure_seeded()
         self._migrate_schema()
@@ -166,17 +169,20 @@ class ExpenseStore:
                 return
         stamp = now_stamp()
         seeded: list[dict[str, Any]] = []
+        associations = self._icon_manifest().get("expense_associations", {})
         for index, (phase, priority, category, description, value) in enumerate(
             SEED_ROWS, start=1
         ):
+            expense_id = f"EXP_{index:04d}"
             qty = "1" if category == "Material" else ""
             seeded.append(
                 {
-                    "id": f"EXP_{index:04d}",
+                    "id": expense_id,
                     "phase": phase,
                     "priority": str(priority),
                     "category": category,
                     "description": description,
+                    "icon_key": associations.get(expense_id, ""),
                     "value": f"{value:.2f}",
                     "quantity": qty,
                     "unit": "",
@@ -198,7 +204,10 @@ class ExpenseStore:
             reader = csv.DictReader(handle)
             fieldnames = list(reader.fieldnames or [])
             rows_raw = list(reader)
-        if fieldnames == HEADERS:
+        associations = self._icon_manifest().get("expense_associations", {})
+        if fieldnames == HEADERS and all(
+            raw.get("icon_key") or raw.get("category") != "Material" for raw in rows_raw
+        ):
             return
         migrated: list[dict[str, Any]] = []
         for raw in rows_raw:
@@ -207,8 +216,35 @@ class ExpenseStore:
                 continue
             if not row["quantity"] and row["category"] == "Material":
                 row["quantity"] = "1"
+            if row["category"] == "Material" and not row["icon_key"]:
+                row["icon_key"] = associations.get(
+                    row["id"], self._default_icon_key("Material")
+                )
             migrated.append(row)
         self._write_rows(migrated)
+
+    def _icon_manifest(self) -> dict[str, Any]:
+        if not self.icon_manifest_path.is_file():
+            return {"defaults": {}, "icons": {}, "expense_associations": {}}
+        try:
+            payload = json.loads(self.icon_manifest_path.read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError):
+            return {"defaults": {}, "icons": {}, "expense_associations": {}}
+        return payload if isinstance(payload, dict) else {}
+
+    def _default_icon_key(self, category: str) -> str:
+        if category != "Material":
+            return ""
+        return str(self._icon_manifest().get("defaults", {}).get("material") or "")
+
+    def _validated_icon_key(self, icon_key: Any, category: str) -> str:
+        if category != "Material":
+            return ""
+        key = str(icon_key or "").strip() or self._default_icon_key(category)
+        icons = self._icon_manifest().get("icons", {})
+        if key not in icons:
+            raise ValueError(f"invalid icon_key: {key}")
+        return key
 
     def _read_rows(self) -> list[dict[str, str]]:
         if not self.csv_path.is_file():
@@ -255,6 +291,7 @@ class ExpenseStore:
             "priority": _parse_priority(row["priority"] or "1"),
             "category": row["category"],
             "description": row["description"],
+            "icon_key": row.get("icon_key") or self._default_icon_key(row["category"]),
             "value": _parse_value(row["value"]),
             "quantity": quantity,
             "unit": row.get("unit") or "",
@@ -379,6 +416,7 @@ class ExpenseStore:
 
     def state(self) -> dict[str, Any]:
         expenses = self.list_expenses()
+        manifest = self._icon_manifest()
         return {
             "ok": True,
             "expenses": expenses,
@@ -386,6 +424,10 @@ class ExpenseStore:
             "timeline": self._timeline(expenses),
             "materials": self._materials(expenses),
             "phase_order": PHASE_ORDER,
+            "icon_catalog": {
+                "defaults": manifest.get("defaults", {}),
+                "icons": manifest.get("icons", {}),
+            },
         }
 
     def _apply_price_fields(self, row: dict[str, str], payload: dict[str, Any], stamp: str) -> None:
@@ -419,6 +461,7 @@ class ExpenseStore:
 
         priority = _parse_priority(payload.get("priority"))
         value = _parse_value(payload.get("value"))
+        icon_key = self._validated_icon_key(payload.get("icon_key"), category)
         expense_id = str(payload.get("id") or "").strip()
         stamp = now_stamp()
         rows = self._read_rows()
@@ -431,6 +474,7 @@ class ExpenseStore:
                     row["priority"] = str(priority)
                     row["category"] = category
                     row["description"] = description
+                    row["icon_key"] = icon_key
                     row["value"] = f"{value:.2f}"
                     self._apply_price_fields(row, payload, stamp)
                     row["updated_at"] = stamp
@@ -448,6 +492,7 @@ class ExpenseStore:
                 "priority": str(priority),
                 "category": category,
                 "description": description,
+                "icon_key": icon_key,
                 "value": f"{value:.2f}",
                 "quantity": "1" if category == "Material" else "",
                 "unit": "",

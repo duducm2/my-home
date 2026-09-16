@@ -5,6 +5,7 @@
     timeline: [],
     materials: [],
     project: null,
+    iconCatalog: { defaults: {}, icons: {} },
     view: "dashboard",
     pendingImportRows: null,
     pendingPackText: "",
@@ -35,6 +36,10 @@
     fieldPriority: $("field-priority"),
     fieldCategory: $("field-category"),
     fieldDescription: $("field-description"),
+    fieldIconKey: $("field-icon-key"),
+    iconEditor: $("icon-editor"),
+    iconPreview: $("icon-preview"),
+    iconPicker: $("icon-picker"),
     fieldValue: $("field-value"),
     fieldQuantity: $("field-quantity"),
     fieldUnit: $("field-unit"),
@@ -115,6 +120,46 @@
   }
   function escapeAttr(value) {
     return escapeHtml(value).replaceAll("'", "&#39;");
+  }
+
+  function iconEntry(iconKey, kind = "material") {
+    const catalog = state.iconCatalog || { defaults: {}, icons: {} };
+    const fallbackKey = (catalog.defaults || {})[kind] || "";
+    const key = iconKey && catalog.icons[iconKey] ? iconKey : fallbackKey;
+    return key && catalog.icons[key] ? { key, ...catalog.icons[key] } : null;
+  }
+
+  function itemIconMarkup(iconKey, altText, size = "sm", kind = "material") {
+    const icon = iconEntry(iconKey, kind);
+    if (!icon) return "";
+    return `<span class="item-icon item-icon-${escapeAttr(size)}" title="${escapeAttr(icon.label || altText)}"><img src="${escapeAttr(icon.url)}" alt="" loading="lazy" /></span>`;
+  }
+
+  function itemLabelMarkup(description, iconKey, note = "") {
+    return `<div class="item-label">${itemIconMarkup(iconKey, description)}<div><strong>${escapeHtml(description)}</strong>${note ? `<small>${escapeHtml(note)}</small>` : ""}</div></div>`;
+  }
+
+  function renderIconPicker(selectedKey = "") {
+    if (!els.iconEditor || !els.iconPicker || !els.fieldIconKey) return;
+    const isMaterial = els.fieldCategory.value.trim() === "Material";
+    els.iconEditor.classList.toggle("hidden", !isMaterial);
+    if (!isMaterial) {
+      els.fieldIconKey.value = "";
+      return;
+    }
+    const icons = Object.entries((state.iconCatalog || {}).icons || {})
+      .sort(([, a], [, b]) => String(a.label).localeCompare(String(b.label), "pt-BR"));
+    const selected = iconEntry(selectedKey || els.fieldIconKey.value);
+    els.fieldIconKey.value = selected ? selected.key : "";
+    els.iconPreview.innerHTML = selected
+      ? `${itemIconMarkup(selected.key, selected.label, "lg")}<span>${escapeHtml(selected.label)}</span>`
+      : "";
+    els.iconPicker.innerHTML = icons.map(([key, icon]) => `
+      <button type="button" class="icon-choice${key === els.fieldIconKey.value ? " selected" : ""}"
+        data-icon-key="${escapeAttr(key)}" role="radio" aria-checked="${key === els.fieldIconKey.value}"
+        title="${escapeAttr(icon.label)}">
+        ${itemIconMarkup(key, icon.label, "picker")}<span>${escapeHtml(icon.label)}</span>
+      </button>`).join("");
   }
 
   function uniqueSorted(values) {
@@ -223,7 +268,9 @@
         <td>${escapeHtml(expense.phase)}</td>
         <td><span class="badge">${escapeHtml(String(expense.priority))}</span></td>
         <td>${escapeHtml(expense.category)}</td>
-        <td>${escapeHtml(expense.description)}${expense.price_notes ? `<div class="price-cell">${escapeHtml(expense.price_notes)}</div>` : ""}</td>
+        <td>${expense.category === "Material"
+          ? itemLabelMarkup(expense.description, expense.icon_key, expense.price_notes || "")
+          : `${escapeHtml(expense.description)}${expense.price_notes ? `<div class="price-cell">${escapeHtml(expense.price_notes)}</div>` : ""}`}</td>
         <td class="num">${formatMoney(expense.value)}</td>
         <td>${priceCell(expense)}</td>
         <td class="actions">
@@ -366,7 +413,7 @@
       tr.innerHTML = `
         <td>${escapeHtml(m.phase)}</td>
         <td><span class="badge">${escapeHtml(String(m.priority))}</span></td>
-        <td>${escapeHtml(m.description)}</td>
+        <td>${itemLabelMarkup(m.description, m.icon_key)}</td>
         <td class="num">${m.quantity == null ? "—" : m.quantity}</td>
         <td>${escapeHtml(m.unit || "—")}</td>
         <td class="num">${formatMoney(m.value)}</td>
@@ -383,9 +430,11 @@
     state.totals = payload.totals || { all: 0, materials: 0, services: 0 };
     state.timeline = payload.timeline || [];
     state.materials = payload.materials || [];
+    state.iconCatalog = payload.icon_catalog || { defaults: {}, icons: {} };
     renderFilters();
     renderExpenseTable();
     renderDashboard();
+    if (state.project) renderProject(state.project);
   }
 
   async function loadState() {
@@ -405,6 +454,7 @@
       els.fieldPriority.value = expense.priority;
       els.fieldCategory.value = expense.category;
       els.fieldDescription.value = expense.description;
+      els.fieldIconKey.value = expense.icon_key || "";
       els.fieldValue.value = Number(expense.value).toFixed(2);
       els.fieldQuantity.value = expense.quantity == null ? "" : expense.quantity;
       els.fieldUnit.value = expense.unit || "";
@@ -419,6 +469,7 @@
       els.fieldPriority.value = els.priority.value || "1";
       els.fieldCategory.value = els.category.value || "";
       els.fieldDescription.value = "";
+      els.fieldIconKey.value = "";
       els.fieldValue.value = "0.00";
       els.fieldQuantity.value = "";
       els.fieldUnit.value = "";
@@ -427,6 +478,7 @@
       els.fieldProductUrl.value = "";
       els.fieldPriceNotes.value = "";
     }
+    renderIconPicker(els.fieldIconKey.value);
     els.dialog.showModal();
     els.fieldPhase.focus();
   }
@@ -439,6 +491,7 @@
       priority: Number(els.fieldPriority.value),
       category: els.fieldCategory.value.trim(),
       description: els.fieldDescription.value.trim(),
+      icon_key: els.fieldIconKey.value,
       value: Number(els.fieldValue.value),
       unit: els.fieldUnit.value.trim(),
       vendor: els.fieldVendor.value.trim(),
@@ -573,7 +626,11 @@
           : "—";
         tr.innerHTML = `
           <td>${escapeHtml(row.id || "")}</td>
-          <td>${escapeHtml(row.description || "")}</td>
+          <td>${(() => {
+            const current = state.expenses.find((expense) => expense.id === row.id)
+              || state.expenses.find((expense) => expense.description === row.description);
+            return itemLabelMarkup(row.description || "", current && current.icon_key);
+          })()}</td>
           <td class="num">${formatMoney(row.unit_price)}</td>
           <td>${escapeHtml(row.vendor || "—")}</td>
           <td>${link}</td>`;
@@ -671,9 +728,10 @@
         </details>`).join("");
       const toolsHtml = requiredTools.map((tool) => `
         <article class="required-tool">
-          <strong>${escapeHtml(tool.name)}</strong>
+          ${itemIconMarkup(tool.icon_key, tool.name, "tool", "tool")}
+          <div class="required-tool-copy"><strong>${escapeHtml(tool.name)}</strong>
           <p>${escapeHtml(tool.purpose || "")}</p>
-          <small>${escapeHtml(tool.responsibility || "")}${tool.related_expense_id ? ` · ${escapeHtml(tool.related_expense_id)}` : ""}</small>
+          <small>${escapeHtml(tool.responsibility || "")}${tool.related_expense_id ? ` · ${escapeHtml(tool.related_expense_id)}` : ""}</small></div>
         </article>`).join("");
       return `
         <article class="project-phase">
@@ -1006,6 +1064,12 @@
   els.btnPush.addEventListener("click", pushToRemote);
   els.btnCancel.addEventListener("click", () => els.dialog.close());
   els.form.addEventListener("submit", saveExpense);
+  els.fieldCategory.addEventListener("change", () => renderIconPicker(els.fieldIconKey.value));
+  els.iconPicker.addEventListener("click", (event) => {
+    const button = event.target.closest("[data-icon-key]");
+    if (!button) return;
+    renderIconPicker(button.getAttribute("data-icon-key") || "");
+  });
   els.rows.addEventListener("click", (event) => {
     const target = event.target;
     if (!(target instanceof HTMLElement)) return;

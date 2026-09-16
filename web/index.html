@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="color-scheme" content="dark" />
     <title>Despesas da Casa</title>
-    <link rel="stylesheet" href="/styles.css?v=20260915-14" />
+    <link rel="stylesheet" href="/styles.css?v=20260915-15" />
     <script type="importmap">
       {"imports":{"three":"/vendor/three/three.module.js"}}
     </script>
@@ -287,6 +287,17 @@
         <label>Prioridade <input id="field-priority" type="number" min="1" step="1" required value="1" /></label>
         <label>Categoria <input id="field-category" required list="category-suggestions" /></label>
         <label>Descrição <textarea id="field-description" rows="3" required></textarea></label>
+        <section id="icon-editor" class="icon-editor" aria-labelledby="icon-editor-title">
+          <input type="hidden" id="field-icon-key" />
+          <div class="icon-editor-head">
+            <div>
+              <strong id="icon-editor-title">Ícone do item</strong>
+              <small>Escolha a ilustração que representa este material.</small>
+            </div>
+            <div id="icon-preview" class="icon-preview" aria-live="polite"></div>
+          </div>
+          <div id="icon-picker" class="icon-picker" role="radiogroup" aria-label="Ícones disponíveis"></div>
+        </section>
         <label>Valor (R$) <input id="field-value" type="number" min="0" step="0.01" required value="0" /></label>
         <label>Quantidade <input id="field-quantity" type="number" min="0" step="any" /></label>
         <label>Unidade <input id="field-unit" /></label>
@@ -304,6 +315,6 @@
 
     <datalist id="phase-suggestions"></datalist>
     <datalist id="category-suggestions"></datalist>
-    <script src="/app.js?v=20260915-14"></script>
+    <script src="/app.js?v=20260915-15"></script>
   </body>
 </html>

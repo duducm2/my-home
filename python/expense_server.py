@@ -214,9 +214,24 @@ class ExpenseHandler(BaseHTTPRequestHandler):
             self._bytes(200, document.read_bytes(), "application/pdf")
             return
 
+        if path.startswith("/assets/item-icons/"):
+            filename = path.rsplit("/", 1)[-1]
+            manifest = get_store(self.data_dir)._icon_manifest()
+            allowed = {
+                str(icon.get("filename") or "")
+                for icon in manifest.get("icons", {}).values()
+                if isinstance(icon, dict)
+            }
+            if filename not in allowed:
+                self._json(404, {"ok": False, "error": "item icon not found"})
+                return
+            self._serve_static(f"assets/item-icons/{filename}", "image/png")
+            return
+
         if path.startswith("/assets/"):
             rel = path[len("/assets/") :]
-            self._serve_static(f"assets/{rel}", "image/jpeg" if rel.lower().endswith((".jpg", ".jpeg")) else "application/octet-stream")
+            mime_type = "image/jpeg" if rel.lower().endswith((".jpg", ".jpeg")) else "application/octet-stream"
+            self._serve_static(f"assets/{rel}", mime_type)
             return
 
         self._json(404, {"ok": False, "error": "not found"})

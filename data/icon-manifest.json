@@ -1,0 +1,316 @@
+{
+  "version": 1,
+  "style": {
+    "name": "Home Quest Inventory",
+    "description": "Cartoon mobile strategy-game inventory art with warm gold and navy accents.",
+    "format": "PNG RGBA",
+    "dimensions_px": [
+      256,
+      256
+    ],
+    "background": "transparent",
+    "generated_with": "Cursor GenerateImage",
+    "generated_at": "2026-09-15",
+    "source_layout": "Three 4x3 generated sheets, chroma-keyed and cropped into individual assets",
+    "generation_prompt_template": "Isolated construction inventory item, polished mobile strategy-game art, soft isometric 3D cartoon style, warm gold and dark navy accents, chunky readable silhouette, no text; generated on chroma-key magenta and converted to transparent RGBA PNG."
+  },
+  "defaults": {
+    "material": "materials-crate",
+    "tool": "toolbox"
+  },
+  "icons": {
+    "waterproofing-additive": {
+      "label": "Impermeabilizante",
+      "filename": "waterproofing-additive.png",
+      "url": "/assets/item-icons/waterproofing-additive.png",
+      "source_sheet": "a",
+      "source_cell": 1
+    },
+    "aggregates": {
+      "label": "Areia e pedrisco",
+      "filename": "aggregates.png",
+      "url": "/assets/item-icons/aggregates.png",
+      "source_sheet": "a",
+      "source_cell": 2
+    },
+    "cement": {
+      "label": "Cimento",
+      "filename": "cement.png",
+      "url": "/assets/item-icons/cement.png",
+      "source_sheet": "a",
+      "source_cell": 3
+    },
+    "roof-tiles": {
+      "label": "Telhas",
+      "filename": "roof-tiles.png",
+      "url": "/assets/item-icons/roof-tiles.png",
+      "source_sheet": "a",
+      "source_cell": 4
+    },
+    "toolbox": {
+      "label": "Ferramentas",
+      "filename": "toolbox.png",
+      "url": "/assets/item-icons/toolbox.png",
+      "source_sheet": "a",
+      "source_cell": 5
+    },
+    "clay-bricks": {
+      "label": "Tijolinhos de barro",
+      "filename": "clay-bricks.png",
+      "url": "/assets/item-icons/clay-bricks.png",
+      "source_sheet": "a",
+      "source_cell": 6
+    },
+    "wheelbarrow": {
+      "label": "Carrinho de mão",
+      "filename": "wheelbarrow.png",
+      "url": "/assets/item-icons/wheelbarrow.png",
+      "source_sheet": "a",
+      "source_cell": 7
+    },
+    "construction-wire": {
+      "label": "Arame recozido",
+      "filename": "construction-wire.png",
+      "url": "/assets/item-icons/construction-wire.png",
+      "source_sheet": "a",
+      "source_cell": 8
+    },
+    "debris-dumpster": {
+      "label": "Caçamba de entulho",
+      "filename": "debris-dumpster.png",
+      "url": "/assets/item-icons/debris-dumpster.png",
+      "source_sheet": "a",
+      "source_cell": 9
+    },
+    "porcelain-tiles": {
+      "label": "Porcelanato",
+      "filename": "porcelain-tiles.png",
+      "url": "/assets/item-icons/porcelain-tiles.png",
+      "source_sheet": "a",
+      "source_cell": 10
+    },
+    "grout": {
+      "label": "Rejunte",
+      "filename": "grout.png",
+      "url": "/assets/item-icons/grout.png",
+      "source_sheet": "a",
+      "source_cell": 11
+    },
+    "mortar": {
+      "label": "Argamassa",
+      "filename": "mortar.png",
+      "url": "/assets/item-icons/mortar.png",
+      "source_sheet": "a",
+      "source_cell": 12
+    },
+    "interior-door": {
+      "label": "Porta interna",
+      "filename": "interior-door.png",
+      "url": "/assets/item-icons/interior-door.png",
+      "source_sheet": "b",
+      "source_cell": 1
+    },
+    "sliding-door": {
+      "label": "Porta-balcão",
+      "filename": "sliding-door.png",
+      "url": "/assets/item-icons/sliding-door.png",
+      "source_sheet": "b",
+      "source_cell": 2
+    },
+    "toilet": {
+      "label": "Vaso sanitário",
+      "filename": "toilet.png",
+      "url": "/assets/item-icons/toilet.png",
+      "source_sheet": "b",
+      "source_cell": 3
+    },
+    "window": {
+      "label": "Janela",
+      "filename": "window.png",
+      "url": "/assets/item-icons/window.png",
+      "source_sheet": "b",
+      "source_cell": 4
+    },
+    "bathroom-window": {
+      "label": "Vitrô",
+      "filename": "bathroom-window.png",
+      "url": "/assets/item-icons/bathroom-window.png",
+      "source_sheet": "b",
+      "source_cell": 5
+    },
+    "breaker-panel": {
+      "label": "Quadro de distribuição",
+      "filename": "breaker-panel.png",
+      "url": "/assets/item-icons/breaker-panel.png",
+      "source_sheet": "b",
+      "source_cell": 6
+    },
+    "conduit": {
+      "label": "Conduíte",
+      "filename": "conduit.png",
+      "url": "/assets/item-icons/conduit.png",
+      "source_sheet": "b",
+      "source_cell": 7
+    },
+    "light-bulbs": {
+      "label": "Lâmpadas",
+      "filename": "light-bulbs.png",
+      "url": "/assets/item-icons/light-bulbs.png",
+      "source_sheet": "b",
+      "source_cell": 8
+    },
+    "faucet": {
+      "label": "Torneiras",
+      "filename": "faucet.png",
+      "url": "/assets/item-icons/faucet.png",
+      "source_sheet": "b",
+      "source_cell": 9
+    },
+    "drains": {
+      "label": "Sifões e ralos",
+      "filename": "drains.png",
+      "url": "/assets/item-icons/drains.png",
+      "source_sheet": "b",
+      "source_cell": 10
+    },
+    "outlet": {
+      "label": "Tomadas",
+      "filename": "outlet.png",
+      "url": "/assets/item-icons/outlet.png",
+      "source_sheet": "b",
+      "source_cell": 11
+    },
+    "sink-countertop": {
+      "label": "Pias e bancadas",
+      "filename": "sink-countertop.png",
+      "url": "/assets/item-icons/sink-countertop.png",
+      "source_sheet": "b",
+      "source_cell": 12
+    },
+    "shower-enclosure": {
+      "label": "Box de vidro",
+      "filename": "shower-enclosure.png",
+      "url": "/assets/item-icons/shower-enclosure.png",
+      "source_sheet": "c",
+      "source_cell": 1
+    },
+    "baseboards": {
+      "label": "Rodapés",
+      "filename": "baseboards.png",
+      "url": "/assets/item-icons/baseboards.png",
+      "source_sheet": "c",
+      "source_cell": 2
+    },
+    "roof-framing": {
+      "label": "Estrutura do telhado",
+      "filename": "roof-framing.png",
+      "url": "/assets/item-icons/roof-framing.png",
+      "source_sheet": "c",
+      "source_cell": 3
+    },
+    "gutters": {
+      "label": "Calhas e rufos",
+      "filename": "gutters.png",
+      "url": "/assets/item-icons/gutters.png",
+      "source_sheet": "c",
+      "source_cell": 4
+    },
+    "water-tank": {
+      "label": "Caixa-d'água",
+      "filename": "water-tank.png",
+      "url": "/assets/item-icons/water-tank.png",
+      "source_sheet": "c",
+      "source_cell": 5
+    },
+    "security-devices": {
+      "label": "Dispositivos de segurança",
+      "filename": "security-devices.png",
+      "url": "/assets/item-icons/security-devices.png",
+      "source_sheet": "c",
+      "source_cell": 6
+    },
+    "paint": {
+      "label": "Tinta",
+      "filename": "paint.png",
+      "url": "/assets/item-icons/paint.png",
+      "source_sheet": "c",
+      "source_cell": 7
+    },
+    "fasteners": {
+      "label": "Pregos, parafusos e buchas",
+      "filename": "fasteners.png",
+      "url": "/assets/item-icons/fasteners.png",
+      "source_sheet": "c",
+      "source_cell": 8
+    },
+    "sealants": {
+      "label": "Silicone, espuma e selante",
+      "filename": "sealants.png",
+      "url": "/assets/item-icons/sealants.png",
+      "source_sheet": "c",
+      "source_cell": 9
+    },
+    "drill": {
+      "label": "Furadeira",
+      "filename": "drill.png",
+      "url": "/assets/item-icons/drill.png",
+      "source_sheet": "c",
+      "source_cell": 10
+    },
+    "angle-grinder": {
+      "label": "Esmerilhadeira",
+      "filename": "angle-grinder.png",
+      "url": "/assets/item-icons/angle-grinder.png",
+      "source_sheet": "c",
+      "source_cell": 11
+    },
+    "materials-crate": {
+      "label": "Materiais diversos",
+      "filename": "materials-crate.png",
+      "url": "/assets/item-icons/materials-crate.png",
+      "source_sheet": "c",
+      "source_cell": 12
+    }
+  },
+  "expense_associations": {
+    "EXP_0014": "waterproofing-additive",
+    "EXP_0015": "aggregates",
+    "EXP_0016": "cement",
+    "EXP_0017": "roof-tiles",
+    "EXP_0018": "toolbox",
+    "EXP_0019": "clay-bricks",
+    "EXP_0020": "wheelbarrow",
+    "EXP_0021": "construction-wire",
+    "EXP_0022": "debris-dumpster",
+    "EXP_0023": "porcelain-tiles",
+    "EXP_0024": "grout",
+    "EXP_0025": "mortar",
+    "EXP_0026": "interior-door",
+    "EXP_0027": "sliding-door",
+    "EXP_0028": "toilet",
+    "EXP_0029": "window",
+    "EXP_0030": "window",
+    "EXP_0031": "bathroom-window",
+    "EXP_0033": "breaker-panel",
+    "EXP_0034": "conduit",
+    "EXP_0035": "light-bulbs",
+    "EXP_0036": "faucet",
+    "EXP_0037": "drains",
+    "EXP_0038": "outlet",
+    "EXP_0039": "sink-countertop",
+    "EXP_0040": "shower-enclosure",
+    "EXP_0041": "baseboards",
+    "EXP_0042": "roof-framing",
+    "EXP_0043": "gutters",
+    "EXP_0044": "water-tank",
+    "EXP_0045": "security-devices",
+    "EXP_0046": "paint",
+    "EXP_0047": "fasteners",
+    "EXP_0048": "sealants"
+  },
+  "tool_associations": {
+    "drill": "drill",
+    "angle_grinder": "angle-grinder",
+    "wheelbarrow": "wheelbarrow"
+  }
+}
