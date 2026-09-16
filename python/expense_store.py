@@ -8,7 +8,7 @@ import math
 import os
 import re
 import threading
-from datetime import datetime
+from datetime import date, datetime, timedelta
 from pathlib import Path
 from typing import Any
 from urllib.parse import urlparse
@@ -22,6 +22,7 @@ HEADERS = [
     "description",
     "icon_key",
     "value",
+    "payments_json",
     "quantity",
     "unit",
     "unit_price",
@@ -90,8 +91,9 @@ class ExpenseStore:
             rows = list(reader)
         if fieldnames == HEADERS:
             return
+        linked_dates, timeline_start, timeline_end = self._task_payment_context()
         migrated = []
-        for row in rows:
+        for index, row in enumerate(rows):
             item = {key: row.get(key, "") for key in HEADERS}
             item["record_type"] = item["record_type"] or ("material" if item["category"] == "Material" else "service")
             item["priority"] = item["priority"] or "1"
@@ -120,6 +122,19 @@ class ExpenseStore:
                         [quotation], ensure_ascii=False, separators=(",", ":")
                     )
                     item["selected_quotation_id"] = quotation["id"]
+            if not item["payments_json"]:
+                item["payments_json"] = self._serialize_payments(
+                    [
+                        self._default_payment(
+                            item,
+                            linked_dates,
+                            timeline_start,
+                            timeline_end,
+                            index,
+                            len(rows),
+                        )
+                    ]
+                )
             migrated.append(item)
         self._write_rows(migrated)
 
@@ -290,6 +305,146 @@ class ExpenseStore:
                 maximum = max(maximum, int(match.group(1)))
         return f"QUOTE_{maximum + 1:03d}"
 
+    def _task_payment_context(
+        self,
+    ) -> tuple[dict[str, str], date, date]:
+        task_path = self.data_dir / "tasks.json"
+        tasks: list[dict[str, Any]] = []
+        if task_path.is_file():
+            try:
+                document = json.loads(task_path.read_text(encoding="utf-8-sig"))
+                raw_tasks = document.get("tasks", []) if isinstance(document, dict) else []
+                tasks = [item for item in raw_tasks if isinstance(item, dict)]
+            except (OSError, json.JSONDecodeError):
+                tasks = []
+        valid_dates = []
+        linked: dict[str, str] = {}
+        for task in tasks:
+            try:
+                task_date = date.fromisoformat(str(task.get("start_date") or ""))
+            except ValueError:
+                continue
+            valid_dates.append(task_date)
+            expense_id = str(task.get("expense_id") or "").strip()
+            if expense_id and (
+                expense_id not in linked or task_date.isoformat() < linked[expense_id]
+            ):
+                linked[expense_id] = task_date.isoformat()
+        start = min(valid_dates, default=date.today())
+        end = max(valid_dates, default=start + timedelta(days=365))
+        if end <= start:
+            end = start + timedelta(days=365)
+        return linked, start, end
+
+    @staticmethod
+    def _default_payment(
+        row: dict[str, Any],
+        linked_dates: dict[str, str],
+        timeline_start: date,
+        timeline_end: date,
+        index: int,
+        total_rows: int,
+    ) -> dict[str, Any]:
+        expense_id = str(row.get("id") or "")
+        linked_date = linked_dates.get(expense_id)
+        if linked_date:
+            payment_date = linked_date
+            source = "task_start"
+        else:
+            span = max(1, (timeline_end - timeline_start).days)
+            ratio = (index + 0.5) / max(1, total_rows)
+            priority_offset = (max(1, _priority(row.get("priority") or 1)) - 1) * 7
+            offset = min(span, round(span * ratio) + priority_offset)
+            payment_date = (timeline_start + timedelta(days=offset)).isoformat()
+            source = "presumed"
+        return {
+            "id": "PAY_001",
+            "date": payment_date,
+            "amount": round(_parse_value(row.get("value")), 2),
+            "date_status": "estimated",
+            "source": source,
+            "notes": "",
+        }
+
+    @staticmethod
+    def _serialize_payments(payments: list[dict[str, Any]]) -> str:
+        return json.dumps(payments, ensure_ascii=False, separators=(",", ":"))
+
+    def _parse_payments(self, row: dict[str, str]) -> list[dict[str, Any]]:
+        raw = str(row.get("payments_json") or "[]").strip() or "[]"
+        try:
+            payload = json.loads(raw)
+        except json.JSONDecodeError as exc:
+            raise ValueError(f"invalid payments_json for {row.get('id')}") from exc
+        if not isinstance(payload, list):
+            raise ValueError(f"invalid payments_json for {row.get('id')}")
+        return payload
+
+    @staticmethod
+    def _validate_payments(
+        payload: Any, value: float
+    ) -> list[dict[str, Any]]:
+        if not isinstance(payload, list) or not payload or len(payload) > 36:
+            raise ValueError("payments must contain between 1 and 36 items")
+        result: list[dict[str, Any]] = []
+        ids: set[str] = set()
+        for index, raw in enumerate(payload, start=1):
+            if not isinstance(raw, dict):
+                raise ValueError("each payment must be an object")
+            payment_id = str(raw.get("id") or f"PAY_{index:03d}").strip()
+            if not re.fullmatch(r"[A-Za-z0-9_-]{1,64}", payment_id):
+                raise ValueError(f"invalid payment id: {payment_id}")
+            if payment_id in ids:
+                raise ValueError(f"duplicate payment id: {payment_id}")
+            ids.add(payment_id)
+            payment_date = str(raw.get("date") or "").strip()
+            try:
+                date.fromisoformat(payment_date)
+            except ValueError as exc:
+                raise ValueError("payment date must use YYYY-MM-DD") from exc
+            amount = round(_parse_value(raw.get("amount")), 2)
+            if not math.isfinite(amount) or amount < 0:
+                raise ValueError("payment amount must be a finite nonnegative number")
+            date_status = str(raw.get("date_status") or "confirmed").strip()
+            if date_status not in {"estimated", "confirmed"}:
+                raise ValueError("payment date_status must be estimated or confirmed")
+            result.append(
+                {
+                    "id": payment_id,
+                    "date": payment_date,
+                    "amount": amount,
+                    "date_status": date_status,
+                    "source": str(raw.get("source") or "manual").strip()[:40],
+                    "notes": str(raw.get("notes") or "").strip()[:500],
+                }
+            )
+        if abs(sum(item["amount"] for item in result) - value) > 0.01:
+            raise ValueError("payment amounts must equal the expense value")
+        result.sort(key=lambda item: (item["date"], item["id"]))
+        return result
+
+    def _sync_payment_total(self, row: dict[str, str]) -> None:
+        payments = self._parse_payments(row)
+        if not payments:
+            return
+        value = round(_parse_value(row.get("value")), 2)
+        current = round(sum(float(item.get("amount") or 0) for item in payments), 2)
+        if abs(value - current) <= 0.01:
+            return
+        if current > 0:
+            remaining = value
+            for item in payments[:-1]:
+                item["amount"] = round(
+                    value * float(item.get("amount") or 0) / current, 2
+                )
+                remaining -= item["amount"]
+            payments[-1]["amount"] = round(remaining, 2)
+        else:
+            payments[0]["amount"] = value
+            for item in payments[1:]:
+                item["amount"] = 0.0
+        row["payments_json"] = self._serialize_payments(payments)
+
     def _normalize(self, row: dict[str, str]) -> dict[str, Any]:
         quantity = _optional_float(row.get("quantity"))
         if quantity is None and row.get("category") == "Material":
@@ -302,6 +457,7 @@ class ExpenseStore:
             "description": row.get("description", ""),
             "icon_key": row.get("icon_key") or self._default_icon_key(row.get("category", "")),
             "value": _parse_value(row.get("value")),
+            "payments": self._parse_payments(row),
             "quantity": quantity,
             "unit": row.get("unit", ""),
             "unit_price": _optional_float(row.get("unit_price")),
@@ -443,6 +599,36 @@ class ExpenseStore:
         else:
             self._clear_quotation_projection(row)
 
+    def _apply_payment_payload(
+        self,
+        row: dict[str, str],
+        payload: dict[str, Any],
+        row_index: int,
+        total_rows: int,
+    ) -> None:
+        if "payments" in payload:
+            payments = self._validate_payments(
+                payload.get("payments"), _parse_value(row.get("value"))
+            )
+            row["payments_json"] = self._serialize_payments(payments)
+            return
+        if str(row.get("payments_json") or "").strip():
+            self._sync_payment_total(row)
+            return
+        linked_dates, timeline_start, timeline_end = self._task_payment_context()
+        row["payments_json"] = self._serialize_payments(
+            [
+                self._default_payment(
+                    row,
+                    linked_dates,
+                    timeline_start,
+                    timeline_end,
+                    row_index,
+                    max(1, total_rows),
+                )
+            ]
+        )
+
     def upsert_expense(self, payload: dict[str, Any]) -> dict[str, Any]:
         category = str(payload.get("category") or "").strip()
         description = str(payload.get("description") or "").strip()
@@ -483,7 +669,7 @@ class ExpenseStore:
         stamp = now_stamp()
         rows = self._read_rows()
         if expense_id:
-            for row in rows:
+            for row_index, row in enumerate(rows):
                 if row.get("id") == expense_id:
                     row.update(
                         {
@@ -500,6 +686,9 @@ class ExpenseStore:
                     )
                     self._apply_price_fields(row, payload, stamp)
                     self._apply_quotation_payload(row, payload)
+                    self._apply_payment_payload(
+                        row, payload, row_index, len(rows)
+                    )
                     break
             else:
                 raise ValueError(f"expense not found: {expense_id}")
@@ -525,6 +714,9 @@ class ExpenseStore:
             )
             self._apply_price_fields(row, payload, stamp)
             self._apply_quotation_payload(row, payload)
+            self._apply_payment_payload(
+                row, payload, len(rows), len(rows) + 1
+            )
             rows.append(row)
         self._write_rows(rows)
         return {"ok": True, "expense_id": expense_id, "state": self.state()}
@@ -591,6 +783,7 @@ class ExpenseStore:
                 or bool(payload.get("selected"))
             ):
                 self._project_quotation(row, quotation)
+                self._sync_payment_total(row)
             row["updated_at"] = now_stamp()
             self._write_rows(rows)
         return {
@@ -614,6 +807,7 @@ class ExpenseStore:
             if quotation is None:
                 raise ValueError(f"quotation not found: {quotation_id}")
             self._project_quotation(row, quotation)
+            self._sync_payment_total(row)
             row["updated_at"] = now_stamp()
             self._write_rows(rows)
         return {**self.quotation_state(expense_id), "state": self.state()}
@@ -721,6 +915,7 @@ class ExpenseStore:
                 target["quotations_json"] = self._serialize_quotations(quotations)
                 if expense_id in selected:
                     self._project_quotation(target, selected[expense_id])
+                    self._sync_payment_total(target)
                 target["updated_at"] = stamp
             updated_ids = list(prepared)
             if updated_ids:
@@ -731,6 +926,45 @@ class ExpenseStore:
             "errors": [],
             "state": self.state(),
         }
+
+    def sync_task_payment_date(
+        self, expense_id: Any, start_date: Any
+    ) -> dict[str, Any] | None:
+        expense_id = str(expense_id or "").strip()
+        start_date = str(start_date or "").strip()
+        if not expense_id:
+            return None
+        try:
+            date.fromisoformat(start_date)
+        except ValueError as exc:
+            raise ValueError("task start_date must use YYYY-MM-DD") from exc
+        with self._lock:
+            rows = self._read_rows()
+            row = self._expense_row(rows, expense_id)
+            payments = self._parse_payments(row)
+            linked = [
+                payment
+                for payment in payments
+                if payment.get("source") == "task_start"
+                and payment.get("date_status") == "estimated"
+            ]
+            if (
+                not linked
+                and len(payments) == 1
+                and payments[0].get("source") == "presumed"
+                and payments[0].get("date_status") == "estimated"
+            ):
+                linked = payments
+                linked[0]["source"] = "task_start"
+            if not linked:
+                return self.state()
+            for payment in linked:
+                payment["date"] = start_date
+            payments.sort(key=lambda item: (item["date"], item["id"]))
+            row["payments_json"] = self._serialize_payments(payments)
+            row["updated_at"] = now_stamp()
+            self._write_rows(rows)
+        return self.state()
 
     def delete_expense(self, expense_id: str) -> dict[str, Any]:
         expense_id = str(expense_id or "").strip()

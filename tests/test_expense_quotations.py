@@ -1,4 +1,5 @@
 import csv
+from datetime import date
 import tempfile
 import unittest
 from pathlib import Path
@@ -73,6 +74,71 @@ class ExpenseQuotationTests(unittest.TestCase):
         self.assertEqual(deleted["selected_quotation_id"], "")
         self.assertEqual(deleted["quotations"], [])
         self.assertEqual(deleted["expense"]["value"], 55)
+        self.assertEqual(
+            sum(payment["amount"] for payment in deleted["expense"]["payments"]),
+            55,
+        )
+
+    def test_payment_schedule_crud_validation_and_projection(self) -> None:
+        expense = self.store.state()["expenses"][0]
+        self.assertEqual(len(expense["payments"]), 1)
+        self.assertEqual(expense["payments"][0]["amount"], 100)
+        self.assertEqual(expense["payments"][0]["date_status"], "estimated")
+        date.fromisoformat(expense["payments"][0]["date"])
+
+        payload = {
+            **expense,
+            "payments": [
+                {
+                    "id": "PAY_001",
+                    "date": "2026-10-05",
+                    "amount": 40,
+                    "date_status": "confirmed",
+                },
+                {
+                    "id": "PAY_002",
+                    "date": "2026-11-05",
+                    "amount": 60,
+                    "date_status": "confirmed",
+                },
+            ],
+        }
+        updated = self.store.upsert_expense(payload)["state"]["expenses"][0]
+        self.assertEqual([item["amount"] for item in updated["payments"]], [40, 60])
+        with self.assertRaisesRegex(ValueError, "equal the expense value"):
+            self.store.upsert_expense(
+                {**payload, "payments": [{**payload["payments"][0], "amount": 20}]}
+            )
+        with self.assertRaisesRegex(ValueError, "YYYY-MM-DD"):
+            self.store.upsert_expense(
+                {
+                    **payload,
+                    "payments": [
+                        {
+                            "date": "05/10/2026",
+                            "amount": 100,
+                        }
+                    ],
+                }
+            )
+
+        linked_payload = {
+            **updated,
+            "payments": [
+                {
+                    "id": "PAY_001",
+                    "date": "2026-10-05",
+                    "amount": 100,
+                    "date_status": "estimated",
+                    "source": "task_start",
+                }
+            ],
+        }
+        self.store.upsert_expense(linked_payload)
+        synced = self.store.sync_task_payment_date(
+            self.expense_id, "2026-12-01"
+        )
+        self.assertEqual(synced["expenses"][0]["payments"][0]["date"], "2026-12-01")
 
     def test_zero_five_and_six_quotation_boundaries(self) -> None:
         self.assertEqual(

@@ -2,7 +2,7 @@ import * as THREE from "three";
 import { OrbitControls } from "/vendor/three/OrbitControls.js";
 import { TransformControls } from "/vendor/three/TransformControls.js";
 import { GLTFLoader } from "/vendor/three/GLTFLoader.js";
-import { LOCAL_ASSET_CATALOG } from "/assets/models/asset-catalog.js?v=20260916-1";
+import { LOCAL_ASSET_CATALOG } from "/assets/models/asset-catalog.js?v=20260916-2";
 
 let activeViewer = null;
 let activeFingerprint = "";

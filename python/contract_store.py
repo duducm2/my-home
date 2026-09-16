@@ -3,18 +3,20 @@
 from __future__ import annotations
 
 import csv
+import calendar
 import hashlib
 import json
 import os
 import re
 import threading
-from datetime import date, datetime
+from datetime import date, datetime, timedelta
 from pathlib import Path
 from typing import Any
 
 
 CONTRACT_TYPES = {"purchase", "service"}
 CONTRACT_STATUSES = {"draft", "signed", "active", "completed", "cancelled"}
+PAYMENT_FREQUENCIES = {"one_time", "weekly", "monthly", "custom"}
 MAX_PDF_BYTES = 25 * 1024 * 1024
 
 
@@ -43,7 +45,8 @@ class ContractStore:
         self.documents_dir.mkdir(parents=True, exist_ok=True)
         self._lock = threading.RLock()
         if not self.path.is_file():
-            self._write({"version": 1, "contracts": [], "updated_at": now_stamp()})
+            self._write({"version": 2, "contracts": [], "updated_at": now_stamp()})
+        self._ensure_payment_plans()
 
     def _read(self) -> dict[str, Any]:
         with self._lock:
@@ -58,11 +61,228 @@ class ContractStore:
     def _write(self, payload: dict[str, Any]) -> None:
         with self._lock:
             document = dict(payload)
-            document["version"] = 1
+            document["version"] = 2
             document["updated_at"] = now_stamp()
             temporary = self.path.with_suffix(".json.tmp")
             temporary.write_text(json.dumps(document, ensure_ascii=False, indent=2) + "\n", encoding="utf-8", newline="\n")
             os.replace(temporary, self.path)
+
+    def _linked_task_period(
+        self, expense_ids: list[str], contract_title: str = ""
+    ) -> tuple[str, str]:
+        path = self.data_dir / "tasks.json"
+        if not path.is_file() or not expense_ids:
+            return "", ""
+        try:
+            document = json.loads(path.read_text(encoding="utf-8-sig"))
+        except (OSError, json.JSONDecodeError):
+            return "", ""
+        selected = set(expense_ids)
+        tasks = [
+            item
+            for item in document.get("tasks", [])
+            if isinstance(item, dict) and str(item.get("expense_id") or "") in selected
+        ]
+        if not tasks and contract_title:
+            contract_words = {
+                word
+                for word in re.findall(r"\w+", contract_title.casefold())
+                if len(word) > 3
+            }
+            ranked = sorted(
+                (
+                    (
+                        len(
+                            contract_words
+                            & {
+                                word
+                                for word in re.findall(
+                                    r"\w+", str(item.get("title") or "").casefold()
+                                )
+                                if len(word) > 3
+                            }
+                        ),
+                        item,
+                    )
+                    for item in document.get("tasks", [])
+                    if isinstance(item, dict)
+                    and item.get("activity_type") == "macro"
+                ),
+                key=lambda pair: pair[0],
+                reverse=True,
+            )
+            if ranked and ranked[0][0] >= 2:
+                tasks = [ranked[0][1]]
+        starts = [str(item.get("start_date") or "") for item in tasks if item.get("start_date")]
+        ends = [str(item.get("end_date") or "") for item in tasks if item.get("end_date")]
+        return (min(starts, default=""), max(ends, default=""))
+
+    @staticmethod
+    def _add_month(value: date) -> date:
+        year = value.year + (1 if value.month == 12 else 0)
+        month = 1 if value.month == 12 else value.month + 1
+        return date(year, month, min(value.day, calendar.monthrange(year, month)[1]))
+
+    @classmethod
+    def _payment_dates(
+        cls, start_date: str, end_date: str, frequency: str
+    ) -> list[str]:
+        start = date.fromisoformat(start_date)
+        end = date.fromisoformat(end_date)
+        if frequency == "one_time":
+            return [end.isoformat()]
+        dates = [start]
+        cursor = start
+        while True:
+            next_date = (
+                cursor + timedelta(days=7)
+                if frequency == "weekly"
+                else cls._add_month(cursor)
+            )
+            if next_date >= end:
+                break
+            dates.append(next_date)
+            cursor = next_date
+        if dates[-1] != end:
+            dates.append(end)
+        return [value.isoformat() for value in dates]
+
+    @staticmethod
+    def _equal_payments(
+        amount: float,
+        payment_dates: list[str],
+        frequency: str,
+        date_status: str,
+    ) -> list[dict[str, Any]]:
+        total_cents = round(amount * 100)
+        count = max(1, len(payment_dates))
+        base, remainder = divmod(total_cents, count)
+        return [
+            {
+                "id": f"PAY_{index:03d}",
+                "date": payment_date,
+                "amount": (base + (1 if index <= remainder else 0)) / 100,
+                "date_status": date_status,
+                "source": f"contract_{frequency}",
+                "notes": "",
+            }
+            for index, payment_date in enumerate(payment_dates, start=1)
+        ]
+
+    @staticmethod
+    def _validate_custom_payments(
+        payload: Any, amount: float, start_date: str, end_date: str
+    ) -> list[dict[str, Any]]:
+        if not isinstance(payload, list) or not payload or len(payload) > 104:
+            raise ValueError("custom payment schedule must contain 1 to 104 items")
+        payments = []
+        ids: set[str] = set()
+        for index, raw in enumerate(payload, start=1):
+            if not isinstance(raw, dict):
+                raise ValueError("each contract payment must be an object")
+            payment_id = str(raw.get("id") or f"PAY_{index:03d}").strip()
+            if not re.fullmatch(r"[A-Za-z0-9_-]{1,64}", payment_id) or payment_id in ids:
+                raise ValueError(f"invalid or duplicate contract payment id: {payment_id}")
+            ids.add(payment_id)
+            payment_date = _date(raw.get("date"), "payment date", required=True)
+            if payment_date < start_date or payment_date > end_date:
+                raise ValueError("contract payments must be inside the work period")
+            try:
+                payment_amount = round(float(raw.get("amount")), 2)
+            except (TypeError, ValueError) as exc:
+                raise ValueError("contract payment amount must be numeric") from exc
+            if payment_amount < 0:
+                raise ValueError("contract payment amount must be non-negative")
+            date_status = str(raw.get("date_status") or "confirmed")
+            if date_status not in {"estimated", "confirmed"}:
+                raise ValueError("invalid contract payment date status")
+            payments.append(
+                {
+                    "id": payment_id,
+                    "date": payment_date,
+                    "amount": payment_amount,
+                    "date_status": date_status,
+                    "source": "contract_custom",
+                    "notes": str(raw.get("notes") or "").strip()[:500],
+                }
+            )
+        if abs(sum(item["amount"] for item in payments) - amount) > 0.01:
+            raise ValueError("contract payment amounts must equal the total price")
+        return sorted(payments, key=lambda item: (item["date"], item["id"]))
+
+    def _ensure_payment_plans(self) -> None:
+        with self._lock:
+            document = self._read()
+            changed = int(document.get("version") or 1) < 2
+            for index, item in enumerate(document["contracts"]):
+                if str(item.get("type") or "service") != "service":
+                    continue
+                previously_confirmed = (
+                    item.get("work_period_status") == "confirmed"
+                )
+                had_start = bool(item.get("start_date")) and (
+                    previously_confirmed or "work_period_status" not in item
+                )
+                had_end = bool(item.get("end_date")) and (
+                    previously_confirmed or "work_period_status" not in item
+                )
+                task_start, task_end = self._linked_task_period(
+                    [str(value) for value in item.get("expense_ids") or []],
+                    str(item.get("title") or ""),
+                )
+                start_date = str(
+                    item.get("start_date") if had_start else task_start
+                )
+                start_date = start_date or str(item.get("start_date") or "")
+                if not start_date:
+                    start_date = (date.today() + timedelta(days=index * 7)).isoformat()
+                end_date = str(item.get("end_date") if had_end else "")
+                if not end_date:
+                    raw_duration = (
+                        ((item.get("metadata") or {}).get("deadline") or {}).get(
+                            "duration_days"
+                        )
+                    )
+                    if raw_duration:
+                        end_date = (
+                            date.fromisoformat(start_date)
+                            + timedelta(days=max(0, int(raw_duration) - 1))
+                        ).isoformat()
+                    else:
+                        end_date = task_end or start_date
+                frequency = str(item.get("payment_frequency") or "monthly")
+                if frequency not in PAYMENT_FREQUENCIES:
+                    frequency = "monthly"
+                dates_changed = (
+                    item.get("start_date") != start_date
+                    or item.get("end_date") != end_date
+                )
+                if not item.get("payment_schedule") or (
+                    dates_changed
+                    and item.get("work_period_status") == "estimated"
+                    and frequency != "custom"
+                ):
+                    item["payment_schedule"] = self._equal_payments(
+                        float(item.get("amount") or 0),
+                        self._payment_dates(start_date, end_date, frequency),
+                        frequency,
+                        "confirmed" if had_start and had_end else "estimated",
+                    )
+                    changed = True
+                if (
+                    item.get("start_date") != start_date
+                    or item.get("end_date") != end_date
+                    or item.get("payment_frequency") != frequency
+                ):
+                    item["start_date"] = start_date
+                    item["end_date"] = end_date
+                    item["work_period_status"] = (
+                        "confirmed" if had_start and had_end else "estimated"
+                    )
+                    item["payment_frequency"] = frequency
+                    changed = True
+            if changed:
+                self._write(document)
 
     def _provider_ids(self) -> set[str]:
         if not self.providers_path.is_file():
@@ -120,6 +340,13 @@ class ContractStore:
 
     @staticmethod
     def _normalize(item: dict[str, Any]) -> dict[str, Any]:
+        start_date = str(item.get("start_date") or "")
+        end_date = str(item.get("end_date") or "")
+        work_days = (
+            (date.fromisoformat(end_date) - date.fromisoformat(start_date)).days + 1
+            if start_date and end_date
+            else 0
+        )
         return {
             "id": str(item.get("id") or ""),
             "type": str(item.get("type") or "service"),
@@ -128,8 +355,16 @@ class ContractStore:
             "expense_ids": [str(value) for value in item.get("expense_ids") or []],
             "status": str(item.get("status") or "draft"),
             "amount": float(item.get("amount") or 0),
-            "start_date": str(item.get("start_date") or ""),
-            "end_date": str(item.get("end_date") or ""),
+            "start_date": start_date,
+            "end_date": end_date,
+            "work_days": work_days,
+            "work_period_status": str(
+                item.get("work_period_status") or "confirmed"
+            ),
+            "payment_frequency": str(
+                item.get("payment_frequency") or "one_time"
+            ),
+            "payment_schedule": list(item.get("payment_schedule") or []),
             "notes": str(item.get("notes") or ""),
             "archived": bool(item.get("archived")),
             "document_versions": list(item.get("document_versions") or []),
@@ -179,8 +414,37 @@ class ContractStore:
             raise ValueError("amount must be non-negative")
         start_date = _date(payload.get("start_date"), "start_date")
         end_date = _date(payload.get("end_date"), "end_date")
+        if contract_type == "service" and not start_date:
+            raise ValueError("service contracts require a work start date")
+        if contract_type == "service" and not end_date:
+            end_date = start_date
         if start_date and end_date and end_date < start_date:
             raise ValueError("end_date must be on or after start_date")
+        payment_frequency = str(
+            payload.get("payment_frequency") or "one_time"
+        ).strip()
+        if payment_frequency not in PAYMENT_FREQUENCIES:
+            raise ValueError(f"invalid payment frequency: {payment_frequency}")
+        if contract_type == "service":
+            if payment_frequency == "custom":
+                payment_schedule = self._validate_custom_payments(
+                    payload.get("payment_schedule"),
+                    amount,
+                    start_date,
+                    end_date,
+                )
+            else:
+                payment_schedule = self._equal_payments(
+                    amount,
+                    self._payment_dates(
+                        start_date, end_date, payment_frequency
+                    ),
+                    payment_frequency,
+                    "confirmed",
+                )
+        else:
+            payment_frequency = "one_time"
+            payment_schedule = []
 
         with self._lock:
             document = self._read()
@@ -208,6 +472,9 @@ class ContractStore:
                 "amount": amount,
                 "start_date": start_date,
                 "end_date": end_date,
+                "work_period_status": "confirmed",
+                "payment_frequency": payment_frequency,
+                "payment_schedule": payment_schedule,
                 "notes": str(payload.get("notes") or "").strip(),
                 "archived": bool((existing or {}).get("archived", False)),
                 "document_versions": list((existing or {}).get("document_versions") or []),

@@ -19,6 +19,7 @@ from typing import Any
 ROOT = Path(__file__).resolve().parents[1]
 OUTPUT = ROOT / "web" / "assets" / "models"
 POLYHAVEN_API = "https://api.polyhaven.com"
+GLTF_TRANSFORM_VERSION = "4.5.0"
 GROUP_COLORS = {
     "Sala": "#8f6f61",
     "Quarto": "#a7b8cc",
@@ -29,6 +30,8 @@ GROUP_COLORS = {
     "Iluminação": "#e0bc62",
     "Banheiro": "#87b6c9",
     "Ferramentas e obra": "#c48645",
+    "Limpeza e lavanderia": "#72a8a1",
+    "Segurança e acesso": "#b95f5f",
 }
 
 ASSETS: list[dict[str, Any]] = [
@@ -86,6 +89,66 @@ ASSETS: list[dict[str, Any]] = [
     {"id": "plunger", "label": "Desentupidor", "group": "Banheiro", "slug": "plunger", "dimensions": [0.18, 0.55, 0.18]},
     {"id": "water_container", "label": "Galão de água", "group": "Cozinha e serviço", "slug": "plastic_bottle_gallon", "dimensions": [0.3, 0.48, 0.3]},
     {"id": "wall_clock", "label": "Relógio de parede", "group": "Decoração", "slug": "wall_clock", "dimensions": [0.42, 0.42, 0.08]},
+    {"id": "armchair", "label": "Poltrona", "group": "Sala", "slug": "ArmChair_01", "dimensions": [0.85, 0.95, 0.85], "keywords": "assento sala leitura"},
+    {"id": "ottoman", "label": "Puff", "group": "Sala", "slug": "Ottoman_01", "dimensions": [0.65, 0.45, 0.65], "keywords": "apoio pés assento"},
+    {"id": "side_table", "label": "Mesa lateral", "group": "Sala", "slug": "WoodenTable_02", "dimensions": [0.55, 0.58, 0.55], "keywords": "mesa apoio canto"},
+    {"id": "floor_lamp", "label": "Luminária de piso", "group": "Iluminação", "slug": "industrial_pipe_lamp", "dimensions": [0.42, 1.55, 0.42], "keywords": "abajur luz sala"},
+    {"id": "tv_console", "label": "Rack de TV", "group": "Sala", "slug": "ClassicConsole_01", "dimensions": [1.65, 0.62, 0.42], "keywords": "painel televisão console"},
+    {"id": "room_divider", "label": "Biombo", "group": "Decoração", "slug": "chinese_screen_panels", "dimensions": [1.8, 1.8, 0.12], "keywords": "divisória painel"},
+    {"id": "rocking_chair", "label": "Cadeira de balanço", "group": "Sala", "slug": "Rockingchair_01", "dimensions": [0.72, 1.05, 1.0], "keywords": "poltrona descanso"},
+    {"id": "game_console", "label": "Console de jogos", "group": "Sala", "slug": "gaming_console", "dimensions": [0.32, 0.1, 0.26], "keywords": "videogame eletrônico tv"},
+    {"id": "projector_screen", "label": "Tela de projeção", "group": "Sala", "slug": "projector_screen", "dimensions": [2.0, 1.3, 0.1], "keywords": "cinema projetor painel"},
+    {"id": "radio", "label": "Caixa de som", "group": "Sala", "slug": "boombox", "dimensions": [0.5, 0.28, 0.2], "keywords": "rádio música áudio"},
+    {"id": "ceramic_vase", "label": "Vaso decorativo", "group": "Decoração", "slug": "ceramic_vase_01", "dimensions": [0.28, 0.45, 0.28], "keywords": "cerâmica enfeite"},
+    {"id": "planter_box", "label": "Floreira", "group": "Exterior", "slug": "planter_box_01", "dimensions": [0.9, 0.42, 0.36], "keywords": "jardim plantas vaso"},
+    {"id": "bedroom_stool", "label": "Banqueta de quarto", "group": "Quarto", "slug": "chinese_stool", "dimensions": [0.42, 0.48, 0.42], "keywords": "penteadeira assento"},
+    {"id": "storage_chest", "label": "Baú", "group": "Quarto", "slug": "treasure_chest", "dimensions": [0.9, 0.55, 0.52], "keywords": "armazenamento roupas"},
+    {"id": "suitcase", "label": "Mala", "group": "Quarto", "slug": "vintage_suitcase", "dimensions": [0.72, 0.22, 0.5], "keywords": "bagagem armazenamento"},
+    {"id": "laundry_basket", "label": "Cesto de roupas", "group": "Limpeza e lavanderia", "slug": "wicker_basket_01", "dimensions": [0.45, 0.6, 0.45], "keywords": "lavanderia roupa suja"},
+    {"id": "alarm_clock", "label": "Despertador", "group": "Quarto", "slug": "alarm_clock_01", "dimensions": [0.18, 0.16, 0.1], "keywords": "relógio criado mudo"},
+    {"id": "candleholders", "label": "Castiçais", "group": "Decoração", "slug": "brass_candleholders", "dimensions": [0.4, 0.48, 0.18], "keywords": "velas iluminação enfeite"},
+    {"id": "laptop", "label": "Notebook", "group": "Escritório", "slug": "classic_laptop", "dimensions": [0.36, 0.24, 0.26], "keywords": "computador trabalho"},
+    {"id": "clipboard", "label": "Prancheta", "group": "Escritório", "slug": "clipboard", "dimensions": [0.24, 0.02, 0.34], "keywords": "documentos papel"},
+    {"id": "stationery_set", "label": "Material de escritório", "group": "Escritório", "slug": "stationery_supplies", "dimensions": [0.42, 0.18, 0.3], "keywords": "canetas lápis papel"},
+    {"id": "notepads", "label": "Cadernos", "group": "Escritório", "slug": "office_notepads", "dimensions": [0.32, 0.08, 0.24], "keywords": "bloco notas papel"},
+    {"id": "stapler", "label": "Grampeador", "group": "Escritório", "slug": "vintage_stapler", "dimensions": [0.2, 0.1, 0.07], "keywords": "papel material"},
+    {"id": "magnifier", "label": "Lupa", "group": "Escritório", "slug": "magnifying_glass_01", "dimensions": [0.12, 0.03, 0.28], "keywords": "leitura ferramenta"},
+    {"id": "chalkboard", "label": "Quadro de anotações", "group": "Escritório", "slug": "standing_chalkboard_01", "dimensions": [0.7, 1.25, 0.45], "keywords": "lousa recados"},
+    {"id": "circuit_board", "label": "Equipamento eletrônico", "group": "Escritório", "slug": "circuit_board", "dimensions": [0.28, 0.04, 0.2], "keywords": "computador placa manutenção"},
+    {"id": "all_purpose_cleaner", "label": "Limpador multiuso", "group": "Limpeza e lavanderia", "slug": "all_purpose_cleaner", "dimensions": [0.12, 0.3, 0.1], "keywords": "produto limpeza"},
+    {"id": "bleach", "label": "Água sanitária", "group": "Limpeza e lavanderia", "slug": "bleach_bottle", "dimensions": [0.14, 0.32, 0.11], "keywords": "produto limpeza lavanderia"},
+    {"id": "drain_cleaner", "label": "Limpador de ralo", "group": "Limpeza e lavanderia", "slug": "drain_cleaner", "dimensions": [0.1, 0.28, 0.1], "keywords": "banheiro encanamento"},
+    {"id": "dustpan", "label": "Pá de lixo", "group": "Limpeza e lavanderia", "slug": "dustpan", "dimensions": [0.3, 0.12, 0.28], "keywords": "varrer limpeza"},
+    {"id": "broom", "label": "Vassoura", "group": "Limpeza e lavanderia", "slug": "plastic_broom", "dimensions": [0.3, 1.35, 0.12], "keywords": "varrer limpeza"},
+    {"id": "utility_bucket", "label": "Balde", "group": "Limpeza e lavanderia", "slug": "wooden_bucket_01", "dimensions": [0.34, 0.38, 0.34], "keywords": "água limpeza obra"},
+    {"id": "plastic_bin", "label": "Caixa organizadora", "group": "Limpeza e lavanderia", "slug": "plastic_container", "dimensions": [0.6, 0.38, 0.42], "keywords": "armazenamento caixa"},
+    {"id": "trash_bag", "label": "Saco de lixo", "group": "Limpeza e lavanderia", "slug": "trashbag", "dimensions": [0.45, 0.72, 0.38], "keywords": "resíduo entulho"},
+    {"id": "rubber_boots", "label": "Botas de borracha", "group": "Limpeza e lavanderia", "slug": "rubber_boots", "dimensions": [0.42, 0.46, 0.32], "keywords": "epi chuva obra"},
+    {"id": "cleaner_tin", "label": "Produto de manutenção", "group": "Limpeza e lavanderia", "slug": "cleaner_tin_01", "dimensions": [0.14, 0.22, 0.14], "keywords": "limpeza lata"},
+    {"id": "bar_stool", "label": "Banqueta alta", "group": "Cozinha e serviço", "slug": "bar_chair_round_01", "dimensions": [0.42, 0.78, 0.42], "keywords": "ilha cozinha gourmet"},
+    {"id": "propane_tank", "label": "Botijão de gás", "group": "Cozinha e serviço", "slug": "propane_tank", "dimensions": [0.38, 0.72, 0.38], "keywords": "glp cozinha"},
+    {"id": "small_lpg_tank", "label": "Botijão de gás pequeno", "group": "Cozinha e serviço", "slug": "small_lpg_tank", "dimensions": [0.3, 0.48, 0.3], "keywords": "glp churrasqueira"},
+    {"id": "cutting_board", "label": "Tábua de corte", "group": "Cozinha e serviço", "slug": "wooden_cutting_board", "dimensions": [0.42, 0.04, 0.28], "keywords": "utensílio cozinha"},
+    {"id": "wooden_spoon", "label": "Colher de cozinha", "group": "Cozinha e serviço", "slug": "wooden_spoon", "dimensions": [0.08, 0.04, 0.32], "keywords": "utensílio"},
+    {"id": "tea_set", "label": "Jogo de café", "group": "Cozinha e serviço", "slug": "tea_set_01", "dimensions": [0.55, 0.28, 0.4], "keywords": "xícara bule mesa"},
+    {"id": "wine_bottles", "label": "Garrafas", "group": "Cozinha e serviço", "slug": "wine_bottles_01", "dimensions": [0.42, 0.34, 0.24], "keywords": "bebidas adega"},
+    {"id": "water_jug", "label": "Jarra", "group": "Cozinha e serviço", "slug": "jug_01", "dimensions": [0.2, 0.32, 0.2], "keywords": "água cozinha mesa"},
+    {"id": "covered_car", "label": "Carro coberto", "group": "Exterior", "slug": "covered_car", "dimensions": [4.5, 1.55, 1.9], "keywords": "garagem veículo", "simplify_ratio": 0.35},
+    {"id": "security_camera", "label": "Câmera de segurança", "group": "Segurança e acesso", "slug": "security_camera_01", "dimensions": [0.22, 0.18, 0.38], "keywords": "cftv vigilância"},
+    {"id": "fire_extinguisher", "label": "Extintor", "group": "Segurança e acesso", "slug": "korean_fire_extinguisher_01", "dimensions": [0.22, 0.65, 0.22], "keywords": "incêndio segurança"},
+    {"id": "garden_hose", "label": "Mangueira de jardim", "group": "Exterior", "slug": "garden_hose_wall_mounted_01", "dimensions": [0.52, 0.52, 0.25], "keywords": "água quintal"},
+    {"id": "sprinkler", "label": "Aspersor de jardim", "group": "Exterior", "slug": "garden_sprinkler_01", "dimensions": [0.45, 0.18, 0.38], "keywords": "irrigação água"},
+    {"id": "garden_gloves", "label": "Luvas de jardinagem", "group": "Exterior", "slug": "garden_gloves_01", "dimensions": [0.3, 0.08, 0.24], "keywords": "epi jardim"},
+    {"id": "watering_can", "label": "Regador", "group": "Exterior", "slug": "watering_can_metal_01", "dimensions": [0.55, 0.42, 0.3], "keywords": "plantas jardim água"},
+    {"id": "garden_gnome", "label": "Enfeite de jardim", "group": "Exterior", "slug": "garden_gnome", "dimensions": [0.32, 0.72, 0.3], "keywords": "decoração quintal"},
+    {"id": "adjustable_wrench", "label": "Chave inglesa", "group": "Ferramentas e obra", "slug": "adjustable_wrench", "dimensions": [0.08, 0.04, 0.32], "keywords": "ferramenta encanamento"},
+    {"id": "bolt_cutters", "label": "Alicate corta-vergalhão", "group": "Ferramentas e obra", "slug": "bolt_cutters_01", "dimensions": [0.22, 0.08, 0.75], "keywords": "corte ferramenta"},
+    {"id": "hammer", "label": "Martelo", "group": "Ferramentas e obra", "slug": "cross_pein_hammer", "dimensions": [0.32, 0.12, 0.1], "keywords": "prego ferramenta"},
+    {"id": "crowbar", "label": "Pé de cabra", "group": "Ferramentas e obra", "slug": "crowbar_01", "dimensions": [0.08, 0.08, 0.85], "keywords": "demolição ferramenta"},
+    {"id": "screwdriver", "label": "Chave de fenda", "group": "Ferramentas e obra", "slug": "flathead_screwdriver", "dimensions": [0.05, 0.05, 0.28], "keywords": "parafuso ferramenta"},
+    {"id": "handsaw", "label": "Serrote", "group": "Ferramentas e obra", "slug": "handsaw_wood", "dimensions": [0.62, 0.18, 0.04], "keywords": "madeira corte"},
+    {"id": "sledgehammer", "label": "Marreta", "group": "Ferramentas e obra", "slug": "sledgehammer_01", "dimensions": [0.85, 0.18, 0.12], "keywords": "demolição ferramenta"},
+    {"id": "power_box", "label": "Caixa elétrica", "group": "Ferramentas e obra", "slug": "power_box_01", "dimensions": [0.55, 0.75, 0.22], "keywords": "quadro energia infraestrutura"},
 ]
 
 
@@ -117,7 +180,12 @@ def run_gltf_transform(arguments: list[str]) -> None:
     if not executable:
         raise RuntimeError("npx is required to package the downloaded glTF files")
     subprocess.run(
-        [executable, "--yes", "@gltf-transform/cli", *arguments],
+        [
+            executable,
+            "--yes",
+            f"@gltf-transform/cli@{GLTF_TRANSFORM_VERSION}",
+            *arguments,
+        ],
         cwd=ROOT,
         check=True,
     )
@@ -143,13 +211,13 @@ def package_polyhaven(asset: dict[str, Any], temporary: Path) -> dict[str, Any]:
                 "--compress",
                 "false",
                 "--texture-size",
-                "512",
+                str(asset.get("texture_size", 512)),
                 "--simplify",
                 "true",
                 "--simplify-ratio",
                 str(asset.get("simplify_ratio", 0.65)),
                 "--simplify-error",
-                "0.002",
+                str(asset.get("simplify_error", 0.002)),
                 "--palette",
                 "false",
             ]
@@ -196,6 +264,7 @@ def write_generated_files(assets: list[dict[str, Any]]) -> None:
             "color": asset["color"],
             "modelUrl": asset["model_url"],
             "previewUrl": asset["preview_url"],
+            "keywords": asset.get("keywords", ""),
         }
         for asset in assets
     }
@@ -261,13 +330,14 @@ def main() -> None:
                     "depth_m": depth,
                     "color": asset.get("color")
                     or GROUP_COLORS.get(asset["group"], "#a87945"),
+                    "keywords": asset.get("keywords", ""),
                     "bytes": output.stat().st_size,
                     "sha256": sha256(output),
                     **provenance,
                 }
             )
     manifest = {
-        "version": 1,
+        "version": 2,
         "generated_by": "python/download_3d_assets.py",
         "runtime_network_required": False,
         "assets": manifest_assets,
@@ -277,6 +347,23 @@ def main() -> None:
         encoding="utf-8",
     )
     write_generated_files(manifest_assets)
+    expected_models = {f"{asset['id']}.glb" for asset in ASSETS}
+    orphaned_models = sorted(
+        path.name
+        for path in OUTPUT.glob("*.glb")
+        if path.name not in expected_models
+    )
+    expected_previews = {asset["id"] for asset in ASSETS}
+    orphaned_previews = sorted(
+        path.name
+        for path in (OUTPUT / "previews").glob("*")
+        if path.is_file() and path.stem not in expected_previews
+    )
+    if orphaned_models or orphaned_previews:
+        raise RuntimeError(
+            "orphaned asset files detected: "
+            + ", ".join(orphaned_models + orphaned_previews)
+        )
     print(f"Wrote {len(manifest_assets)} assets to {OUTPUT}")
 
 

@@ -11,6 +11,11 @@ from pathlib import Path
 from typing import Any
 
 
+ROOT = Path(__file__).resolve().parents[1]
+ASSET_MANIFEST_PATH = ROOT / "web" / "assets" / "models" / "manifest.json"
+BUILTIN_ASSET_TYPES = {"box", "sink", "washer", "cabinet"}
+
+
 def now_stamp() -> str:
     return datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
@@ -134,10 +139,16 @@ class HouseStore:
             raise ValueError("placed_assets must be an array")
         if len(payload) > 200:
             raise ValueError("placed_assets exceeds 200 elements")
-        allowed = {
-            "sofa", "bed", "table", "chair", "wardrobe", "refrigerator",
-            "stove", "sink", "washer", "cabinet", "plant", "box",
-        }
+        try:
+            manifest = json.loads(ASSET_MANIFEST_PATH.read_text(encoding="utf-8"))
+            catalog_ids = {
+                str(asset["id"])
+                for asset in manifest.get("assets", [])
+                if isinstance(asset, dict) and asset.get("id")
+            }
+        except (OSError, ValueError, TypeError, KeyError) as exc:
+            raise ValueError("local 3D asset manifest is unavailable or invalid") from exc
+        allowed = catalog_ids | BUILTIN_ASSET_TYPES
         result = []
         used: set[str] = set()
         for raw in payload:

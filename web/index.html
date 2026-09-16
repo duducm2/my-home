@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="color-scheme" content="dark" />
     <title>my-home</title>
-    <link rel="stylesheet" href="/styles.css?v=20260916-8" />
-    <link rel="stylesheet" href="/tasks.css?v=20260916-7" />
+    <link rel="stylesheet" href="/styles.css?v=20260916-13" />
+    <link rel="stylesheet" href="/tasks.css?v=20260916-9" />
     <script type="importmap">
       { "imports": { "three": "/vendor/three/three.module.js" } }
     </script>
@@ -39,22 +39,19 @@
           </div>
           <nav class="nav" aria-label="Navegação">
             <button type="button" class="nav-btn active" data-view="dashboard">
-              <span>Dashboard</span><kbd>Alt+D</kbd>
+              <span>Dashboard</span><kbd>Shift+D</kbd>
             </button>
             <button type="button" class="nav-btn" data-view="expenses">
-              <span>Despesas</span><kbd>Alt+E</kbd>
+              <span>Despesas</span><kbd>Shift+E</kbd>
             </button>
             <button type="button" class="nav-btn" data-view="house">
-              <span>Casa</span><kbd>Alt+C</kbd>
-            </button>
-            <button type="button" class="nav-btn" data-view="prices">
-              <span>Preços / Import</span><kbd>Alt+P</kbd>
+              <span>Casa</span><kbd>Shift+C</kbd>
             </button>
             <button type="button" class="nav-btn" data-view="model3d">
-              <span>Modelo 3D</span><kbd>Alt+M</kbd>
+              <span>Modelo 3D</span><kbd>Shift+M</kbd>
             </button>
             <button type="button" class="nav-btn" data-view="gantt">
-              <span>Cronograma</span><kbd>Alt+G</kbd>
+              <span>Cronograma</span><kbd>Shift+G</kbd>
             </button>
           </nav>
           <div class="global-save">
@@ -79,56 +76,104 @@
       ></p>
 
       <section id="view-dashboard" class="view">
-        <section class="cockpit-grid" aria-label="Cockpit financeiro">
-          <article class="panel bento-card bento-overview">
-            <div class="panel-head">
-              <h2>Visão financeira</h2>
-              <span class="panel-kicker">Agora</span>
+        <section
+          class="dashboard-finance-container"
+          aria-labelledby="dashboard-finance-title"
+        >
+          <div class="section-heading-row">
+            <div>
+              <h2 id="dashboard-finance-title" class="section-title">
+                Visão financeira
+              </h2>
+              <p class="section-sub">
+                Orçamento, recursos, cobertura e categorias em uma única visão.
+              </p>
             </div>
-            <span class="metric-label">Orçamento completo</span>
-            <strong id="dash-total-all" class="hero-metric">R$ 0,00</strong>
-            <div class="metric-pair">
-              <div>
-                <span>Materiais</span
-                ><strong id="dash-total-materials">R$ 0,00</strong>
+            <span class="panel-kicker">Agora</span>
+          </div>
+          <div class="finance-summary-grid">
+            <article class="panel bento-card bento-overview">
+              <div class="panel-head">
+                <h3>Orçamento total</h3>
               </div>
-              <div>
-                <span>Serviços</span
-                ><strong id="dash-total-services">R$ 0,00</strong>
+              <strong id="dash-total-all" class="hero-metric">R$ 0,00</strong>
+            </article>
+            <article class="panel bento-card bento-resources">
+              <div class="panel-head">
+                <h3>Recursos disponíveis</h3>
+                <span class="panel-kicker">Disponível</span>
               </div>
-            </div>
-          </article>
-          <article class="panel bento-card bento-resources">
-            <div class="panel-head">
-              <h2>Recursos</h2>
-              <span class="panel-kicker">Disponível</span>
-            </div>
-            <strong id="funds-total" class="hero-metric">R$ 0,00</strong>
-            <p id="funds-detail" class="section-sub"></p>
-          </article>
-          <article class="panel bento-card bento-coverage">
-            <div class="panel-head">
-              <h2>Cobertura</h2>
-              <span class="panel-kicker">Plano</span>
-            </div>
-            <div class="coverage-donut-layout">
-              <div
-                id="coverage-donut"
-                class="coverage-donut"
-                role="img"
-                aria-label="Percentual do orçamento coberto pelos recursos disponíveis"
-              >
-                <div>
-                  <strong id="overall-coverage">0%</strong><span>coberto</span>
+              <strong id="funds-total" class="hero-metric">R$ 0,00</strong>
+              <p id="funds-detail" class="section-sub"></p>
+            </article>
+            <article class="panel bento-card bento-coverage">
+              <div class="panel-head">
+                <h3>Cobertura do orçamento</h3>
+                <span class="panel-kicker">Plano</span>
+              </div>
+              <div class="coverage-donut-layout">
+                <div
+                  id="coverage-donut"
+                  class="coverage-donut"
+                  role="img"
+                  aria-label="Percentual do orçamento coberto pelos recursos disponíveis"
+                >
+                  <div>
+                    <strong id="overall-coverage">0%</strong
+                    ><span>coberto</span>
+                  </div>
+                </div>
+                <div class="coverage-donut-copy">
+                  <span>Situação após aplicar os recursos</span>
+                  <p id="overall-gap" class="section-sub"></p>
                 </div>
               </div>
-              <div class="coverage-donut-copy">
-                <strong id="coverage-funded">R$ 0,00</strong
-                ><span>disponível</span>
-                <p id="overall-gap" class="section-sub"></p>
+            </article>
+          </div>
+
+          <section
+            class="dashboard-category-center"
+            aria-labelledby="dashboard-category-center-title"
+          >
+            <div class="section-heading-row">
+              <div>
+                <h2 id="dashboard-category-center-title" class="section-title">
+                  Categorias financeiras
+                </h2>
+                <p class="section-sub">
+                  Cada categoria aparece uma vez, com seu total e os respectivos
+                  itens.
+                </p>
               </div>
             </div>
-          </article>
+            <div class="dashboard-category-sync-grid">
+              <article class="category-budget-panel">
+                <div class="panel-head">
+                  <h3>Resumo por categoria</h3>
+                  <span class="panel-kicker">Totais</span>
+                </div>
+                <div id="category-chart" class="budget-chart"></div>
+              </article>
+              <article class="dashboard-category-section">
+                <div class="panel-head">
+                  <h3>Itens de cada categoria</h3>
+                  <span class="panel-kicker">Detalhamento</span>
+                </div>
+                <p class="section-sub">
+                  Passe o mouse pelos ícones para ver itens e valores
+                  projetados.
+                </p>
+                <div
+                  id="dash-materials"
+                  class="dashboard-expense-categories"
+                  aria-label="Categorias compactas de despesas"
+                ></div>
+              </article>
+            </div>
+          </section>
+        </section>
+
+        <section class="cockpit-grid dashboard-support-grid">
           <article class="panel bento-card bento-blueprint">
             <a
               href="#house"
@@ -148,52 +193,9 @@
           <article class="panel bento-card dashboard-people-card">
             <div class="panel-head">
               <h2>Pessoas do projeto</h2>
-              <a href="#house" data-view-link="house" class="panel-kicker"
-                >Ver detalhes</a
-              >
             </div>
             <div id="dashboard-people" class="dashboard-people-grid"></div>
           </article>
-        </section>
-
-        <section
-          class="dashboard-category-center"
-          aria-labelledby="dashboard-category-center-title"
-        >
-          <div class="section-heading-row">
-            <div>
-              <h2 id="dashboard-category-center-title" class="section-title">
-                Categorias financeiras
-              </h2>
-              <p class="section-sub">
-                Orçamento e itens usam os mesmos ícones para identificação
-                imediata.
-              </p>
-            </div>
-          </div>
-          <div class="dashboard-category-sync-grid">
-            <article class="category-budget-panel">
-              <div class="panel-head">
-                <h3>Orçamento por categoria</h3>
-                <span class="panel-kicker">Distribuição</span>
-              </div>
-              <div id="category-chart" class="budget-chart"></div>
-            </article>
-            <article class="dashboard-category-section">
-              <div class="panel-head">
-                <h3>Gastos por categoria</h3>
-                <span class="panel-kicker">Todos os itens</span>
-              </div>
-              <p class="section-sub">
-                Passe o mouse pelos ícones para ver itens e valores projetados.
-              </p>
-              <div
-                id="dash-materials"
-                class="dashboard-expense-categories"
-                aria-label="Categorias compactas de despesas"
-              ></div>
-            </article>
-          </div>
         </section>
 
         <section
@@ -253,6 +255,18 @@
                 class="cashflow-line-chart house-savings-line-chart"
               ></div>
             </article>
+            <article class="projection-panel payment-projection-panel">
+              <div class="projection-title">
+                <h3>Despesas por dia de pagamento</h3>
+                <span id="payment-projection-summary"
+                  >Datas confirmadas e presumidas</span
+                >
+              </div>
+              <div
+                id="payment-projection-chart"
+                class="cashflow-line-chart payment-projection-chart"
+              ></div>
+            </article>
           </div>
           <details class="monthly-savings-details">
             <summary>Economia projetada por mês</summary>
@@ -268,7 +282,7 @@
               <p class="section-sub">Visão resumida das macroatividades.</p>
             </div>
             <button type="button" class="btn" data-view="gantt">
-              Abrir cronograma completo <kbd>Alt+G</kbd>
+              Abrir cronograma completo <kbd>Shift+G</kbd>
             </button>
           </div>
           <div
@@ -380,6 +394,20 @@
             Nova despesa
           </button>
         </section>
+        <aside
+          class="expense-quotation-guide"
+          aria-label="Como analisar preços"
+        >
+          <span class="expense-quotation-guide-icon" aria-hidden="true">⌕</span>
+          <div>
+            <strong>Cotações e análise de preços</strong>
+            <p>
+              Clique em uma despesa ou use o botão <b>Cotações</b> para
+              pesquisar faixas de preço, gerar o prompt da IA e comparar
+              ofertas.
+            </p>
+          </div>
+        </aside>
         <section class="summary">
           <div>
             <span class="summary-label">Total filtrado</span
@@ -412,31 +440,17 @@
             Nenhuma despesa encontrada.
           </p>
         </section>
-      </section>
-
-      <section id="view-house" class="view hidden">
-        <div class="section-heading-row house-view-heading">
-          <div>
-            <h2 class="section-title">Planta da casa</h2>
-            <p class="section-sub">
-              Informações, cômodos, pessoas, contratos e documentos do imóvel.
-            </p>
+        <section class="expense-project-resources">
+          <div class="section-heading-row">
+            <div>
+              <h2 class="section-title">Ferramentas necessárias</h2>
+              <p class="section-sub">
+                Equipamentos previstos para os serviços da obra.
+              </p>
+            </div>
           </div>
-          <button type="button" class="btn primary" data-view="model3d">
-            Abrir modelo 3D <kbd>Alt+M</kbd>
-          </button>
-        </div>
-        <div class="blueprint-wrap">
-          <img id="house-blueprint" class="blueprint" alt="Planta da casa" />
-        </div>
-        <h2 class="section-title">Lote</h2>
-        <div id="house-lot" class="summary"></div>
-        <h2 class="section-title">Espaços externos</h2>
-        <div id="house-exterior" class="card-grid"></div>
-        <h2 class="section-title">Cômodos</h2>
-        <div id="house-rooms" class="card-grid"></div>
-        <h2 class="section-title">Resumo do projeto</h2>
-        <div id="project-overview" class="project-overview"></div>
+          <div id="required-tools" class="required-tools-grid"></div>
+        </section>
         <section class="contract-center">
           <div class="section-heading-row">
             <div>
@@ -463,8 +477,63 @@
           <h3 class="project-heading">Prestadores reutilizáveis</h3>
           <div id="provider-list" class="provider-grid"></div>
         </section>
-        <h2 class="section-title">Auditoria da planta</h2>
-        <div id="house-audit" class="timeline-card"></div>
+      </section>
+
+      <section id="view-house" class="view hidden">
+        <div class="section-heading-row house-view-heading">
+          <div>
+            <h2 class="section-title">Planta da casa</h2>
+            <p class="section-sub">
+              Navegue pela planta, consulte dimensões e exporte o modelo
+              arquitetônico.
+            </p>
+          </div>
+          <div class="house-view-actions">
+            <button type="button" id="btn-export-blueprint" class="btn">
+              Exportar JSON
+            </button>
+            <button type="button" class="btn primary" data-view="model3d">
+              Abrir modelo 3D <kbd>Shift+M</kbd>
+            </button>
+          </div>
+        </div>
+        <div class="blueprint-workspace">
+          <div class="blueprint-toolbar" aria-label="Controles da planta">
+            <button type="button" class="btn" data-blueprint-action="zoom-out">
+              Afastar
+            </button>
+            <button type="button" class="btn" data-blueprint-action="reset">
+              Centralizar
+            </button>
+            <button type="button" class="btn" data-blueprint-action="zoom-in">
+              Aproximar
+            </button>
+            <span id="blueprint-zoom-label">100%</span>
+          </div>
+          <div
+            id="blueprint-viewport"
+            class="blueprint-viewport"
+            tabindex="0"
+            aria-label="Planta interativa. Arraste para mover e use a roda do mouse para aproximar."
+          >
+            <img
+              id="house-blueprint"
+              class="blueprint"
+              alt="Planta da casa"
+              draggable="false"
+            />
+            <span class="blueprint-interaction-hint"
+              >Arraste para mover · roda do mouse para zoom · duplo clique para
+              centralizar</span
+            >
+          </div>
+        </div>
+        <h2 class="section-title">Lote</h2>
+        <div id="house-lot" class="summary"></div>
+        <h2 class="section-title">Espaços externos</h2>
+        <div id="house-exterior" class="card-grid"></div>
+        <h2 class="section-title">Cômodos</h2>
+        <div id="house-rooms" class="card-grid"></div>
       </section>
 
       <section
@@ -525,6 +594,13 @@
           </button>
           <button type="button" id="btn-toggle-media" class="btn media-toggle">
             Capturar
+          </button>
+          <button
+            type="button"
+            id="btn-model3d-help"
+            class="btn model3d-help-btn"
+          >
+            Ajuda
           </button>
           <kbd class="model3d-escape-hint">Esc · voltar ao início</kbd>
         </header>
@@ -749,78 +825,94 @@
           </details>
         </footer>
       </section>
-
-      <section id="view-prices" class="view hidden">
-        <h2 class="section-title">Gerar prompt de cotações</h2>
-        <div class="panel-row">
-          <label class="check"
-            ><input type="checkbox" id="prompt-missing-only" checked /> Somente
-            itens com espaço para cotações</label
-          ><button type="button" id="btn-gen-prompt" class="btn primary">
-            Gerar prompt</button
-          ><button type="button" id="btn-copy-prompt" class="btn">Copiar</button
-          ><button type="button" id="btn-dl-prompt" class="btn">Baixar</button>
-        </div>
-        <textarea
-          id="prompt-output"
-          class="code-box"
-          rows="12"
-          readonly
-        ></textarea>
-        <h2 class="section-title">Importar resposta</h2>
-        <div class="panel-row">
-          <input id="pack-file" type="file" accept=".txt,text/plain" /><button
-            type="button"
-            id="btn-preview-import"
-            class="btn primary"
-          >
-            Validar</button
-          ><button type="button" id="btn-commit-import" class="btn" disabled>
-            Salvar e enviar
-          </button>
-        </div>
-        <textarea
-          id="pack-input"
-          class="code-box"
-          rows="12"
-          placeholder="Cole o pack aqui..."
-        ></textarea>
-        <label
-          >Instruções para corrigir
-          <textarea
-            id="bulk-correction-instructions"
-            rows="2"
-            placeholder="Opcional: explique à IA o que deve ajustar."
-          ></textarea>
-        </label>
-        <p id="import-status" class="push-status hidden"></p>
-        <div class="table-wrap">
-          <table>
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>Descrição</th>
-                <th>Unitário</th>
-                <th>Fornecedor</th>
-                <th>Link</th>
-              </tr>
-            </thead>
-            <tbody id="import-preview-rows"></tbody>
-          </table>
-        </div>
-        <textarea
-          id="fix-output"
-          class="code-box hidden"
-          rows="8"
-          readonly
-        ></textarea>
-        <button type="button" id="btn-copy-fix" class="btn hidden">
-          Copiar correção</button
-        ><button type="button" id="btn-dl-fix" class="btn hidden">
-          Baixar correção
-        </button>
-      </section>
     </div>
+
+    <dialog
+      id="model3d-help-dialog"
+      class="model3d-help-dialog"
+      aria-labelledby="model3d-help-title"
+    >
+      <form method="dialog">
+        <header>
+          <div>
+            <span class="panel-kicker">Guia rápido</span>
+            <h2 id="model3d-help-title">Como usar o modelo 3D</h2>
+          </div>
+          <button type="submit" class="btn" value="close">Fechar</button>
+        </header>
+        <div class="model3d-help-grid">
+          <section>
+            <h3>Navegar pela casa</h3>
+            <dl>
+              <div>
+                <dt>Arrastar</dt>
+                <dd>Girar a câmera ao redor da casa</dd>
+              </div>
+              <div>
+                <dt>Roda do mouse</dt>
+                <dd>Aproximar ou afastar</dd>
+              </div>
+              <div>
+                <dt>Botão direito</dt>
+                <dd>Mover a câmera lateralmente</dd>
+              </div>
+              <div>
+                <dt><kbd>Shift+M</kbd></dt>
+                <dd>Abrir o modelo 3D</dd>
+              </div>
+              <div>
+                <dt><kbd>Esc</kbd></dt>
+                <dd>Voltar ao Dashboard</dd>
+              </div>
+            </dl>
+          </section>
+          <section>
+            <h3>Editar a cena</h3>
+            <dl>
+              <div>
+                <dt>Clique</dt>
+                <dd>Selecionar paredes, portas ou objetos</dd>
+              </div>
+              <div>
+                <dt><kbd>T</kbd></dt>
+                <dd>Mover o objeto selecionado</dd>
+              </div>
+              <div>
+                <dt><kbd>R</kbd></dt>
+                <dd>Girar o objeto selecionado</dd>
+              </div>
+              <div>
+                <dt><kbd>S</kbd></dt>
+                <dd>Escalar o objeto selecionado</dd>
+              </div>
+              <div>
+                <dt><kbd>Delete</kbd></dt>
+                <dd>Excluir um objeto adicionado</dd>
+              </div>
+            </dl>
+          </section>
+          <section>
+            <h3>Objetos e medidas</h3>
+            <p>
+              Em <b>Editar cena</b>, clique ou arraste um item do acervo para o
+              terreno. Use as alças coloridas ou informe largura, altura e
+              comprimento exatos em metros.
+            </p>
+            <p>
+              Ao terminar, clique em <b>Salvar layout</b>. O botão
+              <b>Salvar tudo</b> também inclui o layout salvo no envio.
+            </p>
+          </section>
+          <section>
+            <h3>Fotos e vídeos</h3>
+            <p>
+              Use <b>Capturar</b> para tirar uma foto ou gravar uma órbita da
+              casa, depois baixe ou compartilhe o arquivo.
+            </p>
+          </section>
+        </div>
+      </form>
+    </dialog>
 
     <dialog id="expense-dialog">
       <form id="expense-form" method="dialog">
@@ -857,7 +949,7 @@
         </section>
         <div class="form-grid">
           <label
-            >Valor
+            >Preço total
             <input
               id="field-value"
               type="number"
@@ -895,6 +987,21 @@
             </select></label
           >
         </div>
+        <section class="expense-payment-editor">
+          <div class="expense-payment-head">
+            <div>
+              <strong>Cronograma de pagamentos</strong>
+              <small
+                >As datas aparecem no dashboard e no gráfico de Gantt.</small
+              >
+            </div>
+            <button type="button" id="btn-add-payment" class="btn">
+              + Pagamento
+            </button>
+          </div>
+          <div id="expense-payment-list" class="expense-payment-list"></div>
+          <p id="expense-payment-total" class="expense-payment-total"></p>
+        </section>
         <label
           >Notas <textarea id="field-price-notes" rows="2"></textarea>
         </label>
@@ -1109,7 +1216,7 @@
         >
         <div class="form-grid">
           <label
-            >Valor
+            >Preço total
             <input
               id="contract-amount"
               type="number"
@@ -1118,6 +1225,36 @@
           ><label>Início <input id="contract-start" type="date" /></label
           ><label>Fim <input id="contract-end" type="date" /></label>
         </div>
+        <section id="contract-payment-plan" class="contract-payment-plan">
+          <div class="contract-payment-plan-head">
+            <label
+              >Forma de pagamento
+              <select id="contract-payment-frequency">
+                <option value="one_time">Pagamento único</option>
+                <option value="weekly">Semanal</option>
+                <option value="monthly">Mensal</option>
+                <option value="custom">Outras datas / personalizado</option>
+              </select></label
+            >
+            <div>
+              <strong id="contract-work-period">Período de trabalho</strong>
+              <small id="contract-payment-summary"
+                >Defina o valor total, início e fim.</small
+              >
+            </div>
+            <button
+              id="btn-add-contract-payment"
+              type="button"
+              class="btn hidden"
+            >
+              + Parcela
+            </button>
+          </div>
+          <div
+            id="contract-payment-schedule"
+            class="contract-payment-schedule"
+          ></div>
+        </section>
         <label
           >Serviços/despesas vinculados
           <select id="contract-expenses" multiple size="5"></select
@@ -1236,6 +1373,6 @@
     </dialog>
 
     <datalist id="category-suggestions"></datalist>
-    <script src="/app.js?v=20260916-11"></script>
+    <script src="/app.js?v=20260916-20"></script>
   </body>
 </html>

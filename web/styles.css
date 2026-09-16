@@ -1822,6 +1822,10 @@ th { font-size: 10px; }
 .asset-palette {
   display: grid;
   gap: 8px;
+  max-height: min(48vh, 480px);
+  padding-right: 3px;
+  overflow-y: auto;
+  scrollbar-gutter: stable;
 }
 
 .asset-palette-empty {
@@ -1833,19 +1837,60 @@ th { font-size: 10px; }
 .asset-palette-group {
   display: grid;
   gap: 4px;
+  min-width: 0;
 }
 
-.asset-palette-group > strong {
+.asset-palette-group > summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px 6px;
+  color: var(--muted);
+  cursor: pointer;
+  background: #1d1d20;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  list-style: none;
+}
+
+.asset-palette-group > summary::-webkit-details-marker {
+  display: none;
+}
+
+.asset-palette-group > summary::before {
+  content: "›";
+  margin-right: 5px;
+  color: var(--gold);
+  transform: rotate(0);
+}
+
+.asset-palette-group[open] > summary::before {
+  transform: rotate(90deg);
+}
+
+.asset-palette-group > summary strong {
+  flex: 1;
   color: var(--muted);
   font-size: 8px;
   text-transform: uppercase;
   letter-spacing: .06em;
 }
 
+.asset-palette-group > summary span {
+  min-width: 20px;
+  padding: 1px 5px;
+  color: var(--gold);
+  font-size: 8px;
+  text-align: center;
+  background: rgba(241, 196, 15, .08);
+  border-radius: 999px;
+}
+
 .asset-palette-group > div {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 5px;
+  padding-top: 4px;
 }
 
 .asset-palette-group button {
@@ -2236,16 +2281,95 @@ body.model3d-active {
   margin-bottom: 3px;
 }
 
-.blueprint-wrap {
-  overflow: hidden;
+.house-view-actions,
+.blueprint-toolbar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
 }
 
-.blueprint-wrap .blueprint {
+.blueprint-workspace {
+  margin-bottom: 14px;
+  overflow: hidden;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 7px;
+}
+
+.blueprint-toolbar {
+  justify-content: flex-end;
+  padding: 7px;
+  border-bottom: 1px solid var(--line);
+}
+
+.blueprint-toolbar span {
+  min-width: 44px;
+  color: var(--gold);
+  font-size: 10px;
+  font-variant-numeric: tabular-nums;
+  text-align: center;
+}
+
+.blueprint-viewport {
+  position: relative;
+  height: clamp(380px, 68vh, 760px);
+  overflow: hidden;
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+  background:
+    linear-gradient(45deg, #131517 25%, transparent 25%) 0 0 / 24px 24px,
+    linear-gradient(-45deg, #131517 25%, transparent 25%) 0 12px / 24px 24px,
+    linear-gradient(45deg, transparent 75%, #131517 75%) 12px -12px / 24px 24px,
+    linear-gradient(-45deg, transparent 75%, #131517 75%) -12px 0 / 24px 24px,
+    #0e1012;
+}
+
+.blueprint-viewport:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: -2px;
+}
+
+.blueprint-viewport.dragging {
+  cursor: grabbing;
+}
+
+.blueprint-viewport .blueprint {
+  position: absolute;
+  top: 50%;
+  left: 50%;
   display: block;
-  width: min(100%, 1200px);
-  max-width: 100%;
+  width: auto;
+  max-width: 92%;
   height: auto;
-  margin-inline: auto;
+  max-height: 92%;
+  pointer-events: none;
+  object-fit: contain;
+  transform-origin: center;
+  will-change: transform;
+  filter: drop-shadow(0 10px 22px rgba(0, 0, 0, .45));
+}
+
+.blueprint-interaction-hint {
+  position: absolute;
+  right: 8px;
+  bottom: 8px;
+  padding: 5px 7px;
+  color: var(--muted);
+  background: rgba(15, 15, 17, .88);
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  font-size: 9px;
+  pointer-events: none;
+}
+
+.expense-project-resources {
+  margin-top: 16px;
+  padding: 14px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
 }
 
 .model3d-view {
@@ -2302,6 +2426,92 @@ body.model3d-active {
 
 .model3d-home-btn {
   border-color: rgba(241, 196, 15, .5);
+}
+
+.model3d-help-btn {
+  color: var(--gold);
+  border-color: rgba(241, 196, 15, .45);
+}
+
+.model3d-help-dialog {
+  width: min(760px, calc(100vw - 24px));
+  max-width: none;
+  padding: 0;
+}
+
+.model3d-help-dialog form {
+  display: grid;
+  gap: 14px;
+  padding: 18px;
+}
+
+.model3d-help-dialog header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.model3d-help-dialog h2,
+.model3d-help-dialog h3,
+.model3d-help-dialog p {
+  margin: 0;
+}
+
+.model3d-help-dialog h2 {
+  margin-top: 2px;
+  font-size: 20px;
+}
+
+.model3d-help-dialog h3 {
+  color: var(--gold);
+  font-size: 12px;
+}
+
+.model3d-help-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.model3d-help-grid section {
+  display: grid;
+  align-content: start;
+  gap: 9px;
+  min-width: 0;
+  padding: 12px;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 7px;
+}
+
+.model3d-help-grid dl {
+  display: grid;
+  gap: 7px;
+  margin: 0;
+}
+
+.model3d-help-grid dl > div {
+  display: grid;
+  grid-template-columns: minmax(90px, .7fr) minmax(0, 1.3fr);
+  align-items: center;
+  gap: 8px;
+}
+
+.model3d-help-grid dt {
+  color: var(--text);
+  font-weight: 700;
+}
+
+.model3d-help-grid dd,
+.model3d-help-grid p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.45;
+}
+
+.model3d-help-grid kbd {
+  color: var(--gold);
 }
 
 .model3d-header .house-3d-toolbar {
@@ -2399,6 +2609,16 @@ body.model3d-active {
     flex: 1 1 calc(25% - 4px);
     padding-inline: 5px;
     font-size: 9px;
+  }
+
+  .model3d-help-dialog form {
+    padding: 12px;
+  }
+
+  .model3d-help-grid {
+    grid-template-columns: 1fr;
+    max-height: min(72vh, 620px);
+    overflow-y: auto;
   }
 
   .model3d-footer {
@@ -3346,6 +3566,57 @@ body.model3d-active {
   cursor: pointer;
 }
 
+.expense-quotation-guide {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+  padding: 10px 12px;
+  color: var(--text);
+  background: color-mix(in srgb, var(--gold) 7%, var(--panel));
+  border: 1px solid color-mix(in srgb, var(--gold) 35%, var(--line));
+  border-radius: 7px;
+}
+
+.expense-quotation-guide-icon {
+  display: grid;
+  width: 34px;
+  height: 34px;
+  flex: 0 0 34px;
+  place-items: center;
+  color: var(--gold);
+  font-size: 21px;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 7px;
+}
+
+.expense-quotation-guide p {
+  margin: 2px 0 0;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+td.actions:has(.quotation-action-btn) {
+  width: 18rem;
+}
+
+.quotation-action-btn {
+  color: var(--gold);
+  border-color: color-mix(in srgb, var(--gold) 45%, var(--line));
+}
+
+.quotation-action-btn span {
+  display: inline-block;
+  margin-left: 3px;
+  padding: 1px 4px;
+  color: var(--text);
+  background: var(--bg);
+  border-radius: 999px;
+  font-size: 9px;
+  font-variant-numeric: tabular-nums;
+}
+
 .expense-row:hover,
 .expense-row:focus-visible {
   background: color-mix(in srgb, var(--gold) 7%, transparent);
@@ -3414,6 +3685,89 @@ body.model3d-active {
   .bento-coverage,
   .bento-categories,
   .bento-blueprint {
+    grid-column: 1;
+  }
+}
+
+/* Unified financial overview: totals, funding, coverage and categories */
+.dashboard-finance-container {
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel);
+}
+
+.finance-summary-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1.25fr);
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.finance-summary-grid > .bento-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 0;
+  min-height: 150px;
+  height: 100%;
+}
+
+.finance-summary-grid .bento-overview,
+.finance-summary-grid .bento-resources,
+.finance-summary-grid .bento-coverage {
+  grid-column: auto;
+  grid-row: auto;
+}
+
+.dashboard-finance-container .dashboard-category-center {
+  margin: 12px 0 0;
+  padding: 12px 0 0;
+  border: 0;
+  border-top: 1px solid var(--line);
+  border-radius: 0;
+  background: transparent;
+}
+
+.dashboard-support-grid {
+  grid-template-columns: minmax(220px, .8fr) minmax(0, 2fr);
+  align-items: stretch;
+  width: 100%;
+  max-width: none;
+}
+
+.dashboard-support-grid .bento-blueprint,
+.dashboard-support-grid .dashboard-people-card {
+  grid-column: auto;
+  grid-row: auto;
+  min-height: 0;
+}
+
+@media (max-width: 900px) {
+  .finance-summary-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .finance-summary-grid .bento-coverage {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 700px) {
+  .dashboard-finance-container {
+    padding: 10px;
+  }
+
+  .finance-summary-grid,
+  .dashboard-support-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .finance-summary-grid .bento-coverage,
+  .dashboard-support-grid .bento-blueprint,
+  .dashboard-support-grid .dashboard-people-card {
     grid-column: 1;
   }
 }

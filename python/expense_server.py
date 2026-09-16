@@ -316,7 +316,13 @@ class ExpenseHandler(BaseHTTPRequestHandler):
                 get_contracts(self.data_dir).sync_expense_link(result["expense_id"], str(payload.get("contract_id") or ""))
                 self._json(200, result)
             elif path == "/api/tasks":
-                self._json(200, get_tasks(self.data_dir).upsert(payload))
+                result = get_tasks(self.data_dir).upsert(payload)
+                expense_state = get_store(self.data_dir).sync_task_payment_date(
+                    payload.get("expense_id"), payload.get("start_date")
+                )
+                if expense_state is not None:
+                    result["expense_state"] = expense_state
+                self._json(200, result)
             elif path == "/api/notes":
                 self._json(200, get_notes(self.data_dir).save(payload))
             elif path == "/api/providers":

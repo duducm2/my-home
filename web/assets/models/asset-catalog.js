@@ -8,7 +8,8 @@ export const LOCAL_ASSET_CATALOG = {
     "height": 0.78,
     "color": "#8f6f61",
     "modelUrl": "/assets/models/sofa.glb",
-    "previewUrl": "/assets/models/previews/sofa.png"
+    "previewUrl": "/assets/models/previews/sofa.png",
+    "keywords": ""
   },
   "bed": {
     "label": "Cama de casal",
@@ -18,7 +19,8 @@ export const LOCAL_ASSET_CATALOG = {
     "height": 0.6,
     "color": "#a7b8cc",
     "modelUrl": "/assets/models/bed.glb",
-    "previewUrl": "/assets/models/previews/bed.png"
+    "previewUrl": "/assets/models/previews/bed.png",
+    "keywords": ""
   },
   "table": {
     "label": "Mesa de jantar",
@@ -28,7 +30,8 @@ export const LOCAL_ASSET_CATALOG = {
     "height": 0.76,
     "color": "#8f6f61",
     "modelUrl": "/assets/models/table.glb",
-    "previewUrl": "/assets/models/previews/table.png"
+    "previewUrl": "/assets/models/previews/table.png",
+    "keywords": ""
   },
   "chair": {
     "label": "Cadeira",
@@ -38,7 +41,8 @@ export const LOCAL_ASSET_CATALOG = {
     "height": 0.9,
     "color": "#8f6f61",
     "modelUrl": "/assets/models/chair.glb",
-    "previewUrl": "/assets/models/previews/chair.png"
+    "previewUrl": "/assets/models/previews/chair.png",
+    "keywords": ""
   },
   "wardrobe": {
     "label": "Guarda-roupa",
@@ -48,7 +52,8 @@ export const LOCAL_ASSET_CATALOG = {
     "height": 2.1,
     "color": "#a7b8cc",
     "modelUrl": "/assets/models/wardrobe.glb",
-    "previewUrl": "/assets/models/previews/wardrobe.png"
+    "previewUrl": "/assets/models/previews/wardrobe.png",
+    "keywords": ""
   },
   "stove": {
     "label": "Fogão",
@@ -58,7 +63,8 @@ export const LOCAL_ASSET_CATALOG = {
     "height": 0.9,
     "color": "#d7dde0",
     "modelUrl": "/assets/models/stove.glb",
-    "previewUrl": "/assets/models/previews/stove.png"
+    "previewUrl": "/assets/models/previews/stove.png",
+    "keywords": ""
   },
   "plant": {
     "label": "Planta em vaso",
@@ -68,7 +74,8 @@ export const LOCAL_ASSET_CATALOG = {
     "height": 1.1,
     "color": "#4f8c58",
     "modelUrl": "/assets/models/plant.glb",
-    "previewUrl": "/assets/models/previews/plant.png"
+    "previewUrl": "/assets/models/previews/plant.png",
+    "keywords": ""
   },
   "tree": {
     "label": "Árvore",
@@ -78,7 +85,8 @@ export const LOCAL_ASSET_CATALOG = {
     "height": 5.0,
     "color": "#477a4f",
     "modelUrl": "/assets/models/tree.glb",
-    "previewUrl": "/assets/models/previews/tree.png"
+    "previewUrl": "/assets/models/previews/tree.png",
+    "keywords": ""
   },
   "refrigerator": {
     "label": "Geladeira",
@@ -88,7 +96,8 @@ export const LOCAL_ASSET_CATALOG = {
     "height": 1.85,
     "color": "#d7dde0",
     "modelUrl": "/assets/models/refrigerator.glb",
-    "previewUrl": "/assets/models/previews/refrigerator.jpg"
+    "previewUrl": "/assets/models/previews/refrigerator.jpg",
+    "keywords": ""
   },
   "television": {
     "label": "Televisão",
@@ -98,7 +107,8 @@ export const LOCAL_ASSET_CATALOG = {
     "height": 0.75,
     "color": "#8f6f61",
     "modelUrl": "/assets/models/television.glb",
-    "previewUrl": "/assets/models/previews/television.png"
+    "previewUrl": "/assets/models/previews/television.png",
+    "keywords": ""
   },
   "coffee_table": {
     "label": "Mesa de centro",
@@ -108,7 +118,8 @@ export const LOCAL_ASSET_CATALOG = {
     "height": 0.42,
     "color": "#8f6f61",
     "modelUrl": "/assets/models/coffee_table.glb",
-    "previewUrl": "/assets/models/previews/coffee_table.png"
+    "previewUrl": "/assets/models/previews/coffee_table.png",
+    "keywords": ""
   },
   "bookshelf": {
     "label": "Estante",
@@ -118,7 +129,8 @@ export const LOCAL_ASSET_CATALOG = {
     "height": 1.9,
     "color": "#8f6f61",
     "modelUrl": "/assets/models/bookshelf.glb",
-    "previewUrl": "/assets/models/previews/bookshelf.png"
+    "previewUrl": "/assets/models/previews/bookshelf.png",
+    "keywords": ""
   },
   "desk_lamp": {
     "label": "Luminária de mesa",
@@ -128,7 +140,8 @@ export const LOCAL_ASSET_CATALOG = {
     "height": 0.55,
     "color": "#8b7f72",
     "modelUrl": "/assets/models/desk_lamp.glb",
-    "previewUrl": "/assets/models/previews/desk_lamp.png"
+    "previewUrl": "/assets/models/previews/desk_lamp.png",
+    "keywords": ""
   },
   "ceiling_lamp": {
     "label": "Luminária de teto",
@@ -138,7 +151,8 @@ export const LOCAL_ASSET_CATALOG = {
     "height": 0.55,
     "color": "#e0bc62",
     "modelUrl": "/assets/models/ceiling_lamp.glb",
-    "previewUrl": "/assets/models/previews/ceiling_lamp.png"
+    "previewUrl": "/assets/models/previews/ceiling_lamp.png",
+    "keywords": ""
   },
   "office_desk": {
     "label": "Mesa de escritório",
@@ -148,7 +162,8 @@ export const LOCAL_ASSET_CATALOG = {
     "height": 0.76,
     "color": "#8b7f72",
     "modelUrl": "/assets/models/office_desk.glb",
-    "previewUrl": "/assets/models/previews/office_desk.png"
+    "previewUrl": "/assets/models/previews/office_desk.png",
+    "keywords": ""
   },
   "office_chair": {
     "label": "Cadeira de escritório",
@@ -158,7 +173,8 @@ export const LOCAL_ASSET_CATALOG = {
     "height": 0.92,
     "color": "#8b7f72",
     "modelUrl": "/assets/models/office_chair.glb",
-    "previewUrl": "/assets/models/previews/office_chair.png"
+    "previewUrl": "/assets/models/previews/office_chair.png",
+    "keywords": ""
   },
   "single_bed": {
     "label": "Cama de solteiro",
@@ -168,7 +184,8 @@ export const LOCAL_ASSET_CATALOG = {
     "height": 0.62,
     "color": "#a7b8cc",
     "modelUrl": "/assets/models/single_bed.glb",
-    "previewUrl": "/assets/models/previews/single_bed.png"
+    "previewUrl": "/assets/models/previews/single_bed.png",
+    "keywords": ""
   },
   "nightstand": {
     "label": "Criado-mudo",
@@ -178,7 +195,8 @@ export const LOCAL_ASSET_CATALOG = {
     "height": 0.62,
     "color": "#a7b8cc",
     "modelUrl": "/assets/models/nightstand.glb",
-    "previewUrl": "/assets/models/previews/nightstand.png"
+    "previewUrl": "/assets/models/previews/nightstand.png",
+    "keywords": ""
   },
   "dresser": {
     "label": "Cômoda",
@@ -188,7 +206,8 @@ export const LOCAL_ASSET_CATALOG = {
     "height": 0.95,
     "color": "#a7b8cc",
     "modelUrl": "/assets/models/dresser.glb",
-    "previewUrl": "/assets/models/previews/dresser.png"
+    "previewUrl": "/assets/models/previews/dresser.png",
+    "keywords": ""
   },
   "mirror": {
     "label": "Espelho",
@@ -198,7 +217,8 @@ export const LOCAL_ASSET_CATALOG = {
     "height": 1.05,
     "color": "#87b6c9",
     "modelUrl": "/assets/models/mirror.glb",
-    "previewUrl": "/assets/models/previews/mirror.png"
+    "previewUrl": "/assets/models/previews/mirror.png",
+    "keywords": ""
   },
   "kitchen_cabinet": {
     "label": "Armário de cozinha",
@@ -208,7 +228,8 @@ export const LOCAL_ASSET_CATALOG = {
     "height": 1.9,
     "color": "#d7dde0",
     "modelUrl": "/assets/models/kitchen_cabinet.glb",
-    "previewUrl": "/assets/models/previews/kitchen_cabinet.png"
+    "previewUrl": "/assets/models/previews/kitchen_cabinet.png",
+    "keywords": ""
   },
   "microwave": {
     "label": "Micro-ondas",
@@ -218,7 +239,8 @@ export const LOCAL_ASSET_CATALOG = {
     "height": 0.32,
     "color": "#d7dde0",
     "modelUrl": "/assets/models/microwave.glb",
-    "previewUrl": "/assets/models/previews/microwave.png"
+    "previewUrl": "/assets/models/previews/microwave.png",
+    "keywords": ""
   },
   "trash_can": {
     "label": "Lixeira",
@@ -228,7 +250,8 @@ export const LOCAL_ASSET_CATALOG = {
     "height": 0.62,
     "color": "#d7dde0",
     "modelUrl": "/assets/models/trash_can.glb",
-    "previewUrl": "/assets/models/previews/trash_can.png"
+    "previewUrl": "/assets/models/previews/trash_can.png",
+    "keywords": ""
   },
   "laundry_cart": {
     "label": "Carrinho de lavanderia",
@@ -238,7 +261,8 @@ export const LOCAL_ASSET_CATALOG = {
     "height": 0.9,
     "color": "#d7dde0",
     "modelUrl": "/assets/models/laundry_cart.glb",
-    "previewUrl": "/assets/models/previews/laundry_cart.png"
+    "previewUrl": "/assets/models/previews/laundry_cart.png",
+    "keywords": ""
   },
   "outdoor_set": {
     "label": "Conjunto externo",
@@ -248,7 +272,8 @@ export const LOCAL_ASSET_CATALOG = {
     "height": 0.9,
     "color": "#477a4f",
     "modelUrl": "/assets/models/outdoor_set.glb",
-    "previewUrl": "/assets/models/previews/outdoor_set.png"
+    "previewUrl": "/assets/models/previews/outdoor_set.png",
+    "keywords": ""
   },
   "outdoor_bench": {
     "label": "Banco externo",
@@ -258,7 +283,8 @@ export const LOCAL_ASSET_CATALOG = {
     "height": 0.9,
     "color": "#477a4f",
     "modelUrl": "/assets/models/outdoor_bench.glb",
-    "previewUrl": "/assets/models/previews/outdoor_bench.png"
+    "previewUrl": "/assets/models/previews/outdoor_bench.png",
+    "keywords": ""
   },
   "picnic_table": {
     "label": "Mesa de piquenique",
@@ -268,7 +294,8 @@ export const LOCAL_ASSET_CATALOG = {
     "height": 0.78,
     "color": "#477a4f",
     "modelUrl": "/assets/models/picnic_table.glb",
-    "previewUrl": "/assets/models/previews/picnic_table.png"
+    "previewUrl": "/assets/models/previews/picnic_table.png",
+    "keywords": ""
   },
   "drill": {
     "label": "Furadeira",
@@ -278,7 +305,8 @@ export const LOCAL_ASSET_CATALOG = {
     "height": 0.24,
     "color": "#c48645",
     "modelUrl": "/assets/models/drill.glb",
-    "previewUrl": "/assets/models/previews/drill.png"
+    "previewUrl": "/assets/models/previews/drill.png",
+    "keywords": ""
   },
   "ladder": {
     "label": "Escada",
@@ -288,7 +316,8 @@ export const LOCAL_ASSET_CATALOG = {
     "height": 2.6,
     "color": "#c48645",
     "modelUrl": "/assets/models/ladder.glb",
-    "previewUrl": "/assets/models/previews/ladder.png"
+    "previewUrl": "/assets/models/previews/ladder.png",
+    "keywords": ""
   },
   "toolbox": {
     "label": "Caixa de ferramentas",
@@ -298,7 +327,8 @@ export const LOCAL_ASSET_CATALOG = {
     "height": 0.3,
     "color": "#c48645",
     "modelUrl": "/assets/models/toolbox.glb",
-    "previewUrl": "/assets/models/previews/toolbox.png"
+    "previewUrl": "/assets/models/previews/toolbox.png",
+    "keywords": ""
   },
   "tool_cart": {
     "label": "Carrinho de ferramentas",
@@ -308,7 +338,8 @@ export const LOCAL_ASSET_CATALOG = {
     "height": 0.95,
     "color": "#c48645",
     "modelUrl": "/assets/models/tool_cart.glb",
-    "previewUrl": "/assets/models/previews/tool_cart.png"
+    "previewUrl": "/assets/models/previews/tool_cart.png",
+    "keywords": ""
   },
   "cement_bag": {
     "label": "Saco de cimento",
@@ -318,7 +349,8 @@ export const LOCAL_ASSET_CATALOG = {
     "height": 0.14,
     "color": "#c48645",
     "modelUrl": "/assets/models/cement_bag.glb",
-    "previewUrl": "/assets/models/previews/cement_bag.png"
+    "previewUrl": "/assets/models/previews/cement_bag.png",
+    "keywords": ""
   },
   "paint_cans": {
     "label": "Latas de tinta",
@@ -328,7 +360,8 @@ export const LOCAL_ASSET_CATALOG = {
     "height": 0.32,
     "color": "#c48645",
     "modelUrl": "/assets/models/paint_cans.glb",
-    "previewUrl": "/assets/models/previews/paint_cans.png"
+    "previewUrl": "/assets/models/previews/paint_cans.png",
+    "keywords": ""
   },
   "work_light": {
     "label": "Lâmpada de obra",
@@ -338,7 +371,8 @@ export const LOCAL_ASSET_CATALOG = {
     "height": 0.22,
     "color": "#c48645",
     "modelUrl": "/assets/models/work_light.glb",
-    "previewUrl": "/assets/models/previews/work_light.png"
+    "previewUrl": "/assets/models/previews/work_light.png",
+    "keywords": ""
   },
   "plunger": {
     "label": "Desentupidor",
@@ -348,7 +382,8 @@ export const LOCAL_ASSET_CATALOG = {
     "height": 0.55,
     "color": "#87b6c9",
     "modelUrl": "/assets/models/plunger.glb",
-    "previewUrl": "/assets/models/previews/plunger.png"
+    "previewUrl": "/assets/models/previews/plunger.png",
+    "keywords": ""
   },
   "water_container": {
     "label": "Galão de água",
@@ -358,7 +393,8 @@ export const LOCAL_ASSET_CATALOG = {
     "height": 0.48,
     "color": "#d7dde0",
     "modelUrl": "/assets/models/water_container.glb",
-    "previewUrl": "/assets/models/previews/water_container.png"
+    "previewUrl": "/assets/models/previews/water_container.png",
+    "keywords": ""
   },
   "wall_clock": {
     "label": "Relógio de parede",
@@ -368,6 +404,667 @@ export const LOCAL_ASSET_CATALOG = {
     "height": 0.42,
     "color": "#4f8c58",
     "modelUrl": "/assets/models/wall_clock.glb",
-    "previewUrl": "/assets/models/previews/wall_clock.png"
+    "previewUrl": "/assets/models/previews/wall_clock.png",
+    "keywords": ""
+  },
+  "armchair": {
+    "label": "Poltrona",
+    "group": "Sala",
+    "width": 0.85,
+    "depth": 0.85,
+    "height": 0.95,
+    "color": "#8f6f61",
+    "modelUrl": "/assets/models/armchair.glb",
+    "previewUrl": "/assets/models/previews/armchair.png",
+    "keywords": "assento sala leitura"
+  },
+  "ottoman": {
+    "label": "Puff",
+    "group": "Sala",
+    "width": 0.65,
+    "depth": 0.65,
+    "height": 0.45,
+    "color": "#8f6f61",
+    "modelUrl": "/assets/models/ottoman.glb",
+    "previewUrl": "/assets/models/previews/ottoman.png",
+    "keywords": "apoio pés assento"
+  },
+  "side_table": {
+    "label": "Mesa lateral",
+    "group": "Sala",
+    "width": 0.55,
+    "depth": 0.55,
+    "height": 0.58,
+    "color": "#8f6f61",
+    "modelUrl": "/assets/models/side_table.glb",
+    "previewUrl": "/assets/models/previews/side_table.png",
+    "keywords": "mesa apoio canto"
+  },
+  "floor_lamp": {
+    "label": "Luminária de piso",
+    "group": "Iluminação",
+    "width": 0.42,
+    "depth": 0.42,
+    "height": 1.55,
+    "color": "#e0bc62",
+    "modelUrl": "/assets/models/floor_lamp.glb",
+    "previewUrl": "/assets/models/previews/floor_lamp.png",
+    "keywords": "abajur luz sala"
+  },
+  "tv_console": {
+    "label": "Rack de TV",
+    "group": "Sala",
+    "width": 1.65,
+    "depth": 0.42,
+    "height": 0.62,
+    "color": "#8f6f61",
+    "modelUrl": "/assets/models/tv_console.glb",
+    "previewUrl": "/assets/models/previews/tv_console.png",
+    "keywords": "painel televisão console"
+  },
+  "room_divider": {
+    "label": "Biombo",
+    "group": "Decoração",
+    "width": 1.8,
+    "depth": 0.12,
+    "height": 1.8,
+    "color": "#4f8c58",
+    "modelUrl": "/assets/models/room_divider.glb",
+    "previewUrl": "/assets/models/previews/room_divider.png",
+    "keywords": "divisória painel"
+  },
+  "rocking_chair": {
+    "label": "Cadeira de balanço",
+    "group": "Sala",
+    "width": 0.72,
+    "depth": 1.0,
+    "height": 1.05,
+    "color": "#8f6f61",
+    "modelUrl": "/assets/models/rocking_chair.glb",
+    "previewUrl": "/assets/models/previews/rocking_chair.png",
+    "keywords": "poltrona descanso"
+  },
+  "game_console": {
+    "label": "Console de jogos",
+    "group": "Sala",
+    "width": 0.32,
+    "depth": 0.26,
+    "height": 0.1,
+    "color": "#8f6f61",
+    "modelUrl": "/assets/models/game_console.glb",
+    "previewUrl": "/assets/models/previews/game_console.png",
+    "keywords": "videogame eletrônico tv"
+  },
+  "projector_screen": {
+    "label": "Tela de projeção",
+    "group": "Sala",
+    "width": 2.0,
+    "depth": 0.1,
+    "height": 1.3,
+    "color": "#8f6f61",
+    "modelUrl": "/assets/models/projector_screen.glb",
+    "previewUrl": "/assets/models/previews/projector_screen.png",
+    "keywords": "cinema projetor painel"
+  },
+  "radio": {
+    "label": "Caixa de som",
+    "group": "Sala",
+    "width": 0.5,
+    "depth": 0.2,
+    "height": 0.28,
+    "color": "#8f6f61",
+    "modelUrl": "/assets/models/radio.glb",
+    "previewUrl": "/assets/models/previews/radio.png",
+    "keywords": "rádio música áudio"
+  },
+  "ceramic_vase": {
+    "label": "Vaso decorativo",
+    "group": "Decoração",
+    "width": 0.28,
+    "depth": 0.28,
+    "height": 0.45,
+    "color": "#4f8c58",
+    "modelUrl": "/assets/models/ceramic_vase.glb",
+    "previewUrl": "/assets/models/previews/ceramic_vase.png",
+    "keywords": "cerâmica enfeite"
+  },
+  "planter_box": {
+    "label": "Floreira",
+    "group": "Exterior",
+    "width": 0.9,
+    "depth": 0.36,
+    "height": 0.42,
+    "color": "#477a4f",
+    "modelUrl": "/assets/models/planter_box.glb",
+    "previewUrl": "/assets/models/previews/planter_box.png",
+    "keywords": "jardim plantas vaso"
+  },
+  "bedroom_stool": {
+    "label": "Banqueta de quarto",
+    "group": "Quarto",
+    "width": 0.42,
+    "depth": 0.42,
+    "height": 0.48,
+    "color": "#a7b8cc",
+    "modelUrl": "/assets/models/bedroom_stool.glb",
+    "previewUrl": "/assets/models/previews/bedroom_stool.png",
+    "keywords": "penteadeira assento"
+  },
+  "storage_chest": {
+    "label": "Baú",
+    "group": "Quarto",
+    "width": 0.9,
+    "depth": 0.52,
+    "height": 0.55,
+    "color": "#a7b8cc",
+    "modelUrl": "/assets/models/storage_chest.glb",
+    "previewUrl": "/assets/models/previews/storage_chest.png",
+    "keywords": "armazenamento roupas"
+  },
+  "suitcase": {
+    "label": "Mala",
+    "group": "Quarto",
+    "width": 0.72,
+    "depth": 0.5,
+    "height": 0.22,
+    "color": "#a7b8cc",
+    "modelUrl": "/assets/models/suitcase.glb",
+    "previewUrl": "/assets/models/previews/suitcase.png",
+    "keywords": "bagagem armazenamento"
+  },
+  "laundry_basket": {
+    "label": "Cesto de roupas",
+    "group": "Limpeza e lavanderia",
+    "width": 0.45,
+    "depth": 0.45,
+    "height": 0.6,
+    "color": "#72a8a1",
+    "modelUrl": "/assets/models/laundry_basket.glb",
+    "previewUrl": "/assets/models/previews/laundry_basket.png",
+    "keywords": "lavanderia roupa suja"
+  },
+  "alarm_clock": {
+    "label": "Despertador",
+    "group": "Quarto",
+    "width": 0.18,
+    "depth": 0.1,
+    "height": 0.16,
+    "color": "#a7b8cc",
+    "modelUrl": "/assets/models/alarm_clock.glb",
+    "previewUrl": "/assets/models/previews/alarm_clock.png",
+    "keywords": "relógio criado mudo"
+  },
+  "candleholders": {
+    "label": "Castiçais",
+    "group": "Decoração",
+    "width": 0.4,
+    "depth": 0.18,
+    "height": 0.48,
+    "color": "#4f8c58",
+    "modelUrl": "/assets/models/candleholders.glb",
+    "previewUrl": "/assets/models/previews/candleholders.png",
+    "keywords": "velas iluminação enfeite"
+  },
+  "laptop": {
+    "label": "Notebook",
+    "group": "Escritório",
+    "width": 0.36,
+    "depth": 0.26,
+    "height": 0.24,
+    "color": "#8b7f72",
+    "modelUrl": "/assets/models/laptop.glb",
+    "previewUrl": "/assets/models/previews/laptop.png",
+    "keywords": "computador trabalho"
+  },
+  "clipboard": {
+    "label": "Prancheta",
+    "group": "Escritório",
+    "width": 0.24,
+    "depth": 0.34,
+    "height": 0.02,
+    "color": "#8b7f72",
+    "modelUrl": "/assets/models/clipboard.glb",
+    "previewUrl": "/assets/models/previews/clipboard.png",
+    "keywords": "documentos papel"
+  },
+  "stationery_set": {
+    "label": "Material de escritório",
+    "group": "Escritório",
+    "width": 0.42,
+    "depth": 0.3,
+    "height": 0.18,
+    "color": "#8b7f72",
+    "modelUrl": "/assets/models/stationery_set.glb",
+    "previewUrl": "/assets/models/previews/stationery_set.png",
+    "keywords": "canetas lápis papel"
+  },
+  "notepads": {
+    "label": "Cadernos",
+    "group": "Escritório",
+    "width": 0.32,
+    "depth": 0.24,
+    "height": 0.08,
+    "color": "#8b7f72",
+    "modelUrl": "/assets/models/notepads.glb",
+    "previewUrl": "/assets/models/previews/notepads.png",
+    "keywords": "bloco notas papel"
+  },
+  "stapler": {
+    "label": "Grampeador",
+    "group": "Escritório",
+    "width": 0.2,
+    "depth": 0.07,
+    "height": 0.1,
+    "color": "#8b7f72",
+    "modelUrl": "/assets/models/stapler.glb",
+    "previewUrl": "/assets/models/previews/stapler.png",
+    "keywords": "papel material"
+  },
+  "magnifier": {
+    "label": "Lupa",
+    "group": "Escritório",
+    "width": 0.12,
+    "depth": 0.28,
+    "height": 0.03,
+    "color": "#8b7f72",
+    "modelUrl": "/assets/models/magnifier.glb",
+    "previewUrl": "/assets/models/previews/magnifier.png",
+    "keywords": "leitura ferramenta"
+  },
+  "chalkboard": {
+    "label": "Quadro de anotações",
+    "group": "Escritório",
+    "width": 0.7,
+    "depth": 0.45,
+    "height": 1.25,
+    "color": "#8b7f72",
+    "modelUrl": "/assets/models/chalkboard.glb",
+    "previewUrl": "/assets/models/previews/chalkboard.png",
+    "keywords": "lousa recados"
+  },
+  "circuit_board": {
+    "label": "Equipamento eletrônico",
+    "group": "Escritório",
+    "width": 0.28,
+    "depth": 0.2,
+    "height": 0.04,
+    "color": "#8b7f72",
+    "modelUrl": "/assets/models/circuit_board.glb",
+    "previewUrl": "/assets/models/previews/circuit_board.png",
+    "keywords": "computador placa manutenção"
+  },
+  "all_purpose_cleaner": {
+    "label": "Limpador multiuso",
+    "group": "Limpeza e lavanderia",
+    "width": 0.12,
+    "depth": 0.1,
+    "height": 0.3,
+    "color": "#72a8a1",
+    "modelUrl": "/assets/models/all_purpose_cleaner.glb",
+    "previewUrl": "/assets/models/previews/all_purpose_cleaner.png",
+    "keywords": "produto limpeza"
+  },
+  "bleach": {
+    "label": "Água sanitária",
+    "group": "Limpeza e lavanderia",
+    "width": 0.14,
+    "depth": 0.11,
+    "height": 0.32,
+    "color": "#72a8a1",
+    "modelUrl": "/assets/models/bleach.glb",
+    "previewUrl": "/assets/models/previews/bleach.png",
+    "keywords": "produto limpeza lavanderia"
+  },
+  "drain_cleaner": {
+    "label": "Limpador de ralo",
+    "group": "Limpeza e lavanderia",
+    "width": 0.1,
+    "depth": 0.1,
+    "height": 0.28,
+    "color": "#72a8a1",
+    "modelUrl": "/assets/models/drain_cleaner.glb",
+    "previewUrl": "/assets/models/previews/drain_cleaner.png",
+    "keywords": "banheiro encanamento"
+  },
+  "dustpan": {
+    "label": "Pá de lixo",
+    "group": "Limpeza e lavanderia",
+    "width": 0.3,
+    "depth": 0.28,
+    "height": 0.12,
+    "color": "#72a8a1",
+    "modelUrl": "/assets/models/dustpan.glb",
+    "previewUrl": "/assets/models/previews/dustpan.png",
+    "keywords": "varrer limpeza"
+  },
+  "broom": {
+    "label": "Vassoura",
+    "group": "Limpeza e lavanderia",
+    "width": 0.3,
+    "depth": 0.12,
+    "height": 1.35,
+    "color": "#72a8a1",
+    "modelUrl": "/assets/models/broom.glb",
+    "previewUrl": "/assets/models/previews/broom.png",
+    "keywords": "varrer limpeza"
+  },
+  "utility_bucket": {
+    "label": "Balde",
+    "group": "Limpeza e lavanderia",
+    "width": 0.34,
+    "depth": 0.34,
+    "height": 0.38,
+    "color": "#72a8a1",
+    "modelUrl": "/assets/models/utility_bucket.glb",
+    "previewUrl": "/assets/models/previews/utility_bucket.png",
+    "keywords": "água limpeza obra"
+  },
+  "plastic_bin": {
+    "label": "Caixa organizadora",
+    "group": "Limpeza e lavanderia",
+    "width": 0.6,
+    "depth": 0.42,
+    "height": 0.38,
+    "color": "#72a8a1",
+    "modelUrl": "/assets/models/plastic_bin.glb",
+    "previewUrl": "/assets/models/previews/plastic_bin.png",
+    "keywords": "armazenamento caixa"
+  },
+  "trash_bag": {
+    "label": "Saco de lixo",
+    "group": "Limpeza e lavanderia",
+    "width": 0.45,
+    "depth": 0.38,
+    "height": 0.72,
+    "color": "#72a8a1",
+    "modelUrl": "/assets/models/trash_bag.glb",
+    "previewUrl": "/assets/models/previews/trash_bag.png",
+    "keywords": "resíduo entulho"
+  },
+  "rubber_boots": {
+    "label": "Botas de borracha",
+    "group": "Limpeza e lavanderia",
+    "width": 0.42,
+    "depth": 0.32,
+    "height": 0.46,
+    "color": "#72a8a1",
+    "modelUrl": "/assets/models/rubber_boots.glb",
+    "previewUrl": "/assets/models/previews/rubber_boots.png",
+    "keywords": "epi chuva obra"
+  },
+  "cleaner_tin": {
+    "label": "Produto de manutenção",
+    "group": "Limpeza e lavanderia",
+    "width": 0.14,
+    "depth": 0.14,
+    "height": 0.22,
+    "color": "#72a8a1",
+    "modelUrl": "/assets/models/cleaner_tin.glb",
+    "previewUrl": "/assets/models/previews/cleaner_tin.png",
+    "keywords": "limpeza lata"
+  },
+  "bar_stool": {
+    "label": "Banqueta alta",
+    "group": "Cozinha e serviço",
+    "width": 0.42,
+    "depth": 0.42,
+    "height": 0.78,
+    "color": "#d7dde0",
+    "modelUrl": "/assets/models/bar_stool.glb",
+    "previewUrl": "/assets/models/previews/bar_stool.png",
+    "keywords": "ilha cozinha gourmet"
+  },
+  "propane_tank": {
+    "label": "Botijão de gás",
+    "group": "Cozinha e serviço",
+    "width": 0.38,
+    "depth": 0.38,
+    "height": 0.72,
+    "color": "#d7dde0",
+    "modelUrl": "/assets/models/propane_tank.glb",
+    "previewUrl": "/assets/models/previews/propane_tank.png",
+    "keywords": "glp cozinha"
+  },
+  "small_lpg_tank": {
+    "label": "Botijão de gás pequeno",
+    "group": "Cozinha e serviço",
+    "width": 0.3,
+    "depth": 0.3,
+    "height": 0.48,
+    "color": "#d7dde0",
+    "modelUrl": "/assets/models/small_lpg_tank.glb",
+    "previewUrl": "/assets/models/previews/small_lpg_tank.png",
+    "keywords": "glp churrasqueira"
+  },
+  "cutting_board": {
+    "label": "Tábua de corte",
+    "group": "Cozinha e serviço",
+    "width": 0.42,
+    "depth": 0.28,
+    "height": 0.04,
+    "color": "#d7dde0",
+    "modelUrl": "/assets/models/cutting_board.glb",
+    "previewUrl": "/assets/models/previews/cutting_board.png",
+    "keywords": "utensílio cozinha"
+  },
+  "wooden_spoon": {
+    "label": "Colher de cozinha",
+    "group": "Cozinha e serviço",
+    "width": 0.08,
+    "depth": 0.32,
+    "height": 0.04,
+    "color": "#d7dde0",
+    "modelUrl": "/assets/models/wooden_spoon.glb",
+    "previewUrl": "/assets/models/previews/wooden_spoon.png",
+    "keywords": "utensílio"
+  },
+  "tea_set": {
+    "label": "Jogo de café",
+    "group": "Cozinha e serviço",
+    "width": 0.55,
+    "depth": 0.4,
+    "height": 0.28,
+    "color": "#d7dde0",
+    "modelUrl": "/assets/models/tea_set.glb",
+    "previewUrl": "/assets/models/previews/tea_set.png",
+    "keywords": "xícara bule mesa"
+  },
+  "wine_bottles": {
+    "label": "Garrafas",
+    "group": "Cozinha e serviço",
+    "width": 0.42,
+    "depth": 0.24,
+    "height": 0.34,
+    "color": "#d7dde0",
+    "modelUrl": "/assets/models/wine_bottles.glb",
+    "previewUrl": "/assets/models/previews/wine_bottles.png",
+    "keywords": "bebidas adega"
+  },
+  "water_jug": {
+    "label": "Jarra",
+    "group": "Cozinha e serviço",
+    "width": 0.2,
+    "depth": 0.2,
+    "height": 0.32,
+    "color": "#d7dde0",
+    "modelUrl": "/assets/models/water_jug.glb",
+    "previewUrl": "/assets/models/previews/water_jug.png",
+    "keywords": "água cozinha mesa"
+  },
+  "covered_car": {
+    "label": "Carro coberto",
+    "group": "Exterior",
+    "width": 4.5,
+    "depth": 1.9,
+    "height": 1.55,
+    "color": "#477a4f",
+    "modelUrl": "/assets/models/covered_car.glb",
+    "previewUrl": "/assets/models/previews/covered_car.png",
+    "keywords": "garagem veículo"
+  },
+  "security_camera": {
+    "label": "Câmera de segurança",
+    "group": "Segurança e acesso",
+    "width": 0.22,
+    "depth": 0.38,
+    "height": 0.18,
+    "color": "#b95f5f",
+    "modelUrl": "/assets/models/security_camera.glb",
+    "previewUrl": "/assets/models/previews/security_camera.png",
+    "keywords": "cftv vigilância"
+  },
+  "fire_extinguisher": {
+    "label": "Extintor",
+    "group": "Segurança e acesso",
+    "width": 0.22,
+    "depth": 0.22,
+    "height": 0.65,
+    "color": "#b95f5f",
+    "modelUrl": "/assets/models/fire_extinguisher.glb",
+    "previewUrl": "/assets/models/previews/fire_extinguisher.png",
+    "keywords": "incêndio segurança"
+  },
+  "garden_hose": {
+    "label": "Mangueira de jardim",
+    "group": "Exterior",
+    "width": 0.52,
+    "depth": 0.25,
+    "height": 0.52,
+    "color": "#477a4f",
+    "modelUrl": "/assets/models/garden_hose.glb",
+    "previewUrl": "/assets/models/previews/garden_hose.png",
+    "keywords": "água quintal"
+  },
+  "sprinkler": {
+    "label": "Aspersor de jardim",
+    "group": "Exterior",
+    "width": 0.45,
+    "depth": 0.38,
+    "height": 0.18,
+    "color": "#477a4f",
+    "modelUrl": "/assets/models/sprinkler.glb",
+    "previewUrl": "/assets/models/previews/sprinkler.png",
+    "keywords": "irrigação água"
+  },
+  "garden_gloves": {
+    "label": "Luvas de jardinagem",
+    "group": "Exterior",
+    "width": 0.3,
+    "depth": 0.24,
+    "height": 0.08,
+    "color": "#477a4f",
+    "modelUrl": "/assets/models/garden_gloves.glb",
+    "previewUrl": "/assets/models/previews/garden_gloves.png",
+    "keywords": "epi jardim"
+  },
+  "watering_can": {
+    "label": "Regador",
+    "group": "Exterior",
+    "width": 0.55,
+    "depth": 0.3,
+    "height": 0.42,
+    "color": "#477a4f",
+    "modelUrl": "/assets/models/watering_can.glb",
+    "previewUrl": "/assets/models/previews/watering_can.png",
+    "keywords": "plantas jardim água"
+  },
+  "garden_gnome": {
+    "label": "Enfeite de jardim",
+    "group": "Exterior",
+    "width": 0.32,
+    "depth": 0.3,
+    "height": 0.72,
+    "color": "#477a4f",
+    "modelUrl": "/assets/models/garden_gnome.glb",
+    "previewUrl": "/assets/models/previews/garden_gnome.png",
+    "keywords": "decoração quintal"
+  },
+  "adjustable_wrench": {
+    "label": "Chave inglesa",
+    "group": "Ferramentas e obra",
+    "width": 0.08,
+    "depth": 0.32,
+    "height": 0.04,
+    "color": "#c48645",
+    "modelUrl": "/assets/models/adjustable_wrench.glb",
+    "previewUrl": "/assets/models/previews/adjustable_wrench.png",
+    "keywords": "ferramenta encanamento"
+  },
+  "bolt_cutters": {
+    "label": "Alicate corta-vergalhão",
+    "group": "Ferramentas e obra",
+    "width": 0.22,
+    "depth": 0.75,
+    "height": 0.08,
+    "color": "#c48645",
+    "modelUrl": "/assets/models/bolt_cutters.glb",
+    "previewUrl": "/assets/models/previews/bolt_cutters.png",
+    "keywords": "corte ferramenta"
+  },
+  "hammer": {
+    "label": "Martelo",
+    "group": "Ferramentas e obra",
+    "width": 0.32,
+    "depth": 0.1,
+    "height": 0.12,
+    "color": "#c48645",
+    "modelUrl": "/assets/models/hammer.glb",
+    "previewUrl": "/assets/models/previews/hammer.png",
+    "keywords": "prego ferramenta"
+  },
+  "crowbar": {
+    "label": "Pé de cabra",
+    "group": "Ferramentas e obra",
+    "width": 0.08,
+    "depth": 0.85,
+    "height": 0.08,
+    "color": "#c48645",
+    "modelUrl": "/assets/models/crowbar.glb",
+    "previewUrl": "/assets/models/previews/crowbar.png",
+    "keywords": "demolição ferramenta"
+  },
+  "screwdriver": {
+    "label": "Chave de fenda",
+    "group": "Ferramentas e obra",
+    "width": 0.05,
+    "depth": 0.28,
+    "height": 0.05,
+    "color": "#c48645",
+    "modelUrl": "/assets/models/screwdriver.glb",
+    "previewUrl": "/assets/models/previews/screwdriver.png",
+    "keywords": "parafuso ferramenta"
+  },
+  "handsaw": {
+    "label": "Serrote",
+    "group": "Ferramentas e obra",
+    "width": 0.62,
+    "depth": 0.04,
+    "height": 0.18,
+    "color": "#c48645",
+    "modelUrl": "/assets/models/handsaw.glb",
+    "previewUrl": "/assets/models/previews/handsaw.png",
+    "keywords": "madeira corte"
+  },
+  "sledgehammer": {
+    "label": "Marreta",
+    "group": "Ferramentas e obra",
+    "width": 0.85,
+    "depth": 0.12,
+    "height": 0.18,
+    "color": "#c48645",
+    "modelUrl": "/assets/models/sledgehammer.glb",
+    "previewUrl": "/assets/models/previews/sledgehammer.png",
+    "keywords": "demolição ferramenta"
+  },
+  "power_box": {
+    "label": "Caixa elétrica",
+    "group": "Ferramentas e obra",
+    "width": 0.55,
+    "depth": 0.22,
+    "height": 0.75,
+    "color": "#c48645",
+    "modelUrl": "/assets/models/power_box.glb",
+    "previewUrl": "/assets/models/previews/power_box.png",
+    "keywords": "quadro energia infraestrutura"
   }
 };

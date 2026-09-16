@@ -37,10 +37,10 @@ class HouseStoreEditorTests(unittest.TestCase):
         self.temporary.cleanup()
 
     @staticmethod
-    def asset(asset_id: str = "asset_sofa") -> dict:
+    def asset(asset_id: str = "asset_sofa", asset_type: str = "sofa") -> dict:
         return {
             "id": asset_id,
-            "asset_type": "sofa",
+            "asset_type": asset_type,
             "label": "Sofá",
             "x_m": 2,
             "y_m": 0,
@@ -91,6 +91,19 @@ class HouseStoreEditorTests(unittest.TestCase):
             self.store.save_model3d_layout(
                 {"layout_overrides": {}, "placed_assets": [out_of_bounds]}
             )
+
+    def test_manifest_asset_and_builtin_primitive_can_be_persisted(self) -> None:
+        assets = [
+            self.asset("asset_security_camera", "security_camera"),
+            self.asset("asset_box", "box"),
+        ]
+        result = self.store.save_model3d_layout(
+            {"layout_overrides": {}, "placed_assets": assets}
+        )
+        self.assertEqual(
+            [asset["asset_type"] for asset in result["placed_assets"]],
+            ["security_camera", "box"],
+        )
 
     def test_rejects_malformed_overrides_and_duplicate_asset_ids(self) -> None:
         with self.assertRaisesRegex(ValueError, "override key"):

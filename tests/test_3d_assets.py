@@ -14,6 +14,7 @@ class Local3DAssetLibraryTests(unittest.TestCase):
     def test_manifest_models_licenses_hashes_and_budgets(self) -> None:
         reports = validate_library()
         self.assertEqual({report["id"] for report in reports}, EXPECTED_IDS)
+        self.assertEqual(len(reports), 97)
         self.assertTrue(all(report["triangles"] > 0 for report in reports))
 
     def test_generated_editor_catalog_matches_manifest(self) -> None:
@@ -31,6 +32,9 @@ class Local3DAssetLibraryTests(unittest.TestCase):
             all(
                 entry["modelUrl"].endswith(f"/{asset_id}.glb")
                 and entry["previewUrl"]
+                and entry["group"]
+                and all(entry[axis] > 0 for axis in ("width", "height", "depth"))
+                and "keywords" in entry
                 for asset_id, entry in catalog.items()
             )
         )

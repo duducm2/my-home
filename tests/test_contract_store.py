@@ -65,6 +65,49 @@ class ContractSystemTests(unittest.TestCase):
         self.assertTrue(archived["archived"])
         self.assertEqual(self.contracts.state(include_archived=False)["contracts"], [])
 
+    def test_service_work_period_and_payment_frequencies(self) -> None:
+        result = self.contracts.upsert(
+            {
+                "type": "service",
+                "title": "Pagamento semanal",
+                "provider_id": self.provider_id,
+                "expense_ids": [self.expense_id],
+                "status": "active",
+                "amount": 1000,
+                "start_date": "2026-09-16",
+                "end_date": "2026-09-30",
+                "payment_frequency": "weekly",
+            }
+        )
+        contract = next(
+            item
+            for item in result["contracts"]
+            if item["id"] == result["contract_id"]
+        )
+        self.assertEqual(contract["work_days"], 15)
+        self.assertEqual(
+            [item["date"] for item in contract["payment_schedule"]],
+            ["2026-09-16", "2026-09-23", "2026-09-30"],
+        )
+        self.assertEqual(
+            sum(item["amount"] for item in contract["payment_schedule"]),
+            1000,
+        )
+
+        with self.assertRaisesRegex(ValueError, "equal the total price"):
+            self.contracts.upsert(
+                {
+                    **contract,
+                    "payment_frequency": "custom",
+                    "payment_schedule": [
+                        {
+                            "date": "2026-09-20",
+                            "amount": 100,
+                        }
+                    ],
+                }
+            )
+
     def test_pdf_versions_are_validated_and_preserved(self) -> None:
         contract_id = self._create_contract()
         with self.assertRaisesRegex(ValueError, "PDF"):

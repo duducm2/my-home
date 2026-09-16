@@ -18,9 +18,10 @@
     iconCatalog: { defaults: {}, icons: {} },
     house: null,
     project: null,
-    importRows: [],
     quotationExpenseId: "",
     quotationImportRows: [],
+    editingPayments: [],
+    editingContractPayments: [],
     zoom: "week",
     expandedMacros: new Set(),
   };
@@ -46,13 +47,10 @@
     btnPush: $("btn-push"),
     pushStatus: $("push-status"),
     dashTotalAll: $("dash-total-all"),
-    dashTotalMaterials: $("dash-total-materials"),
-    dashTotalServices: $("dash-total-services"),
     fundsTotal: $("funds-total"),
     fundsDetail: $("funds-detail"),
     overallCoverage: $("overall-coverage"),
     coverageDonut: $("coverage-donut"),
-    coverageFunded: $("coverage-funded"),
     overallGap: $("overall-gap"),
     categoryChart: $("category-chart"),
     dashMaterials: $("dash-materials"),
@@ -65,6 +63,8 @@
     cashflowLineChart: $("cashflow-line-chart"),
     houseSavingsLineChart: $("house-savings-line-chart"),
     houseSavingsPlanSummary: $("house-savings-plan-summary"),
+    paymentProjectionChart: $("payment-projection-chart"),
+    paymentProjectionSummary: $("payment-projection-summary"),
     monthlySavingsGrid: $("monthly-savings-grid"),
     cashflowMethod: $("cashflow-method"),
     macroTimeline: $("macro-timeline"),
@@ -128,6 +128,9 @@
     fieldVendor: $("field-vendor"),
     fieldProductUrl: $("field-product-url"),
     fieldPriceNotes: $("field-price-notes"),
+    expensePaymentList: $("expense-payment-list"),
+    expensePaymentTotal: $("expense-payment-total"),
+    btnAddPayment: $("btn-add-payment"),
     expenseServiceLinks: $("expense-service-links"),
     fieldProvider: $("field-provider"),
     fieldContract: $("field-contract"),
@@ -169,13 +172,17 @@
     btnCommitQuotationImport: $("btn-commit-quotation-import"),
     btnCopyQuotationFix: $("btn-copy-quotation-fix"),
     houseBlueprint: $("house-blueprint"),
+    blueprintViewport: $("blueprint-viewport"),
+    blueprintZoomLabel: $("blueprint-zoom-label"),
+    btnExportBlueprint: $("btn-export-blueprint"),
     houseLot: $("house-lot"),
     houseExterior: $("house-exterior"),
     houseRooms: $("house-rooms"),
-    houseAudit: $("house-audit"),
     house3dStatus: $("house-3d-status"),
     house3dAssumptions: $("house-3d-assumptions"),
     btnModel3dHome: $("btn-model3d-home"),
+    btnModel3dHelp: $("btn-model3d-help"),
+    model3dHelpDialog: $("model3d-help-dialog"),
     btnToggleEditor: $("btn-toggle-editor"),
     btnCloseEditor: $("btn-close-editor"),
     sceneEditorPanel: $("scene-editor-panel"),
@@ -212,7 +219,7 @@
     btnShareMedia: $("btn-share-media"),
     btnDownloadMedia: $("btn-download-media"),
     mediaStatus: $("media-status"),
-    projectOverview: $("project-overview"),
+    requiredTools: $("required-tools"),
     showArchivedContracts: $("show-archived-contracts"),
     btnNewProvider: $("btn-new-provider"),
     btnNewContract: $("btn-new-contract"),
@@ -241,27 +248,18 @@
     contractAmount: $("contract-amount"),
     contractStart: $("contract-start"),
     contractEnd: $("contract-end"),
+    contractPaymentPlan: $("contract-payment-plan"),
+    contractPaymentFrequency: $("contract-payment-frequency"),
+    contractWorkPeriod: $("contract-work-period"),
+    contractPaymentSummary: $("contract-payment-summary"),
+    contractPaymentSchedule: $("contract-payment-schedule"),
+    btnAddContractPayment: $("btn-add-contract-payment"),
     contractExpenses: $("contract-expenses"),
     contractNotes: $("contract-notes"),
     contractPdf: $("contract-pdf"),
     contractFormError: $("contract-form-error"),
     btnArchiveContract: $("btn-archive-contract"),
     btnCancelContract: $("btn-cancel-contract"),
-    promptOutput: $("prompt-output"),
-    promptMissingOnly: $("prompt-missing-only"),
-    btnGenPrompt: $("btn-gen-prompt"),
-    btnCopyPrompt: $("btn-copy-prompt"),
-    btnDlPrompt: $("btn-dl-prompt"),
-    packInput: $("pack-input"),
-    bulkCorrectionInstructions: $("bulk-correction-instructions"),
-    packFile: $("pack-file"),
-    btnPreviewImport: $("btn-preview-import"),
-    btnCommitImport: $("btn-commit-import"),
-    importStatus: $("import-status"),
-    importPreviewRows: $("import-preview-rows"),
-    fixOutput: $("fix-output"),
-    btnCopyFix: $("btn-copy-fix"),
-    btnDlFix: $("btn-dl-fix"),
   };
 
   const money = new Intl.NumberFormat("pt-BR", {
@@ -409,7 +407,7 @@
         ) => `<tr class="expense-row" data-open-quotations="${escapeAttr(item.id)}" tabindex="0" aria-label="Gerenciar cotações de ${escapeAttr(item.description)}">
       <td><span class="badge">${item.priority}</span></td><td>${escapeHtml(item.category)}</td>
       <td>${itemLabel(item.description, item.icon_key)}</td><td class="num">${formatMoney(item.value)}</td>
-      <td>${priceCell(item)}</td><td class="actions"><button class="btn" data-edit-expense="${item.id}">Editar</button><button class="btn danger" data-delete-expense="${item.id}">Excluir</button></td>
+      <td>${priceCell(item)}</td><td class="actions"><button class="btn quotation-action-btn" data-open-expense-quotations="${escapeAttr(item.id)}" title="Abrir análise de preços e cotações">Cotações <span>${(item.quotations || []).length}/5</span></button><button class="btn" data-edit-expense="${item.id}">Editar</button><button class="btn danger" data-delete-expense="${item.id}">Excluir</button></td>
     </tr>`,
       )
       .join("");
@@ -424,6 +422,17 @@
     })
       .format(new Date(Date.UTC(year, month - 1, 1)))
       .replace(".", "");
+  }
+
+  function formatPaymentDate(value) {
+    const [year, month, day] = String(value).split("-").map(Number);
+    if (!year || !month || !day) return String(value || "");
+    return new Intl.DateTimeFormat("pt-BR", {
+      day: "2-digit",
+      month: "2-digit",
+      year: "numeric",
+      timeZone: "UTC",
+    }).format(new Date(Date.UTC(year, month - 1, day)));
   }
 
   function treemapLayout(items, x = 0, y = 0, width = 1000, height = 360) {
@@ -589,6 +598,118 @@
     els.cashflowMethod.textContent = (payload.interpolation || {}).method || "";
   }
 
+  function paymentEvents() {
+    const scheduledContracts = state.contracts.filter(
+      (contract) =>
+        contract.type === "service" &&
+        !contract.archived &&
+        contract.status !== "cancelled" &&
+        (contract.payment_schedule || []).length,
+    );
+    const contractExpenseIds = new Set(
+      scheduledContracts.flatMap((contract) => contract.expense_ids || []),
+    );
+    const expenseEvents = state.expenses
+      .filter((expense) => !contractExpenseIds.has(expense.id))
+      .flatMap((expense) =>
+        (expense.payments || []).map((payment) => ({
+          ...payment,
+          expenseId: expense.id,
+          expenseIds: [expense.id],
+          description: expense.description,
+          category: expense.category,
+          iconKey: expense.icon_key,
+          amount: Number(payment.amount || 0),
+        })),
+      );
+    const contractEvents = scheduledContracts.flatMap((contract) => {
+      const provider = state.providers.find(
+        (item) => item.id === contract.provider_id,
+      );
+      return (contract.payment_schedule || []).map((payment) => ({
+        ...payment,
+        contractId: contract.id,
+        expenseIds: contract.expense_ids || [],
+        description: provider?.name || contract.title,
+        category: "Mão de obra",
+        iconKey: "mason-service",
+        amount: Number(payment.amount || 0),
+      }));
+    });
+    return [...expenseEvents, ...contractEvents]
+      .filter((payment) => payment.date && Number.isFinite(payment.amount))
+      .sort((left, right) => left.date.localeCompare(right.date));
+  }
+
+  function renderPaymentProjection() {
+    if (!els.paymentProjectionChart) return;
+    const grouped = new Map();
+    for (const payment of paymentEvents()) {
+      if (!grouped.has(payment.date))
+        grouped.set(payment.date, {
+          date: payment.date,
+          amount: 0,
+          payments: [],
+          estimated: false,
+        });
+      const day = grouped.get(payment.date);
+      day.amount += payment.amount;
+      day.payments.push(payment);
+      day.estimated ||= payment.date_status === "estimated";
+    }
+    const days = [...grouped.values()];
+    if (!days.length) {
+      els.paymentProjectionSummary.textContent =
+        "Cadastre datas nas despesas para criar a projeção.";
+      els.paymentProjectionChart.innerHTML =
+        '<p class="payment-projection-empty">Nenhum pagamento programado.</p>';
+      return;
+    }
+    const width = Math.max(1000, days.length * 58);
+    const height = 300;
+    const margin = { left: 72, right: 28, top: 24, bottom: 48 };
+    const plotWidth = width - margin.left - margin.right;
+    const plotHeight = height - margin.top - margin.bottom;
+    const firstDate = days[0].date;
+    const lastDate = days.at(-1).date;
+    const span = Math.max(1, dayDiff(firstDate, lastDate));
+    const maximum = Math.max(1, ...days.map((item) => item.amount));
+    const points = days.map((item) => ({
+      x: margin.left + (dayDiff(firstDate, item.date) / span) * plotWidth,
+      y: margin.top + plotHeight - (item.amount / maximum) * plotHeight,
+      item,
+    }));
+    const grid = [0, 0.25, 0.5, 0.75, 1]
+      .map((ratio) => {
+        const y = margin.top + plotHeight - ratio * plotHeight;
+        return `<line x1="${margin.left}" y1="${y}" x2="${margin.left + plotWidth}" y2="${y}" class="cashflow-grid-line"></line><text x="${margin.left - 9}" y="${y + 4}" text-anchor="end" class="cashflow-axis-label">${formatMoney(maximum * ratio).replace(",00", "")}</text>`;
+      })
+      .join("");
+    const labelStep = Math.max(1, Math.ceil(days.length / 14));
+    const polyline = points.map(({ x, y }) => `${x},${y}`).join(" ");
+    const today = iso(new Date());
+    const todayX =
+      today >= firstDate && today <= lastDate
+        ? margin.left + (dayDiff(firstDate, today) / span) * plotWidth
+        : null;
+    const total = days.reduce((sum, item) => sum + item.amount, 0);
+    const estimatedCount = paymentEvents().filter(
+      (item) => item.date_status === "estimated",
+    ).length;
+    els.paymentProjectionSummary.textContent = `${days.length} dias · ${formatMoney(total)} · ${estimatedCount} datas presumidas`;
+    els.paymentProjectionChart.innerHTML = `<svg viewBox="0 0 ${width} ${height}" style="min-width:${width}px" role="img" aria-label="Projeção de despesas por dia de pagamento">${grid}${todayX === null ? "" : `<line x1="${todayX}" y1="${margin.top}" x2="${todayX}" y2="${margin.top + plotHeight}" class="payment-today-line"></line><path d="M ${todayX - 7} ${margin.top + plotHeight + 9} L ${todayX + 7} ${margin.top + plotHeight + 9} L ${todayX} ${margin.top + plotHeight - 3} Z" class="payment-today-marker"><title>Hoje · ${formatPaymentDate(today)}</title></path>`}<polyline points="${polyline}" class="payment-projection-line"></polyline>${points
+      .map(({ x, y, item }, index) => {
+        const details = item.payments
+          .map(
+            (payment) =>
+              `${payment.description}: ${formatMoney(payment.amount)}${payment.date_status === "estimated" ? " (presumido)" : ""}`,
+          )
+          .join(" · ");
+        return `<g class="${item.estimated ? "estimated" : "confirmed"}"><line x1="${x}" y1="${margin.top}" x2="${x}" y2="${margin.top + plotHeight}" class="payment-day-line"></line><circle cx="${x}" cy="${y}" r="6" class="payment-day-point"></circle><title>${escapeHtml(`${formatPaymentDate(item.date)} · ${formatMoney(item.amount)} · ${details}`)}</title>${index % labelStep === 0 || index === points.length - 1 ? `<text x="${x}" y="${height - 18}" text-anchor="middle" class="cashflow-axis-label">${formatPaymentDate(item.date).slice(0, 5)}</text>` : ""}</g>`;
+      })
+      .join("")}</svg>`;
+  }
+
   function dashboardExpenseGroup(item) {
     const category = String(item.category || "")
       .normalize("NFD")
@@ -663,8 +784,6 @@
 
   function renderDashboard() {
     els.dashTotalAll.textContent = formatMoney(state.totals.all);
-    els.dashTotalMaterials.textContent = formatMoney(state.totals.materials);
-    els.dashTotalServices.textContent = formatMoney(state.totals.services);
     const funding = (state.project || {}).funding || {};
     const sources = funding.sources || [];
     const fundsTotal = sources.reduce(
@@ -687,7 +806,6 @@
       "aria-label",
       `${coverage.toFixed(1).replace(".", ",")}% do orçamento coberto`,
     );
-    els.coverageFunded.textContent = formatMoney(fundsTotal);
     const gap = fundsTotal - Number(state.totals.all || 0);
     els.overallGap.textContent =
       gap >= 0
@@ -716,6 +834,7 @@
       )
       .join("");
     renderDashboardExpenseCategories();
+    renderPaymentProjection();
     renderGantt();
     renderMacroTimeline();
   }
@@ -791,6 +910,7 @@
       parseDate(task.start_date),
       parseDate(task.end_date),
     ]);
+    dates.push(...paymentEvents().map((payment) => parseDate(payment.date)));
     const today = parseDate(iso(new Date()));
     const start = new Date(Math.min(today, ...dates));
     start.setDate(start.getDate() - 7);
@@ -879,10 +999,29 @@
     );
     const todayLeft =
       dayDiff(geometry.start, iso(new Date())) * geometry.dayWidth;
+    const paymentDays = new Map();
+    for (const payment of paymentEvents()) {
+      if (!paymentDays.has(payment.date))
+        paymentDays.set(payment.date, {
+          amount: 0,
+          estimated: false,
+          descriptions: [],
+        });
+      const item = paymentDays.get(payment.date);
+      item.amount += payment.amount;
+      item.estimated ||= payment.date_status === "estimated";
+      item.descriptions.push(payment.description);
+    }
     els.gantt.innerHTML = `<div class="gantt-label-head">Macroatividade / atividade</div>
       <div class="gantt-scroll" id="gantt-scroll"><div class="gantt-timeline">
         <div class="gantt-header">${ganttHeader(geometry)}</div>
         <div class="gantt-today" style="left:${todayLeft}px"><span>Hoje</span></div>
+        ${[...paymentDays.entries()]
+          .map(
+            ([paymentDate, item]) =>
+              `<div class="gantt-payment-day${item.estimated ? " estimated" : ""}" style="left:${dayDiff(geometry.start, paymentDate) * geometry.dayWidth}px" title="${escapeAttr(`${formatPaymentDate(paymentDate)} · ${formatMoney(item.amount)} · ${item.descriptions.join(", ")}`)}"><span></span></div>`,
+          )
+          .join("")}
         ${tasks
           .map((task) => {
             const left =
@@ -892,16 +1031,35 @@
               (dayDiff(task.start_date, task.end_date) + 1) * geometry.dayWidth,
             );
             const isMacro = task.activity_type === "macro";
+            const taskPayments = isMacro
+              ? []
+              : paymentEvents().filter((payment) =>
+                  (payment.expenseIds || []).includes(task.expense_id),
+                );
             return `<div class="gantt-track${isMacro ? " macro" : " child"}" data-track-id="${task.id}">
             <button type="button" class="gantt-bar status-${task.status}${isMacro ? " macro" : ""}" ${isMacro ? `data-macro-bar="${task.id}"` : `data-task-bar="${task.id}"`} style="left:${left}px;width:${width}px" title="${escapeAttr(`${task.title} · ${task.start_date} — ${task.end_date}`)}">
               ${isMacro ? "" : '<i class="gantt-handle start" data-resize="start"></i>'}<span>${escapeHtml(task.title)}</span>${isMacro ? "" : '<i class="gantt-handle end" data-resize="end"></i>'}
-            </button></div>`;
+            </button>${taskPayments
+              .map(
+                (payment) =>
+                  `<i class="gantt-task-payment${payment.date_status === "estimated" ? " estimated" : ""}" style="left:${dayDiff(geometry.start, payment.date) * geometry.dayWidth}px" title="${escapeAttr(`${formatPaymentDate(payment.date)} · ${payment.description} · ${formatMoney(payment.amount)}`)}"></i>`,
+              )
+              .join("")}</div>`;
           })
           .join("")}
       </div></div>
       <div class="gantt-labels">${tasks
         .map((task) => {
-          const detail = `${task.activity_type === "macro" ? `${childTasks(task.id).length} atividades · ${task.progress || 0}%` : `P${task.priority} · #${task.sequence}`} · ${escapeHtml(statusLabels[task.status])}${task.date_status === "estimated" ? " · estimada" : ""}`;
+          const linkedExpense = state.expenses.find(
+            (expense) => expense.id === task.expense_id,
+          );
+          const scheduled = (linkedExpense?.payments || [])
+            .map(
+              (payment) =>
+                `${formatPaymentDate(payment.date)} ${formatMoney(payment.amount)}`,
+            )
+            .join(" + ");
+          const detail = `${task.activity_type === "macro" ? `${childTasks(task.id).length} atividades · ${task.progress || 0}%` : `P${task.priority} · #${task.sequence}`} · ${escapeHtml(statusLabels[task.status])}${task.date_status === "estimated" ? " · estimada" : ""}${scheduled ? ` · paga ${scheduled}` : ""}`;
           const content = `${iconMarkup(task.icon_key, task.title)}<span><strong>${escapeHtml(task.title)}</strong><small>${detail}</small></span>`;
           if (task.activity_type === "macro")
             return `<div class="gantt-label-row macro">
@@ -1035,6 +1193,7 @@
       body: JSON.stringify(task),
     });
     state.tasks = payload.tasks || state.tasks;
+    if (payload.expense_state) applyExpenseState(payload.expense_state);
     renderGantt();
     renderMacroTimeline();
     return payload;
@@ -1301,9 +1460,102 @@
     els.fieldPriceNotes.value = item?.price_notes || "";
     updateExpenseServiceLinks(item?.provider_id || "", item?.contract_id || "");
     renderIconPicker(item?.icon_key || "");
+    state.editingPayments = structuredClone(item?.payments || []);
+    if (!state.editingPayments.length) {
+      const presumedDate =
+        state.tasks
+          .filter((task) => task.activity_type === "task" && task.start_date)
+          .sort((left, right) =>
+            left.start_date.localeCompare(right.start_date),
+          )
+          .find((task) => task.start_date >= iso(new Date()))?.start_date ||
+        addDays(iso(new Date()), 7);
+      state.editingPayments = [
+        {
+          id: "PAY_001",
+          date: presumedDate,
+          amount: Number(els.fieldValue.value || 0),
+          date_status: "estimated",
+          source: "presumed",
+          notes: "",
+        },
+      ];
+    }
+    renderExpensePayments();
     els.formError.classList.add("hidden");
     els.dialog.showModal();
     els.fieldDescription.focus();
+  }
+
+  function renderExpensePaymentTotal() {
+    const total = state.editingPayments.reduce(
+      (sum, item) => sum + Number(item.amount || 0),
+      0,
+    );
+    const value = Number(els.fieldValue.value || 0);
+    const difference = Math.round((value - total) * 100) / 100;
+    els.expensePaymentTotal.classList.toggle(
+      "mismatch",
+      Math.abs(difference) > 0.01,
+    );
+    els.expensePaymentTotal.textContent =
+      Math.abs(difference) <= 0.01
+        ? `Pagamentos: ${formatMoney(total)}`
+        : `Pagamentos: ${formatMoney(total)} · diferença ${formatMoney(difference)}`;
+  }
+
+  function renderExpensePayments() {
+    els.expensePaymentList.innerHTML = state.editingPayments
+      .map(
+        (
+          payment,
+        ) => `<div class="expense-payment-row" data-payment-id="${escapeAttr(payment.id)}">
+          <label>Data<input type="date" data-payment-field="date" value="${escapeAttr(payment.date || "")}" required></label>
+          <label>Valor<input type="number" data-payment-field="amount" min="0" step="0.01" value="${Number(payment.amount || 0).toFixed(2)}" required></label>
+          <label>Precisão<select data-payment-field="date_status"><option value="estimated" ${payment.date_status === "estimated" ? "selected" : ""}>Presumida</option><option value="confirmed" ${payment.date_status === "confirmed" ? "selected" : ""}>Confirmada</option></select></label>
+          <label class="payment-note">Observação<input data-payment-field="notes" maxlength="500" value="${escapeAttr(payment.notes || "")}" placeholder="Parcela, entrada..."></label>
+          <button type="button" class="btn danger" data-delete-payment="${escapeAttr(payment.id)}" ${state.editingPayments.length === 1 ? "disabled" : ""} aria-label="Excluir pagamento">×</button>
+        </div>`,
+      )
+      .join("");
+    renderExpensePaymentTotal();
+  }
+
+  function updateEditingPayment(target) {
+    const row = target.closest("[data-payment-id]");
+    const payment = state.editingPayments.find(
+      (item) => item.id === row?.dataset.paymentId,
+    );
+    if (!payment) return;
+    const field = target.dataset.paymentField;
+    payment[field] =
+      field === "amount" ? Number(target.value || 0) : target.value;
+    if (field === "date") {
+      payment.date_status = "confirmed";
+      row.querySelector('[data-payment-field="date_status"]').value =
+        "confirmed";
+    }
+    renderExpensePaymentTotal();
+  }
+
+  function addExpensePayment() {
+    if (state.editingPayments.length >= 36) return;
+    const maximum = state.editingPayments.reduce((value, item) => {
+      const match = String(item.id || "").match(/^PAY_(\d+)$/);
+      return Math.max(value, Number(match?.[1] || 0));
+    }, 0);
+    const previous = state.editingPayments.at(-1);
+    state.editingPayments.push({
+      id: `PAY_${String(maximum + 1).padStart(3, "0")}`,
+      date: previous?.date
+        ? addDays(previous.date, 30)
+        : addDays(iso(new Date()), 7),
+      amount: 0,
+      date_status: "estimated",
+      source: "manual",
+      notes: "",
+    });
+    renderExpensePayments();
   }
 
   function currentQuotationExpense() {
@@ -1512,7 +1764,20 @@
       price_notes: els.fieldPriceNotes.value.trim(),
       provider_id: els.fieldProvider.value,
       contract_id: els.fieldContract.value,
+      payments: state.editingPayments,
     };
+    const paymentTotal = payload.payments.reduce(
+      (sum, item) => sum + Number(item.amount || 0),
+      0,
+    );
+    if (Math.abs(paymentTotal - payload.value) > 0.01) {
+      setStatus(
+        els.formError,
+        "err",
+        "A soma dos pagamentos deve ser igual ao valor da despesa.",
+      );
+      return;
+    }
     try {
       const result = await request("/api/expenses", {
         method: "POST",
@@ -1628,21 +1893,16 @@
     }
   }
 
-  function renderProject(project) {
-    if (!els.projectOverview || !project) return;
-    const people = (project.people || [])
-      .map(
-        (person) =>
-          `<article class="person-card"><img src="${escapeAttr(person.image_url)}" alt="${escapeAttr(person.name)}"><div><strong>${escapeHtml(person.name)}</strong><span>${escapeHtml(person.role || person.story_role || "")}</span><p>${escapeHtml(person.story_role || "")}</p></div></article>`,
-      )
-      .join("");
+  function renderRequiredTools(project) {
+    if (!els.requiredTools || !project) return;
     const tools = ((project.construction_resources || {}).required_tools || [])
       .map(
         (tool) =>
           `<article class="required-tool">${iconMarkup(tool.icon_key, tool.name, "tool")}<div><strong>${escapeHtml(tool.name)}</strong><p>${escapeHtml(tool.purpose || "")}</p></div></article>`,
       )
       .join("");
-    els.projectOverview.innerHTML = `<h3 class="project-heading">Pessoas do projeto</h3><div class="people-grid">${people}</div><h3 class="project-heading">Ferramentas necessárias</h3><div class="required-tools-grid">${tools || "<p>Nenhuma ferramenta cadastrada.</p>"}</div>`;
+    els.requiredTools.innerHTML =
+      tools || "<p>Nenhuma ferramenta cadastrada.</p>";
   }
 
   const contractStatusLabels = {
@@ -1651,6 +1911,12 @@
     active: "Ativo",
     completed: "Concluído",
     cancelled: "Cancelado",
+  };
+  const contractPaymentLabels = {
+    one_time: "Pagamento único",
+    weekly: "Semanal",
+    monthly: "Mensal",
+    custom: "Personalizado",
   };
 
   function renderContractCenter() {
@@ -1694,7 +1960,8 @@
             .join("");
           return `<article class="contract-card ${contract.archived ? "archived" : ""}">
         <div class="contract-card-head"><div><span>${contract.type === "purchase" ? "Compra" : "Serviço"}</span><h4>${escapeHtml(contract.title)}</h4></div><span class="contract-status status-${escapeAttr(contract.status)}">${contract.archived ? "Arquivado" : escapeHtml(contractStatusLabels[contract.status] || contract.status)}</span></div>
-        <div class="contract-meta"><span>${formatMoney(contract.amount)}</span><span>${escapeHtml(providerMap[contract.provider_id]?.name || "Sem prestador")}</span><span>${escapeHtml(contract.start_date || "Sem data")}</span></div>
+        <div class="contract-meta"><span>${formatMoney(contract.amount)}</span><span>${escapeHtml(providerMap[contract.provider_id]?.name || "Sem prestador")}</span><span>${contract.type === "service" ? `${formatPaymentDate(contract.start_date)} — ${formatPaymentDate(contract.end_date)} · ${contract.work_days} dias${contract.work_period_status === "estimated" ? " · presumido" : ""}` : escapeHtml(contract.start_date || "Sem data")}</span></div>
+        ${contract.type === "service" ? `<p class="contract-payment-resume">${escapeHtml(contractPaymentLabels[contract.payment_frequency] || contract.payment_frequency)} · ${(contract.payment_schedule || []).length} pagamento(s) · ${formatMoney((contract.payment_schedule || []).reduce((sum, payment) => sum + Number(payment.amount || 0), 0))}</p>` : ""}
         ${contract.metadata?.signature_status ? `<p class="contract-signature">${escapeHtml(contract.metadata.signature_status)} · conclusão ${escapeHtml(contract.metadata.signature_completed_at || "")}</p>` : ""}
         ${expenseNames.length ? `<p>Vínculos: ${escapeHtml(expenseNames.join(", "))}</p>` : ""}
         <div class="contract-card-actions">${current ? `<a class="btn primary" href="/api/contracts/${encodeURIComponent(contract.id)}/documents/current" target="_blank">Abrir PDF atual</a>` : `<span class="muted">Sem PDF</span>`}<button class="btn" type="button" data-edit-contract="${escapeAttr(contract.id)}">Editar</button></div>
@@ -1755,6 +2022,121 @@
     }
   }
 
+  function addMonths(value, months = 1) {
+    const source = parseDate(value);
+    const day = source.getDate();
+    source.setDate(1);
+    source.setMonth(source.getMonth() + months);
+    source.setDate(
+      Math.min(
+        day,
+        new Date(source.getFullYear(), source.getMonth() + 1, 0).getDate(),
+      ),
+    );
+    return iso(source);
+  }
+
+  function generatedContractPaymentDates(frequency, start, end) {
+    if (!start || !end || end < start) return [];
+    if (frequency === "one_time") return [end];
+    const dates = [start];
+    let cursor = start;
+    while (true) {
+      const next =
+        frequency === "weekly" ? addDays(cursor, 7) : addMonths(cursor);
+      if (next >= end) break;
+      dates.push(next);
+      cursor = next;
+    }
+    if (dates.at(-1) !== end) dates.push(end);
+    return dates;
+  }
+
+  function equalContractPayments(dates, amount, frequency) {
+    const totalCents = Math.round(Number(amount || 0) * 100);
+    const count = Math.max(1, dates.length);
+    const base = Math.floor(totalCents / count);
+    const remainder = totalCents - base * count;
+    return dates.map((date, index) => ({
+      id: `PAY_${String(index + 1).padStart(3, "0")}`,
+      date,
+      amount: (base + (index < remainder ? 1 : 0)) / 100,
+      date_status: "confirmed",
+      source: `contract_${frequency}`,
+      notes: "",
+    }));
+  }
+
+  function renderContractPaymentSummary() {
+    const amount = Number(els.contractAmount.value || 0);
+    const scheduledTotal = state.editingContractPayments.reduce(
+      (sum, payment) => sum + Number(payment.amount || 0),
+      0,
+    );
+    els.contractPaymentSummary.classList.toggle(
+      "mismatch",
+      Math.abs(scheduledTotal - amount) > 0.01,
+    );
+    els.contractPaymentSummary.textContent = `${state.editingContractPayments.length} pagamento(s) · ${formatMoney(scheduledTotal)}${Math.abs(scheduledTotal - amount) > 0.01 ? ` · diferença ${formatMoney(amount - scheduledTotal)}` : ""}`;
+  }
+
+  function renderContractPaymentPlan() {
+    const isService = els.contractType.value === "service";
+    els.contractPaymentPlan.classList.toggle("hidden", !isService);
+    if (!isService) return;
+    const frequency = els.contractPaymentFrequency.value;
+    const start = els.contractStart.value;
+    const end = els.contractEnd.value;
+    const amount = Number(els.contractAmount.value || 0);
+    const workDays = start && end && end >= start ? dayDiff(start, end) + 1 : 0;
+    els.contractWorkPeriod.textContent = workDays
+      ? `${formatPaymentDate(start)} — ${formatPaymentDate(end)} · ${workDays} dias de trabalho`
+      : "Defina o período total de trabalho";
+    if (frequency !== "custom") {
+      state.editingContractPayments = equalContractPayments(
+        generatedContractPaymentDates(frequency, start, end),
+        amount,
+        frequency,
+      );
+    }
+    els.btnAddContractPayment.classList.toggle(
+      "hidden",
+      frequency !== "custom",
+    );
+    els.contractPaymentSchedule.innerHTML =
+      state.editingContractPayments
+        .map((payment) =>
+          frequency === "custom"
+            ? `<div class="contract-payment-row" data-contract-payment-id="${escapeAttr(payment.id)}"><label>Data<input type="date" data-contract-payment-field="date" value="${escapeAttr(payment.date || "")}" required></label><label>Valor<input type="number" data-contract-payment-field="amount" min="0" step="0.01" value="${Number(payment.amount || 0).toFixed(2)}" required></label><label>Observação<input data-contract-payment-field="notes" value="${escapeAttr(payment.notes || "")}" maxlength="500"></label><button type="button" class="btn danger" data-delete-contract-payment="${escapeAttr(payment.id)}" ${state.editingContractPayments.length === 1 ? "disabled" : ""}>×</button></div>`
+            : `<article class="contract-payment-chip"><span>${formatPaymentDate(payment.date)}</span><strong>${formatMoney(payment.amount)}</strong></article>`,
+        )
+        .join("") ||
+      '<p class="muted">Informe o preço total, o início e o fim do trabalho.</p>';
+    renderContractPaymentSummary();
+  }
+
+  function addCustomContractPayment() {
+    const maximum = state.editingContractPayments.reduce((value, item) => {
+      const match = String(item.id || "").match(/^PAY_(\d+)$/);
+      return Math.max(value, Number(match?.[1] || 0));
+    }, 0);
+    const previous = state.editingContractPayments.at(-1);
+    const end = els.contractEnd.value;
+    let paymentDate = previous?.date
+      ? addDays(previous.date, 7)
+      : els.contractStart.value;
+    if (end && paymentDate > end) paymentDate = end;
+    state.editingContractPayments.push({
+      id: `PAY_${String(maximum + 1).padStart(3, "0")}`,
+      date: paymentDate,
+      amount: 0,
+      date_status: "confirmed",
+      source: "contract_custom",
+      notes: "",
+    });
+    renderContractPaymentPlan();
+  }
+
   function openContractDialog(contract = null) {
     els.contractDialogTitle.textContent = contract
       ? "Editar contrato"
@@ -1771,6 +2153,11 @@
     els.contractAmount.value = contract?.amount ?? "";
     els.contractStart.value = contract?.start_date || "";
     els.contractEnd.value = contract?.end_date || "";
+    els.contractPaymentFrequency.value =
+      contract?.payment_frequency || "one_time";
+    state.editingContractPayments = structuredClone(
+      contract?.payment_schedule || [],
+    );
     const selected = new Set(contract?.expense_ids || []);
     els.contractExpenses.innerHTML = state.expenses
       .filter((item) => item.record_type === "service")
@@ -1781,6 +2168,7 @@
       .join("");
     els.contractNotes.value = contract?.notes || "";
     els.contractPdf.value = "";
+    renderContractPaymentPlan();
     els.btnArchiveContract.classList.toggle(
       "hidden",
       !contract || contract.archived,
@@ -1804,6 +2192,8 @@
           amount: Number(els.contractAmount.value || 0),
           start_date: els.contractStart.value,
           end_date: els.contractEnd.value,
+          payment_frequency: els.contractPaymentFrequency.value,
+          payment_schedule: state.editingContractPayments,
           expense_ids: [...els.contractExpenses.selectedOptions].map(
             (item) => item.value,
           ),
@@ -1852,6 +2242,10 @@
     else state.providers = result.providers || [];
     (kind === "contracts" ? els.contractDialog : els.providerDialog).close();
     renderContractCenter();
+    if (kind === "contracts") {
+      renderPaymentProjection();
+      renderGantt();
+    }
   }
 
   async function loadProviders() {
@@ -1860,6 +2254,8 @@
 
   async function loadContracts() {
     state.contracts = (await request("/api/contracts")).contracts || [];
+    renderPaymentProjection();
+    renderGantt();
   }
 
   let house3dModule = null;
@@ -1924,7 +2320,7 @@
     const groups = new Map();
     for (const asset of sceneAssetCatalog) {
       const group = asset.group || "Outros";
-      const searchable = `${asset.label} ${group}`
+      const searchable = `${asset.label} ${group} ${asset.keywords || ""}`
         .normalize("NFD")
         .replace(/[\u0300-\u036f]/g, "")
         .toLowerCase();
@@ -1936,8 +2332,11 @@
       [...groups.entries()]
         .sort(([left], [right]) => left.localeCompare(right, "pt-BR"))
         .map(
-          ([group, assets]) => `<section class="asset-palette-group">
-          <strong>${escapeHtml(group)}</strong>
+          (
+            [group, assets],
+            index,
+          ) => `<details class="asset-palette-group" ${query || index < 2 ? "open" : ""}>
+          <summary><strong>${escapeHtml(group)}</strong><span>${assets.length}</span></summary>
           <div>${assets
             .sort((left, right) =>
               left.label.localeCompare(right.label, "pt-BR"),
@@ -1954,7 +2353,7 @@
                 </button>`,
             )
             .join("")}</div>
-        </section>`,
+        </details>`,
         )
         .join("") ||
       '<p class="asset-palette-empty">Nenhum objeto encontrado.</p>';
@@ -1974,7 +2373,7 @@
     if (!model)
       return setStatus(els.house3dStatus, "warn", "Geometria 3D indisponível.");
     try {
-      house3dModule ||= await import("/house-3d.js?v=20260916-7");
+      house3dModule ||= await import("/house-3d.js?v=20260916-8");
       renderSceneAssetPalette(house3dModule.getSceneAssetCatalog());
       house3dModule.mountHouse3D(model);
       requestAnimationFrame(() => house3dModule.resizeHouse3D());
@@ -2238,6 +2637,72 @@
         : `0:${String(seconds).padStart(2, "0")}`;
   }
 
+  const blueprintView = {
+    x: 0,
+    y: 0,
+    scale: 1,
+    dragging: false,
+    pointerId: null,
+    lastX: 0,
+    lastY: 0,
+  };
+
+  function renderBlueprintTransform() {
+    els.houseBlueprint.style.transform = `translate(-50%, -50%) translate(${blueprintView.x}px, ${blueprintView.y}px) scale(${blueprintView.scale})`;
+    els.blueprintZoomLabel.textContent = `${Math.round(blueprintView.scale * 100)}%`;
+    els.blueprintViewport.classList.toggle("dragging", blueprintView.dragging);
+  }
+
+  function resetBlueprintView() {
+    blueprintView.x = 0;
+    blueprintView.y = 0;
+    blueprintView.scale = 1;
+    renderBlueprintTransform();
+  }
+
+  function zoomBlueprint(nextScale, clientX = null, clientY = null) {
+    const previousScale = blueprintView.scale;
+    const scale = Math.min(5, Math.max(0.5, nextScale));
+    if (scale === previousScale) return;
+    if (clientX != null && clientY != null) {
+      const rect = els.blueprintViewport.getBoundingClientRect();
+      const pointerX = clientX - rect.left - rect.width / 2;
+      const pointerY = clientY - rect.top - rect.height / 2;
+      const imageX = (pointerX - blueprintView.x) / previousScale;
+      const imageY = (pointerY - blueprintView.y) / previousScale;
+      blueprintView.x = pointerX - imageX * scale;
+      blueprintView.y = pointerY - imageY * scale;
+    }
+    blueprintView.scale = scale;
+    renderBlueprintTransform();
+  }
+
+  function exportBlueprintJson() {
+    if (!state.house) return;
+    const payload = {
+      schema: "my-home/house-blueprint-export",
+      version: 1,
+      exported_at: new Date().toISOString(),
+      blueprint_image_url: els.houseBlueprint.src,
+      house: state.house,
+    };
+    const blob = new Blob([JSON.stringify(payload, null, 2)], {
+      type: "application/json;charset=utf-8",
+    });
+    const url = URL.createObjectURL(blob);
+    const anchor = document.createElement("a");
+    const houseName = String(state.house.display_name || "house")
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .replace(/[^a-z0-9]+/gi, "-")
+      .replace(/^-|-$/g, "")
+      .toLowerCase();
+    anchor.href = url;
+    anchor.download = `${houseName || "house"}-blueprint.json`;
+    anchor.click();
+    URL.revokeObjectURL(url);
+  }
+
   function renderHouse(payload) {
     if (!payload.ok || !payload.house) return;
     const house = payload.house;
@@ -2246,6 +2711,7 @@
     applyHouseName(house.display_name);
     els.houseBlueprint.src =
       payload.blueprint_url || "/api/house/blueprint.jpg";
+    resetBlueprintView();
     const lot = house.lot_dimensions_meters || {};
     els.houseLot.innerHTML = `<div><span class="summary-label">Largura</span><strong>${lot.width ?? "—"} m</strong></div><div><span class="summary-label">Comprimento</span><strong>${lot.length ?? "—"} m</strong></div><div><span class="summary-label">Área</span><strong>${lot.area_m2 ?? "—"} m²</strong></div>`;
     els.houseExterior.innerHTML = (house.exterior_spaces || [])
@@ -2260,9 +2726,7 @@
           `<article class="house-card"><h3>${escapeHtml(room.label || room.name)}</h3><p>${escapeHtml(room.measured_dimensions || room.dimensions || "")}</p></article>`,
       )
       .join("");
-    const audit = house.blueprint_audit || {};
-    els.houseAudit.innerHTML = `<h3>${escapeHtml(audit.status || "Auditoria")}</h3><p>${escapeHtml(audit.summary || "")}</p>`;
-    renderProject(state.project);
+    renderRequiredTools(state.project);
     renderDashboard();
     if (!document.getElementById("view-model3d").classList.contains("hidden"))
       renderHouse3D();
@@ -2276,84 +2740,11 @@
     }
   }
 
-  async function generatePrompt() {
-    const ids = els.promptMissingOnly.checked
-      ? state.expenses
-          .filter((item) => (item.quotations || []).length < 5)
-          .map((item) => item.id)
-      : state.expenses.map((item) => item.id);
-    const result = await request("/api/prompts/price-discovery", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ ids }),
-    });
-    els.promptOutput.value = result.prompt || result.text || "";
-  }
-
-  async function previewImport() {
-    const result = await request("/api/import/preview", {
-      allowPayloadError: true,
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        pack_text: els.packInput.value,
-        pack_id: "price",
-        correction_instructions: els.bulkCorrectionInstructions.value.trim(),
-      }),
-    });
-    state.importRows = result.rows || [];
-    els.btnCommitImport.disabled = !result.ok || !state.importRows.length;
-    setStatus(
-      els.importStatus,
-      result.ok ? "ok" : "err",
-      result.ok
-        ? `${state.importRows.length} linha(s) pronta(s).`
-        : (result.errors || []).join(" · "),
-    );
-    els.importPreviewRows.innerHTML = state.importRows
-      .map(
-        (row) =>
-          `<tr><td>${escapeHtml(row.id || "")}</td><td>${escapeHtml(row.description || "")}</td><td>${formatMoney(row.unit_price)}</td><td>${escapeHtml(row.vendor || "")}</td><td>${row.product_url ? `<a href="${escapeAttr(row.product_url)}" target="_blank">abrir</a>` : "—"}</td></tr>`,
-      )
-      .join("");
-    const fix = result.fix_text || result.fix_pack || result.fix_output || "";
-    els.fixOutput.value = fix;
-    els.fixOutput.classList.toggle("hidden", !fix);
-    els.btnCopyFix.classList.toggle("hidden", !fix);
-    els.btnDlFix.classList.toggle("hidden", !fix);
-  }
-
-  async function commitImport() {
-    const result = await request("/api/import/commit", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        rows: state.importRows,
-        pack_text: els.packInput.value,
-        pack_id: "price",
-      }),
-    });
-    if (result.state) applyExpenseState(result.state);
-    await pushToRemote();
-  }
-
-  function downloadText(filename, text) {
-    const url = URL.createObjectURL(
-      new Blob([text], { type: "text/plain;charset=utf-8" }),
-    );
-    const anchor = document.createElement("a");
-    anchor.href = url;
-    anchor.download = filename;
-    anchor.click();
-    URL.revokeObjectURL(url);
-  }
-
   function showView(name) {
     const validViews = new Set([
       "dashboard",
       "expenses",
       "house",
-      "prices",
       "model3d",
       "gantt",
     ]);
@@ -2406,6 +2797,79 @@
     event.preventDefault();
     showView("dashboard");
   });
+  els.btnExportBlueprint.addEventListener("click", exportBlueprintJson);
+  document.querySelectorAll("[data-blueprint-action]").forEach((button) => {
+    button.addEventListener("click", () => {
+      if (button.dataset.blueprintAction === "reset") resetBlueprintView();
+      if (button.dataset.blueprintAction === "zoom-in")
+        zoomBlueprint(blueprintView.scale * 1.25);
+      if (button.dataset.blueprintAction === "zoom-out")
+        zoomBlueprint(blueprintView.scale / 1.25);
+    });
+  });
+  els.blueprintViewport.addEventListener("pointerdown", (event) => {
+    if (event.button !== 0) return;
+    blueprintView.dragging = true;
+    blueprintView.pointerId = event.pointerId;
+    blueprintView.lastX = event.clientX;
+    blueprintView.lastY = event.clientY;
+    els.blueprintViewport.setPointerCapture(event.pointerId);
+    renderBlueprintTransform();
+  });
+  els.blueprintViewport.addEventListener("pointermove", (event) => {
+    if (!blueprintView.dragging || event.pointerId !== blueprintView.pointerId)
+      return;
+    blueprintView.x += event.clientX - blueprintView.lastX;
+    blueprintView.y += event.clientY - blueprintView.lastY;
+    blueprintView.lastX = event.clientX;
+    blueprintView.lastY = event.clientY;
+    renderBlueprintTransform();
+  });
+  const stopBlueprintDrag = (event) => {
+    if (event.pointerId !== blueprintView.pointerId) return;
+    blueprintView.dragging = false;
+    blueprintView.pointerId = null;
+    renderBlueprintTransform();
+  };
+  els.blueprintViewport.addEventListener("pointerup", stopBlueprintDrag);
+  els.blueprintViewport.addEventListener("pointercancel", stopBlueprintDrag);
+  els.blueprintViewport.addEventListener(
+    "wheel",
+    (event) => {
+      event.preventDefault();
+      zoomBlueprint(
+        blueprintView.scale * (event.deltaY < 0 ? 1.12 : 1 / 1.12),
+        event.clientX,
+        event.clientY,
+      );
+    },
+    { passive: false },
+  );
+  els.blueprintViewport.addEventListener("dblclick", resetBlueprintView);
+  els.blueprintViewport.addEventListener("keydown", (event) => {
+    const amount = event.shiftKey ? 60 : 24;
+    const movement = {
+      ArrowLeft: [amount, 0],
+      ArrowRight: [-amount, 0],
+      ArrowUp: [0, amount],
+      ArrowDown: [0, -amount],
+    }[event.key];
+    if (movement) {
+      event.preventDefault();
+      blueprintView.x += movement[0];
+      blueprintView.y += movement[1];
+      renderBlueprintTransform();
+    } else if (event.key === "+" || event.key === "=") {
+      event.preventDefault();
+      zoomBlueprint(blueprintView.scale * 1.25);
+    } else if (event.key === "-") {
+      event.preventDefault();
+      zoomBlueprint(blueprintView.scale / 1.25);
+    } else if (event.key === "0") {
+      event.preventDefault();
+      resetBlueprintView();
+    }
+  });
   els.houseNameInput.addEventListener("input", () => {
     const liveName = els.houseNameInput.value.trim() || "my-home";
     els.model3dHouseName.textContent = liveName;
@@ -2429,6 +2893,11 @@
   document.addEventListener(
     "keydown",
     (event) => {
+      if (event.key === "Escape" && els.model3dHelpDialog.open) {
+        event.preventDefault();
+        els.model3dHelpDialog.close();
+        return;
+      }
       if (
         event.key === "Escape" &&
         !document.getElementById("view-model3d").classList.contains("hidden")
@@ -2461,13 +2930,18 @@
           return;
         }
       }
-      if (!event.altKey || event.ctrlKey || event.metaKey || event.shiftKey)
+      if (
+        !event.shiftKey ||
+        event.ctrlKey ||
+        event.metaKey ||
+        event.altKey ||
+        typing
+      )
         return;
       const view = {
         d: "dashboard",
         e: "expenses",
         c: "house",
-        p: "prices",
         m: "model3d",
         g: "gantt",
         h: "dashboard",
@@ -2480,6 +2954,9 @@
     true,
   );
   els.btnModel3dHome.addEventListener("click", () => showView("dashboard"));
+  els.btnModel3dHelp.addEventListener("click", () =>
+    els.model3dHelpDialog.showModal(),
+  );
   els.btnToggleMedia.addEventListener("click", () =>
     setMediaPanelOpen(!mediaPanelOpen),
   );
@@ -2583,6 +3060,34 @@
   els.btnNew.addEventListener("click", () => openExpenseDialog());
   els.form.addEventListener("submit", submitExpense);
   els.btnCancel.addEventListener("click", () => els.dialog.close());
+  els.btnAddPayment.addEventListener("click", addExpensePayment);
+  els.expensePaymentList.addEventListener("input", (event) => {
+    if (event.target.matches("[data-payment-field]"))
+      updateEditingPayment(event.target);
+  });
+  els.expensePaymentList.addEventListener("change", (event) => {
+    if (event.target.matches("[data-payment-field]"))
+      updateEditingPayment(event.target);
+  });
+  els.expensePaymentList.addEventListener("click", (event) => {
+    const button = event.target.closest("[data-delete-payment]");
+    if (!button || state.editingPayments.length === 1) return;
+    state.editingPayments = state.editingPayments.filter(
+      (item) => item.id !== button.dataset.deletePayment,
+    );
+    renderExpensePayments();
+  });
+  els.fieldValue.addEventListener("input", () => {
+    if (
+      state.editingPayments.length === 1 &&
+      state.editingPayments[0].date_status === "estimated"
+    ) {
+      state.editingPayments[0].amount = Number(els.fieldValue.value || 0);
+      renderExpensePayments();
+    } else {
+      renderExpensePaymentTotal();
+    }
+  });
   els.fieldRecordType.addEventListener("change", () =>
     updateExpenseServiceLinks(),
   );
@@ -2594,8 +3099,16 @@
     if (button) renderIconPicker(button.dataset.iconKey);
   });
   els.rows.addEventListener("click", async (event) => {
+    const quotations = event.target.closest("[data-open-expense-quotations]");
     const edit = event.target.closest("[data-edit-expense]");
     const remove = event.target.closest("[data-delete-expense]");
+    if (quotations) {
+      const item = state.expenses.find(
+        (expense) => expense.id === quotations.dataset.openExpenseQuotations,
+      );
+      if (item) openQuotationManager(item);
+      return;
+    }
     if (edit) {
       openExpenseDialog(
         state.expenses.find((item) => item.id === edit.dataset.editExpense),
@@ -2620,6 +3133,7 @@
   els.rows.addEventListener("keydown", (event) => {
     if (event.key !== "Enter" && event.key !== " ") return;
     const row = event.target.closest("[data-open-quotations]");
+    if (!row || event.target !== row) return;
     const item = state.expenses.find(
       (expense) => expense.id === row?.dataset.openQuotations,
     );
@@ -2750,37 +3264,6 @@
         behavior: "smooth",
       });
   });
-  els.btnGenPrompt.addEventListener("click", () =>
-    generatePrompt().catch((error) =>
-      setStatus(els.appStatus, "err", error.message),
-    ),
-  );
-  els.btnCopyPrompt.addEventListener("click", () =>
-    navigator.clipboard.writeText(els.promptOutput.value),
-  );
-  els.btnDlPrompt.addEventListener("click", () =>
-    downloadText("price-discovery-prompt.txt", els.promptOutput.value),
-  );
-  els.packFile.addEventListener("change", async () => {
-    if (els.packFile.files[0])
-      els.packInput.value = await els.packFile.files[0].text();
-  });
-  els.btnPreviewImport.addEventListener("click", () =>
-    previewImport().catch((error) =>
-      setStatus(els.importStatus, "err", error.message),
-    ),
-  );
-  els.btnCommitImport.addEventListener("click", () =>
-    commitImport().catch((error) =>
-      setStatus(els.importStatus, "err", error.message),
-    ),
-  );
-  els.btnCopyFix.addEventListener("click", () =>
-    navigator.clipboard.writeText(els.fixOutput.value),
-  );
-  els.btnDlFix.addEventListener("click", () =>
-    downloadText("price-pack-fix.txt", els.fixOutput.value),
-  );
   els.showArchivedContracts.addEventListener("change", renderContractCenter);
   els.btnNewProvider.addEventListener("click", () => openProviderDialog());
   els.btnNewContract.addEventListener("click", () => openContractDialog());
@@ -2794,6 +3277,35 @@
     ),
   );
   els.contractForm.addEventListener("submit", submitContract);
+  els.contractType.addEventListener("change", renderContractPaymentPlan);
+  els.contractPaymentFrequency.addEventListener(
+    "change",
+    renderContractPaymentPlan,
+  );
+  [els.contractAmount, els.contractStart, els.contractEnd].forEach((input) =>
+    input.addEventListener("input", renderContractPaymentPlan),
+  );
+  els.btnAddContractPayment.addEventListener("click", addCustomContractPayment);
+  els.contractPaymentSchedule.addEventListener("input", (event) => {
+    const target = event.target.closest("[data-contract-payment-field]");
+    const row = target?.closest("[data-contract-payment-id]");
+    const payment = state.editingContractPayments.find(
+      (item) => item.id === row?.dataset.contractPaymentId,
+    );
+    if (!payment) return;
+    const field = target.dataset.contractPaymentField;
+    payment[field] =
+      field === "amount" ? Number(target.value || 0) : target.value;
+    renderContractPaymentSummary();
+  });
+  els.contractPaymentSchedule.addEventListener("click", (event) => {
+    const button = event.target.closest("[data-delete-contract-payment]");
+    if (!button || state.editingContractPayments.length === 1) return;
+    state.editingContractPayments = state.editingContractPayments.filter(
+      (item) => item.id !== button.dataset.deleteContractPayment,
+    );
+    renderContractPaymentPlan();
+  });
   els.btnCancelContract.addEventListener("click", () =>
     els.contractDialog.close(),
   );

@@ -1,5 +1,5 @@
 {
-  "version": 1,
+  "version": 2,
   "contracts": [
     {
       "id": "CONTRACT_PURCHASE",
@@ -57,8 +57,8 @@
       ],
       "status": "draft",
       "amount": 7500.0,
-      "start_date": "",
-      "end_date": "",
+      "start_date": "2026-10-16",
+      "end_date": "2026-12-14",
       "notes": "",
       "archived": false,
       "document_versions": [
@@ -255,7 +255,35 @@
         }
       },
       "created_at": "2026-09-16 14:01:46",
-      "updated_at": "2026-09-16 14:01:46"
+      "updated_at": "2026-09-16 14:01:46",
+      "payment_schedule": [
+        {
+          "id": "PAY_001",
+          "date": "2026-10-16",
+          "amount": 2500.0,
+          "date_status": "estimated",
+          "source": "contract_monthly",
+          "notes": ""
+        },
+        {
+          "id": "PAY_002",
+          "date": "2026-11-16",
+          "amount": 2500.0,
+          "date_status": "estimated",
+          "source": "contract_monthly",
+          "notes": ""
+        },
+        {
+          "id": "PAY_003",
+          "date": "2026-12-14",
+          "amount": 2500.0,
+          "date_status": "estimated",
+          "source": "contract_monthly",
+          "notes": ""
+        }
+      ],
+      "work_period_status": "estimated",
+      "payment_frequency": "monthly"
     },
     {
       "id": "CONTRACT_GELSON_02",
@@ -267,8 +295,8 @@
       ],
       "status": "draft",
       "amount": 7500.0,
-      "start_date": "",
-      "end_date": "",
+      "start_date": "2027-01-05",
+      "end_date": "2027-10-14",
       "notes": "",
       "archived": false,
       "document_versions": [
@@ -460,8 +488,100 @@
         }
       },
       "created_at": "2026-09-16 14:01:46",
-      "updated_at": "2026-09-16 14:01:46"
+      "updated_at": "2026-09-16 14:01:46",
+      "payment_schedule": [
+        {
+          "id": "PAY_001",
+          "date": "2027-01-05",
+          "amount": 681.82,
+          "date_status": "estimated",
+          "source": "contract_monthly",
+          "notes": ""
+        },
+        {
+          "id": "PAY_002",
+          "date": "2027-02-05",
+          "amount": 681.82,
+          "date_status": "estimated",
+          "source": "contract_monthly",
+          "notes": ""
+        },
+        {
+          "id": "PAY_003",
+          "date": "2027-03-05",
+          "amount": 681.82,
+          "date_status": "estimated",
+          "source": "contract_monthly",
+          "notes": ""
+        },
+        {
+          "id": "PAY_004",
+          "date": "2027-04-05",
+          "amount": 681.82,
+          "date_status": "estimated",
+          "source": "contract_monthly",
+          "notes": ""
+        },
+        {
+          "id": "PAY_005",
+          "date": "2027-05-05",
+          "amount": 681.82,
+          "date_status": "estimated",
+          "source": "contract_monthly",
+          "notes": ""
+        },
+        {
+          "id": "PAY_006",
+          "date": "2027-06-05",
+          "amount": 681.82,
+          "date_status": "estimated",
+          "source": "contract_monthly",
+          "notes": ""
+        },
+        {
+          "id": "PAY_007",
+          "date": "2027-07-05",
+          "amount": 681.82,
+          "date_status": "estimated",
+          "source": "contract_monthly",
+          "notes": ""
+        },
+        {
+          "id": "PAY_008",
+          "date": "2027-08-05",
+          "amount": 681.82,
+          "date_status": "estimated",
+          "source": "contract_monthly",
+          "notes": ""
+        },
+        {
+          "id": "PAY_009",
+          "date": "2027-09-05",
+          "amount": 681.82,
+          "date_status": "estimated",
+          "source": "contract_monthly",
+          "notes": ""
+        },
+        {
+          "id": "PAY_010",
+          "date": "2027-10-05",
+          "amount": 681.81,
+          "date_status": "estimated",
+          "source": "contract_monthly",
+          "notes": ""
+        },
+        {
+          "id": "PAY_011",
+          "date": "2027-10-14",
+          "amount": 681.81,
+          "date_status": "estimated",
+          "source": "contract_monthly",
+          "notes": ""
+        }
+      ],
+      "work_period_status": "estimated",
+      "payment_frequency": "monthly"
     }
   ],
-  "updated_at": "2026-09-16 14:01:46"
+  "updated_at": "2026-09-16 18:02:22"
 }

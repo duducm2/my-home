@@ -8,51 +8,15 @@ import struct
 from pathlib import Path
 from typing import Any
 
+from download_3d_assets import ASSETS
+
 
 ROOT = Path(__file__).resolve().parents[1]
 MODEL_DIR = ROOT / "web" / "assets" / "models"
-EXPECTED_IDS = {
-    "sofa",
-    "bed",
-    "table",
-    "chair",
-    "wardrobe",
-    "refrigerator",
-    "stove",
-    "plant",
-    "tree",
-    "television",
-    "coffee_table",
-    "bookshelf",
-    "desk_lamp",
-    "ceiling_lamp",
-    "office_desk",
-    "office_chair",
-    "single_bed",
-    "nightstand",
-    "dresser",
-    "mirror",
-    "kitchen_cabinet",
-    "microwave",
-    "trash_can",
-    "laundry_cart",
-    "outdoor_set",
-    "outdoor_bench",
-    "picnic_table",
-    "drill",
-    "ladder",
-    "toolbox",
-    "tool_cart",
-    "cement_bag",
-    "paint_cans",
-    "work_light",
-    "plunger",
-    "water_container",
-    "wall_clock",
-}
+EXPECTED_IDS = {asset["id"] for asset in ASSETS}
 MAX_ASSET_BYTES = 12 * 1024 * 1024
-MAX_TOTAL_BYTES = 64 * 1024 * 1024
-MAX_TOTAL_TRIANGLES = 1_000_000
+MAX_TOTAL_BYTES = 110 * 1024 * 1024
+MAX_TOTAL_TRIANGLES = 1_800_000
 SUPPORTED_REQUIRED_EXTENSIONS = {
     "KHR_materials_clearcoat",
     "KHR_materials_emissive_strength",
@@ -104,11 +68,21 @@ def validate_library() -> list[dict[str, Any]]:
     assets = manifest.get("assets") or []
     assert manifest.get("runtime_network_required") is False
     assert {asset.get("id") for asset in assets} == EXPECTED_IDS
+    assert len(assets) >= 90
+    assert {path.name for path in MODEL_DIR.glob("*.glb")} == {
+        f"{asset_id}.glb" for asset_id in EXPECTED_IDS
+    }
+    assert {
+        path.stem for path in (MODEL_DIR / "previews").iterdir() if path.is_file()
+    } == EXPECTED_IDS
     reports = []
     total_bytes = 0
     total_triangles = 0
     for asset in assets:
+        assert asset.get("label") and asset.get("group")
+        assert "keywords" in asset
         assert asset.get("author") and asset.get("source_url", "").startswith("https://")
+        assert asset.get("source_resolution")
         assert asset.get("license") in {"CC0-1.0", "CC-BY-4.0"}
         assert all(
             float(asset.get(key) or 0) > 0
