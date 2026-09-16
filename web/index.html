@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="color-scheme" content="dark" />
     <title>my-home</title>
-    <link rel="stylesheet" href="/styles.css?v=20260916-5" />
+    <link rel="stylesheet" href="/styles.css?v=20260916-8" />
     <link rel="stylesheet" href="/tasks.css?v=20260916-5" />
     <script type="importmap">
       { "imports": { "three": "/vendor/three/three.module.js" } }
@@ -129,13 +129,6 @@
               </div>
             </div>
           </article>
-          <article class="panel bento-card bento-categories">
-            <div class="panel-head">
-              <h2>Orçamento por categoria</h2>
-              <span class="panel-kicker">Distribuição</span>
-            </div>
-            <div id="category-chart" class="budget-chart"></div>
-          </article>
           <article class="panel bento-card bento-blueprint">
             <a
               href="#house"
@@ -161,6 +154,46 @@
             </div>
             <div id="dashboard-people" class="dashboard-people-grid"></div>
           </article>
+        </section>
+
+        <section
+          class="dashboard-category-center"
+          aria-labelledby="dashboard-category-center-title"
+        >
+          <div class="section-heading-row">
+            <div>
+              <h2 id="dashboard-category-center-title" class="section-title">
+                Categorias financeiras
+              </h2>
+              <p class="section-sub">
+                Orçamento e itens usam os mesmos ícones para identificação
+                imediata.
+              </p>
+            </div>
+          </div>
+          <div class="dashboard-category-sync-grid">
+            <article class="category-budget-panel">
+              <div class="panel-head">
+                <h3>Orçamento por categoria</h3>
+                <span class="panel-kicker">Distribuição</span>
+              </div>
+              <div id="category-chart" class="budget-chart"></div>
+            </article>
+            <article class="dashboard-category-section">
+              <div class="panel-head">
+                <h3>Gastos por categoria</h3>
+                <span class="panel-kicker">Todos os itens</span>
+              </div>
+              <p class="section-sub">
+                Passe o mouse pelos ícones para ver itens e valores projetados.
+              </p>
+              <div
+                id="dash-materials"
+                class="dashboard-expense-categories"
+                aria-label="Categorias compactas de despesas"
+              ></div>
+            </article>
+          </div>
         </section>
 
         <section
@@ -259,22 +292,6 @@
             placeholder="Escreva aqui suas notas gerais..."
             aria-label="Notas gerais"
           ></textarea>
-        </section>
-
-        <section class="dashboard-category-section">
-          <div class="section-heading-row">
-            <div>
-              <h2 class="section-title">Gastos por categoria</h2>
-              <p class="section-sub">
-                Passe o mouse pelos ícones para ver itens e valores projetados.
-              </p>
-            </div>
-          </div>
-          <div
-            id="dash-materials"
-            class="dashboard-expense-categories"
-            aria-label="Categorias compactas de despesas"
-          ></div>
         </section>
         <div
           id="dashboard-hover-tooltip"
@@ -685,6 +702,15 @@
               <strong>Adicionar objeto</strong
               ><small>Arraste ou clique e depois escolha o local.</small>
             </div>
+            <label class="asset-palette-search">
+              <span class="sr-only">Buscar objeto 3D</span>
+              <input
+                id="asset-palette-search"
+                type="search"
+                placeholder="Buscar no acervo..."
+                autocomplete="off"
+              />
+            </label>
             <div id="asset-palette" class="asset-palette">
               <span class="asset-palette-loading">Carregando acervo local…</span>
             </div>
@@ -711,11 +737,11 @@
       </section>
 
       <section id="view-prices" class="view hidden">
-        <h2 class="section-title">Gerar prompt de preços</h2>
+        <h2 class="section-title">Gerar prompt de cotações</h2>
         <div class="panel-row">
           <label class="check"
             ><input type="checkbox" id="prompt-missing-only" checked /> Somente
-            materiais sem preço</label
+            itens com espaço para cotações</label
           ><button type="button" id="btn-gen-prompt" class="btn primary">
             Gerar prompt</button
           ><button type="button" id="btn-copy-prompt" class="btn">Copiar</button
@@ -745,6 +771,14 @@
           rows="12"
           placeholder="Cole o pack aqui..."
         ></textarea>
+        <label
+          >Instruções para corrigir
+          <textarea
+            id="bulk-correction-instructions"
+            rows="2"
+            placeholder="Opcional: explique à IA o que deve ajustar."
+          ></textarea>
+        </label>
         <p id="import-status" class="push-status hidden"></p>
         <div class="table-wrap">
           <table>
@@ -856,6 +890,67 @@
           ><button type="submit" class="btn primary">Salvar e enviar</button>
         </div>
       </form>
+    </dialog>
+
+    <dialog id="quotation-dialog" class="quotation-dialog">
+      <div class="quotation-manager">
+        <header class="quotation-header">
+          <div>
+            <p class="eyebrow">Cotações da despesa</p>
+            <h2 id="quotation-expense-title">Cotações</h2>
+            <p id="quotation-expense-meta" class="section-sub"></p>
+          </div>
+          <button id="btn-close-quotations" type="button" class="btn">Fechar</button>
+        </header>
+        <div id="quotation-list" class="quotation-list"></div>
+        <p id="quotation-empty" class="empty">Nenhuma cotação registrada.</p>
+
+        <form id="quotation-form" class="quotation-form hidden">
+          <input id="quotation-id" type="hidden" />
+          <h3 id="quotation-form-title">Nova cotação</h3>
+          <div class="form-grid">
+            <label>Fornecedor <input id="quotation-vendor" required maxlength="160" /></label>
+            <label>Preço unitário <input id="quotation-unit-price" type="number" min="0" step="0.01" required /></label>
+            <label>Quantidade <input id="quotation-quantity" type="number" min="0" step="any" /></label>
+            <label>Unidade <input id="quotation-unit" maxlength="40" /></label>
+            <label>Frete <input id="quotation-shipping" type="number" min="0" step="0.01" value="0" /></label>
+            <label>Total efetivo <input id="quotation-total" type="number" min="0" step="0.01" /></label>
+            <label>Data verificada <input id="quotation-checked-at" type="date" /></label>
+            <label>URL <input id="quotation-url" type="url" /></label>
+          </div>
+          <label>Notas <textarea id="quotation-notes" rows="2"></textarea></label>
+          <p id="quotation-form-error" class="error hidden"></p>
+          <div class="dialog-actions">
+            <button id="btn-cancel-quotation" type="button" class="btn">Cancelar</button>
+            <button type="submit" class="btn primary">Salvar cotação</button>
+          </div>
+        </form>
+
+        <details id="quotation-ai-panel" class="quotation-ai">
+          <summary>Pesquisar com IA</summary>
+          <p class="section-sub">Gere o prompt, pesquise em sua IA e cole aqui a resposta completa.</p>
+          <div class="panel-row">
+            <button id="btn-quotation-prompt" type="button" class="btn primary">Gerar prompt</button>
+            <button id="btn-copy-quotation-prompt" type="button" class="btn">Copiar prompt</button>
+          </div>
+          <textarea id="quotation-prompt-output" class="code-box" rows="7" readonly></textarea>
+          <label>Resposta da IA <textarea id="quotation-pack-input" class="code-box" rows="7" placeholder="Cole o pack aqui..."></textarea></label>
+          <label>Instruções para corrigir <textarea id="quotation-correction-instructions" rows="2" placeholder="Opcional: explique à IA o que deve ajustar."></textarea></label>
+          <div class="panel-row">
+            <input id="quotation-pack-file" type="file" accept=".txt,text/plain" />
+            <button id="btn-preview-quotation-import" type="button" class="btn">Validar</button>
+            <button id="btn-commit-quotation-import" type="button" class="btn primary" disabled>Importar cotações</button>
+          </div>
+          <p id="quotation-import-status" class="push-status hidden"></p>
+          <textarea id="quotation-fix-output" class="code-box hidden" rows="8" readonly></textarea>
+          <button id="btn-copy-quotation-fix" type="button" class="btn hidden">Copiar pedido de correção</button>
+        </details>
+
+        <footer class="quotation-footer">
+          <span id="quotation-limit-label">0 de 5 cotações</span>
+          <button id="btn-new-quotation" type="button" class="btn primary">Adicionar cotação</button>
+        </footer>
+      </div>
     </dialog>
 
     <dialog id="provider-dialog">
@@ -1047,6 +1142,6 @@
     </dialog>
 
     <datalist id="category-suggestions"></datalist>
-    <script src="/app.js?v=20260916-7"></script>
+    <script src="/app.js?v=20260916-10"></script>
   </body>
 </html>

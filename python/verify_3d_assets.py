@@ -21,10 +21,38 @@ EXPECTED_IDS = {
     "stove",
     "plant",
     "tree",
+    "television",
+    "coffee_table",
+    "bookshelf",
+    "desk_lamp",
+    "ceiling_lamp",
+    "office_desk",
+    "office_chair",
+    "single_bed",
+    "nightstand",
+    "dresser",
+    "mirror",
+    "kitchen_cabinet",
+    "microwave",
+    "trash_can",
+    "laundry_cart",
+    "outdoor_set",
+    "outdoor_bench",
+    "picnic_table",
+    "drill",
+    "ladder",
+    "toolbox",
+    "tool_cart",
+    "cement_bag",
+    "paint_cans",
+    "work_light",
+    "plunger",
+    "water_container",
+    "wall_clock",
 }
 MAX_ASSET_BYTES = 12 * 1024 * 1024
-MAX_TOTAL_BYTES = 40 * 1024 * 1024
-MAX_TOTAL_TRIANGLES = 500_000
+MAX_TOTAL_BYTES = 64 * 1024 * 1024
+MAX_TOTAL_TRIANGLES = 1_000_000
 SUPPORTED_REQUIRED_EXTENSIONS = {
     "KHR_materials_clearcoat",
     "KHR_materials_emissive_strength",

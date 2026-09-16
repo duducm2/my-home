@@ -22,38 +22,53 @@ def build_price_discovery_prompt(
     store: ExpenseStore,
     ids: list[str] | None = None,
 ) -> dict[str, Any]:
-    materials = store.state()["materials"]
+    expenses = store.list_expenses()
     if ids:
         idset = set(ids)
-        materials = [m for m in materials if m["id"] in idset]
-    # Prefer materials missing researched price when no ids given
+        expenses = [item for item in expenses if item["id"] in idset]
+        missing_ids = idset - {item["id"] for item in expenses}
+        if missing_ids:
+            raise ValueError(
+                "expense not found: " + ", ".join(sorted(missing_ids))
+            )
+    # Prefer cost items with room for more quotations when no IDs are given.
     if not ids:
-        missing = [m for m in materials if m.get("unit_price") is None]
-        if missing:
-            materials = missing
+        expenses = [
+            item for item in expenses if len(item.get("quotations") or []) < 5
+        ]
 
     template_path = PROMPTS_DIR / "price-discovery.txt"
     template = template_path.read_text(encoding="utf-8") if template_path.is_file() else ""
 
     context_lines = [
-        "id,description,quantity,unit,value,unit_price",
+        "id,record_type,category,description,quantity,unit,current_value,quotation_count",
     ]
-    for m in materials:
-        qty = "" if m.get("quantity") is None else m["quantity"]
-        up = "" if m.get("unit_price") is None else m["unit_price"]
+    for item in expenses:
+        qty = "" if item.get("quantity") is None else item["quantity"]
         context_lines.append(
-            f"{m['id']},{_csv_escape(m['description'])},{qty},{m.get('unit') or ''},{m['value']},{up}"
+            ",".join(
+                [
+                    item["id"],
+                    item["record_type"],
+                    _csv_escape(item["category"]),
+                    _csv_escape(item["description"]),
+                    str(qty),
+                    _csv_escape(item.get("unit") or ""),
+                    str(item["value"]),
+                    str(len(item.get("quotations") or [])),
+                ]
+            )
         )
 
     context_csv = "\n".join(context_lines)
     prompt = template.replace("{{CONTEXT_CSV}}", context_csv)
-    prompt = prompt.replace("{{ITEM_COUNT}}", str(len(materials)))
+    prompt = prompt.replace("{{ITEM_COUNT}}", str(len(expenses)))
     return {
         "ok": True,
         "prompt": prompt,
         "filename": "price-discovery-prompt.txt",
-        "item_count": len(materials),
-        "ids": [m["id"] for m in materials],
+        "item_count": len(expenses),
+        "ids": [item["id"] for item in expenses],
     }
 
 
@@ -66,6 +81,9 @@ def _csv_escape(value: str) -> str:
 def preview_pack(
     pack_text: str,
     pack_id: str = "price",
+    *,
+    correction_instructions: str = "",
+    expense_context: str = "",
 ) -> dict[str, Any]:
     pack = get_pack_type(pack_id)
     materialized = materialize_csv(pack_text, pack["file_name"])
@@ -75,6 +93,9 @@ def preview_pack(
             file_name=pack["file_name"],
             primary_error=materialized.get("error") or "materialize failed",
             headers=pack["headers"],
+            rejected_text=pack_text,
+            user_instructions=correction_instructions,
+            expense_context=expense_context,
         )
         return {
             "ok": False,
@@ -90,6 +111,9 @@ def preview_pack(
             file_name=pack["file_name"],
             primary_error="no data rows in CSV",
             headers=pack["headers"],
+            rejected_text=pack_text,
+            user_instructions=correction_instructions,
+            expense_context=expense_context,
         )
         return {
             "ok": False,
@@ -106,6 +130,9 @@ def preview_pack(
             primary_error=validated["errors"][0] if validated["errors"] else "validation failed",
             extra_notes=validated["errors"][1:],
             headers=pack["headers"],
+            rejected_text=pack_text,
+            user_instructions=correction_instructions,
+            expense_context=expense_context,
         )
         return {
             "ok": False,
@@ -133,10 +160,10 @@ def commit_rows(
     pack = get_pack_type(pack_id)
     result = store.apply_price_rows(rows)
     archived = ""
-    if pack_text.strip():
+    if result["ok"] and pack_text.strip():
         archived = archive_pack(store.data_dir, pack_text, prefix=pack["canonical_pack"].replace(".txt", ""))
     return {
-        "ok": True,
+        "ok": result["ok"],
         "updated": result["updated"],
         "errors": result.get("errors") or [],
         "archived": archived,

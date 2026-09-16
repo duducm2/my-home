@@ -19,6 +19,8 @@
     house: null,
     project: null,
     importRows: [],
+    quotationExpenseId: "",
+    quotationImportRows: [],
     zoom: "week",
     expandedMacros: new Set(),
   };
@@ -28,6 +30,13 @@
     blocked: "Bloqueada",
     completed: "Concluída",
   };
+  const dashboardCategoryDefinitions = [
+    { id: "materials", label: "Materiais", icon: "materials-crate" },
+    { id: "diligences", label: "Diligências", icon: "notary-services" },
+    { id: "financing", label: "Financiamento", icon: "mortgage-contract" },
+    { id: "services", label: "Serviços", icon: "mason-service" },
+    { id: "reserve", label: "Reservas", icon: "emergency-reserve" },
+  ];
 
   const els = {
     appStatus: $("app-status"),
@@ -123,6 +132,40 @@
     formError: $("form-error"),
     btnCancel: $("btn-cancel"),
     categorySuggestions: $("category-suggestions"),
+    quotationDialog: $("quotation-dialog"),
+    quotationExpenseTitle: $("quotation-expense-title"),
+    quotationExpenseMeta: $("quotation-expense-meta"),
+    quotationList: $("quotation-list"),
+    quotationEmpty: $("quotation-empty"),
+    quotationForm: $("quotation-form"),
+    quotationFormTitle: $("quotation-form-title"),
+    quotationId: $("quotation-id"),
+    quotationVendor: $("quotation-vendor"),
+    quotationUnitPrice: $("quotation-unit-price"),
+    quotationQuantity: $("quotation-quantity"),
+    quotationUnit: $("quotation-unit"),
+    quotationShipping: $("quotation-shipping"),
+    quotationTotal: $("quotation-total"),
+    quotationCheckedAt: $("quotation-checked-at"),
+    quotationUrl: $("quotation-url"),
+    quotationNotes: $("quotation-notes"),
+    quotationFormError: $("quotation-form-error"),
+    quotationAiPanel: $("quotation-ai-panel"),
+    quotationPromptOutput: $("quotation-prompt-output"),
+    quotationPackInput: $("quotation-pack-input"),
+    quotationCorrectionInstructions: $("quotation-correction-instructions"),
+    quotationPackFile: $("quotation-pack-file"),
+    quotationImportStatus: $("quotation-import-status"),
+    quotationFixOutput: $("quotation-fix-output"),
+    quotationLimitLabel: $("quotation-limit-label"),
+    btnCloseQuotations: $("btn-close-quotations"),
+    btnNewQuotation: $("btn-new-quotation"),
+    btnCancelQuotation: $("btn-cancel-quotation"),
+    btnQuotationPrompt: $("btn-quotation-prompt"),
+    btnCopyQuotationPrompt: $("btn-copy-quotation-prompt"),
+    btnPreviewQuotationImport: $("btn-preview-quotation-import"),
+    btnCommitQuotationImport: $("btn-commit-quotation-import"),
+    btnCopyQuotationFix: $("btn-copy-quotation-fix"),
     houseBlueprint: $("house-blueprint"),
     houseLot: $("house-lot"),
     houseExterior: $("house-exterior"),
@@ -143,6 +186,7 @@
     editorDepth: $("editor-depth"),
     btnApplyDimensions: $("btn-apply-dimensions"),
     assetPalette: $("asset-palette"),
+    assetPaletteSearch: $("asset-palette-search"),
     btnDuplicateObject: $("btn-duplicate-object"),
     btnResetObject: $("btn-reset-object"),
     btnDeleteObject: $("btn-delete-object"),
@@ -207,6 +251,7 @@
     btnCopyPrompt: $("btn-copy-prompt"),
     btnDlPrompt: $("btn-dl-prompt"),
     packInput: $("pack-input"),
+    bulkCorrectionInstructions: $("bulk-correction-instructions"),
     packFile: $("pack-file"),
     btnPreviewImport: $("btn-preview-import"),
     btnCommitImport: $("btn-commit-import"),
@@ -253,9 +298,10 @@
   }
 
   async function request(url, options = {}) {
-    const response = await fetch(url, options);
+    const { allowPayloadError = false, ...fetchOptions } = options;
+    const response = await fetch(url, fetchOptions);
     const payload = await response.json();
-    if (!response.ok || payload.ok === false)
+    if (!response.ok || (payload.ok === false && !allowPayloadError))
       throw new Error(payload.error || "Falha na operação");
     return payload;
   }
@@ -333,12 +379,16 @@
 
   function priceCell(item) {
     const parts = [];
+    const count = (item.quotations || []).length;
     if (item.unit_price != null) parts.push(formatMoney(item.unit_price));
     if (item.vendor) parts.push(escapeHtml(item.vendor));
     if (item.product_url)
       parts.push(
         `<a class="link-btn" href="${escapeAttr(item.product_url)}" target="_blank" rel="noopener">abrir</a>`,
       );
+    parts.push(
+      `<span class="quote-count">${count}/5 ${count === 1 ? "cotação" : "cotações"}</span>`,
+    );
     return parts.join(" · ") || "—";
   }
 
@@ -352,7 +402,7 @@
     els.empty.classList.toggle("hidden", rows.length > 0);
     els.rows.innerHTML = rows
       .map(
-        (item) => `<tr>
+        (item) => `<tr class="expense-row" data-open-quotations="${escapeAttr(item.id)}" tabindex="0" aria-label="Gerenciar cotações de ${escapeAttr(item.description)}">
       <td><span class="badge">${item.priority}</span></td><td>${escapeHtml(item.category)}</td>
       <td>${itemLabel(item.description, item.icon_key)}</td><td class="num">${formatMoney(item.value)}</td>
       <td>${priceCell(item)}</td><td class="actions"><button class="btn" data-edit-expense="${item.id}">Editar</button><button class="btn danger" data-delete-expense="${item.id}">Excluir</button></td>
@@ -503,20 +553,13 @@
   }
 
   function renderDashboardExpenseCategories() {
-    const definitions = [
-      { id: "materials", label: "Materiais", icon: "materials-crate" },
-      { id: "diligences", label: "Diligências", icon: "notary-services" },
-      { id: "financing", label: "Financiamento", icon: "mortgage-contract" },
-      { id: "services", label: "Serviços", icon: "mason-service" },
-      { id: "reserve", label: "Reservas", icon: "emergency-reserve" },
-    ];
     const grouped = Object.fromEntries(
-      definitions.map((group) => [group.id, []]),
+      dashboardCategoryDefinitions.map((group) => [group.id, []]),
     );
     state.expenses.forEach((item) => {
       grouped[dashboardExpenseGroup(item)].push(item);
     });
-    els.dashMaterials.innerHTML = definitions
+    els.dashMaterials.innerHTML = dashboardCategoryDefinitions
       .map((group) => {
         const items = grouped[group.id];
         const total = items.reduce(
@@ -600,15 +643,20 @@
       gap >= 0
         ? `Margem de ${formatMoney(gap)}`
         : `Lacuna de ${formatMoney(Math.abs(gap))}`;
-    const categories = Object.entries(state.totals.by_category || {});
+    const categories = dashboardCategoryDefinitions.map((group) => ({
+      ...group,
+      value: state.expenses
+        .filter((item) => dashboardExpenseGroup(item) === group.id)
+        .reduce((sum, item) => sum + Number(item.value || 0), 0),
+    }));
     const maximum = Math.max(
       1,
-      ...categories.map(([, value]) => Number(value)),
+      ...categories.map((item) => item.value),
     );
     els.categoryChart.innerHTML = categories
       .map(
-        ([label, value]) =>
-          `<div class="budget-bar-row"><div class="budget-bar-head"><span>${escapeHtml(label)}</span><strong>${formatMoney(value)}</strong></div><div class="budget-bar-track"><span style="width:${Math.max(1, (Number(value) / maximum) * 100)}%"></span></div></div>`,
+        (item) =>
+          `<div class="budget-bar-row"><div class="budget-bar-head"><span class="budget-category-label">${iconMarkup(item.icon, item.label)}<span>${escapeHtml(item.label)}</span></span><strong>${formatMoney(item.value)}</strong></div><div class="budget-bar-track"><span style="width:${Math.max(1, (item.value / maximum) * 100)}%"></span></div></div>`,
       )
       .join("");
     const people = (state.project || {}).people || [];
@@ -1211,6 +1259,193 @@
     els.fieldDescription.focus();
   }
 
+  function currentQuotationExpense() {
+    return state.expenses.find(
+      (item) => item.id === state.quotationExpenseId,
+    );
+  }
+
+  function renderQuotationManager() {
+    const expense = currentQuotationExpense();
+    if (!expense) return;
+    const quotations = expense.quotations || [];
+    els.quotationExpenseTitle.textContent = expense.description;
+    els.quotationExpenseMeta.textContent = `${expense.category} · orçamento ativo ${formatMoney(expense.value)}`;
+    els.quotationLimitLabel.textContent = `${quotations.length} de 5 cotações`;
+    els.btnNewQuotation.disabled = quotations.length >= 5;
+    els.quotationEmpty.classList.toggle("hidden", quotations.length > 0);
+    els.quotationList.innerHTML = quotations
+      .map((quote) => {
+        const isSelected = quote.id === expense.selected_quotation_id;
+        return `<article class="quotation-card ${isSelected ? "selected" : ""}">
+          <header><div><strong>${escapeHtml(quote.vendor)}</strong><span class="quote-badges"><span class="badge">${quote.source === "ai" ? "IA" : "Manual"}</span>${isSelected ? '<span class="badge selected">Escolhida</span>' : ""}</span></div><strong class="quotation-total">${formatMoney(quote.total_price)}</strong></header>
+          <dl><div><dt>Unitário</dt><dd>${formatMoney(quote.unit_price)} × ${quote.quantity} ${escapeHtml(quote.unit || "")}</dd></div><div><dt>Frete</dt><dd>${formatMoney(quote.shipping_cost)}</dd></div><div><dt>Verificada</dt><dd>${escapeHtml(quote.checked_at || "—")}</dd></div></dl>
+          ${quote.notes ? `<p>${escapeHtml(quote.notes)}</p>` : ""}
+          <div class="quotation-card-actions">
+            ${quote.product_url ? `<a class="btn" href="${escapeAttr(quote.product_url)}" target="_blank" rel="noopener">Abrir oferta</a>` : ""}
+            ${!isSelected ? `<button type="button" class="btn primary" data-select-quotation="${escapeAttr(quote.id)}">Escolher</button>` : ""}
+            <button type="button" class="btn" data-edit-quotation="${escapeAttr(quote.id)}">Editar</button>
+            <button type="button" class="btn danger" data-delete-quotation="${escapeAttr(quote.id)}">Excluir</button>
+          </div>
+        </article>`;
+      })
+      .join("");
+  }
+
+  function openQuotationForm(quotation = null) {
+    const expense = currentQuotationExpense();
+    els.quotationFormTitle.textContent = quotation
+      ? "Editar cotação"
+      : "Nova cotação";
+    els.quotationId.value = quotation?.id || "";
+    els.quotationVendor.value = quotation?.vendor || "";
+    els.quotationUnitPrice.value = quotation?.unit_price ?? "";
+    els.quotationQuantity.value =
+      quotation?.quantity ?? expense?.quantity ?? 1;
+    els.quotationUnit.value = quotation?.unit || expense?.unit || "";
+    els.quotationShipping.value = quotation?.shipping_cost ?? 0;
+    els.quotationTotal.value = quotation?.total_price ?? "";
+    els.quotationCheckedAt.value = String(
+      quotation?.checked_at || new Date().toISOString().slice(0, 10),
+    ).slice(0, 10);
+    els.quotationUrl.value = quotation?.product_url || "";
+    els.quotationNotes.value = quotation?.notes || "";
+    els.quotationFormError.classList.add("hidden");
+    els.quotationForm.classList.remove("hidden");
+    els.quotationVendor.focus();
+  }
+
+  function openQuotationManager(item) {
+    state.quotationExpenseId = item.id;
+    state.quotationImportRows = [];
+    els.quotationForm.classList.add("hidden");
+    els.quotationAiPanel.open = false;
+    els.quotationPromptOutput.value = "";
+    els.quotationPackInput.value = "";
+    els.quotationCorrectionInstructions.value = "";
+    els.quotationFixOutput.value = "";
+    els.quotationFixOutput.classList.add("hidden");
+    els.btnCopyQuotationFix.classList.add("hidden");
+    els.btnCommitQuotationImport.disabled = true;
+    renderQuotationManager();
+    els.quotationDialog.showModal();
+  }
+
+  async function submitQuotation(event) {
+    event.preventDefault();
+    const expenseId = state.quotationExpenseId;
+    try {
+      const result = await request(
+        `/api/expenses/${encodeURIComponent(expenseId)}/quotations`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            id: els.quotationId.value,
+            source: "manual",
+            vendor: els.quotationVendor.value.trim(),
+            unit_price: els.quotationUnitPrice.value,
+            quantity: els.quotationQuantity.value,
+            unit: els.quotationUnit.value.trim(),
+            shipping_cost: els.quotationShipping.value,
+            total_price: els.quotationTotal.value,
+            checked_at: els.quotationCheckedAt.value,
+            product_url: els.quotationUrl.value.trim(),
+            notes: els.quotationNotes.value.trim(),
+          }),
+        },
+      );
+      applyExpenseState(result.state);
+      els.quotationForm.classList.add("hidden");
+      renderQuotationManager();
+    } catch (error) {
+      setStatus(els.quotationFormError, "err", error.message);
+    }
+  }
+
+  async function selectQuotation(quotationId) {
+    const result = await request(
+      `/api/expenses/${encodeURIComponent(state.quotationExpenseId)}/quotations/${encodeURIComponent(quotationId)}/select`,
+      { method: "POST", headers: { "Content-Type": "application/json" }, body: "{}" },
+    );
+    applyExpenseState(result.state);
+    renderQuotationManager();
+  }
+
+  async function deleteQuotation(quotationId) {
+    if (!window.confirm("Excluir esta cotação?")) return;
+    const result = await request(
+      `/api/expenses/${encodeURIComponent(state.quotationExpenseId)}/quotations/${encodeURIComponent(quotationId)}`,
+      { method: "DELETE" },
+    );
+    applyExpenseState(result.state);
+    renderQuotationManager();
+  }
+
+  async function generateQuotationPrompt() {
+    const result = await request("/api/prompts/price-discovery", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ ids: [state.quotationExpenseId] }),
+    });
+    els.quotationPromptOutput.value = result.prompt || "";
+  }
+
+  async function previewQuotationImport() {
+    const expense = currentQuotationExpense();
+    const result = await request("/api/import/preview", {
+      allowPayloadError: true,
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        pack_text: els.quotationPackInput.value,
+        pack_id: "price",
+        correction_instructions:
+          els.quotationCorrectionInstructions.value.trim(),
+        expense_context: expense
+          ? `${expense.id}: ${expense.description} (${expense.category})`
+          : "",
+      }),
+    });
+    const wrongScope = (result.rows || []).some(
+      (row) => row.id !== state.quotationExpenseId,
+    );
+    state.quotationImportRows = wrongScope ? [] : result.rows || [];
+    els.btnCommitQuotationImport.disabled =
+      !result.ok || wrongScope || !state.quotationImportRows.length;
+    const message = wrongScope
+      ? "A resposta contém cotações de outra despesa. Peça à IA para manter o ID indicado."
+      : result.ok
+        ? `${state.quotationImportRows.length} cotação(ões) pronta(s).`
+        : (result.errors || [result.error]).filter(Boolean).join(" · ");
+    setStatus(
+      els.quotationImportStatus,
+      result.ok && !wrongScope ? "ok" : "err",
+      message,
+    );
+    const fix = result.fix_text || "";
+    els.quotationFixOutput.value = fix;
+    els.quotationFixOutput.classList.toggle("hidden", !fix);
+    els.btnCopyQuotationFix.classList.toggle("hidden", !fix);
+  }
+
+  async function commitQuotationImport() {
+    const result = await request("/api/import/commit", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        rows: state.quotationImportRows,
+        pack_text: els.quotationPackInput.value,
+        pack_id: "price",
+      }),
+    });
+    applyExpenseState(result.state);
+    state.quotationImportRows = [];
+    els.btnCommitQuotationImport.disabled = true;
+    setStatus(els.quotationImportStatus, "ok", "Cotações importadas.");
+    renderQuotationManager();
+  }
+
   async function submitExpense(event) {
     event.preventDefault();
     const payload = {
@@ -1580,6 +1815,7 @@
   }
 
   let house3dModule = null;
+  let sceneAssetCatalog = [];
   let sceneEditorOpen = false;
   let mediaPanelOpen = false;
   let mediaRecording = false;
@@ -1631,17 +1867,33 @@
   }
 
   function renderSceneAssetPalette(catalog) {
+    if (Array.isArray(catalog)) sceneAssetCatalog = catalog;
+    const query = String(els.assetPaletteSearch.value || "")
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .toLowerCase()
+      .trim();
     const groups = new Map();
-    for (const asset of catalog || []) {
+    for (const asset of sceneAssetCatalog) {
       const group = asset.group || "Outros";
+      const searchable = `${asset.label} ${group}`
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .toLowerCase();
+      if (query && !searchable.includes(query)) continue;
       if (!groups.has(group)) groups.set(group, []);
       groups.get(group).push(asset);
     }
-    els.assetPalette.innerHTML = [...groups.entries()]
+    els.assetPalette.innerHTML =
+      [...groups.entries()]
+        .sort(([left], [right]) => left.localeCompare(right, "pt-BR"))
       .map(
         ([group, assets]) => `<section class="asset-palette-group">
           <strong>${escapeHtml(group)}</strong>
           <div>${assets
+            .sort((left, right) =>
+              left.label.localeCompare(right.label, "pt-BR"),
+            )
             .map(
               (asset) =>
                 `<button type="button" draggable="true" data-asset-type="${escapeAttr(asset.id)}" aria-label="Adicionar ${escapeAttr(asset.label)}" title="${escapeAttr(`${asset.label} · ${asset.width} × ${asset.depth} × ${asset.height} m`)}">
@@ -1656,7 +1908,8 @@
             .join("")}</div>
         </section>`,
       )
-      .join("");
+      .join("") ||
+      '<p class="asset-palette-empty">Nenhum objeto encontrado.</p>';
     els.assetPalette.querySelectorAll("img").forEach((image) => {
       image.addEventListener("error", () => {
         image.classList.add("hidden");
@@ -1673,7 +1926,7 @@
     if (!model)
       return setStatus(els.house3dStatus, "warn", "Geometria 3D indisponível.");
     try {
-      house3dModule ||= await import("/house-3d.js?v=20260916-6");
+      house3dModule ||= await import("/house-3d.js?v=20260916-7");
       renderSceneAssetPalette(house3dModule.getSceneAssetCatalog());
       house3dModule.mountHouse3D(model);
       requestAnimationFrame(() => house3dModule.resizeHouse3D());
@@ -1977,10 +2230,10 @@
 
   async function generatePrompt() {
     const ids = els.promptMissingOnly.checked
-      ? state.materials
-          .filter((item) => item.unit_price == null)
+      ? state.expenses
+          .filter((item) => (item.quotations || []).length < 5)
           .map((item) => item.id)
-      : state.materials.map((item) => item.id);
+      : state.expenses.map((item) => item.id);
     const result = await request("/api/prompts/price-discovery", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -1991,11 +2244,14 @@
 
   async function previewImport() {
     const result = await request("/api/import/preview", {
+      allowPayloadError: true,
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         pack_text: els.packInput.value,
         pack_id: "price",
+        correction_instructions:
+          els.bulkCorrectionInstructions.value.trim(),
       }),
     });
     state.importRows = result.rows || [];
@@ -2013,7 +2269,7 @@
           `<tr><td>${escapeHtml(row.id || "")}</td><td>${escapeHtml(row.description || "")}</td><td>${formatMoney(row.unit_price)}</td><td>${escapeHtml(row.vendor || "")}</td><td>${row.product_url ? `<a href="${escapeAttr(row.product_url)}" target="_blank">abrir</a>` : "—"}</td></tr>`,
       )
       .join("");
-    const fix = result.fix_pack || result.fix_output || "";
+    const fix = result.fix_text || result.fix_pack || result.fix_output || "";
     els.fixOutput.value = fix;
     els.fixOutput.classList.toggle("hidden", !fix);
     els.btnCopyFix.classList.toggle("hidden", !fix);
@@ -2227,6 +2483,9 @@
     if (button)
       house3dModule?.beginSceneAssetPlacement(button.dataset.assetType);
   });
+  els.assetPaletteSearch.addEventListener("input", () =>
+    renderSceneAssetPalette(),
+  );
   els.assetPalette.addEventListener("dragstart", (event) => {
     const button = event.target.closest("[data-asset-type]");
     if (!button) return;
@@ -2290,18 +2549,112 @@
   els.rows.addEventListener("click", async (event) => {
     const edit = event.target.closest("[data-edit-expense]");
     const remove = event.target.closest("[data-delete-expense]");
-    if (edit)
+    if (edit) {
       openExpenseDialog(
         state.expenses.find((item) => item.id === edit.dataset.editExpense),
       );
+      return;
+    }
     if (remove) {
       try {
         await deleteExpense(remove.dataset.deleteExpense);
       } catch (error) {
         setStatus(els.appStatus, "err", error.message);
       }
+      return;
+    }
+    if (event.target.closest("a")) return;
+    const row = event.target.closest("[data-open-quotations]");
+    const item = state.expenses.find(
+      (expense) => expense.id === row?.dataset.openQuotations,
+    );
+    if (item) openQuotationManager(item);
+  });
+  els.rows.addEventListener("keydown", (event) => {
+    if (event.key !== "Enter" && event.key !== " ") return;
+    const row = event.target.closest("[data-open-quotations]");
+    const item = state.expenses.find(
+      (expense) => expense.id === row?.dataset.openQuotations,
+    );
+    if (item) {
+      event.preventDefault();
+      openQuotationManager(item);
     }
   });
+  els.btnCloseQuotations.addEventListener("click", () =>
+    els.quotationDialog.close(),
+  );
+  els.btnNewQuotation.addEventListener("click", () => openQuotationForm());
+  els.btnCancelQuotation.addEventListener("click", () =>
+    els.quotationForm.classList.add("hidden"),
+  );
+  els.quotationForm.addEventListener("submit", submitQuotation);
+  [
+    els.quotationUnitPrice,
+    els.quotationQuantity,
+    els.quotationShipping,
+  ].forEach((field) =>
+    field.addEventListener("input", () => {
+      const unitPrice = Number(els.quotationUnitPrice.value);
+      const quantity = Number(els.quotationQuantity.value || 1);
+      const shipping = Number(els.quotationShipping.value || 0);
+      if (
+        Number.isFinite(unitPrice) &&
+        Number.isFinite(quantity) &&
+        Number.isFinite(shipping)
+      )
+        els.quotationTotal.value = (
+          unitPrice * quantity +
+          shipping
+        ).toFixed(2);
+    }),
+  );
+  els.quotationList.addEventListener("click", (event) => {
+    const edit = event.target.closest("[data-edit-quotation]");
+    const select = event.target.closest("[data-select-quotation]");
+    const remove = event.target.closest("[data-delete-quotation]");
+    const expense = currentQuotationExpense();
+    if (edit)
+      openQuotationForm(
+        (expense?.quotations || []).find(
+          (item) => item.id === edit.dataset.editQuotation,
+        ),
+      );
+    if (select)
+      selectQuotation(select.dataset.selectQuotation).catch((error) =>
+        setStatus(els.quotationImportStatus, "err", error.message),
+      );
+    if (remove)
+      deleteQuotation(remove.dataset.deleteQuotation).catch((error) =>
+        setStatus(els.quotationImportStatus, "err", error.message),
+      );
+  });
+  els.btnQuotationPrompt.addEventListener("click", () =>
+    generateQuotationPrompt().catch((error) =>
+      setStatus(els.quotationImportStatus, "err", error.message),
+    ),
+  );
+  els.btnCopyQuotationPrompt.addEventListener("click", () =>
+    navigator.clipboard.writeText(els.quotationPromptOutput.value),
+  );
+  els.quotationPackFile.addEventListener("change", async () => {
+    if (els.quotationPackFile.files[0])
+      els.quotationPackInput.value =
+        await els.quotationPackFile.files[0].text();
+  });
+  els.btnPreviewQuotationImport.addEventListener("click", () =>
+    previewQuotationImport().catch((error) =>
+      setStatus(els.quotationImportStatus, "err", error.message),
+    ),
+  );
+  els.btnCommitQuotationImport.addEventListener("click", () =>
+    commitQuotationImport().catch((error) =>
+      setStatus(els.quotationImportStatus, "err", error.message),
+    ),
+  );
+  els.btnCopyQuotationFix.addEventListener("click", () =>
+    navigator.clipboard.writeText(els.quotationFixOutput.value),
+  );
   els.btnPush.addEventListener("click", pushToRemote);
   els.generalNotes.addEventListener("input", () => {
     els.generalNotesStatus.classList.remove("err");

@@ -12,6 +12,9 @@ def build_fix_text(
     primary_error: str,
     extra_notes: list[str] | None = None,
     headers: list[str] | None = None,
+    rejected_text: str = "",
+    user_instructions: str = "",
+    expense_context: str = "",
 ) -> str:
     notes = extra_notes or []
     header_line = ",".join(headers or [])
@@ -27,6 +30,12 @@ def build_fix_text(
         lines.extend(f"- {n}" for n in notes)
     else:
         lines.append("- (none)")
+    if expense_context.strip():
+        lines.extend(["", "EXPENSE CONTEXT", expense_context.strip()])
+    if user_instructions.strip():
+        lines.extend(
+            ["", "ADDITIONAL HUMAN INSTRUCTIONS", user_instructions.strip()]
+        )
     lines.extend(
         [
             "",
@@ -46,4 +55,12 @@ def build_fix_text(
             f"I will paste/upload {pack_name} and re-import.",
         ]
     )
+    if rejected_text.strip():
+        lines.extend(
+            [
+                "",
+                "REJECTED RESPONSE FOR REPAIR",
+                rejected_text.strip(),
+            ]
+        )
     return "\n".join(lines) + "\n"

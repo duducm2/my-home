@@ -2,101 +2,13 @@ import * as THREE from "three";
 import { OrbitControls } from "/vendor/three/OrbitControls.js";
 import { TransformControls } from "/vendor/three/TransformControls.js";
 import { GLTFLoader } from "/vendor/three/GLTFLoader.js";
+import { LOCAL_ASSET_CATALOG } from "/assets/models/asset-catalog.js?v=20260916-1";
 
 let activeViewer = null;
 let activeFingerprint = "";
 
 const ASSET_CATALOG = {
-  sofa: {
-    label: "Sofá",
-    group: "Sala",
-    width: 2.0,
-    depth: 0.85,
-    height: 0.78,
-    color: "#8f6f61",
-    modelUrl: "/assets/models/sofa.glb",
-    previewUrl: "/assets/models/previews/sofa.png",
-  },
-  bed: {
-    label: "Cama de casal",
-    group: "Quarto",
-    width: 1.4,
-    depth: 1.9,
-    height: 0.6,
-    color: "#a7b8cc",
-    modelUrl: "/assets/models/bed.glb",
-    previewUrl: "/assets/models/previews/bed.png",
-  },
-  table: {
-    label: "Mesa de jantar",
-    group: "Sala",
-    width: 1.4,
-    depth: 0.8,
-    height: 0.76,
-    color: "#8b6542",
-    modelUrl: "/assets/models/table.glb",
-    previewUrl: "/assets/models/previews/table.png",
-  },
-  chair: {
-    label: "Cadeira",
-    group: "Sala",
-    width: 0.48,
-    depth: 0.48,
-    height: 0.9,
-    color: "#9a7655",
-    modelUrl: "/assets/models/chair.glb",
-    previewUrl: "/assets/models/previews/chair.png",
-  },
-  wardrobe: {
-    label: "Guarda-roupa",
-    group: "Quarto",
-    width: 1.6,
-    depth: 0.58,
-    height: 2.1,
-    color: "#b7a58c",
-    modelUrl: "/assets/models/wardrobe.glb",
-    previewUrl: "/assets/models/previews/wardrobe.png",
-  },
-  refrigerator: {
-    label: "Geladeira",
-    group: "Cozinha e serviço",
-    width: 0.72,
-    depth: 0.7,
-    height: 1.85,
-    color: "#d7dde0",
-    modelUrl: "/assets/models/refrigerator.glb",
-    previewUrl: "/assets/models/previews/refrigerator.jpg",
-  },
-  stove: {
-    label: "Fogão",
-    group: "Cozinha e serviço",
-    width: 0.62,
-    depth: 0.64,
-    height: 0.9,
-    color: "#646b70",
-    modelUrl: "/assets/models/stove.glb",
-    previewUrl: "/assets/models/previews/stove.png",
-  },
-  plant: {
-    label: "Planta em vaso",
-    group: "Decoração",
-    width: 0.5,
-    depth: 0.5,
-    height: 1.1,
-    color: "#4f8c58",
-    modelUrl: "/assets/models/plant.glb",
-    previewUrl: "/assets/models/previews/plant.png",
-  },
-  tree: {
-    label: "Árvore",
-    group: "Exterior",
-    width: 3.2,
-    depth: 3.2,
-    height: 5.0,
-    color: "#477a4f",
-    modelUrl: "/assets/models/tree.glb",
-    previewUrl: "/assets/models/previews/tree.png",
-  },
+  ...LOCAL_ASSET_CATALOG,
   box: {
     label: "Caixa",
     group: "Utilitários",

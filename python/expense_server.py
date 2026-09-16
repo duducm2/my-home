@@ -193,6 +193,11 @@ class ExpenseHandler(BaseHTTPRequestHandler):
                 return
             self._serve_file(WEB_DIR / "vendor" / "utils" / filename)
             return
+        if path.startswith("/api/expenses/") and path.endswith("/quotations"):
+            parts = [part for part in path.split("/") if part]
+            if len(parts) == 4:
+                self._json(200, get_store(self.data_dir).quotation_state(parts[2]))
+                return
         if path == "/api/state":
             self._json(200, get_store(self.data_dir).state())
             return
@@ -294,7 +299,19 @@ class ExpenseHandler(BaseHTTPRequestHandler):
                 return
             payload = self._read_json()
             store = get_store(self.data_dir)
-            if path == "/api/expenses":
+            if path.startswith("/api/expenses/") and "/quotations" in path:
+                parts = [part for part in path.split("/") if part]
+                if len(parts) == 4 and parts[3] == "quotations":
+                    self._json(200, store.upsert_quotation(parts[2], payload))
+                elif (
+                    len(parts) == 6
+                    and parts[3] == "quotations"
+                    and parts[5] == "select"
+                ):
+                    self._json(200, store.select_quotation(parts[2], parts[4]))
+                else:
+                    self._json(404, {"ok": False, "error": "not found"})
+            elif path == "/api/expenses":
                 result = store.upsert_expense(payload)
                 get_contracts(self.data_dir).sync_expense_link(result["expense_id"], str(payload.get("contract_id") or ""))
                 self._json(200, result)
@@ -324,6 +341,10 @@ class ExpenseHandler(BaseHTTPRequestHandler):
                     preview_pack(
                         str(payload.get("pack_text") or ""),
                         pack_id=str(payload.get("pack_id") or "price"),
+                        correction_instructions=str(
+                            payload.get("correction_instructions") or ""
+                        ),
+                        expense_context=str(payload.get("expense_context") or ""),
                     ),
                 )
             elif path == "/api/import/commit":
@@ -355,7 +376,15 @@ class ExpenseHandler(BaseHTTPRequestHandler):
     def do_DELETE(self) -> None:
         path = unquote(urlparse(self.path).path)
         try:
-            if path.startswith("/api/expenses/"):
+            if path.startswith("/api/expenses/") and "/quotations/" in path:
+                parts = [part for part in path.split("/") if part]
+                if len(parts) != 5 or parts[3] != "quotations":
+                    raise ValueError("invalid quotation route")
+                self._json(
+                    200,
+                    get_store(self.data_dir).delete_quotation(parts[2], parts[4]),
+                )
+            elif path.startswith("/api/expenses/"):
                 expense_id = path[len("/api/expenses/") :]
                 result = get_store(self.data_dir).delete_expense(expense_id)
                 get_contracts(self.data_dir).sync_expense_link(expense_id)

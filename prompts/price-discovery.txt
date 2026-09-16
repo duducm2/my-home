@@ -1,7 +1,7 @@
 You are a deep-reasoning assistant with web search.
 
-Task: find the lowest CURRENT Brazilian market prices for the materials listed below.
-Use live web search. Prefer reputable BR retailers (Leroy Merlin, Sodimac, Telhanorte, Amazon BR, Magazine Luiza, specialized stores).
+Task: find up to five CURRENT regional Brazilian quotations for each cost item below.
+Items may be materials, professional services, financing, diligences, or other house costs. Use live web search and prefer vendors/providers that serve the item's region. Do not invent vendors or URLs.
 
 Return ONLY a pack in this exact format (no other commentary outside markers):
 
@@ -10,21 +10,25 @@ Brief coverage: how many items priced, any items not found, date of search.
 ===END_PREVIEW===
 
 ===FILE: PRICE_PACK.csv===
-id,description,unit_price,quantity,unit,vendor,product_url,price_notes,value
-...one row per material...
+id,description,quotation_id,unit_price,quantity,unit,vendor,shipping_cost,total_price,product_url,price_notes,checked_at,selected
+...up to five quotation rows per expense...
 ===END_FILE===
 
 Rules:
 - Keep the same `id` from the context table whenever present.
+- `quotation_id` may be empty; the app will create a stable ID.
 - `unit_price` is required (BRL, use dot decimal).
 - `vendor` = store/seller name.
+- `shipping_cost` is optional and defaults to zero.
+- `total_price` is the effective total including quantity and shipping. Leave empty for automatic calculation.
 - `product_url` = direct product page URL when available.
 - `price_notes` = short note (e.g. pack size, shipping excluded, promo).
-- Leave `value` EMPTY unless you are intentionally overriding the planned budget total.
+- `checked_at` = research date in YYYY-MM-DD format.
+- `selected` should normally be false; only mark one row true when it is clearly the recommended quotation.
 - Do not invent URLs; leave product_url empty if unsure.
 - Canonical delivery filename when the human saves your output: PRICE_PACK.txt
 - Do not claim you wrote files to disk.
 
-Materials to price ({{ITEM_COUNT}} rows):
+Cost items to quote ({{ITEM_COUNT}} items):
 
 {{CONTEXT_CSV}}
