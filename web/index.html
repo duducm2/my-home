@@ -5,41 +5,88 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="color-scheme" content="dark" />
     <title>Despesas da Casa</title>
-    <link rel="stylesheet" href="/styles.css?v=20260915-1" />
+    <link rel="stylesheet" href="/styles.css?v=20260915-4" />
   </head>
   <body>
     <div class="page">
       <header class="hero">
         <div class="hero-top">
           <div>
-            <p class="eyebrow">my-home</p>
-            <h1>Despesas da Casa</h1>
+            <a class="eyebrow brand-home" id="home-link" href="#dashboard" aria-label="Ir para o Dashboard" title="Início — Alt+H">my-home</a>
           </div>
           <nav class="nav" aria-label="Navegação">
-            <button type="button" class="nav-btn active" data-view="dashboard">Dashboard</button>
-            <button type="button" class="nav-btn" data-view="expenses">Despesas</button>
-            <button type="button" class="nav-btn" data-view="house">Casa</button>
-            <button type="button" class="nav-btn" data-view="prices">Preços / Import</button>
+            <button type="button" class="nav-btn active" data-view="dashboard" title="Alt+1"><span>Dashboard</span><kbd>Alt+1</kbd></button>
+            <button type="button" class="nav-btn" data-view="expenses" title="Alt+2"><span>Despesas</span><kbd>Alt+2</kbd></button>
+            <button type="button" class="nav-btn" data-view="house" title="Alt+3"><span>Casa</span><kbd>Alt+3</kbd></button>
+            <button type="button" class="nav-btn" data-view="prices" title="Alt+4"><span>Preços / Import</span><kbd>Alt+4</kbd></button>
           </nav>
         </div>
-        <p class="lede">Visão geral, CRUD e descoberta de preços com importação iterativa.</p>
       </header>
 
       <section id="view-dashboard" class="view">
-        <div class="summary" aria-live="polite">
-          <div>
-            <span class="summary-label">Total planejado</span>
-            <strong id="dash-total-all">R$ 0,00</strong>
-          </div>
-          <div>
-            <span class="summary-label">Materiais</span>
-            <strong id="dash-total-materials">R$ 0,00</strong>
-          </div>
-          <div>
-            <span class="summary-label">Serviços / demais</span>
-            <strong id="dash-total-services">R$ 0,00</strong>
-          </div>
-        </div>
+        <section class="cockpit-grid" aria-label="Cockpit financeiro" aria-live="polite">
+          <article class="panel bento-card bento-overview">
+            <div class="panel-head"><h2>Visão financeira</h2><span class="panel-kicker">Agora</span></div>
+            <span class="metric-label">Recursos disponíveis</span>
+            <strong class="hero-metric" id="funds-total">R$ 0,00</strong>
+            <div class="metric-pair">
+              <div><span>Plano completo</span><strong id="dash-total-all">R$ 0,00</strong></div>
+              <div><span>Cobertura</span><strong id="overall-coverage">0%</strong></div>
+            </div>
+            <div class="status-line" id="overall-gap">Calculando...</div>
+          </article>
+
+          <article class="panel bento-card bento-donut">
+            <div class="panel-head"><h2>Origem dos recursos</h2><span class="panel-kicker">Disponível</span></div>
+            <div class="donut-layout">
+              <div id="funds-donut" class="donut-chart" role="img" aria-label="Distribuição dos recursos">
+                <div><strong id="funds-donut-total">R$ 0</strong><span>Total</span></div>
+              </div>
+              <div class="chart-legend">
+                <div><i class="swatch swatch-fgts"></i><span>FGTS</span><strong id="funds-donut-fgts">0%</strong></div>
+                <div><i class="swatch swatch-flex"></i><span>Livres</span><strong id="funds-donut-flexible">0%</strong></div>
+              </div>
+            </div>
+          </article>
+
+          <article class="panel bento-card bento-coverage">
+            <div class="panel-head"><h2>Cobertura por finalidade</h2><span class="panel-kicker">Restrições respeitadas</span></div>
+            <div class="coverage-row">
+              <div class="coverage-head"><span>Entrada com FGTS</span><strong id="entry-coverage">0%</strong></div>
+              <div class="meter"><span id="entry-bar" class="meter-fill fill-blue"></span></div>
+              <div class="coverage-meta"><span id="fgts-balance">R$ 0,00 disponíveis</span><span id="entry-target">R$ 0,00 planejados</span></div>
+              <div class="coverage-gap" id="entry-gap"></div>
+            </div>
+            <div class="coverage-row">
+              <div class="coverage-head"><span>Demais custos com recursos livres</span><strong id="other-coverage">0%</strong></div>
+              <div class="meter"><span id="other-bar" class="meter-fill fill-green"></span></div>
+              <div class="coverage-meta"><span id="flexible-balance">R$ 0,00 disponíveis</span><span id="other-target">R$ 0,00 planejados</span></div>
+              <div class="coverage-gap" id="other-gap"></div>
+            </div>
+          </article>
+
+          <article class="panel bento-card bento-costs">
+            <div class="panel-head"><h2>Composição do plano</h2><span class="panel-kicker">Orçamento</span></div>
+            <div class="stacked-bar" role="img" aria-label="Materiais versus serviços e demais custos">
+              <span id="budget-material-bar" class="stack-material"></span>
+              <span id="budget-service-bar" class="stack-service"></span>
+            </div>
+            <div class="cost-breakdown">
+              <div><i class="swatch swatch-material"></i><span>Materiais</span><strong id="dash-total-materials">R$ 0,00</strong><small id="material-share">0%</small></div>
+              <div><i class="swatch swatch-service"></i><span>Serviços / demais</span><strong id="dash-total-services">R$ 0,00</strong><small id="service-share">0%</small></div>
+            </div>
+          </article>
+
+          <article class="panel bento-card bento-phases">
+            <div class="panel-head"><h2>Orçamento por fase</h2><span class="panel-kicker">Distribuição</span></div>
+            <div id="phase-chart" class="phase-chart"></div>
+          </article>
+
+          <article class="panel bento-card bento-insight">
+            <div class="panel-head"><h2>Leitura rápida</h2><span class="panel-kicker">Decisão</span></div>
+            <div id="finance-insight" class="insight-stack"></div>
+          </article>
+        </section>
 
         <h2 class="section-title">Linha do tempo</h2>
         <p class="section-sub">Ordem fixa de fases; Manutenção em ondas por prioridade.</p>
@@ -215,6 +262,6 @@
 
     <datalist id="phase-suggestions"></datalist>
     <datalist id="category-suggestions"></datalist>
-    <script src="/app.js?v=20260915-1"></script>
+    <script src="/app.js?v=20260915-4"></script>
   </body>
 </html>

@@ -374,5 +374,26 @@
     "type": "user_master_summary",
     "captured_at": "2026-09-15",
     "language": "pt-BR"
+  },
+  "funding": {
+    "as_of": "2026-09-15",
+    "currency": "BRL",
+    "entry_expense_id": "EXP_0001",
+    "sources": [
+      {
+        "id": "fgts",
+        "label": "FGTS",
+        "balance": 55440.4,
+        "restriction": "house_entry_only",
+        "restriction_note": "Uso restrito ao pagamento da entrada do imóvel."
+      },
+      {
+        "id": "flexible_funds",
+        "label": "Recursos livres",
+        "balance": 66046.6,
+        "restriction": "other_project_costs",
+        "restriction_note": "Disponível para documentação, obras, mudança, reservas e demais custos do projeto."
+      }
+    ]
   }
 }

@@ -4,6 +4,7 @@
     totals: { all: 0, materials: 0, services: 0, by_phase: {}, by_priority: {} },
     timeline: [],
     materials: [],
+    project: null,
     view: "dashboard",
     pendingImportRows: null,
     pendingPackText: "",
@@ -50,6 +51,29 @@
     dashTotalServices: $("dash-total-services"),
     timelineGroups: $("timeline-groups"),
     dashMaterials: $("dash-materials"),
+    fundsTotal: $("funds-total"),
+    overallCoverage: $("overall-coverage"),
+    overallGap: $("overall-gap"),
+    fundsDonut: $("funds-donut"),
+    fundsDonutTotal: $("funds-donut-total"),
+    fundsDonutFgts: $("funds-donut-fgts"),
+    fundsDonutFlexible: $("funds-donut-flexible"),
+    entryCoverage: $("entry-coverage"),
+    entryBar: $("entry-bar"),
+    fgtsBalance: $("fgts-balance"),
+    entryTarget: $("entry-target"),
+    entryGap: $("entry-gap"),
+    otherCoverage: $("other-coverage"),
+    otherBar: $("other-bar"),
+    flexibleBalance: $("flexible-balance"),
+    otherTarget: $("other-target"),
+    otherGap: $("other-gap"),
+    budgetMaterialBar: $("budget-material-bar"),
+    budgetServiceBar: $("budget-service-bar"),
+    materialShare: $("material-share"),
+    serviceShare: $("service-share"),
+    phaseChart: $("phase-chart"),
+    financeInsight: $("finance-insight"),
     promptOutput: $("prompt-output"),
     promptMissingOnly: $("prompt-missing-only"),
     btnGenPrompt: $("btn-gen-prompt"),
@@ -206,10 +230,104 @@
     els.rows.appendChild(fragment);
   }
 
+  function clampPercent(value) {
+    return Math.max(0, Math.min(100, Number.isFinite(value) ? value : 0));
+  }
+
+  function percentOf(part, whole) {
+    return whole > 0 ? (part / whole) * 100 : 0;
+  }
+
+  function formatPercent(value) {
+    return `${new Intl.NumberFormat("pt-BR", { maximumFractionDigits: 1 }).format(value)}%`;
+  }
+
+  function setGap(element, available, planned) {
+    const difference = available - planned;
+    element.classList.toggle("positive", difference >= 0);
+    element.classList.toggle("negative", difference < 0);
+    element.textContent = difference >= 0
+      ? `Sobra projetada: ${formatMoney(difference)}`
+      : `Lacuna: ${formatMoney(Math.abs(difference))}`;
+    return difference;
+  }
+
+  function renderFinancialCockpit() {
+    const project = state.project || {};
+    const funding = project.funding || {};
+    const sources = funding.sources || [];
+    const fgts = sources.find((source) => source.id === "fgts") || {};
+    const flexible = sources.find((source) => source.id === "flexible_funds") || {};
+    const fgtsBalance = Number(fgts.balance) || 0;
+    const flexibleBalance = Number(flexible.balance) || 0;
+    const fundsTotal = fgtsBalance + flexibleBalance;
+    const plannedTotal = Number(state.totals.all) || 0;
+    const entryExpense = state.expenses.find((expense) => expense.id === funding.entry_expense_id)
+      || state.expenses.find((expense) => String(expense.description).toLowerCase() === "entrada");
+    const entryTarget = Number(entryExpense && entryExpense.value) || 0;
+    const otherTarget = Math.max(0, plannedTotal - entryTarget);
+    const entryPct = percentOf(fgtsBalance, entryTarget);
+    const otherPct = percentOf(flexibleBalance, otherTarget);
+    const overallPct = percentOf(fundsTotal, plannedTotal);
+    const materialPct = percentOf(Number(state.totals.materials) || 0, plannedTotal);
+    const servicePct = Math.max(0, 100 - materialPct);
+    const fgtsShare = percentOf(fgtsBalance, fundsTotal);
+    const flexibleShare = Math.max(0, 100 - fgtsShare);
+
+    els.fundsTotal.textContent = formatMoney(fundsTotal);
+    els.overallCoverage.textContent = formatPercent(overallPct);
+    setGap(els.overallGap, fundsTotal, plannedTotal);
+
+    els.fundsDonut.style.setProperty("--fgts-angle", `${clampPercent(fgtsShare) * 3.6}deg`);
+    els.fundsDonutTotal.textContent = formatMoney(fundsTotal);
+    els.fundsDonutFgts.textContent = formatPercent(fgtsShare);
+    els.fundsDonutFlexible.textContent = formatPercent(flexibleShare);
+    els.fundsDonut.setAttribute("aria-label", `FGTS ${formatPercent(fgtsShare)}; recursos livres ${formatPercent(flexibleShare)}`);
+
+    els.entryCoverage.textContent = formatPercent(entryPct);
+    els.entryBar.style.width = `${clampPercent(entryPct)}%`;
+    els.fgtsBalance.textContent = `${formatMoney(fgtsBalance)} disponíveis`;
+    els.entryTarget.textContent = `${formatMoney(entryTarget)} planejados`;
+    const entryGap = setGap(els.entryGap, fgtsBalance, entryTarget);
+
+    els.otherCoverage.textContent = formatPercent(otherPct);
+    els.otherBar.style.width = `${clampPercent(otherPct)}%`;
+    els.flexibleBalance.textContent = `${formatMoney(flexibleBalance)} disponíveis`;
+    els.otherTarget.textContent = `${formatMoney(otherTarget)} planejados`;
+    const otherGap = setGap(els.otherGap, flexibleBalance, otherTarget);
+
+    els.budgetMaterialBar.style.width = `${clampPercent(materialPct)}%`;
+    els.budgetServiceBar.style.width = `${clampPercent(servicePct)}%`;
+    els.materialShare.textContent = formatPercent(materialPct);
+    els.serviceShare.textContent = formatPercent(servicePct);
+
+    const phaseTotals = Object.entries(state.totals.by_phase || {});
+    const maxPhase = Math.max(1, ...phaseTotals.map(([, amount]) => Number(amount) || 0));
+    els.phaseChart.innerHTML = phaseTotals.map(([phase, amount]) => {
+      const value = Number(amount) || 0;
+      const width = clampPercent((value / maxPhase) * 100);
+      return `<div class="phase-bar-row">
+        <div class="phase-bar-head"><span>${escapeHtml(phase)}</span><strong>${formatMoney(value)}</strong></div>
+        <div class="phase-bar-track"><span style="width:${width}%"></span></div>
+      </div>`;
+    }).join("");
+
+    const decisionRule = ((project.financial_strategy || {}).decision_rule || "").trim();
+    const insights = [
+      { tone: "info", title: "FGTS é restrito", text: `${formatMoney(fgtsBalance)} só pode financiar a entrada.` },
+      { tone: entryGap < 0 ? "warn" : "ok", title: entryGap < 0 ? "Entrada ainda não coberta" : "Entrada coberta", text: entryGap < 0 ? `Faltam ${formatMoney(Math.abs(entryGap))}.` : `Margem de ${formatMoney(entryGap)}.` },
+      { tone: otherGap < 0 ? "warn" : "ok", title: otherGap < 0 ? "Demais custos exigem priorização" : "Demais custos cobertos", text: otherGap < 0 ? `Lacuna de ${formatMoney(Math.abs(otherGap))} nos recursos livres.` : `Margem de ${formatMoney(otherGap)}.` },
+    ];
+    if (decisionRule) insights.push({ tone: "rule", title: "Regra do projeto", text: decisionRule });
+    els.financeInsight.innerHTML = insights.map((item) => `
+      <div class="insight ${item.tone}"><strong>${escapeHtml(item.title)}</strong><span>${escapeHtml(item.text)}</span></div>`).join("");
+  }
+
   function renderDashboard() {
     els.dashTotalAll.textContent = formatMoney(state.totals.all || 0);
     els.dashTotalMaterials.textContent = formatMoney(state.totals.materials || 0);
     els.dashTotalServices.textContent = formatMoney(state.totals.services || 0);
+    renderFinancialCockpit();
 
     els.timelineGroups.innerHTML = "";
     for (const group of state.timeline || []) {
@@ -223,10 +341,10 @@
                 `<li><strong>${escapeHtml(s.category)}</strong> — ${escapeHtml(s.description)} (${formatMoney(s.value)})</li>`
             )
             .join("")}</ul>`
-        : `<p class="section-sub">Sem servicos pendentes nesta etapa (somente materiais ou itens ja listados).</p>`;
+        : `<p class="section-sub">Sem serviços pendentes nesta etapa (somente materiais ou itens já listados).</p>`;
       card.innerHTML = `
         <h3>${escapeHtml(group.label)}</h3>
-        <div class="timeline-meta">${group.count} itens · ${formatMoney(group.total)} · ${services.length} pendencia(s)</div>
+        <div class="timeline-meta">${group.count} itens · ${formatMoney(group.total)} · ${services.length} pendência(s)</div>
         ${serviceList}`;
       els.timelineGroups.appendChild(card);
     }
@@ -605,7 +723,9 @@
       return;
     }
     const house = payload.house;
-    renderProject(payload.project);
+    state.project = payload.project || null;
+    renderProject(state.project);
+    renderDashboard();
     if (els.houseBlueprint) {
       els.houseBlueprint.src = payload.blueprint_url || "/api/house/blueprint.jpg";
     }
@@ -659,12 +779,34 @@
     renderHouse(payload);
   }
 
+  function navigateTo(view) {
+    showView(view);
+    if (view === "house") loadHouse();
+  }
+
   document.querySelectorAll(".nav-btn").forEach((btn) => {
-    btn.addEventListener("click", () => {
-      const view = btn.getAttribute("data-view");
-      showView(view);
-      if (view === "house") loadHouse();
-    });
+    btn.addEventListener("click", () => navigateTo(btn.getAttribute("data-view")));
+  });
+
+  document.getElementById("home-link").addEventListener("click", (event) => {
+    event.preventDefault();
+    navigateTo("dashboard");
+  });
+
+  const navigationShortcuts = {
+    h: "dashboard",
+    "1": "dashboard",
+    "2": "expenses",
+    "3": "house",
+    "4": "prices",
+  };
+
+  document.addEventListener("keydown", (event) => {
+    if (!event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) return;
+    const view = navigationShortcuts[event.key.toLowerCase()];
+    if (!view) return;
+    event.preventDefault();
+    navigateTo(view);
   });
 
   els.phase.addEventListener("change", renderExpenseTable);
