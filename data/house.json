@@ -369,7 +369,7 @@
     ]
   },
   "notes": "",
-  "updated_at": "2026-09-16 14:44:12",
+  "updated_at": "2026-09-16 14:55:37",
   "model_3d": {
     "version": 2,
     "model_type": "schematic_architectural_dollhouse",
@@ -872,12 +872,29 @@
       "Quintais, portão e recuos sem cotas foram posicionados de modo aproximado; a Lavanderia no Corredor também usa footprint e equipamentos esquemáticos para ficar visível no modelo."
     ],
     "layout_overrides": {},
-    "placed_assets": [],
+    "placed_assets": [
+      {
+        "id": "asset_mu4eih6y_vumf",
+        "asset_type": "sofa",
+        "label": "Sofá",
+        "x_m": 4.25,
+        "y_m": 0.11,
+        "z_m": 14.325,
+        "width_m": 2.0,
+        "height_m": 0.78,
+        "depth_m": 0.85,
+        "rotation_y_deg": 0.0,
+        "color": "#8f6f61",
+        "parent_kind": "lot",
+        "parent_id": "",
+        "status": "user_placed"
+      }
+    ],
     "source": {
       "blueprint": "data/blueprint.jpg",
       "normalized_at": "2026-09-15",
       "accuracy": "blueprint_aligned_with_measured_rooms_and_marked_proportional_openings"
     },
-    "editor_updated_at": "2026-09-16 14:44:12"
+    "editor_updated_at": "2026-09-16 14:55:37"
   }
 }
