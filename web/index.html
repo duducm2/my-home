@@ -6,7 +6,7 @@
     <meta name="color-scheme" content="dark" />
     <title>my-home</title>
     <link rel="stylesheet" href="/styles.css?v=20260916-2" />
-    <link rel="stylesheet" href="/tasks.css?v=20260916-4" />
+    <link rel="stylesheet" href="/tasks.css?v=20260916-5" />
     <script type="importmap">
       { "imports": { "three": "/vendor/three/three.module.js" } }
     </script>
@@ -24,22 +24,22 @@
           >
           <nav class="nav" aria-label="Navegação">
             <button type="button" class="nav-btn active" data-view="dashboard">
-              <span>Dashboard</span><kbd>Alt+1</kbd>
+              <span>Dashboard</span><kbd>Alt+D</kbd>
             </button>
             <button type="button" class="nav-btn" data-view="expenses">
-              <span>Despesas</span><kbd>Alt+2</kbd>
+              <span>Despesas</span><kbd>Alt+E</kbd>
             </button>
             <button type="button" class="nav-btn" data-view="house">
-              <span>Casa</span><kbd>Alt+3</kbd>
+              <span>Casa</span><kbd>Alt+C</kbd>
             </button>
             <button type="button" class="nav-btn" data-view="prices">
-              <span>Preços / Import</span><kbd>Alt+4</kbd>
+              <span>Preços / Import</span><kbd>Alt+P</kbd>
             </button>
             <button type="button" class="nav-btn" data-view="model3d">
-              <span>Modelo 3D</span><kbd>Alt+5</kbd>
+              <span>Modelo 3D</span><kbd>Alt+M</kbd>
             </button>
             <button type="button" class="nav-btn" data-view="gantt">
-              <span>Cronograma</span><kbd>Alt+6</kbd>
+              <span>Cronograma</span><kbd>Alt+G</kbd>
             </button>
           </nav>
           <div class="global-save">
@@ -208,7 +208,7 @@
               <p class="section-sub">Visão resumida das macroatividades.</p>
             </div>
             <button type="button" class="btn" data-view="gantt">
-              Abrir cronograma completo <kbd>Alt+6</kbd>
+              Abrir cronograma completo <kbd>Alt+G</kbd>
             </button>
           </div>
           <div
@@ -246,22 +246,27 @@
           ></textarea>
         </section>
 
-        <h2 class="section-title">Materiais</h2>
-        <div class="table-wrap">
-          <table>
-            <thead>
-              <tr>
-                <th>Pri</th>
-                <th>Descrição</th>
-                <th class="num">Qtd</th>
-                <th>Un</th>
-                <th class="num">Orçado</th>
-                <th>Fornecedor</th>
-              </tr>
-            </thead>
-            <tbody id="dash-materials"></tbody>
-          </table>
-        </div>
+        <section class="dashboard-category-section">
+          <div class="section-heading-row">
+            <div>
+              <h2 class="section-title">Gastos por categoria</h2>
+              <p class="section-sub">
+                Passe o mouse pelos ícones para ver itens e valores projetados.
+              </p>
+            </div>
+          </div>
+          <div
+            id="dash-materials"
+            class="dashboard-expense-categories"
+            aria-label="Categorias compactas de despesas"
+          ></div>
+        </section>
+        <div
+          id="dashboard-hover-tooltip"
+          class="dashboard-hover-tooltip"
+          role="tooltip"
+          aria-hidden="true"
+        ></div>
       </section>
 
       <section id="view-gantt" class="view hidden">
@@ -374,7 +379,7 @@
             </p>
           </div>
           <button type="button" class="btn primary" data-view="model3d">
-            Abrir modelo 3D <kbd>Alt+5</kbd>
+            Abrir modelo 3D <kbd>Alt+M</kbd>
           </button>
         </div>
         <div class="blueprint-wrap">
@@ -1066,6 +1071,6 @@
     </dialog>
 
     <datalist id="category-suggestions"></datalist>
-    <script src="/app.js?v=20260916-3"></script>
+    <script src="/app.js?v=20260916-5"></script>
   </body>
 </html>

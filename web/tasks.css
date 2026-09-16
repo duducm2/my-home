@@ -749,6 +749,137 @@ select[multiple] { min-height: 110px; }
   font-size: 8px;
 }
 
+.dashboard-category-section {
+  margin: 18px 0;
+}
+
+.dashboard-expense-categories {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.dashboard-expense-category {
+  min-width: 0;
+  padding: 8px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--panel);
+}
+
+.dashboard-expense-category-head {
+  display: grid;
+  grid-template-columns: 36px minmax(0, 1fr);
+  align-items: center;
+  gap: 7px;
+  margin-bottom: 7px;
+}
+
+.dashboard-expense-category-head > span:last-child,
+.dashboard-expense-category-head strong,
+.dashboard-expense-category-head small {
+  display: block;
+  min-width: 0;
+}
+
+.dashboard-expense-category-head strong {
+  overflow: hidden;
+  font-size: 10px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dashboard-expense-category-head small {
+  margin-top: 1px;
+  overflow: hidden;
+  color: var(--muted);
+  font-size: 8px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dashboard-expense-icons {
+  display: flex;
+  gap: 4px;
+  min-height: 34px;
+  padding-bottom: 2px;
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+
+.expense-hover-target {
+  cursor: help;
+}
+
+.category-hover-target,
+.dashboard-expense-icon {
+  display: grid;
+  flex: 0 0 auto;
+  place-items: center;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  outline: none;
+}
+
+.category-hover-target {
+  width: 36px;
+  height: 36px;
+  background: #f1c40f0a;
+  border-color: #f1c40f26;
+}
+
+.dashboard-expense-icon {
+  width: 34px;
+  height: 34px;
+  background: var(--card);
+  border-color: var(--line);
+}
+
+.category-hover-target .item-icon,
+.dashboard-expense-icon .item-icon {
+  width: 30px;
+  height: 30px;
+}
+
+.expense-hover-target:hover,
+.expense-hover-target:focus-visible {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 1px #f1c40f30;
+}
+
+.dashboard-hover-tooltip {
+  position: fixed;
+  z-index: 10000;
+  display: none;
+  width: max-content;
+  max-width: min(280px, calc(100vw - 16px));
+  padding: 7px 9px;
+  pointer-events: none;
+  color: var(--text);
+  background: #111114f5;
+  border: 1px solid #f1c40f66;
+  border-radius: 5px;
+  box-shadow: 0 10px 28px #0009;
+}
+
+.dashboard-hover-tooltip.visible,
+.dashboard-hover-tooltip strong,
+.dashboard-hover-tooltip span {
+  display: block;
+}
+
+.dashboard-hover-tooltip strong {
+  font-size: 10px;
+}
+
+.dashboard-hover-tooltip span {
+  margin-top: 2px;
+  color: var(--gold);
+  font-size: 10px;
+  font-variant-numeric: tabular-nums;
+}
+
 .financial-projection-section {
   margin: 18px 0;
   padding: 14px;

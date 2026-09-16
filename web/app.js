@@ -44,6 +44,7 @@
     overallGap: $("overall-gap"),
     categoryChart: $("category-chart"),
     dashMaterials: $("dash-materials"),
+    dashboardHoverTooltip: $("dashboard-hover-tooltip"),
     dashboardPeople: $("dashboard-people"),
     cashflowTotalSavings: $("cashflow-total-savings"),
     cashflowAverageSavings: $("cashflow-average-savings"),
@@ -485,6 +486,85 @@
     els.cashflowMethod.textContent = (payload.interpolation || {}).method || "";
   }
 
+  function dashboardExpenseGroup(item) {
+    const category = String(item.category || "")
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .toLowerCase();
+    if (item.record_type === "material") return "materials";
+    if (["diligencia", "cartorio", "impostos"].includes(category))
+      return "diligences";
+    if (category === "financiamento") return "financing";
+    if (category === "reserva") return "reserve";
+    return "services";
+  }
+
+  function renderDashboardExpenseCategories() {
+    const definitions = [
+      { id: "materials", label: "Materiais", icon: "materials-crate" },
+      { id: "diligences", label: "Diligências", icon: "notary-services" },
+      { id: "financing", label: "Financiamento", icon: "mortgage-contract" },
+      { id: "services", label: "Serviços", icon: "mason-service" },
+      { id: "reserve", label: "Reservas", icon: "emergency-reserve" },
+    ];
+    const grouped = Object.fromEntries(
+      definitions.map((group) => [group.id, []]),
+    );
+    state.expenses.forEach((item) => {
+      grouped[dashboardExpenseGroup(item)].push(item);
+    });
+    els.dashMaterials.innerHTML = definitions
+      .map((group) => {
+        const items = grouped[group.id];
+        const total = items.reduce(
+          (sum, item) => sum + Number(item.value || 0),
+          0,
+        );
+        return `<article class="dashboard-expense-category">
+          <div class="dashboard-expense-category-head">
+            <span class="expense-hover-target category-hover-target" tabindex="0" data-hover-name="${escapeAttr(group.label)}" data-hover-amount="${escapeAttr(formatMoney(total))}" aria-label="${escapeAttr(`${group.label}: ${formatMoney(total)}`)}">${iconMarkup(group.icon, group.label)}</span>
+            <span><strong>${escapeHtml(group.label)}</strong><small>${formatMoney(total)} · ${items.length} ${items.length === 1 ? "item" : "itens"}</small></span>
+          </div>
+          <div class="dashboard-expense-icons" aria-label="${escapeAttr(`Itens de ${group.label}`)}">
+            ${items
+              .map(
+                (item) =>
+                  `<span class="expense-hover-target dashboard-expense-icon" tabindex="0" data-hover-name="${escapeAttr(item.description)}" data-hover-amount="${escapeAttr(formatMoney(item.value))}" aria-label="${escapeAttr(`${item.description}: ${formatMoney(item.value)}`)}">${iconMarkup(item.icon_key, item.description)}</span>`,
+              )
+              .join("")}
+          </div>
+        </article>`;
+      })
+      .join("");
+  }
+
+  function positionDashboardTooltip(x, y) {
+    const tooltip = els.dashboardHoverTooltip;
+    const left = Math.max(
+      8,
+      Math.min(x + 12, window.innerWidth - tooltip.offsetWidth - 8),
+    );
+    const preferredTop = y + 14;
+    const top =
+      preferredTop + tooltip.offsetHeight < window.innerHeight
+        ? preferredTop
+        : Math.max(8, y - tooltip.offsetHeight - 12);
+    tooltip.style.left = `${left}px`;
+    tooltip.style.top = `${top}px`;
+  }
+
+  function showDashboardTooltip(target, x, y) {
+    els.dashboardHoverTooltip.innerHTML = `<strong>${escapeHtml(target.dataset.hoverName || "")}</strong><span>${escapeHtml(target.dataset.hoverAmount || "")}</span>`;
+    els.dashboardHoverTooltip.classList.add("visible");
+    els.dashboardHoverTooltip.setAttribute("aria-hidden", "false");
+    positionDashboardTooltip(x, y);
+  }
+
+  function hideDashboardTooltip() {
+    els.dashboardHoverTooltip.classList.remove("visible");
+    els.dashboardHoverTooltip.setAttribute("aria-hidden", "true");
+  }
+
   function renderDashboard() {
     els.dashTotalAll.textContent = formatMoney(state.totals.all);
     els.dashTotalMaterials.textContent = formatMoney(state.totals.materials);
@@ -537,12 +617,7 @@
     </article>`,
       )
       .join("");
-    els.dashMaterials.innerHTML = state.materials
-      .map(
-        (item) =>
-          `<tr><td><span class="badge">${item.priority}</span></td><td>${itemLabel(item.description, item.icon_key)}</td><td class="num">${item.quantity ?? "—"}</td><td>${escapeHtml(item.unit || "—")}</td><td class="num">${formatMoney(item.value)}</td><td>${escapeHtml(item.vendor || "—")}</td></tr>`,
-      )
-      .join("");
+    renderDashboardExpenseCategories();
     renderGantt();
     renderMacroTimeline();
   }
@@ -916,9 +991,7 @@
     ];
     const match = rules.find(([term]) => text.includes(term));
     if (match && state.iconCatalog.icons[match[1]]) return match[1];
-    const parent = state.tasks.find(
-      (item) => item.id === els.taskParent.value,
-    );
+    const parent = state.tasks.find((item) => item.id === els.taskParent.value);
     return parent?.icon_key || "home-expense";
   }
 
@@ -983,10 +1056,7 @@
     els.taskEnd.value = task?.end_date || addDays(tomorrow, 2);
     els.taskStatus.value = task?.status || "pending";
     els.taskExpense.value = task?.expense_id || "";
-    renderTaskIconPicker(
-      task?.icon_key || "",
-      task?.icon_mode || "auto",
-    );
+    renderTaskIconPicker(task?.icon_key || "", task?.icon_mode || "auto");
     els.taskDateBadge.textContent =
       task?.date_status === "estimated"
         ? "Datas estimadas"
@@ -1988,12 +2058,12 @@
       if (!event.altKey || event.ctrlKey || event.metaKey || event.shiftKey)
         return;
       const view = {
-        1: "dashboard",
-        2: "expenses",
-        3: "house",
-        4: "prices",
-        5: "model3d",
-        6: "gantt",
+        d: "dashboard",
+        e: "expenses",
+        c: "house",
+        p: "prices",
+        m: "model3d",
+        g: "gantt",
         h: "dashboard",
       }[event.key.toLowerCase()];
       if (view) {
@@ -2082,6 +2152,25 @@
   els.priority.addEventListener("change", renderExpenseTable);
   els.category.addEventListener("change", renderExpenseTable);
   els.search.addEventListener("input", renderExpenseTable);
+  els.dashMaterials.addEventListener("mouseover", (event) => {
+    const target = event.target.closest(".expense-hover-target");
+    if (target) showDashboardTooltip(target, event.clientX, event.clientY);
+  });
+  els.dashMaterials.addEventListener("mousemove", (event) => {
+    if (event.target.closest(".expense-hover-target"))
+      positionDashboardTooltip(event.clientX, event.clientY);
+  });
+  els.dashMaterials.addEventListener("mouseout", (event) => {
+    const target = event.target.closest(".expense-hover-target");
+    if (target && !target.contains(event.relatedTarget)) hideDashboardTooltip();
+  });
+  els.dashMaterials.addEventListener("focusin", (event) => {
+    const target = event.target.closest(".expense-hover-target");
+    if (!target) return;
+    const rect = target.getBoundingClientRect();
+    showDashboardTooltip(target, rect.right, rect.top);
+  });
+  els.dashMaterials.addEventListener("focusout", hideDashboardTooltip);
   els.btnNew.addEventListener("click", () => openExpenseDialog());
   els.form.addEventListener("submit", submitExpense);
   els.btnCancel.addEventListener("click", () => els.dialog.close());
