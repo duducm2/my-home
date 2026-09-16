@@ -6,7 +6,7 @@
     <meta name="color-scheme" content="dark" />
     <title>my-home</title>
     <link rel="stylesheet" href="/styles.css?v=20260916-13" />
-    <link rel="stylesheet" href="/tasks.css?v=20260916-12" />
+    <link rel="stylesheet" href="/tasks.css?v=20260916-13" />
     <script type="importmap">
       { "imports": { "three": "/vendor/three/three.module.js" } }
     </script>
@@ -82,8 +82,13 @@
               <h2 class="section-title">Linha do tempo do projeto</h2>
               <p class="section-sub">Visão resumida das macroatividades.</p>
             </div>
-            <button type="button" class="btn" data-view="gantt">
-              Abrir cronograma completo <kbd>Shift+G</kbd>
+            <button
+              type="button"
+              class="btn"
+              data-view="gantt"
+              aria-label="Abrir cronograma completo"
+            >
+              Abrir <kbd>Shift+G</kbd>
             </button>
           </div>
           <div
