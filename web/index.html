@@ -6,7 +6,7 @@
     <meta name="color-scheme" content="dark" />
     <title>my-home</title>
     <link rel="stylesheet" href="/styles.css?v=20260916-13" />
-    <link rel="stylesheet" href="/tasks.css?v=20260916-10" />
+    <link rel="stylesheet" href="/tasks.css?v=20260916-12" />
     <script type="importmap">
       { "imports": { "three": "/vendor/three/three.module.js" } }
     </script>
@@ -76,6 +76,23 @@
       ></p>
 
       <section id="view-dashboard" class="view">
+        <section class="panel dashboard-timeline-section">
+          <div class="section-heading-row">
+            <div>
+              <h2 class="section-title">Linha do tempo do projeto</h2>
+              <p class="section-sub">Visão resumida das macroatividades.</p>
+            </div>
+            <button type="button" class="btn" data-view="gantt">
+              Abrir cronograma completo <kbd>Shift+G</kbd>
+            </button>
+          </div>
+          <div
+            id="macro-timeline"
+            class="macro-timeline"
+            aria-label="Resumo das macroatividades"
+          ></div>
+        </section>
+
         <section
           class="dashboard-finance-container"
           aria-labelledby="dashboard-finance-title"
@@ -100,16 +117,27 @@
             </article>
             <article class="panel bento-card bento-resources">
               <div class="panel-head">
-                <h3>Recursos disponíveis</h3>
-                <span class="panel-kicker">Disponível</span>
+                <h3>Cooperação financeira</h3>
+                <span class="panel-kicker">Confirmado + projetado</span>
               </div>
-              <strong id="funds-total" class="hero-metric">R$ 0,00</strong>
-              <p id="funds-detail" class="section-sub"></p>
+              <div class="funding-pie-layout">
+                <div
+                  id="funding-pie"
+                  class="funding-pie"
+                  role="img"
+                  aria-label="Composição dos recursos para a casa"
+                >
+                  <div>
+                    <strong id="funds-total">R$ 0,00</strong><span>total</span>
+                  </div>
+                </div>
+                <div id="funds-detail" class="funding-legend"></div>
+              </div>
             </article>
             <article class="panel bento-card bento-coverage">
               <div class="panel-head">
-                <h3>Cobertura do orçamento</h3>
-                <span class="panel-kicker">Plano</span>
+                <h3>Cobertura projetada</h3>
+                <span class="panel-kicker">16 meses</span>
               </div>
               <div class="coverage-donut-layout">
                 <div
@@ -124,7 +152,7 @@
                   </div>
                 </div>
                 <div class="coverage-donut-copy">
-                  <span>Situação após aplicar os recursos</span>
+                  <span>Base de 99,5% + reserva futura</span>
                   <p id="overall-gap" class="section-sub"></p>
                 </div>
               </div>
@@ -275,23 +303,6 @@
           <p id="cashflow-method" class="projection-method"></p>
         </section>
 
-        <section class="panel dashboard-timeline-section">
-          <div class="section-heading-row">
-            <div>
-              <h2 class="section-title">Linha do tempo do projeto</h2>
-              <p class="section-sub">Visão resumida das macroatividades.</p>
-            </div>
-            <button type="button" class="btn" data-view="gantt">
-              Abrir cronograma completo <kbd>Shift+G</kbd>
-            </button>
-          </div>
-          <div
-            id="macro-timeline"
-            class="macro-timeline"
-            aria-label="Resumo das macroatividades"
-          ></div>
-        </section>
-
         <section
           class="panel general-notes-section"
           aria-labelledby="general-notes-title"
@@ -356,7 +367,8 @@
                     type="radio"
                     name="gantt-zoom"
                     value="week"
-                    checked /><span>Semana</span></label
+                    checked
+                  /><span>Semana</span></label
                 >
                 <label
                   ><input type="radio" name="gantt-zoom" value="month" /><span
@@ -1403,6 +1415,6 @@
     </dialog>
 
     <datalist id="category-suggestions"></datalist>
-    <script src="/app.js?v=20260916-21"></script>
+    <script src="/app.js?v=20260916-22"></script>
   </body>
 </html>

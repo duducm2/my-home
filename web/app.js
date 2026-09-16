@@ -18,6 +18,7 @@
     iconCatalog: { defaults: {}, icons: {} },
     house: null,
     project: null,
+    cashflow: null,
     quotationExpenseId: "",
     quotationImportRows: [],
     editingPayments: [],
@@ -51,6 +52,7 @@
     dashTotalAll: $("dash-total-all"),
     fundsTotal: $("funds-total"),
     fundsDetail: $("funds-detail"),
+    fundingPie: $("funding-pie"),
     overallCoverage: $("overall-coverage"),
     coverageDonut: $("coverage-donut"),
     overallGap: $("overall-gap"),
@@ -470,6 +472,7 @@
   }
 
   function renderCashflow(payload) {
+    state.cashflow = payload;
     const months = payload.months || [];
     const categories = payload.categories || [];
     const totalSavings = months.reduce(
@@ -588,8 +591,10 @@
         return `<line x1="${margin.left}" y1="${y}" x2="${margin.left + plotWidth}" y2="${y}" class="cashflow-grid-line"></line><text x="${margin.left - 9}" y="${y + 4}" text-anchor="end" class="cashflow-axis-label">${formatMoney(savingsMaximum * ratio).replace(",00", "")}</text>`;
       })
       .join("");
-    els.houseSavingsPlanSummary.textContent = `${formatMoney(savingsPlan.eduardo_monthly || 0)} Eduardo + ${formatMoney(savingsPlan.leonardo_monthly || 0)} Leo/mês · total ${formatMoney(plannedSavings)}`;
-    els.houseSavingsLineChart.innerHTML = `<svg viewBox="0 0 ${width} ${height}" role="img" aria-label="Reserva acumulada para despesas da casa">${savingsGrid}<polygon points="${savingsArea}" class="house-savings-area"></polygon><polyline points="${savingsPolyline}" class="house-savings-line"></polyline>${savingsPoints.map(({ x, y, item }, index) => `<g><circle cx="${x}" cy="${y}" r="5" class="house-savings-point"></circle><title>${cashflowMonthLabel(item.month)}: aporte ${formatMoney(item.contribution)} · acumulado ${formatMoney(item.cumulative)}</title>${index % 2 === 0 || index === savingsPoints.length - 1 ? `<text x="${x}" y="${height - 15}" text-anchor="middle" class="cashflow-axis-label">${cashflowMonthLabel(item.month)}</text>` : ""}</g>`).join("")}</svg>`;
+    const projectedTotal =
+      Number(savingsPlan.projected_total) || plannedSavings;
+    els.houseSavingsPlanSummary.textContent = `${formatMoney(savingsPlan.eduardo_monthly || 0)} Eduardo + ${formatMoney(savingsPlan.leonardo_monthly || 0)} Leo/mês · total ${formatMoney(projectedTotal)}`;
+    els.houseSavingsLineChart.innerHTML = `<svg viewBox="0 0 ${width} ${height}" role="img" aria-label="Reserva acumulada de ${formatMoney(projectedTotal)} para despesas da casa">${savingsGrid}<polygon points="${savingsArea}" class="house-savings-area"></polygon><polyline points="${savingsPolyline}" class="house-savings-line"></polyline>${savingsPoints.map(({ x, y, item }, index) => `<g><circle cx="${x}" cy="${y}" r="5" class="house-savings-point"></circle><title>${cashflowMonthLabel(item.month)}: aporte ${formatMoney(item.contribution)} · acumulado ${formatMoney(item.cumulative)}</title>${index % 2 === 0 || index === savingsPoints.length - 1 ? `<text x="${x}" y="${height - 15}" text-anchor="middle" class="cashflow-axis-label">${cashflowMonthLabel(item.month)}</text>` : ""}</g>`).join("")}</svg>`;
 
     let cumulative = 0;
     els.monthlySavingsGrid.innerHTML = months
@@ -599,6 +604,7 @@
       })
       .join("");
     els.cashflowMethod.textContent = (payload.interpolation || {}).method || "";
+    renderDashboard();
   }
 
   function paymentEvents() {
@@ -793,12 +799,69 @@
       (sum, item) => sum + Number(item.amount || 0),
       0,
     );
-    els.fundsTotal.textContent = formatMoney(fundsTotal);
-    els.fundsDetail.textContent = sources
-      .map((item) => `${item.label}: ${formatMoney(item.amount)}`)
-      .join(" · ");
+    const savingsPlan = state.cashflow?.house_savings_plan || {};
+    const monthlySavings =
+      Number(savingsPlan.combined_monthly) ||
+      Number(savingsPlan.eduardo_monthly || 0) +
+        Number(savingsPlan.leonardo_monthly || 0);
+    const projectedSavings =
+      Number(savingsPlan.projected_total) ||
+      monthlySavings * Number(savingsPlan.installments || 0);
+    const fundingSlices = [
+      {
+        id: "fgts",
+        label: sources.find((item) => item.id === "fgts")?.label || "FGTS",
+        value: Number(
+          sources.find((item) => item.id === "fgts")?.amount || 0,
+        ),
+      },
+      {
+        id: "flexible",
+        label: "Recursos livres",
+        value: sources
+          .filter((item) => item.id !== "fgts")
+          .reduce((sum, item) => sum + Number(item.amount || 0), 0),
+      },
+      {
+        id: "projected",
+        label: "Economia projetada",
+        value: projectedSavings,
+      },
+    ];
+    const projectedFundsTotal = fundsTotal + projectedSavings;
+    let pieAngle = 0;
+    const pieStops = fundingSlices
+      .map((slice) => {
+        const start = pieAngle;
+        pieAngle += projectedFundsTotal
+          ? (slice.value / projectedFundsTotal) * 360
+          : 0;
+        return `var(--funding-${slice.id}) ${start}deg ${pieAngle}deg`;
+      })
+      .join(", ");
+    els.fundsTotal.textContent = formatMoney(projectedFundsTotal);
+    els.fundsDetail.innerHTML = fundingSlices
+      .map(
+        (slice) =>
+          `<div><i class="funding-swatch ${slice.id}" aria-hidden="true"></i><span>${escapeHtml(slice.label)}</span><strong>${formatMoney(slice.value)}</strong></div>`,
+      )
+      .join("");
+    els.fundingPie.style.background = `conic-gradient(${pieStops})`;
+    els.fundingPie.setAttribute(
+      "aria-label",
+      fundingSlices
+        .map((slice) => `${slice.label}: ${formatMoney(slice.value)}`)
+        .join(" · "),
+    );
+    const baselineCoverage = Number(
+      savingsPlan.baseline_coverage_percent ||
+        (state.totals.all ? (fundsTotal / state.totals.all) * 100 : 0),
+    );
+    const projectedCovered =
+      (Number(state.totals.all || 0) * baselineCoverage) / 100 +
+      projectedSavings;
     const coverage = state.totals.all
-      ? Math.min(999, (fundsTotal / state.totals.all) * 100)
+      ? (projectedCovered / state.totals.all) * 100
       : 0;
     els.overallCoverage.textContent = `${coverage.toFixed(1).replace(".", ",")}%`;
     els.coverageDonut.style.setProperty(
@@ -809,11 +872,12 @@
       "aria-label",
       `${coverage.toFixed(1).replace(".", ",")}% do orçamento coberto`,
     );
-    const gap = fundsTotal - Number(state.totals.all || 0);
-    els.overallGap.textContent =
+    const gap = projectedCovered - Number(state.totals.all || 0);
+    els.overallGap.textContent = `Base ${baselineCoverage.toFixed(1).replace(".", ",")}% + ${formatMoney(projectedSavings)} · ${
       gap >= 0
-        ? `Margem de ${formatMoney(gap)}`
-        : `Lacuna de ${formatMoney(Math.abs(gap))}`;
+        ? `margem de ${formatMoney(gap)}`
+        : `lacuna de ${formatMoney(Math.abs(gap))}`
+    }`;
     const categories = dashboardCategoryDefinitions.map((group) => ({
       ...group,
       value: state.expenses

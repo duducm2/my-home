@@ -272,7 +272,17 @@ class MigrationIntegrityTests(unittest.TestCase):
         self.assertEqual(400.0, savings_plan["eduardo_monthly"])
         self.assertEqual(400.0, savings_plan["leonardo_monthly"])
         self.assertEqual(800.0, savings_plan["combined_monthly"])
+        self.assertEqual(16, savings_plan["installments"])
         self.assertEqual(12800.0, savings_plan["projected_total"])
+        self.assertEqual(99.5, savings_plan["baseline_coverage_percent"])
+        self.assertEqual(
+            savings_plan["projected_total"],
+            savings_plan["installments"]
+            * (
+                savings_plan["eduardo_monthly"]
+                + savings_plan["leonardo_monthly"]
+            ),
+        )
         self.assertEqual(
             savings_plan["projected_total"],
             savings_plan["installments"] * savings_plan["combined_monthly"],
