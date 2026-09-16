@@ -134,35 +134,6 @@
     ],
     "decision_rule": "Fazer agora o que evita retrabalho. Adiar o que é acabamento ou pode ser instalado depois."
   },
-  "contracts": {
-    "strategy": "Dois contratos separados, mesmo que assinados juntos.",
-    "contractor": "Gelson",
-    "total_labor_amount": 15000.0,
-    "pre_financing_legal_purpose": "Comprovar serviços e valores empregados antes do financiamento e apoiar eventual ressarcimento se a operação não prosseguir por irregularidades atribuíveis ao imóvel ou vendedores.",
-    "status": "unsigned_drafts",
-    "status_label": "Dois rascunhos não assinados",
-    "documents": [
-      {
-        "filename": "gelson-contract-01-draft.pdf",
-        "repository_path": "data/documents/gelson-contract-01-draft.pdf",
-        "url": "/api/project/documents/gelson-contract-01.pdf",
-        "mime_type": "application/pdf",
-        "pages": 5,
-        "sha256": "2b5dd502b79c0ab6c0129217da902e0f680728f43cffa4913a99a69ebcfe5462"
-      },
-      {
-        "filename": "gelson-contract-02-draft.pdf",
-        "repository_path": "data/documents/gelson-contract-02-draft.pdf",
-        "url": "/api/project/documents/gelson-contract-02.pdf",
-        "mime_type": "application/pdf",
-        "pages": 6,
-        "sha256": "79c483cf917f9905630c3380d422b0975c6c9b1a97babd0ead16f8e88552a3f1"
-      }
-    ],
-    "unfilled_fields_warning": "Preencher datas, parcelas, qualificações e assinaturas antes da execução.",
-    "contract_01_amount": 7500.0,
-    "contract_02_amount": 7500.0
-  },
   "principles": [
     "regularização e preparação: aprovar e valorizar.",
     "reforma e melhorias: segurança, infraestrutura e obra pesada.",
@@ -201,16 +172,8 @@
   "purchase_contract": {
     "title": "Instrumento Particular de Promessa de Venda e Compra de Bem Imóvel e Outras Avenças",
     "status": "signed",
-    "status_source": "user_confirmed",
+    "status_source": "signed_document_report",
     "contract_date": "2026-09-08",
-    "document": {
-      "filename": "purchase-contract-2026-09-08.pdf",
-      "repository_path": "data/documents/purchase-contract-2026-09-08.pdf",
-      "url": "/api/project/documents/purchase-contract.pdf",
-      "mime_type": "application/pdf",
-      "pages": 17,
-      "sha256": "ab8dcdbee4ac8aa2af8e56d5f61fdb07a1fd04f5b2d081f25e545a679131ac93"
-    },
     "parties": {
       "buyer": "Eduardo Matos de Assis Figueiredo",
       "buyer_role": "Promissário comprador",
@@ -397,6 +360,13 @@
       "document_date": "2026-09-08",
       "captured_at": "2026-09-15",
       "note": "Resumo operacional; consultar o PDF assinado para o teor jurídico integral."
+    },
+    "contract_id": "CONTRACT_PURCHASE",
+    "signature_summary": {
+      "completed": true,
+      "signatures": "17/17",
+      "completed_at": "2026-09-16 10:48:54",
+      "document_pages_with_report": 36
     }
   },
   "people": [
@@ -432,399 +402,6 @@
       "story_role": "Profissional que apoia Eduardo e Leo na execução das obras.",
       "image_path": "data/people/gelson.jpg",
       "image_url": "/api/project/people/gelson.jpg"
-    }
-  ],
-  "work_contracts": [
-    {
-      "status": "unsigned_draft",
-      "status_label": "Rascunho não assinado",
-      "status_source": "user_confirmed",
-      "parties": {
-        "client": "Eduardo Matos de Assis Figueiredo",
-        "contractor": "Gelson de Souza da Silva"
-      },
-      "property": "Rua Ângelo Príncipe Padella, Parque Fabrício, Nova Odessa/SP",
-      "labor_price_type": "global",
-      "labor_price": 7500.0,
-      "materials_paid_by": "Eduardo / contratante",
-      "ordinary_tools_paid_by": "Gelson / contratado",
-      "material_list_notice_business_days": 5,
-      "payment": {
-        "installments_defined": false,
-        "installment_fields": 3,
-        "preferred_methods": [
-          "PIX",
-          "transferência bancária"
-        ],
-        "warning": "Valores, datas e condições das parcelas estão em branco e devem ser preenchidos antes da assinatura."
-      },
-      "unfilled_fields": [
-        "data e local da assinatura",
-        "assinaturas das partes",
-        "assinaturas e identificação das testemunhas",
-        "qualificação e contatos das partes",
-        "número e CEP do imóvel",
-        "valores, datas e condições das parcelas"
-      ],
-      "common_operational_terms": [
-        {
-          "clause": "4.2",
-          "title": "Comprovante de pagamento",
-          "summary": "PIX ou transferência bancária, com o comprovante valendo como prova de pagamento."
-        },
-        {
-          "clause": "4.3",
-          "title": "Serviços adicionais",
-          "summary": "Nenhum adicional é devido sem valor ou orçamento e autorização prévia do contratante, preferencialmente por escrito."
-        },
-        {
-          "clause": "5.1",
-          "title": "Materiais",
-          "summary": "Materiais, peças e insumos são fornecidos pelo contratante, salvo ajuste escrito."
-        },
-        {
-          "clause": "5.2",
-          "title": "Lista de compras",
-          "summary": "O contratado deve informar materiais, quantidades e especificações com antecedência razoável e, sempre que possível, mínima de 5 dias úteis."
-        },
-        {
-          "clause": "5.4",
-          "title": "Ferramentas",
-          "summary": "Ferramentas manuais e equipamentos ordinários são responsabilidade do contratado; locações extraordinárias exigem aprovação prévia."
-        },
-        {
-          "clause": "6.2–6.3",
-          "title": "Correção de defeitos",
-          "summary": "Danos e defeitos diretamente atribuíveis à execução devem ser corrigidos sem custo adicional de mão de obra."
-        },
-        {
-          "clause": "6.4",
-          "title": "Ajudantes",
-          "summary": "O contratado permanece responsável por contratação, orientação, remuneração, segurança e conduta de seus ajudantes."
-        },
-        {
-          "clause": "9.1",
-          "title": "Abandono ou recusa",
-          "summary": "O contratante pode rescindir, pagar apenas serviços executados e aceitos e exigir devolução de antecipações por serviços não realizados."
-        },
-        {
-          "clause": "10.1",
-          "title": "Registros operacionais",
-          "summary": "WhatsApp pode registrar decisões, listas, autorizações de adicionais e ajustes de execução."
-        },
-        {
-          "clause": "11.3",
-          "title": "Foro",
-          "summary": "Comarca de Nova Odessa/SP."
-        }
-      ],
-      "id": "gelson_contract_01",
-      "label": "Contrato 01 — Regularização e preparação do imóvel",
-      "document": {
-        "filename": "gelson-contract-01-draft.pdf",
-        "repository_path": "data/documents/gelson-contract-01-draft.pdf",
-        "url": "/api/project/documents/gelson-contract-01.pdf",
-        "mime_type": "application/pdf",
-        "pages": 5,
-        "sha256": "2b5dd502b79c0ab6c0129217da902e0f680728f43cffa4913a99a69ebcfe5462"
-      },
-      "start_condition": {
-        "type": "first_effective_work_day",
-        "date_defined": false,
-        "source_clause": "2.3",
-        "summary": "A data de início deve ser registrada no contrato ou por mensagem escrita entre as partes."
-      },
-      "deadline": {
-        "duration_days": 60,
-        "calendar_type": "calendar_days",
-        "starts_from": "primeiro dia efetivo de trabalho no imóvel",
-        "calculated_due_date": null,
-        "source_clause": "2.3",
-        "extensions": "Somente por motivo comprovado não imputável ao contratado, comunicado ao contratante (cláusula 2.4)."
-      },
-      "scope": [
-        {
-          "number": 1,
-          "title": "Demolição total da edícula dos fundos",
-          "note": "Primeiro serviço da regularização e preparação; retirada final do entulho deve ser definida entre as partes."
-        },
-        {
-          "number": 2,
-          "title": "Correção da infiltração na parte de trás da casa",
-          "note": "Inclui reparos externos e internos e recomposição das superfícies afetadas."
-        },
-        {
-          "number": 3,
-          "title": "Contrapiso do corredor atrás da casa",
-          "note": "Infraestrutura necessária deve ser avaliada antes do fechamento."
-        },
-        {
-          "number": 4,
-          "title": "Revisão das telhas da casa",
-          "note": "Substituição das unidades quebradas, trincadas ou inadequadas com material do contratante."
-        },
-        {
-          "number": 5,
-          "title": "Reparos provisórios no telhado da área dos fundos",
-          "note": "Não inclui novo telhado definitivo nem ampliação da área coberta."
-        },
-        {
-          "number": 6,
-          "title": "Remoção da caixa vazia do registro de água",
-          "note": "Inclui recomposição e acabamento da área afetada."
-        },
-        {
-          "number": 7,
-          "title": "Remoção da caixa de energia do poste adicional",
-          "note": "Respeita exigências de concessionária ou profissional habilitado."
-        },
-        {
-          "number": 8,
-          "title": "Reboco da parede de trás da casa",
-          "note": "Inclui preparo da base e regularização."
-        },
-        {
-          "number": 9,
-          "title": "Reboco do muro lateral esquerdo",
-          "note": "Inclui preparo, correções e regularização para acabamento posterior."
-        },
-        {
-          "number": 10,
-          "title": "Reparos e regularização do muro da frente",
-          "note": "Deixar a superfície em condições para acabamento posterior."
-        },
-        {
-          "number": 11,
-          "title": "Infraestrutura da futura lavanderia",
-          "note": "Água e esgoto entram na regularização e preparação apenas se tecnicamente necessários antes do contrapiso; caso contrário permanecem na reforma e melhorias."
-        }
-      ],
-      "discrepancies": [
-        {
-          "severity": "attention",
-          "topic": "Início do prazo de 60 dias",
-          "project_plan": "Celebração do contrato de compra e venda do imóvel.",
-          "draft_contract": "Primeiro dia efetivo de trabalho no imóvel.",
-          "recommended_action": "Alinhar e corrigir o marco inicial antes da assinatura para evitar duas regras conflitantes."
-        },
-        {
-          "severity": "attention",
-          "topic": "Serviços do plano ausentes do Anexo I",
-          "project_plan": "Inclui infiltração do banheiro, infiltração da lateral esquerda, pequenos reparos de rejuntes e chapisco com pedrisco e Bianco.",
-          "draft_contract": "Esses itens não aparecem expressamente no Anexo I recebido.",
-          "recommended_action": "Adicionar os serviços desejados ao Anexo I antes da assinatura ou formalizá-los por aditivo com valor definido."
-        }
-      ],
-      "source": {
-        "type": "contract_draft",
-        "captured_at": "2026-09-15",
-        "clauses_reviewed": [
-          "2.1–2.4",
-          "3.1–3.3",
-          "4.1–4.3",
-          "5.1–5.4",
-          "6.1–6.4",
-          "7.1–7.3",
-          "8.1–8.3",
-          "9.1–9.3",
-          "10.1",
-          "11.1–11.3",
-          "Anexo I"
-        ]
-      }
-    },
-    {
-      "status": "unsigned_draft",
-      "status_label": "Rascunho não assinado",
-      "status_source": "user_confirmed",
-      "parties": {
-        "client": "Eduardo Matos de Assis Figueiredo",
-        "contractor": "Gelson de Souza da Silva"
-      },
-      "property": "Rua Ângelo Príncipe Padella, Parque Fabrício, Nova Odessa/SP",
-      "labor_price_type": "global",
-      "labor_price": 7500.0,
-      "materials_paid_by": "Eduardo / contratante",
-      "ordinary_tools_paid_by": "Gelson / contratado",
-      "material_list_notice_business_days": 5,
-      "payment": {
-        "installments_defined": false,
-        "installment_fields": 3,
-        "preferred_methods": [
-          "PIX",
-          "transferência bancária"
-        ],
-        "warning": "Valores, datas e condições das parcelas estão em branco e devem ser preenchidos antes da assinatura."
-      },
-      "unfilled_fields": [
-        "data e local da assinatura",
-        "assinaturas das partes",
-        "assinaturas e identificação das testemunhas",
-        "qualificação e contatos das partes",
-        "número e CEP do imóvel",
-        "valores, datas e condições das parcelas"
-      ],
-      "common_operational_terms": [
-        {
-          "clause": "4.2",
-          "title": "Comprovante de pagamento",
-          "summary": "PIX ou transferência bancária, com o comprovante valendo como prova de pagamento."
-        },
-        {
-          "clause": "4.3",
-          "title": "Serviços adicionais",
-          "summary": "Nenhum adicional é devido sem valor ou orçamento e autorização prévia do contratante, preferencialmente por escrito."
-        },
-        {
-          "clause": "5.1",
-          "title": "Materiais",
-          "summary": "Materiais, peças e insumos são fornecidos pelo contratante, salvo ajuste escrito."
-        },
-        {
-          "clause": "5.2",
-          "title": "Lista de compras",
-          "summary": "O contratado deve informar materiais, quantidades e especificações com antecedência razoável e, sempre que possível, mínima de 5 dias úteis."
-        },
-        {
-          "clause": "5.4",
-          "title": "Ferramentas",
-          "summary": "Ferramentas manuais e equipamentos ordinários são responsabilidade do contratado; locações extraordinárias exigem aprovação prévia."
-        },
-        {
-          "clause": "6.2–6.3",
-          "title": "Correção de defeitos",
-          "summary": "Danos e defeitos diretamente atribuíveis à execução devem ser corrigidos sem custo adicional de mão de obra."
-        },
-        {
-          "clause": "6.4",
-          "title": "Ajudantes",
-          "summary": "O contratado permanece responsável por contratação, orientação, remuneração, segurança e conduta de seus ajudantes."
-        },
-        {
-          "clause": "9.1",
-          "title": "Abandono ou recusa",
-          "summary": "O contratante pode rescindir, pagar apenas serviços executados e aceitos e exigir devolução de antecipações por serviços não realizados."
-        },
-        {
-          "clause": "10.1",
-          "title": "Registros operacionais",
-          "summary": "WhatsApp pode registrar decisões, listas, autorizações de adicionais e ajustes de execução."
-        },
-        {
-          "clause": "11.3",
-          "title": "Foro",
-          "summary": "Comarca de Nova Odessa/SP."
-        }
-      ],
-      "id": "gelson_contract_02",
-      "label": "Contrato 02 — Reforma e melhorias definitivas",
-      "document": {
-        "filename": "gelson-contract-02-draft.pdf",
-        "repository_path": "data/documents/gelson-contract-02-draft.pdf",
-        "url": "/api/project/documents/gelson-contract-02.pdf",
-        "mime_type": "application/pdf",
-        "pages": 6,
-        "sha256": "79c483cf917f9905630c3380d422b0975c6c9b1a97babd0ead16f8e88552a3f1"
-      },
-      "start_condition": {
-        "type": "financing_signature_and_client_authorization",
-        "date_defined": false,
-        "source_clause": "2.2",
-        "summary": "Só começa após a assinatura do financiamento com a Caixa e autorização expressa do contratante."
-      },
-      "deadline": {
-        "duration_days": null,
-        "fixed_global_deadline": false,
-        "starts_from": "não aplicável",
-        "calculated_due_date": null,
-        "source_clause": "2.3–2.4",
-        "summary": "Sem prazo global fixo; execução gradual conforme aquisição, liberação dos ambientes, acesso e prioridades do contratante."
-      },
-      "scope": [
-        {
-          "number": 1,
-          "title": "Remoção e substituição dos pisos por porcelanato",
-          "note": "Abrange os ambientes listados; referência aproximada de 115 m² para compra e escopo, sem reajuste da mão de obra."
-        },
-        {
-          "number": 2,
-          "title": "Ampliação da cozinha externa com área gourmet",
-          "note": "Referência 7,80 × 5,20 m; inclui novo telhado de barro em duas águas e pontos de água e esgoto da pia."
-        },
-        {
-          "number": 3,
-          "title": "Transformação do Quarto do Casal e criação da suíte",
-          "note": "Inclui hidráulica completa, fechamentos, nova janela lateral e arremates."
-        },
-        {
-          "number": 4,
-          "title": "Reforma completa do banheiro social",
-          "note": "Piso e paredes em porcelanato, vaso, pia e ajustes hidráulicos e civis."
-        },
-        {
-          "number": 5,
-          "title": "Instalação de porta-balcão na nova Sala de TV",
-          "note": "Porta de vidro com aproximadamente 2,00 m e acesso à área gourmet."
-        },
-        {
-          "number": 6,
-          "title": "Troca de 5 janelas",
-          "note": "Inclui adequação de vãos, alvenaria, reboco e arremates."
-        },
-        {
-          "number": 7,
-          "title": "Troca de 5 portas internas",
-          "note": "Inclui remoção, instalação, adequações de vãos e arremates."
-        },
-        {
-          "number": 8,
-          "title": "Infraestrutura da lavanderia no corredor dos fundos",
-          "note": "Executada na reforma e melhorias se não tiver sido tecnicamente antecipada na regularização e preparação."
-        },
-        {
-          "number": 9,
-          "title": "Adequações elétricas — conduítes e novas tomadas",
-          "note": "Inclui adequações civis, conduítes, caixas, tomadas, rasgos e recomposição. Quadro, aumento de carga ou troca integral da fiação exigem inclusão escrita."
-        },
-        {
-          "number": 10,
-          "title": "Proteção superior dos muros",
-          "note": "Instalação de telhas ou telinhas de proteção conforme modelo escolhido pelo contratante."
-        }
-      ],
-      "discrepancies": [
-        {
-          "severity": "attention",
-          "topic": "Escopo elétrico",
-          "project_plan": "Prevê revisão completa, quadro de distribuição, circuitos, disjuntores, DR, DPS, aterramento e possível nova fiação.",
-          "draft_contract": "Inclui conduítes, caixas, tomadas e recomposição civil; quadro, aumento de carga e troca integral da fiação só entram se incluídos por escrito.",
-          "recommended_action": "Formalizar por aditivo os itens elétricos completos desejados e confirmar profissional habilitado e valor."
-        },
-        {
-          "severity": "info",
-          "topic": "Prazo da reforma e melhorias",
-          "project_plan": "Sequência de prioridades sem data rígida.",
-          "draft_contract": "Também não estabelece prazo global de conclusão.",
-          "recommended_action": "Definir marcos parciais por mensagem ou aditivo para acompanhar a execução."
-        }
-      ],
-      "source": {
-        "type": "contract_draft",
-        "captured_at": "2026-09-15",
-        "clauses_reviewed": [
-          "2.1–2.4",
-          "3.1–3.3",
-          "4.1–4.3",
-          "5.1–5.4",
-          "6.1–6.4",
-          "7.1–7.3",
-          "8.1–8.3",
-          "9.1–9.3",
-          "10.1",
-          "11.1–11.3",
-          "Anexo I"
-        ]
-      }
     }
   ],
   "execution_milestones": [
@@ -915,5 +492,22 @@
     ],
     "initial_dates": "estimated"
   },
-  "updated_at": "2026-09-15 23:51:00"
+  "updated_at": "2026-09-16 14:01:46",
+  "contract_system": {
+    "contracts_source": "data/contracts.json",
+    "providers_source": "data/providers.json",
+    "documents_root": "data/private/contracts",
+    "removal_policy": "archive"
+  },
+  "service_contract_strategy": {
+    "contract_ids": [
+      "CONTRACT_GELSON_01",
+      "CONTRACT_GELSON_02"
+    ],
+    "strategy": "Dois contratos separados, mesmo que assinados juntos.",
+    "total_labor_amount": 15000.0,
+    "pre_financing_legal_purpose": "Comprovar serviços e valores empregados antes do financiamento e apoiar eventual ressarcimento se a operação não prosseguir por irregularidades atribuíveis ao imóvel ou vendedores.",
+    "source_status": "unsigned_drafts",
+    "unfilled_fields_warning": "Preencher datas, parcelas, qualificações e assinaturas antes da execução."
+  }
 }

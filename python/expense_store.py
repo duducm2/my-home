@@ -11,6 +11,7 @@ from typing import Any
 
 HEADERS = [
     "id",
+    "record_type",
     "priority",
     "category",
     "description",
@@ -23,6 +24,8 @@ HEADERS = [
     "product_url",
     "price_checked_at",
     "price_notes",
+    "provider_id",
+    "contract_id",
     "created_at",
     "updated_at",
 ]
@@ -82,6 +85,7 @@ class ExpenseStore:
         migrated = []
         for row in rows:
             item = {key: row.get(key, "") for key in HEADERS}
+            item["record_type"] = item["record_type"] or ("material" if item["category"] == "Material" else "service")
             item["priority"] = item["priority"] or "1"
             item["icon_key"] = item["icon_key"] or self._default_icon_key(item["category"])
             migrated.append(item)
@@ -95,6 +99,17 @@ class ExpenseStore:
         except (OSError, json.JSONDecodeError):
             return {"defaults": {}, "icons": {}, "expense_associations": {}}
         return payload if isinstance(payload, dict) else {}
+
+    def _load_json_records(self, filename: str, key: str) -> list[dict[str, Any]]:
+        path = self.data_dir / filename
+        if not path.is_file():
+            return []
+        try:
+            payload = json.loads(path.read_text(encoding="utf-8-sig"))
+        except (OSError, json.JSONDecodeError):
+            return []
+        records = payload.get(key) if isinstance(payload, dict) else []
+        return [item for item in records if isinstance(item, dict)] if isinstance(records, list) else []
 
     def _default_icon_key(self, category: str) -> str:
         defaults = self._icon_manifest().get("defaults") or {}
@@ -137,6 +152,7 @@ class ExpenseStore:
             quantity = 1.0
         return {
             "id": row.get("id", ""),
+            "record_type": row.get("record_type") or ("material" if row.get("category") == "Material" else "service"),
             "priority": _priority(row.get("priority") or "1"),
             "category": row.get("category", ""),
             "description": row.get("description", ""),
@@ -149,6 +165,8 @@ class ExpenseStore:
             "product_url": row.get("product_url", ""),
             "price_checked_at": row.get("price_checked_at", ""),
             "price_notes": row.get("price_notes", ""),
+            "provider_id": row.get("provider_id", ""),
+            "contract_id": row.get("contract_id", ""),
             "created_at": row.get("created_at", ""),
             "updated_at": row.get("updated_at", ""),
         }
@@ -177,7 +195,7 @@ class ExpenseStore:
             by_category[category] = by_category.get(category, 0.0) + value
             key = str(expense["priority"])
             by_priority[key] = by_priority.get(key, 0.0) + value
-            if category == "Material":
+            if expense.get("record_type") == "material":
                 materials += value
             else:
                 services += value
@@ -199,7 +217,7 @@ class ExpenseStore:
             "ok": True,
             "expenses": expenses,
             "totals": self._totals(expenses),
-            "materials": [item for item in expenses if item["category"] == "Material"],
+            "materials": [item for item in expenses if item["record_type"] == "material"],
             "icon_catalog": {
                 "defaults": manifest.get("defaults", {}),
                 "icons": manifest.get("icons", {}),
@@ -234,6 +252,32 @@ class ExpenseStore:
             raise ValueError("description is required")
         priority = _priority(payload.get("priority"))
         value = _parse_value(payload.get("value"))
+        record_type = str(payload.get("record_type") or ("material" if category == "Material" else "service")).strip()
+        if record_type not in {"material", "service"}:
+            raise ValueError("record_type must be material or service")
+        provider_id = str(payload.get("provider_id") or "").strip()
+        contract_id = str(payload.get("contract_id") or "").strip()
+        if record_type == "material" and (provider_id or contract_id):
+            raise ValueError("materials cannot be linked to providers or contracts")
+        providers = {
+            str(item.get("id"))
+            for item in self._load_json_records("providers.json", "providers")
+            if not item.get("archived")
+        }
+        contracts = {
+            str(item.get("id")): item
+            for item in self._load_json_records("contracts.json", "contracts")
+            if not item.get("archived")
+        }
+        if provider_id and provider_id not in providers:
+            raise ValueError(f"provider not found: {provider_id}")
+        if contract_id:
+            contract = contracts.get(contract_id)
+            if contract is None or contract.get("type") != "service":
+                raise ValueError(f"service contract not found: {contract_id}")
+            if provider_id and str(contract.get("provider_id") or "") != provider_id:
+                raise ValueError("selected contract belongs to a different provider")
+            provider_id = provider_id or str(contract.get("provider_id") or "")
         icon_key = self._validated_icon_key(payload.get("icon_key"), category)
         expense_id = str(payload.get("id") or "").strip()
         stamp = now_stamp()
@@ -244,10 +288,13 @@ class ExpenseStore:
                     row.update(
                         {
                             "priority": str(priority),
+                            "record_type": record_type,
                             "category": category,
                             "description": description,
                             "icon_key": icon_key,
                             "value": f"{value:.2f}",
+                            "provider_id": provider_id,
+                            "contract_id": contract_id,
                             "updated_at": stamp,
                         }
                     )
@@ -261,11 +308,14 @@ class ExpenseStore:
             row.update(
                 {
                     "id": expense_id,
+                    "record_type": record_type,
                     "priority": str(priority),
                     "category": category,
                     "description": description,
                     "icon_key": icon_key,
                     "value": f"{value:.2f}",
+                    "provider_id": provider_id,
+                    "contract_id": contract_id,
                     "quantity": "1" if category == "Material" else "",
                     "created_at": stamp,
                     "updated_at": stamp,

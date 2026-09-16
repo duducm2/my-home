@@ -15,13 +15,13 @@ from urllib.parse import unquote, urlparse
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
+from contract_store import ContractStore, MAX_PDF_BYTES  # noqa: E402
 from expense_git import GitError, push_expenses  # noqa: E402
 from expense_store import ExpenseStore  # noqa: E402
 from house_store import HouseStore  # noqa: E402
 from import_pipeline import build_price_discovery_prompt, commit_rows, preview_pack  # noqa: E402
 from note_store import NoteStore  # noqa: E402
-from note_store import NoteStore  # noqa: E402
-from note_store import NoteStore  # noqa: E402
+from provider_store import ProviderStore  # noqa: E402
 from task_store import TaskStore  # noqa: E402
 
 
@@ -33,8 +33,8 @@ _STORE: ExpenseStore | None = None
 _TASKS: TaskStore | None = None
 _HOUSE: HouseStore | None = None
 _NOTES: NoteStore | None = None
-_NOTES: NoteStore | None = None
-_NOTES: NoteStore | None = None
+_PROVIDERS: ProviderStore | None = None
+_CONTRACTS: ContractStore | None = None
 
 
 def get_store(data_dir: Path) -> ExpenseStore:
@@ -51,18 +51,18 @@ def get_tasks(data_dir: Path) -> TaskStore:
     return _TASKS
 
 
-def get_notes(data_dir: Path) -> NoteStore:
-    global _NOTES
-    if _NOTES is None or _NOTES.data_dir != data_dir.resolve():
-        _NOTES = NoteStore(data_dir)
-    return _NOTES
+def get_providers(data_dir: Path) -> ProviderStore:
+    global _PROVIDERS
+    if _PROVIDERS is None or _PROVIDERS.data_dir != data_dir.resolve():
+        _PROVIDERS = ProviderStore(data_dir)
+    return _PROVIDERS
 
 
-def get_notes(data_dir: Path) -> NoteStore:
-    global _NOTES
-    if _NOTES is None or _NOTES.data_dir != data_dir.resolve():
-        _NOTES = NoteStore(data_dir)
-    return _NOTES
+def get_contracts(data_dir: Path) -> ContractStore:
+    global _CONTRACTS
+    if _CONTRACTS is None or _CONTRACTS.data_dir != data_dir.resolve():
+        _CONTRACTS = ContractStore(data_dir)
+    return _CONTRACTS
 
 
 def get_notes(data_dir: Path) -> NoteStore:
@@ -88,7 +88,7 @@ class ExpenseHandler(BaseHTTPRequestHandler):
     def _cors(self) -> None:
         self.send_header("Access-Control-Allow-Origin", "*")
         self.send_header("Access-Control-Allow-Methods", "GET, POST, DELETE, OPTIONS")
-        self.send_header("Access-Control-Allow-Headers", "Content-Type")
+        self.send_header("Access-Control-Allow-Headers", "Content-Type, X-Filename")
 
     def _json(self, code: int, payload: dict[str, Any]) -> None:
         data = json.dumps(payload, ensure_ascii=False).encode("utf-8")
@@ -176,15 +176,15 @@ class ExpenseHandler(BaseHTTPRequestHandler):
         if path == "/api/notes":
             self._json(200, get_notes(self.data_dir).load())
             return
+        if path == "/api/providers":
+            self._json(200, get_providers(self.data_dir).state())
+            return
+        if path == "/api/contracts":
+            self._json(200, get_contracts(self.data_dir).state())
+            return
         if path == "/api/cashflow":
             payload = json.loads((self.data_dir / "cashflow-projection.json").read_text(encoding="utf-8-sig"))
             self._json(200, payload)
-            return
-        if path == "/api/notes":
-            self._json(200, get_notes(self.data_dir).load())
-            return
-        if path == "/api/notes":
-            self._json(200, get_notes(self.data_dir).load())
             return
         if path == "/api/house":
             self._json(200, get_house(self.data_dir).load())
@@ -209,6 +209,17 @@ class ExpenseHandler(BaseHTTPRequestHandler):
         if path in documents:
             self._serve_file(self.data_dir / "documents" / documents[path], "application/pdf")
             return
+        if path.startswith("/api/contracts/") and "/documents/" in path:
+            parts = [part for part in path.split("/") if part]
+            if len(parts) == 5 and parts[:2] == ["api", "contracts"] and parts[3] == "documents":
+                document_id = "" if parts[4] == "current" else parts[4]
+                try:
+                    target = get_contracts(self.data_dir).document_path(parts[2], document_id)
+                except ValueError as exc:
+                    self._json(404, {"ok": False, "error": str(exc)})
+                    return
+                self._serve_file(target, "application/pdf")
+                return
         if path.startswith("/assets/item-icons/"):
             filename = path.rsplit("/", 1)[-1]
             manifest = get_store(self.data_dir)._icon_manifest()
@@ -230,18 +241,31 @@ class ExpenseHandler(BaseHTTPRequestHandler):
     def do_POST(self) -> None:
         path = unquote(urlparse(self.path).path)
         try:
+            if path.startswith("/api/contracts/") and path.endswith("/documents"):
+                parts = [part for part in path.split("/") if part]
+                if len(parts) != 4:
+                    raise ValueError("invalid document upload route")
+                length = int(self.headers.get("Content-Length", "0") or "0")
+                if length <= 0 or length > MAX_PDF_BYTES:
+                    raise ValueError("PDF must contain data and be at most 25 MB")
+                data = self.rfile.read(length)
+                filename = unquote(self.headers.get("X-Filename", "contract.pdf"))
+                self._json(200, get_contracts(self.data_dir).add_document(parts[2], data, filename))
+                return
             payload = self._read_json()
             store = get_store(self.data_dir)
             if path == "/api/expenses":
-                self._json(200, store.upsert_expense(payload))
+                result = store.upsert_expense(payload)
+                get_contracts(self.data_dir).sync_expense_link(result["expense_id"], str(payload.get("contract_id") or ""))
+                self._json(200, result)
             elif path == "/api/tasks":
                 self._json(200, get_tasks(self.data_dir).upsert(payload))
             elif path == "/api/notes":
                 self._json(200, get_notes(self.data_dir).save(payload))
-            elif path == "/api/notes":
-                self._json(200, get_notes(self.data_dir).save(payload))
-            elif path == "/api/notes":
-                self._json(200, get_notes(self.data_dir).save(payload))
+            elif path == "/api/providers":
+                self._json(200, get_providers(self.data_dir).upsert(payload))
+            elif path == "/api/contracts":
+                self._json(200, get_contracts(self.data_dir).upsert(payload))
             elif path == "/api/push":
                 self._json(200, push_expenses(ROOT_DIR))
             elif path == "/api/house":
@@ -284,9 +308,16 @@ class ExpenseHandler(BaseHTTPRequestHandler):
         path = unquote(urlparse(self.path).path)
         try:
             if path.startswith("/api/expenses/"):
-                self._json(200, get_store(self.data_dir).delete_expense(path[len("/api/expenses/") :]))
+                expense_id = path[len("/api/expenses/") :]
+                result = get_store(self.data_dir).delete_expense(expense_id)
+                get_contracts(self.data_dir).sync_expense_link(expense_id)
+                self._json(200, result)
             elif path.startswith("/api/tasks/"):
                 self._json(200, get_tasks(self.data_dir).delete(path[len("/api/tasks/") :]))
+            elif path.startswith("/api/contracts/"):
+                self._json(200, get_contracts(self.data_dir).archive(path[len("/api/contracts/") :]))
+            elif path.startswith("/api/providers/"):
+                self._json(200, get_providers(self.data_dir).archive(path[len("/api/providers/") :]))
             else:
                 self._json(404, {"ok": False, "error": "not found"})
         except ValueError as exc:
@@ -312,6 +343,8 @@ def main() -> int:
     args = parser.parse_args()
     get_store(args.data_dir)
     get_tasks(args.data_dir)
+    get_providers(args.data_dir)
+    get_contracts(args.data_dir)
     server = ThreadingHTTPServer((args.host, args.port), make_handler(args.data_dir))
     url = f"http://{args.host}:{args.port}/"
     print(f"my-home server listening on {url}", flush=True)

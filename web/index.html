@@ -160,6 +160,15 @@
         <h2 class="section-title">Espaços externos</h2><div id="house-exterior" class="card-grid"></div>
         <h2 class="section-title">Cômodos</h2><div id="house-rooms" class="card-grid"></div>
         <h2 class="section-title">Resumo do projeto</h2><div id="project-overview" class="project-overview"></div>
+        <section class="contract-center">
+          <div class="section-heading-row">
+            <div><h2 class="section-title">Contratos e prestadores</h2><p class="section-sub">Documentos versionados, vínculos com serviços e histórico preservado.</p></div>
+            <div class="contract-actions"><label class="check"><input id="show-archived-contracts" type="checkbox" /> Mostrar arquivados</label><button type="button" id="btn-new-provider" class="btn">Novo prestador</button><button type="button" id="btn-new-contract" class="btn primary">Novo contrato</button></div>
+          </div>
+          <div id="contract-summary" class="contract-summary"></div>
+          <h3 class="project-heading">Contratos</h3><div id="contract-list" class="contract-grid"></div>
+          <h3 class="project-heading">Prestadores reutilizáveis</h3><div id="provider-list" class="provider-grid"></div>
+        </section>
         <h2 class="section-title">Auditoria da planta</h2><div id="house-audit" class="timeline-card"></div>
       </section>
 
@@ -179,12 +188,36 @@
 
     <dialog id="expense-dialog"><form id="expense-form" method="dialog">
       <h2 id="dialog-title">Nova despesa</h2><input type="hidden" id="field-id" />
-      <div class="form-grid"><label>Prioridade <input id="field-priority" type="number" min="1" required value="1" /></label><label>Categoria <input id="field-category" required list="category-suggestions" /></label></div>
+      <div class="form-grid"><label>Tipo <select id="field-record-type"><option value="material">Material</option><option value="service">Serviço</option></select></label><label>Prioridade <input id="field-priority" type="number" min="1" required value="1" /></label><label>Categoria <input id="field-category" required list="category-suggestions" /></label></div>
       <label>Descrição <textarea id="field-description" rows="2" required></textarea></label>
       <section id="icon-editor" class="icon-editor"><input type="hidden" id="field-icon-key" /><div id="icon-preview" class="icon-preview"></div><div id="icon-picker" class="icon-picker"></div></section>
       <div class="form-grid"><label>Valor <input id="field-value" type="number" min="0" step="0.01" required /></label><label>Quantidade <input id="field-quantity" type="number" min="0" step="any" /></label><label>Unidade <input id="field-unit" /></label><label>Preço unitário <input id="field-unit-price" type="number" min="0" step="0.01" /></label><label>Fornecedor <input id="field-vendor" /></label><label>URL <input id="field-product-url" type="url" /></label></div>
+      <div id="expense-service-links" class="form-grid"><label>Prestador <select id="field-provider"><option value="">Nenhum</option></select></label><label>Contrato <select id="field-contract"><option value="">Nenhum</option></select></label></div>
       <label>Notas <textarea id="field-price-notes" rows="2"></textarea></label><p id="form-error" class="error hidden"></p>
       <div class="dialog-actions"><button type="button" id="btn-cancel" class="btn">Cancelar</button><button type="submit" class="btn primary">Salvar e enviar</button></div>
+    </form></dialog>
+
+    <dialog id="provider-dialog"><form id="provider-form" method="dialog">
+      <h2 id="provider-dialog-title">Novo prestador</h2><input id="provider-id" type="hidden" />
+      <label>Nome <input id="provider-name" required maxlength="140" /></label>
+      <label>Profissão / serviço <input id="provider-service-type" maxlength="140" /></label>
+      <label>Contato <input id="provider-contact" maxlength="240" /></label>
+      <label>Notas <textarea id="provider-notes" rows="3"></textarea></label>
+      <p id="provider-form-error" class="error hidden"></p>
+      <div class="dialog-actions"><button id="btn-archive-provider" type="button" class="btn danger hidden">Arquivar</button><span class="grow"></span><button id="btn-cancel-provider" type="button" class="btn">Cancelar</button><button type="submit" class="btn primary">Salvar prestador</button></div>
+    </form></dialog>
+
+    <dialog id="contract-dialog"><form id="contract-form" method="dialog">
+      <h2 id="contract-dialog-title">Novo contrato</h2><input id="contract-id" type="hidden" />
+      <div class="form-grid"><label>Tipo <select id="contract-type"><option value="service">Serviço</option><option value="purchase">Compra</option></select></label><label>Status <select id="contract-status"><option value="draft">Rascunho</option><option value="signed">Assinado</option><option value="active">Ativo</option><option value="completed">Concluído</option><option value="cancelled">Cancelado</option></select></label></div>
+      <label>Título <input id="contract-title" required maxlength="180" /></label>
+      <label>Prestador <select id="contract-provider"><option value="">Nenhum</option></select></label>
+      <div class="form-grid"><label>Valor <input id="contract-amount" type="number" min="0" step="0.01" /></label><label>Início <input id="contract-start" type="date" /></label><label>Fim <input id="contract-end" type="date" /></label></div>
+      <label>Serviços/despesas vinculados <select id="contract-expenses" multiple size="5"></select></label>
+      <label>Notas <textarea id="contract-notes" rows="3"></textarea></label>
+      <label>Nova versão do PDF <input id="contract-pdf" type="file" accept=".pdf,application/pdf" /></label>
+      <p id="contract-form-error" class="error hidden"></p>
+      <div class="dialog-actions"><button id="btn-archive-contract" type="button" class="btn danger hidden">Arquivar</button><span class="grow"></span><button id="btn-cancel-contract" type="button" class="btn">Cancelar</button><button type="submit" class="btn primary">Salvar contrato</button></div>
     </form></dialog>
 
     <dialog id="task-dialog"><form id="task-form" method="dialog">

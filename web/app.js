@@ -5,6 +5,8 @@
   const state = {
     expenses: [],
     tasks: [],
+    providers: [],
+    contracts: [],
     totals: { all: 0, materials: 0, services: 0, by_category: {}, by_priority: {} },
     materials: [],
     iconCatalog: { defaults: {}, icons: {} },
@@ -80,6 +82,7 @@
     form: $("expense-form"),
     dialogTitle: $("dialog-title"),
     fieldId: $("field-id"),
+    fieldRecordType: $("field-record-type"),
     fieldPriority: $("field-priority"),
     fieldCategory: $("field-category"),
     fieldDescription: $("field-description"),
@@ -93,6 +96,9 @@
     fieldVendor: $("field-vendor"),
     fieldProductUrl: $("field-product-url"),
     fieldPriceNotes: $("field-price-notes"),
+    expenseServiceLinks: $("expense-service-links"),
+    fieldProvider: $("field-provider"),
+    fieldContract: $("field-contract"),
     formError: $("form-error"),
     btnCancel: $("btn-cancel"),
     categorySuggestions: $("category-suggestions"),
@@ -104,6 +110,40 @@
     house3dStatus: $("house-3d-status"),
     house3dAssumptions: $("house-3d-assumptions"),
     projectOverview: $("project-overview"),
+    showArchivedContracts: $("show-archived-contracts"),
+    btnNewProvider: $("btn-new-provider"),
+    btnNewContract: $("btn-new-contract"),
+    contractSummary: $("contract-summary"),
+    contractList: $("contract-list"),
+    providerList: $("provider-list"),
+    providerDialog: $("provider-dialog"),
+    providerForm: $("provider-form"),
+    providerDialogTitle: $("provider-dialog-title"),
+    providerId: $("provider-id"),
+    providerName: $("provider-name"),
+    providerServiceType: $("provider-service-type"),
+    providerContact: $("provider-contact"),
+    providerNotes: $("provider-notes"),
+    providerFormError: $("provider-form-error"),
+    btnArchiveProvider: $("btn-archive-provider"),
+    btnCancelProvider: $("btn-cancel-provider"),
+    contractDialog: $("contract-dialog"),
+    contractForm: $("contract-form"),
+    contractDialogTitle: $("contract-dialog-title"),
+    contractId: $("contract-id"),
+    contractType: $("contract-type"),
+    contractStatus: $("contract-status"),
+    contractTitle: $("contract-title"),
+    contractProvider: $("contract-provider"),
+    contractAmount: $("contract-amount"),
+    contractStart: $("contract-start"),
+    contractEnd: $("contract-end"),
+    contractExpenses: $("contract-expenses"),
+    contractNotes: $("contract-notes"),
+    contractPdf: $("contract-pdf"),
+    contractFormError: $("contract-form-error"),
+    btnArchiveContract: $("btn-archive-contract"),
+    btnCancelContract: $("btn-cancel-contract"),
     promptOutput: $("prompt-output"),
     promptMissingOnly: $("prompt-missing-only"),
     btnGenPrompt: $("btn-gen-prompt"),
@@ -546,9 +586,32 @@
     els.iconPicker.innerHTML = icons.map(([iconKey, icon]) => `<button type="button" class="icon-choice ${iconKey === key ? "selected" : ""}" data-icon-key="${escapeAttr(iconKey)}" title="${escapeAttr(icon.label)}">${iconMarkup(iconKey, icon.label, "picker")}<span>${escapeHtml(icon.label)}</span></button>`).join("");
   }
 
+  function providerOptions(selected = "", includeArchived = false) {
+    return `<option value="">Nenhum</option>${state.providers
+      .filter((item) => includeArchived || !item.archived || item.id === selected)
+      .map((item) => `<option value="${escapeAttr(item.id)}" ${item.id === selected ? "selected" : ""}>${escapeHtml(item.name)}${item.archived ? " (arquivado)" : ""}</option>`)
+      .join("")}`;
+  }
+
+  function updateExpenseServiceLinks(provider = els.fieldProvider.value, contract = els.fieldContract.value) {
+    const isService = els.fieldRecordType.value === "service";
+    els.expenseServiceLinks.classList.toggle("hidden", !isService);
+    if (!isService) {
+      els.fieldProvider.value = "";
+      els.fieldContract.value = "";
+      return;
+    }
+    els.fieldProvider.innerHTML = providerOptions(provider);
+    els.fieldProvider.value = [...els.fieldProvider.options].some((item) => item.value === provider) ? provider : "";
+    const available = state.contracts.filter((item) => !item.archived && item.type === "service" && (!els.fieldProvider.value || item.provider_id === els.fieldProvider.value));
+    els.fieldContract.innerHTML = `<option value="">Nenhum</option>${available.map((item) => `<option value="${escapeAttr(item.id)}">${escapeHtml(item.title)}</option>`).join("")}`;
+    els.fieldContract.value = available.some((item) => item.id === contract) ? contract : "";
+  }
+
   function openExpenseDialog(item = null) {
     els.dialogTitle.textContent = item ? "Editar despesa" : "Nova despesa";
     els.fieldId.value = item?.id || "";
+    els.fieldRecordType.value = item?.record_type || (item?.category === "Material" ? "material" : "service");
     els.fieldPriority.value = item?.priority || 1;
     els.fieldCategory.value = item?.category || "";
     els.fieldDescription.value = item?.description || "";
@@ -559,6 +622,7 @@
     els.fieldVendor.value = item?.vendor || "";
     els.fieldProductUrl.value = item?.product_url || "";
     els.fieldPriceNotes.value = item?.price_notes || "";
+    updateExpenseServiceLinks(item?.provider_id || "", item?.contract_id || "");
     renderIconPicker(item?.icon_key || "");
     els.formError.classList.add("hidden");
     els.dialog.showModal();
@@ -569,6 +633,7 @@
     event.preventDefault();
     const payload = {
       id: els.fieldId.value,
+      record_type: els.fieldRecordType.value,
       priority: Number(els.fieldPriority.value),
       category: els.fieldCategory.value.trim(),
       description: els.fieldDescription.value.trim(),
@@ -580,10 +645,14 @@
       vendor: els.fieldVendor.value.trim(),
       product_url: els.fieldProductUrl.value.trim(),
       price_notes: els.fieldPriceNotes.value.trim(),
+      provider_id: els.fieldProvider.value,
+      contract_id: els.fieldContract.value,
     };
     try {
       const result = await request("/api/expenses", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) });
       applyExpenseState(result.state);
+      await loadContracts();
+      renderContractCenter();
       els.dialog.close();
       await pushToRemote();
     } catch (error) {
@@ -596,6 +665,8 @@
     if (!window.confirm(`Excluir “${item?.description || id}”?`)) return;
     const result = await request(`/api/expenses/${encodeURIComponent(id)}`, { method: "DELETE" });
     applyExpenseState(result.state);
+    await loadContracts();
+    renderContractCenter();
     await pushToRemote();
   }
 
@@ -662,9 +733,116 @@
   function renderProject(project) {
     if (!els.projectOverview || !project) return;
     const people = (project.people || []).map((person) => `<article class="person-card"><img src="${escapeAttr(person.image_url)}" alt="${escapeAttr(person.name)}"><div><strong>${escapeHtml(person.name)}</strong><span>${escapeHtml(person.role || person.story_role || "")}</span><p>${escapeHtml(person.story_role || "")}</p></div></article>`).join("");
-    const contracts = (project.work_contracts || []).map((contract, index) => `<article class="work-contract-card"><div class="work-contract-head"><div><span>Contrato ${String(index + 1).padStart(2, "0")}</span><h4>${escapeHtml(contract.label)}</h4></div><span class="draft-badge">Rascunho não assinado</span></div><p>${escapeHtml((contract.scope || []).length)} itens de escopo</p><a class="btn primary" href="${escapeAttr((contract.document || {}).url)}" target="_blank">Abrir PDF</a></article>`).join("");
     const tools = ((project.construction_resources || {}).required_tools || []).map((tool) => `<article class="required-tool">${iconMarkup(tool.icon_key, tool.name, "tool")}<div><strong>${escapeHtml(tool.name)}</strong><p>${escapeHtml(tool.purpose || "")}</p></div></article>`).join("");
-    els.projectOverview.innerHTML = `<h3 class="project-heading">Pessoas do projeto</h3><div class="people-grid">${people}</div><h3 class="project-heading">Contratos de obra</h3><div class="work-contracts-grid">${contracts}</div><h3 class="project-heading">Ferramentas necessárias</h3><div class="required-tools-grid">${tools || "<p>Nenhuma ferramenta cadastrada.</p>"}</div>`;
+    els.projectOverview.innerHTML = `<h3 class="project-heading">Pessoas do projeto</h3><div class="people-grid">${people}</div><h3 class="project-heading">Ferramentas necessárias</h3><div class="required-tools-grid">${tools || "<p>Nenhuma ferramenta cadastrada.</p>"}</div>`;
+  }
+
+  const contractStatusLabels = { draft: "Rascunho", signed: "Assinado", active: "Ativo", completed: "Concluído", cancelled: "Cancelado" };
+
+  function renderContractCenter() {
+    const includeArchived = els.showArchivedContracts.checked;
+    const visibleContracts = state.contracts.filter((item) => includeArchived || !item.archived);
+    const visibleProviders = state.providers.filter((item) => includeArchived || !item.archived);
+    const providerMap = Object.fromEntries(state.providers.map((item) => [item.id, item]));
+    const signed = state.contracts.filter((item) => !item.archived && ["signed", "active", "completed"].includes(item.status)).length;
+    const total = state.contracts.filter((item) => !item.archived).reduce((sum, item) => sum + Number(item.amount || 0), 0);
+    els.contractSummary.innerHTML = `<span><strong>${state.contracts.filter((item) => !item.archived).length}</strong> ativos</span><span><strong>${signed}</strong> assinados/confirmados</span><span><strong>${formatMoney(total)}</strong> valor registrado</span>`;
+    els.contractList.innerHTML = visibleContracts.map((contract) => {
+      const versions = contract.document_versions || [];
+      const current = versions.find((item) => item.id === contract.current_document_id);
+      const expenseNames = (contract.expense_ids || []).map((id) => state.expenses.find((item) => item.id === id)?.description || id);
+      const versionHistory = versions.slice().reverse().map((version) => `<a href="/api/contracts/${encodeURIComponent(contract.id)}/documents/${encodeURIComponent(version.id)}" target="_blank">${escapeHtml(version.id)} · ${escapeHtml(version.original_filename)}${version.pages ? ` · ${version.pages} pág.` : ""}</a>`).join("");
+      return `<article class="contract-card ${contract.archived ? "archived" : ""}">
+        <div class="contract-card-head"><div><span>${contract.type === "purchase" ? "Compra" : "Serviço"}</span><h4>${escapeHtml(contract.title)}</h4></div><span class="contract-status status-${escapeAttr(contract.status)}">${contract.archived ? "Arquivado" : escapeHtml(contractStatusLabels[contract.status] || contract.status)}</span></div>
+        <div class="contract-meta"><span>${formatMoney(contract.amount)}</span><span>${escapeHtml(providerMap[contract.provider_id]?.name || "Sem prestador")}</span><span>${escapeHtml(contract.start_date || "Sem data")}</span></div>
+        ${contract.metadata?.signature_status ? `<p class="contract-signature">${escapeHtml(contract.metadata.signature_status)} · conclusão ${escapeHtml(contract.metadata.signature_completed_at || "")}</p>` : ""}
+        ${expenseNames.length ? `<p>Vínculos: ${escapeHtml(expenseNames.join(", "))}</p>` : ""}
+        <div class="contract-card-actions">${current ? `<a class="btn primary" href="/api/contracts/${encodeURIComponent(contract.id)}/documents/current" target="_blank">Abrir PDF atual</a>` : `<span class="muted">Sem PDF</span>`}<button class="btn" type="button" data-edit-contract="${escapeAttr(contract.id)}">Editar</button></div>
+        ${versionHistory ? `<details><summary>${versions.length} versão(ões) preservada(s)</summary><div class="contract-versions">${versionHistory}</div></details>` : ""}
+      </article>`;
+    }).join("") || "<p class=\"empty\">Nenhum contrato nesta visualização.</p>";
+    els.providerList.innerHTML = visibleProviders.map((provider) => `<article class="provider-card ${provider.archived ? "archived" : ""}"><div><strong>${escapeHtml(provider.name)}</strong><span>${escapeHtml(provider.service_type || "Prestador")}</span></div><button class="btn" type="button" data-edit-provider="${escapeAttr(provider.id)}">Editar</button></article>`).join("") || "<p class=\"empty\">Nenhum prestador cadastrado.</p>";
+  }
+
+  function openProviderDialog(provider = null) {
+    els.providerDialogTitle.textContent = provider ? "Editar prestador" : "Novo prestador";
+    els.providerId.value = provider?.id || "";
+    els.providerName.value = provider?.name || "";
+    els.providerServiceType.value = provider?.service_type || "";
+    els.providerContact.value = provider?.contact || "";
+    els.providerNotes.value = provider?.notes || "";
+    els.btnArchiveProvider.classList.toggle("hidden", !provider || provider.archived);
+    els.providerFormError.classList.add("hidden");
+    els.providerDialog.showModal();
+  }
+
+  async function submitProvider(event) {
+    event.preventDefault();
+    try {
+      const result = await request("/api/providers", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({
+        id: els.providerId.value, name: els.providerName.value.trim(), service_type: els.providerServiceType.value.trim(), contact: els.providerContact.value.trim(), notes: els.providerNotes.value.trim(),
+      }) });
+      state.providers = result.providers || [];
+      els.providerDialog.close();
+      renderContractCenter();
+      setStatus(els.appStatus, "ok", "Prestador salvo. Use “Salvar tudo” para enviar a cópia segura.");
+    } catch (error) { setStatus(els.providerFormError, "err", error.message); }
+  }
+
+  function openContractDialog(contract = null) {
+    els.contractDialogTitle.textContent = contract ? "Editar contrato" : "Novo contrato";
+    els.contractId.value = contract?.id || "";
+    els.contractType.value = contract?.type || "service";
+    els.contractStatus.value = contract?.status || "draft";
+    els.contractTitle.value = contract?.title || "";
+    els.contractProvider.innerHTML = providerOptions(contract?.provider_id || "", true);
+    els.contractProvider.value = contract?.provider_id || "";
+    els.contractAmount.value = contract?.amount ?? "";
+    els.contractStart.value = contract?.start_date || "";
+    els.contractEnd.value = contract?.end_date || "";
+    const selected = new Set(contract?.expense_ids || []);
+    els.contractExpenses.innerHTML = state.expenses.filter((item) => item.record_type === "service").map((item) => `<option value="${escapeAttr(item.id)}" ${selected.has(item.id) ? "selected" : ""}>${escapeHtml(item.description)}</option>`).join("");
+    els.contractNotes.value = contract?.notes || "";
+    els.contractPdf.value = "";
+    els.btnArchiveContract.classList.toggle("hidden", !contract || contract.archived);
+    els.contractFormError.classList.add("hidden");
+    els.contractDialog.showModal();
+  }
+
+  async function submitContract(event) {
+    event.preventDefault();
+    try {
+      let result = await request("/api/contracts", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({
+        id: els.contractId.value, type: els.contractType.value, status: els.contractStatus.value, title: els.contractTitle.value.trim(), provider_id: els.contractProvider.value,
+        amount: Number(els.contractAmount.value || 0), start_date: els.contractStart.value, end_date: els.contractEnd.value,
+        expense_ids: [...els.contractExpenses.selectedOptions].map((item) => item.value), notes: els.contractNotes.value.trim(),
+      }) });
+      const contractId = result.contract_id;
+      const file = els.contractPdf.files[0];
+      if (file) result = await request(`/api/contracts/${encodeURIComponent(contractId)}/documents`, { method: "POST", headers: { "Content-Type": "application/pdf", "X-Filename": encodeURIComponent(file.name) }, body: file });
+      state.contracts = result.contracts || [];
+      await loadState();
+      els.contractDialog.close();
+      renderContractCenter();
+      setStatus(els.appStatus, "ok", "Contrato salvo com histórico preservado.");
+    } catch (error) { setStatus(els.contractFormError, "err", error.message); }
+  }
+
+  async function archiveEntity(kind, id) {
+    if (!window.confirm(`Arquivar este ${kind === "contracts" ? "contrato" : "prestador"}? O histórico e os PDFs serão preservados.`)) return;
+    const result = await request(`/api/${kind}/${encodeURIComponent(id)}`, { method: "DELETE" });
+    if (kind === "contracts") state.contracts = result.contracts || [];
+    else state.providers = result.providers || [];
+    (kind === "contracts" ? els.contractDialog : els.providerDialog).close();
+    renderContractCenter();
+  }
+
+  async function loadProviders() {
+    state.providers = (await request("/api/providers")).providers || [];
+  }
+
+  async function loadContracts() {
+    state.contracts = (await request("/api/contracts")).contracts || [];
   }
 
   async function renderHouse3D(house) {
@@ -752,6 +930,8 @@
   els.btnNew.addEventListener("click", () => openExpenseDialog());
   els.form.addEventListener("submit", submitExpense);
   els.btnCancel.addEventListener("click", () => els.dialog.close());
+  els.fieldRecordType.addEventListener("change", () => updateExpenseServiceLinks());
+  els.fieldProvider.addEventListener("change", () => updateExpenseServiceLinks(els.fieldProvider.value, ""));
   els.iconPicker.addEventListener("click", (event) => {
     const button = event.target.closest("[data-icon-key]");
     if (button) renderIconPicker(button.dataset.iconKey);
@@ -789,8 +969,25 @@
   els.btnCommitImport.addEventListener("click", () => commitImport().catch((error) => setStatus(els.importStatus, "err", error.message)));
   els.btnCopyFix.addEventListener("click", () => navigator.clipboard.writeText(els.fixOutput.value));
   els.btnDlFix.addEventListener("click", () => downloadText("price-pack-fix.txt", els.fixOutput.value));
+  els.showArchivedContracts.addEventListener("change", renderContractCenter);
+  els.btnNewProvider.addEventListener("click", () => openProviderDialog());
+  els.btnNewContract.addEventListener("click", () => openContractDialog());
+  els.providerForm.addEventListener("submit", submitProvider);
+  els.btnCancelProvider.addEventListener("click", () => els.providerDialog.close());
+  els.btnArchiveProvider.addEventListener("click", () => archiveEntity("providers", els.providerId.value).catch((error) => setStatus(els.providerFormError, "err", error.message)));
+  els.contractForm.addEventListener("submit", submitContract);
+  els.btnCancelContract.addEventListener("click", () => els.contractDialog.close());
+  els.btnArchiveContract.addEventListener("click", () => archiveEntity("contracts", els.contractId.value).catch((error) => setStatus(els.contractFormError, "err", error.message)));
+  els.contractList.addEventListener("click", (event) => {
+    const button = event.target.closest("[data-edit-contract]");
+    if (button) openContractDialog(state.contracts.find((item) => item.id === button.dataset.editContract));
+  });
+  els.providerList.addEventListener("click", (event) => {
+    const button = event.target.closest("[data-edit-provider]");
+    if (button) openProviderDialog(state.providers.find((item) => item.id === button.dataset.editProvider));
+  });
 
-  Promise.all([loadState(), loadTasks(), loadNotes(), loadCashflow(), loadHouse()])
-    .then(() => showView(location.hash.slice(1) || "dashboard"))
+  Promise.all([loadState(), loadTasks(), loadNotes(), loadCashflow(), loadHouse(), loadProviders(), loadContracts()])
+    .then(() => { renderContractCenter(); showView(location.hash.slice(1) || "dashboard"); })
     .catch((error) => setStatus(els.appStatus, "err", error.message));
 })();

@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "providers": [
+    {
+      "id": "PROVIDER_GELSON",
+      "name": "Gelson de Souza da Silva",
+      "service_type": "Pedreiro / construção civil",
+      "contact": "",
+      "notes": "Prestador responsável pelos contratos iniciais da obra.",
+      "archived": false,
+      "created_at": "2026-09-16 14:01:46",
+      "updated_at": "2026-09-16 14:01:46"
+    }
+  ],
+  "updated_at": "2026-09-16 14:01:46"
+}
