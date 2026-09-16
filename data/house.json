@@ -1,6 +1,6 @@
 {
   "document_type": "architectural_floor_plan",
-  "display_name": "my-home",
+  "display_name": "Rainbow 🌈",
   "blueprint": {
     "image_path": "data/blueprint.jpg",
     "image_url": "/api/house/blueprint.jpg",
@@ -370,7 +370,7 @@
     ]
   },
   "notes": "",
-  "updated_at": "2026-09-16 16:07:14",
+  "updated_at": "2026-09-16 20:13:40",
   "model_3d": {
     "version": 2,
     "model_type": "schematic_architectural_dollhouse",
