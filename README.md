@@ -55,6 +55,27 @@ All expenses are stored in [`data/expenses.csv`](data/expenses.csv) inside this 
 | `POST` | `/api/expenses`       | Create or update       |
 | `DELETE` | `/api/expenses/{id}`  | Delete                 |
 
+
+## Sync to GitHub
+
+Expense edits are saved locally to data/expenses.csv immediately. Use **Salvar e enviar** in the UI (or POST /api/push) to commit that file and push to origin.
+
+
+
+## Dashboard and price import
+
+- Landing view: **Dashboard** (phase timeline + materials).
+- **Despesas**: full CRUD (local CSV).
+- **Precos / Import**: generate a web-search prompt for an external AI, paste/upload PRICE_PACK.txt, preview, confirm, or download PRICE_AI_FIX.txt for the correction loop.
+
+### Pack contract
+
+Canonical pack: PRICE_PACK.txt with markers ===PREVIEW=== / ===FILE: PRICE_PACK.csv===.
+
+CSV headers: id,description,unit_price,quantity,unit,vendor,product_url,price_notes,value
+
+APIs: POST /api/prompts/price-discovery, POST /api/import/preview, POST /api/import/commit.
+
 ## Layout
 
 ```

@@ -1,0 +1,8 @@
+===PREVIEW===
+test
+===END_PREVIEW===
+
+===FILE: PRICE_PACK.csv===
+id,description,unit_price,quantity,unit,vendor,product_url,price_notes,value
+EXP_0014,Impermeabilizante (bianco),45.90,1,un,Leroy Merlin,https://example.com/bianco,promo,
+===END_FILE===

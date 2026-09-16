@@ -1,0 +1,30 @@
+You are a deep-reasoning assistant with web search.
+
+Task: find the lowest CURRENT Brazilian market prices for the materials listed below.
+Use live web search. Prefer reputable BR retailers (Leroy Merlin, Sodimac, Telhanorte, Amazon BR, Magazine Luiza, specialized stores).
+
+Return ONLY a pack in this exact format (no other commentary outside markers):
+
+===PREVIEW===
+Brief coverage: how many items priced, any items not found, date of search.
+===END_PREVIEW===
+
+===FILE: PRICE_PACK.csv===
+id,description,unit_price,quantity,unit,vendor,product_url,price_notes,value
+...one row per material...
+===END_FILE===
+
+Rules:
+- Keep the same `id` from the context table whenever present.
+- `unit_price` is required (BRL, use dot decimal).
+- `vendor` = store/seller name.
+- `product_url` = direct product page URL when available.
+- `price_notes` = short note (e.g. pack size, shipping excluded, promo).
+- Leave `value` EMPTY unless you are intentionally overriding the planned budget total.
+- Do not invent URLs; leave product_url empty if unsure.
+- Canonical delivery filename when the human saves your output: PRICE_PACK.txt
+- Do not claim you wrote files to disk.
+
+Materials to price ({{ITEM_COUNT}} rows):
+
+{{CONTEXT_CSV}}

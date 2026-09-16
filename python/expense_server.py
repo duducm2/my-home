@@ -15,6 +15,12 @@ from urllib.parse import unquote, urlparse
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from expense_store import ExpenseStore  # noqa: E402
+from expense_git import GitError, push_expenses  # noqa: E402
+from import_pipeline import (  # noqa: E402
+    build_price_discovery_prompt,
+    commit_rows,
+    preview_pack,
+)
 
 DEFAULT_PORT = 8768
 ROOT_DIR = Path(__file__).resolve().parent.parent
@@ -94,7 +100,7 @@ class ExpenseHandler(BaseHTTPRequestHandler):
                     "ok": True,
                     "service": "expense_server",
                     "port": DEFAULT_PORT,
-                    "features": ["state", "crud"],
+                    "features": ["state", "crud", "push", "prompts", "import"],
                 },
             )
             return
@@ -131,9 +137,33 @@ class ExpenseHandler(BaseHTTPRequestHandler):
             if path == "/api/expenses":
                 self._json(200, store.upsert_expense(payload))
                 return
+            if path == "/api/push":
+                result = push_expenses(ROOT_DIR)
+                self._json(200, result)
+                return
+            if path == "/api/prompts/price-discovery":
+                ids = payload.get("ids") if isinstance(payload.get("ids"), list) else None
+                self._json(200, build_price_discovery_prompt(store, ids))
+                return
+            if path == "/api/import/preview":
+                pack_text = str(payload.get("pack_text") or "")
+                pack_id = str(payload.get("pack_id") or "price")
+                self._json(200, preview_pack(pack_text, pack_id=pack_id))
+                return
+            if path == "/api/import/commit":
+                rows = payload.get("rows")
+                if not isinstance(rows, list) or not rows:
+                    self._json(400, {"ok": False, "error": "rows required"})
+                    return
+                pack_text = str(payload.get("pack_text") or "")
+                pack_id = str(payload.get("pack_id") or "price")
+                self._json(200, commit_rows(store, rows, pack_text=pack_text, pack_id=pack_id))
+                return
             self._json(404, {"ok": False, "error": "not found"})
         except ValueError as exc:
             self._json(400, {"ok": False, "error": str(exc)})
+        except GitError as exc:
+            self._json(500, {"ok": False, "error": str(exc)})
         except Exception as exc:
             self._json(
                 500,

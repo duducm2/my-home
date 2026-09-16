@@ -3,80 +3,164 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="dark" />
     <title>Despesas da Casa</title>
     <link rel="stylesheet" href="/styles.css" />
   </head>
   <body>
     <div class="page">
       <header class="hero">
-        <p class="eyebrow">my-home</p>
-        <h1>Despesas da Casa</h1>
-        <p class="lede">
-          Cadastre, filtre e acompanhe materiais e serviços do imóvel.
-        </p>
+        <div class="hero-top">
+          <div>
+            <p class="eyebrow">my-home</p>
+            <h1>Despesas da Casa</h1>
+          </div>
+          <nav class="nav" aria-label="Navegação">
+            <button type="button" class="nav-btn active" data-view="dashboard">Dashboard</button>
+            <button type="button" class="nav-btn" data-view="expenses">Despesas</button>
+            <button type="button" class="nav-btn" data-view="prices">Preços / Import</button>
+          </nav>
+        </div>
+        <p class="lede">Visão geral, CRUD e descoberta de preços com importação iterativa.</p>
       </header>
 
-      <section class="toolbar" aria-label="Filtros">
-        <label>
-          Fase
-          <select id="filter-phase">
-            <option value="">Todas</option>
-          </select>
-        </label>
-        <label>
-          Prioridade
-          <select id="filter-priority">
-            <option value="">Todas</option>
-          </select>
-        </label>
-        <label>
-          Categoria
-          <select id="filter-category">
-            <option value="">Todas</option>
-          </select>
-        </label>
-        <label class="grow">
-          Busca
-          <input
-            id="filter-search"
-            type="search"
-            placeholder="Descrição, categoria…"
-            autocomplete="off"
-          />
-        </label>
-        <button type="button" id="btn-new" class="btn primary">Nova despesa</button>
-      </section>
+      <section id="view-dashboard" class="view">
+        <div class="summary" aria-live="polite">
+          <div>
+            <span class="summary-label">Total planejado</span>
+            <strong id="dash-total-all">R$ 0,00</strong>
+          </div>
+          <div>
+            <span class="summary-label">Materiais</span>
+            <strong id="dash-total-materials">R$ 0,00</strong>
+          </div>
+          <div>
+            <span class="summary-label">Serviços / demais</span>
+            <strong id="dash-total-services">R$ 0,00</strong>
+          </div>
+        </div>
 
-      <section class="summary" aria-live="polite">
-        <div>
-          <span class="summary-label">Total filtrado</span>
-          <strong id="total-filtered">R$&nbsp;0,00</strong>
-        </div>
-        <div>
-          <span class="summary-label">Total geral</span>
-          <strong id="total-all">R$&nbsp;0,00</strong>
-        </div>
-        <div>
-          <span class="summary-label">Itens</span>
-          <strong id="count-filtered">0</strong>
+        <h2 class="section-title">Linha do tempo</h2>
+        <p class="section-sub">Ordem fixa de fases; Manutenção em ondas por prioridade.</p>
+        <div id="timeline-groups" class="timeline"></div>
+
+        <h2 class="section-title">Materiais</h2>
+        <p class="section-sub">Quantidades, orçamento e preços pesquisados.</p>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Fase</th>
+                <th>Pri</th>
+                <th>Descrição</th>
+                <th class="num">Qtd</th>
+                <th>Un</th>
+                <th class="num">Orçado</th>
+                <th class="num">Unitário</th>
+                <th>Fornecedor</th>
+                <th>Link</th>
+              </tr>
+            </thead>
+            <tbody id="dash-materials"></tbody>
+          </table>
         </div>
       </section>
 
-      <section class="table-wrap">
-        <table>
-          <thead>
-            <tr>
-              <th>Fase</th>
-              <th>Prioridade</th>
-              <th>Categoria</th>
-              <th>Descrição</th>
-              <th class="num">Valor</th>
-              <th class="actions">Ações</th>
-            </tr>
-          </thead>
-          <tbody id="expense-rows"></tbody>
-        </table>
-        <p id="empty-state" class="empty hidden">Nenhuma despesa corresponde aos filtros.</p>
+      <section id="view-expenses" class="view hidden">
+        <section class="toolbar" aria-label="Filtros">
+          <label>
+            Fase
+            <select id="filter-phase"><option value="">Todas</option></select>
+          </label>
+          <label>
+            Prioridade
+            <select id="filter-priority"><option value="">Todas</option></select>
+          </label>
+          <label>
+            Categoria
+            <select id="filter-category"><option value="">Todas</option></select>
+          </label>
+          <label class="grow">
+            Busca
+            <input id="filter-search" type="search" placeholder="Descrição, categoria..." autocomplete="off" />
+          </label>
+          <button type="button" id="btn-new" class="btn primary">Nova despesa</button>
+          <button type="button" id="btn-push" class="btn">Salvar e enviar</button>
+        </section>
+        <p id="push-status" class="push-status hidden" aria-live="polite"></p>
+        <section class="summary" aria-live="polite">
+          <div>
+            <span class="summary-label">Total filtrado</span>
+            <strong id="total-filtered">R$ 0,00</strong>
+          </div>
+          <div>
+            <span class="summary-label">Total geral</span>
+            <strong id="total-all">R$ 0,00</strong>
+          </div>
+          <div>
+            <span class="summary-label">Itens</span>
+            <strong id="count-filtered">0</strong>
+          </div>
+        </section>
+        <section class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Fase</th>
+                <th>Pri</th>
+                <th>Categoria</th>
+                <th>Descrição</th>
+                <th class="num">Valor</th>
+                <th>Preco</th>
+                <th class="actions">Acoes</th>
+              </tr>
+            </thead>
+            <tbody id="expense-rows"></tbody>
+          </table>
+          <p id="empty-state" class="empty hidden">Nenhuma despesa corresponde aos filtros.</p>
+        </section>
+      </section>
+
+      <section id="view-prices" class="view hidden">
+        <h2 class="section-title">Gerar prompt de preços</h2>
+        <p class="section-sub">Cria um pack-prompt para IA com busca web. Por padrão: materiais sem preço unitário.</p>
+        <div class="panel-row">
+          <label class="check">
+            <input type="checkbox" id="prompt-missing-only" checked />
+            Somente sem preço pesquisado
+          </label>
+          <button type="button" id="btn-gen-prompt" class="btn primary">Gerar prompt</button>
+          <button type="button" id="btn-copy-prompt" class="btn" disabled>Copiar</button>
+          <button type="button" id="btn-dl-prompt" class="btn" disabled>Baixar .txt</button>
+        </div>
+        <textarea id="prompt-output" class="code-box" rows="10" readonly placeholder="O prompt gerado aparece aqui..."></textarea>
+
+        <h2 class="section-title">Importar PRICE_PACK</h2>
+        <p class="section-sub">Cole a resposta da IA ou envie o arquivo PRICE_PACK.txt. Preview, confirme, ou baixe o fix.</p>
+        <div class="panel-row">
+          <input type="file" id="pack-file" accept=".txt,text/plain" />
+          <button type="button" id="btn-preview-import" class="btn primary">Validar pack</button>
+          <button type="button" id="btn-commit-import" class="btn" disabled>Confirmar importação</button>
+          <button type="button" id="btn-copy-fix" class="btn danger" disabled>Copiar AI_FIX</button>
+          <button type="button" id="btn-dl-fix" class="btn danger" disabled>Baixar AI_FIX</button>
+        </div>
+        <textarea id="pack-input" class="code-box" rows="8" placeholder="Cole aqui o PRICE_PACK.txt completo..."></textarea>
+        <p id="import-status" class="push-status hidden" aria-live="polite"></p>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Descrição</th>
+                <th class="num">Unitário</th>
+                <th>Fornecedor</th>
+                <th>Link</th>
+              </tr>
+            </thead>
+            <tbody id="import-preview-rows"></tbody>
+          </table>
+        </div>
+        <textarea id="fix-output" class="code-box hidden" rows="8" readonly></textarea>
       </section>
     </div>
 
@@ -84,26 +168,17 @@
       <form id="expense-form" method="dialog">
         <h2 id="dialog-title">Nova despesa</h2>
         <input type="hidden" id="field-id" />
-        <label>
-          Fase
-          <input id="field-phase" required list="phase-suggestions" />
-        </label>
-        <label>
-          Prioridade
-          <input id="field-priority" type="number" min="1" step="1" required value="1" />
-        </label>
-        <label>
-          Categoria
-          <input id="field-category" required list="category-suggestions" />
-        </label>
-        <label>
-          Descrição
-          <textarea id="field-description" rows="3" required></textarea>
-        </label>
-        <label>
-          Valor (R$)
-          <input id="field-value" type="number" min="0" step="0.01" required value="0" />
-        </label>
+        <label>Fase <input id="field-phase" required list="phase-suggestions" /></label>
+        <label>Prioridade <input id="field-priority" type="number" min="1" step="1" required value="1" /></label>
+        <label>Categoria <input id="field-category" required list="category-suggestions" /></label>
+        <label>Descrição <textarea id="field-description" rows="3" required></textarea></label>
+        <label>Valor (R$) <input id="field-value" type="number" min="0" step="0.01" required value="0" /></label>
+        <label>Quantidade <input id="field-quantity" type="number" min="0" step="any" /></label>
+        <label>Unidade <input id="field-unit" /></label>
+        <label>Preco unitario <input id="field-unit-price" type="number" min="0" step="0.01" /></label>
+        <label>Fornecedor <input id="field-vendor" /></label>
+        <label>URL do produto <input id="field-product-url" type="url" /></label>
+        <label>Notas de preco <textarea id="field-price-notes" rows="2"></textarea></label>
         <p id="form-error" class="error hidden"></p>
         <div class="dialog-actions">
           <button type="button" id="btn-cancel" class="btn">Cancelar</button>
@@ -114,7 +189,6 @@
 
     <datalist id="phase-suggestions"></datalist>
     <datalist id="category-suggestions"></datalist>
-
     <script src="/app.js"></script>
   </body>
 </html>
