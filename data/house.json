@@ -329,5 +329,413 @@
     ]
   },
   "notes": "",
-  "updated_at": "2026-09-15 22:15:08"
+  "updated_at": "2026-09-15 22:15:08",
+  "model_3d": {
+    "version": 1,
+    "model_type": "schematic_architectural_dollhouse",
+    "units": "meters",
+    "coordinate_system": {
+      "x_axis": "lot left to right when viewed from the street",
+      "z_axis": "street/front toward rear yard",
+      "y_axis": "vertical",
+      "origin": "front-left lot corner"
+    },
+    "defaults": {
+      "wall_height_m": 2.7,
+      "wall_thickness_m": 0.14,
+      "floor_thickness_m": 0.08,
+      "door_height_m": 2.1,
+      "window_sill_m": 1.0,
+      "window_height_m": 1.1
+    },
+    "lot": {
+      "width_m": 12.0,
+      "depth_m": 27.0,
+      "color": "#26382b"
+    },
+    "building": {
+      "origin_x_m": 3.03,
+      "origin_z_m": 4.0,
+      "width_m": 5.94,
+      "depth_m": 9.11,
+      "setback_status": "schematic_assumption",
+      "roof": {
+        "type": "translucent_flat_envelope",
+        "status": "schematic_only_roof_form_not_documented",
+        "height_m": 2.88
+      }
+    },
+    "rooms": [
+      {
+        "id": "quarto_casal",
+        "label": "QUARTO CASAL",
+        "kind": "bedroom",
+        "x_m": 0.0,
+        "z_m": 0.0,
+        "width_m": 2.84,
+        "depth_m": 3.36,
+        "area_m2": 9.54,
+        "color": "#6f86a6",
+        "geometry_source": "measured 2.84 x 3.36"
+      },
+      {
+        "id": "suite_quarto_casal",
+        "label": "SUÍTE QUARTO CASAL",
+        "kind": "bathroom",
+        "x_m": 3.0,
+        "z_m": 0.0,
+        "width_m": 2.94,
+        "depth_m": 2.47,
+        "area_m2": 7.26,
+        "color": "#4b8f8c",
+        "geometry_source": "measured 2.94 x 2.47"
+      },
+      {
+        "id": "wc",
+        "label": "WC",
+        "kind": "bathroom",
+        "x_m": 0.0,
+        "z_m": 3.36,
+        "width_m": 1.89,
+        "depth_m": 1.86,
+        "area_m2": 3.52,
+        "color": "#4b8f8c",
+        "geometry_source": "measured 1.89 x 1.86",
+        "wall_height_m": 2.7
+      },
+      {
+        "id": "corredor",
+        "label": "CORREDOR",
+        "kind": "circulation",
+        "x_m": 1.89,
+        "z_m": 3.36,
+        "width_m": 0.8,
+        "depth_m": 2.15,
+        "area_m2": 1.72,
+        "color": "#777777",
+        "geometry_source": "measured 0.80 x 2.15"
+      },
+      {
+        "id": "escritorio",
+        "label": "ESCRITÓRIO",
+        "kind": "office",
+        "x_m": 3.0,
+        "z_m": 2.47,
+        "width_m": 2.94,
+        "depth_m": 3.0,
+        "area_m2": 8.82,
+        "color": "#8a6fa6",
+        "geometry_source": "measured 2.94 x 3.00"
+      },
+      {
+        "id": "sala_tv",
+        "label": "SALA DE TV",
+        "kind": "living",
+        "x_m": 0.0,
+        "z_m": 5.22,
+        "width_m": 2.32,
+        "depth_m": 3.88,
+        "area_m2": 9.0,
+        "color": "#a67f58",
+        "geometry_source": "measured 2.32 x 3.88"
+      },
+      {
+        "id": "quarto_2",
+        "label": "QUARTO 2",
+        "kind": "bedroom",
+        "x_m": 3.0,
+        "z_m": 5.47,
+        "width_m": 2.94,
+        "depth_m": 3.64,
+        "area_m2": 10.7,
+        "color": "#6f86a6",
+        "geometry_source": "measured 2.94 x 3.64"
+      }
+    ],
+    "walls": [
+      {
+        "id": "outer_front",
+        "start": [
+          0.0,
+          0.0
+        ],
+        "end": [
+          5.94,
+          0.0
+        ],
+        "kind": "exterior",
+        "openings": [
+          {
+            "type": "window",
+            "offset_m": 0.72,
+            "width_m": 1.4,
+            "room_id": "quarto_casal"
+          }
+        ]
+      },
+      {
+        "id": "outer_right",
+        "start": [
+          5.94,
+          0.0
+        ],
+        "end": [
+          5.94,
+          9.11
+        ],
+        "kind": "exterior",
+        "openings": [
+          {
+            "type": "window",
+            "offset_m": 0.7,
+            "width_m": 1.0,
+            "room_id": "suite_quarto_casal"
+          },
+          {
+            "type": "window",
+            "offset_m": 3.25,
+            "width_m": 1.0,
+            "room_id": "escritorio"
+          },
+          {
+            "type": "window",
+            "offset_m": 6.62,
+            "width_m": 1.0,
+            "room_id": "quarto_2"
+          }
+        ]
+      },
+      {
+        "id": "outer_rear",
+        "start": [
+          5.94,
+          9.11
+        ],
+        "end": [
+          0.0,
+          9.11
+        ],
+        "kind": "exterior",
+        "openings": [
+          {
+            "type": "door",
+            "offset_m": 3.76,
+            "width_m": 2.0,
+            "room_id": "sala_tv",
+            "status": "future_balcony_door"
+          }
+        ]
+      },
+      {
+        "id": "outer_left",
+        "start": [
+          0.0,
+          9.11
+        ],
+        "end": [
+          0.0,
+          0.0
+        ],
+        "kind": "exterior",
+        "openings": [
+          {
+            "type": "window",
+            "offset_m": 4.28,
+            "width_m": 0.6,
+            "room_id": "wc"
+          }
+        ]
+      },
+      {
+        "id": "partition_left_front",
+        "start": [
+          0.0,
+          3.36
+        ],
+        "end": [
+          3.0,
+          3.36
+        ],
+        "kind": "interior",
+        "openings": [
+          {
+            "type": "door",
+            "offset_m": 2.05,
+            "width_m": 0.8,
+            "room_id": "quarto_casal"
+          }
+        ]
+      },
+      {
+        "id": "partition_left_rear",
+        "start": [
+          0.0,
+          5.22
+        ],
+        "end": [
+          3.0,
+          5.22
+        ],
+        "kind": "interior",
+        "openings": [
+          {
+            "type": "door",
+            "offset_m": 2.08,
+            "width_m": 0.8,
+            "room_id": "sala_tv"
+          }
+        ]
+      },
+      {
+        "id": "partition_wc",
+        "start": [
+          1.89,
+          3.36
+        ],
+        "end": [
+          1.89,
+          5.22
+        ],
+        "kind": "interior",
+        "openings": [
+          {
+            "type": "door",
+            "offset_m": 0.88,
+            "width_m": 0.72,
+            "room_id": "wc"
+          }
+        ]
+      },
+      {
+        "id": "partition_center",
+        "start": [
+          3.0,
+          0.0
+        ],
+        "end": [
+          3.0,
+          9.11
+        ],
+        "kind": "interior",
+        "openings": [
+          {
+            "type": "door",
+            "offset_m": 1.08,
+            "width_m": 0.8,
+            "room_id": "suite_quarto_casal"
+          },
+          {
+            "type": "door",
+            "offset_m": 3.64,
+            "width_m": 0.8,
+            "room_id": "escritorio"
+          },
+          {
+            "type": "door",
+            "offset_m": 6.2,
+            "width_m": 0.8,
+            "room_id": "quarto_2"
+          }
+        ]
+      },
+      {
+        "id": "partition_right_front",
+        "start": [
+          3.0,
+          2.47
+        ],
+        "end": [
+          5.94,
+          2.47
+        ],
+        "kind": "interior",
+        "openings": []
+      },
+      {
+        "id": "partition_right_rear",
+        "start": [
+          3.0,
+          5.47
+        ],
+        "end": [
+          5.94,
+          5.47
+        ],
+        "kind": "interior",
+        "openings": []
+      }
+    ],
+    "outdoor_zones": [
+      {
+        "id": "gate",
+        "label": "PORTÃO",
+        "x_m": 0.55,
+        "z_m": 0.0,
+        "width_m": 2.5,
+        "depth_m": 0.3,
+        "kind": "access",
+        "status": "approximate_position",
+        "color": "#8d7d66"
+      },
+      {
+        "id": "left_yard",
+        "label": "QUINTAL LATERAL",
+        "x_m": 0.55,
+        "z_m": 5.2,
+        "width_m": 1.7,
+        "depth_m": 9.0,
+        "kind": "yard",
+        "status": "undimensioned_schematic",
+        "color": "#315f3b"
+      },
+      {
+        "id": "laundry",
+        "label": "LAVANDERIA",
+        "x_m": 9.15,
+        "z_m": 6.0,
+        "width_m": 1.3,
+        "depth_m": 5.4,
+        "kind": "service",
+        "status": "undimensioned_schematic",
+        "color": "#526c78"
+      },
+      {
+        "id": "gourmet",
+        "label": "ÁREA DOS FUNDOS",
+        "x_m": 2.1,
+        "z_m": 13.11,
+        "width_m": 7.8,
+        "depth_m": 2.6,
+        "kind": "covered_open",
+        "status": "current_effective_space",
+        "color": "#8a704f"
+      },
+      {
+        "id": "rear_yard",
+        "label": "QUINTAL DOS FUNDOS",
+        "x_m": 2.0,
+        "z_m": 17.0,
+        "width_m": 8.0,
+        "depth_m": 6.0,
+        "kind": "yard",
+        "status": "undimensioned_schematic",
+        "color": "#315f3b"
+      }
+    ],
+    "assumptions": [
+      "A implantação da casa foi centralizada no lote; os recuos exatos não constam na planta.",
+      "Paredes internas e externas usam espessura esquemática de 0,14 m.",
+      "A altura de 2,70 m medida no WC foi aplicada aos demais ambientes para visualização.",
+      "Portas sem largura indicada foram representadas com 0,72 m a 0,80 m.",
+      "Janelas sem dimensões foram representadas com medidas residenciais típicas.",
+      "A forma e a inclinação do telhado não estão documentadas; a cobertura exibida é apenas um envelope translúcido.",
+      "Quintais, lavanderia, portão e recuos sem cotas foram posicionados de modo aproximado.",
+      "O cenário de cobertura 7,80 x 5,20 m em estudo não foi tratado como construção existente."
+    ],
+    "source": {
+      "blueprint": "data/blueprint.jpg",
+      "normalized_at": "2026-09-15",
+      "accuracy": "schematic_with_measured_room_dimensions"
+    }
+  }
 }
