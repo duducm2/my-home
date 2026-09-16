@@ -6,18 +6,84 @@ let activeViewer = null;
 let activeFingerprint = "";
 
 const ASSET_CATALOG = {
-  sofa: { label: "Sofá", width: 2.0, depth: 0.85, height: 0.78, color: "#8f6f61" },
-  bed: { label: "Cama", width: 1.4, depth: 1.9, height: 0.48, color: "#a7b8cc" },
-  table: { label: "Mesa", width: 1.4, depth: 0.8, height: 0.76, color: "#8b6542" },
-  chair: { label: "Cadeira", width: 0.48, depth: 0.48, height: 0.9, color: "#9a7655" },
-  wardrobe: { label: "Guarda-roupa", width: 1.6, depth: 0.58, height: 2.1, color: "#b7a58c" },
-  refrigerator: { label: "Geladeira", width: 0.72, depth: 0.7, height: 1.85, color: "#d7dde0" },
-  stove: { label: "Fogão", width: 0.62, depth: 0.64, height: 0.9, color: "#646b70" },
+  sofa: {
+    label: "Sofá",
+    width: 2.0,
+    depth: 0.85,
+    height: 0.78,
+    color: "#8f6f61",
+  },
+  bed: {
+    label: "Cama",
+    width: 1.4,
+    depth: 1.9,
+    height: 0.48,
+    color: "#a7b8cc",
+  },
+  table: {
+    label: "Mesa",
+    width: 1.4,
+    depth: 0.8,
+    height: 0.76,
+    color: "#8b6542",
+  },
+  chair: {
+    label: "Cadeira",
+    width: 0.48,
+    depth: 0.48,
+    height: 0.9,
+    color: "#9a7655",
+  },
+  wardrobe: {
+    label: "Guarda-roupa",
+    width: 1.6,
+    depth: 0.58,
+    height: 2.1,
+    color: "#b7a58c",
+  },
+  refrigerator: {
+    label: "Geladeira",
+    width: 0.72,
+    depth: 0.7,
+    height: 1.85,
+    color: "#d7dde0",
+  },
+  stove: {
+    label: "Fogão",
+    width: 0.62,
+    depth: 0.64,
+    height: 0.9,
+    color: "#646b70",
+  },
   sink: { label: "Pia", width: 1.2, depth: 0.6, height: 0.9, color: "#98a9ae" },
-  washer: { label: "Lavadora", width: 0.68, depth: 0.72, height: 0.88, color: "#d9e0e3" },
-  cabinet: { label: "Armário", width: 1.2, depth: 0.48, height: 1.9, color: "#a78e6e" },
-  plant: { label: "Planta", width: 0.5, depth: 0.5, height: 1.1, color: "#4f8c58" },
-  box: { label: "Caixa", width: 0.6, depth: 0.6, height: 0.6, color: "#a87945" },
+  washer: {
+    label: "Lavadora",
+    width: 0.68,
+    depth: 0.72,
+    height: 0.88,
+    color: "#d9e0e3",
+  },
+  cabinet: {
+    label: "Armário",
+    width: 1.2,
+    depth: 0.48,
+    height: 1.9,
+    color: "#a78e6e",
+  },
+  plant: {
+    label: "Planta",
+    width: 0.5,
+    depth: 0.5,
+    height: 1.1,
+    color: "#4f8c58",
+  },
+  box: {
+    label: "Caixa",
+    width: 0.6,
+    depth: 0.6,
+    height: 0.6,
+    color: "#a87945",
+  },
 };
 
 const byId = (id) => document.getElementById(id);
@@ -101,7 +167,11 @@ class HouseViewer {
     this.scene.fog = new THREE.Fog("#0d0f10", 32, 58);
 
     this.camera = new THREE.PerspectiveCamera(43, 1, 0.1, 120);
-    this.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false });
+    this.renderer = new THREE.WebGLRenderer({
+      antialias: true,
+      alpha: false,
+      preserveDrawingBuffer: true,
+    });
     this.renderer.outputColorSpace = THREE.SRGBColorSpace;
     this.renderer.toneMapping = THREE.ACESFilmicToneMapping;
     this.renderer.toneMappingExposure = 1.05;
@@ -260,7 +330,9 @@ class HouseViewer {
       });
       slab.userData.zone = zone;
       this.sceneRoot.add(slab);
-      this.registerTargetPart(`zone:${zone.id}`, zone.label, "zone", slab, { source: zone });
+      this.registerTargetPart(`zone:${zone.id}`, zone.label, "zone", slab, {
+        source: zone,
+      });
 
       for (const fixture of zone.fixtures || []) {
         this.addOutdoorFixture(zone, fixture);
@@ -287,7 +359,9 @@ class HouseViewer {
         label.renderOrder = 11;
         this.labelSprites.push(label);
         this.sceneRoot.add(label);
-        this.registerTargetPart(`zone:${zone.id}`, zone.label, "zone", label, { source: zone });
+        this.registerTargetPart(`zone:${zone.id}`, zone.label, "zone", label, {
+          source: zone,
+        });
       }
     }
 
@@ -309,7 +383,9 @@ class HouseViewer {
       floor.material.emissiveIntensity = 0;
       this.roomMeshes.push(floor);
       this.sceneRoot.add(floor);
-      this.registerTargetPart(`room:${room.id}`, room.label, "room", floor, { source: room });
+      this.registerTargetPart(`room:${room.id}`, room.label, "room", floor, {
+        source: room,
+      });
 
       const label = new THREE.Sprite(
         new THREE.SpriteMaterial({
@@ -331,7 +407,9 @@ class HouseViewer {
       label.renderOrder = 10;
       this.labelSprites.push(label);
       this.sceneRoot.add(label);
-      this.registerTargetPart(`room:${room.id}`, room.label, "room", label, { source: room });
+      this.registerTargetPart(`room:${room.id}`, room.label, "room", label, {
+        source: room,
+      });
     }
 
     for (const wall of this.model.walls || []) this.buildWall(wall);
@@ -349,7 +427,9 @@ class HouseViewer {
     });
     this.roof.visible = this.roofVisible;
     this.sceneRoot.add(this.roof);
-    this.registerTargetPart("roof:main", "Cobertura", "roof", this.roof, { source: building.roof || {} });
+    this.registerTargetPart("roof:main", "Cobertura", "roof", this.roof, {
+      source: building.roof || {},
+    });
 
     const buildingCenterX = this.worldX(
       building.origin_x_m + building.width_m / 2,
@@ -360,11 +440,26 @@ class HouseViewer {
     this.target = new THREE.Vector3(buildingCenterX, 0.35, buildingCenterZ);
   }
 
+  physicalBounds(objects) {
+    const bounds = new THREE.Box3();
+    for (const object of objects) {
+      object.traverse((child) => {
+        if (child.isMesh && !child.userData?.isTransformGizmo)
+          bounds.expandByObject(child);
+      });
+    }
+    return bounds;
+  }
+
   makeTargetGroup(entry) {
     this.sceneRoot.updateMatrixWorld(true);
-    const bounds = new THREE.Box3();
-    for (const object of entry.objects) bounds.expandByObject(object);
-    const center = bounds.isEmpty() ? new THREE.Vector3() : bounds.getCenter(new THREE.Vector3());
+    const bounds = this.physicalBounds(entry.objects);
+    const center = bounds.isEmpty()
+      ? new THREE.Vector3()
+      : bounds.getCenter(new THREE.Vector3());
+    const baseDimensions = bounds.isEmpty()
+      ? new THREE.Vector3(1, 1, 1)
+      : bounds.getSize(new THREE.Vector3());
     const group = new THREE.Group();
     group.name = `EditorTarget:${entry.key}`;
     group.position.copy(center);
@@ -384,6 +479,7 @@ class HouseViewer {
       basePosition: group.position.clone(),
       baseRotationY: group.rotation.y,
       baseScale: group.scale.clone(),
+      baseDimensions,
       isPlacedAsset: false,
     };
     const override = this.layoutOverrides[entry.key];
@@ -396,12 +492,18 @@ class HouseViewer {
     const editor = group.userData.editor;
     const translation = override.translation_m || {};
     const scale = override.scale || {};
-    group.position.copy(editor.basePosition).add(new THREE.Vector3(
-      Number(translation.x) || 0,
-      Number(translation.y) || 0,
-      Number(translation.z) || 0,
-    ));
-    group.rotation.y = editor.baseRotationY + THREE.MathUtils.degToRad(Number(override.rotation_y_deg) || 0);
+    group.position
+      .copy(editor.basePosition)
+      .add(
+        new THREE.Vector3(
+          Number(translation.x) || 0,
+          Number(translation.y) || 0,
+          Number(translation.z) || 0,
+        ),
+      );
+    group.rotation.y =
+      editor.baseRotationY +
+      THREE.MathUtils.degToRad(Number(override.rotation_y_deg) || 0);
     group.scale.set(
       Number(scale.x) || 1,
       Number(scale.y) || 1,
@@ -430,7 +532,11 @@ class HouseViewer {
     if (!ghost) {
       const edge = new THREE.LineSegments(
         new THREE.EdgesGeometry(body.geometry),
-        new THREE.LineBasicMaterial({ color: "#f1c40f", transparent: true, opacity: 0.38 }),
+        new THREE.LineBasicMaterial({
+          color: "#f1c40f",
+          transparent: true,
+          opacity: 0.38,
+        }),
       );
       group.add(edge);
     }
@@ -439,7 +545,9 @@ class HouseViewer {
       Number(asset.y_m || 0) + height / 2,
       this.worldZ(Number(asset.z_m) + depth / 2),
     );
-    group.rotation.y = THREE.MathUtils.degToRad(Number(asset.rotation_y_deg) || 0);
+    group.rotation.y = THREE.MathUtils.degToRad(
+      Number(asset.rotation_y_deg) || 0,
+    );
     group.userData.editor = {
       key: `asset:${asset.id}`,
       label: asset.label || asset.asset_type,
@@ -448,6 +556,7 @@ class HouseViewer {
       basePosition: group.position.clone(),
       baseRotationY: group.rotation.y,
       baseScale: group.scale.clone(),
+      baseDimensions: new THREE.Vector3(width, height, depth),
       isPlacedAsset: true,
     };
     group.traverse((child) => {
@@ -473,7 +582,10 @@ class HouseViewer {
     this.selectionBox.renderOrder = 998;
     this.scene.add(this.selectionBox);
 
-    this.transform = new TransformControls(this.camera, this.renderer.domElement);
+    this.transform = new TransformControls(
+      this.camera,
+      this.renderer.domElement,
+    );
     this.transform.visible = false;
     this.transform.addEventListener("change", () => {
       this.selectionBox.update();
@@ -482,7 +594,9 @@ class HouseViewer {
     });
     this.transform.addEventListener("dragging-changed", (event) => {
       this.controls.enabled = !event.value;
-      this.notifyEditor(event.value ? "Transformando objeto…" : "Objeto alterado.");
+      this.notifyEditor(
+        event.value ? "Transformando objeto…" : "Objeto alterado.",
+      );
     });
     this.transform.addEventListener("objectChange", () => {
       this.constrainSelected();
@@ -499,13 +613,19 @@ class HouseViewer {
       this.cancelPlacement();
       this.selectTarget(null);
     }
-    this.notifyEditor(this.editorEnabled ? "Clique em um elemento ou adicione um objeto." : "Editor desativado.");
+    this.notifyEditor(
+      this.editorEnabled
+        ? "Clique em um elemento ou adicione um objeto."
+        : "Editor desativado.",
+    );
     this.requestRender();
   }
 
   setTransformMode(mode) {
     this.transform.setMode(mode);
-    this.notifyEditor(`Modo ${mode === "translate" ? "mover" : mode === "rotate" ? "girar" : "escalar"}.`);
+    this.notifyEditor(
+      `Modo ${mode === "translate" ? "mover" : mode === "rotate" ? "girar" : "escalar"}.`,
+    );
   }
 
   setSnap(value) {
@@ -514,6 +634,54 @@ class HouseViewer {
     this.transform.setScaleSnap(snap);
     this.transform.setRotationSnap(snap ? THREE.MathUtils.degToRad(15) : 0);
     this.notifyEditor(snap ? `Encaixe de ${snap} m ativo.` : "Encaixe livre.");
+  }
+
+  selectionDimensions(target = this.selectedTarget) {
+    const editor = target?.userData.editor;
+    if (!editor?.baseDimensions) return null;
+    return {
+      width: editor.baseDimensions.x * target.scale.x,
+      height: editor.baseDimensions.y * target.scale.y,
+      depth: editor.baseDimensions.z * target.scale.z,
+    };
+  }
+
+  setSelectedDimensions(dimensions) {
+    const target = this.selectedTarget;
+    const editor = target?.userData.editor;
+    if (!editor?.baseDimensions) return false;
+    const values = ["width", "height", "depth"].map((key) =>
+      Number(dimensions?.[key]),
+    );
+    if (
+      values.some(
+        (value) => !Number.isFinite(value) || value < 0.05 || value > 100,
+      )
+    ) {
+      throw new Error("Use dimensões entre 0,05 m e 100 m.");
+    }
+    if (editor.isPlacedAsset && values.some((value) => value > 10)) {
+      throw new Error("Objetos adicionados aceitam dimensões de até 10 m.");
+    }
+    const ratios = [
+      values[0] / editor.baseDimensions.x,
+      values[1] / editor.baseDimensions.y,
+      values[2] / editor.baseDimensions.z,
+    ];
+    if (ratios.some((ratio) => ratio < 0.1 || ratio > 10)) {
+      throw new Error(
+        "A dimensão deve ficar entre 10% e 1.000% do tamanho original.",
+      );
+    }
+    target.scale.set(...ratios);
+    this.constrainSelected();
+    this.selectionBox.update();
+    this.transform.update();
+    this.notifyEditor(
+      "Dimensões exatas aplicadas. Salve o layout para persistir.",
+    );
+    this.requestRender();
+    return true;
   }
 
   selectTarget(target) {
@@ -526,34 +694,55 @@ class HouseViewer {
       this.selectionBox.visible = false;
       this.transform.detach();
     }
-    this.notifyEditor(target ? `${target.userData.editor.label} selecionado.` : "Nenhum objeto selecionado.");
+    this.notifyEditor(
+      target
+        ? `${target.userData.editor.label} selecionado.`
+        : "Nenhum objeto selecionado.",
+    );
     this.requestRender();
   }
 
   notifyEditor(message) {
     const editor = this.selectedTarget?.userData.editor;
-    this.host.dispatchEvent(new CustomEvent("scene-editor-state", {
-      detail: {
-        message,
-        enabled: this.editorEnabled,
-        selected: editor ? {
-          key: editor.key,
-          label: editor.label,
-          kind: editor.kind,
-          isPlacedAsset: editor.isPlacedAsset,
-        } : null,
-        placing: this.placementType,
-      },
-    }));
+    this.host.dispatchEvent(
+      new CustomEvent("scene-editor-state", {
+        detail: {
+          message,
+          enabled: this.editorEnabled,
+          selected: editor
+            ? {
+                key: editor.key,
+                label: editor.label,
+                kind: editor.kind,
+                isPlacedAsset: editor.isPlacedAsset,
+                dimensions: this.selectionDimensions(),
+              }
+            : null,
+          placing: this.placementType,
+        },
+      }),
+    );
   }
 
   constrainSelected() {
     if (!this.selectedTarget) return;
     const halfWidth = Number(this.model.lot.width_m) / 2;
     const halfDepth = Number(this.model.lot.depth_m) / 2;
-    this.selectedTarget.position.x = THREE.MathUtils.clamp(this.selectedTarget.position.x, -halfWidth, halfWidth);
-    this.selectedTarget.position.z = THREE.MathUtils.clamp(this.selectedTarget.position.z, -halfDepth, halfDepth);
-    this.selectedTarget.position.y = THREE.MathUtils.clamp(this.selectedTarget.position.y, -2, 10);
+    this.selectedTarget.position.x = THREE.MathUtils.clamp(
+      this.selectedTarget.position.x,
+      -halfWidth,
+      halfWidth,
+    );
+    this.selectedTarget.position.z = THREE.MathUtils.clamp(
+      this.selectedTarget.position.z,
+      -halfDepth,
+      halfDepth,
+    );
+    this.selectedTarget.position.y = THREE.MathUtils.clamp(
+      this.selectedTarget.position.y,
+      -2,
+      10,
+    );
     this.selectedTarget.scale.set(
       THREE.MathUtils.clamp(this.selectedTarget.scale.x, 0.1, 10),
       THREE.MathUtils.clamp(this.selectedTarget.scale.y, 0.1, 10),
@@ -573,9 +762,12 @@ class HouseViewer {
 
   pickEditorTarget(event) {
     this.setPointerFromEvent(event);
-    const hits = this.raycaster.intersectObjects(this.editorTargets, true)
+    const hits = this.raycaster
+      .intersectObjects(this.editorTargets, true)
       .filter((hit) => !hit.object.userData.isTransformGizmo);
-    this.selectTarget(hits.length ? this.editorTargetFromObject(hits[0].object) : null);
+    this.selectTarget(
+      hits.length ? this.editorTargetFromObject(hits[0].object) : null,
+    );
   }
 
   pointOnLot(event) {
@@ -590,21 +782,26 @@ class HouseViewer {
     this.setEditorEnabled(true);
     this.cancelPlacement();
     this.placementType = assetType;
-    this.placementGhost = this.createAssetGroup({
-      id: "asset_preview",
-      asset_type: assetType,
-      label: definition.label,
-      x_m: Number(this.model.lot.width_m) / 2,
-      z_m: Number(this.model.lot.depth_m) / 2,
-      y_m: 0,
-      width_m: definition.width,
-      height_m: definition.height,
-      depth_m: definition.depth,
-      color: definition.color,
-    }, true);
+    this.placementGhost = this.createAssetGroup(
+      {
+        id: "asset_preview",
+        asset_type: assetType,
+        label: definition.label,
+        x_m: Number(this.model.lot.width_m) / 2,
+        z_m: Number(this.model.lot.depth_m) / 2,
+        y_m: 0,
+        width_m: definition.width,
+        height_m: definition.height,
+        depth_m: definition.depth,
+        color: definition.color,
+      },
+      true,
+    );
     this.sceneRoot.add(this.placementGhost);
     this.host.classList.add("placing");
-    this.notifyEditor(`${definition.label}: clique no terreno para posicionar.`);
+    this.notifyEditor(
+      `${definition.label}: clique no terreno para posicionar.`,
+    );
     this.requestRender();
   }
 
@@ -616,9 +813,17 @@ class HouseViewer {
     const halfWidth = Number(this.model.lot.width_m) / 2;
     const halfDepth = Number(this.model.lot.depth_m) / 2;
     this.placementGhost.position.set(
-      THREE.MathUtils.clamp(point.x, -halfWidth + definition.width / 2, halfWidth - definition.width / 2),
+      THREE.MathUtils.clamp(
+        point.x,
+        -halfWidth + definition.width / 2,
+        halfWidth - definition.width / 2,
+      ),
       definition.height / 2,
-      THREE.MathUtils.clamp(point.z, -halfDepth + definition.depth / 2, halfDepth - definition.depth / 2),
+      THREE.MathUtils.clamp(
+        point.z,
+        -halfDepth + definition.depth / 2,
+        halfDepth - definition.depth / 2,
+      ),
     );
     this.requestRender();
   }
@@ -652,7 +857,9 @@ class HouseViewer {
     this.placedAssets.push(asset);
     this.cancelPlacement();
     this.selectTarget(group);
-    this.notifyEditor(`${definition.label} adicionado. Salve o layout para persistir.`);
+    this.notifyEditor(
+      `${definition.label} adicionado. Salve o layout para persistir.`,
+    );
     return true;
   }
 
@@ -675,8 +882,14 @@ class HouseViewer {
     const source = this.serializeAsset(this.selectedTarget);
     source.id = `asset_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 6)}`;
     source.label = `${source.label} cópia`;
-    source.x_m = Math.min(Number(this.model.lot.width_m) - source.width_m, source.x_m + 0.35);
-    source.z_m = Math.min(Number(this.model.lot.depth_m) - source.depth_m, source.z_m + 0.35);
+    source.x_m = Math.min(
+      Number(this.model.lot.width_m) - source.width_m,
+      source.x_m + 0.35,
+    );
+    source.z_m = Math.min(
+      Number(this.model.lot.depth_m) - source.depth_m,
+      source.z_m + 0.35,
+    );
     const group = this.createAssetGroup(source);
     this.sceneRoot.add(group);
     this.editorTargets.push(group);
@@ -693,8 +906,12 @@ class HouseViewer {
     this.selectTarget(null);
     this.sceneRoot.remove(target);
     this.editorTargets = this.editorTargets.filter((item) => item !== target);
-    this.placedAssetGroups = this.placedAssetGroups.filter((item) => item !== target);
-    this.placedAssets = this.placedAssets.filter((item) => item.id !== editor.asset.id);
+    this.placedAssetGroups = this.placedAssetGroups.filter(
+      (item) => item !== target,
+    );
+    this.placedAssets = this.placedAssets.filter(
+      (item) => item.id !== editor.asset.id,
+    );
     target.traverse((object) => {
       object.geometry?.dispose();
       disposeMaterial(object.material);
@@ -726,9 +943,17 @@ class HouseViewer {
     const depth = Number(source.depth_m) * group.scale.z;
     return {
       ...source,
-      x_m: THREE.MathUtils.clamp(this.lotX(group.position.x) - width / 2, 0, Number(this.model.lot.width_m) - width),
+      x_m: THREE.MathUtils.clamp(
+        this.lotX(group.position.x) - width / 2,
+        0,
+        Number(this.model.lot.width_m) - width,
+      ),
       y_m: Math.max(0, group.position.y - height / 2),
-      z_m: THREE.MathUtils.clamp(this.lotZ(group.position.z) - depth / 2, 0, Number(this.model.lot.depth_m) - depth),
+      z_m: THREE.MathUtils.clamp(
+        this.lotZ(group.position.z) - depth / 2,
+        0,
+        Number(this.model.lot.depth_m) - depth,
+      ),
       width_m: width,
       height_m: height,
       depth_m: depth,
@@ -742,13 +967,20 @@ class HouseViewer {
       const editor = group.userData.editor;
       if (!editor || editor.isPlacedAsset) continue;
       const translation = group.position.clone().sub(editor.basePosition);
-      const rotation = THREE.MathUtils.radToDeg(group.rotation.y - editor.baseRotationY);
-      const changed = translation.lengthSq() > 0.000001
-        || Math.abs(rotation) > 0.001
-        || group.scale.distanceTo(editor.baseScale) > 0.0001;
+      const rotation = THREE.MathUtils.radToDeg(
+        group.rotation.y - editor.baseRotationY,
+      );
+      const changed =
+        translation.lengthSq() > 0.000001 ||
+        Math.abs(rotation) > 0.001 ||
+        group.scale.distanceTo(editor.baseScale) > 0.0001;
       if (changed) {
         overrides[editor.key] = {
-          translation_m: { x: translation.x, y: translation.y, z: translation.z },
+          translation_m: {
+            x: translation.x,
+            y: translation.y,
+            z: translation.z,
+          },
           rotation_y_deg: rotation,
           scale: { x: group.scale.x, y: group.scale.y, z: group.scale.z },
         };
@@ -756,7 +988,9 @@ class HouseViewer {
     }
     return {
       layout_overrides: overrides,
-      placed_assets: this.placedAssetGroups.map((group) => this.serializeAsset(group)),
+      placed_assets: this.placedAssetGroups.map((group) =>
+        this.serializeAsset(group),
+      ),
     };
   }
 
@@ -912,7 +1146,13 @@ class HouseViewer {
     mesh.userData.wall = wall;
     this.wallMeshes.push(mesh);
     this.sceneRoot.add(mesh);
-    this.registerTargetPart(`wall:${wall.id}`, wall.label || wall.id, "wall", mesh, { source: wall });
+    this.registerTargetPart(
+      `wall:${wall.id}`,
+      wall.label || wall.id,
+      "wall",
+      mesh,
+      { source: wall },
+    );
   }
 
   addOutdoorFixture(zone, fixture) {
@@ -936,7 +1176,13 @@ class HouseViewer {
     mesh.userData.fixture = fixture;
     this.sceneRoot.add(mesh);
     const fixtureKey = `fixture:${zone.id}:${fixture.id}`;
-    this.registerTargetPart(fixtureKey, fixture.label || fixture.id, "fixture", mesh, { source: fixture, zone });
+    this.registerTargetPart(
+      fixtureKey,
+      fixture.label || fixture.id,
+      "fixture",
+      mesh,
+      { source: fixture, zone },
+    );
 
     if (fixture.accent_color) {
       const accent = this.addBox({
@@ -950,7 +1196,13 @@ class HouseViewer {
         roughness: 0.28,
       });
       this.sceneRoot.add(accent);
-      this.registerTargetPart(fixtureKey, fixture.label || fixture.id, "fixture", accent, { source: fixture, zone });
+      this.registerTargetPart(
+        fixtureKey,
+        fixture.label || fixture.id,
+        "fixture",
+        accent,
+        { source: fixture, zone },
+      );
     }
   }
 
@@ -1033,7 +1285,13 @@ class HouseViewer {
     glass.rotation.y = -Math.atan2(direction.y, direction.x);
     glass.userData.wall = wall;
     this.sceneRoot.add(glass);
-    this.registerTargetPart(`wall:${wall.id}`, wall.label || wall.id, "wall", glass, { source: wall });
+    this.registerTargetPart(
+      `wall:${wall.id}`,
+      wall.label || wall.id,
+      "wall",
+      glass,
+      { source: wall },
+    );
   }
 
   buildLegend() {
@@ -1126,12 +1384,15 @@ class HouseViewer {
       else this.pickRoom(event);
     };
     this.onDragOver = (event) => {
-      if (!event.dataTransfer?.types.includes("application/x-my-home-asset")) return;
+      if (!event.dataTransfer?.types.includes("application/x-my-home-asset"))
+        return;
       event.preventDefault();
       this.updatePlacement(event);
     };
     this.onDrop = (event) => {
-      const assetType = event.dataTransfer?.getData("application/x-my-home-asset");
+      const assetType = event.dataTransfer?.getData(
+        "application/x-my-home-asset",
+      );
       if (!assetType) return;
       event.preventDefault();
       if (this.placementType !== assetType) this.beginPlacement(assetType);
@@ -1141,7 +1402,10 @@ class HouseViewer {
       "pointerdown",
       this.onPointerDown,
     );
-    this.renderer.domElement.addEventListener("pointermove", this.onPointerMove);
+    this.renderer.domElement.addEventListener(
+      "pointermove",
+      this.onPointerMove,
+    );
     this.renderer.domElement.addEventListener("pointerup", this.onPointerUp);
     this.renderer.domElement.addEventListener("dragover", this.onDragOver);
     this.renderer.domElement.addEventListener("drop", this.onDrop);
@@ -1227,6 +1491,183 @@ class HouseViewer {
     this.requestRender();
   }
 
+  cleanRenderState() {
+    return {
+      transformVisible: this.transform?.visible,
+      selectionVisible: this.selectionBox?.visible,
+      ghostVisible: this.placementGhost?.visible,
+    };
+  }
+
+  setCleanRender(enabled, saved = null) {
+    if (enabled) {
+      if (this.transform) this.transform.visible = false;
+      if (this.selectionBox) this.selectionBox.visible = false;
+      if (this.placementGhost) this.placementGhost.visible = false;
+      return;
+    }
+    if (this.transform)
+      this.transform.visible = Boolean(saved?.transformVisible);
+    if (this.selectionBox)
+      this.selectionBox.visible = Boolean(saved?.selectionVisible);
+    if (this.placementGhost)
+      this.placementGhost.visible = Boolean(saved?.ghostVisible);
+  }
+
+  captureSnapshot(mimeType = "image/png") {
+    if (this.recording)
+      return Promise.reject(
+        new Error("Finalize a gravação antes de tirar a foto."),
+      );
+    const type = mimeType === "image/jpeg" ? "image/jpeg" : "image/png";
+    const originalPixelRatio = this.renderer.getPixelRatio();
+    const originalAspect = this.camera.aspect;
+    const cleanState = this.cleanRenderState();
+    const width = 1920;
+    const height = 1080;
+    this.setCleanRender(true);
+    this.renderer.setPixelRatio(1);
+    this.renderer.setSize(width, height, false);
+    this.camera.aspect = width / height;
+    this.camera.updateProjectionMatrix();
+    this.renderer.render(this.scene, this.camera);
+    return new Promise((resolve, reject) => {
+      this.renderer.domElement.toBlob(
+        (blob) => {
+          this.renderer.setPixelRatio(originalPixelRatio);
+          this.camera.aspect = originalAspect;
+          this.camera.updateProjectionMatrix();
+          this.resize();
+          this.setCleanRender(false, cleanState);
+          this.requestRender();
+          if (blob) resolve(blob);
+          else reject(new Error("O navegador não conseguiu criar a imagem."));
+        },
+        type,
+        type === "image/jpeg" ? 0.92 : undefined,
+      );
+    });
+  }
+
+  recordingMimeType() {
+    if (!window.MediaRecorder) return "";
+    return (
+      ["video/webm;codecs=vp9", "video/webm;codecs=vp8", "video/webm"].find(
+        (type) => MediaRecorder.isTypeSupported(type),
+      ) || ""
+    );
+  }
+
+  notifyMediaProgress(elapsed, duration, state = "recording") {
+    this.host.dispatchEvent(
+      new CustomEvent("scene-media-progress", {
+        detail: {
+          state,
+          elapsedMs: elapsed,
+          durationMs: duration,
+          progress: duration ? Math.min(1, elapsed / duration) : 0,
+        },
+      }),
+    );
+  }
+
+  startRecording({ mode = "orbit", durationSeconds = 10 } = {}) {
+    if (this.recording)
+      return Promise.reject(new Error("Já existe uma gravação em andamento."));
+    if (!this.renderer.domElement.captureStream || !window.MediaRecorder) {
+      return Promise.reject(
+        new Error("Este navegador não oferece gravação do canvas."),
+      );
+    }
+    const durationMs =
+      THREE.MathUtils.clamp(Number(durationSeconds) || 10, 3, 30) * 1000;
+    const mimeType = this.recordingMimeType();
+    const stream = this.renderer.domElement.captureStream(30);
+    const recorder = new MediaRecorder(stream, {
+      ...(mimeType ? { mimeType } : {}),
+      videoBitsPerSecond: 4_000_000,
+    });
+    const chunks = [];
+    const cameraState = {
+      position: this.camera.position.clone(),
+      quaternion: this.camera.quaternion.clone(),
+      up: this.camera.up.clone(),
+      target: this.controls.target.clone(),
+      controlsEnabled: this.controls.enabled,
+      clean: this.cleanRenderState(),
+    };
+    this.setCleanRender(true);
+    if (mode === "orbit") this.controls.enabled = false;
+    const offset = this.camera.position.clone().sub(this.controls.target);
+    const radius = Math.max(2, Math.hypot(offset.x, offset.z));
+    const initialAngle = Math.atan2(offset.z, offset.x);
+    const startedAt = performance.now();
+
+    return new Promise((resolve, reject) => {
+      const finish = () => {
+        cancelAnimationFrame(this.recording?.animationFrame || 0);
+        stream.getTracks().forEach((track) => track.stop());
+        this.camera.position.copy(cameraState.position);
+        this.camera.quaternion.copy(cameraState.quaternion);
+        this.camera.up.copy(cameraState.up);
+        this.controls.target.copy(cameraState.target);
+        this.controls.enabled = cameraState.controlsEnabled;
+        this.setCleanRender(false, cameraState.clean);
+        this.controls.update();
+        this.recording = null;
+        this.requestRender();
+      };
+      recorder.ondataavailable = (event) => {
+        if (event.data?.size) chunks.push(event.data);
+      };
+      recorder.onerror = (event) => {
+        finish();
+        reject(event.error || new Error("Falha durante a gravação."));
+      };
+      recorder.onstop = () => {
+        finish();
+        const blob = new Blob(chunks, {
+          type: recorder.mimeType || mimeType || "video/webm",
+        });
+        this.notifyMediaProgress(durationMs, durationMs, "complete");
+        blob.size
+          ? resolve(blob)
+          : reject(new Error("A gravação não gerou dados."));
+      };
+      const renderFrame = (now) => {
+        if (!this.recording) return;
+        const elapsed = Math.min(durationMs, now - startedAt);
+        if (mode === "orbit") {
+          const angle = initialAngle + (elapsed / durationMs) * Math.PI * 2;
+          this.camera.position.set(
+            this.controls.target.x + Math.cos(angle) * radius,
+            cameraState.position.y,
+            this.controls.target.z + Math.sin(angle) * radius,
+          );
+          this.camera.lookAt(this.controls.target);
+        }
+        this.renderer.render(this.scene, this.camera);
+        this.notifyMediaProgress(elapsed, durationMs);
+        if (elapsed >= durationMs) {
+          if (recorder.state !== "inactive") recorder.stop();
+          return;
+        }
+        this.recording.animationFrame = requestAnimationFrame(renderFrame);
+      };
+      this.recording = { recorder, stream, animationFrame: 0 };
+      recorder.start(500);
+      this.notifyMediaProgress(0, durationMs);
+      this.recording.animationFrame = requestAnimationFrame(renderFrame);
+    });
+  }
+
+  stopRecording() {
+    if (!this.recording || this.recording.recorder.state === "inactive")
+      return false;
+    this.recording.recorder.stop();
+    return true;
+  }
+
   resize() {
     const width = Math.max(1, this.host.clientWidth);
     const height = Math.max(1, this.host.clientHeight);
@@ -1246,6 +1687,7 @@ class HouseViewer {
   }
 
   dispose() {
+    this.stopRecording();
     this.resizeObserver?.disconnect();
     for (const button of this.toolbarButtons || []) {
       button.removeEventListener("click", this.onToolbarClick);
@@ -1258,7 +1700,10 @@ class HouseViewer {
       "pointerup",
       this.onPointerUp,
     );
-    this.renderer?.domElement.removeEventListener("pointermove", this.onPointerMove);
+    this.renderer?.domElement.removeEventListener(
+      "pointermove",
+      this.onPointerMove,
+    );
     this.renderer?.domElement.removeEventListener("dragover", this.onDragOver);
     this.renderer?.domElement.removeEventListener("drop", this.onDrop);
     this.transform?.dispose();
@@ -1338,6 +1783,32 @@ export function resetSceneSelection() {
   return activeViewer?.resetSelected() || false;
 }
 
+export function setSceneSelectionDimensions(dimensions) {
+  if (!activeViewer) return false;
+  return activeViewer.setSelectedDimensions(dimensions);
+}
+
 export function getSceneLayoutState() {
-  return activeViewer?.getLayoutState() || { layout_overrides: {}, placed_assets: [] };
+  return (
+    activeViewer?.getLayoutState() || {
+      layout_overrides: {},
+      placed_assets: [],
+    }
+  );
+}
+
+export function captureHouseSnapshot(mimeType) {
+  if (!activeViewer)
+    return Promise.reject(new Error("Modelo 3D ainda não está pronto."));
+  return activeViewer.captureSnapshot(mimeType);
+}
+
+export function startHouseRecording(options) {
+  if (!activeViewer)
+    return Promise.reject(new Error("Modelo 3D ainda não está pronto."));
+  return activeViewer.startRecording(options);
+}
+
+export function stopHouseRecording() {
+  return activeViewer?.stopRecording() || false;
 }

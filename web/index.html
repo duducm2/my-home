@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="color-scheme" content="dark" />
     <title>my-home</title>
-    <link rel="stylesheet" href="/styles.css?v=20260916-1" />
-    <link rel="stylesheet" href="/tasks.css?v=20260916-1" />
+    <link rel="stylesheet" href="/styles.css?v=20260916-2" />
+    <link rel="stylesheet" href="/tasks.css?v=20260916-4" />
     <script type="importmap">
       { "imports": { "three": "/vendor/three/three.module.js" } }
     </script>
@@ -37,6 +37,9 @@
             </button>
             <button type="button" class="nav-btn" data-view="model3d">
               <span>Modelo 3D</span><kbd>Alt+5</kbd>
+            </button>
+            <button type="button" class="nav-btn" data-view="gantt">
+              <span>Cronograma</span><kbd>Alt+6</kbd>
             </button>
           </nav>
           <div class="global-save">
@@ -80,7 +83,7 @@
               </div>
             </div>
           </article>
-          <article class="panel bento-card">
+          <article class="panel bento-card bento-resources">
             <div class="panel-head">
               <h2>Recursos</h2>
               <span class="panel-kicker">Disponível</span>
@@ -88,7 +91,7 @@
             <strong id="funds-total" class="hero-metric">R$ 0,00</strong>
             <p id="funds-detail" class="section-sub"></p>
           </article>
-          <article class="panel bento-card">
+          <article class="panel bento-card bento-coverage">
             <div class="panel-head">
               <h2>Cobertura</h2>
               <span class="panel-kicker">Plano</span>
@@ -198,37 +201,20 @@
           <p id="cashflow-method" class="projection-method"></p>
         </section>
 
-        <section class="task-section">
+        <section class="panel dashboard-timeline-section">
           <div class="section-heading-row">
             <div>
-              <h2 class="section-title">Tarefas</h2>
-              <p class="section-sub">
-                Prioridade 1 primeiro. Arraste barras e alças para ajustar
-                datas.
-              </p>
+              <h2 class="section-title">Linha do tempo do projeto</h2>
+              <p class="section-sub">Visão resumida das macroatividades.</p>
             </div>
-            <div class="gantt-actions">
-              <label
-                >Escala
-                <select id="gantt-zoom">
-                  <option value="day">Dia</option>
-                  <option value="week" selected>Semana</option>
-                  <option value="month">Mês</option>
-                </select></label
-              >
-              <button type="button" id="btn-gantt-today" class="btn">
-                Hoje
-              </button>
-              <button type="button" id="btn-new-task" class="btn primary">
-                Nova tarefa
-              </button>
-            </div>
+            <button type="button" class="btn" data-view="gantt">
+              Abrir cronograma completo <kbd>Alt+6</kbd>
+            </button>
           </div>
-          <div class="task-summary" id="task-summary"></div>
           <div
-            id="gantt"
-            class="gantt-shell"
-            aria-label="Gráfico de Gantt interativo"
+            id="macro-timeline"
+            class="macro-timeline"
+            aria-label="Resumo das macroatividades"
           ></div>
         </section>
 
@@ -276,6 +262,48 @@
             <tbody id="dash-materials"></tbody>
           </table>
         </div>
+      </section>
+
+      <section id="view-gantt" class="view hidden">
+        <section class="task-section gantt-page">
+          <div class="section-heading-row">
+            <div>
+              <h2 class="section-title">Cronograma completo</h2>
+              <p class="section-sub">
+                Expanda macroatividades para ver e editar as atividades
+                detalhadas.
+              </p>
+            </div>
+            <div class="gantt-actions">
+              <button type="button" id="btn-expand-all" class="btn">
+                Expandir tudo
+              </button>
+              <button type="button" id="btn-collapse-all" class="btn">
+                Recolher tudo
+              </button>
+              <label
+                >Escala
+                <select id="gantt-zoom">
+                  <option value="day">Dia</option>
+                  <option value="week" selected>Semana</option>
+                  <option value="month">Mês</option>
+                </select>
+              </label>
+              <button type="button" id="btn-gantt-today" class="btn">
+                Hoje
+              </button>
+              <button type="button" id="btn-new-task" class="btn primary">
+                Nova atividade
+              </button>
+            </div>
+          </div>
+          <div class="task-summary" id="task-summary"></div>
+          <div
+            id="gantt"
+            class="gantt-shell"
+            aria-label="Gráfico de Gantt hierárquico interativo"
+          ></div>
+        </section>
       </section>
 
       <section id="view-expenses" class="view hidden">
@@ -439,25 +467,151 @@
               Nomes
             </button>
           </div>
-          <button type="button" id="btn-toggle-editor" class="btn editor-toggle">
+          <button
+            type="button"
+            id="btn-toggle-editor"
+            class="btn editor-toggle"
+          >
             Editar cena
+          </button>
+          <button type="button" id="btn-toggle-media" class="btn media-toggle">
+            Capturar
           </button>
           <kbd class="model3d-escape-hint">Esc · voltar ao início</kbd>
         </header>
         <div class="house-3d-stage">
           <div id="house-3d-canvas" class="house-3d-canvas"></div>
           <p id="house-3d-status" class="house-3d-status">Carregando...</p>
-          <aside id="scene-editor-panel" class="scene-editor-panel hidden" aria-label="Editor da cena 3D">
+          <aside
+            id="media-export-panel"
+            class="media-export-panel hidden"
+            aria-label="Captura e compartilhamento"
+          >
+            <div class="media-panel-head">
+              <div>
+                <span>Compartilhar modelo</span><strong>Foto ou vídeo</strong>
+              </div>
+              <button type="button" id="btn-close-media" class="btn">
+                Fechar
+              </button>
+            </div>
+            <div class="media-capture-row">
+              <label
+                >Formato da foto
+                <select id="snapshot-format">
+                  <option value="image/png">PNG</option>
+                  <option value="image/jpeg">JPEG</option>
+                </select>
+              </label>
+              <button
+                type="button"
+                id="btn-capture-snapshot"
+                class="btn primary"
+              >
+                Tirar foto
+              </button>
+            </div>
+            <div class="media-video-options">
+              <label
+                >Movimento
+                <select id="video-mode">
+                  <option value="orbit">Órbita automática</option>
+                  <option value="free">Câmera livre</option>
+                </select>
+              </label>
+              <label
+                >Duração
+                <select id="video-duration">
+                  <option value="5">5 segundos</option>
+                  <option value="10" selected>10 segundos</option>
+                  <option value="15">15 segundos</option>
+                </select>
+              </label>
+            </div>
+            <div class="media-record-actions">
+              <button
+                type="button"
+                id="btn-start-recording"
+                class="btn primary"
+              >
+                Gravar vídeo
+              </button>
+              <button
+                type="button"
+                id="btn-stop-recording"
+                class="btn danger"
+                disabled
+              >
+                Parar
+              </button>
+            </div>
+            <div id="media-progress-wrap" class="media-progress-wrap hidden">
+              <div class="media-progress-track">
+                <i id="media-progress"></i>
+              </div>
+              <span id="media-time">0:00</span>
+            </div>
+            <div id="media-result" class="media-result hidden">
+              <img
+                id="media-image-preview"
+                class="media-preview hidden"
+                alt="Prévia da captura"
+              />
+              <video
+                id="media-video-preview"
+                class="media-preview hidden"
+                controls
+                playsinline
+              ></video>
+              <strong id="media-filename"></strong>
+              <div>
+                <button type="button" id="btn-share-media" class="btn primary">
+                  Compartilhar
+                </button>
+                <button type="button" id="btn-download-media" class="btn">
+                  Baixar
+                </button>
+              </div>
+            </div>
+            <p id="media-status" class="media-status">Pronto para capturar.</p>
+          </aside>
+          <aside
+            id="scene-editor-panel"
+            class="scene-editor-panel hidden"
+            aria-label="Editor da cena 3D"
+          >
             <div class="editor-panel-head">
-              <div><span>Editor</span><strong id="editor-selection">Nenhum objeto selecionado</strong></div>
-              <button type="button" id="btn-close-editor" class="btn">Fechar</button>
+              <div>
+                <span>Editor</span
+                ><strong id="editor-selection"
+                  >Nenhum objeto selecionado</strong
+                >
+              </div>
+              <button type="button" id="btn-close-editor" class="btn">
+                Fechar
+              </button>
             </div>
-            <div class="editor-mode-row" role="group" aria-label="Modo de transformação">
-              <button type="button" class="btn active" data-editor-mode="translate">Mover</button>
-              <button type="button" class="btn" data-editor-mode="rotate">Girar</button>
-              <button type="button" class="btn" data-editor-mode="scale">Escalar</button>
+            <div
+              class="editor-mode-row"
+              role="group"
+              aria-label="Modo de transformação"
+            >
+              <button
+                type="button"
+                class="btn active"
+                data-editor-mode="translate"
+              >
+                Mover
+              </button>
+              <button type="button" class="btn" data-editor-mode="rotate">
+                Girar
+              </button>
+              <button type="button" class="btn" data-editor-mode="scale">
+                Escalar
+              </button>
             </div>
-            <label class="editor-snap-label">Encaixe
+            <label class="editor-snap-label"
+              >Encaixe
               <select id="editor-snap">
                 <option value="0">Livre</option>
                 <option value="0.1">10 cm</option>
@@ -466,28 +620,103 @@
                 <option value="1">1 m</option>
               </select>
             </label>
+            <fieldset id="editor-dimensions" class="editor-dimensions" disabled>
+              <legend>Dimensões exatas (m)</legend>
+              <label
+                >Largura<input
+                  id="editor-width"
+                  type="number"
+                  min="0.05"
+                  max="100"
+                  step="0.01"
+              /></label>
+              <label
+                >Altura<input
+                  id="editor-height"
+                  type="number"
+                  min="0.05"
+                  max="100"
+                  step="0.01"
+              /></label>
+              <label
+                >Comprimento<input
+                  id="editor-depth"
+                  type="number"
+                  min="0.05"
+                  max="100"
+                  step="0.01"
+              /></label>
+              <button type="button" id="btn-apply-dimensions" class="btn">
+                Aplicar
+              </button>
+            </fieldset>
             <div class="editor-actions">
-              <button type="button" class="btn" id="btn-duplicate-object">Duplicar</button>
-              <button type="button" class="btn" id="btn-reset-object">Restaurar</button>
-              <button type="button" class="btn danger" id="btn-delete-object">Excluir</button>
+              <button type="button" class="btn" id="btn-duplicate-object">
+                Duplicar
+              </button>
+              <button type="button" class="btn" id="btn-reset-object">
+                Restaurar
+              </button>
+              <button type="button" class="btn danger" id="btn-delete-object">
+                Excluir
+              </button>
             </div>
-            <div class="asset-palette-head"><strong>Adicionar objeto</strong><small>Arraste ou clique e depois escolha o local.</small></div>
+            <div class="asset-palette-head">
+              <strong>Adicionar objeto</strong
+              ><small>Arraste ou clique e depois escolha o local.</small>
+            </div>
             <div id="asset-palette" class="asset-palette">
-              <button type="button" draggable="true" data-asset-type="sofa">Sofá</button>
-              <button type="button" draggable="true" data-asset-type="bed">Cama</button>
-              <button type="button" draggable="true" data-asset-type="table">Mesa</button>
-              <button type="button" draggable="true" data-asset-type="chair">Cadeira</button>
-              <button type="button" draggable="true" data-asset-type="wardrobe">Guarda-roupa</button>
-              <button type="button" draggable="true" data-asset-type="refrigerator">Geladeira</button>
-              <button type="button" draggable="true" data-asset-type="stove">Fogão</button>
-              <button type="button" draggable="true" data-asset-type="sink">Pia</button>
-              <button type="button" draggable="true" data-asset-type="washer">Lavadora</button>
-              <button type="button" draggable="true" data-asset-type="cabinet">Armário</button>
-              <button type="button" draggable="true" data-asset-type="plant">Planta</button>
-              <button type="button" draggable="true" data-asset-type="box">Caixa</button>
+              <button type="button" draggable="true" data-asset-type="sofa">
+                Sofá
+              </button>
+              <button type="button" draggable="true" data-asset-type="bed">
+                Cama
+              </button>
+              <button type="button" draggable="true" data-asset-type="table">
+                Mesa
+              </button>
+              <button type="button" draggable="true" data-asset-type="chair">
+                Cadeira
+              </button>
+              <button type="button" draggable="true" data-asset-type="wardrobe">
+                Guarda-roupa
+              </button>
+              <button
+                type="button"
+                draggable="true"
+                data-asset-type="refrigerator"
+              >
+                Geladeira
+              </button>
+              <button type="button" draggable="true" data-asset-type="stove">
+                Fogão
+              </button>
+              <button type="button" draggable="true" data-asset-type="sink">
+                Pia
+              </button>
+              <button type="button" draggable="true" data-asset-type="washer">
+                Lavadora
+              </button>
+              <button type="button" draggable="true" data-asset-type="cabinet">
+                Armário
+              </button>
+              <button type="button" draggable="true" data-asset-type="plant">
+                Planta
+              </button>
+              <button type="button" draggable="true" data-asset-type="box">
+                Caixa
+              </button>
             </div>
-            <p id="editor-status" class="editor-status">Ative um objeto para começar.</p>
-            <button type="button" id="btn-save-layout" class="btn primary editor-save">Salvar layout</button>
+            <p id="editor-status" class="editor-status">
+              Ative um objeto para começar.
+            </p>
+            <button
+              type="button"
+              id="btn-save-layout"
+              class="btn primary editor-save"
+            >
+              Salvar layout
+            </button>
           </aside>
         </div>
         <footer class="model3d-footer">
@@ -747,7 +976,7 @@
     <dialog id="task-dialog">
       <form id="task-form" method="dialog">
         <div class="dialog-title-row">
-          <h2 id="task-dialog-title">Nova tarefa</h2>
+          <h2 id="task-dialog-title">Nova atividade</h2>
           <span id="task-date-badge" class="date-badge"></span>
         </div>
         <input type="hidden" id="task-id" />
@@ -757,8 +986,19 @@
         </label>
         <div class="form-grid">
           <label
+            >Nível
+            <select id="task-activity-type">
+              <option value="task">Atividade detalhada</option>
+              <option value="macro">Macroatividade</option>
+            </select></label
+          ><label id="task-parent-label"
+            >Macroatividade
+            <select id="task-parent"></select
+          ></label>
+          <label
             >Prioridade
             <input
+              class="task-rollup-field"
               id="task-priority"
               type="number"
               min="1"
@@ -767,11 +1007,23 @@
           ><label
             >Sequência
             <input id="task-sequence" type="number" min="1" required /></label
-          ><label>Início <input id="task-start" type="date" required /></label
-          ><label>Fim <input id="task-end" type="date" required /></label
+          ><label
+            >Início
+            <input
+              class="task-rollup-field"
+              id="task-start"
+              type="date"
+              required /></label
+          ><label
+            >Fim
+            <input
+              class="task-rollup-field"
+              id="task-end"
+              type="date"
+              required /></label
           ><label
             >Status
-            <select id="task-status">
+            <select class="task-rollup-field" id="task-status">
               <option value="pending">Pendente</option>
               <option value="in_progress">Em andamento</option>
               <option value="blocked">Bloqueada</option>
@@ -784,10 +1036,23 @@
             </select></label
           >
         </div>
-        <label
-          >Ícone
-          <select id="task-icon"></select
-        ></label>
+        <section class="icon-editor task-icon-editor">
+          <div class="icon-editor-head">
+            <span
+              ><strong>Ícone da atividade</strong
+              ><small
+                >Escolha visualmente ou mantenha a sugestão automática.</small
+              ></span
+            >
+            <button type="button" id="btn-task-icon-auto" class="btn">
+              Escolher automaticamente
+            </button>
+          </div>
+          <input type="hidden" id="task-icon" />
+          <input type="hidden" id="task-icon-mode" value="auto" />
+          <div id="task-icon-preview" class="icon-preview"></div>
+          <div id="task-icon-picker" class="icon-picker"></div>
+        </section>
         <p id="task-form-error" class="error hidden"></p>
         <div class="dialog-actions">
           <button type="button" id="btn-delete-task" class="btn danger hidden">
@@ -795,12 +1060,12 @@
           ><span class="grow"></span
           ><button type="button" id="btn-cancel-task" class="btn">
             Cancelar</button
-          ><button type="submit" class="btn primary">Salvar tarefa</button>
+          ><button type="submit" class="btn primary">Salvar atividade</button>
         </div>
       </form>
     </dialog>
 
     <datalist id="category-suggestions"></datalist>
-    <script src="/app.js?v=20260916-1"></script>
+    <script src="/app.js?v=20260916-3"></script>
   </body>
 </html>

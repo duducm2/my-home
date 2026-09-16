@@ -20,6 +20,13 @@ from expense_git import GitError, push_expenses  # noqa: E402
 from expense_store import ExpenseStore  # noqa: E402
 from house_store import HouseStore  # noqa: E402
 from import_pipeline import build_price_discovery_prompt, commit_rows, preview_pack  # noqa: E402
+from media_export import (  # noqa: E402
+    FFmpegUnavailable,
+    MAX_VIDEO_BYTES,
+    MediaExportError,
+    capabilities as media_capabilities,
+    convert_webm_to_mp4,
+)
 from note_store import NoteStore  # noqa: E402
 from provider_store import ProviderStore  # noqa: E402
 from task_store import TaskStore  # noqa: E402
@@ -109,6 +116,16 @@ class ExpenseHandler(BaseHTTPRequestHandler):
         self.end_headers()
         self.wfile.write(data)
 
+    def _download(self, data: bytes, content_type: str, filename: str) -> None:
+        self.send_response(200)
+        self._cors()
+        self.send_header("Content-Type", content_type)
+        self.send_header("Content-Length", str(len(data)))
+        self.send_header("Content-Disposition", f'attachment; filename="{filename}"')
+        self.send_header("Cache-Control", "no-store")
+        self.end_headers()
+        self.wfile.write(data)
+
     def _read_json(self) -> dict[str, Any]:
         length = int(self.headers.get("Content-Length", "0") or "0")
         raw = self.rfile.read(length) if length else b"{}"
@@ -187,6 +204,9 @@ class ExpenseHandler(BaseHTTPRequestHandler):
             payload = json.loads((self.data_dir / "cashflow-projection.json").read_text(encoding="utf-8-sig"))
             self._json(200, payload)
             return
+        if path == "/api/media/capabilities":
+            self._json(200, media_capabilities())
+            return
         if path == "/api/house":
             self._json(200, get_house(self.data_dir).load())
             return
@@ -242,6 +262,17 @@ class ExpenseHandler(BaseHTTPRequestHandler):
     def do_POST(self) -> None:
         path = unquote(urlparse(self.path).path)
         try:
+            if path == "/api/media/convert-video":
+                length = int(self.headers.get("Content-Length", "0") or "0")
+                if length <= 0 or length > MAX_VIDEO_BYTES:
+                    raise ValueError("video must contain data and be at most 80 MB")
+                data = self.rfile.read(length)
+                converted = convert_webm_to_mp4(
+                    data,
+                    self.headers.get("Content-Type", "video/webm"),
+                )
+                self._download(converted, "video/mp4", "my-home-modelo-3d.mp4")
+                return
             if path.startswith("/api/contracts/") and path.endswith("/documents"):
                 parts = [part for part in path.split("/") if part]
                 if len(parts) != 4:
@@ -302,6 +333,10 @@ class ExpenseHandler(BaseHTTPRequestHandler):
                 self._json(404, {"ok": False, "error": "not found"})
         except (json.JSONDecodeError, ValueError) as exc:
             self._json(400, {"ok": False, "error": str(exc)})
+        except FFmpegUnavailable as exc:
+            self._json(503, {"ok": False, "error": str(exc), "fallback": "video/webm"})
+        except MediaExportError as exc:
+            self._json(500, {"ok": False, "error": str(exc), "fallback": "video/webm"})
         except GitError as exc:
             self._json(500, {"ok": False, "error": str(exc)})
         except Exception as exc:

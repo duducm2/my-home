@@ -23,7 +23,12 @@ class TaskStoreTests(unittest.TestCase):
         manifest = {
             "defaults": {"expense": "home-expense"},
             "icons": {
-                "home-expense": {"label": "Despesa", "filename": "home-expense.png"}
+                "home-expense": {"label": "Despesa", "filename": "home-expense.png"},
+                "paint": {"label": "Tinta", "filename": "paint.png"},
+                "electrician-service": {
+                    "label": "Eletricista",
+                    "filename": "electrician-service.png",
+                },
             },
         }
         (self.data_dir / "icon-manifest.json").write_text(
@@ -40,17 +45,25 @@ class TaskStoreTests(unittest.TestCase):
                     "priority": "1",
                     "category": "Material",
                     "description": "Cimento",
-                    "icon_key": "home-expense",
+                    "icon_key": "paint",
                     "value": "100.00",
                 }
             )
         self.store = TaskStore(self.data_dir)
+        macro = self.store.upsert(
+            self.payload(
+                title="Obra",
+                activity_type="macro",
+                parent_id="",
+                expense_id="",
+            )
+        )
+        self.macro_id = macro["task_id"]
 
     def tearDown(self) -> None:
         self.temporary.cleanup()
 
-    @staticmethod
-    def payload(**overrides):
+    def payload(self, **overrides):
         item = {
             "title": "Preparar obra",
             "description": "Teste",
@@ -62,6 +75,8 @@ class TaskStoreTests(unittest.TestCase):
             "expense_id": "EXP_0001",
             "icon_key": "home-expense",
             "date_status": "estimated",
+            "activity_type": "task",
+            "parent_id": getattr(self, "macro_id", ""),
         }
         item.update(overrides)
         return item
@@ -73,7 +88,7 @@ class TaskStoreTests(unittest.TestCase):
         first = self.store.upsert(
             self.payload(title="Prioridade alta", priority=1, sequence=9)
         )
-        tasks = first["tasks"]
+        tasks = [task for task in first["tasks"] if task["activity_type"] == "task"]
         self.assertEqual(
             ["Prioridade alta", "Prioridade baixa"], [task["title"] for task in tasks]
         )
@@ -89,8 +104,15 @@ class TaskStoreTests(unittest.TestCase):
         changed = next(task for task in updated["tasks"] if task["id"] == task_id)
         self.assertEqual("2026-10-01", changed["start_date"])
         deleted = self.store.delete(task_id)
-        self.assertEqual(1, deleted["count"])
-        self.assertEqual([1], [task["sequence"] for task in deleted["tasks"]])
+        self.assertEqual(2, deleted["count"])
+        self.assertEqual(
+            [1],
+            [
+                task["sequence"]
+                for task in deleted["tasks"]
+                if task["activity_type"] == "task"
+            ],
+        )
 
     def test_rejects_invalid_fields(self) -> None:
         invalid = [
@@ -101,8 +123,10 @@ class TaskStoreTests(unittest.TestCase):
             self.payload(start_date="2026-09-20", end_date="2026-09-18"),
             self.payload(status="unknown"),
             self.payload(expense_id="EXP_9999"),
-            self.payload(icon_key="missing"),
+            self.payload(icon_key="missing", icon_mode="manual"),
             self.payload(date_status="maybe"),
+            self.payload(activity_type="unknown"),
+            self.payload(parent_id="TASK_9999"),
         ]
         for payload in invalid:
             with self.subTest(payload=payload), self.assertRaises(ValueError):
@@ -113,8 +137,98 @@ class TaskStoreTests(unittest.TestCase):
         document = json.loads(
             (self.data_dir / "tasks.json").read_text(encoding="utf-8")
         )
-        self.assertEqual(1, len(document["tasks"]))
+        self.assertEqual(2, len(document["tasks"]))
+        self.assertEqual(2, document["version"])
         self.assertFalse((self.data_dir / "tasks.json.tmp").exists())
+
+    def test_automatic_and_manual_icon_assignment(self) -> None:
+        linked = self.store.upsert(
+            self.payload(title="Serviço associado", icon_mode="auto")
+        )
+        linked_task = next(
+            task for task in linked["tasks"] if task["id"] == linked["task_id"]
+        )
+        self.assertEqual("paint", linked_task["icon_key"])
+        inferred = self.store.upsert(
+            self.payload(
+                title="Revisão elétrica completa",
+                expense_id="",
+                icon_mode="auto",
+            )
+        )
+        inferred_task = next(
+            task for task in inferred["tasks"] if task["id"] == inferred["task_id"]
+        )
+        self.assertEqual("electrician-service", inferred_task["icon_key"])
+        manual = self.store.upsert(
+            self.payload(
+                title="Pintura",
+                expense_id="",
+                icon_key="home-expense",
+                icon_mode="manual",
+            )
+        )
+        manual_task = next(
+            task for task in manual["tasks"] if task["id"] == manual["task_id"]
+        )
+        self.assertEqual("home-expense", manual_task["icon_key"])
+        self.assertEqual("manual", manual_task["icon_mode"])
+
+    def test_macro_rollup_and_delete_safety(self) -> None:
+        first = self.store.upsert(
+            self.payload(
+                title="Primeira",
+                priority=2,
+                start_date="2026-10-05",
+                end_date="2026-10-07",
+                status="completed",
+            )
+        )
+        self.store.upsert(
+            self.payload(
+                title="Segunda",
+                priority=1,
+                start_date="2026-10-01",
+                end_date="2026-10-10",
+                status="blocked",
+            )
+        )
+        macro = next(
+            task for task in self.store.list_tasks() if task["id"] == self.macro_id
+        )
+        self.assertEqual("2026-10-01", macro["start_date"])
+        self.assertEqual("2026-10-10", macro["end_date"])
+        self.assertEqual(1, macro["priority"])
+        self.assertEqual("blocked", macro["status"])
+        self.assertEqual(50, macro["progress"])
+        with self.assertRaises(ValueError):
+            self.store.delete(self.macro_id)
+        self.assertTrue(first["ok"])
+
+    def test_migrates_flat_v1_tasks_idempotently(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            data_dir = Path(directory)
+            (data_dir / "tasks.json").write_text(
+                json.dumps(
+                    {
+                        "version": 1,
+                        "tasks": [
+                            {
+                                **self.payload(parent_id=""),
+                                "id": "TASK_0001",
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            migrated = TaskStore(data_dir)
+            tasks = migrated.list_tasks()
+            self.assertEqual(2, len(tasks))
+            self.assertEqual("macro", tasks[0]["activity_type"])
+            self.assertEqual(tasks[0]["id"], tasks[1]["parent_id"])
+            TaskStore(data_dir)
+            self.assertEqual(2, len(migrated.list_tasks()))
 
 
 class NoteStoreTests(unittest.TestCase):
@@ -156,13 +270,24 @@ class MigrationIntegrityTests(unittest.TestCase):
         )
 
     def test_repository_data_uses_tasks_without_phase_fields(self) -> None:
-        tasks = json.loads((ROOT / "data" / "tasks.json").read_text(encoding="utf-8"))[
-            "tasks"
-        ]
+        document = json.loads(
+            (ROOT / "data" / "tasks.json").read_text(encoding="utf-8")
+        )
+        tasks = document["tasks"]
+        self.assertEqual(2, document["version"])
         self.assertGreater(len(tasks), 0)
         self.assertTrue(all(task["date_status"] == "estimated" for task in tasks))
-        self.assertEqual(
-            tasks, sorted(tasks, key=lambda item: (item["priority"], item["sequence"]))
+        macros = {task["id"] for task in tasks if task["activity_type"] == "macro"}
+        self.assertEqual(5, len(macros))
+        self.assertTrue(
+            all(
+                (
+                    not task["parent_id"]
+                    if task["activity_type"] == "macro"
+                    else task["parent_id"] in macros
+                )
+                for task in tasks
+            )
         )
         with (ROOT / "data" / "expenses.csv").open(
             "r", encoding="utf-8-sig", newline=""
