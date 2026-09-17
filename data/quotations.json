@@ -8,7 +8,7 @@
       "vendor": "Estimativa migrada",
       "unit_price": 62000.0,
       "quantity": 1,
-      "unit": "unidade",
+      "unit": "pagamento",
       "shipping_cost": 0.0,
       "total_price": 62000.0,
       "product_url": "",
@@ -18,7 +18,9 @@
         "currency": "BRL",
         "source_type": "manual",
         "source_name": "legacy-expense-migration",
-        "ambiguities": ""
+        "ambiguities": "",
+        "measurement_unit_source": "semantic review 2026-09-16",
+        "measurement_unit_inferred": true
       }
     },
     {
@@ -28,7 +30,7 @@
       "vendor": "Estimativa migrada",
       "unit_price": 6200.0,
       "quantity": 1,
-      "unit": "unidade",
+      "unit": "imposto",
       "shipping_cost": 0.0,
       "total_price": 6200.0,
       "product_url": "",
@@ -38,7 +40,9 @@
         "currency": "BRL",
         "source_type": "manual",
         "source_name": "legacy-expense-migration",
-        "ambiguities": ""
+        "ambiguities": "",
+        "measurement_unit_source": "semantic review 2026-09-16",
+        "measurement_unit_inferred": true
       }
     },
     {
@@ -48,7 +52,7 @@
       "vendor": "Estimativa migrada",
       "unit_price": 1000.0,
       "quantity": 1,
-      "unit": "unidade",
+      "unit": "serviço",
       "shipping_cost": 0.0,
       "total_price": 1000.0,
       "product_url": "",
@@ -58,7 +62,9 @@
         "currency": "BRL",
         "source_type": "manual",
         "source_name": "legacy-expense-migration",
-        "ambiguities": ""
+        "ambiguities": "",
+        "measurement_unit_source": "semantic review 2026-09-16",
+        "measurement_unit_inferred": true
       }
     },
     {
@@ -68,7 +74,7 @@
       "vendor": "Estimativa migrada",
       "unit_price": 3300.0,
       "quantity": 1,
-      "unit": "unidade",
+      "unit": "registro",
       "shipping_cost": 0.0,
       "total_price": 3300.0,
       "product_url": "",
@@ -78,7 +84,9 @@
         "currency": "BRL",
         "source_type": "manual",
         "source_name": "legacy-expense-migration",
-        "ambiguities": ""
+        "ambiguities": "",
+        "measurement_unit_source": "semantic review 2026-09-16",
+        "measurement_unit_inferred": true
       }
     },
     {
@@ -88,7 +96,7 @@
       "vendor": "Estimativa migrada",
       "unit_price": 700.0,
       "quantity": 1,
-      "unit": "unidade",
+      "unit": "serviço",
       "shipping_cost": 0.0,
       "total_price": 700.0,
       "product_url": "",
@@ -98,7 +106,9 @@
         "currency": "BRL",
         "source_type": "manual",
         "source_name": "legacy-expense-migration",
-        "ambiguities": ""
+        "ambiguities": "",
+        "measurement_unit_source": "semantic review 2026-09-16",
+        "measurement_unit_inferred": true
       }
     },
     {
@@ -108,7 +118,7 @@
       "vendor": "Estimativa migrada",
       "unit_price": 300.0,
       "quantity": 1,
-      "unit": "unidade",
+      "unit": "pacote de ligações",
       "shipping_cost": 0.0,
       "total_price": 300.0,
       "product_url": "",
@@ -118,7 +128,9 @@
         "currency": "BRL",
         "source_type": "manual",
         "source_name": "legacy-expense-migration",
-        "ambiguities": ""
+        "ambiguities": "",
+        "measurement_unit_source": "semantic review 2026-09-16",
+        "measurement_unit_inferred": true
       }
     },
     {
@@ -128,7 +140,7 @@
       "vendor": "Estimativa migrada",
       "unit_price": 4500.0,
       "quantity": 1,
-      "unit": "unidade",
+      "unit": "reserva",
       "shipping_cost": 0.0,
       "total_price": 4500.0,
       "product_url": "",
@@ -138,7 +150,9 @@
         "currency": "BRL",
         "source_type": "manual",
         "source_name": "legacy-expense-migration",
-        "ambiguities": ""
+        "ambiguities": "",
+        "measurement_unit_source": "semantic review 2026-09-16",
+        "measurement_unit_inferred": true
       }
     },
     {
@@ -148,7 +162,7 @@
       "vendor": "Estimativa migrada",
       "unit_price": 7000.0,
       "quantity": 1,
-      "unit": "unidade",
+      "unit": "tarifa",
       "shipping_cost": 0.0,
       "total_price": 7000.0,
       "product_url": "",
@@ -158,7 +172,9 @@
         "currency": "BRL",
         "source_type": "manual",
         "source_name": "legacy-expense-migration",
-        "ambiguities": ""
+        "ambiguities": "",
+        "measurement_unit_source": "semantic review 2026-09-16",
+        "measurement_unit_inferred": true
       }
     },
     {
@@ -168,7 +184,7 @@
       "vendor": "Estimativa migrada",
       "unit_price": 2400.0,
       "quantity": 1,
-      "unit": "unidade",
+      "unit": "multa",
       "shipping_cost": 0.0,
       "total_price": 2400.0,
       "product_url": "",
@@ -178,7 +194,9 @@
         "currency": "BRL",
         "source_type": "manual",
         "source_name": "legacy-expense-migration",
-        "ambiguities": ""
+        "ambiguities": "",
+        "measurement_unit_source": "semantic review 2026-09-16",
+        "measurement_unit_inferred": true
       }
     },
     {
@@ -188,7 +206,7 @@
       "vendor": "Estimativa migrada",
       "unit_price": 1000.0,
       "quantity": 1,
-      "unit": "unidade",
+      "unit": "serviço",
       "shipping_cost": 0.0,
       "total_price": 1000.0,
       "product_url": "",
@@ -198,7 +216,9 @@
         "currency": "BRL",
         "source_type": "manual",
         "source_name": "legacy-expense-migration",
-        "ambiguities": ""
+        "ambiguities": "",
+        "measurement_unit_source": "semantic review 2026-09-16",
+        "measurement_unit_inferred": true
       }
     },
     {
@@ -208,7 +228,7 @@
       "vendor": "Estimativa migrada",
       "unit_price": 2200.0,
       "quantity": 1,
-      "unit": "unidade",
+      "unit": "parcela",
       "shipping_cost": 0.0,
       "total_price": 2200.0,
       "product_url": "",
@@ -218,7 +238,9 @@
         "currency": "BRL",
         "source_type": "manual",
         "source_name": "legacy-expense-migration",
-        "ambiguities": ""
+        "ambiguities": "",
+        "measurement_unit_source": "semantic review 2026-09-16",
+        "measurement_unit_inferred": true
       }
     },
     {
@@ -228,7 +250,7 @@
       "vendor": "Estimativa migrada",
       "unit_price": 1500.0,
       "quantity": 1,
-      "unit": "unidade",
+      "unit": "mês",
       "shipping_cost": 0.0,
       "total_price": 1500.0,
       "product_url": "",
@@ -238,7 +260,9 @@
         "currency": "BRL",
         "source_type": "manual",
         "source_name": "legacy-expense-migration",
-        "ambiguities": ""
+        "ambiguities": "",
+        "measurement_unit_source": "semantic review 2026-09-16",
+        "measurement_unit_inferred": true
       }
     },
     {
@@ -248,7 +272,7 @@
       "vendor": "Estimativa migrada",
       "unit_price": 15000.0,
       "quantity": 1,
-      "unit": "unidade",
+      "unit": "contrato",
       "shipping_cost": 0.0,
       "total_price": 15000.0,
       "product_url": "",
@@ -258,7 +282,9 @@
         "currency": "BRL",
         "source_type": "manual",
         "source_name": "legacy-expense-migration",
-        "ambiguities": ""
+        "ambiguities": "",
+        "measurement_unit_source": "semantic review 2026-09-16",
+        "measurement_unit_inferred": true
       }
     },
     {
@@ -268,14 +294,16 @@
       "vendor": "Leroy Merlin",
       "unit_price": 45.9,
       "quantity": 1.0,
-      "unit": "un",
+      "unit": "balde",
       "shipping_cost": 274.1,
       "total_price": 320.0,
       "product_url": "https://example.com/bianco",
       "checked_at": "2026-09-15 22:11:43",
       "notes": "promo",
       "metadata": {
-        "ambiguities": "Legacy total exceeded unit arithmetic; difference preserved as freight/other cost."
+        "ambiguities": "Legacy total exceeded unit arithmetic; difference preserved as freight/other cost.",
+        "measurement_unit_source": "semantic review 2026-09-16",
+        "measurement_unit_inferred": true
       }
     },
     {
@@ -285,7 +313,7 @@
       "vendor": "Estimativa migrada",
       "unit_price": 700.0,
       "quantity": 1.0,
-      "unit": "unidade",
+      "unit": "metro cúbico (m³)",
       "shipping_cost": 0.0,
       "total_price": 700.0,
       "product_url": "",
@@ -295,7 +323,9 @@
         "currency": "BRL",
         "source_type": "manual",
         "source_name": "legacy-expense-migration",
-        "ambiguities": ""
+        "ambiguities": "",
+        "measurement_unit_source": "semantic review 2026-09-16",
+        "measurement_unit_inferred": true
       }
     },
     {
@@ -305,7 +335,7 @@
       "vendor": "Estimativa migrada",
       "unit_price": 650.0,
       "quantity": 1.0,
-      "unit": "unidade",
+      "unit": "saco (50 kg)",
       "shipping_cost": 0.0,
       "total_price": 650.0,
       "product_url": "",
@@ -315,7 +345,9 @@
         "currency": "BRL",
         "source_type": "manual",
         "source_name": "legacy-expense-migration",
-        "ambiguities": ""
+        "ambiguities": "",
+        "measurement_unit_source": "semantic review 2026-09-16",
+        "measurement_unit_inferred": true
       }
     },
     {
@@ -335,7 +367,9 @@
         "currency": "BRL",
         "source_type": "manual",
         "source_name": "legacy-expense-migration",
-        "ambiguities": ""
+        "ambiguities": "",
+        "measurement_unit_source": "semantic review 2026-09-16",
+        "measurement_unit_inferred": true
       }
     },
     {
@@ -345,7 +379,7 @@
       "vendor": "Estimativa migrada",
       "unit_price": 1300.0,
       "quantity": 1.0,
-      "unit": "unidade",
+      "unit": "conjunto",
       "shipping_cost": 0.0,
       "total_price": 1300.0,
       "product_url": "",
@@ -355,7 +389,9 @@
         "currency": "BRL",
         "source_type": "manual",
         "source_name": "legacy-expense-migration",
-        "ambiguities": ""
+        "ambiguities": "",
+        "measurement_unit_source": "semantic review 2026-09-16",
+        "measurement_unit_inferred": true
       }
     },
     {
@@ -375,7 +411,9 @@
         "currency": "BRL",
         "source_type": "manual",
         "source_name": "legacy-expense-migration",
-        "ambiguities": ""
+        "ambiguities": "",
+        "measurement_unit_source": "semantic review 2026-09-16",
+        "measurement_unit_inferred": true
       }
     },
     {
@@ -395,7 +433,9 @@
         "currency": "BRL",
         "source_type": "manual",
         "source_name": "legacy-expense-migration",
-        "ambiguities": ""
+        "ambiguities": "",
+        "measurement_unit_source": "semantic review 2026-09-16",
+        "measurement_unit_inferred": true
       }
     },
     {
@@ -405,7 +445,7 @@
       "vendor": "Estimativa migrada",
       "unit_price": 50.0,
       "quantity": 1.0,
-      "unit": "unidade",
+      "unit": "quilograma (kg)",
       "shipping_cost": 0.0,
       "total_price": 50.0,
       "product_url": "",
@@ -415,7 +455,9 @@
         "currency": "BRL",
         "source_type": "manual",
         "source_name": "legacy-expense-migration",
-        "ambiguities": ""
+        "ambiguities": "",
+        "measurement_unit_source": "semantic review 2026-09-16",
+        "measurement_unit_inferred": true
       }
     },
     {
@@ -425,7 +467,7 @@
       "vendor": "Estimativa migrada",
       "unit_price": 350.0,
       "quantity": 1.0,
-      "unit": "unidade",
+      "unit": "caçamba",
       "shipping_cost": 0.0,
       "total_price": 350.0,
       "product_url": "",
@@ -435,7 +477,9 @@
         "currency": "BRL",
         "source_type": "manual",
         "source_name": "legacy-expense-migration",
-        "ambiguities": ""
+        "ambiguities": "",
+        "measurement_unit_source": "semantic review 2026-09-16",
+        "measurement_unit_inferred": true
       }
     },
     {
@@ -445,7 +489,7 @@
       "vendor": "Estimativa migrada",
       "unit_price": 5750.0,
       "quantity": 1.0,
-      "unit": "unidade",
+      "unit": "metro quadrado (m²)",
       "shipping_cost": 0.0,
       "total_price": 5750.0,
       "product_url": "",
@@ -455,7 +499,9 @@
         "currency": "BRL",
         "source_type": "manual",
         "source_name": "legacy-expense-migration",
-        "ambiguities": ""
+        "ambiguities": "",
+        "measurement_unit_source": "semantic review 2026-09-16",
+        "measurement_unit_inferred": true
       }
     },
     {
@@ -465,7 +511,7 @@
       "vendor": "Estimativa migrada",
       "unit_price": 400.0,
       "quantity": 1.0,
-      "unit": "unidade",
+      "unit": "quilograma (kg)",
       "shipping_cost": 0.0,
       "total_price": 400.0,
       "product_url": "",
@@ -475,7 +521,9 @@
         "currency": "BRL",
         "source_type": "manual",
         "source_name": "legacy-expense-migration",
-        "ambiguities": ""
+        "ambiguities": "",
+        "measurement_unit_source": "semantic review 2026-09-16",
+        "measurement_unit_inferred": true
       }
     },
     {
@@ -485,7 +533,7 @@
       "vendor": "Estimativa migrada",
       "unit_price": 1800.0,
       "quantity": 1.0,
-      "unit": "unidade",
+      "unit": "saco (20 kg)",
       "shipping_cost": 0.0,
       "total_price": 1800.0,
       "product_url": "",
@@ -495,7 +543,9 @@
         "currency": "BRL",
         "source_type": "manual",
         "source_name": "legacy-expense-migration",
-        "ambiguities": ""
+        "ambiguities": "",
+        "measurement_unit_source": "semantic review 2026-09-16",
+        "measurement_unit_inferred": true
       }
     },
     {
@@ -515,7 +565,9 @@
         "currency": "BRL",
         "source_type": "manual",
         "source_name": "legacy-expense-migration",
-        "ambiguities": ""
+        "ambiguities": "",
+        "measurement_unit_source": "semantic review 2026-09-16",
+        "measurement_unit_inferred": true
       }
     },
     {
@@ -535,7 +587,9 @@
         "currency": "BRL",
         "source_type": "manual",
         "source_name": "legacy-expense-migration",
-        "ambiguities": ""
+        "ambiguities": "",
+        "measurement_unit_source": "semantic review 2026-09-16",
+        "measurement_unit_inferred": true
       }
     },
     {
@@ -555,7 +609,9 @@
         "currency": "BRL",
         "source_type": "manual",
         "source_name": "legacy-expense-migration",
-        "ambiguities": ""
+        "ambiguities": "",
+        "measurement_unit_source": "semantic review 2026-09-16",
+        "measurement_unit_inferred": true
       }
     },
     {
@@ -575,7 +631,9 @@
         "currency": "BRL",
         "source_type": "manual",
         "source_name": "legacy-expense-migration",
-        "ambiguities": ""
+        "ambiguities": "",
+        "measurement_unit_source": "semantic review 2026-09-16",
+        "measurement_unit_inferred": true
       }
     },
     {
@@ -595,7 +653,9 @@
         "currency": "BRL",
         "source_type": "manual",
         "source_name": "legacy-expense-migration",
-        "ambiguities": ""
+        "ambiguities": "",
+        "measurement_unit_source": "semantic review 2026-09-16",
+        "measurement_unit_inferred": true
       }
     },
     {
@@ -605,7 +665,7 @@
       "vendor": "Estimativa migrada",
       "unit_price": 3500.0,
       "quantity": 1,
-      "unit": "unidade",
+      "unit": "serviço",
       "shipping_cost": 0.0,
       "total_price": 3500.0,
       "product_url": "",
@@ -615,7 +675,9 @@
         "currency": "BRL",
         "source_type": "manual",
         "source_name": "legacy-expense-migration",
-        "ambiguities": ""
+        "ambiguities": "",
+        "measurement_unit_source": "semantic review 2026-09-16",
+        "measurement_unit_inferred": true
       }
     },
     {
@@ -635,7 +697,9 @@
         "currency": "BRL",
         "source_type": "manual",
         "source_name": "legacy-expense-migration",
-        "ambiguities": ""
+        "ambiguities": "",
+        "measurement_unit_source": "semantic review 2026-09-16",
+        "measurement_unit_inferred": true
       }
     },
     {
@@ -645,7 +709,7 @@
       "vendor": "Estimativa migrada",
       "unit_price": 2800.0,
       "quantity": 1.0,
-      "unit": "unidade",
+      "unit": "metro linear (m)",
       "shipping_cost": 0.0,
       "total_price": 2800.0,
       "product_url": "",
@@ -655,7 +719,9 @@
         "currency": "BRL",
         "source_type": "manual",
         "source_name": "legacy-expense-migration",
-        "ambiguities": ""
+        "ambiguities": "",
+        "measurement_unit_source": "semantic review 2026-09-16",
+        "measurement_unit_inferred": true
       }
     },
     {
@@ -675,7 +741,9 @@
         "currency": "BRL",
         "source_type": "manual",
         "source_name": "legacy-expense-migration",
-        "ambiguities": ""
+        "ambiguities": "",
+        "measurement_unit_source": "semantic review 2026-09-16",
+        "measurement_unit_inferred": true
       }
     },
     {
@@ -695,7 +763,9 @@
         "currency": "BRL",
         "source_type": "manual",
         "source_name": "legacy-expense-migration",
-        "ambiguities": ""
+        "ambiguities": "",
+        "measurement_unit_source": "semantic review 2026-09-16",
+        "measurement_unit_inferred": true
       }
     },
     {
@@ -715,7 +785,9 @@
         "currency": "BRL",
         "source_type": "manual",
         "source_name": "legacy-expense-migration",
-        "ambiguities": ""
+        "ambiguities": "",
+        "measurement_unit_source": "semantic review 2026-09-16",
+        "measurement_unit_inferred": true
       }
     },
     {
@@ -735,7 +807,9 @@
         "currency": "BRL",
         "source_type": "manual",
         "source_name": "legacy-expense-migration",
-        "ambiguities": ""
+        "ambiguities": "",
+        "measurement_unit_source": "semantic review 2026-09-16",
+        "measurement_unit_inferred": true
       }
     },
     {
@@ -745,7 +819,7 @@
       "vendor": "Estimativa migrada",
       "unit_price": 3500.0,
       "quantity": 1.0,
-      "unit": "unidade",
+      "unit": "conjunto",
       "shipping_cost": 0.0,
       "total_price": 3500.0,
       "product_url": "",
@@ -755,7 +829,9 @@
         "currency": "BRL",
         "source_type": "manual",
         "source_name": "legacy-expense-migration",
-        "ambiguities": ""
+        "ambiguities": "",
+        "measurement_unit_source": "semantic review 2026-09-16",
+        "measurement_unit_inferred": true
       }
     },
     {
@@ -765,7 +841,7 @@
       "vendor": "Estimativa migrada",
       "unit_price": 4500.0,
       "quantity": 1.0,
-      "unit": "unidade",
+      "unit": "metro quadrado (m²)",
       "shipping_cost": 0.0,
       "total_price": 4500.0,
       "product_url": "",
@@ -775,7 +851,9 @@
         "currency": "BRL",
         "source_type": "manual",
         "source_name": "legacy-expense-migration",
-        "ambiguities": ""
+        "ambiguities": "",
+        "measurement_unit_source": "semantic review 2026-09-16",
+        "measurement_unit_inferred": true
       }
     },
     {
@@ -785,7 +863,7 @@
       "vendor": "Estimativa migrada",
       "unit_price": 1200.0,
       "quantity": 1.0,
-      "unit": "unidade",
+      "unit": "metro linear (m)",
       "shipping_cost": 0.0,
       "total_price": 1200.0,
       "product_url": "",
@@ -795,7 +873,9 @@
         "currency": "BRL",
         "source_type": "manual",
         "source_name": "legacy-expense-migration",
-        "ambiguities": ""
+        "ambiguities": "",
+        "measurement_unit_source": "semantic review 2026-09-16",
+        "measurement_unit_inferred": true
       }
     },
     {
@@ -815,7 +895,9 @@
         "currency": "BRL",
         "source_type": "manual",
         "source_name": "legacy-expense-migration",
-        "ambiguities": ""
+        "ambiguities": "",
+        "measurement_unit_source": "semantic review 2026-09-16",
+        "measurement_unit_inferred": true
       }
     },
     {
@@ -825,7 +907,7 @@
       "vendor": "Estimativa migrada",
       "unit_price": 2000.0,
       "quantity": 1.0,
-      "unit": "unidade",
+      "unit": "conjunto",
       "shipping_cost": 0.0,
       "total_price": 2000.0,
       "product_url": "",
@@ -835,7 +917,9 @@
         "currency": "BRL",
         "source_type": "manual",
         "source_name": "legacy-expense-migration",
-        "ambiguities": ""
+        "ambiguities": "",
+        "measurement_unit_source": "semantic review 2026-09-16",
+        "measurement_unit_inferred": true
       }
     },
     {
@@ -845,7 +929,7 @@
       "vendor": "Estimativa migrada",
       "unit_price": 6000.0,
       "quantity": 1.0,
-      "unit": "unidade",
+      "unit": "lata (18 L)",
       "shipping_cost": 0.0,
       "total_price": 6000.0,
       "product_url": "",
@@ -855,7 +939,9 @@
         "currency": "BRL",
         "source_type": "manual",
         "source_name": "legacy-expense-migration",
-        "ambiguities": ""
+        "ambiguities": "",
+        "measurement_unit_source": "semantic review 2026-09-16",
+        "measurement_unit_inferred": true
       }
     },
     {
@@ -865,7 +951,7 @@
       "vendor": "Estimativa migrada",
       "unit_price": 200.0,
       "quantity": 1.0,
-      "unit": "unidade",
+      "unit": "pacote",
       "shipping_cost": 0.0,
       "total_price": 200.0,
       "product_url": "",
@@ -875,7 +961,9 @@
         "currency": "BRL",
         "source_type": "manual",
         "source_name": "legacy-expense-migration",
-        "ambiguities": ""
+        "ambiguities": "",
+        "measurement_unit_source": "semantic review 2026-09-16",
+        "measurement_unit_inferred": true
       }
     },
     {
@@ -885,7 +973,7 @@
       "vendor": "Estimativa migrada",
       "unit_price": 300.0,
       "quantity": 1.0,
-      "unit": "unidade",
+      "unit": "kit",
       "shipping_cost": 0.0,
       "total_price": 300.0,
       "product_url": "",
@@ -895,7 +983,9 @@
         "currency": "BRL",
         "source_type": "manual",
         "source_name": "legacy-expense-migration",
-        "ambiguities": ""
+        "ambiguities": "",
+        "measurement_unit_source": "semantic review 2026-09-16",
+        "measurement_unit_inferred": true
       }
     }
   ],
