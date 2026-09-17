@@ -3759,33 +3759,64 @@ body.model3d-active {
 }
 
 .expense-row-bento {
-  grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
-  gap: 6px;
-  margin: 6px 0 0;
-  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  gap: 4px;
+  margin: 0;
+  width: auto;
+  grid-template-columns: none;
 }
 
 .expense-price-cell {
-  display: grid;
-  gap: 4px;
-  justify-items: end;
-  min-width: 16rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 4px 8px;
+  min-width: 12rem;
   white-space: normal !important;
 }
 
 .expense-price-cell .unit-price-cell {
-  justify-items: end;
+  justify-items: start;
+  gap: 0;
 }
 
 .expense-row-bento .quote-price-pill {
-  min-height: 54px;
-  padding: 8px 10px;
+  flex: 0 0 auto;
+  min-height: 0;
+  min-width: 0;
+  max-width: 7.5rem;
+  padding: 2px 6px;
+  gap: 0;
+  border-radius: 5px;
+  box-shadow: none;
+}
+
+.expense-row-bento .quote-price-pill:hover,
+.expense-row-bento .quote-price-pill:focus-visible {
+  transform: none;
+  box-shadow: none;
 }
 
 .expense-row-bento .quote-price-pill strong {
-  font-size: 14px;
+  font-size: 12px;
+  line-height: 1.15;
 }
 
+.expense-row-bento .quote-price-pill > span {
+  max-width: 100%;
+  overflow: hidden;
+  font-size: 9px;
+  line-height: 1.1;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.expense-row-bento .pill-flag {
+  display: none;
+}
 .quotation-bento-status {
   margin: 0 0 10px;
 }
@@ -4145,7 +4176,7 @@ body.model3d-active {
 }
 
 .expense-row td {
-  vertical-align: top;
+  vertical-align: middle;
 }
 
 #view-expenses .table-wrap {
@@ -4188,8 +4219,19 @@ body.model3d-active {
 }
 
 #view-expenses .expense-row td.expense-price-cell {
-  width: min(42vw, 28rem);
+  width: min(36vw, 22rem);
+  font-size: 11px;
+}
+
+#view-expenses .expense-row .unit-price-cell strong {
   font-size: 12px;
+  line-height: 1.15;
+}
+
+#view-expenses .expense-row .unit-price-suffix,
+#view-expenses .expense-row .unit-price-vendor {
+  font-size: 9px;
+  line-height: 1.1;
 }
 
 #view-expenses .expense-row .btn {
