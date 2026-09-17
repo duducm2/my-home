@@ -3758,6 +3758,34 @@ body.model3d-active {
   margin: 0 0 12px;
 }
 
+.expense-row-bento {
+  grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+  gap: 6px;
+  margin: 6px 0 0;
+  width: 100%;
+}
+
+.expense-price-cell {
+  display: grid;
+  gap: 4px;
+  justify-items: end;
+  min-width: 16rem;
+  white-space: normal !important;
+}
+
+.expense-price-cell .unit-price-cell {
+  justify-items: end;
+}
+
+.expense-row-bento .quote-price-pill {
+  min-height: 54px;
+  padding: 8px 10px;
+}
+
+.expense-row-bento .quote-price-pill strong {
+  font-size: 14px;
+}
+
 .quotation-bento-status {
   margin: 0 0 10px;
 }
@@ -3832,10 +3860,10 @@ body.model3d-active {
 .quote-evidence-menu {
   display: none;
   position: absolute;
-  z-index: 5;
+  z-index: 40;
   top: calc(100% + 4px);
   left: 0;
-  right: 0;
+  right: auto;
   min-width: 180px;
   padding: 6px;
   background: var(--panel);
@@ -4116,14 +4144,24 @@ body.model3d-active {
   cursor: pointer;
 }
 
+.expense-row td {
+  vertical-align: top;
+}
+
 #view-expenses .table-wrap {
   padding: 1px;
+  overflow: visible;
+}
+
+#view-expenses .table-wrap table {
+  overflow: visible;
 }
 
 #view-expenses .table-wrap th,
 #view-expenses .table-wrap td {
-  padding: 3px 6px;
+  padding: 6px 8px;
   line-height: 1.18;
+  overflow: visible;
 }
 
 #view-expenses .table-wrap th {
@@ -4144,14 +4182,14 @@ body.model3d-active {
   -webkit-line-clamp: 2;
 }
 
-#view-expenses .expense-row td:nth-child(4),
 #view-expenses .expense-row td.actions {
   white-space: nowrap;
-  width: 14rem;
+  width: 10rem;
 }
 
-#view-expenses .expense-row td:nth-child(4) {
-  font-size: 10px;
+#view-expenses .expense-row td.expense-price-cell {
+  width: min(42vw, 28rem);
+  font-size: 12px;
 }
 
 #view-expenses .expense-row .btn {

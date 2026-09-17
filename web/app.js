@@ -42,6 +42,7 @@
     zoom: "week",
     ganttStatusFilter: "",
     ganttPriorityFilter: 0,
+    lastAutoOutreachMessage: "",
     expenseCategoryFilters: new Set(),
     expenseVendorFilter: "",
     systemDocuments: [],
@@ -191,6 +192,7 @@
     btnSaveQuotationScope: $("btn-save-quotation-scope"),
     btnSaveQuotationCampaign: $("btn-save-quotation-campaign"),
     quotationOutreachMessage: $("quotation-outreach-message"),
+    btnRefreshOutreachMessage: $("btn-refresh-outreach-message"),
     btnCopyOutreachMessage: $("btn-copy-outreach-message"),
     quotationCopyStatus: $("quotation-copy-status"),
     quotationProviderSelect: $("quotation-provider-select"),
@@ -645,6 +647,12 @@
     return `<span class="unit-price-cell"><strong>${formatMoney(cheapest.unit_price)}</strong><span class="unit-price-suffix">/ ${escapeHtml(item.unit || cheapest.unit || "un")}</span>${vendor}</span>`;
   }
 
+  function expenseQuotationsBento(item) {
+    const quotes = visibleQuotationsForExpense(item);
+    if (!quotes.length) return "";
+    return `<div class="quotation-bento expense-row-bento" data-expense-bento="${escapeAttr(item.id)}">${renderQuotePricePills(item, quotes)}</div>`;
+  }
+
   function renderExpenseTable() {
     const rows = filteredExpenses();
     els.totalFiltered.textContent = formatMoney(
@@ -660,7 +668,7 @@
         ) => `<tr class="expense-row" data-open-quotations="${escapeAttr(item.id)}" tabindex="0" aria-label="Gerenciar cotações de ${escapeAttr(item.description)}">
       <td>${escapeHtml(item.category)}</td>
       <td>${itemLabel(item.description, item.icon_key)}</td>
-      <td class="num">${unitPriceCell(item)}</td>
+      <td class="num expense-price-cell">${unitPriceCell(item)}${expenseQuotationsBento(item)}</td>
       <td class="actions"><button class="btn" data-edit-expense="${item.id}">Editar</button><button class="btn danger" data-delete-expense="${item.id}">Excluir</button></td>
     </tr>`,
       )
@@ -2126,8 +2134,13 @@
   }
 
   async function loadSystemDocuments() {
-    const result = await request("/api/project/documents");
-    state.systemDocuments = result.documents || [];
+    try {
+      const result = await request("/api/project/documents");
+      state.systemDocuments = result.documents || [];
+    } catch (error) {
+      state.systemDocuments = [];
+      console.warn("system documents catalog unavailable:", error.message);
+    }
     populateSystemDocumentSelect();
   }
 
@@ -2361,12 +2374,67 @@
     return campaign;
   }
 
-  function defaultOutreachMessage(expense) {
+  function consolidatedOutreachMessage(selectedIds = [], anchorExpense = null) {
     const address = state.house?.address || {};
     const location =
       [address.city, address.state].filter(Boolean).join("/") ||
       "Nova Odessa/SP";
-    return `Olá! Gostaria de solicitar uma cotação para ${expense?.description || "este item"}, na quantidade de ${expense?.scenario?.expected_quantity || expense?.quantity || 1} ${expense?.unit || ""}, com entrega ou execução em ${location}. Poderia informar especificação, preço unitário e total, frete, disponibilidade, prazo, condições de pagamento e validade da proposta? Se possível, envie também o link do produto e a proposta em PDF. Obrigado!`;
+    const ids = [...new Set(selectedIds.filter(Boolean))];
+    if (anchorExpense?.id && !ids.includes(anchorExpense.id))
+      ids.unshift(anchorExpense.id);
+    const items = ids
+      .map((id) => state.expenses.find((expense) => expense.id === id))
+      .filter(Boolean);
+    if (!items.length && anchorExpense) items.push(anchorExpense);
+    const lines = items.map((expense, index) => {
+      const qty = expense.scenario?.expected_quantity ?? expense.quantity ?? 1;
+      const unit = expense.unit || "un";
+      return `${index + 1}. ${expense.description} — ${qty} ${unit}`;
+    });
+    const itemBlock = lines.length ? lines.join("\n") : "1. (item a definir)";
+    return [
+      "Olá! Gostaria de solicitar uma cotação rápida dos itens abaixo:",
+      "",
+      itemBlock,
+      "",
+      `Local de entrega/execução: ${location}.`,
+      "",
+      "Para cada item, poderia informar: especificação, preço unitário e total, frete, disponibilidade, prazo, condições de pagamento e validade da proposta?",
+      "Se possível, envie também o link do produto e a proposta em PDF.",
+      "",
+      "Obrigado!",
+    ].join("\n");
+  }
+
+  function defaultOutreachMessage(expense) {
+    return consolidatedOutreachMessage(
+      state.quotationPlanning.selected_expense_ids || [],
+      expense,
+    );
+  }
+
+  function syncOutreachMessageFromScope() {
+    const expense = currentQuotationExpense();
+    if (!expense) return;
+    const campaign = currentQuotationCampaign(true);
+    const message = consolidatedOutreachMessage(
+      state.quotationPlanning.selected_expense_ids || [],
+      expense,
+    );
+    campaign.outreach_message = message;
+    state.lastAutoOutreachMessage = message;
+    els.quotationOutreachMessage.value = message;
+  }
+
+  function ensureExpenseInQuotationScope(expenseId) {
+    const selected = new Set(
+      state.quotationPlanning.selected_expense_ids || [],
+    );
+    if (!expenseId || selected.has(expenseId)) return false;
+    selected.add(expenseId);
+    state.quotationPlanning.selected_expense_ids = [...selected];
+    syncQuotationCategorySelection();
+    return true;
   }
 
   function setQuotationTab(tab) {
@@ -2482,9 +2550,19 @@
   function renderQuotationPlanning() {
     const expense = currentQuotationExpense();
     if (!expense) return;
+    ensureExpenseInQuotationScope(expense.id);
     const campaign = currentQuotationCampaign(true);
-    if (!campaign.outreach_message)
-      campaign.outreach_message = defaultOutreachMessage(expense);
+    const autoMessage = consolidatedOutreachMessage(
+      state.quotationPlanning.selected_expense_ids || [],
+      expense,
+    );
+    if (
+      !campaign.outreach_message ||
+      campaign.outreach_message === state.lastAutoOutreachMessage
+    ) {
+      campaign.outreach_message = autoMessage;
+    }
+    state.lastAutoOutreachMessage = autoMessage;
     els.quotationOutreachMessage.value = campaign.outreach_message;
     els.quotationProviderSelect.innerHTML =
       '<option value="">Selecione...</option>' +
@@ -2589,18 +2667,38 @@
   }
 
   function closeQuotationEvidenceMenus(exceptPill = null) {
-    els.quotationBento
-      ?.querySelectorAll(".quote-price-pill.open")
-      .forEach((pill) => {
-        if (pill !== exceptPill) pill.classList.remove("open");
-      });
+    document.querySelectorAll(".quote-price-pill.open").forEach((pill) => {
+      if (pill !== exceptPill) pill.classList.remove("open");
+    });
   }
 
-  function renderQuotationBento(expense, visible) {
-    if (!els.quotationBento) return;
-    els.quotationBentoStatus?.classList.add("hidden");
+  function visibleQuotationsForExpense(expense, options = {}) {
+    const query = String(options.query || "")
+      .trim()
+      .toLocaleLowerCase("pt-BR");
+    const status = String(options.status || "").trim();
+    const vendor = String(options.vendor || "")
+      .trim()
+      .toLocaleLowerCase("pt-BR");
+    const showArchived = Boolean(options.showArchived);
+    return (expense?.quotations || []).filter(
+      (quote) =>
+        (showArchived || !quote.archived) &&
+        (!status || quote.response_status === status) &&
+        (!vendor ||
+          String(quote.vendor || "")
+            .trim()
+            .toLocaleLowerCase("pt-BR") === vendor) &&
+        (!query ||
+          `${quote.vendor} ${quote.notes || ""} ${quote.response_channel || ""}`
+            .toLocaleLowerCase("pt-BR")
+            .includes(query)),
+    );
+  }
+
+  function renderQuotePricePills(expense, quotes) {
     const cheapestId = expense.scenario?.minimum_quotation_id;
-    els.quotationBento.innerHTML = visible
+    return quotes
       .map((quote) => {
         const isSelected = quote.id === expense.selected_quotation_id;
         const isCheapest = quote.id === cheapestId;
@@ -2615,9 +2713,7 @@
           isSelected ? "escolhida" : "",
           isCheapest ? "menor custo" : "",
           `total projetado ${formatMoney(landed)}`,
-          evidence.length
-            ? `${evidence.length} evidência(s)`
-            : "sem evidência",
+          evidence.length ? `${evidence.length} evidência(s)` : "sem evidência",
         ]
           .filter(Boolean)
           .join(" · ");
@@ -2639,6 +2735,50 @@
         </button>`;
       })
       .join("");
+  }
+
+  function renderQuotationBento(expense, visible) {
+    if (!els.quotationBento) return;
+    els.quotationBentoStatus?.classList.add("hidden");
+    els.quotationBento.innerHTML = renderQuotePricePills(expense, visible);
+  }
+
+  function handleQuotePillClick(event, { statusElement = null } = {}) {
+    const evidenceItem = event.target.closest("[data-evidence-url]");
+    if (
+      evidenceItem?.dataset.evidenceUrl &&
+      evidenceItem.classList.contains("quote-evidence-item")
+    ) {
+      event.preventDefault();
+      event.stopPropagation();
+      openQuotationEvidence(evidenceItem.dataset.evidenceUrl);
+      closeQuotationEvidenceMenus();
+      return true;
+    }
+    const pill = event.target.closest("[data-quote-pill]");
+    if (!pill) return false;
+    event.preventDefault();
+    event.stopPropagation();
+    const count = Number(pill.dataset.evidenceCount || 0);
+    if (count <= 0) {
+      if (statusElement)
+        setStatus(
+          statusElement,
+          "err",
+          "Sem evidência (link ou PDF) nesta cotação.",
+        );
+      closeQuotationEvidenceMenus();
+      return true;
+    }
+    if (count === 1 && pill.dataset.evidenceUrl) {
+      openQuotationEvidence(pill.dataset.evidenceUrl);
+      closeQuotationEvidenceMenus();
+      return true;
+    }
+    const wasOpen = pill.classList.contains("open");
+    closeQuotationEvidenceMenus();
+    if (!wasOpen) pill.classList.add("open");
+    return true;
   }
 
   function renderQuotationManager() {
@@ -2670,24 +2810,12 @@
     } else {
       els.quotationVendorFilter.value = "";
     }
-    const query = els.quotationSearch.value.trim().toLocaleLowerCase("pt-BR");
-    const status = els.quotationStatusFilter.value;
-    const vendorFilter = els.quotationVendorFilter.value
-      .trim()
-      .toLocaleLowerCase("pt-BR");
-    const visible = quotations.filter(
-      (quote) =>
-        (els.quotationShowArchived.checked || !quote.archived) &&
-        (!status || quote.response_status === status) &&
-        (!vendorFilter ||
-          String(quote.vendor || "")
-            .trim()
-            .toLocaleLowerCase("pt-BR") === vendorFilter) &&
-        (!query ||
-          `${quote.vendor} ${quote.notes || ""} ${quote.response_channel || ""}`
-            .toLocaleLowerCase("pt-BR")
-            .includes(query)),
-    );
+    const visible = visibleQuotationsForExpense(expense, {
+      query: els.quotationSearch.value,
+      status: els.quotationStatusFilter.value,
+      vendor: els.quotationVendorFilter.value,
+      showArchived: els.quotationShowArchived.checked,
+    });
     renderQuotationBento(expense, visible);
     const totalPages = Math.max(
       1,
@@ -2825,6 +2953,8 @@
         )
         .join("");
     els.quotationVendorFilter.value = focusVendor;
+    ensureExpenseInQuotationScope(item.id);
+    syncOutreachMessageFromScope();
     renderQuotationManager();
     renderQuotationPlanning();
     setQuotationTab("responses");
@@ -4561,6 +4691,12 @@
     if (button) renderIconPicker(button.dataset.iconKey);
   });
   els.rows.addEventListener("click", async (event) => {
+    if (
+      handleQuotePillClick(event, {
+        statusElement: els.appStatus,
+      })
+    )
+      return;
     const quotations = event.target.closest("[data-open-expense-quotations]");
     const edit = event.target.closest("[data-edit-expense]");
     const remove = event.target.closest("[data-delete-expense]");
@@ -4601,6 +4737,7 @@
   });
   els.rows.addEventListener("keydown", (event) => {
     if (event.key !== "Enter" && event.key !== " ") return;
+    if (event.target.closest("[data-quote-pill]")) return;
     const row = event.target.closest("[data-open-quotations]");
     if (!row || event.target !== row) return;
     const item = state.expenses.find(
@@ -4644,6 +4781,7 @@
     }
     state.quotationPlanning.selected_expense_ids = [...selectedExpenses];
     syncQuotationCategorySelection();
+    syncOutreachMessageFromScope();
     renderQuotationScope();
   });
   els.btnSaveQuotationScope.addEventListener("click", () =>
@@ -4664,6 +4802,15 @@
   els.quotationOutreachMessage.addEventListener("input", () => {
     currentQuotationCampaign(true).outreach_message =
       els.quotationOutreachMessage.value;
+    state.lastAutoOutreachMessage = "";
+  });
+  els.btnRefreshOutreachMessage?.addEventListener("click", () => {
+    syncOutreachMessageFromScope();
+    setStatus(
+      els.quotationCopyStatus,
+      "ok",
+      "Mensagem atualizada com os itens selecionados.",
+    );
   });
   els.btnCopyOutreachMessage.addEventListener("click", () =>
     copyWithFeedback(
@@ -4748,38 +4895,14 @@
     renderQuotationManager();
   });
   els.quotationBento.addEventListener("click", (event) => {
-    const evidenceItem = event.target.closest("[data-evidence-url]");
-    if (evidenceItem?.dataset.evidenceUrl) {
-      event.preventDefault();
-      event.stopPropagation();
-      openQuotationEvidence(evidenceItem.dataset.evidenceUrl);
-      closeQuotationEvidenceMenus();
-      return;
-    }
-    const pill = event.target.closest("[data-quote-pill]");
-    if (!pill) return;
-    event.preventDefault();
-    const count = Number(pill.dataset.evidenceCount || 0);
-    if (count <= 0) {
-      setStatus(
-        els.quotationBentoStatus,
-        "err",
-        "Sem evidência (link ou PDF) nesta cotação.",
-      );
-      closeQuotationEvidenceMenus();
-      return;
-    }
-    if (count === 1 && pill.dataset.evidenceUrl) {
-      openQuotationEvidence(pill.dataset.evidenceUrl);
-      closeQuotationEvidenceMenus();
-      return;
-    }
-    const wasOpen = pill.classList.contains("open");
-    closeQuotationEvidenceMenus();
-    if (!wasOpen) pill.classList.add("open");
+    handleQuotePillClick(event, { statusElement: els.quotationBentoStatus });
   });
   document.addEventListener("click", (event) => {
-    if (!event.target.closest("#quotation-bento")) closeQuotationEvidenceMenus();
+    if (
+      !event.target.closest(".quote-price-pill") &&
+      !event.target.closest(".quote-evidence-menu")
+    )
+      closeQuotationEvidenceMenus();
   });
   els.btnQuotationPrevious.addEventListener("click", () => {
     if (state.quotationPage <= 1) return;

@@ -1212,15 +1212,16 @@
             <aside class="quotation-scope">
               <div class="panel-head">
                 <div>
-                  <span class="panel-kicker">Escopo persistente</span>
-                  <h3>Itens para cotar</h3>
+                  <span class="panel-kicker">Escopo da busca</span>
+                  <h3>Itens na cotação</h3>
                 </div>
                 <button id="btn-save-quotation-scope" type="button" class="btn">
                   Salvar seleção
                 </button>
               </div>
               <p class="section-sub">
-                Esta seleção é independente dos filtros da lista de despesas.
+                Comece pela despesa aberta e acrescente outras (ou categorias
+                inteiras, ex.: Material) à solicitação consolidada.
               </p>
               <label
                 >Buscar itens
@@ -1239,8 +1240,8 @@
             <div class="quotation-campaign">
               <div class="panel-head">
                 <div>
-                  <span class="panel-kicker">Campanha desta despesa</span>
-                  <h3>Contato com fornecedores</h3>
+                  <span class="panel-kicker">Busca ativa de fornecedores</span>
+                  <h3>Cotação rápida consolidada</h3>
                 </div>
                 <button
                   id="btn-save-quotation-campaign"
@@ -1250,15 +1251,26 @@
                   Salvar planejamento
                 </button>
               </div>
+              <p class="section-sub">
+                Marque despesas ou categorias à esquerda para incluir na mesma
+                solicitação. A mensagem é atualizada automaticamente.
+              </p>
               <label
                 >Mensagem pronta para WhatsApp
                 <textarea
                   id="quotation-outreach-message"
-                  rows="7"
-                  placeholder="Olá! Gostaria de solicitar uma cotação..."
+                  rows="10"
+                  placeholder="Olá! Gostaria de solicitar uma cotação rápida..."
                 ></textarea>
               </label>
               <div class="panel-row">
+                <button
+                  id="btn-refresh-outreach-message"
+                  type="button"
+                  class="btn"
+                >
+                  Atualizar mensagem
+                </button>
                 <button
                   id="btn-copy-outreach-message"
                   type="button"
