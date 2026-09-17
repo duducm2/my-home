@@ -4179,6 +4179,14 @@ body.model3d-active {
   vertical-align: middle;
 }
 
+.expense-filter-toggle {
+  margin: 2px 0 4px;
+}
+
+#view-expenses.hide-quote-pills .expense-row-bento {
+  display: none;
+}
+
 #view-expenses .table-wrap {
   padding: 1px;
   overflow: visible;

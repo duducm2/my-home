@@ -45,6 +45,7 @@
     lastAutoOutreachMessage: "",
     expenseCategoryFilters: new Set(),
     expenseVendorFilter: "",
+    showExpenseQuotePills: true,
     systemDocuments: [],
     expandedMacros: new Set(),
   };
@@ -150,6 +151,8 @@
     totalFiltered: $("total-filtered"),
     totalAll: $("total-all"),
     countFiltered: $("count-filtered"),
+    toggleExpenseQuotePills: $("toggle-expense-quote-pills"),
+    viewExpenses: $("view-expenses"),
     btnNew: $("btn-new"),
     dialog: $("expense-dialog"),
     form: $("expense-form"),
@@ -648,9 +651,41 @@
   }
 
   function expenseQuotationsBento(item) {
+    if (!state.showExpenseQuotePills) return "";
     const quotes = visibleQuotationsForExpense(item);
     if (!quotes.length) return "";
     return `<div class="quotation-bento expense-row-bento" data-expense-bento="${escapeAttr(item.id)}">${renderQuotePricePills(item, quotes)}</div>`;
+  }
+
+  function applyExpenseQuotePillsVisibility() {
+    const show = state.showExpenseQuotePills;
+    if (els.toggleExpenseQuotePills) els.toggleExpenseQuotePills.checked = show;
+    els.viewExpenses?.classList.toggle("hide-quote-pills", !show);
+  }
+
+  function setShowExpenseQuotePills(show) {
+    state.showExpenseQuotePills = Boolean(show);
+    try {
+      localStorage.setItem(
+        "my-home:expense-quote-pills",
+        state.showExpenseQuotePills ? "1" : "0",
+      );
+    } catch (_) {
+      /* ignore quota / private mode */
+    }
+    applyExpenseQuotePillsVisibility();
+    renderExpenseTable();
+  }
+
+  function loadExpenseQuotePillsPreference() {
+    try {
+      const raw = localStorage.getItem("my-home:expense-quote-pills");
+      if (raw === null) state.showExpenseQuotePills = true;
+      else state.showExpenseQuotePills = raw === "1" || raw === "true";
+    } catch (_) {
+      state.showExpenseQuotePills = true;
+    }
+    applyExpenseQuotePillsVisibility();
   }
 
   function renderExpenseTable() {
@@ -4609,6 +4644,9 @@
     renderExpenseTable();
   });
   els.search.addEventListener("input", renderExpenseTable);
+  els.toggleExpenseQuotePills?.addEventListener("change", () => {
+    setShowExpenseQuotePills(els.toggleExpenseQuotePills.checked);
+  });
   els.quotationVendorFilterSidebar.addEventListener("change", () => {
     state.expenseVendorFilter = els.quotationVendorFilterSidebar.value;
     renderExpenseTable();
@@ -5217,6 +5255,7 @@
       deleteQuickTask(row.dataset.quickTask);
   });
 
+  loadExpenseQuotePillsPreference();
   Promise.all([
     loadState(),
     loadTasks(),
