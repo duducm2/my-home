@@ -1,0 +1,271 @@
+{
+  "group": "roofing-finishing",
+  "checked_at": "2026-09-16T22:54:00-03:00",
+  "expenses": [
+    {
+      "expense_id": "EXP_0041",
+      "description": "Rodapés para acompanhar o porcelanato (R$1500)",
+      "comparable_spec": "Rodapé pronto cerâmico ou de porcelanato; preço da peça normalizado pelo comprimento linear declarado.",
+      "offers": [
+        {
+          "vendor": "Tumelero",
+          "url": "https://www.tumelero.com.br/rodape-ceramico-hdr105-gabriella/p",
+          "displayed_price": 7.5,
+          "package_size": "1 peça de 8 x 45 cm; 0,45 m linear",
+          "normalized_unit_price": 16.67,
+          "unit": "metro linear (m)",
+          "availability": "Catálogo direto ativo e com estoque positivo; a simulação não retornou entrega para o CEP 13380-000.",
+          "seller_location": "Brasil — loja online; origem de expedição não informada.",
+          "shipping_cost": null,
+          "evidence": "Rodapé Cerâmico HDR105 Gabriella, dimensão 8 x 45 cm, preço exibido R$ 7,50; normalização: R$ 7,50 / 0,45 m = R$ 16,67/m.",
+          "ambiguities": "Entrega ou retirada em Nova Odessa não confirmada; frete desconhecido e excluído. Não há três vendedores comparáveis.",
+          "eligible_for_import": false
+        }
+      ],
+      "unresolved_notes": "Somente um vendedor direto comparável foi verificado; são necessários pelo menos três vendedores distintos."
+    },
+    {
+      "expense_id": "EXP_0042",
+      "description": "Madeiramento ou estrutura metálica",
+      "comparable_spec": "Estrutura de suporte de cobertura com preço por m² ou escopo fechado que declare área, sistema/material e itens incluídos.",
+      "offers": [],
+      "unresolved_notes": "Não foram verificadas três ofertas regionais diretas com preço visível e base exata por m². Faixas editoriais e páginas de captação sem escopo precificado foram excluídas."
+    },
+    {
+      "expense_id": "EXP_0043",
+      "description": "Calhas e rufos",
+      "comparable_spec": "Calha reta manufaturada em aço galvanizado; preço do produto normalizado pelo comprimento declarado, sem instalação.",
+      "offers": [
+        {
+          "vendor": "Telhanorte",
+          "url": "https://www.telhanorte.com.br/calha-galvanizada-moldura-28-2-metros-calhaforte-688037/p",
+          "displayed_price": 52.9,
+          "package_size": "1 seção de calha galvanizada moldura 28, 2 m",
+          "normalized_unit_price": 26.45,
+          "unit": "metro linear (m)",
+          "availability": "Catálogo direto ativo e com estoque positivo; a simulação não retornou entrega para o CEP 13380-000.",
+          "seller_location": "Brasil — loja online; origem de expedição não informada.",
+          "shipping_cost": null,
+          "evidence": "Calha Galvanizada Moldura 28 polegadas, 2 metros, Calhaforte, preço exibido R$ 52,90; normalização: R$ 26,45/m.",
+          "ambiguities": "Perfil moldura 28 difere do perfil quadrado C.33 da outra referência; entrega e frete para Nova Odessa não confirmados.",
+          "eligible_for_import": false
+        },
+        {
+          "vendor": "Copafer",
+          "url": "https://www.copafer.com.br/calha-quadrada-c-33-3-metros-galvanizada---72---calhaforte/p",
+          "displayed_price": 147.9,
+          "package_size": "1 seção de calha galvanizada quadrada C.33, 3 m",
+          "normalized_unit_price": 49.3,
+          "unit": "metro linear (m)",
+          "availability": "Catálogo direto ativo, com 10 unidades indicadas; a simulação não retornou entrega para o CEP 13380-000.",
+          "seller_location": "Brasil — loja online; origem de expedição não informada.",
+          "shipping_cost": null,
+          "evidence": "Calha Quadrada C.33, 3 metros, galvanizada, Calhaforte, preço exibido R$ 147,90; normalização: R$ 49,30/m.",
+          "ambiguities": "Perfil quadrado C.33 difere do perfil moldura 28 da outra referência; entrega e frete para Nova Odessa não confirmados.",
+          "eligible_for_import": false
+        }
+      ],
+      "unresolved_notes": "Somente dois vendedores diretos de calha galvanizada comparável foram verificados; são necessários pelo menos três."
+    },
+    {
+      "expense_id": "EXP_0046",
+      "description": "Tinta",
+      "comparable_spec": "Uma lata de 18 L de tinta acrílica branca premium, adequada para uso interno; produtos também aprovados para exterior são aceitos e identificados.",
+      "offers": [
+        {
+          "vendor": "Telhanorte",
+          "url": "https://www.telhanorte.com.br/tinta-acrilica-super-lavavel-eggshell-branco-18l-coral-1509721/p",
+          "displayed_price": 739.9,
+          "package_size": "1 lata de 18 L",
+          "normalized_unit_price": 739.9,
+          "unit": "lata (18 L)",
+          "availability": "Página e catálogo diretos ativos, com estoque positivo; checkout informou que o item não podia ser entregue ao CEP 13380-000 na consulta.",
+          "seller_location": "Brasil — loja online; origem de expedição não informada.",
+          "shipping_cost": null,
+          "evidence": "Coral Super Lavável Antimanchas, acrílica premium branca, 18 L, uso interno, acabamento eggshell; preço exibido R$ 739,90.",
+          "ambiguities": "Frete e alternativa de retirada para Nova Odessa desconhecidos. Acabamento eggshell difere do fosco da Joli; comparação é por classe premium branca de 18 L.",
+          "eligible_for_import": true
+        },
+        {
+          "vendor": "Copafer",
+          "url": "https://www.copafer.com.br/tinta-acrilica-premium-super-lavavel-antimanchas-branco-18-litros---5273334a---coral/p",
+          "displayed_price": 749.9,
+          "package_size": "1 lata de 18 L",
+          "normalized_unit_price": 749.9,
+          "unit": "lata (18 L)",
+          "availability": "Página e catálogo diretos ativos, com 10 unidades indicadas; a simulação não retornou entrega para o CEP 13380-000.",
+          "seller_location": "Brasil — loja online; origem de expedição não informada.",
+          "shipping_cost": null,
+          "evidence": "Coral Super Lavável Antimanchas, acrílica premium branca, 18 L, uso interno, acabamento eggshell; preço exibido R$ 749,90.",
+          "ambiguities": "Frete e entrega/retirada para Nova Odessa desconhecidos. Acabamento eggshell difere do fosco da Joli; comparação é por classe premium branca de 18 L.",
+          "eligible_for_import": true
+        },
+        {
+          "vendor": "Joli",
+          "url": "https://www.joli.com.br/tinta-acrilica-premium-luksclean-fosco-branco-neve-18l-lukscolor/p",
+          "displayed_price": 755.99,
+          "package_size": "1 lata de 18 L",
+          "normalized_unit_price": 755.99,
+          "unit": "lata (18 L)",
+          "availability": "Página e catálogo diretos ativos, com 100 unidades indicadas; a simulação não retornou entrega para o CEP 13380-000.",
+          "seller_location": "Brasil — loja online; origem de expedição não informada.",
+          "shipping_cost": null,
+          "evidence": "Lukscolor Luksclean, acrílica super-premium Branco Neve, 18 L, uso interno e externo, superlavável, acabamento fosco; preço exibido R$ 755,99.",
+          "ambiguities": "Frete e entrega/retirada para Nova Odessa desconhecidos. Produto também atende exterior e tem acabamento fosco, enquanto as ofertas Coral são eggshell.",
+          "eligible_for_import": true
+        }
+      ],
+      "unresolved_notes": ""
+    },
+    {
+      "expense_id": "EXP_0047",
+      "description": "Pregos, parafusos, buchas",
+      "comparable_spec": "Pacote representativo idêntico: cinco conjuntos Fixtil de parafuso sextavado com bucha de 10 mm.",
+      "offers": [
+        {
+          "vendor": "Telhanorte",
+          "url": "https://www.telhanorte.com.br/parafuso-sextavado-com-bucha-10mm-fixtil-243531/p",
+          "displayed_price": 25.9,
+          "package_size": "1 pacote com 5 conjuntos de parafuso e bucha 10 mm",
+          "normalized_unit_price": 25.9,
+          "unit": "pacote",
+          "availability": "Página e catálogo diretos ativos, com estoque positivo; a simulação não retornou entrega para o CEP 13380-000.",
+          "seller_location": "Brasil — loja online; origem de expedição não informada.",
+          "shipping_cost": null,
+          "evidence": "Parafuso Sextavado com Bucha 10 mm, 5 peças, Fixtil; preço exibido R$ 25,90 por pacote.",
+          "ambiguities": "Entrega e frete para Nova Odessa não confirmados; não há terceiro vendedor do pacote idêntico.",
+          "eligible_for_import": false
+        },
+        {
+          "vendor": "Tumelero",
+          "url": "https://www.tumelero.com.br/parafuso-sextavado-com-bucha-10mm-5-pecas-fixtil-243531-1/p",
+          "displayed_price": 17.9,
+          "package_size": "1 pacote com 5 conjuntos de parafuso e bucha 10 mm",
+          "normalized_unit_price": 17.9,
+          "unit": "pacote",
+          "availability": "Página e catálogo diretos ativos, com 100 unidades indicadas; a simulação retornou modalidade de entrega ao CEP 13380-000.",
+          "seller_location": "Brasil — entrega ao CEP 13380-000 validada; origem de expedição não informada.",
+          "shipping_cost": null,
+          "evidence": "Parafuso Sextavado com Bucha 10 mm, 5 peças, Fixtil; preço exibido R$ 17,90 por pacote.",
+          "ambiguities": "Frete foi deliberadamente excluído e deve ser recalculado no checkout; não há terceiro vendedor do pacote idêntico.",
+          "eligible_for_import": false
+        }
+      ],
+      "unresolved_notes": "Somente dois vendedores do mesmo pacote representativo foram verificados; são necessários pelo menos três."
+    },
+    {
+      "expense_id": "EXP_0048",
+      "description": "Silicone, espuma expansiva, selante PU",
+      "comparable_spec": "Kit composto por um silicone acético incolor de uso geral de aproximadamente 250–280 g/ml, uma espuma expansiva PU de 500 ml e um selante PU de construção de aproximadamente 300–360 g/ml, todos do mesmo vendedor.",
+      "offers": [
+        {
+          "vendor": "Tumelero",
+          "url": "https://www.tumelero.com.br/silicone-acetico-multiuso-280g-quartzolit-888822990/p",
+          "displayed_price": 80.7,
+          "package_size": "3 itens: silicone acético 280 g + espuma expansiva 500 ml + selante PU30 305 ml",
+          "normalized_unit_price": 80.7,
+          "unit": "kit",
+          "availability": "As três páginas estavam ativas; a simulação retornou entrega ao CEP 13380-000 para todos os componentes.",
+          "seller_location": "Brasil — entrega ao CEP 13380-000 validada; origem de expedição não informada.",
+          "shipping_cost": null,
+          "evidence": "Silicone 280 g, R$ 24,90: https://www.tumelero.com.br/silicone-acetico-multiuso-280g-quartzolit-888822990/p ; espuma 500 ml, R$ 17,90: https://www.tumelero.com.br/espuma-expansiva-500ml-quartzolit-40191143-1/p ; selante PU30 305 ml, R$ 37,90: https://www.tumelero.com.br/selante-pu30-305ml-quartzolit-888824243/p ; soma R$ 80,70.",
+          "ambiguities": "URL principal representa o silicone; os outros dois URLs estão em evidence. Frete não incluído e deve ser recalculado no checkout. O selante é PU30, enquanto outros kits usam PU40.",
+          "eligible_for_import": true
+        },
+        {
+          "vendor": "Telhanorte",
+          "url": "https://www.telhanorte.com.br/silicone-multiuso-acetico-incolor-280ml-soudal-2493268/p",
+          "displayed_price": 89.7,
+          "package_size": "3 itens: silicone acético 280 ml + espuma expansiva 500 ml + selante PU40 350 g",
+          "normalized_unit_price": 89.7,
+          "unit": "kit",
+          "availability": "As três páginas e o catálogo estavam ativos e com estoque positivo; a simulação não retornou entrega ao CEP 13380-000.",
+          "seller_location": "Brasil — loja online; origem de expedição não informada.",
+          "shipping_cost": null,
+          "evidence": "Silicone 280 ml, R$ 31,90: https://www.telhanorte.com.br/silicone-multiuso-acetico-incolor-280ml-soudal-2493268/p ; espuma 500 ml, R$ 37,90: https://www.telhanorte.com.br/espuma-expansiva-500ml-quartzolit-1278185/p ; selante PU40 350 g, R$ 19,90: https://www.telhanorte.com.br/selante-adesivo-pu-40-branco-350g-powerved-2576562/p ; soma R$ 89,70.",
+          "ambiguities": "URL principal representa o silicone; os outros dois URLs estão em evidence. Entrega/retirada e frete para Nova Odessa desconhecidos.",
+          "eligible_for_import": true
+        },
+        {
+          "vendor": "Copafer",
+          "url": "https://www.copafer.com.br/silicone-acetico-incolor-260ml---600689---fischer/p",
+          "displayed_price": 76.88,
+          "package_size": "3 itens: silicone acético 260 ml + espuma expansiva 500 ml + selante PU40 360 g",
+          "normalized_unit_price": 76.88,
+          "unit": "kit",
+          "availability": "As três páginas e o catálogo estavam ativos e com estoque positivo; a simulação não retornou entrega ao CEP 13380-000.",
+          "seller_location": "Brasil — loja online; origem de expedição não informada.",
+          "shipping_cost": null,
+          "evidence": "Silicone 260 ml, R$ 24,99: https://www.copafer.com.br/silicone-acetico-incolor-260ml---600689---fischer/p ; espuma 500 ml, R$ 29,90: https://www.copafer.com.br/espuma-expansiva-500-ml---31145-31-32-039---quartzolit/p ; selante PU40 360 g, R$ 21,99: https://www.copafer.com.br/selante-pu40-multiuso-360g-cinza---0661-00001-0001pc---quartzolit/p ; soma R$ 76,88.",
+          "ambiguities": "URL principal representa o silicone; os outros dois URLs estão em evidence. Entrega/retirada e frete para Nova Odessa desconhecidos. Selante PU cinza; outros kits usam branco ou não declaram cor.",
+          "eligible_for_import": true
+        },
+        {
+          "vendor": "Joli",
+          "url": "https://www.joli.com.br/silicone-acetico-multiuso-incolor-250g-quartzolit/p",
+          "displayed_price": 78.79,
+          "package_size": "3 itens: silicone acético 250 g + espuma expansiva 500 ml + selante PU40 360 g",
+          "normalized_unit_price": 78.79,
+          "unit": "kit",
+          "availability": "As três páginas e o catálogo estavam ativos e com estoque positivo; a simulação não retornou entrega ao CEP 13380-000.",
+          "seller_location": "Brasil — loja online; origem de expedição não informada.",
+          "shipping_cost": null,
+          "evidence": "Silicone 250 g, R$ 21,90: https://www.joli.com.br/silicone-acetico-multiuso-incolor-250g-quartzolit/p ; espuma 500 ml, R$ 28,99: https://www.joli.com.br/espuma-expansiva-500ml-quartzolit/p ; selante PU40 360 g, R$ 27,90: https://www.joli.com.br/selante-pu40-multiuso-branco-360g-quartzolit/p ; soma R$ 78,79.",
+          "ambiguities": "URL principal representa o silicone; os outros dois URLs estão em evidence. Entrega/retirada e frete para Nova Odessa desconhecidos.",
+          "eligible_for_import": true
+        }
+      ],
+      "unresolved_notes": ""
+    },
+    {
+      "expense_id": "EXP_0049",
+      "description": "Lona para proteção da obra",
+      "comparable_spec": "Lona plástica preta para proteção de obra, em pacote pré-cortado; preço normalizado pela área nominal largura × comprimento.",
+      "offers": [
+        {
+          "vendor": "Telhanorte",
+          "url": "https://www.telhanorte.com.br/lona-plastica-preta-5x6m-plasitap-685038/p",
+          "displayed_price": 43.9,
+          "package_size": "1 lona plástica preta de 5 x 6 m; 30 m²",
+          "normalized_unit_price": 1.46,
+          "unit": "metro quadrado (m²)",
+          "availability": "Página e catálogo diretos ativos e com estoque positivo; a simulação não retornou entrega ao CEP 13380-000.",
+          "seller_location": "Brasil — loja online; origem de expedição não informada.",
+          "shipping_cost": null,
+          "evidence": "Lona plástica preta Plasilona/Plasitap 5 x 6 m, preço exibido R$ 43,90; normalização: R$ 43,90 / 30 m² = R$ 1,46/m².",
+          "ambiguities": "Micragem não foi evidenciada de forma uniforme entre vendedores. Entrega/retirada e frete para Nova Odessa desconhecidos.",
+          "eligible_for_import": true
+        },
+        {
+          "vendor": "Copafer",
+          "url": "https://www.copafer.com.br/lona-plastica-preta-cortada-5x4---c062---plasitap/p",
+          "displayed_price": 20.38,
+          "package_size": "1 lona plástica preta de 5 x 4 m; 20 m²",
+          "normalized_unit_price": 1.02,
+          "unit": "metro quadrado (m²)",
+          "availability": "Página e catálogo diretos ativos, com 100 unidades indicadas; a simulação não retornou entrega ao CEP 13380-000.",
+          "seller_location": "Brasil — loja online; origem de expedição não informada.",
+          "shipping_cost": null,
+          "evidence": "Lona plástica preta cortada Plasitap 5 x 4 m, preço exibido R$ 20,38; normalização: R$ 20,38 / 20 m² = R$ 1,019/m², arredondado para R$ 1,02/m².",
+          "ambiguities": "Micragem não foi evidenciada de forma uniforme entre vendedores. Entrega/retirada e frete para Nova Odessa desconhecidos.",
+          "eligible_for_import": true
+        },
+        {
+          "vendor": "Joli",
+          "url": "https://www.joli.com.br/lona-preta-6x5-plasitap/p",
+          "displayed_price": 27.9,
+          "package_size": "1 lona plástica preta de 6 x 5 m; 30 m²",
+          "normalized_unit_price": 0.93,
+          "unit": "metro quadrado (m²)",
+          "availability": "Página e catálogo diretos ativos, com 100 unidades indicadas; a simulação não retornou entrega ao CEP 13380-000.",
+          "seller_location": "Brasil — loja online; origem de expedição não informada.",
+          "shipping_cost": null,
+          "evidence": "Lona plástica preta Plasitap 6 x 5 m, preço exibido R$ 27,90; normalização: R$ 27,90 / 30 m² = R$ 0,93/m².",
+          "ambiguities": "Micragem não foi evidenciada de forma uniforme entre vendedores. Entrega/retirada e frete para Nova Odessa desconhecidos.",
+          "eligible_for_import": true
+        }
+      ],
+      "unresolved_notes": ""
+    }
+  ]
+}

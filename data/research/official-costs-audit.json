@@ -1,0 +1,187 @@
+{
+  "audit_date": "2026-09-16",
+  "currency": "BRL",
+  "scope": "Authoritative-evidence audit for non-competitive applicable expenses and instructed exclusions",
+  "records": [
+    {
+      "expense_id": "EXP_0001",
+      "classification": "applicable_amount_not_supported_by_signed_contract",
+      "amount": 62000.0,
+      "authoritative_source": "Signed purchase contract, clauses 2.1-2.2; internal funding plan is corroborating planning evidence only",
+      "url/repository_path": [
+        "data/private/contracts/CONTRACT_PURCHASE/doc_002.pdf",
+        "data/project.json"
+      ],
+      "evidence": "The signed contract fixes the purchase price at R$310,000 and says it will be paid integrally through housing finance; it does not identify a R$62,000 down payment. The internal project plan assigns R$55,440.40 of FGTS to the entry, but that is not a term of the signed purchase contract.",
+      "ambiguities": "The R$62,000 figure may be an intended 20% own-resources/FGTS component, but it conflicts with the contract wording and requires a Caixa proposal or financing contract showing financed amount, FGTS and own funds."
+    },
+    {
+      "expense_id": "EXP_0002",
+      "classification": "applicable_rate_claim_requires_tax_authority_confirmation",
+      "amount": 6200.0,
+      "authoritative_source": "Nova Odessa municipal ITBI service and municipal tax legislation portal; signed purchase contract clause 4.3 assigns ITBI to buyer",
+      "url/repository_path": [
+        "https://www.novaodessa.sp.gov.br/carta-de-servicos-ao-cidadao",
+        "https://leismunicipais.com.br/codigo-tributario-nova-odessa-sp",
+        "data/private/contracts/CONTRACT_PURCHASE/doc_002.pdf"
+      ],
+      "evidence": "The municipal service actively provides immediate issuance of the ITBI payment guide for purchase transactions and requires the purchase contract, deed draft or discharge letter. R$6,200 equals 2% of the R$310,000 contract price.",
+      "ambiguities": "The retrieved municipal service page does not state the rate or confirm that R$310,000 will be the accepted assessment base. Treat R$6,200 as a calculation hypothesis until the municipality issues the guide; the official guide controls the amount."
+    },
+    {
+      "expense_id": "EXP_0003",
+      "classification": "applicable_but_amount_unsupported_and_scope_overlaps_EXP_0004",
+      "amount": 1000.0,
+      "authoritative_source": "TJSP official extrajudicial emolument tables; signed purchase contract clauses 4.3 and 7.1",
+      "url/repository_path": [
+        "https://www.tjsp.jus.br/Corregedoria/Comunicados/Emolumentos",
+        "data/private/contracts/CONTRACT_PURCHASE/doc_002.pdf"
+      ],
+      "evidence": "The contract puts financing-document, notarial and transaction expenses on the buyer. São Paulo registry/notary charges are governed by the official annual emolument tables, not a competitive quotation.",
+      "ambiguities": "No official calculator result, itemized acts or certificates support R$1,000. The financing contract itself has force of public deed, so a separate purchase deed should not be budgeted. Registration of the financing/transfer belongs in EXP_0004; EXP_0003 should retain only genuinely separate certificates, signature recognitions or other identified acts to avoid double counting."
+    },
+    {
+      "expense_id": "EXP_0004",
+      "classification": "applicable_obligation_amount_pending_official_calculation",
+      "amount": 3300.0,
+      "authoritative_source": "Signed purchase contract clauses 7.1-7.2 and TJSP official real-estate registry emolument tables",
+      "url/repository_path": [
+        "data/private/contracts/CONTRACT_PURCHASE/doc_002.pdf",
+        "https://www.tjsp.jus.br/Corregedoria/Comunicados/Emolumentos"
+      ],
+      "evidence": "The signed purchase contract states that the bank financing instrument has force of public deed, makes financing and registration expenses the buyer's responsibility, and requires filing at the Nova Odessa Real Estate Registry within 30 days after financing signature.",
+      "ambiguities": "R$3,300 is not supported by a financing contract, registry protocol or official calculation. The value depends on the registrable transaction/guarantee bases, acts charged and any statutory first-acquisition/SFH reduction. Obtain an itemized calculation from the Nova Odessa registry after the Caixa instrument is available."
+    },
+    {
+      "expense_id": "EXP_0005",
+      "classification": "excluded_old_home_or_transition_expense",
+      "amount": 700.0,
+      "authoritative_source": "Audit scope instruction",
+      "url/repository_path": "data/expenses.csv",
+      "evidence": "Moving service was expressly designated for exclusion from this non-competitive applicable-cost audit.",
+      "ambiguities": "None for this audit classification."
+    },
+    {
+      "expense_id": "EXP_0006",
+      "classification": "existing_utilities_applicable_for_transfer_or_continuation_but_connection_fee_not_evidenced",
+      "amount": 300.0,
+      "authoritative_source": "Signed purchase contract clauses 3.2, 4.1-4.3; CODEN official connection-services page; CPFL official new-connection service",
+      "url/repository_path": [
+        "data/private/contracts/CONTRACT_PURCHASE/doc_002.pdf",
+        "data/private/contracts/CONTRACT_GELSON_01/doc_001.pdf",
+        "https://coden.com.br/servicos/",
+        "https://coden.com.br/ligacao-de-agua/",
+        "https://coden.com.br/tarifas-e-taxas/",
+        "https://www.cpfl.com.br/ligacao-nova",
+        "https://www.cpfl.com.br/ajuda/ligacao-nova"
+      ],
+      "evidence": "The signed purchase contract expressly treats water, sewer and electricity as existing consumption accounts and requires cadastral changes after possession. The Gelson draft refers to an existing water-register box and an additional electricity-post box. Therefore water/sewer and electricity are logically applicable, but normally as transfer/regularization of existing service rather than brand-new connections. Internet is optional and provider-specific. No repository evidence shows piped-gas infrastructure or a selected gas service.",
+      "ambiguities": "No bill, account number, shutoff status, utility work order or tariff item proves any charge. The R$300 bundle is unsupported. Confirm CODEN and CPFL account status at possession; include only an actually quoted/rebilled service charge. Exclude piped gas unless a network-availability check at the exact address and an installation proposal establish applicability. Budget internet only after choosing a provider and plan; installation may be zero, promotional or provider-specific."
+    },
+    {
+      "expense_id": "EXP_0007",
+      "classification": "internal_planning_policy_not_vendor_expense",
+      "amount": 4500.0,
+      "authoritative_source": "Internal project financial strategy",
+      "url/repository_path": [
+        "data/project.json",
+        "data/expenses.csv"
+      ],
+      "evidence": "The project strategy explicitly prioritizes preserving a reserve for transition and unforeseen costs. This is a self-imposed allocation, not a purchased service and not something that should receive a quotation.",
+      "ambiguities": "R$4,500 is an internal policy choice; the repository contains no formula, percentage or approval record establishing why that level is sufficient."
+    },
+    {
+      "expense_id": "EXP_0008",
+      "classification": "unsupported_remove_or_rename_until_caixa_document_exists",
+      "amount": 7000.0,
+      "authoritative_source": "No supporting Caixa contract or official tariff found in repository; an executed Caixa proposal/contract or named official Caixa charge is required",
+      "url/repository_path": [
+        "https://www.caixa.gov.br/voce/habitacao/Paginas/default.aspx",
+        "data/private/contracts/CONTRACT_PURCHASE/doc_002.pdf"
+      ],
+      "evidence": "The signed purchase contract only says financing-contract expenses are borne by the buyer. It does not create a Caixa 'relationship fee', and the repository has no Caixa proposal, CET sheet, tariff disclosure or financing contract supporting that wording or R$7,000.",
+      "ambiguities": "The value may be conflating valuation/engineering fees, insurance, account/package costs, registry costs or required own resources. Do not represent it as a mandatory relationship fee without a Caixa document naming the charge and value; separate each legitimate item to avoid overlap with EXP_0003 and EXP_0004."
+    },
+    {
+      "expense_id": "EXP_0009",
+      "classification": "excluded_old_home_expense",
+      "amount": 2400.0,
+      "authoritative_source": "Audit scope instruction",
+      "url/repository_path": "data/expenses.csv",
+      "evidence": "Current-rental penalty was expressly designated as an old-home exclusion.",
+      "ambiguities": "None for this audit classification."
+    },
+    {
+      "expense_id": "EXP_0010",
+      "classification": "excluded_old_home_expense",
+      "amount": 1000.0,
+      "authoritative_source": "Audit scope instruction",
+      "url/repository_path": "data/expenses.csv",
+      "evidence": "Renovation of the current apartment was expressly designated as an old-home exclusion.",
+      "ambiguities": "None for this audit classification."
+    },
+    {
+      "expense_id": "EXP_0011",
+      "classification": "applicable_after_financing_but_amount_unsupported",
+      "amount": 2200.0,
+      "authoritative_source": "No Caixa financing contract, approved simulation or CET/payment schedule exists in repository",
+      "url/repository_path": [
+        "data/private/contracts/CONTRACT_PURCHASE/doc_002.pdf",
+        "https://www.caixa.gov.br/voce/habitacao/Paginas/default.aspx"
+      ],
+      "evidence": "A mortgage installment is logically applicable only after financing is approved and contracted. The purchase contract establishes the intended financing but contains no principal, rate, term, amortization system, insurance or installment amount.",
+      "ambiguities": "R$2,200 is a migrated estimate. Replace it with the first-installment/payment-schedule amount from the executed Caixa contract or, provisionally and clearly labeled, an approved dated Caixa simulation including insurance and administrative components."
+    },
+    {
+      "expense_id": "EXP_0012",
+      "classification": "excluded_old_home_expense",
+      "amount": 1500.0,
+      "authoritative_source": "Audit scope instruction",
+      "url/repository_path": "data/expenses.csv",
+      "evidence": "Rent for the current home was expressly designated as an old-home exclusion.",
+      "ambiguities": "None for this audit classification."
+    },
+    {
+      "expense_id": "EXP_0013",
+      "classification": "locally_documented_but_unsigned_contracts",
+      "amount": 15000.0,
+      "authoritative_source": "Gelson Phase 1 and Phase 2 local contract drafts",
+      "url/repository_path": [
+        "data/private/contracts/CONTRACT_GELSON_01/doc_001.pdf",
+        "data/private/contracts/CONTRACT_GELSON_02/doc_001.pdf",
+        "data/contracts.json"
+      ],
+      "evidence": "Each local draft states a global labor price of R$7,500, totaling R$15,000 across the two phases, and details the masonry scope. This directly supports the planned amount as local contract evidence.",
+      "ambiguities": "Both documents are drafts with blank party details, dates, payment terms and signatures. They evidence a negotiated/planned amount, not an enforceable signed obligation or payment. The schedules stored in contracts.json are estimates and conflict with the blank payment tables."
+    },
+    {
+      "expense_id": "EXP_0018",
+      "classification": "excluded_contractor_responsibility",
+      "amount": 1300.0,
+      "authoritative_source": "Gelson contract drafts, clause 5.4",
+      "url/repository_path": [
+        "data/private/contracts/CONTRACT_GELSON_01/doc_001.pdf",
+        "data/private/contracts/CONTRACT_GELSON_02/doc_001.pdf"
+      ],
+      "evidence": "Clause 5.4 assigns manual tools and ordinary professional equipment required for the labor to Gelson/the contractor. The repository specifically maps drills and angle grinders in EXP_0018 to that responsibility.",
+      "ambiguities": "Only an extraordinary rental approved in advance would be chargeable to the owner; no such approval exists."
+    },
+    {
+      "expense_id": "EXP_0020",
+      "classification": "excluded_contractor_responsibility",
+      "amount": 200.0,
+      "authoritative_source": "Gelson contract drafts, clause 5.4",
+      "url/repository_path": [
+        "data/private/contracts/CONTRACT_GELSON_01/doc_001.pdf",
+        "data/private/contracts/CONTRACT_GELSON_02/doc_001.pdf"
+      ],
+      "evidence": "A wheelbarrow used to move materials and debris within the job is ordinary professional equipment, which clause 5.4 assigns to the contractor.",
+      "ambiguities": "The internal project JSON previously said to confirm responsibility, but the more specific contract clause resolves ordinary equipment against owner purchase unless the parties make a written exception."
+    }
+  ],
+  "audit_notes": [
+    "Amounts shown are the current expense-record amounts, not a finding that they are payable.",
+    "An official URL identifies the controlling authority or service. A payable value still requires the authority's guide, itemized calculation, executed contract or actual service order where noted.",
+    "The signed purchase contract supports responsibility for ITBI, financing and registration costs, but does not support the current down-payment, Caixa-fee, registry-cost or mortgage-installment values."
+  ]
+}

@@ -1,5 +1,6 @@
 import csv
 from datetime import date
+import io
 import json
 import tempfile
 import unittest
@@ -127,18 +128,17 @@ class ExpenseQuotationTests(unittest.TestCase):
             )
 
 
-    def test_zero_five_and_six_quotation_boundaries(self) -> None:
+    def test_quotation_records_are_unlimited(self) -> None:
         self.assertEqual(
             self.store.quotation_state(self.expense_id)["quotations"], []
         )
-        for index in range(5):
+        for index in range(12):
             self.store.upsert_quotation(
                 self.expense_id, self.quote(f"Loja {index}", index + 1)
             )
-        with self.assertRaisesRegex(ValueError, "at most 5"):
-            self.store.upsert_quotation(
-                self.expense_id, self.quote("Loja 6", 6)
-            )
+        self.assertEqual(
+            12, len(self.store.quotation_state(self.expense_id)["quotations"])
+        )
 
     def test_activity_quantities_drive_planned_minimum_and_maximum(self) -> None:
         first = self.store.upsert_quotation(
@@ -274,6 +274,40 @@ class ExpenseQuotationTests(unittest.TestCase):
         self.assertIn("Mantenha o fornecedor regional", broken["fix_text"])
         self.assertIn(self.expense_id, broken["fix_text"])
 
+    def test_preview_digest_binds_pack_and_source_documents(self) -> None:
+        headers = PRICE_PACK["headers"]
+        row = {header: "" for header in headers}
+        row.update(
+            {
+                "id": self.expense_id,
+                "unit_price": "10",
+                "vendor": "Loja",
+                "checked_at": "2026-09-16",
+            }
+        )
+        stream = io.StringIO()
+        writer = csv.DictWriter(stream, fieldnames=headers)
+        writer.writeheader()
+        writer.writerow(row)
+        pack_text = (
+            "===FILE: PRICE_PACK.csv===\n"
+            + stream.getvalue()
+            + "===END_FILE===\n"
+        )
+        preview = preview_pack(
+            pack_text, source_document_ids=["DOC_B", "DOC_A"]
+        )
+        self.assertTrue(preview["ok"])
+        self.assertEqual(["DOC_A", "DOC_B"], preview["source_document_ids"])
+        with self.assertRaisesRegex(ValueError, "preview_digest"):
+            commit_rows(
+                self.store,
+                preview["rows"],
+                pack_text=pack_text + "changed",
+                source_document_ids=["DOC_A", "DOC_B"],
+                preview_digest=preview["preview_digest"],
+            )
+
     def test_source_only_prompt_contains_context_and_evidence(self) -> None:
         source = (
             '<quotation_source type="text" name="message.txt">\n'
@@ -333,6 +367,68 @@ class ExpenseQuotationTests(unittest.TestCase):
         self.assertEqual("pdf", metadata["source_type"])
         self.assertEqual(2, metadata["source_page"])
         self.assertEqual(0.95, metadata["extraction_confidence"])
+
+    def test_unknown_metadata_roundtrips(self) -> None:
+        payload = self.quote()
+        payload["metadata"] = {
+            "currency": "BRL",
+            "source_type": "manual",
+            "custom_evidence": {"reviewer": "Eduardo"},
+        }
+        quotation_id = self.store.upsert_quotation(
+            self.expense_id, payload
+        )["quotation_id"]
+        quotation = self.store.quotation_state(self.expense_id)["quotations"][0]
+        self.assertEqual(
+            {"reviewer": "Eduardo"}, quotation["metadata"]["custom_evidence"]
+        )
+        self.store.upsert_quotation(
+            self.expense_id,
+            {"id": quotation_id, "notes": "updated", **self.quote()},
+        )
+        quotation = self.store.quotation_state(self.expense_id)["quotations"][0]
+        self.assertEqual(
+            {"reviewer": "Eduardo"}, quotation["metadata"]["custom_evidence"]
+        )
+
+    def test_pdf_archive_and_ai_upsert_preserve_attachments(self) -> None:
+        quotation_id = self.store.upsert_quotation(
+            self.expense_id, self.quote()
+        )["quotation_id"]
+        pdf = b"%PDF-1.4\n1 0 obj<</Type /Page>>endobj\n%%EOF"
+        attachment = self.store.quotation_store.add_document(
+            self.expense_id, quotation_id, pdf, "../../quote.pdf"
+        )
+        self.assertEqual("quote.pdf", attachment["original_filename"])
+        self.assertEqual(64, len(attachment["sha256"]))
+        self.assertEqual(
+            pdf,
+            self.store.quotation_store.document_path(
+                self.expense_id, quotation_id, attachment["id"]
+            ).read_bytes(),
+        )
+        result = self.store.apply_price_rows(
+            [
+                {
+                    "id": self.expense_id,
+                    "quotation_id": quotation_id,
+                    **self.quote("AI enrichment", 19),
+                }
+            ]
+        )
+        self.assertTrue(result["ok"], result["errors"])
+        updated = self.store.quotation_state(self.expense_id)["quotations"][0]
+        self.assertEqual([attachment["id"]], [a["id"] for a in updated["attachments"]])
+        self.store.delete_quotation(self.expense_id, quotation_id)
+        archived = next(
+            item
+            for item in self.store.quotation_store.all()
+            if item["id"] == quotation_id
+        )
+        self.assertTrue(archived["archived"])
+        self.assertTrue(self.store.quotation_store.document_path(
+            self.expense_id, quotation_id, attachment["id"]
+        ).is_file())
 
     def test_metadata_arithmetic_and_commit_are_revalidated(self) -> None:
         base = {header: "" for header in PRICE_PACK["headers"]}

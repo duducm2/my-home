@@ -34,6 +34,8 @@ from media_export import (  # noqa: E402
 )
 from note_store import NoteStore  # noqa: E402
 from provider_store import ProviderStore  # noqa: E402
+from quotation_planning_store import QuotationPlanningStore  # noqa: E402
+from quotation_store import MAX_PDF_BYTES as MAX_QUOTATION_PDF_BYTES  # noqa: E402
 from quick_task_store import QuickTaskStore  # noqa: E402
 from task_store import TaskStore  # noqa: E402
 
@@ -49,6 +51,7 @@ _NOTES: NoteStore | None = None
 _PROVIDERS: ProviderStore | None = None
 _CONTRACTS: ContractStore | None = None
 _QUICK_TASKS: QuickTaskStore | None = None
+_QUOTATION_PLANNING: QuotationPlanningStore | None = None
 
 
 def get_store(data_dir: Path) -> ExpenseStore:
@@ -98,6 +101,16 @@ def get_house(data_dir: Path) -> HouseStore:
     if _HOUSE is None or _HOUSE.data_dir != data_dir.resolve():
         _HOUSE = HouseStore(data_dir)
     return _HOUSE
+
+
+def get_quotation_planning(data_dir: Path) -> QuotationPlanningStore:
+    global _QUOTATION_PLANNING
+    if (
+        _QUOTATION_PLANNING is None
+        or _QUOTATION_PLANNING.data_dir != data_dir.resolve()
+    ):
+        _QUOTATION_PLANNING = QuotationPlanningStore(data_dir)
+    return _QUOTATION_PLANNING
 
 
 class ExpenseHandler(BaseHTTPRequestHandler):
@@ -235,6 +248,23 @@ class ExpenseHandler(BaseHTTPRequestHandler):
             if len(parts) == 4:
                 self._json(200, get_store(self.data_dir).quotation_state(parts[2]))
                 return
+        if path.startswith("/api/expenses/") and "/quotations/" in path and "/documents/" in path:
+            parts = [part for part in path.split("/") if part]
+            if (
+                len(parts) == 7
+                and parts[3] == "quotations"
+                and parts[5] == "documents"
+            ):
+                document_id = "" if parts[6] == "current" else parts[6]
+                try:
+                    target = get_store(self.data_dir).quotation_store.document_path(
+                        parts[2], parts[4], document_id
+                    )
+                except ValueError as exc:
+                    self._json(404, {"ok": False, "error": str(exc)})
+                    return
+                self._serve_file(target, "application/pdf")
+                return
         if path == "/api/state":
             self._json(200, get_store(self.data_dir).state())
             return
@@ -249,6 +279,12 @@ class ExpenseHandler(BaseHTTPRequestHandler):
             return
         if path == "/api/providers":
             self._json(200, get_providers(self.data_dir).state())
+            return
+        if path == "/api/quotation-planning":
+            expenses = get_store(self.data_dir).list_expenses()
+            self._json(
+                200, get_quotation_planning(self.data_dir).state(expenses)
+            )
             return
         if path == "/api/contracts":
             self._json(200, get_contracts(self.data_dir).state())
@@ -338,6 +374,38 @@ class ExpenseHandler(BaseHTTPRequestHandler):
                 filename = unquote(self.headers.get("X-Filename", "contract.pdf"))
                 self._json(200, get_contracts(self.data_dir).add_document(parts[2], data, filename))
                 return
+            if path.startswith("/api/expenses/") and path.endswith("/documents"):
+                parts = [part for part in path.split("/") if part]
+                if (
+                    len(parts) != 6
+                    or parts[3] != "quotations"
+                    or parts[5] != "documents"
+                ):
+                    raise ValueError("invalid quotation document upload route")
+                length = int(self.headers.get("Content-Length", "0") or "0")
+                if length <= 0 or length > MAX_QUOTATION_PDF_BYTES:
+                    raise ValueError("PDF must contain data and be at most 25 MB")
+                data = self.rfile.read(length)
+                filename = unquote(
+                    self.headers.get("X-Filename", "quotation.pdf")
+                )
+                document = get_store(self.data_dir).quotation_store.add_document(
+                    parts[2], parts[4], data, filename
+                )
+                self._json(
+                    200,
+                    {
+                        "ok": True,
+                        "expense_id": parts[2],
+                        "quotation_id": parts[4],
+                        "document": document,
+                        "quotation_state": get_store(
+                            self.data_dir
+                        ).quotation_state(parts[2]),
+                        "state": get_store(self.data_dir).state(),
+                    },
+                )
+                return
             payload = self._read_json()
             store = get_store(self.data_dir)
             if path.startswith("/api/expenses/") and "/quotations" in path:
@@ -354,7 +422,13 @@ class ExpenseHandler(BaseHTTPRequestHandler):
                     self._json(404, {"ok": False, "error": "not found"})
             elif path == "/api/expenses":
                 result = store.upsert_expense(payload)
-                get_contracts(self.data_dir).sync_expense_link(result["expense_id"], str(payload.get("contract_id") or ""))
+                contract_ids = payload.get("contract_ids")
+                if not isinstance(contract_ids, list):
+                    legacy_contract_id = str(payload.get("contract_id") or "")
+                    contract_ids = [legacy_contract_id] if legacy_contract_id else []
+                get_contracts(self.data_dir).sync_expense_link(
+                    result["expense_id"], contract_ids
+                )
                 self._json(200, result)
             elif path == "/api/tasks":
                 result = get_tasks(self.data_dir).upsert(payload)
@@ -366,6 +440,12 @@ class ExpenseHandler(BaseHTTPRequestHandler):
                 self._json(200, get_notes(self.data_dir).save(payload))
             elif path == "/api/providers":
                 self._json(200, get_providers(self.data_dir).upsert(payload))
+            elif path == "/api/quotation-planning":
+                expenses = store.list_expenses()
+                self._json(
+                    200,
+                    get_quotation_planning(self.data_dir).save(payload, expenses),
+                )
             elif path == "/api/contracts":
                 self._json(200, get_contracts(self.data_dir).upsert(payload))
             elif path == "/api/push":
@@ -407,12 +487,19 @@ class ExpenseHandler(BaseHTTPRequestHandler):
                             payload.get("correction_instructions") or ""
                         ),
                         expense_context=str(payload.get("expense_context") or ""),
+                        source_document_ids=payload.get("source_document_ids")
+                        if isinstance(payload.get("source_document_ids"), list)
+                        else [],
                     ),
                 )
             elif path == "/api/import/commit":
                 rows = payload.get("rows")
                 if not isinstance(rows, list):
                     raise ValueError("rows is required")
+                if not str(payload.get("preview_digest") or "").strip():
+                    raise ValueError(
+                        "preview_digest is required; preview the exact pack before commit"
+                    )
                 self._json(
                     200,
                     commit_rows(
@@ -423,6 +510,10 @@ class ExpenseHandler(BaseHTTPRequestHandler):
                         expense_context=str(
                             payload.get("expense_context") or ""
                         ),
+                        source_document_ids=payload.get("source_document_ids")
+                        if isinstance(payload.get("source_document_ids"), list)
+                        else [],
+                        preview_digest=str(payload.get("preview_digest") or ""),
                     ),
                 )
             else:

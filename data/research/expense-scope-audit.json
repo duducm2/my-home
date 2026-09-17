@@ -1,0 +1,257 @@
+{
+  "version": 1,
+  "checked_at": "2026-09-16",
+  "property": "Rua Ângelo Príncipe Padella, Parque Fabrício, Nova Odessa/SP",
+  "policy": {
+    "competitive": "Requires at least three distinct, directly evidenced offers.",
+    "official_or_contractual": "Uses one authoritative official, contract, or internal planning source.",
+    "excluded": "Retained in expenses.csv but excluded from this research and import."
+  },
+  "expenses": [
+    {
+      "expense_id": "EXP_0001",
+      "classification": "official_or_contractual",
+      "reason": "Purchase-contract down payment."
+    },
+    {
+      "expense_id": "EXP_0002",
+      "classification": "official_or_contractual",
+      "reason": "Municipal ITBI; no competing vendor."
+    },
+    {
+      "expense_id": "EXP_0003",
+      "classification": "official_or_contractual",
+      "reason": "Official São Paulo registry/notary tariff."
+    },
+    {
+      "expense_id": "EXP_0004",
+      "classification": "official_or_contractual",
+      "reason": "Official financing-contract and fiduciary-registration charge."
+    },
+    {
+      "expense_id": "EXP_0005",
+      "classification": "excluded",
+      "reason": "Moving/transition cost excluded by user."
+    },
+    {
+      "expense_id": "EXP_0006",
+      "classification": "official_or_contractual",
+      "reason": "Utility connection charges are defined by each concessionaire."
+    },
+    {
+      "expense_id": "EXP_0007",
+      "classification": "official_or_contractual",
+      "reason": "Internal emergency-reserve policy, not a market quotation."
+    },
+    {
+      "expense_id": "EXP_0008",
+      "classification": "official_or_contractual",
+      "reason": "Caixa contractual or official charge; requires documentary confirmation."
+    },
+    {
+      "expense_id": "EXP_0009",
+      "classification": "excluded",
+      "reason": "Old-home rental penalty excluded by user."
+    },
+    {
+      "expense_id": "EXP_0010",
+      "classification": "excluded",
+      "reason": "Old-apartment renovation excluded by user."
+    },
+    {
+      "expense_id": "EXP_0011",
+      "classification": "official_or_contractual",
+      "reason": "Mortgage installment is contractual."
+    },
+    {
+      "expense_id": "EXP_0012",
+      "classification": "excluded",
+      "reason": "Old-home rent excluded by user."
+    },
+    {
+      "expense_id": "EXP_0013",
+      "classification": "official_or_contractual",
+      "reason": "Gelson labor is covered by two local project contracts."
+    },
+    {
+      "expense_id": "EXP_0014",
+      "classification": "competitive",
+      "reason": "Owner-supplied waterproofing material."
+    },
+    {
+      "expense_id": "EXP_0015",
+      "classification": "competitive",
+      "reason": "Owner-supplied construction aggregates."
+    },
+    {
+      "expense_id": "EXP_0016",
+      "classification": "competitive",
+      "reason": "Owner-supplied cement."
+    },
+    {
+      "expense_id": "EXP_0017",
+      "classification": "competitive",
+      "reason": "Owner-supplied roof tiles."
+    },
+    {
+      "expense_id": "EXP_0018",
+      "classification": "excluded",
+      "reason": "Ordinary tools are Gelson's responsibility under clauses 5.1-5.4."
+    },
+    {
+      "expense_id": "EXP_0019",
+      "classification": "competitive",
+      "reason": "Owner-supplied clay bricks."
+    },
+    {
+      "expense_id": "EXP_0020",
+      "classification": "excluded",
+      "reason": "Wheelbarrow is an ordinary contractor tool under clauses 5.1-5.4."
+    },
+    {
+      "expense_id": "EXP_0021",
+      "classification": "competitive",
+      "reason": "Owner-supplied annealed construction wire."
+    },
+    {
+      "expense_id": "EXP_0022",
+      "classification": "competitive",
+      "reason": "Regional construction-waste dumpster service."
+    },
+    {
+      "expense_id": "EXP_0023",
+      "classification": "competitive",
+      "reason": "Owner-supplied porcelain floor tile."
+    },
+    {
+      "expense_id": "EXP_0024",
+      "classification": "competitive",
+      "reason": "Owner-supplied porcelain grout."
+    },
+    {
+      "expense_id": "EXP_0025",
+      "classification": "competitive",
+      "reason": "Owner-supplied porcelain mortar."
+    },
+    {
+      "expense_id": "EXP_0026",
+      "classification": "competitive",
+      "reason": "Five internal doors are included in renovation scope."
+    },
+    {
+      "expense_id": "EXP_0027",
+      "classification": "competitive",
+      "reason": "Approximately 2 m balcony door is included in renovation scope."
+    },
+    {
+      "expense_id": "EXP_0028",
+      "classification": "competitive",
+      "reason": "Bathroom renovation requires a toilet."
+    },
+    {
+      "expense_id": "EXP_0029",
+      "classification": "competitive",
+      "reason": "Replacement of five room/office windows is contracted."
+    },
+    {
+      "expense_id": "EXP_0030",
+      "classification": "competitive",
+      "reason": "Living-room glazing remains a planned opening item."
+    },
+    {
+      "expense_id": "EXP_0031",
+      "classification": "competitive",
+      "reason": "Bathroom glazing is required for renovated bathrooms."
+    },
+    {
+      "expense_id": "EXP_0032",
+      "classification": "competitive",
+      "reason": "Electrical work beyond Gelson's written scope needs a qualified provider."
+    },
+    {
+      "expense_id": "EXP_0033",
+      "classification": "competitive",
+      "reason": "Distribution-board replacement may be required by electrical review."
+    },
+    {
+      "expense_id": "EXP_0034",
+      "classification": "competitive",
+      "reason": "Conduits are explicitly included in renovation scope."
+    },
+    {
+      "expense_id": "EXP_0035",
+      "classification": "competitive",
+      "reason": "Lighting is a necessary completion item."
+    },
+    {
+      "expense_id": "EXP_0036",
+      "classification": "competitive",
+      "reason": "Bathroom, kitchen, and laundry plumbing require faucets."
+    },
+    {
+      "expense_id": "EXP_0037",
+      "classification": "competitive",
+      "reason": "Bathroom, kitchen, and laundry plumbing require siphons and drains."
+    },
+    {
+      "expense_id": "EXP_0038",
+      "classification": "competitive",
+      "reason": "New outlets are explicitly included in renovation scope."
+    },
+    {
+      "expense_id": "EXP_0039",
+      "classification": "competitive",
+      "reason": "Bathroom/social and external-kitchen scopes require sinks/countertops."
+    },
+    {
+      "expense_id": "EXP_0040",
+      "classification": "competitive",
+      "reason": "Bathroom renovation logically requires a shower enclosure."
+    },
+    {
+      "expense_id": "EXP_0041",
+      "classification": "competitive",
+      "reason": "Skirting accompanies the new porcelain floor."
+    },
+    {
+      "expense_id": "EXP_0042",
+      "classification": "competitive",
+      "reason": "New clay roof requires timber or metal framing; project-specific references only."
+    },
+    {
+      "expense_id": "EXP_0043",
+      "classification": "competitive",
+      "reason": "Gutters and flashings are necessary for the altered roof."
+    },
+    {
+      "expense_id": "EXP_0044",
+      "classification": "competitive",
+      "reason": "Water storage is a logical house utility item."
+    },
+    {
+      "expense_id": "EXP_0045",
+      "classification": "competitive",
+      "reason": "A basic residential security set is a logical post-purchase item."
+    },
+    {
+      "expense_id": "EXP_0046",
+      "classification": "competitive",
+      "reason": "Painting is required after demolition, plastering, and opening changes."
+    },
+    {
+      "expense_id": "EXP_0047",
+      "classification": "competitive",
+      "reason": "Fixings are owner-supplied consumable materials."
+    },
+    {
+      "expense_id": "EXP_0048",
+      "classification": "competitive",
+      "reason": "Sealants are owner-supplied finishing consumables."
+    },
+    {
+      "expense_id": "EXP_0049",
+      "classification": "competitive",
+      "reason": "Protective tarp is an owner-supplied worksite protection consumable."
+    }
+  ]
+}

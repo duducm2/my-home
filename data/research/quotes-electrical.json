@@ -1,0 +1,466 @@
+{
+  "schema_version": "1.0",
+  "research": {
+    "title": "Ofertas web brasileiras de serviços e materiais elétricos",
+    "target_location": {
+      "city": "Nova Odessa",
+      "state": "SP",
+      "country": "BR"
+    },
+    "checked_at": "2026-09-16",
+    "currency": "BRL",
+    "shipping_policy": "Frete mantido como null quando não foi calculado explicitamente para um CEP de Nova Odessa.",
+    "comparability_notes": {
+      "EXP_0032": "Referência desejada: revisão/instalação elétrica residencial completa. Escopos menores permanecem registrados, mas não são considerados equivalentes.",
+      "EXP_0033": "Unidade de quadro para 16/18 disjuntores DIN; montagem de embutir ou sobrepor é indicada em cada oferta.",
+      "EXP_0034": "Rolo reforçado de eletroduto corrugado de 25 mm e 50 m; preço normalizado por metro.",
+      "EXP_0035": "Lâmpada LED bulbo de 9 W, soquete E27, bivolt.",
+      "EXP_0038": "Conjunto completo 4x2 com uma tomada 2P+T, 10 A.",
+      "EXP_0045": "Kit residencial com quatro câmeras, DVR e armazenamento quando explicitamente incluído."
+    }
+  },
+  "expenses": [
+    {
+      "expense_id": "EXP_0032",
+      "description": "Serviço de eletricista",
+      "unit": "service",
+      "requirement_status": "partial",
+      "requirement_note": "Há três páginas regionais com faixa visível, mas somente Chama o Pro publica escopo de revisão residencial de 30 pontos. Nenhuma confirma atendimento presencial em Nova Odessa nem constitui orçamento vinculante.",
+      "offers": [
+        {
+          "vendor": "Chama o Pro",
+          "offer_name": "Revisão de 30 pontos elétricos em casa de médio padrão",
+          "direct_url": "https://chamaopro.com.br/servicos/eletricista-campinas/",
+          "verification": {
+            "status": 200,
+            "method": "browser_visible_text",
+            "checked_at": "2026-09-16"
+          },
+          "price_brl": {
+            "type": "range",
+            "min": 4000.0,
+            "max": 8000.0
+          },
+          "specs_package": "Estimativa para revisar 30 pontos elétricos em residência de médio padrão em Campinas; variação atribuída ao estado da fiação. A página informa orçamento sem custo por eletricista com ART/CREA-SP.",
+          "availability": "reference_estimate",
+          "location_caveat": "Faixa calibrada para Campinas/SP. Atendimento em Nova Odessa e deslocamento não foram confirmados.",
+          "shipping_brl": null,
+          "eligible_for_import": false,
+          "exclusion_reason": "Referência editorial baseada em SINAPI, não cotação direta de prestador para o imóvel em Nova Odessa."
+        },
+        {
+          "vendor": "Adriano Eletricista",
+          "offer_name": "Instalação completa de circuitos elétricos residenciais",
+          "direct_url": "https://adrianoeletricista.com.br/preco-eletricista-campinas/",
+          "verification": {
+            "status": 200,
+            "method": "visible_page_text",
+            "checked_at": "2026-09-16"
+          },
+          "price_brl": {
+            "type": "range",
+            "min": 500.0,
+            "max": 1000.0
+          },
+          "specs_package": "Estimativa publicada para instalação completa de circuitos elétricos em uma residência; preço varia com a complexidade. Materiais, quantidade de circuitos e inspeção integral não são definidos.",
+          "availability": "estimate_request_required",
+          "location_caveat": "Prestador/página voltada a Campinas. Cobertura de Nova Odessa e custo de deslocamento não foram confirmados.",
+          "shipping_brl": null,
+          "eligible_for_import": false,
+          "exclusion_reason": "Escopo não é uma revisão elétrica residencial completa e a faixa não é um orçamento específico."
+        },
+        {
+          "vendor": "Robozin.pro",
+          "offer_name": "Troca ou organização de quadro de distribuição",
+          "direct_url": "https://www.robozin.pro/precos/eletricista/sp/campinas",
+          "verification": {
+            "status": 200,
+            "method": "visible_page_text",
+            "checked_at": "2026-09-16"
+          },
+          "price_brl": {
+            "type": "range",
+            "min": 600.0,
+            "max": 1600.0
+          },
+          "specs_package": "Referência regional de mão de obra para troca/organização de quadro com até 12 disjuntores e sem aumento de carga; materiais e adequações adicionais são cobrados à parte.",
+          "availability": "reference_estimate",
+          "location_caveat": "Tabela para Campinas/SP, atualizada na página em 2026-04-25. Atendimento por profissional em Nova Odessa não foi confirmado.",
+          "shipping_brl": null,
+          "eligible_for_import": false,
+          "exclusion_reason": "Escopo parcial de quadro, não revisão elétrica completa; valor é referência de mercado."
+        }
+      ]
+    },
+    {
+      "expense_id": "EXP_0033",
+      "description": "Quadro de distribuição 16/18 DIN",
+      "unit": "unit",
+      "requirement_status": "complete",
+      "offers": [
+        {
+          "vendor": "Mininco",
+          "offer_name": "Quadro de distribuição Tramontina de embutir para 18 disjuntores DIN",
+          "direct_url": "https://mininco.com.br/products/quadro-de-distribuicao-de-embutir-tramontina-18-disjuntores-din-porta-branca",
+          "verification": {
+            "status": 200,
+            "method": "product_page_jsonld_and_visible_price",
+            "checked_at": "2026-09-16"
+          },
+          "price_brl": {
+            "type": "fixed",
+            "amount": 230.9
+          },
+          "normalized_price_brl": 230.9,
+          "specs_package": "1 quadro Tramontina para embutir, porta branca, capacidade para 18 disjuntores DIN.",
+          "availability": "in_stock",
+          "location_caveat": "Loja informa pedido mínimo de R$ 800; entrega e prazo para Nova Odessa dependem de CEP.",
+          "shipping_brl": null,
+          "eligible_for_import": true
+        },
+        {
+          "vendor": "Gadu Multifer",
+          "offer_name": "Quadro de distribuição para 18 disjuntores DIN",
+          "direct_url": "https://www.gadumultifer.com.br/construcao/energia/quadros-de-distribuicao/quadro-distribuicao-18-disjuntores-sobrepor-caixa-disjuntor-branco-fume-din-luz-eletrica-energia",
+          "verification": {
+            "status": 200,
+            "method": "product_page_jsonld_and_visible_price",
+            "checked_at": "2026-09-16"
+          },
+          "price_brl": {
+            "type": "fixed",
+            "amount": 84.9
+          },
+          "normalized_price_brl": 84.9,
+          "specs_package": "1 quadro de sobrepor, branco/fumê, capacidade para 18 disjuntores DIN.",
+          "availability": "listed_for_sale",
+          "location_caveat": "Modelo de sobrepor, enquanto outras ofertas são de embutir. Entrega para Nova Odessa depende de CEP.",
+          "shipping_brl": null,
+          "eligible_for_import": true
+        },
+        {
+          "vendor": "Loja Strahl",
+          "offer_name": "Quadro de embutir Strahl QD18-PB para até 18 disjuntores DIN",
+          "direct_url": "https://loja.strahl.com/quadros-de-distribuicao/quadro-para-ate-18-disjuntores-din-embutir-qd18-pb",
+          "verification": {
+            "status": 200,
+            "method": "product_page_jsonld_and_visible_price",
+            "checked_at": "2026-09-16"
+          },
+          "price_brl": {
+            "type": "fixed",
+            "amount": 67.01
+          },
+          "normalized_price_brl": 67.01,
+          "specs_package": "1 quadro Strahl QD18-PB de embutir para até 18 disjuntores DIN.",
+          "availability": "in_stock",
+          "location_caveat": "Preço e estoque constavam na oferta estruturada; frete para Nova Odessa exige cálculo por CEP.",
+          "shipping_brl": null,
+          "eligible_for_import": true
+        }
+      ]
+    },
+    {
+      "expense_id": "EXP_0034",
+      "description": "Eletroduto corrugado reforçado 25 mm",
+      "unit": "linear_meter",
+      "requirement_status": "complete",
+      "offers": [
+        {
+          "vendor": "Sertão",
+          "offer_name": "Eletroduto corrugado reforçado Fortlev 25 mm, rolo 50 m",
+          "direct_url": "https://www.sertao.com.br/eletroduto-corrugado-reforcado-25mm-rolo-com-50m-fortlev-1176841/p",
+          "verification": {
+            "status": 200,
+            "method": "product_page_jsonld_and_visible_price",
+            "checked_at": "2026-09-16"
+          },
+          "price_brl": {
+            "type": "fixed",
+            "amount": 169.9
+          },
+          "package_quantity_m": 50,
+          "normalized_price_brl_per_m": 3.398,
+          "specs_package": "Rolo de 50 m, eletroduto corrugado reforçado Fortlev, diâmetro nominal 25 mm.",
+          "availability": "listed_for_sale",
+          "location_caveat": "Disponibilidade e entrega para Nova Odessa dependem de CEP/estoque regional.",
+          "shipping_brl": null,
+          "eligible_for_import": true
+        },
+        {
+          "vendor": "Andra",
+          "offer_name": "Eletroduto Tigreflex reforçado Tigre 25 mm, rolo 50 m",
+          "direct_url": "https://www.andra.com.br/eletroduto-corrugado-flexivel-reforcado-25mm-laranja-rolo-50m-tigreflex-14211250-tigre/p",
+          "verification": {
+            "status": 200,
+            "method": "product_page_jsonld_and_visible_price",
+            "checked_at": "2026-09-16"
+          },
+          "price_brl": {
+            "type": "fixed",
+            "amount": 164.0
+          },
+          "package_quantity_m": 50,
+          "normalized_price_brl_per_m": 3.28,
+          "specs_package": "Rolo de 50 m, eletroduto corrugado flexível reforçado Tigreflex/Tigre, 25 mm, laranja.",
+          "availability": "listed_for_sale",
+          "location_caveat": "Estoque e entrega para Nova Odessa precisam ser confirmados com CEP.",
+          "shipping_brl": null,
+          "eligible_for_import": true
+        },
+        {
+          "vendor": "Chatuba",
+          "offer_name": "Eletroduto corrugado reforçado Tigre 25 mm, rolo 50 m",
+          "direct_url": "https://www.chatuba.com.br/eletroduto-corrugado-reforcado-25mm-50m-tigre/p",
+          "verification": {
+            "status": 200,
+            "method": "product_page_jsonld_and_visible_price",
+            "checked_at": "2026-09-16"
+          },
+          "price_brl": {
+            "type": "fixed",
+            "amount": 117.5
+          },
+          "package_quantity_m": 50,
+          "normalized_price_brl_per_m": 2.35,
+          "specs_package": "Rolo de 50 m, eletroduto corrugado reforçado Tigre, 25 mm.",
+          "availability": "listed_for_sale",
+          "location_caveat": "A loja tem operação regional fora de SP; aceite do CEP de Nova Odessa e frete não foram confirmados.",
+          "shipping_brl": null,
+          "eligible_for_import": true
+        }
+      ]
+    },
+    {
+      "expense_id": "EXP_0035",
+      "description": "Lâmpada LED 9 W E27",
+      "unit": "unit",
+      "requirement_status": "complete_with_stock_caveat",
+      "offers": [
+        {
+          "vendor": "Santil",
+          "offer_name": "Lâmpada LED bulbo Ourolux 9 W E27 4000 K",
+          "direct_url": "https://www.santil.com.br/lampada-led-bulbo-e27-9w-bivolt-luz-neutra-4000k-803lm-ourolux/p",
+          "verification": {
+            "status": 200,
+            "method": "product_page_jsonld_and_visible_price",
+            "checked_at": "2026-09-16"
+          },
+          "price_brl": {
+            "type": "fixed",
+            "amount": 3.51
+          },
+          "normalized_price_brl": 3.51,
+          "specs_package": "1 lâmpada LED bulbo Ourolux, 9 W, E27, bivolt, luz neutra 4000 K, 803 lm.",
+          "availability": "in_stock",
+          "location_caveat": "Estoque e entrega para Nova Odessa dependem de CEP.",
+          "shipping_brl": null,
+          "eligible_for_import": true
+        },
+        {
+          "vendor": "Leroy Merlin",
+          "offer_name": "Lâmpada LED bulbo 9 W E27 810 lm branca",
+          "direct_url": "https://www.leroymerlin.com.br/lampada-de-led-e27-bulbo-9w-810lm-branca_90599866",
+          "verification": {
+            "status": 200,
+            "method": "browser_visible_price",
+            "checked_at": "2026-09-16"
+          },
+          "price_brl": {
+            "type": "fixed",
+            "amount": 2.99
+          },
+          "normalized_price_brl": 2.99,
+          "specs_package": "1 lâmpada LED bulbo, 9 W, soquete E27, 810 lm, luz branca.",
+          "availability": "in_stock_for_selected_region",
+          "location_caveat": "Página foi verificada com região Campinas; entrega/retirada específica para Nova Odessa depende de CEP.",
+          "shipping_brl": null,
+          "eligible_for_import": true
+        },
+        {
+          "vendor": "Loja Central Elétrica",
+          "offer_name": "Lâmpada LED 9 W E27 6500 K bivolt",
+          "direct_url": "https://www.lojacentraleletrica.com.br/produto/lampada-led-9w-e27-6500k-bivolt",
+          "verification": {
+            "status": 200,
+            "method": "product_page_jsonld_and_visible_price",
+            "checked_at": "2026-09-16"
+          },
+          "price_brl": {
+            "type": "fixed",
+            "amount": 4.4
+          },
+          "normalized_price_brl": 4.4,
+          "specs_package": "1 lâmpada LED, 9 W, E27, 6500 K, bivolt.",
+          "availability": "out_of_stock",
+          "location_caveat": "Página informava indisponibilidade e restrição de envio; não é opção comprável para Nova Odessa nesta data.",
+          "shipping_brl": null,
+          "eligible_for_import": false,
+          "exclusion_reason": "Produto sem estoque."
+        }
+      ]
+    },
+    {
+      "expense_id": "EXP_0038",
+      "description": "Conjunto completo de tomada 2P+T 10 A",
+      "unit": "unit",
+      "requirement_status": "complete",
+      "offers": [
+        {
+          "vendor": "Telhanorte",
+          "offer_name": "Conjunto tomada Schneider Miluz 2P+T 10 A 250 V",
+          "direct_url": "https://www.telhanorte.com.br/conjunto-tomada-2p-t-10a-250v-miluz-schneider-1325256/p",
+          "verification": {
+            "status": 200,
+            "method": "product_page_jsonld_and_visible_price",
+            "checked_at": "2026-09-16"
+          },
+          "price_brl": {
+            "type": "fixed",
+            "amount": 11.82,
+            "regular_amount": 13.9
+          },
+          "normalized_price_brl": 11.82,
+          "specs_package": "1 conjunto completo branco Schneider Miluz, placa e tomada 2P+T, 10 A, 250 V.",
+          "availability": "in_stock_online",
+          "location_caveat": "A página indicava estoque online, mas não estoque em loja física; entrega para Nova Odessa depende de CEP.",
+          "shipping_brl": null,
+          "eligible_for_import": true
+        },
+        {
+          "vendor": "Tramontina Store",
+          "offer_name": "Conjunto 4x2 com 1 tomada Tramontina Liz 2P+T 10 A",
+          "direct_url": "https://www.tramontina.com.br/conjunto-4x2-com-1-tomada-2p-t-tramontina-liz-10-a-250-v-branco/57170010.html",
+          "verification": {
+            "status": 200,
+            "method": "product_page_jsonld_and_visible_price",
+            "checked_at": "2026-09-16"
+          },
+          "price_brl": {
+            "type": "fixed",
+            "amount": 17.05,
+            "regular_amount": 18.9
+          },
+          "normalized_price_brl": 17.05,
+          "specs_package": "1 conjunto completo 4x2 Tramontina Liz branco, com uma tomada 2P+T, 10 A, 250 V.",
+          "availability": "in_stock",
+          "location_caveat": "Entrega e prazo para Nova Odessa dependem do CEP; a página exibia compra online.",
+          "shipping_brl": null,
+          "eligible_for_import": true
+        },
+        {
+          "vendor": "Leroy Merlin",
+          "offer_name": "Conjunto 1 tomada Schneider Miluz 10 A 4x2 branco",
+          "direct_url": "https://www.leroymerlin.com.br/conjunto-1-tomada-energia-10a-4x2-branco-miluz-schneider_89676930",
+          "verification": {
+            "status": 200,
+            "method": "browser_visible_price_and_stock",
+            "checked_at": "2026-09-16"
+          },
+          "price_brl": {
+            "type": "fixed",
+            "amount": 32.9
+          },
+          "normalized_price_brl": 32.9,
+          "specs_package": "1 conjunto completo 4x2 branco Schneider Miluz com tomada de energia 2P+T 10 A.",
+          "availability": "in_stock_for_selected_region",
+          "location_caveat": "Página verificada com região Campinas; disponibilidade exata para Nova Odessa depende de CEP/loja.",
+          "shipping_brl": null,
+          "eligible_for_import": true
+        }
+      ]
+    },
+    {
+      "expense_id": "EXP_0045",
+      "description": "Kit residencial de CFTV com 4 câmeras",
+      "unit": "set",
+      "requirement_status": "complete_with_stock_and_package_caveats",
+      "offers": [
+        {
+          "vendor": "Tudo Forte",
+          "offer_name": "Kit 4 câmeras Intelbras VHC 1120 B com DVR MHDX 1204-C e HD 500 GB",
+          "direct_url": "https://www.tudoforte.com.br/kit-4-cameras-intelbras-vhc-1120-b-bullet-hd-720p-hdcvi-visao-noturna-20m-protecao-ip66-dvr-gravador-de-video-mhdx-1204-c-4-canais-hd-500gb",
+          "verification": {
+            "status": 200,
+            "method": "visible_product_page_price_and_stock",
+            "checked_at": "2026-09-16"
+          },
+          "price_brl": {
+            "type": "fixed",
+            "amount": 1214.87,
+            "regular_amount": 1349.85
+          },
+          "normalized_price_brl": 1214.87,
+          "specs_package": "Kit com 4 câmeras Intelbras VHC 1120 B bullet HD 720p/HDCVI, visão noturna 20 m, IP66, DVR MHDX 1204-C de 4 canais e HD de 500 GB.",
+          "availability": "in_stock",
+          "location_caveat": "Frete e entrega para Nova Odessa dependem de CEP. Cabos, conectores e fonte não foram confirmados no título verificado.",
+          "shipping_brl": null,
+          "eligible_for_import": true
+        },
+        {
+          "vendor": "Magazine Luiza / Mixtou",
+          "offer_name": "Kit 4 câmeras Intelbras VHD 3230 B com DVR 8 canais e HD 1 TB",
+          "direct_url": "https://www.magazineluiza.com.br/kit-4-cameras-dvr-8-canais-1080p-2mp-vhd-3230-b-hd-1tb-intelbras/p/hhb1dbb0h2/cj/cagu/",
+          "verification": {
+            "status": 200,
+            "method": "browser_visible_marketplace_offer",
+            "checked_at": "2026-09-16"
+          },
+          "price_brl": {
+            "type": "fixed",
+            "amount": 1315.8
+          },
+          "normalized_price_brl": 1315.8,
+          "specs_package": "Kit anunciado com 4 câmeras Intelbras VHD 3230 B, 1080p/2 MP, DVR de 8 canais e HD de 1 TB.",
+          "availability": "listed_for_sale_by_marketplace_seller",
+          "location_caveat": "Oferta de marketplace vendida por Mixtou. Entrega para Nova Odessa, frete, cabos, conectores e fonte precisam ser confirmados na compra.",
+          "shipping_brl": null,
+          "eligible_for_import": true
+        },
+        {
+          "vendor": "NetAlarmes",
+          "offer_name": "Kit Intelbras com 4 câmeras Bullet 720p e DVR 8 canais",
+          "direct_url": "https://www.netalarmes.com.br/kit-cftv-intelbras-com-4-cameras-bullet-720p-dvr-8-canais",
+          "verification": {
+            "status": 200,
+            "method": "product_page_jsonld",
+            "checked_at": "2026-09-16"
+          },
+          "price_brl": {
+            "type": "fixed",
+            "amount": 1903.5
+          },
+          "normalized_price_brl": 1903.5,
+          "specs_package": "Kit Intelbras anunciado com 4 câmeras Bullet VHD 1010 B de 720p e DVR para 8 câmeras/canais.",
+          "availability": "out_of_stock",
+          "location_caveat": "Sem estoque na data verificada. HD, cabos, conectores e fonte não foram confirmados como inclusos.",
+          "shipping_brl": null,
+          "eligible_for_import": false,
+          "exclusion_reason": "Produto sem estoque."
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "expense_count": 6,
+    "offer_count": 18,
+    "offers_per_expense": {
+      "EXP_0032": 3,
+      "EXP_0033": 3,
+      "EXP_0034": 3,
+      "EXP_0035": 3,
+      "EXP_0038": 3,
+      "EXP_0045": 3
+    },
+    "eligible_for_import_count": 13,
+    "incomplete_expenses": [
+      "EXP_0032"
+    ],
+    "unresolved_caveats": [
+      "EXP_0032: nenhuma página verificada confirma atendimento presencial em Nova Odessa; apenas uma faixa cobre revisão residencial de 30 pontos, e todas exigem orçamento local.",
+      "Frete, prazo e estoque por CEP de Nova Odessa não foram calculados; shipping_brl permanece null.",
+      "EXP_0035: a terceira oferta está sem estoque.",
+      "EXP_0045: uma das três ofertas está sem estoque e os componentes auxiliares dos kits não aparecem de forma consistente nas páginas."
+    ]
+  }
+}

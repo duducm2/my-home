@@ -66,6 +66,28 @@ class ContractSystemTests(unittest.TestCase):
         self.assertTrue(archived["archived"])
         self.assertEqual(self.contracts.state(include_archived=False)["contracts"], [])
 
+    def test_expense_can_retain_multiple_contracts(self) -> None:
+        first = self._create_contract()
+        second = self.contracts.upsert(
+            {
+                "type": "service",
+                "title": "Segundo contrato",
+                "provider_id": self.provider_id,
+                "expense_ids": [self.expense_id],
+                "status": "draft",
+                "amount": 500,
+                "start_date": "2026-10-01",
+            }
+        )["contract_id"]
+        expense = self.expenses.list_expenses()[0]
+        self.assertEqual({first, second}, set(expense["contract_ids"]))
+        self.contracts.sync_expense_link(self.expense_id, [first, second])
+        contracts = {
+            item["id"]: item for item in self.contracts.state()["contracts"]
+        }
+        self.assertIn(self.expense_id, contracts[first]["expense_ids"])
+        self.assertIn(self.expense_id, contracts[second]["expense_ids"])
+
     def test_service_work_period_and_payment_frequencies(self) -> None:
         result = self.contracts.upsert(
             {

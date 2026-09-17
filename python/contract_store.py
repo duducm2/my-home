@@ -6,13 +6,13 @@ import csv
 import calendar
 import hashlib
 import json
-import os
 import re
 import threading
 from datetime import date, datetime, timedelta
 from pathlib import Path
 from typing import Any
 
+from persistence import atomic_write, atomic_write_text, coordinated_write
 
 CONTRACT_TYPES = {"purchase", "service"}
 CONTRACT_STATUSES = {"draft", "signed", "active", "completed", "cancelled"}
@@ -63,9 +63,11 @@ class ContractStore:
             document = dict(payload)
             document["version"] = 2
             document["updated_at"] = now_stamp()
-            temporary = self.path.with_suffix(".json.tmp")
-            temporary.write_text(json.dumps(document, ensure_ascii=False, indent=2) + "\n", encoding="utf-8", newline="\n")
-            os.replace(temporary, self.path)
+            atomic_write_text(
+                self.path,
+                json.dumps(document, ensure_ascii=False, indent=2) + "\n",
+                backup=self.path.is_file(),
+            )
 
     def _linked_task_period(
         self, expense_ids: list[str], contract_title: str = ""
@@ -316,26 +318,56 @@ class ContractStore:
             reader = csv.DictReader(handle)
             headers = list(reader.fieldnames or [])
             rows = list(reader)
+        if "contract_ids_json" not in headers:
+            headers.append("contract_ids_json")
         selected = set(selected_ids)
         changed = False
         for row in rows:
             expense_id = str(row.get("id") or "")
+            try:
+                contract_ids = json.loads(row.get("contract_ids_json") or "[]")
+            except json.JSONDecodeError:
+                contract_ids = []
+            if not isinstance(contract_ids, list):
+                contract_ids = []
+            legacy = str(row.get("contract_id") or "")
+            contract_ids = list(
+                dict.fromkeys(
+                    [
+                        *(str(value) for value in contract_ids if str(value)),
+                        *([legacy] if legacy else []),
+                    ]
+                )
+            )
             if expense_id in selected:
-                if row.get("contract_id") != contract_id or row.get("provider_id") != provider_id:
-                    row["contract_id"] = contract_id
+                if contract_id not in contract_ids:
+                    contract_ids.append(contract_id)
+                if row.get("provider_id") != provider_id:
                     row["provider_id"] = provider_id
-                    row["updated_at"] = now_stamp()
-                    changed = True
-            elif row.get("contract_id") == contract_id:
-                row["contract_id"] = ""
-                row["provider_id"] = ""
+            elif contract_id in contract_ids:
+                contract_ids = [value for value in contract_ids if value != contract_id]
+            serialized = json.dumps(
+                contract_ids, ensure_ascii=False, separators=(",", ":")
+            )
+            primary = contract_ids[0] if contract_ids else ""
+            if (
+                row.get("contract_ids_json") != serialized
+                or row.get("contract_id") != primary
+            ):
+                row["contract_ids_json"] = serialized
+                row["contract_id"] = primary
+                if not contract_ids:
+                    row["provider_id"] = ""
                 row["updated_at"] = now_stamp()
                 changed = True
         if changed:
-            with self.expenses_path.open("w", encoding="utf-8", newline="") as handle:
+            temporary = self.expenses_path.with_suffix(".csv.render")
+            with temporary.open("w", encoding="utf-8", newline="") as handle:
                 writer = csv.DictWriter(handle, fieldnames=headers, lineterminator="\n")
                 writer.writeheader()
                 writer.writerows({key: row.get(key, "") for key in headers} for row in rows)
+            atomic_write(self.expenses_path, temporary.read_bytes())
+            temporary.unlink()
 
     @staticmethod
     def _next_id(contracts: list[dict[str, Any]]) -> str:
@@ -513,8 +545,9 @@ class ContractStore:
             else:
                 contracts[index] = item
             document["contracts"] = contracts
-            self._write(document)
-            self._sync_expense_rows(contract_id, expense_ids, provider_id)
+            with coordinated_write([self.path, self.expenses_path]):
+                self._write(document)
+                self._sync_expense_rows(contract_id, expense_ids, provider_id)
             return {"ok": True, "contract_id": contract_id, **self.state()}
 
     def archive(self, contract_id: str) -> dict[str, Any]:
@@ -530,13 +563,20 @@ class ContractStore:
             self._write(document)
             return {"ok": True, "archived": contract_id, **self.state()}
 
-    def sync_expense_link(self, expense_id: str, contract_id: str = "") -> None:
+    def sync_expense_link(
+        self, expense_id: str, contract_ids: list[str] | str | None = None
+    ) -> None:
+        requested = (
+            {str(value) for value in contract_ids if str(value)}
+            if isinstance(contract_ids, list)
+            else ({str(contract_ids)} if contract_ids else set())
+        )
         with self._lock:
             document = self._read()
             changed = False
             for contract in document["contracts"]:
                 linked = list(contract.get("expense_ids") or [])
-                should_link = str(contract.get("id")) == contract_id
+                should_link = str(contract.get("id")) in requested
                 if expense_id in linked and not should_link:
                     contract["expense_ids"] = [value for value in linked if value != expense_id]
                     contract["updated_at"] = now_stamp()
@@ -545,8 +585,10 @@ class ContractStore:
                     contract["expense_ids"] = [*linked, expense_id]
                     contract["updated_at"] = now_stamp()
                     changed = True
-            if contract_id and not any(str(item.get("id")) == contract_id for item in document["contracts"]):
-                raise ValueError(f"contract not found: {contract_id}")
+            known = {str(item.get("id")) for item in document["contracts"]}
+            missing = requested - known
+            if missing:
+                raise ValueError(f"contract not found: {', '.join(sorted(missing))}")
             if changed:
                 self._write(document)
 
@@ -568,9 +610,7 @@ class ContractStore:
                 raise ValueError("invalid contract document path")
             filename = f"{document_id.lower()}.pdf"
             target = folder / filename
-            temporary = target.with_suffix(".pdf.tmp")
-            temporary.write_bytes(data)
-            os.replace(temporary, target)
+            atomic_write(target, data, backup=False)
             version = {
                 "id": document_id,
                 "original_filename": Path(original_filename or "contract.pdf").name,

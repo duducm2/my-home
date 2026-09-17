@@ -1,0 +1,56 @@
+{
+  "group": "debris-dumpster",
+  "checked_at": "2026-09-16",
+  "expenses": [
+    {
+      "expense_id": "EXP_0022",
+      "description": "Caçamba de entulho",
+      "comparable_spec": "Locação de 1 caçamba estacionária de 3–5 m³ para resíduos de construção/reforma, com permanência, entrega, retirada e destinação do conteúdo explicitadas na oferta.",
+      "offers": [
+        {
+          "vendor": "Caçamba Rápido",
+          "eligible_for_import": false,
+          "url": "https://cacambarapido.com/precos",
+          "displayed_price": 210.0,
+          "package_size": "1 caçamba de 4 m³ por 7 dias úteis; capacidade anunciada de até 4.000 kg",
+          "normalized_unit_price": 210.0,
+          "unit": "caçamba",
+          "availability": "Página ativa e preço visível; declara atendimento em todo o Brasil e entrega em até 24h. O total do endereço é estimado e deve ser confirmado conforme acesso e horário.",
+          "seller_location": "São Paulo/SP (garagem e bairros listados na capital; página declara atendimento em todo o Brasil)",
+          "shipping_cost": null,
+          "evidence": "A página direta exibe “4m³ — R$ 210,00/7 dias”, prazo-base de 7 dias úteis, entrega e retirada incluídas dentro da área de atendimento, retirada em até 24 horas úteis, certificado de descarte ecológico em aterros credenciados e proibição de amianto, inflamáveis, químicos, pneus, baterias e resíduos hospitalares.",
+          "ambiguities": "Rejeitada para importação: Nova Odessa não aparece nominalmente, o contato usa domínio de e-mail diferente do site e o preço é apenas estimado. A página informa entrega grátis somente até 8 km da garagem e R$ 6,00/km excedente; distância, frete e total para Nova Odessa permanecem desconhecidos."
+        },
+        {
+          "vendor": "Cidade Limpa",
+          "eligible_for_import": false,
+          "url": "https://cidadelimpa.online/",
+          "displayed_price": 280.0,
+          "package_size": "1 caçamba de 5 m³ por 7 dias corridos",
+          "normalized_unit_price": 280.0,
+          "unit": "caçamba",
+          "availability": "Página ativa, com Campinas/SP entre as áreas atendidas e entrega anunciada em até 24h; para demais regiões, incluindo Nova Odessa, exige consulta.",
+          "seller_location": "Campinas/SP (unidade/CNPJ listada na própria página; também lista São Paulo e Indaiatuba)",
+          "shipping_cost": null,
+          "evidence": "A página direta exibe “5m³ — R$ 280,00 — 7 dias de locação” e afirma que todos os preços incluem entrega, retirada, CRT e Nota Fiscal. Define o período padrão como 7 dias corridos e aceita resíduos de construção Classe A, citando tijolos, concreto, argamassa, gesso e madeira de obra, com descarte legal em aterros licenciados.",
+          "ambiguities": "Rejeitada para importação: Nova Odessa não está entre as cidades expressamente cobertas e o site mostra WhatsApp placeholder “(11) 0000-0000”, impedindo validar o fornecedor. Frete, disponibilidade efetiva e eventuais adicionais permanecem desconhecidos."
+        },
+        {
+          "vendor": "Caçamba Já",
+          "eligible_for_import": false,
+          "url": "https://cacambajabr.com/",
+          "displayed_price": 300.0,
+          "package_size": "1 caçamba anunciada como 5 m³; permanência geralmente de 3 a 5 dias",
+          "normalized_unit_price": 300.0,
+          "unit": "caçamba",
+          "availability": "Página ativa; declara frota nacional e disponibilidade regional sujeita às regras e à operação de cada município. Prazo exato para Nova Odessa deve ser confirmado.",
+          "seller_location": "Campinas/SP — R. das Dálias, 190, sala 02, Vila Mimosa, CEP 13050-045",
+          "shipping_cost": null,
+          "evidence": "A página direta exibe “5 Metros³ — R$300/locação”, descreve uso em reformas em geral e descarte ecológico. Informa prazo municipal geralmente de 3 a 5 dias, retirada no prazo e destinação para áreas de triagem, reciclagem e aterros licenciados; proíbe lixo orgânico, resíduos perigosos/hospitalares, pneus e químicos.",
+          "ambiguities": "Rejeitada para importação: a empresa identificada no rodapé é de comércio de eletrônicos, o tamanho anunciado diverge do botão e Nova Odessa não é confirmada. Preço final, prazo, frete e disponibilidade exigem confirmação."
+        }
+      ],
+      "unresolved_notes": "Nenhuma cotação é elegível para importação. As três páginas carregam e exibem preços, mas falham na verificação de fornecedor e atendimento fechado a Nova Odessa: contato inconsistente, telefone placeholder ou atividade empresarial incompatível. É necessário solicitar três orçamentos reais a transportadores licenciados locais."
+    }
+  ]
+}

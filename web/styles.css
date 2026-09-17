@@ -3478,7 +3478,7 @@ body.model3d-active {
 }
 
 .quotation-dialog {
-  width: min(70rem, calc(100vw - 2rem));
+  width: min(82rem, calc(100vw - 2rem));
   max-width: none;
   padding: 0;
 }
@@ -3499,6 +3499,216 @@ body.model3d-active {
   align-items: center;
   justify-content: space-between;
   gap: 10px;
+}
+
+.quotation-tabs,
+.quotation-response-toolbar,
+.quotation-vendor-toolbar {
+  display: flex;
+  align-items: end;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.quotation-tabs {
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--line);
+}
+
+.quotation-tabs .btn {
+  flex: 1 1 250px;
+}
+
+.quotation-tabs .btn.active {
+  color: #17130a;
+  background: var(--gold);
+  border-color: var(--gold);
+}
+
+.quotation-module {
+  display: grid;
+  gap: 12px;
+}
+
+.quotation-planning-grid {
+  display: grid;
+  grid-template-columns: minmax(260px, .78fr) minmax(0, 1.5fr);
+  gap: 12px;
+}
+
+.quotation-scope,
+.quotation-campaign {
+  min-width: 0;
+  padding: 12px;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 7px;
+}
+
+.quotation-scope h3,
+.quotation-campaign h3 {
+  margin: 2px 0 0;
+  font-size: 13px;
+}
+
+.quotation-scope-list,
+.quotation-linked-providers {
+  display: grid;
+  gap: 6px;
+  margin-top: 9px;
+}
+
+.quotation-scope-list {
+  max-height: 410px;
+  padding-right: 3px;
+  overflow-y: auto;
+}
+
+.quotation-scope-category {
+  padding: 7px;
+  background: #18181a;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+}
+
+.quotation-scope-category > label,
+.quotation-scope-expense {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.quotation-scope-category > label {
+  color: var(--gold);
+  font-weight: 700;
+}
+
+.quotation-scope-expenses {
+  display: grid;
+  gap: 4px;
+  margin: 6px 0 0 21px;
+}
+
+.quotation-scope-expense {
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.quotation-scope-list input,
+.quotation-linked-provider input,
+.quotation-response-toolbar input[type="checkbox"] {
+  width: 14px;
+  height: 14px;
+  flex: 0 0 14px;
+  accent-color: var(--gold);
+}
+
+.quotation-campaign {
+  display: grid;
+  align-content: start;
+  gap: 9px;
+}
+
+.quotation-campaign textarea {
+  min-height: 145px;
+  line-height: 1.45;
+}
+
+.quotation-vendor-toolbar .grow,
+.quotation-response-toolbar .grow {
+  flex: 1 1 220px;
+}
+
+.quotation-linked-provider {
+  display: grid;
+  grid-template-columns: minmax(150px, 1fr) minmax(110px, .7fr) minmax(140px, 1fr) auto;
+  align-items: end;
+  gap: 7px;
+  padding: 8px;
+  background: #18181a;
+  border: 1px solid var(--line);
+  border-left: 3px solid #3498db;
+  border-radius: 6px;
+}
+
+.quotation-linked-provider > div strong,
+.quotation-linked-provider > div small {
+  display: block;
+}
+
+.quotation-linked-provider > div small,
+.clipboard-status {
+  color: var(--muted);
+  font-size: 10px;
+}
+
+.clipboard-status.ok { color: #77e6a6; }
+.clipboard-status.err { color: #ff8f83; }
+
+.quotation-response-toolbar {
+  padding: 10px;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 7px;
+}
+
+.quotation-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding-top: 2px;
+}
+
+.quotation-pagination span {
+  min-width: 110px;
+  color: var(--muted);
+  font-size: 10px;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
+.quotation-response-toolbar > label:not(.check) {
+  display: grid;
+  min-width: 150px;
+  gap: 4px;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.quotation-card.archived { opacity: .58; }
+
+.quotation-card .quote-documents {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.quotation-card .quote-documents a {
+  color: var(--gold);
+  font-size: 10px;
+}
+
+.provider-directory-heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 12px 0 8px;
+}
+
+.provider-directory-heading .project-heading,
+.provider-directory-heading .section-sub {
+  margin: 0;
+}
+
+.provider-directory-heading label {
+  display: grid;
+  flex: 0 1 320px;
+  gap: 4px;
+  color: var(--muted);
+  font-size: 10px;
 }
 
 .quotation-header h2,
@@ -3862,6 +4072,11 @@ td.actions:has(.quotation-action-btn) {
   }
 
   .quotation-list {
+    grid-template-columns: 1fr;
+  }
+
+  .quotation-planning-grid,
+  .quotation-linked-provider {
     grid-template-columns: 1fr;
   }
 

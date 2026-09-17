@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="color-scheme" content="dark" />
     <title>my-home</title>
-    <link rel="stylesheet" href="/styles.css?v=20260916-25" />
-    <link rel="stylesheet" href="/tasks.css?v=20260916-26" />
+    <link rel="stylesheet" href="/styles.css?v=20260916-37" />
+    <link rel="stylesheet" href="/tasks.css?v=20260916-36" />
     <script type="importmap">
       { "imports": { "three": "/vendor/three/three.module.js" } }
     </script>
@@ -474,11 +474,10 @@
         >
           <span class="expense-quotation-guide-icon" aria-hidden="true">⌕</span>
           <div>
-            <strong>Cotações e análise de preços</strong>
+            <strong>Workspace de cotações</strong>
             <p>
-              Clique em uma despesa ou use o botão <b>Cotações</b> para
-              registrar ofertas ou transformar textos e PDFs recebidos em dados
-              prontos para importar.
+              Abra uma despesa para planejar contatos com fornecedores, acompanhar
+              respostas e comparar todas as cotações recebidas.
             </p>
           </div>
         </aside>
@@ -527,7 +526,7 @@
                 ><input id="show-archived-contracts" type="checkbox" /> Mostrar
                 arquivados</label
               ><button type="button" id="btn-new-provider" class="btn">
-                Novo prestador</button
+                Novo fornecedor/prestador</button
               ><button type="button" id="btn-new-contract" class="btn primary">
                 Novo contrato
               </button>
@@ -536,7 +535,10 @@
           <div id="contract-summary" class="contract-summary"></div>
           <h3 class="project-heading">Contratos</h3>
           <div id="contract-list" class="contract-grid"></div>
-          <h3 class="project-heading">Prestadores reutilizáveis</h3>
+          <div class="provider-directory-heading">
+            <div><h3 class="project-heading">Diretório unificado de fornecedores e prestadores</h3><p class="section-sub">Contatos reutilizáveis em cotações, despesas e contratos.</p></div>
+            <label>Buscar no diretório <input id="provider-directory-search" type="search" placeholder="Nome, papel, cidade, categoria..." /></label>
+          </div>
           <div id="provider-list" class="provider-grid"></div>
         </section>
       </section>
@@ -1061,13 +1063,79 @@
             Fechar
           </button>
         </header>
-        <div id="quotation-list" class="quotation-list"></div>
-        <p id="quotation-empty" class="empty">Nenhuma cotação registrada.</p>
+        <nav class="quotation-tabs" role="tablist" aria-label="Módulos da cotação">
+          <button id="quotation-planning-tab" type="button" class="btn active" role="tab" aria-selected="true" aria-controls="quotation-planning-panel" data-quotation-tab="planning">
+            1. Planejamento e fornecedores
+          </button>
+          <button id="quotation-responses-tab" type="button" class="btn" role="tab" aria-selected="false" aria-controls="quotation-responses-panel" data-quotation-tab="responses">
+            2. Respostas e cotações
+          </button>
+        </nav>
 
-        <form id="quotation-form" class="quotation-form hidden">
+        <section id="quotation-planning-panel" class="quotation-module" role="tabpanel" aria-labelledby="quotation-planning-tab">
+          <div class="quotation-planning-grid">
+            <aside class="quotation-scope">
+              <div class="panel-head">
+                <div><span class="panel-kicker">Escopo persistente</span><h3>Itens para cotar</h3></div>
+                <button id="btn-save-quotation-scope" type="button" class="btn">Salvar seleção</button>
+              </div>
+              <p class="section-sub">Esta seleção é independente dos filtros da lista de despesas.</p>
+              <label>Buscar itens <input id="quotation-scope-search" type="search" placeholder="Categoria ou despesa..." /></label>
+              <div id="quotation-scope-list" class="quotation-scope-list"></div>
+              <p id="quotation-planning-status" class="push-status hidden" aria-live="polite"></p>
+            </aside>
+            <div class="quotation-campaign">
+              <div class="panel-head">
+                <div><span class="panel-kicker">Campanha desta despesa</span><h3>Contato com fornecedores</h3></div>
+                <button id="btn-save-quotation-campaign" type="button" class="btn primary">Salvar planejamento</button>
+              </div>
+              <label>Mensagem pronta para WhatsApp
+                <textarea id="quotation-outreach-message" rows="7" placeholder="Olá! Gostaria de solicitar uma cotação..."></textarea>
+              </label>
+              <div class="panel-row">
+                <button id="btn-copy-outreach-message" type="button" class="btn">Copiar mensagem</button>
+                <span id="quotation-copy-status" class="clipboard-status" aria-live="polite"></span>
+              </div>
+              <div class="quotation-vendor-toolbar">
+                <label class="grow">Vincular fornecedor
+                  <select id="quotation-provider-select"><option value="">Selecione...</option></select>
+                </label>
+                <button id="btn-link-quotation-provider" type="button" class="btn">Vincular</button>
+                <button id="btn-new-quotation-provider" type="button" class="btn">Novo fornecedor</button>
+              </div>
+              <div id="quotation-linked-providers" class="quotation-linked-providers"></div>
+            </div>
+          </div>
+        </section>
+
+        <section id="quotation-responses-panel" class="quotation-module hidden" role="tabpanel" aria-labelledby="quotation-responses-tab">
+          <div class="quotation-response-toolbar">
+            <label class="grow">Buscar <input id="quotation-search" type="search" placeholder="Fornecedor, nota, canal..." /></label>
+            <label>Status
+              <select id="quotation-status-filter">
+                <option value="">Todos</option><option value="requested">Solicitada</option>
+                <option value="received">Recebida</option><option value="reviewing">Em análise</option>
+                <option value="accepted">Aceita</option><option value="declined">Recusada</option>
+              </select>
+            </label>
+            <label class="check"><input id="quotation-show-archived" type="checkbox" /> Mostrar arquivadas</label>
+            <button id="btn-new-quotation" type="button" class="btn primary">Adicionar cotação</button>
+          </div>
+          <div id="quotation-list" class="quotation-list"></div>
+          <p id="quotation-empty" class="empty">Nenhuma cotação nesta visualização.</p>
+          <nav id="quotation-pagination" class="quotation-pagination" aria-label="Paginação das cotações">
+            <button id="btn-quotation-previous" type="button" class="btn">Anterior</button>
+            <span id="quotation-page-status" aria-live="polite">Página 1 de 1</span>
+            <button id="btn-quotation-next" type="button" class="btn">Próxima</button>
+          </nav>
+
+          <form id="quotation-form" class="quotation-form hidden">
           <input id="quotation-id" type="hidden" />
           <h3 id="quotation-form-title">Nova cotação</h3>
           <div class="form-grid">
+            <label>Fornecedor do diretório
+              <select id="quotation-provider"><option value="">Sem vínculo</option></select>
+            </label>
             <label
               >Fornecedor <input id="quotation-vendor" required maxlength="160"
             /></label>
@@ -1101,7 +1169,24 @@
             <label
               >Data verificada <input id="quotation-checked-at" type="date"
             /></label>
-            <label>URL <input id="quotation-url" type="url" /></label>
+            <label>URL direta <input id="quotation-url" type="url" /></label>
+            <label>Status da resposta
+              <select id="quotation-response-status">
+                <option value="requested">Solicitada</option><option value="received">Recebida</option>
+                <option value="reviewing">Em análise</option><option value="accepted">Aceita</option>
+                <option value="declined">Recusada</option>
+              </select>
+            </label>
+            <label>Canal
+              <select id="quotation-response-channel">
+                <option value="">Não informado</option><option value="whatsapp">WhatsApp</option>
+                <option value="email">E-mail</option><option value="website">Site</option>
+                <option value="phone">Telefone</option><option value="in_person">Presencial</option>
+                <option value="other">Outro</option>
+              </select>
+            </label>
+            <label>Recebida em <input id="quotation-received-at" type="datetime-local" /></label>
+            <label>Anexar PDF <input id="quotation-document" type="file" accept=".pdf,application/pdf" /></label>
           </div>
           <label
             >Notas <textarea id="quotation-notes" rows="2"></textarea>
@@ -1186,7 +1271,6 @@
               id="btn-commit-quotation-import"
               type="button"
               class="btn primary"
-              disabled
             >
               Importar cotações
             </button>
@@ -1203,27 +1287,34 @@
           </button>
         </details>
 
-        <footer class="quotation-footer">
-          <span id="quotation-limit-label">0 de 5 cotações</span>
-          <button id="btn-new-quotation" type="button" class="btn primary">
-            Adicionar cotação
-          </button>
-        </footer>
+        <footer class="quotation-footer"><span id="quotation-limit-label">0 cotações</span></footer>
+        </section>
       </div>
     </dialog>
 
     <dialog id="provider-dialog">
       <form id="provider-form" method="dialog">
-        <h2 id="provider-dialog-title">Novo prestador</h2>
+        <h2 id="provider-dialog-title">Novo fornecedor ou prestador</h2>
         <input id="provider-id" type="hidden" />
         <label
           >Nome <input id="provider-name" required maxlength="140"
         /></label>
-        <label
-          >Profissão / serviço
-          <input id="provider-service-type" maxlength="140"
-        /></label>
-        <label>Contato <input id="provider-contact" maxlength="240" /></label>
+        <div class="form-grid">
+          <label>Papéis <input id="provider-roles" maxlength="240" placeholder="Fornecedor, instalador..." /></label>
+          <label>Porte do negócio
+            <select id="provider-business-scale"><option value="">Não informado</option><option value="individual">Autônomo</option><option value="small">Pequeno</option><option value="medium">Médio</option><option value="large">Grande</option></select>
+          </label>
+          <label>Profissão / serviço <input id="provider-service-type" maxlength="140" /></label>
+          <label>Cobertura <input id="provider-coverage" maxlength="240" placeholder="Local, regional, nacional..." /></label>
+          <label>Telefones <input id="provider-phones" maxlength="500" placeholder="Separe por vírgulas" /></label>
+          <label>E-mails <input id="provider-emails" maxlength="500" placeholder="Separe por vírgulas" /></label>
+          <label>Sites <input id="provider-websites" maxlength="500" placeholder="Separe por vírgulas" /></label>
+          <label>Categorias <input id="provider-categories" maxlength="500" placeholder="Separe por vírgulas" /></label>
+          <label>Endereço <input id="provider-address" maxlength="240" /></label>
+          <label>Cidade <input id="provider-city" maxlength="120" /></label>
+          <label>Estado <input id="provider-state" maxlength="80" /></label>
+        </div>
+        <label>Contato legado <input id="provider-contact" maxlength="240" /></label>
         <label>Notas <textarea id="provider-notes" rows="3"></textarea></label>
         <p id="provider-form-error" class="error hidden"></p>
         <div class="dialog-actions">
@@ -1236,7 +1327,7 @@
           ><span class="grow"></span
           ><button id="btn-cancel-provider" type="button" class="btn">
             Cancelar</button
-          ><button type="submit" class="btn primary">Salvar prestador</button>
+          ><button type="submit" class="btn primary">Salvar no diretório</button>
         </div>
       </form>
     </dialog>
@@ -1439,6 +1530,6 @@
     </dialog>
 
     <datalist id="category-suggestions"></datalist>
-    <script src="/app.js?v=20260916-35"></script>
+    <script src="/app.js?v=20260916-37"></script>
   </body>
 </html>

@@ -1,0 +1,672 @@
+{
+  "group": "plumbing",
+  "checked_at": "2026-09-16T22:58:36-03:00",
+  "expenses": [
+    {
+      "expense_id": "EXP_0028",
+      "description": "Vaso sanitário",
+      "comparable_spec": "Conjunto completo branco com bacia de piso, caixa acoplada, assento e/ou acessórios declarados; descarga de duplo acionamento quando informada.",
+      "offers": [
+        {
+          "vendor": "Telhanorte",
+          "url": "https://www.telhanorte.com.br/kit-bacia-com-caixa-acoplada-gap-completo-branco-roca-1538489/p",
+          "displayed_price": 2349.9,
+          "package_size": "1 kit completo; cerâmica; campos de catálogo: 87 x 45 x 44 cm; 46,055 kg.",
+          "normalized_unit_price": 2349.9,
+          "unit": "unidade",
+          "availability": "Catálogo ativo; available_quantity=100 no momento da consulta.",
+          "seller_location": "Brasil - loja online; atendimento a Nova Odessa/SP sujeito a ressalva de entrega",
+          "shipping_cost": null,
+          "evidence": [
+            {
+              "id": "E01",
+              "url": "https://www.telhanorte.com.br/kit-bacia-com-caixa-acoplada-gap-completo-branco-roca-1538489/p",
+              "catalog_api_url": "https://www.telhanorte.com.br/api/catalog_system/pub/products/search/?fq=skuId:1538489",
+              "http_status": 200,
+              "observed": [
+                "price 2349.90",
+                "available_quantity 100",
+                "complete-set title",
+                "ceramic",
+                "catalog dimensions 87 x 45 x 44 cm"
+              ],
+              "checked_at": "2026-09-16T22:58:36-03:00",
+              "product_name": "Vaso Sanitário com Caixa Acoplada Gap Completo Branco Roca"
+            }
+          ],
+          "ambiguities": [
+            "A simulação pública para o CEP 13380-000 não retornou modalidade de entrega; confirmar entrega ou retirada para Nova Odessa no checkout."
+          ],
+          "eligible_for_import": true
+        },
+        {
+          "vendor": "Copafer",
+          "url": "https://www.copafer.com.br/kit-vaso-sanitario-com-caixa-acoplada-quadra-3-6-litros-branco---deca/p",
+          "displayed_price": 999.9,
+          "package_size": "1 kit com bacia e caixa acoplada; descarga 3/6 L; dimensões físicas não publicadas no catálogo.",
+          "normalized_unit_price": 999.9,
+          "unit": "unidade",
+          "availability": "Catálogo ativo; available_quantity=100 no momento da consulta.",
+          "seller_location": "Brasil - loja online; atendimento a Nova Odessa/SP sujeito a ressalva de entrega",
+          "shipping_cost": null,
+          "evidence": [
+            {
+              "id": "E02",
+              "url": "https://www.copafer.com.br/kit-vaso-sanitario-com-caixa-acoplada-quadra-3-6-litros-branco---deca/p",
+              "catalog_api_url": "https://www.copafer.com.br/api/catalog_system/pub/products/search/?fq=skuId:12360",
+              "http_status": 200,
+              "observed": [
+                "price 999.90",
+                "available_quantity 100",
+                "kit with coupled tank",
+                "3/6 L"
+              ],
+              "checked_at": "2026-09-16T22:58:36-03:00",
+              "product_name": "Kit Vaso Sanitário com Caixa Acoplada Quadra 3/6 Litros Branco Deca"
+            }
+          ],
+          "ambiguities": [
+            "A simulação pública para o CEP 13380-000 não retornou modalidade; confirmar estoque regional, entrega ou retirada no checkout."
+          ],
+          "eligible_for_import": true
+        },
+        {
+          "vendor": "Loja do Pedrão",
+          "url": "https://www.lojadopedrao.com.br/46708-kit-bacia-cx-acoplada-e-acessorios-carrara-branco---deca/p",
+          "displayed_price": 2299.9,
+          "package_size": "Bacia Carrara, caixa acoplada 3/6 L, assento termofixo AP.236.17 e acessórios de instalação.",
+          "normalized_unit_price": 2299.9,
+          "unit": "unidade",
+          "availability": "Catálogo ativo; available_quantity=10 no momento da consulta.",
+          "seller_location": "Brasil - loja online; atendimento a Nova Odessa/SP sujeito a ressalva de entrega",
+          "shipping_cost": null,
+          "evidence": [
+            {
+              "id": "E03",
+              "url": "https://www.lojadopedrao.com.br/46708-kit-bacia-cx-acoplada-e-acessorios-carrara-branco---deca/p",
+              "catalog_api_url": "https://www.lojadopedrao.com.br/api/catalog_system/pub/products/search/?fq=skuId:46435",
+              "http_status": 200,
+              "observed": [
+                "price 2299.90",
+                "available_quantity 10",
+                "bacia, caixa, assento and installation accessories listed"
+              ],
+              "checked_at": "2026-09-16T22:58:36-03:00",
+              "product_name": "Kit Vaso Sanitário Carrara Branco Completo com Caixa Deca"
+            }
+          ],
+          "ambiguities": [
+            "A simulação pública para o CEP 13380-000 não retornou modalidade; confirmar entrega para Nova Odessa no checkout."
+          ],
+          "eligible_for_import": true
+        }
+      ],
+      "unresolved_notes": [
+        "Copafer does not publish physical dimensions for the selected Deca Quadra kit. Package contents and 3/6 L capacity are explicit, so it remains comparable as a complete set.",
+        "VTEX available_quantity values of 100 and 99999 are platform stock indicators/caps, not guaranteed physical counts. They establish advertised availability only."
+      ]
+    },
+    {
+      "expense_id": "EXP_0036",
+      "description": "Torneiras",
+      "comparable_spec": "Torneira cromada de mesa para lavatório de banheiro, bica alta, água fria; conexão 1/2 polegada quando declarada.",
+      "offers": [
+        {
+          "vendor": "Telhanorte",
+          "url": "https://www.telhanorte.com.br/torneira-lavatorio-mesa-bica-alta-basic-celite-1439090/p",
+          "displayed_price": 279.9,
+          "package_size": "1 unidade; bica alta, instalação de mesa; campos de catálogo: 16 x 5,5 x 37 cm; 2 kg.",
+          "normalized_unit_price": 279.9,
+          "unit": "unidade",
+          "availability": "Catálogo ativo; available_quantity=99999 (indicador de estoque amplo da plataforma).",
+          "seller_location": "Brasil - loja online; atendimento a Nova Odessa/SP sujeito a ressalva de entrega",
+          "shipping_cost": null,
+          "evidence": [
+            {
+              "id": "E04",
+              "url": "https://www.telhanorte.com.br/torneira-lavatorio-mesa-bica-alta-basic-celite-1439090/p",
+              "catalog_api_url": "https://www.telhanorte.com.br/api/catalog_system/pub/products/search/?fq=skuId:1439090",
+              "http_status": 200,
+              "observed": [
+                "price 279.90",
+                "available_quantity 99999",
+                "16 x 5.5 x 37 cm",
+                "CEP simulation returned Normal 11bd"
+              ],
+              "checked_at": "2026-09-16T22:58:36-03:00",
+              "product_name": "Torneira Lavatório Mesa Bica Alta Basic Celite"
+            }
+          ],
+          "ambiguities": [
+            "Simulação para CEP 13380-000 retornou entrega Normal em 11 dias úteis; prazo e preço de frete devem ser recalculados no checkout."
+          ],
+          "eligible_for_import": true
+        },
+        {
+          "vendor": "Carajás Home Center",
+          "url": "https://www.carajas.com.br/torneira-lavatorio-mesa-bica-alta-lix-cromada-celite-580401480/p",
+          "displayed_price": 279.9,
+          "package_size": "1 unidade; instalação de mesa, bica alta, acabamento cromado; dimensões não publicadas no catálogo consultado.",
+          "normalized_unit_price": 279.9,
+          "unit": "unidade",
+          "availability": "Catálogo ativo; available_quantity=100 no momento da consulta.",
+          "seller_location": "Brasil - loja online; atendimento a Nova Odessa/SP sujeito a ressalva de entrega",
+          "shipping_cost": null,
+          "evidence": [
+            {
+              "id": "E05",
+              "url": "https://www.carajas.com.br/torneira-lavatorio-mesa-bica-alta-lix-cromada-celite-580401480/p",
+              "catalog_api_url": "https://www.carajas.com.br/api/catalog_system/pub/products/search/?fq=skuId:55654",
+              "http_status": 200,
+              "observed": [
+                "price 279.90",
+                "available_quantity 100",
+                "mesa",
+                "bica alta",
+                "cromada"
+              ],
+              "checked_at": "2026-09-16T22:58:36-03:00",
+              "product_name": "Torneira Lavatório Mesa Bica Alta Lix Cromada Celite"
+            }
+          ],
+          "ambiguities": [
+            "A simulação pública para o CEP 13380-000 não retornou modalidade; confirmar se o estoque atende Nova Odessa antes do pagamento."
+          ],
+          "eligible_for_import": true
+        },
+        {
+          "vendor": "Horus Acabamentos",
+          "url": "https://www.horusacabamentos.com.br/torneira-de-mesa-lavatorio-bica-alta-link-1-2-cromado-131266/p",
+          "displayed_price": 339.9,
+          "package_size": "1 unidade; 38,8 x 19,8 x 6,4 cm; 0,91 kg; entrada 1/2 polegada; ligas de cobre e plásticos de engenharia.",
+          "normalized_unit_price": 339.9,
+          "unit": "unidade",
+          "availability": "Catálogo ativo; available_quantity=1 no momento da consulta.",
+          "seller_location": "Brasil - loja online; atendimento a Nova Odessa/SP sujeito a ressalva de entrega",
+          "shipping_cost": null,
+          "evidence": [
+            {
+              "id": "E06",
+              "url": "https://www.horusacabamentos.com.br/torneira-de-mesa-lavatorio-bica-alta-link-1-2-cromado-131266/p",
+              "catalog_api_url": "https://www.horusacabamentos.com.br/api/catalog_system/pub/products/search/?fq=skuId:5545",
+              "http_status": 200,
+              "observed": [
+                "price 339.90",
+                "available_quantity 1",
+                "38.8 x 19.8 x 6.4 cm",
+                "1/2 inch",
+                "CEP simulation returned Interior 6bd"
+              ],
+              "checked_at": "2026-09-16T22:58:36-03:00",
+              "product_name": "Torneira de Mesa Lavatório Bica Alta Link 1/2 polegada Cromado Docol"
+            }
+          ],
+          "ambiguities": [
+            "Simulação para CEP 13380-000 retornou transportadora própria Interior em 6 dias úteis; revalidar prazo e frete no checkout."
+          ],
+          "eligible_for_import": true
+        }
+      ],
+      "unresolved_notes": [
+        "The Carajás listing does not publish dimensions or connection size. It is retained because the title explicitly states bathroom lavatory, deck mount, high spout and chrome finish.",
+        "VTEX available_quantity values of 100 and 99999 are platform stock indicators/caps, not guaranteed physical counts. They establish advertised availability only."
+      ]
+    },
+    {
+      "expense_id": "EXP_0037",
+      "description": "Sifões e ralos",
+      "comparable_spec": "Item representativo definido como 1 sifão sanfonado universal simples para cuba/lavatório; não inclui ralo, válvula ou instalação.",
+      "offers": [
+        {
+          "vendor": "Telhanorte",
+          "url": "https://www.telhanorte.com.br/sifao-sanfonado-universal-preto-ssum3-astra-2422840/p",
+          "displayed_price": 12.9,
+          "package_size": "1 sifão universal simples em polipropileno, acabamento preto; peso cadastrado 132,02 g.",
+          "normalized_unit_price": 12.9,
+          "unit": "unidade",
+          "availability": "Catálogo ativo; available_quantity=99999 (indicador de estoque amplo da plataforma).",
+          "seller_location": "Brasil - loja online; atendimento a Nova Odessa/SP sujeito a ressalva de entrega",
+          "shipping_cost": null,
+          "evidence": [
+            {
+              "id": "E07",
+              "url": "https://www.telhanorte.com.br/sifao-sanfonado-universal-preto-ssum3-astra-2422840/p",
+              "catalog_api_url": "https://www.telhanorte.com.br/api/catalog_system/pub/products/search/?fq=skuId:2422840",
+              "http_status": 200,
+              "observed": [
+                "price 12.90",
+                "available_quantity 99999",
+                "universal",
+                "polypropylene",
+                "CEP simulation returned Normal 11bd"
+              ],
+              "checked_at": "2026-09-16T22:58:36-03:00",
+              "product_name": "Sifão Sanfonado Universal Preto SSUM3 Astra"
+            }
+          ],
+          "ambiguities": [
+            "Simulação para CEP 13380-000 retornou entrega Normal em 11 dias úteis; recalcular prazo e frete no checkout.",
+            "O rotulo da despesa inclui ralos, mas a cotacao comparavel cobre somente 1 sifao sanfonado universal. Ela permanece utilizavel apenas como cotacao de unidade representativa, nao como orcamento conjunto de sifoes e ralos."
+          ],
+          "eligible_for_import": true
+        },
+        {
+          "vendor": "Carajás Home Center",
+          "url": "https://www.carajas.com.br/sifao-sanfonado-universal-cromado---ssum2---astra-030403812/p",
+          "displayed_price": 35.06,
+          "package_size": "1 sifão universal simples modelo SSUM2, acabamento cromado; dimensões não publicadas.",
+          "normalized_unit_price": 35.06,
+          "unit": "unidade",
+          "availability": "Catálogo ativo; available_quantity=99999 (indicador de estoque amplo da plataforma).",
+          "seller_location": "Brasil - loja online; atendimento a Nova Odessa/SP sujeito a ressalva de entrega",
+          "shipping_cost": null,
+          "evidence": [
+            {
+              "id": "E08",
+              "url": "https://www.carajas.com.br/sifao-sanfonado-universal-cromado---ssum2---astra-030403812/p",
+              "catalog_api_url": "https://www.carajas.com.br/api/catalog_system/pub/products/search/?fq=skuId:4371",
+              "http_status": 200,
+              "observed": [
+                "price 35.06",
+                "available_quantity 99999",
+                "universal SSUM2",
+                "cromado"
+              ],
+              "checked_at": "2026-09-16T22:58:36-03:00",
+              "product_name": "Sifão Sanfonado Universal Cromado SSUM2 Astra"
+            }
+          ],
+          "ambiguities": [
+            "A simulação pública para o CEP 13380-000 não retornou modalidade; confirmar atendimento a Nova Odessa no checkout.",
+            "O rotulo da despesa inclui ralos, mas a cotacao comparavel cobre somente 1 sifao sanfonado universal. Ela permanece utilizavel apenas como cotacao de unidade representativa, nao como orcamento conjunto de sifoes e ralos."
+          ],
+          "eligible_for_import": true
+        },
+        {
+          "vendor": "Copafer",
+          "url": "https://www.copafer.com.br/sifao-sanfonado-universal-cromado---ssum2---astra/p",
+          "displayed_price": 39.9,
+          "package_size": "1 sifão universal simples modelo SSUM2, acabamento cromado; dimensões não publicadas.",
+          "normalized_unit_price": 39.9,
+          "unit": "unidade",
+          "availability": "Catálogo ativo; available_quantity=100 no momento da consulta.",
+          "seller_location": "Brasil - loja online; atendimento a Nova Odessa/SP sujeito a ressalva de entrega",
+          "shipping_cost": null,
+          "evidence": [
+            {
+              "id": "E09",
+              "url": "https://www.copafer.com.br/sifao-sanfonado-universal-cromado---ssum2---astra/p",
+              "catalog_api_url": "https://www.copafer.com.br/api/catalog_system/pub/products/search/?fq=skuId:21939",
+              "http_status": 200,
+              "observed": [
+                "price 39.90",
+                "available_quantity 100",
+                "universal SSUM2",
+                "cromado"
+              ],
+              "checked_at": "2026-09-16T22:58:36-03:00",
+              "product_name": "Sifão Sanfonado Universal Cromado SSUM2 Astra"
+            }
+          ],
+          "ambiguities": [
+            "A simulação pública para o CEP 13380-000 não retornou modalidade; confirmar estoque regional e entrega no checkout.",
+            "O rotulo da despesa inclui ralos, mas a cotacao comparavel cobre somente 1 sifao sanfonado universal. Ela permanece utilizavel apenas como cotacao de unidade representativa, nao como orcamento conjunto de sifoes e ralos."
+          ],
+          "eligible_for_import": true
+        }
+      ],
+      "unresolved_notes": [
+        "O rotulo da despesa inclui ralos, mas a cotacao comparavel cobre somente 1 sifao sanfonado universal. Ela permanece utilizavel apenas como cotacao de unidade representativa, nao como orcamento conjunto de sifoes e ralos.",
+        "The source expense combines siphons and drains. To avoid mixing unlike goods, all three quotes use one universal single siphon; drains and valves are excluded.",
+        "VTEX available_quantity values of 100 and 99999 are platform stock indicators/caps, not guaranteed physical counts. They establish advertised availability only."
+      ]
+    },
+    {
+      "expense_id": "EXP_0039",
+      "description": "Pias e bancadas",
+      "comparable_spec": "Conjunto representativo definido como tampo/pia de cozinha de 120 cm com cuba integrada ou incluída; não inclui gabinete, torneira, sifão nem instalação.",
+      "offers": [
+        {
+          "vendor": "Telhanorte",
+          "url": "https://www.telhanorte.com.br/pia-nina-retangular-sem-cuba-para-cozinha-cortada-a-serra-120cm-arabesco-venturini-2534738/p",
+          "displayed_price": 494.9,
+          "package_size": "Tampo de granito de 120 cm, espessura declarada 2 cm, com cuba inox segundo o título do catálogo; peso cadastrado 45 kg.",
+          "normalized_unit_price": 494.9,
+          "unit": "conjunto",
+          "availability": "Catálogo ativo; available_quantity=10 no momento da consulta.",
+          "seller_location": "Brasil - loja online; atendimento a Nova Odessa/SP sujeito a ressalva de entrega",
+          "shipping_cost": null,
+          "evidence": [
+            {
+              "id": "E10",
+              "url": "https://www.telhanorte.com.br/pia-nina-retangular-sem-cuba-para-cozinha-cortada-a-serra-120cm-arabesco-venturini-2534738/p",
+              "catalog_api_url": "https://www.telhanorte.com.br/api/catalog_system/pub/products/search/?fq=skuId:2534738",
+              "http_status": 200,
+              "observed": [
+                "price 494.90",
+                "available_quantity 10",
+                "catalog title says granite with inox bowl",
+                "120 cm",
+                "2 cm thickness"
+              ],
+              "checked_at": "2026-09-16T22:58:36-03:00",
+              "product_name": "Pia de Cozinha em Granito com Cuba Inox 120 cm Arabesco Nina Venturini"
+            }
+          ],
+          "ambiguities": [
+            "A simulação pública para o CEP 13380-000 não retornou modalidade, possivelmente por restrição do item volumoso; confirmar entrega/retirada.",
+            "Incompatibilidade do proprio anuncio: o titulo do catalogo diz 'com cuba inox', mas o slug da URL diz 'sem cuba'; nao importar ate o vendedor confirmar o conteudo."
+          ],
+          "eligible_for_import": false
+        },
+        {
+          "vendor": "Carajás Home Center",
+          "url": "https://www.carajas.com.br/pia-de-apoio-tramontina-new-raggi-40-em-aco-inox-120x52-cm-580403530/p",
+          "displayed_price": 161.4,
+          "package_size": "1 pia/tampo de apoio em aço inox com cuba integrada, 120 x 52 cm.",
+          "normalized_unit_price": 161.4,
+          "unit": "conjunto",
+          "availability": "Catálogo ativo; available_quantity=10 no momento da consulta.",
+          "seller_location": "Brasil - loja online; atendimento a Nova Odessa/SP sujeito a ressalva de entrega",
+          "shipping_cost": null,
+          "evidence": [
+            {
+              "id": "E11",
+              "url": "https://www.carajas.com.br/pia-de-apoio-tramontina-new-raggi-40-em-aco-inox-120x52-cm-580403530/p",
+              "catalog_api_url": "https://www.carajas.com.br/api/catalog_system/pub/products/search/?fq=skuId:55881",
+              "http_status": 200,
+              "observed": [
+                "price 161.40",
+                "available_quantity 10",
+                "inox",
+                "120 x 52 cm"
+              ],
+              "checked_at": "2026-09-16T22:58:36-03:00",
+              "product_name": "Pia de Apoio Tramontina New Raggi 40 em Aço Inox 120 x 52 cm"
+            }
+          ],
+          "ambiguities": [
+            "A simulação pública para o CEP 13380-000 não retornou modalidade; confirmar atendimento regional no checkout."
+          ],
+          "eligible_for_import": true
+        },
+        {
+          "vendor": "Copafer",
+          "url": "https://www.copafer.com.br/pia-de-cozinha-inox-cuba-central-com-furo-para-torneira-120-x-52cm---fabpia01040102---fabrinox/p",
+          "displayed_price": 316.99,
+          "package_size": "1 pia/tampo em inox com cuba central integrada e furo para torneira, 120 x 52 cm.",
+          "normalized_unit_price": 316.99,
+          "unit": "conjunto",
+          "availability": "Catálogo ativo; available_quantity=10 no momento da consulta.",
+          "seller_location": "Brasil - loja online; atendimento a Nova Odessa/SP sujeito a ressalva de entrega",
+          "shipping_cost": null,
+          "evidence": [
+            {
+              "id": "E12",
+              "url": "https://www.copafer.com.br/pia-de-cozinha-inox-cuba-central-com-furo-para-torneira-120-x-52cm---fabpia01040102---fabrinox/p",
+              "catalog_api_url": "https://www.copafer.com.br/api/catalog_system/pub/products/search/?fq=skuId:6633",
+              "http_status": 200,
+              "observed": [
+                "price 316.99",
+                "available_quantity 10",
+                "central bowl",
+                "120 x 52 cm"
+              ],
+              "checked_at": "2026-09-16T22:58:36-03:00",
+              "product_name": "Pia de Cozinha Inox Cuba Central com Furo para Torneira 120 x 52 cm Fabrinox"
+            }
+          ],
+          "ambiguities": [
+            "A simulação pública para o CEP 13380-000 não retornou modalidade; confirmar estoque e entrega no checkout."
+          ],
+          "eligible_for_import": true
+        },
+        {
+          "vendor": "Joli",
+          "url": "https://www.joli.com.br/pia-inox-1-20x52cm-com-escorredor-fabrinox/p",
+          "displayed_price": 255.99,
+          "package_size": "1 pia de cozinha em inox com cuba e escorredor, 120 x 52 cm",
+          "normalized_unit_price": 255.99,
+          "unit": "conjunto",
+          "availability": "Catálogo VTEX ativo; available_quantity=100 no momento da consulta.",
+          "seller_location": "Varejista brasileiro; entrega ou retirada para Nova Odessa depende de confirmação no checkout.",
+          "shipping_cost": null,
+          "evidence": [
+            {
+              "url": "https://www.joli.com.br/pia-inox-1-20x52cm-com-escorredor-fabrinox/p",
+              "catalog_api_url": "https://www.joli.com.br/api/catalog_system/pub/products/search/?fq=skuId:11113",
+              "http_status": 200,
+              "observed": [
+                "price 255.99",
+                "available_quantity 100",
+                "pia inox 1.20 x 52 cm com escorredor"
+              ],
+              "checked_at": "2026-09-16T23:02:00-03:00"
+            }
+          ],
+          "ambiguities": [
+            "Frete e modalidade de entrega para Nova Odessa não foram informados; confirmar no checkout."
+          ],
+          "eligible_for_import": true
+        }
+      ],
+      "unresolved_notes": [
+        "The Telhanorte catalog title says 'com cuba inox', while the historical URL slug says 'sem cuba'. Confirm the included bowl with the vendor before purchase.",
+        "Materials differ: Telhanorte is granite with inox bowl; Carajás and Copafer are all-inox sink tops. All are 120 cm kitchen sink/countertop units, but finish, rigidity and installation requirements differ.",
+        "VTEX available_quantity values of 100 and 99999 are platform stock indicators/caps, not guaranteed physical counts. They establish advertised availability only."
+      ]
+    },
+    {
+      "expense_id": "EXP_0040",
+      "description": "Box de vidro para banheiro",
+      "comparable_spec": "Box frontal padrão com duas folhas, vidro temperado incolor de 8 mm, largura 120 cm e altura 190 cm; instalação não presumida.",
+      "offers": [
+        {
+          "vendor": "Fabrine Vidros",
+          "url": "https://www.fabrinevidros.com.br/box-vidro-temperado-incolor-120x190",
+          "displayed_price": 649.99,
+          "package_size": "Vidro temperado incolor 8 mm, 120 x 190 cm, kit branco, 2 folhas (1 fixa + 1 móvel); entregue desmontado e sem instalação.",
+          "normalized_unit_price": 649.99,
+          "unit": "unidade",
+          "availability": "Página ativa com botão de compra; prazo de disponibilidade exibido: 7 dias úteis.",
+          "seller_location": "Brasil - loja online; atendimento a Nova Odessa/SP sujeito a ressalva de entrega",
+          "shipping_cost": null,
+          "evidence": [
+            {
+              "id": "E13",
+              "url": "https://www.fabrinevidros.com.br/box-vidro-temperado-incolor-120x190",
+              "http_status": 200,
+              "observed": [
+                "visible price R$ 649,99",
+                "120 x 190 cm",
+                "8 mm tempered clear glass",
+                "2 leaves",
+                "stock lead time 7 business days",
+                "freight by CEP"
+              ],
+              "checked_at": "2026-09-16T22:58:36-03:00",
+              "product_name": "Box Vidro Temperado Incolor 1,20 x 1,90 m"
+            }
+          ],
+          "ambiguities": [
+            "A página exige cálculo por CEP. O valor de frete e a confirmação de entrega a Nova Odessa não ficam visíveis sem checkout."
+          ],
+          "eligible_for_import": true
+        },
+        {
+          "vendor": "DuBox SP",
+          "url": "https://duboxsp.com.br/produto/box-frontal-120-cm-vidro-incolor-acabamento-preto/",
+          "displayed_price": 930.0,
+          "package_size": "Vidro temperado incolor 8 mm, 120 x 190 cm, sistema deslizante, perfis de alumínio pretos.",
+          "normalized_unit_price": 930.0,
+          "unit": "unidade",
+          "availability": "Página direta ativa com preço e compra.",
+          "seller_location": "Brasil - loja online; atendimento a Nova Odessa/SP sujeito a ressalva de entrega",
+          "shipping_cost": null,
+          "evidence": [
+            {
+              "id": "E14",
+              "url": "https://duboxsp.com.br/produto/box-frontal-120-cm-vidro-incolor-acabamento-preto/",
+              "http_status": 200,
+              "observed": [
+                "visible price R$ 930,00",
+                "120 x 190 cm",
+                "8 mm tempered clear glass",
+                "black aluminum",
+                "free freight only in served regions"
+              ],
+              "checked_at": "2026-09-16T22:58:36-03:00",
+              "product_name": "Box Frontal 120 cm Vidro Incolor Acabamento Preto"
+            }
+          ],
+          "ambiguities": [
+            "O anúncio limita frete grátis e instalação às 'regiões atendidas', sem listar Nova Odessa; confirmar o CEP diretamente antes da compra."
+          ],
+          "eligible_for_import": true
+        },
+        {
+          "vendor": "Clube do Vidro",
+          "url": "https://clubedovidro.com.br/box-de-banheiro/box-frontal-2-folhas-em-vidro-temperado-blindup-8mm-incolor/",
+          "displayed_price": 242.0,
+          "package_size": "Vidro temperado incolor 8 mm, configurado para 120 x 190 cm, 2 folhas; ferragens no kit; instalação não incluída.",
+          "normalized_unit_price": 551.76,
+          "unit": "unidade",
+          "availability": "Configurador de produto ativo; preço-base por m² visível.",
+          "seller_location": "Brasil - loja online; atendimento a Nova Odessa/SP sujeito a ressalva de entrega",
+          "shipping_cost": null,
+          "evidence": [
+            {
+              "id": "E15",
+              "url": "https://clubedovidro.com.br/box-de-banheiro/box-frontal-2-folhas-em-vidro-temperado-blindup-8mm-incolor/",
+              "http_status": 200,
+              "observed": [
+                "visible price R$ 242,00/m²",
+                "8 mm tempered clear glass",
+                "width and height configurator includes 120 and 190 cm",
+                "installation excluded"
+              ],
+              "checked_at": "2026-09-16T22:58:36-03:00",
+              "product_name": "Box Frontal 2 Folhas em Vidro Temperado BlindUP 8 mm Incolor"
+            }
+          ],
+          "ambiguities": [
+            "Disponibilidade final, prazo e frete dependem da seleção das medidas e cálculo do CEP; Nova Odessa deve ser confirmada no checkout.",
+            "Preco exibido por m²; valor unitario normalizado conforme calculo documentado: R$ 242,00/m² x (1,20 m x 1,90 m = 2,28 m²) = R$ 551,76"
+          ],
+          "eligible_for_import": true
+        }
+      ],
+      "unresolved_notes": [
+        "Fabrine, DuBox SP and Clube do Vidro require CEP/region confirmation. Their pages did not provide a definitive Nova Odessa freight quote, so freight remains null and service coverage must be confirmed before ordering.",
+        "Clube do Vidro displays R$ 242,00 per m² rather than a fixed set total. The normalized R$ 551,76 is arithmetic for the requested 120 x 190 cm size and excludes freight and installation.",
+        "VTEX available_quantity values of 100 and 99999 are platform stock indicators/caps, not guaranteed physical counts. They establish advertised availability only."
+      ]
+    },
+    {
+      "expense_id": "EXP_0044",
+      "description": "Caixa d'água",
+      "comparable_spec": "Reservatório de polietileno com tampa, capacidade nominal de 1.000 L.",
+      "offers": [
+        {
+          "vendor": "Telhanorte",
+          "url": "https://www.telhanorte.com.br/caixa-de-aguagreen-1000-litros-acqualimp-2365006/p",
+          "displayed_price": 489.9,
+          "package_size": "1 reservatório de polietileno com tampa, 1.000 L; campos de catálogo: 150 x 150 x 95 cm; 17 kg.",
+          "normalized_unit_price": 489.9,
+          "unit": "unidade",
+          "availability": "Catálogo ativo; available_quantity=100 no momento da consulta.",
+          "seller_location": "Brasil - loja online; atendimento a Nova Odessa/SP sujeito a ressalva de entrega",
+          "shipping_cost": null,
+          "evidence": [
+            {
+              "id": "E16",
+              "url": "https://www.telhanorte.com.br/caixa-de-aguagreen-1000-litros-acqualimp-2365006/p",
+              "catalog_api_url": "https://www.telhanorte.com.br/api/catalog_system/pub/products/search/?fq=skuId:2365006",
+              "http_status": 200,
+              "observed": [
+                "price 489.90",
+                "available_quantity 100",
+                "1000 L",
+                "150 x 150 x 95 cm",
+                "17 kg"
+              ],
+              "checked_at": "2026-09-16T22:58:36-03:00",
+              "product_name": "Caixa d'Água 1000 Litros +Green em Polietileno Acqualimp"
+            }
+          ],
+          "ambiguities": [
+            "A simulação para o CEP 13380-000 não retornou modalidade, compatível com possível restrição de item volumoso; confirmar entrega/retirada."
+          ],
+          "eligible_for_import": true
+        },
+        {
+          "vendor": "Copafer",
+          "url": "https://www.copafer.com.br/caixa-d-agua-polietileno-1000-litros---02010007---fortlev/p",
+          "displayed_price": 449.9,
+          "package_size": "1 reservatório de polietileno com tampa, capacidade nominal 1.000 L; dimensões não publicadas no catálogo consultado.",
+          "normalized_unit_price": 449.9,
+          "unit": "unidade",
+          "availability": "Catálogo ativo; available_quantity=99999 (indicador de estoque amplo da plataforma).",
+          "seller_location": "Brasil - loja online; atendimento a Nova Odessa/SP sujeito a ressalva de entrega",
+          "shipping_cost": null,
+          "evidence": [
+            {
+              "id": "E17",
+              "url": "https://www.copafer.com.br/caixa-d-agua-polietileno-1000-litros---02010007---fortlev/p",
+              "catalog_api_url": "https://www.copafer.com.br/api/catalog_system/pub/products/search/?fq=skuId:27455",
+              "http_status": 200,
+              "observed": [
+                "price 449.90",
+                "available_quantity 99999",
+                "1000 L",
+                "polyethylene"
+              ],
+              "checked_at": "2026-09-16T22:58:36-03:00",
+              "product_name": "Caixa d'Água Polietileno 1000 Litros Fortlev"
+            }
+          ],
+          "ambiguities": [
+            "A simulação pública para o CEP 13380-000 não retornou modalidade; confirmar entrega ou retirada antes do pagamento."
+          ],
+          "eligible_for_import": true
+        },
+        {
+          "vendor": "Loja do Pedrão",
+          "url": "https://www.lojadopedrao.com.br/caixa-dagua-1-000-litros-de-polietileno-azul-com-tampa---tigre-22996/p",
+          "displayed_price": 506.24,
+          "package_size": "1 reservatório de polietileno azul com tampa, capacidade nominal 1.000 L; dimensões não publicadas no catálogo consultado.",
+          "normalized_unit_price": 506.24,
+          "unit": "unidade",
+          "availability": "Catálogo ativo; available_quantity=10 no momento da consulta.",
+          "seller_location": "Brasil - loja online; atendimento a Nova Odessa/SP sujeito a ressalva de entrega",
+          "shipping_cost": null,
+          "evidence": [
+            {
+              "id": "E18",
+              "url": "https://www.lojadopedrao.com.br/caixa-dagua-1-000-litros-de-polietileno-azul-com-tampa---tigre-22996/p",
+              "catalog_api_url": "https://www.lojadopedrao.com.br/api/catalog_system/pub/products/search/?fq=skuId:22996",
+              "http_status": 200,
+              "observed": [
+                "price 506.24",
+                "available_quantity 10",
+                "1000 L",
+                "polyethylene",
+                "lid included"
+              ],
+              "checked_at": "2026-09-16T22:58:36-03:00",
+              "product_name": "Caixa d'Água 1.000 Litros de Polietileno Azul com Tampa Tigre"
+            }
+          ],
+          "ambiguities": [
+            "A simulação pública para o CEP 13380-000 não retornou modalidade; confirmar a logística do item volumoso para Nova Odessa."
+          ],
+          "eligible_for_import": true
+        }
+      ],
+      "unresolved_notes": [
+        "Bulky-item checkout simulations returned no SLA for CEP 13380-000. The offers are active and in stock online, but delivery or pickup for Nova Odessa requires retailer confirmation.",
+        "VTEX available_quantity values of 100 and 99999 are platform stock indicators/caps, not guaranteed physical counts. They establish advertised availability only."
+      ]
+    }
+  ]
+}

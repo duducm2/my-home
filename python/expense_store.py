@@ -3,9 +3,9 @@
 from __future__ import annotations
 
 import csv
+import io
 import json
 import math
-import os
 import re
 import threading
 from datetime import date, datetime, timedelta
@@ -14,6 +14,7 @@ from typing import Any
 from urllib.parse import urlparse
 
 from quotation_store import QuotationStore
+from persistence import atomic_write_text, coordinated_write
 
 
 HEADERS = [
@@ -29,6 +30,7 @@ HEADERS = [
     "payments_json",
     "provider_id",
     "contract_id",
+    "contract_ids_json",
     "created_at",
     "updated_at",
 ]
@@ -80,6 +82,50 @@ class ExpenseStore:
             self._write_rows([])
         self.quotation_store = QuotationStore(self.data_dir)
         self._migrate_schema()
+        self._migrate_contract_links()
+
+    def _migrate_contract_links(self) -> None:
+        """Reconcile the legacy single contract projection from contract authority."""
+        contracts = self._load_json_records("contracts.json", "contracts")
+        if not contracts:
+            return
+        links: dict[str, list[str]] = {}
+        providers: dict[str, str] = {}
+        for contract in contracts:
+            if contract.get("archived"):
+                continue
+            contract_id = str(contract.get("id") or "")
+            provider_id = str(contract.get("provider_id") or "")
+            for expense_id in contract.get("expense_ids") or []:
+                expense_id = str(expense_id)
+                if contract_id:
+                    links.setdefault(expense_id, []).append(contract_id)
+                if provider_id:
+                    providers[expense_id] = provider_id
+        rows = self._read_rows()
+        changed = False
+        for row in rows:
+            expense_id = str(row.get("id") or "")
+            contract_ids = list(dict.fromkeys(links.get(expense_id, [])))
+            serialized = json.dumps(
+                contract_ids, ensure_ascii=False, separators=(",", ":")
+            )
+            primary = contract_ids[0] if contract_ids else ""
+            if (
+                row.get("contract_ids_json") != serialized
+                or row.get("contract_id") != primary
+                or (
+                    providers.get(expense_id)
+                    and row.get("provider_id") != providers[expense_id]
+                )
+            ):
+                row["contract_ids_json"] = serialized
+                row["contract_id"] = primary
+                if providers.get(expense_id):
+                    row["provider_id"] = providers[expense_id]
+                changed = True
+        if changed:
+            self._write_rows(rows)
 
     def _migrate_schema(self) -> None:
         with self.csv_path.open("r", encoding="utf-8-sig", newline="") as handle:
@@ -165,7 +211,7 @@ class ExpenseStore:
                 }]
             if quotations and str(row.get("id") or "") not in existing_external:
                 self.quotation_store.replace_for_expense(
-                    str(row.get("id") or ""), quotations[:5]
+                    str(row.get("id") or ""), quotations
                 )
             quote_ids = {str(quote.get("id") or "") for quote in quotations}
             selected = str(row.get("selected_quotation_id") or "")
@@ -228,14 +274,15 @@ class ExpenseStore:
                 return list(csv.DictReader(handle))
 
     def _write_rows(self, rows: list[dict[str, Any]]) -> None:
-        temporary = self.csv_path.with_suffix(".csv.tmp")
         with self._lock:
-            with temporary.open("w", encoding="utf-8", newline="") as handle:
-                writer = csv.DictWriter(handle, fieldnames=HEADERS, lineterminator="\n")
-                writer.writeheader()
-                for row in rows:
-                    writer.writerow({key: row.get(key, "") for key in HEADERS})
-            os.replace(temporary, self.csv_path)
+            handle = io.StringIO(newline="")
+            writer = csv.DictWriter(handle, fieldnames=HEADERS, lineterminator="\n")
+            writer.writeheader()
+            for row in rows:
+                writer.writerow({key: row.get(key, "") for key in HEADERS})
+            atomic_write_text(
+                self.csv_path, handle.getvalue(), backup=self.csv_path.is_file()
+            )
 
     @staticmethod
     def _next_id(rows: list[dict[str, str]]) -> str:
@@ -324,13 +371,14 @@ class ExpenseStore:
                 raise ValueError(
                     "quotation extraction_confidence must be between 0 and 1"
                 )
-        result = {
+        result = dict(metadata)
+        result.update({
             "currency": currency,
             "source_type": source_type,
             "quote_valid_until": valid_until,
             "source_page": source_page,
             "extraction_confidence": confidence,
-        }
+        })
         limits = {
             "brand": 160,
             "model": 160,
@@ -395,9 +443,18 @@ class ExpenseStore:
             date.fromisoformat(checked_at[:10])
         except ValueError as exc:
             raise ValueError("quotation checked_at must begin with YYYY-MM-DD") from exc
+        response_status = str(payload.get("response_status") or "received").strip()
+        if response_status not in {
+            "draft", "requested", "received", "declined", "expired", "accepted"
+        }:
+            raise ValueError("invalid quotation response_status")
+        received_at = str(
+            payload.get("received_at") or payload.get("response_date") or ""
+        ).strip()[:40]
         return {
             "id": quotation_id,
             "source": source,
+            "provider_id": str(payload.get("provider_id") or "").strip()[:80],
             "vendor": vendor[:160],
             "unit_price": unit_price,
             "quantity": quantity,
@@ -409,6 +466,21 @@ class ExpenseStore:
             "notes": str(
                 payload.get("notes") or payload.get("price_notes") or ""
             ).strip()[:2000],
+            "response_status": response_status,
+            "response_channel": str(payload.get("response_channel") or "").strip()[:80],
+            "received_at": received_at,
+            "response_date": received_at,
+            "validity": str(payload.get("validity") or "").strip()[:500],
+            "references": list(payload.get("references") or [])
+            if isinstance(payload.get("references"), list)
+            else [],
+            "archived": bool(payload.get("archived", False)),
+            "attachments": list(payload.get("attachments") or [])
+            if isinstance(payload.get("attachments"), list)
+            else [],
+            "vendor_snapshot": dict(payload.get("vendor_snapshot") or {})
+            if isinstance(payload.get("vendor_snapshot"), dict)
+            else {},
             "metadata": self._quotation_metadata(
                 payload, default_source=default_source
             ),
@@ -416,8 +488,6 @@ class ExpenseStore:
 
     def _parse_quotations(self, row: dict[str, str]) -> list[dict[str, Any]]:
         payload = self.quotation_store.for_expense(str(row.get("id") or ""))
-        if len(payload) > 5:
-            raise ValueError("quotations must be a list with at most 5 items")
         quotations: list[dict[str, Any]] = []
         ids: set[str] = set()
         for index, item in enumerate(payload, start=1):
@@ -633,17 +703,26 @@ class ExpenseStore:
             if allocations
             else default_quantity
         )
+        active_quotations = [
+            quote
+            for quote in quotations
+            if not quote.get("archived")
+            and quote.get("response_status") in {"received", "accepted"}
+        ]
         selected_id = str(row.get("selected_quotation_id") or "")
         baseline_id = str(row.get("baseline_quotation_id") or "")
         selected = next(
-            (quote for quote in quotations if quote["id"] == selected_id), None
+            (quote for quote in active_quotations if quote["id"] == selected_id),
+            None,
         )
         baseline = next(
-            (quote for quote in quotations if quote["id"] == baseline_id), None
+            (quote for quote in active_quotations if quote["id"] == baseline_id),
+            None,
         )
         planned_quote = selected or baseline
         ranked = sorted(
-            quotations, key=lambda quote: self._quotation_cost(quote, quantity)
+            active_quotations,
+            key=lambda quote: self._quotation_cost(quote, quantity),
         )
         return {
             "expected_quantity": round(quantity, 4),
@@ -749,6 +828,21 @@ class ExpenseStore:
             ),
             None,
         )
+        try:
+            contract_ids = json.loads(row.get("contract_ids_json") or "[]")
+        except json.JSONDecodeError:
+            contract_ids = []
+        if not isinstance(contract_ids, list):
+            contract_ids = []
+        legacy_contract_id = str(row.get("contract_id") or "")
+        contract_ids = list(
+            dict.fromkeys(
+                [
+                    *(str(value) for value in contract_ids if str(value)),
+                    *([legacy_contract_id] if legacy_contract_id else []),
+                ]
+            )
+        )
         return {
             "id": row.get("id", ""),
             "record_type": row.get("record_type") or ("material" if row.get("category") == "Material" else "service"),
@@ -778,6 +872,7 @@ class ExpenseStore:
             "expense_allocations": allocations,
             "provider_id": row.get("provider_id", ""),
             "contract_id": row.get("contract_id", ""),
+            "contract_ids": contract_ids,
             "created_at": row.get("created_at", ""),
             "updated_at": row.get("updated_at", ""),
         }
@@ -884,8 +979,8 @@ class ExpenseStore:
         if "quotations" not in payload:
             return
         raw = payload.get("quotations")
-        if not isinstance(raw, list) or len(raw) > 5:
-            raise ValueError("quotations must be a list with at most 5 items")
+        if not isinstance(raw, list):
+            raise ValueError("quotations must be a list")
         quotations: list[dict[str, Any]] = []
         ids: set[str] = set()
         for index, item in enumerate(raw, start=1):
@@ -959,8 +1054,16 @@ class ExpenseStore:
         if record_type not in {"material", "service"}:
             raise ValueError("record_type must be material or service")
         provider_id = str(payload.get("provider_id") or "").strip()
+        raw_contract_ids = payload.get("contract_ids")
+        contract_ids = (
+            list(dict.fromkeys(str(value).strip() for value in raw_contract_ids if str(value).strip()))
+            if isinstance(raw_contract_ids, list)
+            else []
+        )
         contract_id = str(payload.get("contract_id") or "").strip()
-        if record_type == "material" and (provider_id or contract_id):
+        if contract_id and contract_id not in contract_ids:
+            contract_ids.insert(0, contract_id)
+        if record_type == "material" and (provider_id or contract_ids):
             raise ValueError("materials cannot be linked to providers or contracts")
         providers = {
             str(item.get("id"))
@@ -974,13 +1077,14 @@ class ExpenseStore:
         }
         if provider_id and provider_id not in providers:
             raise ValueError(f"provider not found: {provider_id}")
-        if contract_id:
-            contract = contracts.get(contract_id)
+        for linked_contract_id in contract_ids:
+            contract = contracts.get(linked_contract_id)
             if contract is None or contract.get("type") != "service":
-                raise ValueError(f"service contract not found: {contract_id}")
+                raise ValueError(f"service contract not found: {linked_contract_id}")
             if provider_id and str(contract.get("provider_id") or "") != provider_id:
-                raise ValueError("selected contract belongs to a different provider")
+                raise ValueError("selected contracts belong to a different provider")
             provider_id = provider_id or str(contract.get("provider_id") or "")
+        contract_id = contract_ids[0] if contract_ids else ""
         icon_key = self._validated_icon_key(payload.get("icon_key"), category)
         expense_id = str(payload.get("id") or "").strip()
         stamp = now_stamp()
@@ -998,6 +1102,9 @@ class ExpenseStore:
                             "default_expected_quantity": f"{default_quantity:g}",
                             "provider_id": provider_id,
                             "contract_id": contract_id,
+                            "contract_ids_json": json.dumps(
+                                contract_ids, ensure_ascii=False, separators=(",", ":")
+                            ),
                             "updated_at": stamp,
                         }
                     )
@@ -1022,6 +1129,9 @@ class ExpenseStore:
                     "default_expected_quantity": f"{default_quantity:g}",
                     "provider_id": provider_id,
                     "contract_id": contract_id,
+                    "contract_ids_json": json.dumps(
+                        contract_ids, ensure_ascii=False, separators=(",", ":")
+                    ),
                     "payments_json": "[]",
                     "created_at": stamp,
                     "updated_at": stamp,
@@ -1073,8 +1183,6 @@ class ExpenseStore:
             if current is None:
                 if quotation_id:
                     raise ValueError(f"quotation not found: {quotation_id}")
-                if len(quotations) >= 5:
-                    raise ValueError("an expense can have at most 5 quotations")
                 quotation_id = self._next_quotation_id(quotations)
                 quotation = self._validate_quotation(
                     payload, row, quotation_id
@@ -1091,17 +1199,22 @@ class ExpenseStore:
                     default_source=str(current.get("source") or "manual"),
                 )
                 quotations[quotations.index(current)] = quotation
-            if not row.get("baseline_quotation_id"):
-                row["baseline_quotation_id"] = quotation_id
-            self._store_quotations(row, quotations)
             if (
-                row.get("selected_quotation_id") == quotation_id
-                or bool(payload.get("selected"))
+                not row.get("baseline_quotation_id")
+                and not quotation.get("archived")
+                and quotation.get("response_status") in {"received", "accepted"}
             ):
-                self._project_quotation(row, quotation)
-                self._sync_payment_total(row)
-            row["updated_at"] = now_stamp()
-            self._write_rows(rows)
+                row["baseline_quotation_id"] = quotation_id
+            with coordinated_write([self.quotation_store.path, self.csv_path]):
+                self._store_quotations(row, quotations)
+                if (
+                    row.get("selected_quotation_id") == quotation_id
+                    or bool(payload.get("selected"))
+                ):
+                    self._project_quotation(row, quotation)
+                    self._sync_payment_total(row)
+                row["updated_at"] = now_stamp()
+                self._write_rows(rows)
         return {
             **self.quotation_state(expense_id),
             "quotation_id": quotation_id,
@@ -1122,6 +1235,12 @@ class ExpenseStore:
             )
             if quotation is None:
                 raise ValueError(f"quotation not found: {quotation_id}")
+            if quotation.get("archived") or quotation.get(
+                "response_status"
+            ) not in {"received", "accepted"}:
+                raise ValueError(
+                    "only active received quotations can be selected"
+                )
             self._project_quotation(row, quotation)
             self._sync_payment_total(row)
             row["updated_at"] = now_stamp()
@@ -1137,20 +1256,19 @@ class ExpenseStore:
             rows = self._read_rows()
             row = self._expense_row(rows, expense_id)
             quotations = self._parse_quotations(row)
-            remaining = [
-                item for item in quotations if item["id"] != quotation_id
-            ]
+            remaining = [item for item in quotations if item["id"] != quotation_id]
             if len(remaining) == len(quotations):
                 raise ValueError(f"quotation not found: {quotation_id}")
-            self._store_quotations(row, remaining)
-            if row.get("selected_quotation_id") == quotation_id:
-                self._clear_quotation_projection(row)
-            if row.get("baseline_quotation_id") == quotation_id:
-                row["baseline_quotation_id"] = (
-                    str(remaining[0].get("id") or "") if remaining else ""
-                )
-            row["updated_at"] = now_stamp()
-            self._write_rows(rows)
+            with coordinated_write([self.quotation_store.path, self.csv_path]):
+                self.quotation_store.archive(expense_id, quotation_id)
+                if row.get("selected_quotation_id") == quotation_id:
+                    self._clear_quotation_projection(row)
+                if row.get("baseline_quotation_id") == quotation_id:
+                    row["baseline_quotation_id"] = (
+                        str(remaining[0].get("id") or "") if remaining else ""
+                    )
+                row["updated_at"] = now_stamp()
+                self._write_rows(rows)
         return {**self.quotation_state(expense_id), "state": self.state()}
 
     def apply_price_rows(self, price_rows: list[dict[str, Any]]) -> dict[str, Any]:
@@ -1192,27 +1310,32 @@ class ExpenseStore:
                 target = by_id[expense_id]
                 try:
                     quotations = self._parse_quotations(target)
-                    if len(quotations) + len(items) > 5:
-                        raise ValueError(
-                            f"{expense_id} would exceed the 5 quotation limit"
-                        )
                     ids = {item["id"] for item in quotations}
                     for item in items:
                         quotation_id = str(
                             item.get("quotation_id") or ""
                         ).strip() or self._next_quotation_id(quotations)
-                        if quotation_id in ids:
-                            raise ValueError(
-                                f"duplicate quotation id: {quotation_id}"
-                            )
-                        quotation = self._validate_quotation(
-                            {**item, "source": "ai"},
-                            target,
-                            quotation_id,
-                            default_source="ai",
+                        existing = next(
+                            (
+                                quotation
+                                for quotation in quotations
+                                if quotation["id"] == quotation_id
+                            ),
+                            None,
                         )
-                        quotations.append(quotation)
-                        ids.add(quotation_id)
+                        merged = (
+                            {**existing, **item, "source": "ai"}
+                            if existing
+                            else {**item, "source": "ai"}
+                        )
+                        quotation = self._validate_quotation(
+                            merged, target, quotation_id, default_source="ai"
+                        )
+                        if existing:
+                            quotations[quotations.index(existing)] = quotation
+                        else:
+                            quotations.append(quotation)
+                            ids.add(quotation_id)
                         if bool(item.get("selected")):
                             if expense_id in selected:
                                 raise ValueError(
@@ -1242,16 +1365,11 @@ class ExpenseStore:
                 target["updated_at"] = stamp
             updated_ids = list(prepared)
             if updated_ids:
-                previous = {
-                    expense_id: self._parse_quotations(by_id[expense_id])
-                    for expense_id in prepared
-                }
-                self.quotation_store.replace_many(prepared)
-                try:
+                with coordinated_write(
+                    [self.quotation_store.path, self.csv_path]
+                ):
+                    self.quotation_store.replace_many(prepared)
                     self._write_rows(rows)
-                except Exception:
-                    self.quotation_store.replace_many(previous)
-                    raise
         return {
             "ok": True,
             "updated": updated_ids,
@@ -1310,6 +1428,7 @@ class ExpenseStore:
         remaining = [row for row in rows if row.get("id") != expense_id]
         if len(remaining) == len(rows):
             raise ValueError(f"expense not found: {expense_id}")
-        self._write_rows(remaining)
-        self.quotation_store.delete_expense(expense_id)
+        with coordinated_write([self.csv_path, self.quotation_store.path]):
+            self._write_rows(remaining)
+            self.quotation_store.delete_expense(expense_id)
         return {"ok": True, "deleted": expense_id, "state": self.state()}

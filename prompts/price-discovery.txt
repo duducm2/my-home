@@ -5,7 +5,7 @@ system's import format. Do not browse the web, conduct new research, invent
 vendors, prices, dates, specifications, URLs, or silently fill missing facts.
 
 <expense_context item_count="{{ITEM_COUNT}}">
-id,record_type,category,description,quantity,unit,current_value,quotation_count
+id,record_type,category,description,quantity,unit,current_value,quotation_count,existing_quotation_ids
 {{CONTEXT_CSV}}
 </expense_context>
 
@@ -15,8 +15,7 @@ id,record_type,category,description,quantity,unit,current_value,quotation_count
 
 <transpilation_rules>
 - Match every offer to an expense id from expense_context.
-- Emit one CSV row per distinct vendor offer and no more than five total
-  quotations per expense.
+- Emit one CSV row per distinct vendor offer. There is no quotation-count cap.
 - Extract prices, quantities, units, freight, specifications, validity,
   availability, seller location, and source evidence when explicitly present.
 - Use BRL and dot decimals without currency symbols or thousands separators.
@@ -29,7 +28,9 @@ id,record_type,category,description,quantity,unit,current_value,quotation_count
   ambiguities; never resolve uncertainty by guessing.
 - Keep product_url empty unless the exact URL appears in the supplied source.
 - checked_at and quote_valid_until use YYYY-MM-DD.
-- quotation_id may be empty; the host will create a stable ID.
+- quotation_id may be empty; the host will create a stable ID. Reuse an
+  existing draft quotation ID only when the supplied source explicitly belongs
+  to that draft, so its persisted PDF attachments remain linked.
 - selected should normally be false. Select at most one offer per expense only
   when the supplied evidence itself makes the preference unambiguous.
 - Quote CSV fields correctly when they contain commas, quotes, or line breaks.

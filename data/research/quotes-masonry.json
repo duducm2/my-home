@@ -1,0 +1,334 @@
+{
+  "group": "masonry",
+  "checked_at": "2026-09-16",
+  "expenses": [
+    {
+      "expense_id": "EXP_0014",
+      "description": "Impermeabilizante Bianco (balde; alvo 18 L)",
+      "comparable_spec": "Vedacit Bianco em balde de 18 kg. É o SKU grande corrente encontrado; com densidade declarada de 1,02 kg/L, equivale aproximadamente a 17,65 L, portanto não é um balde nominal de 18 L.",
+      "offers": [
+        {
+          "vendor": "Telhanorte",
+          "url": "https://www.telhanorte.com.br/bianco-bd-18-kg-263915/p",
+          "displayed_price": "R$ 319,90",
+          "package_size": "1 balde Vedacit Bianco, 18 kg",
+          "normalized_unit_price": 319.9,
+          "unit": "balde",
+          "availability": "Em estoque no anúncio; retirada observada com 16 unidades na loja Anhanguera, em Sumaré/SP",
+          "seller_location": "Loja Anhanguera, Rodovia Anhanguera, km 106, Sumaré/SP, CEP 13180-901; entrega depende do CEP",
+          "shipping_cost": null,
+          "evidence": "Página direta carregada com nome, balde, peso líquido de 18 kg, densidade 1,02 g/cm³, preço de R$ 319,90 e Offer/InStock no JSON-LD.",
+          "ambiguities": [
+            "A embalagem é especificada por massa, não por volume; conversão aproximada de 18 kg / 1,02 kg/L = 17,65 L.",
+            "Frete até o endereço exato em Nova Odessa não foi exibido."
+          ]
+        },
+        {
+          "vendor": "Bela Tintas",
+          "url": "https://www.belatintas.com.br/33850-bianco-18kg---vedacit/p",
+          "displayed_price": "R$ 370,93 à vista no boleto/Pix",
+          "package_size": "1 balde Vedacit Bianco, 18 kg",
+          "normalized_unit_price": 370.93,
+          "unit": "balde",
+          "availability": "Em estoque no JSON-LD; compra e cálculo de entrega ativos",
+          "seller_location": "Av. Barão de Mauá, 1738, Vila América, Mauá/SP; entrega calculada por CEP",
+          "shipping_cost": null,
+          "evidence": "Página direta carregada com título Bianco 18kg - Vedacit, preço visível de R$ 370,93, opção de compra, cálculo de frete e Offer/InStock.",
+          "ambiguities": [
+            "A embalagem é de 18 kg, não 18 L.",
+            "Entrega para Nova Odessa e custo dependem de consulta por CEP."
+          ]
+        },
+        {
+          "vendor": "Casa Mimosa",
+          "url": "https://www.casamimosa.com.br/bianco-18-kg-otto-baumgart-112395/p",
+          "displayed_price": "R$ 365,68; R$ 354,71 no Pix ou boleto",
+          "package_size": "1 balde Bianco Vedacit/Otto Baumgart, 18 kg",
+          "normalized_unit_price": 354.71,
+          "unit": "balde",
+          "availability": "Em estoque no JSON-LD; botão Comprar ativo",
+          "seller_location": "Varejista de São Paulo/SP; frete calculado por CEP na página",
+          "shipping_cost": null,
+          "evidence": "Página direta carregada com produto de 18 kg, preço de R$ 365,68, desconto a R$ 354,71 no Pix/boleto, botão Comprar e Offer/InStock.",
+          "ambiguities": [
+            "Preço normal e preço à vista são ambos preservados; a normalização usa o preço à vista.",
+            "A embalagem é de 18 kg, não 18 L; entrega para Nova Odessa deve ser confirmada pelo CEP."
+          ]
+        }
+      ],
+      "unresolved_notes": "Não foi encontrado Bianco nominal de 18 L com três ofertas comparáveis. Os três anúncios válidos são baldes de 18 kg; confirmar se a especificação da obra aceita aproximadamente 17,65 L."
+    },
+    {
+      "expense_id": "EXP_0015",
+      "description": "Areia grossa/fina/pedrisco (m³)",
+      "comparable_spec": "Oferta unitária de 1 m³ de agregado solto. A composição de cada cotação é identificada separadamente; não se trata de um kit que reúna areia grossa, areia fina e pedrisco.",
+      "offers": [
+        {
+          "vendor": "Depósito Santo Antônio",
+          "url": "https://www.sasantoantonio.com.br/material-basico/material-basico/areia-media-1-metro-cubico",
+          "displayed_price": "R$ 289,90",
+          "package_size": "1 m³ de areia média lavada solta",
+          "normalized_unit_price": 289.9,
+          "unit": "m³",
+          "availability": "Em estoque no JSON-LD; cálculo de frete e prazo ativo",
+          "seller_location": "São Paulo/SP; entrega flexível informada e prazo calculado por CEP",
+          "shipping_cost": null,
+          "evidence": "Página direta carregada com título Areia Média 1 Metro Cúbico, preço R$ 289,90, descrição de areia média lavada solta e Offer/InStock.",
+          "ambiguities": [
+            "Composição cotada: somente areia média lavada; não inclui areia grossa, fina ou pedrisco.",
+            "Atendimento e frete para Nova Odessa dependem da validação do CEP."
+          ]
+        },
+        {
+          "vendor": "Silveira Materiais para Construção",
+          "url": "https://silveiraconstrucao.com.br/produtos/areia-media-lavada-branca-preco-por-1-metro-cubico/",
+          "displayed_price": "R$ 153,50",
+          "package_size": "1 m³ de areia média lavada branca",
+          "normalized_unit_price": 153.5,
+          "unit": "m³",
+          "availability": "Em estoque; inventário estruturado de 89 unidades e botão Comprar ativo",
+          "seller_location": "R. Moyses Gutztein, 444, Sítio Cercado, Curitiba/PR; entrega calculada por CEP",
+          "shipping_cost": null,
+          "evidence": "Página direta carregada com especificação por 1 metro cúbico, total R$ 153,50 e JSON-LD Offer/InStock com inventoryLevel 89.",
+          "ambiguities": [
+            "Composição cotada: somente areia média lavada branca.",
+            "A página não retornou modalidade de entrega após informar CEP 13380-000; confirmar atendimento a Nova Odessa antes da compra."
+          ]
+        },
+        {
+          "vendor": "Bauru 2000",
+          "url": "https://www.bauru2000.com/produto/metro-areia-grossa/",
+          "displayed_price": "R$ 219,00 (de R$ 229,50)",
+          "package_size": "1 m³ de areia grossa, granulometria informada de 2 mm a 5 mm",
+          "normalized_unit_price": 219.0,
+          "unit": "m³",
+          "availability": "167 unidades em estoque; botão Adicionar ativo",
+          "seller_location": "Av. Dr. Marcos de Paula Raphael, 26-06, Mary Dota, Bauru/SP; descarga em calçada por caminhão basculante",
+          "shipping_cost": null,
+          "evidence": "Página direta carregada com preço atual R$ 219,00, 167 em estoque e ficha técnica: equivalente a 1 m³ de areia grossa, entregue por caminhão basculante.",
+          "ambiguities": [
+            "Composição cotada: somente areia grossa.",
+            "A área de entrega até Nova Odessa não é declarada; confirmar com a loja devido ao transporte a granel."
+          ]
+        }
+      ],
+      "unresolved_notes": "Não apareceu um bundle de 1 m³ contendo os três agregados. As ofertas são de composições individuais e o frete a granel até Nova Odessa precisa de orçamento separado."
+    },
+    {
+      "expense_id": "EXP_0016",
+      "description": "Cimento (saco de 50 kg)",
+      "comparable_spec": "Cimento Portland de uso geral em saco de 50 kg; classes CP II de marcas distintas.",
+      "offers": [
+        {
+          "vendor": "Telhanorte",
+          "url": "https://www.telhanorte.com.br/cimento-todas-as-obras-50kgs-cpii-32r-votoran-1444778/p",
+          "displayed_price": "R$ 36,90",
+          "package_size": "1 saco de Cimento Votoran Todas as Obras CP II 32R, 50 kg",
+          "normalized_unit_price": 36.9,
+          "unit": "saco de 50 kg",
+          "availability": "Em estoque; 232 unidades observadas na loja Anhanguera, Sumaré/SP",
+          "seller_location": "Loja Anhanguera, Rodovia Anhanguera, km 106, Sumaré/SP, CEP 13180-901; entrega depende do CEP",
+          "shipping_cost": null,
+          "evidence": "Página direta carregada com preço R$ 36,90, peso líquido 50 kg, classe CPII 32R e Offer/InStock.",
+          "ambiguities": [
+            "Frete até o endereço exato em Nova Odessa não foi exibido."
+          ]
+        },
+        {
+          "vendor": "Catel HLM",
+          "url": "https://catelhlm.com.br/produtos/cimento-cpii-32-50kg-liz/",
+          "displayed_price": "R$ 41,90",
+          "package_size": "1 saco de Cimento Liz CP II 32, 50 kg",
+          "normalized_unit_price": 41.9,
+          "unit": "saco de 50 kg",
+          "availability": "Em estoque; inventoryLevel 14.064 no JSON-LD",
+          "seller_location": "Rua Itinguçú, 2190, Vila Ré, São Paulo/SP, CEP 03658-001; entrega calculada por CEP",
+          "shipping_cost": null,
+          "evidence": "Página direta carregada com nome CIMENTO CPII 32 50KG LIZ, preço R$ 41,90 e Offer/InStock com inventário positivo.",
+          "ambiguities": [
+            "Entrega para Nova Odessa e custo precisam ser confirmados no cálculo por CEP."
+          ]
+        },
+        {
+          "vendor": "Bauru 2000",
+          "url": "https://www.bauru2000.com/produto/cimento-csn-cp-ii-50-kg/",
+          "displayed_price": "R$ 36,90 (de R$ 49,80)",
+          "package_size": "1 saco de Cimento CSN CP II, 50 kg",
+          "normalized_unit_price": 36.9,
+          "unit": "saco de 50 kg",
+          "availability": "307 unidades em estoque; botão Adicionar ativo",
+          "seller_location": "Av. Dr. Marcos de Paula Raphael, 26-06, Mary Dota, Bauru/SP",
+          "shipping_cost": null,
+          "evidence": "Página direta carregada com preço atual R$ 36,90, 307 em estoque e ficha técnica de 50 kg.",
+          "ambiguities": [
+            "Área e custo de entrega para Nova Odessa não são exibidos; confirmar com a loja."
+          ]
+        }
+      ],
+      "unresolved_notes": "Os produtos estão disponíveis, mas custos de frete não foram publicados para o destino."
+    },
+    {
+      "expense_id": "EXP_0017",
+      "description": "Telha cerâmica para cobertura de barro (unidade)",
+      "comparable_spec": "Telha cerâmica portuguesa natural ou resinada, vendida por unidade, consumo aproximado de 16 a 17 peças/m².",
+      "offers": [
+        {
+          "vendor": "Telhanorte",
+          "url": "https://www.telhanorte.com.br/telha-portuguesa-de-ceramica-39x24cm-10mm-realeza-vermelha-resinada-barrobello-1402951/p",
+          "displayed_price": "R$ 1,99",
+          "package_size": "1 telha portuguesa cerâmica resinada Barrobello, aproximadamente 39 x 24 cm",
+          "normalized_unit_price": 1.99,
+          "unit": "unidade",
+          "availability": "Em estoque no JSON-LD; compra online ativa",
+          "seller_location": "Rede com loja Anhanguera em Sumaré/SP; entrega depende do CEP",
+          "shipping_cost": null,
+          "evidence": "Página direta carregada com preço R$ 1,99 e Offer/InStock para telha portuguesa cerâmica resinada.",
+          "ambiguities": [
+            "Frete e risco de quebra até Nova Odessa não foram precificados."
+          ]
+        },
+        {
+          "vendor": "Codarin",
+          "url": "https://www.codarin.com.br/telha-portuguesa-natural-16pcsm2faulin",
+          "displayed_price": "R$ 2,24",
+          "package_size": "1 telha portuguesa natural Faulin; rendimento 16 peças/m²",
+          "normalized_unit_price": 2.24,
+          "unit": "unidade",
+          "availability": "Disponibilidade imediata; 649 unidades em estoque",
+          "seller_location": "Entrega e prazo calculados por CEP na página",
+          "shipping_cost": null,
+          "evidence": "Página direta carregada com preço R$ 2,24, disponibilidade imediata, estoque de 649 unidades e especificação 16 peças/m².",
+          "ambiguities": [
+            "Entrega para Nova Odessa e custo precisam ser confirmados pelo CEP."
+          ]
+        },
+        {
+          "vendor": "Loja São Sebastião",
+          "url": "https://www.lojasaosebastiao.com.br/1795/telha-portuguesa-de-barro-natural-1a-linha-monte",
+          "displayed_price": "R$ 2,20 no Pix",
+          "package_size": "1 telha portuguesa de barro natural 1ª linha Monte Castelo; rendimento 17 peças/m²",
+          "normalized_unit_price": 2.2,
+          "unit": "unidade",
+          "availability": "Em estoque no JSON-LD; botão Comprar ativo",
+          "seller_location": "Varejista do Paraná, DDD 41; frete e prazo calculados por CEP",
+          "shipping_cost": null,
+          "evidence": "Página direta carregada com preço Pix R$ 2,20, unidade de venda UND, rendimento 17 peças/m², botão Comprar e Offer/InStock.",
+          "ambiguities": [
+            "Preço normal fora do Pix não ficou explícito.",
+            "Entrega para Nova Odessa e custo precisam ser confirmados pelo CEP."
+          ]
+        }
+      ],
+      "unresolved_notes": "As três telhas são comparáveis para cobertura cerâmica, mas acabamento e rendimento variam; validar frete e lote mínimo antes da compra."
+    },
+    {
+      "expense_id": "EXP_0019",
+      "description": "Tijolinho de barro (unidade)",
+      "comparable_spec": "Tijolo cerâmico maciço comum/rústico, normalizado por peça; dimensões variam e são preservadas em cada oferta.",
+      "offers": [
+        {
+          "vendor": "Joli",
+          "url": "https://www.joli.com.br/tijolo-macico-comum-4x19x9cm-com-10-unidades-pedrasil/p",
+          "displayed_price": "R$ 10,99 por pacote",
+          "package_size": "Pacote com 10 tijolos maciços comuns Pedrasil, 4 x 19 x 9 cm",
+          "normalized_unit_price": 1.099,
+          "unit": "unidade",
+          "availability": "Em estoque no JSON-LD; botão Comprar e cálculo de entrega ativos",
+          "seller_location": "Rede varejista paulista; entrega calculada por CEP",
+          "shipping_cost": null,
+          "evidence": "Página direta carregada com pacote de 10 unidades por R$ 10,99 e Offer/InStock; normalização: 10,99 / 10 = R$ 1,099 por peça.",
+          "ambiguities": [
+            "Entrega para Nova Odessa e custo precisam ser confirmados pelo CEP."
+          ]
+        },
+        {
+          "vendor": "Ferragens Lordelo",
+          "url": "https://www.lordelo.com.br/tijolos-e-blocos/21796-lordelo.html",
+          "displayed_price": "R$ 4,50; R$ 4,28 à vista",
+          "package_size": "1 tijolo maciço claro Cerâmica Marajó, 9 x 5,3 x 19 cm, 1,5 kg",
+          "normalized_unit_price": 4.28,
+          "unit": "unidade",
+          "availability": "Em estoque no JSON-LD; retirada em loja disponível em até 1 dia útil",
+          "seller_location": "Rede Ferragens Lordelo; retirada em loja e cálculo de frete disponíveis",
+          "shipping_cost": null,
+          "evidence": "Página direta carregada com preço R$ 4,50, preço à vista R$ 4,28, dimensões 9 x 5,3 x 19 cm, venda por unidade e Offer/InStock.",
+          "ambiguities": [
+            "A normalização usa o preço à vista.",
+            "Entrega para Nova Odessa não foi confirmada; retirada indicada apenas nas lojas da rede."
+          ]
+        },
+        {
+          "vendor": "Redemac Superbem",
+          "url": "https://www.redemacsuperbem.com.br/produto/tijolo-macico-115x53x24",
+          "displayed_price": "R$ 1,57",
+          "package_size": "1 tijolo maciço cerâmico, 11,5 x 5,3 x 24 cm",
+          "normalized_unit_price": 1.57,
+          "unit": "unidade",
+          "availability": "Estoque disponível; botão Comprar ativo",
+          "seller_location": "Novo Hamburgo/RS; frete e prazo calculados por CEP",
+          "shipping_cost": null,
+          "evidence": "Página direta carregada com dimensões 11,5 x 5,3 x 24 cm, preço R$ 1,57, estoque Disponível e botão Comprar.",
+          "ambiguities": [
+            "O anúncio não declara material no título, embora esteja catalogado como tijolo maciço de alvenaria.",
+            "Atendimento e frete para Nova Odessa precisam ser confirmados pelo CEP."
+          ]
+        }
+      ],
+      "unresolved_notes": "A oferta local da Leroy Merlin foi rejeitada porque a página declarava indisponibilidade para entrega e exigia verificar estoque físico. As ofertas válidas têm dimensões diferentes e frete pesado ainda não cotado."
+    },
+    {
+      "expense_id": "EXP_0021",
+      "description": "Arame recozido (kg)",
+      "comparable_spec": "Rolo de 1 kg de arame recozido BWG 18, aproximadamente 1,24 a 1,25 mm, liso ou torcido para amarração de armaduras.",
+      "offers": [
+        {
+          "vendor": "Telhanorte",
+          "url": "https://www.telhanorte.com.br/arame-recozido-1-24mm-rl-1kg-arcelormittal-1554875/p",
+          "displayed_price": "R$ 20,32",
+          "package_size": "1 rolo de arame recozido ArcelorMittal, 1,24 mm, 1 kg",
+          "normalized_unit_price": 20.32,
+          "unit": "kg",
+          "availability": "Em estoque no JSON-LD; compra online ativa",
+          "seller_location": "Rede com loja Anhanguera em Sumaré/SP; entrega depende do CEP",
+          "shipping_cost": null,
+          "evidence": "Página direta carregada com bitola 1,24 mm, rolo de 1 kg, preço R$ 20,32 e Offer/InStock.",
+          "ambiguities": [
+            "Estoque físico de retirada variava por loja; entrega para Nova Odessa não foi precificada."
+          ]
+        },
+        {
+          "vendor": "Primatela",
+          "url": "https://www.primatela.com.br/index.php?route=product/product&product_id=44",
+          "displayed_price": "R$ 18,16/kg no cartão; R$ 17,25 no boleto ou Pix",
+          "package_size": "1 rolo de arame recozido preto Morlan BWG 18, 1,24 mm, 1 kg",
+          "normalized_unit_price": 17.25,
+          "unit": "kg",
+          "availability": "Em estoque; botão Comprar ativo",
+          "seller_location": "Rua Vereador Antonio de Castro, 221, Jardim Nova Espírito Santo, Valinhos/SP, CEP 13273-201",
+          "shipping_cost": null,
+          "evidence": "Página direta carregada com embalagem de 1 kg, fio 1,24 mm BWG 18, preço R$ 18,16/kg, R$ 17,25 à vista e status Em estoque.",
+          "ambiguities": [
+            "A normalização usa o preço à vista; custo e prazo até Nova Odessa dependem do CEP."
+          ]
+        },
+        {
+          "vendor": "Mardegan Madeira e Construção",
+          "url": "https://mmardegan.com.br/arame-recozido-duplo-1kg-multilit.html",
+          "displayed_price": "R$ 14,99; R$ 14,24 à vista",
+          "package_size": "1 rolo de arame recozido torcido BWG 18, 1,25 mm, 1 kg",
+          "normalized_unit_price": 14.24,
+          "unit": "kg",
+          "availability": "Em estoque no JSON-LD; botão Comprar ativo",
+          "seller_location": "Av. das Nações, 2008, Parque Novo Oratório, Santo André/SP, CEP 09270-400",
+          "shipping_cost": null,
+          "evidence": "Página direta carregada com rolo de 1 kg, BWG 18, preço especial R$ 14,99, R$ 14,24 à vista e Offer/InStock.",
+          "ambiguities": [
+            "A normalização usa o preço à vista.",
+            "Entrega para Nova Odessa e custo precisam ser confirmados no cálculo de frete."
+          ]
+        }
+      ],
+      "unresolved_notes": "A oferta Vergalhão de Aço foi rejeitada porque a própria página indicava produto indisponível. Fretes das ofertas aceitas não foram publicados para o destino."
+    }
+  ]
+}

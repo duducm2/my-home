@@ -24,8 +24,18 @@
     cashflow: null,
     quotationExpenseId: "",
     quotationImportRows: [],
+    quotationPreviewDigest: "",
+    quotationSourceDocumentIds: [],
     editingQuotationMetadata: {},
     editingQuotationSource: "manual",
+    quotationPlanning: {
+      selected_category_ids: [],
+      selected_expense_ids: [],
+      campaigns: [],
+    },
+    quotationTab: "planning",
+    quotationPage: 1,
+    quotationBusy: new Set(),
     editingPayments: [],
     editingTaskAllocations: [],
     editingContractPayments: [],
@@ -156,11 +166,33 @@
     quotationDialog: $("quotation-dialog"),
     quotationExpenseTitle: $("quotation-expense-title"),
     quotationExpenseMeta: $("quotation-expense-meta"),
+    quotationPlanningPanel: $("quotation-planning-panel"),
+    quotationResponsesPanel: $("quotation-responses-panel"),
+    quotationScopeSearch: $("quotation-scope-search"),
+    quotationScopeList: $("quotation-scope-list"),
+    quotationPlanningStatus: $("quotation-planning-status"),
+    btnSaveQuotationScope: $("btn-save-quotation-scope"),
+    btnSaveQuotationCampaign: $("btn-save-quotation-campaign"),
+    quotationOutreachMessage: $("quotation-outreach-message"),
+    btnCopyOutreachMessage: $("btn-copy-outreach-message"),
+    quotationCopyStatus: $("quotation-copy-status"),
+    quotationProviderSelect: $("quotation-provider-select"),
+    btnLinkQuotationProvider: $("btn-link-quotation-provider"),
+    btnNewQuotationProvider: $("btn-new-quotation-provider"),
+    quotationLinkedProviders: $("quotation-linked-providers"),
+    quotationSearch: $("quotation-search"),
+    quotationStatusFilter: $("quotation-status-filter"),
+    quotationShowArchived: $("quotation-show-archived"),
+    quotationPagination: $("quotation-pagination"),
+    quotationPageStatus: $("quotation-page-status"),
+    btnQuotationPrevious: $("btn-quotation-previous"),
+    btnQuotationNext: $("btn-quotation-next"),
     quotationList: $("quotation-list"),
     quotationEmpty: $("quotation-empty"),
     quotationForm: $("quotation-form"),
     quotationFormTitle: $("quotation-form-title"),
     quotationId: $("quotation-id"),
+    quotationProvider: $("quotation-provider"),
     quotationVendor: $("quotation-vendor"),
     quotationUnitPrice: $("quotation-unit-price"),
     quotationQuantity: $("quotation-quantity"),
@@ -169,6 +201,10 @@
     quotationTotal: $("quotation-total"),
     quotationCheckedAt: $("quotation-checked-at"),
     quotationUrl: $("quotation-url"),
+    quotationResponseStatus: $("quotation-response-status"),
+    quotationResponseChannel: $("quotation-response-channel"),
+    quotationReceivedAt: $("quotation-received-at"),
+    quotationDocument: $("quotation-document"),
     quotationNotes: $("quotation-notes"),
     quotationFormError: $("quotation-form-error"),
     quotationAiPanel: $("quotation-ai-panel"),
@@ -244,12 +280,23 @@
     contractSummary: $("contract-summary"),
     contractList: $("contract-list"),
     providerList: $("provider-list"),
+    providerDirectorySearch: $("provider-directory-search"),
     providerDialog: $("provider-dialog"),
     providerForm: $("provider-form"),
     providerDialogTitle: $("provider-dialog-title"),
     providerId: $("provider-id"),
     providerName: $("provider-name"),
     providerServiceType: $("provider-service-type"),
+    providerRoles: $("provider-roles"),
+    providerBusinessScale: $("provider-business-scale"),
+    providerCoverage: $("provider-coverage"),
+    providerPhones: $("provider-phones"),
+    providerEmails: $("provider-emails"),
+    providerWebsites: $("provider-websites"),
+    providerAddress: $("provider-address"),
+    providerCity: $("provider-city"),
+    providerState: $("provider-state"),
+    providerCategories: $("provider-categories"),
     providerContact: $("provider-contact"),
     providerNotes: $("provider-notes"),
     providerFormError: $("provider-form-error"),
@@ -284,6 +331,7 @@
     style: "currency",
     currency: "BRL",
   });
+  const QUOTATIONS_PER_PAGE = 12;
   const formatMoney = (value) => money.format(Number(value || 0));
   const escapeHtml = (value) =>
     String(value ?? "").replace(
@@ -322,6 +370,58 @@
     if (!response.ok || (payload.ok === false && !allowPayloadError))
       throw new Error(payload.error || "Falha na operação");
     return payload;
+  }
+
+  const splitList = (value) =>
+    String(value || "")
+      .split(/[\n,;]+/)
+      .map((item) => item.trim())
+      .filter(Boolean);
+  const listValue = (value) =>
+    (Array.isArray(value) ? value : splitList(value))
+      .map((item) =>
+        item && typeof item === "object" ? item.value || item.label || "" : item,
+      )
+      .filter(Boolean);
+
+  function formatDateTime(value) {
+    if (!value) return "—";
+    const date = new Date(value);
+    return Number.isNaN(date.getTime())
+      ? String(value)
+      : new Intl.DateTimeFormat("pt-BR", {
+          dateStyle: "short",
+          timeStyle: "short",
+        }).format(date);
+  }
+
+  async function runBusy(button, task, label = "Aguarde...") {
+    if (!button || state.quotationBusy.has(button.id)) return;
+    state.quotationBusy.add(button.id);
+    const original = button.textContent;
+    button.disabled = true;
+    button.textContent = label;
+    try {
+      return await task();
+    } finally {
+      state.quotationBusy.delete(button.id);
+      button.disabled = false;
+      button.textContent = original;
+    }
+  }
+
+  async function copyWithFeedback(text, element) {
+    try {
+      if (!text) throw new Error("Nada para copiar.");
+      await navigator.clipboard.writeText(text);
+      element.textContent = "Copiado.";
+      element.classList.remove("hidden", "err");
+      element.classList.add("ok");
+    } catch (error) {
+      element.textContent = error.message || "Não foi possível copiar.";
+      element.classList.remove("hidden", "ok");
+      element.classList.add("err");
+    }
   }
 
   function iconEntry(key, kind = "expense") {
@@ -421,7 +521,7 @@
         `<a class="link-btn" href="${escapeAttr(item.product_url)}" target="_blank" rel="noopener">abrir</a>`,
       );
     parts.push(
-      `<span class="quote-count">${count}/5 ${count === 1 ? "cotação" : "cotações"}</span>`,
+      `<span class="quote-count">${count} ${count === 1 ? "cotação" : "cotações"}</span>`,
     );
     return parts.join(" · ") || "—";
   }
@@ -441,7 +541,7 @@
         ) => `<tr class="expense-row" data-open-quotations="${escapeAttr(item.id)}" tabindex="0" aria-label="Gerenciar cotações de ${escapeAttr(item.description)}">
       <td>${escapeHtml(item.category)}</td>
       <td>${itemLabel(item.description, item.icon_key)}</td><td class="num">${formatMoney(item.value)}</td>
-      <td>${priceCell(item)}</td><td class="actions"><button class="btn quotation-action-btn" data-open-expense-quotations="${escapeAttr(item.id)}" title="Abrir análise de preços e cotações">Cotações <span>${(item.quotations || []).length}/5</span></button><button class="btn" data-edit-expense="${item.id}">Editar</button><button class="btn danger" data-delete-expense="${item.id}">Excluir</button></td>
+      <td>${priceCell(item)}</td><td class="actions"><button class="btn quotation-action-btn" data-open-expense-quotations="${escapeAttr(item.id)}" title="Abrir planejamento, respostas e cotações">Cotações <span>${(item.quotations || []).length}</span></button><button class="btn" data-edit-expense="${item.id}">Editar</button><button class="btn danger" data-delete-expense="${item.id}">Excluir</button></td>
     </tr>`,
       )
       .join("");
@@ -1912,16 +2012,283 @@
     return state.expenses.find((item) => item.id === state.quotationExpenseId);
   }
 
+  function quotationCampaigns(value) {
+    return Array.isArray(value)
+      ? value
+      : Object.values(value || {}).filter(
+          (item) => item && typeof item === "object",
+        );
+  }
+
+  function quotationCampaignPayload(value) {
+    return Object.fromEntries(
+      quotationCampaigns(value)
+        .filter((item) => item.expense_id)
+        .map((item) => [
+          item.expense_id,
+          {
+            ...item,
+            message: item.outreach_message || item.message || "",
+            vendors: item.providers || item.vendors || [],
+          },
+        ]),
+    );
+  }
+
+  function currentQuotationCampaign(create = false) {
+    state.quotationPlanning.campaigns = quotationCampaigns(
+      state.quotationPlanning.campaigns,
+    );
+    let campaign = state.quotationPlanning.campaigns.find(
+      (item) => item.expense_id === state.quotationExpenseId,
+    );
+    if (!campaign && create) {
+      campaign = {
+        expense_id: state.quotationExpenseId,
+        outreach_message: "",
+        providers: [],
+      };
+      state.quotationPlanning.campaigns.push(campaign);
+    }
+    if (campaign) {
+      campaign.providers = campaign.providers || campaign.provider_links || [];
+      campaign.outreach_message =
+        campaign.outreach_message || campaign.message || "";
+    }
+    return campaign;
+  }
+
+  function defaultOutreachMessage(expense) {
+    const address = state.house?.address || {};
+    const location =
+      [address.city, address.state].filter(Boolean).join("/") ||
+      "Nova Odessa/SP";
+    return `Olá! Gostaria de solicitar uma cotação para ${expense?.description || "este item"}, na quantidade de ${expense?.scenario?.expected_quantity || expense?.quantity || 1} ${expense?.unit || ""}, com entrega ou execução em ${location}. Poderia informar especificação, preço unitário e total, frete, disponibilidade, prazo, condições de pagamento e validade da proposta? Se possível, envie também o link do produto e a proposta em PDF. Obrigado!`;
+  }
+
+  function setQuotationTab(tab) {
+    state.quotationTab = tab;
+    document.querySelectorAll("[data-quotation-tab]").forEach((button) => {
+      const active = button.dataset.quotationTab === tab;
+      button.classList.toggle("active", active);
+      button.setAttribute("aria-selected", String(active));
+    });
+    els.quotationPlanningPanel.classList.toggle("hidden", tab !== "planning");
+    els.quotationResponsesPanel.classList.toggle("hidden", tab !== "responses");
+  }
+
+  function syncQuotationCategorySelection(expandSelectedCategories = false) {
+    const selectedExpenses = new Set(
+      state.quotationPlanning.selected_expense_ids || [],
+    );
+    if (expandSelectedCategories) {
+      const selectedCategories = new Set(
+        state.quotationPlanning.selected_category_ids || [],
+      );
+      state.expenses.forEach((expense) => {
+        if (selectedCategories.has(expense.category))
+          selectedExpenses.add(expense.id);
+      });
+    }
+    const categories = [...new Set(state.expenses.map((item) => item.category))];
+    state.quotationPlanning.selected_expense_ids = [...selectedExpenses];
+    state.quotationPlanning.selected_category_ids = categories.filter(
+      (category) => {
+        const childIds = state.expenses
+          .filter((item) => item.category === category)
+          .map((item) => item.id);
+        return (
+          childIds.length > 0 &&
+          childIds.every((expenseId) => selectedExpenses.has(expenseId))
+        );
+      },
+    );
+  }
+
+  function renderQuotationScope() {
+    syncQuotationCategorySelection();
+    const search = els.quotationScopeSearch.value.trim().toLocaleLowerCase("pt-BR");
+    const selectedExpenses = new Set(
+      state.quotationPlanning.selected_expense_ids || [],
+    );
+    const categories = [...new Set(state.expenses.map((item) => item.category))];
+    els.quotationScopeList.innerHTML = categories
+      .map((category) => {
+        const expenses = state.expenses.filter(
+          (item) =>
+            item.category === category &&
+            (!search ||
+              `${item.category} ${item.description}`
+                .toLocaleLowerCase("pt-BR")
+                .includes(search)),
+        );
+        if (!expenses.length && search) return "";
+        const allCategoryExpenses = state.expenses.filter(
+          (item) => item.category === category,
+        );
+        const selectedChildCount = allCategoryExpenses.filter((item) =>
+          selectedExpenses.has(item.id),
+        ).length;
+        const categoryChecked =
+          allCategoryExpenses.length > 0 &&
+          selectedChildCount === allCategoryExpenses.length;
+        return `<section class="quotation-scope-category">
+          <label><input type="checkbox" data-quotation-category="${escapeAttr(category)}" ${categoryChecked ? "checked" : ""}>${escapeHtml(category)}</label>
+          <div class="quotation-scope-expenses">${expenses
+            .map(
+              (item) =>
+                `<label class="quotation-scope-expense"><input type="checkbox" data-quotation-expense="${escapeAttr(item.id)}" ${selectedExpenses.has(item.id) ? "checked" : ""}>${escapeHtml(item.description)}</label>`,
+            )
+            .join("")}</div>
+        </section>`;
+      })
+      .join("");
+    els.quotationScopeList
+      .querySelectorAll("[data-quotation-category]")
+      .forEach((checkbox) => {
+        const childIds = state.expenses
+          .filter((item) => item.category === checkbox.dataset.quotationCategory)
+          .map((item) => item.id);
+        const selectedCount = childIds.filter((id) =>
+          selectedExpenses.has(id),
+        ).length;
+        checkbox.indeterminate =
+          selectedCount > 0 && selectedCount < childIds.length;
+      });
+  }
+
+  function providerContactSummary(provider) {
+    const phones = listValue(provider.phones);
+    const emails = listValue(provider.emails);
+    return (
+      [...phones, ...emails].filter(Boolean).join(" · ") ||
+      provider.contact ||
+      provider.coverage ||
+      "Sem contato cadastrado"
+    );
+  }
+
+  function renderQuotationPlanning() {
+    const expense = currentQuotationExpense();
+    if (!expense) return;
+    const campaign = currentQuotationCampaign(true);
+    if (!campaign.outreach_message)
+      campaign.outreach_message = defaultOutreachMessage(expense);
+    els.quotationOutreachMessage.value = campaign.outreach_message;
+    els.quotationProviderSelect.innerHTML =
+      '<option value="">Selecione...</option>' +
+      state.providers
+        .filter(
+          (provider) =>
+            !provider.archived &&
+            !(campaign.providers || []).some(
+              (link) => (link.provider_id || link.id) === provider.id,
+            ),
+        )
+        .map(
+          (provider) =>
+            `<option value="${escapeAttr(provider.id)}">${escapeHtml(provider.name)}</option>`,
+        )
+        .join("");
+    els.quotationLinkedProviders.innerHTML =
+      (campaign.providers || [])
+        .map((link) => {
+          const provider = state.providers.find(
+            (item) => item.id === (link.provider_id || link.id),
+          );
+          if (!provider) return "";
+          return `<article class="quotation-linked-provider" data-linked-provider="${escapeAttr(provider.id)}">
+            <div><strong>${escapeHtml(provider.name)}</strong><small>${escapeHtml(providerContactSummary(provider))}</small></div>
+            <label>Status<select data-outreach-field="status">
+              ${[
+                ["not_contacted", "Não contatado"],
+                ["sent", "Enviada"],
+                ["follow_up", "Acompanhar"],
+                ["responded", "Respondeu"],
+                ["declined", "Recusou"],
+              ]
+                .map(
+                  ([value, label]) =>
+                    `<option value="${value}" ${link.status === value ? "selected" : ""}>${label}</option>`,
+                )
+                .join("")}
+            </select></label>
+            <label>Data e notas<input data-outreach-field="notes" value="${escapeAttr(link.notes || "")}" placeholder="${escapeAttr(formatDateTime(link.contacted_at || link.updated_at))}" /></label>
+            <button type="button" class="btn danger" data-unlink-provider="${escapeAttr(provider.id)}">Desvincular</button>
+          </article>`;
+        })
+        .join("") || '<p class="empty">Nenhum fornecedor vinculado.</p>';
+    renderQuotationScope();
+  }
+
+  async function saveQuotationPlanning(payload) {
+    const requestPayload = { ...payload };
+    if (Object.hasOwn(requestPayload, "campaigns")) {
+      requestPayload.campaigns = quotationCampaignPayload(
+        requestPayload.campaigns,
+      );
+    }
+    const result = await request("/api/quotation-planning", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(requestPayload),
+    });
+    state.quotationPlanning = {
+      selected_category_ids: result.selected_category_ids || [],
+      selected_expense_ids: result.selected_expense_ids || [],
+      campaigns: quotationCampaigns(result.campaigns),
+    };
+    syncQuotationCategorySelection(true);
+    renderQuotationPlanning();
+    setStatus(els.quotationPlanningStatus, "ok", "Planejamento salvo.");
+  }
+
+  async function loadQuotationPlanning() {
+    const result = await request("/api/quotation-planning");
+    state.quotationPlanning = {
+      selected_category_ids: result.selected_category_ids || [],
+      selected_expense_ids: result.selected_expense_ids || [],
+      campaigns: quotationCampaigns(result.campaigns),
+    };
+    syncQuotationCategorySelection(true);
+  }
+
   function renderQuotationManager() {
     const expense = currentQuotationExpense();
     if (!expense) return;
     const quotations = expense.quotations || [];
     els.quotationExpenseTitle.textContent = expense.description;
     els.quotationExpenseMeta.textContent = `${expense.category} · orçamento ativo ${formatMoney(expense.value)}`;
-    els.quotationLimitLabel.textContent = `${quotations.length} de 5 cotações`;
-    els.btnNewQuotation.disabled = quotations.length >= 5;
-    els.quotationEmpty.classList.toggle("hidden", quotations.length > 0);
-    els.quotationList.innerHTML = quotations
+    els.quotationLimitLabel.textContent = `${quotations.length} cotação(ões) registrada(s)`;
+    const query = els.quotationSearch.value.trim().toLocaleLowerCase("pt-BR");
+    const status = els.quotationStatusFilter.value;
+    const visible = quotations.filter(
+      (quote) =>
+        (els.quotationShowArchived.checked || !quote.archived) &&
+        (!status || quote.response_status === status) &&
+        (!query ||
+          `${quote.vendor} ${quote.notes || ""} ${quote.response_channel || ""}`
+            .toLocaleLowerCase("pt-BR")
+            .includes(query)),
+    );
+    const totalPages = Math.max(
+      1,
+      Math.ceil(visible.length / QUOTATIONS_PER_PAGE),
+    );
+    state.quotationPage = Math.min(
+      Math.max(1, state.quotationPage),
+      totalPages,
+    );
+    const pageStart = (state.quotationPage - 1) * QUOTATIONS_PER_PAGE;
+    const pageQuotations = visible.slice(
+      pageStart,
+      pageStart + QUOTATIONS_PER_PAGE,
+    );
+    els.quotationPageStatus.textContent = `Página ${state.quotationPage} de ${totalPages} · ${visible.length} resultado(s)`;
+    els.btnQuotationPrevious.disabled = state.quotationPage <= 1;
+    els.btnQuotationNext.disabled = state.quotationPage >= totalPages;
+    els.quotationEmpty.classList.toggle("hidden", visible.length > 0);
+    els.quotationList.innerHTML = pageQuotations
       .map((quote) => {
         const isSelected = quote.id === expense.selected_quotation_id;
         const projectedQuoteTotal =
@@ -1944,18 +2311,20 @@
         ]
           .filter(Boolean)
           .join(" · ");
-        return `<article class="quotation-card ${isSelected ? "selected" : ""}">
-          <header><div><strong>${escapeHtml(quote.vendor)}</strong><span class="quote-badges"><span class="badge">${quote.source === "ai" ? "Importada" : "Manual"}</span>${isSelected ? '<span class="badge selected">Escolhida</span>' : ""}</span></div><strong class="quotation-total">${formatMoney(projectedQuoteTotal)}</strong></header>
-          <dl><div><dt>Unitário</dt><dd>${formatMoney(quote.unit_price)} × ${quote.quantity} ${escapeHtml(quote.unit || "")}</dd></div><div><dt>Frete</dt><dd>${formatMoney(quote.shipping_cost)}</dd></div><div><dt>Verificada</dt><dd>${escapeHtml(quote.checked_at || "—")}</dd></div></dl>
+        const documents = quote.attachments || [];
+        return `<article class="quotation-card ${isSelected ? "selected" : ""} ${quote.archived ? "archived" : ""}">
+          <header><div><strong>${escapeHtml(quote.vendor)}</strong><span class="quote-badges"><span class="badge">${quote.source === "ai" ? "Importada" : "Manual"}</span><span class="badge">${escapeHtml(quote.response_status || "recebida")}</span>${isSelected ? '<span class="badge selected">Escolhida</span>' : ""}${quote.archived ? '<span class="badge">Arquivada</span>' : ""}</span></div><strong class="quotation-total">${formatMoney(projectedQuoteTotal)}</strong></header>
+          <dl><div><dt>Unitário</dt><dd>${formatMoney(quote.unit_price)} × ${quote.quantity} ${escapeHtml(quote.unit || "")}</dd></div><div><dt>Frete</dt><dd>${formatMoney(quote.shipping_cost)}</dd></div><div><dt>Recebida</dt><dd>${escapeHtml(formatDateTime(quote.received_at || quote.checked_at))}</dd></div><div><dt>Canal</dt><dd>${escapeHtml(quote.response_channel || "—")}</dd></div></dl>
           ${specification ? `<p><strong>Especificação:</strong> ${escapeHtml(specification)}</p>` : ""}
           ${evidence ? `<p><strong>Fonte:</strong> ${escapeHtml(evidence)}</p>` : ""}
           ${metadata.ambiguities ? `<p><strong>Pendências:</strong> ${escapeHtml(metadata.ambiguities)}</p>` : ""}
           ${quote.notes ? `<p>${escapeHtml(quote.notes)}</p>` : ""}
+          ${documents.length ? `<div class="quote-documents">${documents.map((document) => `<a href="/api/expenses/${encodeURIComponent(expense.id)}/quotations/${encodeURIComponent(quote.id)}/documents/${encodeURIComponent(document.id)}" target="_blank" download>↓ ${escapeHtml(document.original_filename || document.filename || "PDF")}</a>`).join("")}</div>` : ""}
           <div class="quotation-card-actions">
             ${quote.product_url ? `<a class="btn" href="${escapeAttr(quote.product_url)}" target="_blank" rel="noopener">Abrir oferta</a>` : ""}
             ${!isSelected ? `<button type="button" class="btn primary" data-select-quotation="${escapeAttr(quote.id)}">Escolher</button>` : ""}
             <button type="button" class="btn" data-edit-quotation="${escapeAttr(quote.id)}">Editar</button>
-            <button type="button" class="btn danger" data-delete-quotation="${escapeAttr(quote.id)}">Excluir</button>
+            ${!quote.archived ? `<button type="button" class="btn danger" data-delete-quotation="${escapeAttr(quote.id)}">Arquivar</button>` : ""}
           </div>
         </article>`;
       })
@@ -1970,6 +2339,13 @@
       ? "Editar cotação"
       : "Nova cotação";
     els.quotationId.value = quotation?.id || "";
+    els.quotationProvider.innerHTML =
+      '<option value="">Sem vínculo</option>' +
+      state.providers
+        .filter((provider) => !provider.archived || provider.id === quotation?.provider_id)
+        .map((provider) => `<option value="${escapeAttr(provider.id)}">${escapeHtml(provider.name)}</option>`)
+        .join("");
+    els.quotationProvider.value = quotation?.provider_id || "";
     els.quotationVendor.value = quotation?.vendor || "";
     els.quotationUnitPrice.value = quotation?.unit_price ?? "";
     els.quotationQuantity.value = quotation?.quantity ?? expense?.quantity ?? 1;
@@ -1980,6 +2356,13 @@
       quotation?.checked_at || new Date().toISOString().slice(0, 10),
     ).slice(0, 10);
     els.quotationUrl.value = quotation?.product_url || "";
+    els.quotationResponseStatus.value =
+      quotation?.response_status || "received";
+    els.quotationResponseChannel.value =
+      quotation?.response_channel || "";
+    els.quotationReceivedAt.value = String(quotation?.received_at || "")
+      .slice(0, 16);
+    els.quotationDocument.value = "";
     els.quotationNotes.value = quotation?.notes || "";
     els.quotationFormError.classList.add("hidden");
     els.quotationForm.classList.remove("hidden");
@@ -1988,7 +2371,10 @@
 
   function openQuotationManager(item) {
     state.quotationExpenseId = item.id;
+    state.quotationPage = 1;
     state.quotationImportRows = [];
+    state.quotationPreviewDigest = "";
+    state.quotationSourceDocumentIds = [];
     els.quotationForm.classList.add("hidden");
     els.quotationAiPanel.open = false;
     els.quotationSourceInput.value = "";
@@ -2000,22 +2386,28 @@
     els.quotationFixOutput.value = "";
     els.quotationFixOutput.classList.add("hidden");
     els.btnCopyQuotationFix.classList.add("hidden");
-    els.btnCommitQuotationImport.disabled = true;
+    els.btnCommitQuotationImport.disabled = false;
     renderQuotationManager();
+    renderQuotationPlanning();
+    setQuotationTab("planning");
     els.quotationDialog.showModal();
   }
 
   async function submitQuotation(event) {
     event.preventDefault();
     const expenseId = state.quotationExpenseId;
+    const submitButton = event.submitter;
+    if (submitButton?.disabled) return;
+    if (submitButton) submitButton.disabled = true;
     try {
-      const result = await request(
+      let result = await request(
         `/api/expenses/${encodeURIComponent(expenseId)}/quotations`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             id: els.quotationId.value,
+            provider_id: els.quotationProvider.value,
             source: state.editingQuotationSource,
             vendor: els.quotationVendor.value.trim(),
             unit_price: els.quotationUnitPrice.value,
@@ -2025,16 +2417,46 @@
             total_price: els.quotationTotal.value,
             checked_at: els.quotationCheckedAt.value,
             product_url: els.quotationUrl.value.trim(),
+            response_status: els.quotationResponseStatus.value,
+            response_channel: els.quotationResponseChannel.value,
+            received_at: els.quotationReceivedAt.value,
             notes: els.quotationNotes.value.trim(),
             metadata: state.editingQuotationMetadata,
           }),
         },
       );
+      const quotationId =
+        result.quotation_id ||
+        els.quotationId.value ||
+        result.state?.expenses
+          ?.find((item) => item.id === expenseId)
+          ?.quotations?.at(-1)?.id;
+      const documentFile = els.quotationDocument.files[0];
+      if (documentFile && quotationId) {
+        result = await request(
+          `/api/expenses/${encodeURIComponent(expenseId)}/quotations/${encodeURIComponent(quotationId)}/documents`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/pdf",
+              "X-Filename": encodeURIComponent(documentFile.name),
+            },
+            body: documentFile,
+          },
+        );
+        if (result.document?.id) {
+          state.quotationSourceDocumentIds = [
+            `${expenseId}:${quotationId}:${result.document.id}`,
+          ];
+        }
+      }
       applyExpenseState(result.state);
       els.quotationForm.classList.add("hidden");
       renderQuotationManager();
     } catch (error) {
       setStatus(els.quotationFormError, "err", error.message);
+    } finally {
+      if (submitButton) submitButton.disabled = false;
     }
   }
 
@@ -2052,7 +2474,7 @@
   }
 
   async function deleteQuotation(quotationId) {
-    if (!window.confirm("Excluir esta cotação?")) return;
+    if (!window.confirm("Arquivar esta cotação? Ela poderá ser exibida novamente pelo filtro.")) return;
     const result = await request(
       `/api/expenses/${encodeURIComponent(state.quotationExpenseId)}/quotations/${encodeURIComponent(quotationId)}`,
       { method: "DELETE" },
@@ -2204,12 +2626,17 @@
         expense_context: expense
           ? `${expense.id}: ${expense.description} (${expense.category})`
           : "",
+        source_document_ids: state.quotationSourceDocumentIds,
       }),
     });
     const wrongScope = (result.rows || []).some(
       (row) => row.id !== state.quotationExpenseId,
     );
     state.quotationImportRows = wrongScope ? [] : result.rows || [];
+    state.quotationPreviewDigest =
+      result.ok && !wrongScope ? result.preview_digest || "" : "";
+    state.quotationSourceDocumentIds =
+      result.source_document_ids || state.quotationSourceDocumentIds;
     els.btnCommitQuotationImport.disabled =
       !result.ok || wrongScope || !state.quotationImportRows.length;
     const message = wrongScope
@@ -2234,6 +2661,14 @@
 
   async function commitQuotationImport() {
     const expense = currentQuotationExpense();
+    if (!state.quotationImportRows.length) {
+      setStatus(
+        els.quotationImportStatus,
+        "err",
+        "Valide o pack atual antes de importar.",
+      );
+      return;
+    }
     const result = await request("/api/import/commit", {
       allowPayloadError: true,
       method: "POST",
@@ -2245,6 +2680,8 @@
         expense_context: expense
           ? `${expense.id}: ${expense.description} (${expense.category})`
           : "",
+        source_document_ids: state.quotationSourceDocumentIds,
+        preview_digest: state.quotationPreviewDigest,
       }),
     });
     if (!result.ok) {
@@ -2262,6 +2699,7 @@
     }
     applyExpenseState(result.state);
     state.quotationImportRows = [];
+    state.quotationPreviewDigest = "";
     els.btnCommitQuotationImport.disabled = true;
     setStatus(els.quotationImportStatus, "ok", "Cotações importadas.");
     renderQuotationManager();
@@ -2415,11 +2853,29 @@
 
   function renderContractCenter() {
     const includeArchived = els.showArchivedContracts.checked;
+    const providerQuery = els.providerDirectorySearch.value
+      .trim()
+      .toLocaleLowerCase("pt-BR");
     const visibleContracts = state.contracts.filter(
       (item) => includeArchived || !item.archived,
     );
     const visibleProviders = state.providers.filter(
-      (item) => includeArchived || !item.archived,
+      (item) =>
+        (includeArchived || !item.archived) &&
+        (!providerQuery ||
+          [
+            item.name,
+            item.service_type,
+            ...listValue(item.roles),
+            item.coverage,
+            item.city,
+            item.state,
+            ...listValue(item.categories),
+          ]
+            .filter(Boolean)
+            .join(" ")
+            .toLocaleLowerCase("pt-BR")
+            .includes(providerQuery)),
     );
     const providerMap = Object.fromEntries(
       state.providers.map((item) => [item.id, item]),
@@ -2473,18 +2929,33 @@
                 .toLocaleLowerCase("pt-BR")
                 .includes("gelson"),
           );
-          return `<article class="provider-card ${provider.archived ? "archived" : ""}"><div class="provider-identity">${person?.image_url ? `<img src="${escapeAttr(person.image_url)}" alt="${escapeAttr(provider.name)}" loading="lazy">` : ""}<div><strong>${escapeHtml(provider.name)}</strong><span>${escapeHtml(provider.service_type || "Prestador")}</span></div></div><button class="btn" type="button" data-edit-provider="${escapeAttr(provider.id)}">Editar</button></article>`;
+          const roles = listValue(provider.roles);
+          const location = [provider.city, provider.state].filter(Boolean).join(" / ");
+          return `<article class="provider-card ${provider.archived ? "archived" : ""}"><div class="provider-identity">${person?.image_url ? `<img src="${escapeAttr(person.image_url)}" alt="${escapeAttr(provider.name)}" loading="lazy">` : ""}<div><strong>${escapeHtml(provider.name)}</strong><span>${escapeHtml(roles.join(", ") || provider.service_type || "Fornecedor / prestador")}</span><span>${escapeHtml([provider.business_scale, provider.coverage, location].filter(Boolean).join(" · "))}</span><span>${escapeHtml(providerContactSummary(provider))}</span></div></div><button class="btn" type="button" data-edit-provider="${escapeAttr(provider.id)}">Editar</button></article>`;
         })
         .join("") || '<p class="empty">Nenhum prestador cadastrado.</p>';
   }
 
   function openProviderDialog(provider = null) {
     els.providerDialogTitle.textContent = provider
-      ? "Editar prestador"
-      : "Novo prestador";
+      ? "Editar fornecedor ou prestador"
+      : "Novo fornecedor ou prestador";
     els.providerId.value = provider?.id || "";
     els.providerName.value = provider?.name || "";
     els.providerServiceType.value = provider?.service_type || "";
+    els.providerRoles.value = listValue(provider?.roles).join(", ");
+    els.providerBusinessScale.value = provider?.business_scale || "";
+    els.providerCoverage.value = provider?.coverage || "";
+    els.providerPhones.value = listValue(provider?.phones).join(", ");
+    els.providerEmails.value = listValue(provider?.emails).join(", ");
+    els.providerWebsites.value = listValue(provider?.websites).join(", ");
+    els.providerAddress.value =
+      (provider?.address && typeof provider.address === "object"
+        ? provider.address.street
+        : provider?.address) || "";
+    els.providerCity.value = provider?.city || "";
+    els.providerState.value = provider?.state || "";
+    els.providerCategories.value = listValue(provider?.categories).join(", ");
     els.providerContact.value = provider?.contact || "";
     els.providerNotes.value = provider?.notes || "";
     els.btnArchiveProvider.classList.toggle(
@@ -2504,7 +2975,17 @@
         body: JSON.stringify({
           id: els.providerId.value,
           name: els.providerName.value.trim(),
+          roles: splitList(els.providerRoles.value),
+          business_scale: els.providerBusinessScale.value,
           service_type: els.providerServiceType.value.trim(),
+          coverage: els.providerCoverage.value.trim(),
+          phones: splitList(els.providerPhones.value),
+          emails: splitList(els.providerEmails.value),
+          websites: splitList(els.providerWebsites.value),
+          address: els.providerAddress.value.trim(),
+          city: els.providerCity.value.trim(),
+          state: els.providerState.value.trim(),
+          categories: splitList(els.providerCategories.value),
           contact: els.providerContact.value.trim(),
           notes: els.providerNotes.value.trim(),
         }),
@@ -2512,6 +2993,7 @@
       state.providers = result.providers || [];
       els.providerDialog.close();
       renderContractCenter();
+      if (state.quotationExpenseId) renderQuotationPlanning();
       setStatus(
         els.appStatus,
         "ok",
@@ -3645,11 +4127,143 @@
   els.btnCloseQuotations.addEventListener("click", () =>
     els.quotationDialog.close(),
   );
+  document.querySelectorAll("[data-quotation-tab]").forEach((button) =>
+    button.addEventListener("click", () =>
+      setQuotationTab(button.dataset.quotationTab),
+    ),
+  );
+  els.quotationScopeSearch.addEventListener("input", renderQuotationScope);
+  els.quotationScopeList.addEventListener("change", (event) => {
+    const category = event.target.dataset.quotationCategory;
+    const expenseId = event.target.dataset.quotationExpense;
+    const selectedExpenses = new Set(
+      state.quotationPlanning.selected_expense_ids || [],
+    );
+    if (category) {
+      state.expenses
+        .filter((item) => item.category === category)
+        .forEach((item) => {
+          if (event.target.checked) selectedExpenses.add(item.id);
+          else selectedExpenses.delete(item.id);
+        });
+    }
+    if (expenseId) {
+      if (event.target.checked) selectedExpenses.add(expenseId);
+      else selectedExpenses.delete(expenseId);
+    }
+    state.quotationPlanning.selected_expense_ids = [...selectedExpenses];
+    syncQuotationCategorySelection();
+    renderQuotationScope();
+  });
+  els.btnSaveQuotationScope.addEventListener("click", () =>
+    runBusy(
+      els.btnSaveQuotationScope,
+      () =>
+        saveQuotationPlanning({
+          selected_category_ids:
+            state.quotationPlanning.selected_category_ids || [],
+          selected_expense_ids:
+            state.quotationPlanning.selected_expense_ids || [],
+        }),
+      "Salvando...",
+    ).catch((error) =>
+      setStatus(els.quotationPlanningStatus, "err", error.message),
+    ),
+  );
+  els.quotationOutreachMessage.addEventListener("input", () => {
+    currentQuotationCampaign(true).outreach_message =
+      els.quotationOutreachMessage.value;
+  });
+  els.btnCopyOutreachMessage.addEventListener("click", () =>
+    copyWithFeedback(
+      els.quotationOutreachMessage.value,
+      els.quotationCopyStatus,
+    ),
+  );
+  els.btnLinkQuotationProvider.addEventListener("click", () => {
+    const providerId = els.quotationProviderSelect.value;
+    if (!providerId) return;
+    const campaign = currentQuotationCampaign(true);
+    if (
+      !campaign.providers.some(
+        (link) => (link.provider_id || link.id) === providerId,
+      )
+    )
+      campaign.providers.push({
+        provider_id: providerId,
+        status: "not_contacted",
+        notes: "",
+        created_at: new Date().toISOString(),
+        updated_at: new Date().toISOString(),
+      });
+    renderQuotationPlanning();
+  });
+  els.btnNewQuotationProvider.addEventListener("click", () =>
+    openProviderDialog(),
+  );
+  els.quotationLinkedProviders.addEventListener("input", (event) => {
+    const row = event.target.closest("[data-linked-provider]");
+    const field = event.target.dataset.outreachField;
+    if (!row || !field) return;
+    const link = currentQuotationCampaign(true).providers.find(
+      (item) => (item.provider_id || item.id) === row.dataset.linkedProvider,
+    );
+    if (!link) return;
+    link[field] = event.target.value;
+    link.updated_at = new Date().toISOString();
+    if (field === "status" && event.target.value === "sent" && !link.contacted_at)
+      link.contacted_at = link.updated_at;
+  });
+  els.quotationLinkedProviders.addEventListener("click", (event) => {
+    const button = event.target.closest("[data-unlink-provider]");
+    if (!button) return;
+    const campaign = currentQuotationCampaign(true);
+    campaign.providers = campaign.providers.filter(
+      (link) => (link.provider_id || link.id) !== button.dataset.unlinkProvider,
+    );
+    renderQuotationPlanning();
+  });
+  els.btnSaveQuotationCampaign.addEventListener("click", () => {
+    const campaign = currentQuotationCampaign(true);
+    campaign.outreach_message = els.quotationOutreachMessage.value;
+    runBusy(
+      els.btnSaveQuotationCampaign,
+      () =>
+        saveQuotationPlanning({
+          campaigns: state.quotationPlanning.campaigns,
+        }),
+      "Salvando...",
+    ).catch((error) =>
+      setStatus(els.quotationPlanningStatus, "err", error.message),
+    );
+  });
+  [els.quotationSearch, els.quotationStatusFilter, els.quotationShowArchived].forEach(
+    (field) =>
+      field.addEventListener("input", () => {
+        state.quotationPage = 1;
+        renderQuotationManager();
+      }),
+  );
+  els.btnQuotationPrevious.addEventListener("click", () => {
+    if (state.quotationPage <= 1) return;
+    state.quotationPage -= 1;
+    renderQuotationManager();
+  });
+  els.btnQuotationNext.addEventListener("click", () => {
+    state.quotationPage += 1;
+    renderQuotationManager();
+  });
   els.btnNewQuotation.addEventListener("click", () => openQuotationForm());
   els.btnCancelQuotation.addEventListener("click", () =>
     els.quotationForm.classList.add("hidden"),
   );
   els.quotationForm.addEventListener("submit", submitQuotation);
+  els.quotationProvider.addEventListener("change", () => {
+    const provider = state.providers.find(
+      (item) => item.id === els.quotationProvider.value,
+    );
+    if (provider) els.quotationVendor.value = provider.name;
+  });
   [
     els.quotationUnitPrice,
     els.quotationQuantity,
@@ -3688,16 +4302,20 @@
       );
   });
   els.btnQuotationPrompt.addEventListener("click", () =>
-    generateQuotationPrompt().catch((error) =>
+    runBusy(els.btnQuotationPrompt, generateQuotationPrompt, "Gerando...").catch((error) =>
       setStatus(els.quotationImportStatus, "err", error.message),
     ),
   );
   els.btnCopyQuotationPrompt.addEventListener("click", () =>
-    navigator.clipboard.writeText(els.quotationPromptOutput.value),
+    copyWithFeedback(
+      els.quotationPromptOutput.value,
+      els.quotationSourceStatus,
+    ),
   );
   els.quotationSourceFile.addEventListener("change", loadQuotationSourceFile);
   els.quotationSourceInput.addEventListener("input", () => {
     state.quotationImportRows = [];
+    state.quotationPreviewDigest = "";
     els.quotationPromptOutput.value = "";
     els.btnCommitQuotationImport.disabled = true;
     if (els.quotationSourceInput.value.trim())
@@ -3708,22 +4326,37 @@
       );
   });
   els.quotationPackFile.addEventListener("change", async () => {
-    if (els.quotationPackFile.files[0])
+    if (els.quotationPackFile.files[0]) {
       els.quotationPackInput.value =
         await els.quotationPackFile.files[0].text();
+      els.quotationPackInput.dispatchEvent(new Event("input"));
+    }
+  });
+  els.quotationPackInput.addEventListener("input", () => {
+    state.quotationImportRows = [];
+    state.quotationPreviewDigest = "";
+    els.btnCommitQuotationImport.disabled = false;
+    els.quotationFixOutput.value = "";
+    els.quotationFixOutput.classList.add("hidden");
+    els.btnCopyQuotationFix.classList.add("hidden");
+    setStatus(
+      els.quotationImportStatus,
+      "pending",
+      "Pack alterado. Valide novamente antes de importar.",
+    );
   });
   els.btnPreviewQuotationImport.addEventListener("click", () =>
-    previewQuotationImport().catch((error) =>
+    runBusy(els.btnPreviewQuotationImport, previewQuotationImport, "Validando...").catch((error) =>
       setStatus(els.quotationImportStatus, "err", error.message),
     ),
   );
   els.btnCommitQuotationImport.addEventListener("click", () =>
-    commitQuotationImport().catch((error) =>
+    runBusy(els.btnCommitQuotationImport, commitQuotationImport, "Importando...").catch((error) =>
       setStatus(els.quotationImportStatus, "err", error.message),
     ),
   );
   els.btnCopyQuotationFix.addEventListener("click", () =>
-    navigator.clipboard.writeText(els.quotationFixOutput.value),
+    copyWithFeedback(els.quotationFixOutput.value, els.quotationImportStatus),
   );
   els.btnPush.addEventListener("click", pushToRemote);
   els.generalNotes.addEventListener("input", () => {
@@ -3819,6 +4452,7 @@
       });
   });
   els.showArchivedContracts.addEventListener("change", renderContractCenter);
+  els.providerDirectorySearch.addEventListener("input", renderContractCenter);
   els.btnNewProvider.addEventListener("click", () => openProviderDialog());
   els.btnNewContract.addEventListener("click", () => openContractDialog());
   els.providerForm.addEventListener("submit", submitProvider);
@@ -3919,6 +4553,7 @@
     loadHouse(),
     loadProviders(),
     loadContracts(),
+    loadQuotationPlanning(),
     loadQuickTasks(),
   ])
     .then(() => {

@@ -1,0 +1,382 @@
+{
+  "group": "finishes-openings",
+  "checked_at": "2026-09-16",
+  "expenses": [
+    {
+      "expense_id": "EXP_0023",
+      "description": "porcelanato",
+      "comparable_spec": "Porcelanato 60x60 cm, retificado, acabamento acetinado/natural, indicado para ambientes internos; preço normalizado por m².",
+      "offers": [
+        {
+          "vendor": "Telhanorte",
+          "url": "https://www.telhanorte.com.br/porcelanato-urban-soft-60x60cm-esmaltado-acetinado-caixa-180m2-elizabeth-2521156/p",
+          "displayed_price": 65.9,
+          "package_size": "caixa com 1,80 m²; placas 60x60 cm",
+          "normalized_unit_price": 65.9,
+          "unit": "m²",
+          "availability": "Em estoque no anúncio; compra e entrega dependem do CEP.",
+          "seller_location": "Telhanorte, varejista brasileiro; entrega para Nova Odessa/SP sujeita à confirmação no checkout.",
+          "shipping_cost": null,
+          "evidence": "Página direta e dados estruturados exibem Urban Soft Elizabeth 60x60, porcelanato esmaltado acetinado, retificado, caixa 1,80 m², R$ 65,90 e InStock.",
+          "ambiguities": "O valor é anunciado por m²; a caixa fechada contém 1,80 m²."
+        },
+        {
+          "vendor": "taQi",
+          "url": "https://www.taqi.com.br/porcelanato-elizabeth-acetinado-urban-soft-classe-a-60-x-60-cm/197856",
+          "displayed_price": 129.78,
+          "package_size": "caixa com 1,80 m²; placas 60x60 cm",
+          "normalized_unit_price": 72.1,
+          "unit": "m²",
+          "availability": "Em estoque no anúncio; entrega deve ser validada para o CEP.",
+          "seller_location": "taQi, varejista do Sul do Brasil; cobertura de entrega para Nova Odessa/SP depende do checkout.",
+          "shipping_cost": null,
+          "evidence": "Página direta e JSON-LD exibem porcelanato Elizabeth Urban Soft classe A, acetinado, retificado, 60x60, embalagem 1,80 m², R$ 129,78 e InStock.",
+          "ambiguities": "Preço normalizado dividindo R$ 129,78 por 1,80 m²."
+        },
+        {
+          "vendor": "Mauro Center",
+          "url": "https://www.maurocenter.com.br/piso-decore-60x60-dr60006-rt-cx2-88m2",
+          "displayed_price": 95.73,
+          "package_size": "caixa com 2,88 m²; placas 60x60 cm",
+          "normalized_unit_price": 33.24,
+          "unit": "m²",
+          "availability": "Em estoque no anúncio; frete e atendimento ao CEP devem ser confirmados.",
+          "seller_location": "Mauro Center, varejista brasileiro; expedição e prazo para Nova Odessa/SP no checkout.",
+          "shipping_cost": null,
+          "evidence": "Página direta e JSON-LD exibem piso porcelanato Embramaco Decore 60x60, retificado, acabamento natural, caixa 2,88 m², R$ 95,73 e InStock.",
+          "ambiguities": "Preço normalizado dividindo R$ 95,73 por 2,88 m²."
+        }
+      ],
+      "unresolved_notes": "Confirmar lote, tonalidade e calibre. Frete não foi calculado."
+    },
+    {
+      "expense_id": "EXP_0024",
+      "description": "rejunte porcelanato",
+      "comparable_spec": "Rejunte acrílico pronto para uso, embalagem de 1 kg, indicado para porcelanato; preço normalizado por kg.",
+      "offers": [
+        {
+          "vendor": "Sodimac Brasil",
+          "url": "https://www.sodimac.com.br/sodimac-br/product/637939002/rejunte-acrilico-1kg-branco/637939002/",
+          "displayed_price": 54.9,
+          "package_size": "pote de 1 kg; cor branca; Quartzolit",
+          "normalized_unit_price": 54.9,
+          "unit": "kg",
+          "availability": "Em estoque no anúncio; disponibilidade final depende do CEP.",
+          "seller_location": "Sodimac Brasil; entrega para Nova Odessa/SP definida no checkout.",
+          "shipping_cost": null,
+          "evidence": "Página direta e JSON-LD exibem Rejunte Acrílico Quartzolit 1 kg Branco, R$ 54,90 e InStock.",
+          "ambiguities": "Cor branca usada como referência comparável."
+        },
+        {
+          "vendor": "Tupan Home Center",
+          "url": "https://www.tupan.com.br/rejunte-acrilico-1kg-branco--ref654755--portokoll-895295-44",
+          "displayed_price": 48.99,
+          "package_size": "pote de 1 kg; cor branca; Portokoll ref. 654755",
+          "normalized_unit_price": 48.99,
+          "unit": "kg",
+          "availability": "Em estoque no anúncio; entrega sujeita ao CEP.",
+          "seller_location": "Tupan Home Center, Recife/PE; confirmar transporte para Nova Odessa/SP.",
+          "shipping_cost": null,
+          "evidence": "Página direta e JSON-LD exibem Rejunte Acrílico Portokoll 1 kg Branco, R$ 48,99 e InStock.",
+          "ambiguities": "Frete interestadual pode limitar a competitividade."
+        },
+        {
+          "vendor": "Telhanorte",
+          "url": "https://www.telhanorte.com.br/rejunte-acrilico-1kg-branco-quartzolit-1335073/p",
+          "displayed_price": 54.9,
+          "package_size": "pote de 1 kg; acrílico; cor branca; Quartzolit",
+          "normalized_unit_price": 54.9,
+          "unit": "kg",
+          "availability": "Em estoque no anúncio; entrega sujeita ao CEP.",
+          "seller_location": "Telhanorte, com operação em São Paulo; atendimento a Nova Odessa/SP deve ser confirmado no checkout.",
+          "shipping_cost": null,
+          "evidence": "Página direta e JSON-LD exibem rejunte acrílico branco Quartzolit, 1 kg, compatível com porcelanato, R$ 54,90 e InStock.",
+          "ambiguities": "Cor branca usada para manter a comparação uniforme."
+        }
+      ],
+      "unresolved_notes": "As cores alteram preço e disponibilidade; confirmar tonalidade junto ao porcelanato."
+    },
+    {
+      "expense_id": "EXP_0025",
+      "description": "argamassa porcelanato",
+      "comparable_spec": "Argamassa colante ACIII para porcelanato, uso interno e externo, saco de 20 kg; preço por saco.",
+      "offers": [
+        {
+          "vendor": "Sodimac Brasil",
+          "url": "https://www.sodimac.com.br/sodimac-br/product/739012/argamassa-flexivel-aciii-20kg-cinza/739012/",
+          "displayed_price": 44.9,
+          "package_size": "saco de 20 kg; ACIII flexível; cinza; Quartzolit",
+          "normalized_unit_price": 44.9,
+          "unit": "saco 20 kg",
+          "availability": "Em estoque no anúncio; validar entrega pelo CEP.",
+          "seller_location": "Sodimac Brasil; expedição definida no checkout para Nova Odessa/SP.",
+          "shipping_cost": null,
+          "evidence": "Página direta e JSON-LD exibem Argamassa Flexível ACIII Quartzolit 20 kg Cinza, R$ 44,90 e InStock.",
+          "ambiguities": "O JSON-LD também contém preço sem separador decimal; foi usado o valor monetário R$ 44,90."
+        },
+        {
+          "vendor": "Joli Material de Construção",
+          "url": "https://www.joli.com.br/argamassa-20kg-aciii-flexivel-uso-interno-e-externo-cinza-construindo-estruturas-duradouras-votoran/p",
+          "displayed_price": 37.9,
+          "package_size": "saco de 20 kg; ACIII flexível; cinza; Votoran",
+          "normalized_unit_price": 37.9,
+          "unit": "saco 20 kg",
+          "availability": "Em estoque no anúncio; entrega depende do CEP.",
+          "seller_location": "Joli Material de Construção, operação em São Paulo; confirmar entrega em Nova Odessa/SP.",
+          "shipping_cost": null,
+          "evidence": "Página direta e JSON-LD exibem argamassa ACIII flexível Votoran, 20 kg, uso interno/externo e porcelanato, R$ 37,90 e InStock.",
+          "ambiguities": "Cor cinza; verificar compatibilidade com formato e substrato da obra."
+        },
+        {
+          "vendor": "Telhanorte",
+          "url": "https://www.telhanorte.com.br/argamassa-perfomance-aciii-20kg-branca-ligamax-1376250/p",
+          "displayed_price": 62.9,
+          "package_size": "saco de 20 kg; ACIII; branca; Portokoll Ligamax",
+          "normalized_unit_price": 62.9,
+          "unit": "saco 20 kg",
+          "availability": "Em estoque no anúncio; entrega depende do CEP.",
+          "seller_location": "Telhanorte, operação em São Paulo; confirmar disponibilidade para Nova Odessa/SP.",
+          "shipping_cost": null,
+          "evidence": "Página direta e JSON-LD exibem Argamassa ACIII Porcelanato/Cerâmica interna e externa branca 20 kg, R$ 62,90 e InStock.",
+          "ambiguities": "Oferta branca, enquanto as outras são cinza; mesma classe ACIII e massa de embalagem."
+        }
+      ],
+      "unresolved_notes": "Confirmar rendimento, formato máximo de placa e condição do substrato antes da compra."
+    },
+    {
+      "expense_id": "EXP_0026",
+      "description": "portas internas",
+      "comparable_spec": "Folha de porta interna lisa de madeira, 210x80 cm e espessura de aproximadamente 3,5 cm; ferragens, batente e guarnições não incluídos salvo indicação.",
+      "offers": [
+        {
+          "vendor": "MadeiraMadeira",
+          "url": "https://www.madeiramadeira.com.br/folha-de-porta-madeira-lisa-210x80cm-espessura-3-5cm-melaminica-mgm-marrom-mogno-129510.html",
+          "displayed_price": 289.98,
+          "package_size": "1 folha lisa MGM, 210x80 cm, espessura 3,5 cm, acabamento melamínico mogno",
+          "normalized_unit_price": 289.98,
+          "unit": "unidade",
+          "availability": "Em estoque no anúncio; entrega depende do CEP.",
+          "seller_location": "MadeiraMadeira, marketplace brasileiro; vendedor/expedição informados no checkout.",
+          "shipping_cost": null,
+          "evidence": "Página direta e JSON-LD exibem folha de porta MGM 210x80x3,5 cm, R$ 289,98 e InStock.",
+          "ambiguities": "Somente folha; não inclui marco, alizares, fechadura ou dobradiças."
+        },
+        {
+          "vendor": "Leroy Merlin",
+          "url": "https://www.leroymerlin.com.br/folha-de-porta-madeira-lisa-210x80cm-espessura-3,5cm-melaminica-mgm-marrom-mogno-mogno_1567587108",
+          "displayed_price": 307.03,
+          "package_size": "1 folha lisa MGM, 210x80 cm, espessura 3,5 cm, melamínica mogno",
+          "normalized_unit_price": 307.03,
+          "unit": "unidade",
+          "availability": "Botões de compra ativos; preço válido em 16/09/2026 para a região Campinas.",
+          "seller_location": "Leroy Merlin/loja parceira; entrega para Nova Odessa/SP requer consulta de CEP.",
+          "shipping_cost": null,
+          "evidence": "Página direta aberta em 16/09/2026 exibiu preço promocional R$ 307,03, medidas 210x80x3,5 cm e compra online ativa.",
+          "ambiguities": "Somente folha; preço promocional à vista pode depender da forma de pagamento."
+        },
+        {
+          "vendor": "Amazon Brasil",
+          "url": "https://www.amazon.com.br/Folha-Madeira-Espessura-Refor%C3%A7o-Fechadura/dp/B0FS9DL24G",
+          "displayed_price": 392.86,
+          "package_size": "1 folha lisa de madeira mogno, 210x80 cm, espessura 3,5 cm, reforço para fechadura",
+          "normalized_unit_price": 392.86,
+          "unit": "unidade",
+          "availability": "Oferta ativa no resultado de compras; entrega depende do vendedor e CEP.",
+          "seller_location": "Amazon Brasil marketplace; vendedor e origem da remessa devem ser verificados no checkout.",
+          "shipping_cost": null,
+          "evidence": "URL direta de produto Amazon e cartão de compras exibiram a folha 210x80x3,5 cm por R$ 392,86 em 16/09/2026.",
+          "ambiguities": "Somente folha; disponibilidade pode variar por vendedor."
+        }
+      ],
+      "unresolved_notes": "A comparação é de folhas, não kits completos. Orçar separadamente batentes, guarnições, ferragens e instalação."
+    },
+    {
+      "expense_id": "EXP_0027",
+      "description": "porta-balcão ~2,00 m",
+      "comparable_spec": "Porta-balcão/de sacada de correr em alumínio e vidro, aproximadamente 200 cm de largura por 210 cm de altura, quatro folhas.",
+      "offers": [
+        {
+          "vendor": "Tupan Home Center",
+          "url": "https://www.tupan.com.br/porta-de-correr-balcao-home-4-folhas-de-vidro-liso-200x210-aluminio-branco-quality--ref-hob047002-981714-31",
+          "displayed_price": 1797.99,
+          "package_size": "1 porta 200x210 cm; alumínio branco; 4 folhas; vidro liso; Quality HOB047002",
+          "normalized_unit_price": 1797.99,
+          "unit": "unidade",
+          "availability": "Em estoque no anúncio; entrega interestadual deve ser confirmada.",
+          "seller_location": "Tupan Home Center, Recife/PE; validar frete volumoso para Nova Odessa/SP.",
+          "shipping_cost": null,
+          "evidence": "Página direta e JSON-LD exibem porta de correr 200x210, quatro folhas de vidro liso, alumínio branco, R$ 1.797,99 e InStock.",
+          "ambiguities": "Frete de item volumoso pode não estar disponível para todos os CEPs."
+        },
+        {
+          "vendor": "MadeiraMadeira",
+          "url": "https://www.madeiramadeira.com.br/porta-de-aluminio-de-correr-balcao-4-folhas-210-x-200-branco-linha-25-com-chave-1629328.html",
+          "displayed_price": 1968.7,
+          "package_size": "1 porta 210x200 cm; alumínio branco linha 25; 4 folhas; vidro liso 3 mm; fechadura e chaves",
+          "normalized_unit_price": 1968.7,
+          "unit": "unidade",
+          "availability": "Em estoque no anúncio; entrega depende do CEP.",
+          "seller_location": "MadeiraMadeira marketplace; vendedor ANCHIETA ESQUADRIAS, origem definida no checkout.",
+          "shipping_cost": null,
+          "evidence": "Página direta e JSON-LD exibem porta-balcão 210x200, quatro folhas, alumínio/vidro, com chave, R$ 1.968,70 e InStock.",
+          "ambiguities": "A ordem altura/largura é 210x200 cm."
+        },
+        {
+          "vendor": "Mercado Livre",
+          "url": "https://www.mercadolivre.com.br/porta-sacada-de-correr-4-folhas-branca-210x200-com-trinco/up/MLBU3236365506?pdp_filters=item_id%3AMLB4092848379",
+          "displayed_price": 1171.09,
+          "package_size": "1 porta de sacada 210x200 cm; alumínio branco; 4 folhas de correr; vidro; trinco; Vivacasa",
+          "normalized_unit_price": 1171.09,
+          "unit": "unidade",
+          "availability": "Oferta ativa no resultado de compras; estoque e entrega dependem do vendedor/CEP.",
+          "seller_location": "Mercado Livre marketplace; origem do vendedor deve ser consultada na página/checkout.",
+          "shipping_cost": null,
+          "evidence": "Cartão de compras e URL direta exibiram Porta Sacada Vivacasa 4 folhas 210x200 com trinco por R$ 1.171,09 em 16/09/2026.",
+          "ambiguities": "Confirmar espessura e tipo do vidro e cobertura de entrega para Nova Odessa/SP."
+        }
+      ],
+      "unresolved_notes": "Confirmar sentido de abertura, vão de obra, tipo/espessura do vidro e instalação."
+    },
+    {
+      "expense_id": "EXP_0029",
+      "description": "janela quartos/escritório",
+      "comparable_spec": "Janela de correr em alumínio com vidro, quatro folhas (duas fixas e duas móveis), aproximadamente 120x120 cm.",
+      "offers": [
+        {
+          "vendor": "Amazon Brasil",
+          "url": "https://www.amazon.com.br/Janela-Alum%C3%ADnio-Correr-120x120cm-MGM/dp/B0B9M5G9L6",
+          "displayed_price": 739.9,
+          "package_size": "1 janela 120x120 cm; alumínio; 4 folhas, 2 fixas; vidro liso; MGM",
+          "normalized_unit_price": 739.9,
+          "unit": "unidade",
+          "availability": "Oferta ativa no resultado de compras; confirmar estoque para o CEP.",
+          "seller_location": "Amazon Brasil marketplace; vendedor/origem e entrega para Nova Odessa/SP no checkout.",
+          "shipping_cost": null,
+          "evidence": "URL direta Amazon e cartão de compras exibiram janela MGM 120x120, quatro folhas, por R$ 739,90 em 16/09/2026.",
+          "ambiguities": "Vendedor efetivo e frete aparecem após seleção do CEP."
+        },
+        {
+          "vendor": "MadeiraMadeira",
+          "url": "https://www.madeiramadeira.com.br/janela-de-aluminio-de-correr-120x120cm-4-folhas-2-fixas-com-vidro-liso-linha-soft-mgm-branco-711081.html",
+          "displayed_price": 754.12,
+          "package_size": "1 janela 120x120 cm; alumínio branco; 4 folhas, 2 fixas; vidro liso; MGM",
+          "normalized_unit_price": 754.12,
+          "unit": "unidade",
+          "availability": "Em estoque no anúncio; entrega depende do CEP.",
+          "seller_location": "MadeiraMadeira, varejista/marketplace brasileiro; expedição definida no checkout.",
+          "shipping_cost": null,
+          "evidence": "Página direta e JSON-LD exibem janela MGM 120x120, quatro folhas, alumínio branco e vidro liso, R$ 754,12 e InStock.",
+          "ambiguities": "Confirmar espessura do vidro e medida do vão."
+        },
+        {
+          "vendor": "Leroy Merlin",
+          "url": "https://www.leroymerlin.com.br/janela-de-correr-aluminio-branco-04-folhas-classic-120x120_1572871815",
+          "displayed_price": 773.39,
+          "package_size": "1 janela 120x120 cm; alumínio pintado branco; 4 folhas; linha Classic",
+          "normalized_unit_price": 773.39,
+          "unit": "unidade",
+          "availability": "Compra online ativa; preço válido em 16/09/2026 para a região Campinas.",
+          "seller_location": "Leroy Merlin/loja parceira em operação para a região Campinas; confirmar entrega em Nova Odessa/SP.",
+          "shipping_cost": null,
+          "evidence": "Página direta aberta em 16/09/2026 exibiu R$ 773,39, InStock, 120x120 cm, alumínio branco e quatro folhas.",
+          "ambiguities": "A página indica uso em sala; tecnicamente comparável para quarto/escritório, sujeito ao projeto de ventilação."
+        }
+      ],
+      "unresolved_notes": "Validar área efetiva de ventilação, espessura do vidro, presença de grade e medidas do vão."
+    },
+    {
+      "expense_id": "EXP_0030",
+      "description": "vitrô sala",
+      "comparable_spec": "Janela/vitrô de correr em alumínio com vidro liso, quatro folhas, 100 cm de altura por 120 cm de largura, apropriada para sala.",
+      "offers": [
+        {
+          "vendor": "MadeiraMadeira",
+          "url": "https://www.madeiramadeira.com.br/janela-de-aluminio-de-correr-100x120cm-4-folhas-soft-preto-mgm-951357.html",
+          "displayed_price": 700.12,
+          "package_size": "1 janela 100x120 cm; alumínio preto; 4 folhas; vidro; MGM Soft",
+          "normalized_unit_price": 700.12,
+          "unit": "unidade",
+          "availability": "Em estoque no anúncio; entrega depende do CEP.",
+          "seller_location": "MadeiraMadeira; expedição e entrega para Nova Odessa/SP definidas no checkout.",
+          "shipping_cost": null,
+          "evidence": "Página direta e JSON-LD exibem janela MGM Soft 100x120 cm, quatro folhas, alumínio preto, R$ 700,12 e InStock.",
+          "ambiguities": "Confirmar espessura e transparência do vidro."
+        },
+        {
+          "vendor": "Carrefour",
+          "url": "https://www.carrefour.com.br/produto/janela-de-aluminio-de-correr-100x120cm-4-folhas-soft-preto-mgm-preto-334902833",
+          "displayed_price": 823.67,
+          "package_size": "1 janela 100x120 cm; alumínio preto; 4 folhas; vidro liso incolor 4 mm; batente incluso",
+          "normalized_unit_price": 823.67,
+          "unit": "unidade",
+          "availability": "Em estoque no anúncio; entrega depende do CEP.",
+          "seller_location": "Carrefour marketplace; origem do vendedor e entrega para Nova Odessa/SP no checkout.",
+          "shipping_cost": null,
+          "evidence": "Página direta e JSON-LD exibem janela de correr 100x120, quatro folhas, vidro liso 4 mm, indicada para sala, R$ 823,67 e InStock.",
+          "ambiguities": "Vendido via marketplace; confirmar responsável pela expedição."
+        },
+        {
+          "vendor": "Leroy Merlin",
+          "url": "https://www.leroymerlin.com.br/janela-de-aluminio-de-correr-100x120cm-4-folhas-com-grade-soft-preto-mgm-preto_1572483594",
+          "displayed_price": 779.09,
+          "package_size": "1 janela 100x120 cm; alumínio preto; 4 folhas; vidro; grade; MGM Soft",
+          "normalized_unit_price": 779.09,
+          "unit": "unidade",
+          "availability": "Compra online ativa; preço válido em 16/09/2026 para a região Campinas.",
+          "seller_location": "Leroy Merlin/loja parceira; confirmar entrega pelo CEP de Nova Odessa/SP.",
+          "shipping_cost": null,
+          "evidence": "Página direta aberta em 16/09/2026 exibiu preço promocional R$ 779,09, produto 100x120 com quatro folhas e grade, e botões de compra ativos.",
+          "ambiguities": "Modelo inclui grade, diferentemente das outras duas ofertas."
+        }
+      ],
+      "unresolved_notes": "Especificação comparável definida para sala: 100x120 cm, quatro folhas e vidro liso. Confirmar se a área de ventilação atende ao projeto."
+    },
+    {
+      "expense_id": "EXP_0031",
+      "description": "vitrôs banheiros",
+      "comparable_spec": "Vitrô/janela basculante de alumínio 60x60 cm com vidro fosco, canelado ou mini boreal, adequado para banheiro.",
+      "offers": [
+        {
+          "vendor": "MadeiraMadeira",
+          "url": "https://www.madeiramadeira.com.br/vitro-basculante-aluminio-brilhante-60x60-303269692.html",
+          "displayed_price": 111.6,
+          "package_size": "1 vitrô basculante 60x60 cm; alumínio brilhante; vidro canelado",
+          "normalized_unit_price": 111.6,
+          "unit": "unidade",
+          "availability": "Em estoque no anúncio; entrega depende do CEP.",
+          "seller_location": "MadeiraMadeira marketplace; vendedor ALLO ESQUADRIAS, entrega para Nova Odessa/SP no checkout.",
+          "shipping_cost": null,
+          "evidence": "Página direta e JSON-LD exibem vitrô basculante de alumínio brilhante 60x60 com vidro canelado, R$ 111,60 e InStock.",
+          "ambiguities": "Confirmar sentido de instalação e vedação."
+        },
+        {
+          "vendor": "Conibase Home Center",
+          "url": "https://www.conibase.com.br/vitro-aluminio-basculante-60x60-brilhante-vidro-fosco-dl-esquadrias",
+          "displayed_price": 119.99,
+          "package_size": "1 vitrô basculante 60x60 cm; alumínio brilhante; vidro fosco; DL Esquadrias",
+          "normalized_unit_price": 119.99,
+          "unit": "unidade",
+          "availability": "Produto direto anunciado; disponibilidade e entrega dependem do CEP.",
+          "seller_location": "Conibase Home Center, operação em São Paulo; confirmar entrega em Nova Odessa/SP.",
+          "shipping_cost": null,
+          "evidence": "Página direta e resultado atualizado do varejista exibem vitrô basculante 60x60, alumínio brilhante, vidro fosco, de R$ 139,99 por R$ 119,99.",
+          "ambiguities": "A página não publicou estoque em JSON-LD; validar quantidade no carrinho."
+        },
+        {
+          "vendor": "Leroy Merlin",
+          "url": "https://www.leroymerlin.com.br/vitro-basculante-aluminio-branco-60--a--x-60--l---hale_1568113887",
+          "displayed_price": 181.49,
+          "package_size": "1 vitrô basculante 60x60 cm; alumínio branco; vidro; Hale",
+          "normalized_unit_price": 181.49,
+          "unit": "unidade",
+          "availability": "Oferta direta ativa; estoque e entrega dependem do CEP.",
+          "seller_location": "Leroy Merlin/loja parceira; confirmar entrega para Nova Odessa/SP.",
+          "shipping_cost": null,
+          "evidence": "URL direta e cartão de compras exibiram vitrô basculante Hale em alumínio branco 60x60 por R$ 181,49 em 16/09/2026.",
+          "ambiguities": "Confirmar acabamento do vidro e disponibilidade no CEP."
+        }
+      ],
+      "unresolved_notes": "Confirmar privacidade do vidro, ferragens, vedação e medida exata do vão de cada banheiro."
+    }
+  ]
+}

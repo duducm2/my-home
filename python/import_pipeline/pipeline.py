@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+import hashlib
+import json
 from pathlib import Path
 from typing import Any
 
@@ -34,17 +36,11 @@ def build_quotation_ingestion_prompt(
             raise ValueError(
                 "expense not found: " + ", ".join(sorted(missing_ids))
             )
-    # Prefer cost items with room for more quotations when no IDs are given.
-    if not ids:
-        expenses = [
-            item for item in expenses if len(item.get("quotations") or []) < 5
-        ]
-
     template_path = PROMPTS_DIR / "price-discovery.txt"
     template = template_path.read_text(encoding="utf-8") if template_path.is_file() else ""
 
     context_lines = [
-        "id,record_type,category,description,quantity,unit,current_value,quotation_count",
+        "id,record_type,category,description,quantity,unit,current_value,quotation_count,existing_quotation_ids",
     ]
     for item in expenses:
         qty = "" if item.get("quantity") is None else item["quantity"]
@@ -59,6 +55,13 @@ def build_quotation_ingestion_prompt(
                     _csv_escape(item.get("unit") or ""),
                     str(item["value"]),
                     str(len(item.get("quotations") or [])),
+                    _csv_escape(
+                        "|".join(
+                            str(quotation.get("id") or "")
+                            for quotation in item.get("quotations") or []
+                            if quotation.get("id")
+                        )
+                    ),
                 ]
             )
         )
@@ -105,6 +108,7 @@ def preview_pack(
     *,
     correction_instructions: str = "",
     expense_context: str = "",
+    source_document_ids: list[str] | None = None,
 ) -> dict[str, Any]:
     pack = get_pack_type(pack_id)
     materialized = materialize_csv(pack_text, pack["file_name"])
@@ -163,12 +167,24 @@ def preview_pack(
             "filename": pack["fix_filename"],
         }
 
+    source_ids = sorted(
+        set(str(value).strip() for value in (source_document_ids or []) if str(value).strip())
+    )
+    digest = hashlib.sha256(
+        json.dumps(
+            {"pack_text": pack_text, "source_document_ids": source_ids},
+            ensure_ascii=False,
+            sort_keys=True,
+        ).encode("utf-8")
+    ).hexdigest()
     return {
         "ok": True,
         "rows": validated["rows"],
         "row_count": validated["row_count"],
         "preview": materialized.get("preview") or "",
         "pack_text": pack_text,
+        "source_document_ids": source_ids,
+        "preview_digest": digest,
     }
 
 
@@ -178,7 +194,23 @@ def commit_rows(
     pack_text: str = "",
     pack_id: str = "price",
     expense_context: str = "",
+    source_document_ids: list[str] | None = None,
+    preview_digest: str = "",
 ) -> dict[str, Any]:
+    source_ids = sorted(
+        set(str(value).strip() for value in (source_document_ids or []) if str(value).strip())
+    )
+    expected_digest = hashlib.sha256(
+        json.dumps(
+            {"pack_text": pack_text, "source_document_ids": source_ids},
+            ensure_ascii=False,
+            sort_keys=True,
+        ).encode("utf-8")
+    ).hexdigest()
+    if preview_digest and preview_digest != expected_digest:
+        raise ValueError(
+            "preview_digest does not match the exact pack and source_document_ids"
+        )
     pack = get_pack_type(pack_id)
     raw_rows: list[dict[str, str]] = []
     for row in rows:
