@@ -4,10 +4,7 @@
     "name": "Home Quest Inventory",
     "description": "Cartoon mobile strategy-game inventory art with warm gold and navy accents.",
     "format": "PNG RGBA",
-    "dimensions_px": [
-      256,
-      256
-    ],
+    "dimensions_px": [256, 256],
     "background": "transparent",
     "generated_with": "Cursor GenerateImage",
     "generated_at": "2026-09-15",
@@ -300,6 +297,13 @@
       "url": "/assets/item-icons/mortgage-contract.png",
       "source_sheet": "d2",
       "source_cell": 4
+    },
+    "document-paper": {
+      "label": "Documento PDF",
+      "filename": "document-paper.png",
+      "url": "/assets/item-icons/document-paper.png",
+      "source_sheet": "generated",
+      "source_cell": 1
     },
     "moving-service": {
       "label": "Serviço de mudança",

@@ -956,7 +956,9 @@
     els.quickTaskEmpty.classList.toggle("hidden", state.quickTasks.length > 0);
     els.quickTaskList.innerHTML = state.quickTasks
       .map(
-        (task) => `<div class="quick-task-row${task.done ? " done" : ""}" data-quick-task="${escapeAttr(task.id)}">
+        (
+          task,
+        ) => `<div class="quick-task-row${task.done ? " done" : ""}" data-quick-task="${escapeAttr(task.id)}">
           <input type="checkbox" data-quick-task-done aria-label="Marcar tarefa como concluída" ${task.done ? "checked" : ""}>
           <input class="quick-task-title" data-quick-task-title maxlength="200" value="${escapeAttr(task.title)}" aria-label="Título da tarefa">
           <button type="button" class="btn" data-save-quick-task title="Salvar tarefa">Salvar</button>
@@ -998,9 +1000,7 @@
   async function updateQuickTaskFromRow(row) {
     const id = row?.dataset.quickTask;
     const title = row?.querySelector("[data-quick-task-title]")?.value.trim();
-    const done = Boolean(
-      row?.querySelector("[data-quick-task-done]")?.checked,
-    );
+    const done = Boolean(row?.querySelector("[data-quick-task-done]")?.checked);
     if (!id || !title) return;
     await saveQuickTask({ id, title, done });
   }
@@ -1438,7 +1438,9 @@
     const expenseQuantity = Number(expense?.scenario?.expected_quantity || 0);
     if (total == null || expenseQuantity <= 0) return null;
     const quoteId = expense.scenario[`${scenarioName}_quotation_id`];
-    const quote = (expense.quotations || []).find((item) => item.id === quoteId);
+    const quote = (expense.quotations || []).find(
+      (item) => item.id === quoteId,
+    );
     return Number(quantity || 0) * Number(quote?.unit_price || 0);
   }
 
@@ -1478,17 +1480,21 @@
         </div>`;
       })
       .join("");
-    const plannedTotal = state.editingTaskAllocations.reduce((sum, allocation) => {
-      const expense = state.expenses.find(
-        (item) => item.id === allocation.expense_id,
-      );
-      return (
-        sum +
-        Number(
-          allocationCost(expense, allocation.expected_quantity, "planned") || 0,
-        )
-      );
-    }, 0);
+    const plannedTotal = state.editingTaskAllocations.reduce(
+      (sum, allocation) => {
+        const expense = state.expenses.find(
+          (item) => item.id === allocation.expense_id,
+        );
+        return (
+          sum +
+          Number(
+            allocationCost(expense, allocation.expected_quantity, "planned") ||
+              0,
+          )
+        );
+      },
+      0,
+    );
     els.taskAllocationTotal.textContent = state.editingTaskAllocations.length
       ? `Custo unitário planejado da atividade: ${formatMoney(plannedTotal)} (frete aplicado na projeção geral)`
       : "Nenhuma despesa vinculada.";
@@ -2017,9 +2023,8 @@
       "pending",
       "Extraindo texto do PDF localmente...",
     );
-    const pdfjs = await import(
-      "/vendor/pdfjs/node_modules/pdfjs-dist/build/pdf.mjs"
-    );
+    const pdfjs =
+      await import("/vendor/pdfjs/node_modules/pdfjs-dist/build/pdf.mjs");
     pdfjs.GlobalWorkerOptions.workerSrc =
       "/vendor/pdfjs/node_modules/pdfjs-dist/build/pdf.worker.mjs";
     const document = await pdfjs.getDocument({
@@ -2084,8 +2089,9 @@
         );
       }
     } catch (error) {
-      const encrypted =
-        /password|encrypted/i.test(`${error?.name || ""} ${error?.message || ""}`);
+      const encrypted = /password|encrypted/i.test(
+        `${error?.name || ""} ${error?.message || ""}`,
+      );
       setStatus(
         els.quotationSourceStatus,
         "err",
@@ -2374,11 +2380,11 @@
             .reverse()
             .map(
               (version) =>
-                `<a href="/api/contracts/${encodeURIComponent(contract.id)}/documents/${encodeURIComponent(version.id)}" target="_blank"><img src="/assets/item-icons/mortgage-contract.png" alt="" loading="lazy">${escapeHtml(version.id)} · ${escapeHtml(version.original_filename)}${version.pages ? ` · ${version.pages} pág.` : ""}</a>`,
+                `<a href="/api/contracts/${encodeURIComponent(contract.id)}/documents/${encodeURIComponent(version.id)}" target="_blank"><img src="/assets/item-icons/document-paper.png" alt="" loading="lazy">${escapeHtml(version.id)} · ${escapeHtml(version.original_filename)}${version.pages ? ` · ${version.pages} pág.` : ""}</a>`,
             )
             .join("");
           return `<article class="contract-card ${contract.archived ? "archived" : ""}">
-        <div class="contract-card-head"><div class="contract-document-title">${iconMarkup("mortgage-contract", `Documento: ${contract.title}`)}<div><span>${contract.type === "purchase" ? "Compra" : "Serviço"}</span><h4>${escapeHtml(contract.title)}</h4></div></div><span class="contract-status status-${escapeAttr(contract.status)}">${contract.archived ? "Arquivado" : escapeHtml(contractStatusLabels[contract.status] || contract.status)}</span></div>
+        <div class="contract-card-head"><div class="contract-document-title">${iconMarkup("document-paper", `Documento: ${contract.title}`)}<div><span>${contract.type === "purchase" ? "Compra" : "Serviço"}</span><h4>${escapeHtml(contract.title)}</h4></div></div><span class="contract-status status-${escapeAttr(contract.status)}">${contract.archived ? "Arquivado" : escapeHtml(contractStatusLabels[contract.status] || contract.status)}</span></div>
         <div class="contract-meta"><span>${formatMoney(contract.amount)}</span><span>${escapeHtml(providerMap[contract.provider_id]?.name || "Sem prestador")}</span><span>${contract.type === "service" ? `${formatPaymentDate(contract.start_date)} — ${formatPaymentDate(contract.end_date)} · ${contract.work_days} dias${contract.work_period_status === "estimated" ? " · presumido" : ""}` : escapeHtml(contract.start_date || "Sem data")}</span></div>
         ${contract.type === "service" ? `<p class="contract-payment-resume">${escapeHtml(contractPaymentLabels[contract.payment_frequency] || contract.payment_frequency)} · ${(contract.payment_schedule || []).length} pagamento(s) · ${formatMoney((contract.payment_schedule || []).reduce((sum, payment) => sum + Number(payment.amount || 0), 0))}</p>` : ""}
         ${contract.metadata?.signature_status ? `<p class="contract-signature">${escapeHtml(contract.metadata.signature_status)} · conclusão ${escapeHtml(contract.metadata.signature_completed_at || "")}</p>` : ""}
@@ -3674,7 +3680,8 @@
     const row = event.target.closest("[data-allocation-index]");
     const field = event.target.dataset.allocationField;
     if (!row || !field) return;
-    const allocation = state.editingTaskAllocations[Number(row.dataset.allocationIndex)];
+    const allocation =
+      state.editingTaskAllocations[Number(row.dataset.allocationIndex)];
     allocation[field] =
       field === "expected_quantity"
         ? Number(event.target.value || 0)
