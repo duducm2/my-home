@@ -271,6 +271,7 @@ class ExpenseHandler(BaseHTTPRequestHandler):
             "/api/project/people/gelson.jpg": "gelson.jpg",
             "/api/project/people/jane.png": "jane.png",
             "/api/project/people/leo.jpg": "leo.jpg",
+            "/api/project/people/cats.jpg": "cats.jpg",
         }
         if path in people:
             self._serve_file(self.data_dir / "people" / people[path])

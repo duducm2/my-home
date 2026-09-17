@@ -329,7 +329,7 @@ select[multiple] { min-height: 110px; }
 
 .quick-task-row {
   display: grid;
-  grid-template-columns: 18px minmax(0, 1fr) auto auto;
+  grid-template-columns: 18px minmax(0, 1fr) auto;
   gap: 6px;
   align-items: center;
   min-height: 34px;
@@ -912,11 +912,12 @@ select[multiple] { min-height: 110px; }
 .gantt-handle {
   position: absolute;
   top: 0;
-  z-index: 3;
-  width: 8px;
+  z-index: 5;
+  width: 12px;
   height: 100%;
-  background: #ffffff18;
+  background: #ffffff24;
   cursor: ew-resize;
+  touch-action: none;
 }
 
 .gantt-handle.start {
@@ -927,6 +928,30 @@ select[multiple] { min-height: 110px; }
 }
 .gantt-handle:hover {
   background: #fff7;
+}
+
+.gantt-handle::after {
+  position: absolute;
+  top: 8px;
+  bottom: 8px;
+  left: 50%;
+  width: 2px;
+  border-radius: 2px;
+  background: #fff9;
+  content: "";
+  transform: translateX(-50%);
+}
+
+.gantt-bar.dragging {
+  z-index: 8;
+  cursor: grabbing;
+  filter: brightness(1.22);
+  transition: none;
+}
+
+.gantt-bar.dragging-start,
+.gantt-bar.dragging-end {
+  cursor: ew-resize;
 }
 
 .gantt-today {
@@ -1250,6 +1275,25 @@ select[multiple] { min-height: 110px; }
   padding-block: 8px;
 }
 
+.dashboard-pets {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  min-width: 0;
+  color: var(--muted);
+  font-size: 8px;
+}
+
+.dashboard-pets img {
+  display: block;
+  width: 48px;
+  height: 34px;
+  object-fit: cover;
+  object-position: center 42%;
+  border: 1px solid rgba(241, 196, 15, .32);
+  border-radius: 7px;
+}
+
 .dashboard-savings-card {
   display: flex;
   min-width: 0;
@@ -1268,7 +1312,7 @@ select[multiple] { min-height: 110px; }
 .dashboard-savings-card .house-savings-line-chart {
   min-height: 0;
   height: 92px;
-  margin-top: auto;
+  margin-block: auto;
   overflow: hidden;
 }
 

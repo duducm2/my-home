@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="color-scheme" content="dark" />
     <title>my-home</title>
-    <link rel="stylesheet" href="/styles.css?v=20260916-23" />
-    <link rel="stylesheet" href="/tasks.css?v=20260916-22" />
+    <link rel="stylesheet" href="/styles.css?v=20260916-25" />
+    <link rel="stylesheet" href="/tasks.css?v=20260916-26" />
     <script type="importmap">
       { "imports": { "three": "/vendor/three/three.module.js" } }
     </script>
@@ -274,39 +274,49 @@
           <article
             class="panel bento-card bento-blueprint dashboard-house-navigation"
           >
-            <a
-              href="#house"
-              data-view-link="house"
-              class="dashboard-blueprint-link"
-            >
-              <img
-                src="/api/house/blueprint.jpg"
-                alt="Miniatura da planta da casa"
-              />
-              <span
-                ><strong>Planta da casa</strong
-                ><small>Abrir a casa</small></span
+            <div class="panel-head">
+              <h2>Acessos da casa</h2>
+            </div>
+            <div class="dashboard-house-links">
+              <a
+                href="#house"
+                data-view-link="house"
+                class="dashboard-blueprint-link"
               >
-            </a>
-            <a
-              href="#model3d"
-              data-view-link="model3d"
-              class="dashboard-model-link"
-              aria-label="Abrir o modelo 3D da casa"
-            >
-              <img
-                src="/assets/dashboard-house-spin.gif"
-                alt=""
-                aria-hidden="true"
-              />
-              <span
-                ><strong>Modelo 3D</strong><small>Explorar a casa</small></span
+                <img
+                  src="/api/house/blueprint.jpg"
+                  alt="Miniatura da planta da casa"
+                />
+                <span><strong>Planta</strong><small>Abrir planta</small></span>
+              </a>
+              <a
+                href="#model3d"
+                data-view-link="model3d"
+                class="dashboard-model-link"
+                aria-label="Abrir o modelo 3D da casa"
               >
-            </a>
+                <img
+                  src="/assets/dashboard-house-spin.gif"
+                  alt=""
+                  aria-hidden="true"
+                />
+                <span
+                  ><strong>Modelo 3D</strong><small>Explorar casa</small></span
+                >
+              </a>
+            </div>
           </article>
           <article class="panel bento-card dashboard-people-card">
             <div class="panel-head">
               <h2>Pessoas do projeto</h2>
+              <div class="dashboard-pets" title="Nossos dois gatos">
+                <img
+                  src="/api/project/people/cats.jpg"
+                  alt="Os dois gatos de Eduardo e Leo"
+                  loading="lazy"
+                />
+                <span>Nossos gatos</span>
+              </div>
             </div>
             <div id="dashboard-people" class="dashboard-people-grid"></div>
           </article>
@@ -1429,6 +1439,6 @@
     </dialog>
 
     <datalist id="category-suggestions"></datalist>
-    <script src="/app.js?v=20260916-33"></script>
+    <script src="/app.js?v=20260916-35"></script>
   </body>
 </html>

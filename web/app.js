@@ -6,6 +6,8 @@
     expenses: [],
     tasks: [],
     quickTasks: [],
+    pendingQuickTasks: new Set(),
+    deletedQuickTasks: new Set(),
     providers: [],
     contracts: [],
     totals: {
@@ -961,7 +963,6 @@
         ) => `<div class="quick-task-row${task.done ? " done" : ""}" data-quick-task="${escapeAttr(task.id)}">
           <input type="checkbox" data-quick-task-done aria-label="Marcar tarefa como concluída" ${task.done ? "checked" : ""}>
           <input class="quick-task-title" data-quick-task-title maxlength="200" value="${escapeAttr(task.title)}" aria-label="Título da tarefa">
-          <button type="button" class="btn" data-save-quick-task title="Salvar tarefa">Salvar</button>
           <button type="button" class="btn danger" data-delete-quick-task title="Excluir tarefa">×</button>
         </div>`,
       )
@@ -971,46 +972,80 @@
   async function loadQuickTasks() {
     const payload = await request("/api/quick-tasks");
     state.quickTasks = payload.tasks || [];
+    state.pendingQuickTasks.clear();
+    state.deletedQuickTasks.clear();
     renderQuickTasks();
   }
 
-  async function saveQuickTask(task) {
-    const payload = await request("/api/quick-tasks", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(task),
-    });
-    state.quickTasks = payload.tasks || [];
-    renderQuickTasks();
+  function markQuickTaskChanged(id, changes) {
+    const task = state.quickTasks.find((item) => item.id === id);
+    if (!task) return;
+    Object.assign(task, changes);
+    state.pendingQuickTasks.add(id);
+    const openCount = state.quickTasks.filter((item) => !item.done).length;
+    els.quickTaskCount.textContent = `${openCount} ${openCount === 1 ? "pendente" : "pendentes"}`;
   }
 
-  async function createQuickTask(event) {
+  function createQuickTask(event) {
     event.preventDefault();
     const title = els.quickTaskInput.value.trim();
     if (!title) return;
-    try {
-      await saveQuickTask({ title, done: false });
-      els.quickTaskInput.value = "";
-      els.quickTaskInput.focus();
-    } catch (error) {
-      setStatus(els.appStatus, "err", error.message);
-    }
+    const id = `TEMP_${Date.now()}_${Math.random().toString(36).slice(2, 7)}`;
+    state.quickTasks.push({ id, title, done: false });
+    state.pendingQuickTasks.add(id);
+    els.quickTaskInput.value = "";
+    renderQuickTasks();
+    els.quickTaskInput.focus();
   }
 
-  async function updateQuickTaskFromRow(row) {
+  function updateQuickTaskFromRow(row) {
     const id = row?.dataset.quickTask;
     const title = row?.querySelector("[data-quick-task-title]")?.value.trim();
     const done = Boolean(row?.querySelector("[data-quick-task-done]")?.checked);
     if (!id || !title) return;
-    await saveQuickTask({ id, title, done });
+    markQuickTaskChanged(id, { title, done });
+    row.classList.toggle("done", done);
   }
 
-  async function deleteQuickTask(id) {
-    const payload = await request(
-      `/api/quick-tasks/${encodeURIComponent(id)}`,
-      { method: "DELETE" },
+  function deleteQuickTask(id) {
+    state.quickTasks = state.quickTasks.filter((task) => task.id !== id);
+    state.pendingQuickTasks.delete(id);
+    if (!id.startsWith("TEMP_")) state.deletedQuickTasks.add(id);
+    renderQuickTasks();
+  }
+
+  async function flushQuickTasks() {
+    if (
+      !state.pendingQuickTasks.size &&
+      !state.deletedQuickTasks.size
+    )
+      return;
+
+    let payload = null;
+    for (const id of state.deletedQuickTasks) {
+      payload = await request(`/api/quick-tasks/${encodeURIComponent(id)}`, {
+        method: "DELETE",
+      });
+    }
+    const changedTasks = state.quickTasks.filter((task) =>
+      state.pendingQuickTasks.has(task.id),
     );
-    state.quickTasks = payload.tasks || [];
+    for (const task of changedTasks) {
+      const savedTask = {
+        title: String(task.title || "").trim(),
+        done: Boolean(task.done),
+      };
+      if (!savedTask.title) throw new Error("Toda tarefa rápida precisa de um título.");
+      if (!task.id.startsWith("TEMP_")) savedTask.id = task.id;
+      payload = await request("/api/quick-tasks", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(savedTask),
+      });
+    }
+    if (payload) state.quickTasks = payload.tasks || [];
+    state.pendingQuickTasks.clear();
+    state.deletedQuickTasks.clear();
     renderQuickTasks();
   }
 
@@ -1353,31 +1388,60 @@
     });
     els.gantt.querySelectorAll("[data-task-bar]").forEach((bar) => {
       bar.addEventListener("pointerdown", (event) => {
+        if (event.button !== 0) return;
         event.preventDefault();
         const task = state.tasks.find(
           (item) => item.id === bar.dataset.taskBar,
         );
         if (!task) return;
-        const mode = event.target.dataset.resize || "move";
+        const resizeHandle = event.target.closest("[data-resize]");
+        const mode = resizeHandle?.dataset.resize || "move";
         const originX = event.clientX;
+        const originalLeft = Number.parseFloat(bar.style.left) || 0;
+        const originalWidth = Number.parseFloat(bar.style.width) || geometry.dayWidth;
+        const durationDays = dayDiff(task.start_date, task.end_date) + 1;
         let moved = false;
-        bar.setPointerCapture(event.pointerId);
-        const onMove = (moveEvent) => {
-          const delta = moveEvent.clientX - originX;
-          moved ||= Math.abs(delta) > 3;
-          bar.style.transform = `translateX(${delta}px)`;
+        let previewDays = 0;
+        bar.classList.add("dragging", `dragging-${mode}`);
+
+        const constrainedDays = (clientX) => {
+          const days = Math.round((clientX - originX) / geometry.dayWidth);
+          if (mode === "start") return Math.min(days, durationDays - 1);
+          if (mode === "end") return Math.max(days, -(durationDays - 1));
+          return days;
         };
-        const onUp = async (upEvent) => {
-          bar.removeEventListener("pointermove", onMove);
-          bar.removeEventListener("pointerup", onUp);
-          bar.style.transform = "";
+
+        const onMove = (moveEvent) => {
+          if (moveEvent.pointerId !== event.pointerId) return;
+          previewDays = constrainedDays(moveEvent.clientX);
+          moved ||= Math.abs(moveEvent.clientX - originX) > 3;
+          const delta = previewDays * geometry.dayWidth;
+          if (mode === "move") {
+            bar.style.left = `${originalLeft + delta}px`;
+          } else if (mode === "start") {
+            bar.style.left = `${originalLeft + delta}px`;
+            bar.style.width = `${originalWidth - delta}px`;
+          } else {
+            bar.style.width = `${originalWidth + delta}px`;
+          }
+        };
+
+        const finishDrag = async (upEvent, cancelled = false) => {
+          if (upEvent.pointerId !== event.pointerId) return;
+          window.removeEventListener("pointermove", onMove);
+          window.removeEventListener("pointerup", onUp);
+          window.removeEventListener("pointercancel", onCancel);
+          bar.classList.remove("dragging", `dragging-${mode}`);
+          if (cancelled) {
+            bar.style.left = `${originalLeft}px`;
+            bar.style.width = `${originalWidth}px`;
+            return;
+          }
           if (!moved) {
             openTaskDialog(task);
             return;
           }
-          const deltaDays = Math.round(
-            (upEvent.clientX - originX) / geometry.dayWidth,
-          );
+          const deltaDays = constrainedDays(upEvent.clientX);
           if (!deltaDays) return;
           const previous = {
             start_date: task.start_date,
@@ -1404,8 +1468,12 @@
             setStatus(els.appStatus, "err", error.message);
           }
         };
-        bar.addEventListener("pointermove", onMove);
-        bar.addEventListener("pointerup", onUp);
+
+        const onUp = (upEvent) => finishDrag(upEvent);
+        const onCancel = (cancelEvent) => finishDrag(cancelEvent, true);
+        window.addEventListener("pointermove", onMove);
+        window.addEventListener("pointerup", onUp);
+        window.addEventListener("pointercancel", onCancel);
       });
     });
   }
@@ -2306,6 +2374,7 @@
     els.btnPush.disabled = true;
     setStatus(els.appStatus, "", "Salvando e enviando...");
     try {
+      await flushQuickTasks();
       const result = await request("/api/push", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -3816,9 +3885,14 @@
   els.quickTaskForm.addEventListener("submit", createQuickTask);
   els.quickTaskList.addEventListener("change", (event) => {
     if (!event.target.matches("[data-quick-task-done]")) return;
-    updateQuickTaskFromRow(event.target.closest("[data-quick-task]")).catch(
-      (error) => setStatus(els.appStatus, "err", error.message),
-    );
+    updateQuickTaskFromRow(event.target.closest("[data-quick-task]"));
+  });
+  els.quickTaskList.addEventListener("input", (event) => {
+    if (!event.target.matches("[data-quick-task-title]")) return;
+    const row = event.target.closest("[data-quick-task]");
+    markQuickTaskChanged(row?.dataset.quickTask, {
+      title: event.target.value,
+    });
   });
   els.quickTaskList.addEventListener("keydown", (event) => {
     if (
@@ -3827,22 +3901,14 @@
     )
       return;
     event.preventDefault();
-    updateQuickTaskFromRow(event.target.closest("[data-quick-task]")).catch(
-      (error) => setStatus(els.appStatus, "err", error.message),
-    );
+    updateQuickTaskFromRow(event.target.closest("[data-quick-task]"));
+    event.target.blur();
   });
   els.quickTaskList.addEventListener("click", (event) => {
     const row = event.target.closest("[data-quick-task]");
     if (!row) return;
-    if (event.target.closest("[data-save-quick-task]")) {
-      updateQuickTaskFromRow(row).catch((error) =>
-        setStatus(els.appStatus, "err", error.message),
-      );
-    } else if (event.target.closest("[data-delete-quick-task]")) {
-      deleteQuickTask(row.dataset.quickTask).catch((error) =>
-        setStatus(els.appStatus, "err", error.message),
-      );
-    }
+    if (event.target.closest("[data-delete-quick-task]"))
+      deleteQuickTask(row.dataset.quickTask);
   });
 
   Promise.all([

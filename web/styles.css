@@ -3937,6 +3937,10 @@ td.actions:has(.quotation-action-btn) {
   grid-row: auto;
 }
 
+.dashboard-finance-container > .payment-projection-panel {
+  margin-top: 12px;
+}
+
 .dashboard-finance-container .dashboard-category-center {
   margin: 12px 0 0;
   padding: 12px 0 0;
@@ -4008,4 +4012,74 @@ td.actions:has(.quotation-action-btn) {
 .dashboard-model-link img,
 .dashboard-model-link span {
   pointer-events: none;
+}
+
+/* Balanced dashboard support row: house access, people and savings */
+.dashboard-house-navigation {
+  display: flex;
+  flex-direction: column;
+}
+
+.dashboard-house-links {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  flex: 1;
+  min-height: 0;
+}
+
+.dashboard-house-links .dashboard-blueprint-link,
+.dashboard-house-links .dashboard-model-link {
+  min-height: 0;
+  padding: 6px;
+  border: 1px solid rgba(255, 255, 255, .06);
+  border-radius: 9px;
+  background: rgba(255, 255, 255, .018);
+}
+
+.dashboard-house-links .dashboard-blueprint-link img,
+.dashboard-house-links .dashboard-model-link img {
+  height: 88px;
+}
+
+.dashboard-house-links .dashboard-blueprint-link:hover,
+.dashboard-house-links .dashboard-model-link:hover {
+  border-color: rgba(241, 196, 15, .36);
+  background: rgba(241, 196, 15, .035);
+}
+
+.dashboard-people-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.dashboard-people-card .dashboard-people-grid {
+  align-content: center;
+  flex: 1;
+}
+
+@media (min-width: 901px) {
+  .dashboard-support-grid {
+    grid-template-columns:
+      minmax(250px, 1fr)
+      minmax(300px, 1fr)
+      minmax(380px, 1.35fr);
+  }
+
+  .dashboard-support-grid .dashboard-house-navigation,
+  .dashboard-support-grid .dashboard-people-card,
+  .dashboard-support-grid .dashboard-savings-card {
+    height: 190px;
+  }
+}
+
+@media (max-width: 520px) {
+  .dashboard-house-links {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard-house-links .dashboard-blueprint-link,
+  .dashboard-house-links .dashboard-model-link {
+    grid-template-columns: 96px minmax(0, 1fr);
+  }
 }
