@@ -5,6 +5,7 @@
   const state = {
     expenses: [],
     tasks: [],
+    quickTasks: [],
     providers: [],
     contracts: [],
     totals: {
@@ -79,6 +80,11 @@
     monthlySavingsGrid: $("monthly-savings-grid"),
     cashflowMethod: $("cashflow-method"),
     macroTimeline: $("macro-timeline"),
+    quickTaskCount: $("quick-task-count"),
+    quickTaskForm: $("quick-task-form"),
+    quickTaskInput: $("quick-task-input"),
+    quickTaskList: $("quick-task-list"),
+    quickTaskEmpty: $("quick-task-empty"),
     taskSummary: $("task-summary"),
     taskPriorityFilter: $("task-priority-filter"),
     gantt: $("gantt"),
@@ -942,6 +948,70 @@
     renderPaymentProjection();
     renderGantt();
     renderMacroTimeline();
+  }
+
+  function renderQuickTasks() {
+    const openCount = state.quickTasks.filter((task) => !task.done).length;
+    els.quickTaskCount.textContent = `${openCount} ${openCount === 1 ? "pendente" : "pendentes"}`;
+    els.quickTaskEmpty.classList.toggle("hidden", state.quickTasks.length > 0);
+    els.quickTaskList.innerHTML = state.quickTasks
+      .map(
+        (task) => `<div class="quick-task-row${task.done ? " done" : ""}" data-quick-task="${escapeAttr(task.id)}">
+          <input type="checkbox" data-quick-task-done aria-label="Marcar tarefa como concluída" ${task.done ? "checked" : ""}>
+          <input class="quick-task-title" data-quick-task-title maxlength="200" value="${escapeAttr(task.title)}" aria-label="Título da tarefa">
+          <button type="button" class="btn" data-save-quick-task title="Salvar tarefa">Salvar</button>
+          <button type="button" class="btn danger" data-delete-quick-task title="Excluir tarefa">×</button>
+        </div>`,
+      )
+      .join("");
+  }
+
+  async function loadQuickTasks() {
+    const payload = await request("/api/quick-tasks");
+    state.quickTasks = payload.tasks || [];
+    renderQuickTasks();
+  }
+
+  async function saveQuickTask(task) {
+    const payload = await request("/api/quick-tasks", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(task),
+    });
+    state.quickTasks = payload.tasks || [];
+    renderQuickTasks();
+  }
+
+  async function createQuickTask(event) {
+    event.preventDefault();
+    const title = els.quickTaskInput.value.trim();
+    if (!title) return;
+    try {
+      await saveQuickTask({ title, done: false });
+      els.quickTaskInput.value = "";
+      els.quickTaskInput.focus();
+    } catch (error) {
+      setStatus(els.appStatus, "err", error.message);
+    }
+  }
+
+  async function updateQuickTaskFromRow(row) {
+    const id = row?.dataset.quickTask;
+    const title = row?.querySelector("[data-quick-task-title]")?.value.trim();
+    const done = Boolean(
+      row?.querySelector("[data-quick-task-done]")?.checked,
+    );
+    if (!id || !title) return;
+    await saveQuickTask({ id, title, done });
+  }
+
+  async function deleteQuickTask(id) {
+    const payload = await request(
+      `/api/quick-tasks/${encodeURIComponent(id)}`,
+      { method: "DELETE" },
+    );
+    state.quickTasks = payload.tasks || [];
+    renderQuickTasks();
   }
 
   function macroTasks() {
@@ -2304,11 +2374,11 @@
             .reverse()
             .map(
               (version) =>
-                `<a href="/api/contracts/${encodeURIComponent(contract.id)}/documents/${encodeURIComponent(version.id)}" target="_blank">${escapeHtml(version.id)} · ${escapeHtml(version.original_filename)}${version.pages ? ` · ${version.pages} pág.` : ""}</a>`,
+                `<a href="/api/contracts/${encodeURIComponent(contract.id)}/documents/${encodeURIComponent(version.id)}" target="_blank"><img src="/assets/item-icons/mortgage-contract.png" alt="" loading="lazy">${escapeHtml(version.id)} · ${escapeHtml(version.original_filename)}${version.pages ? ` · ${version.pages} pág.` : ""}</a>`,
             )
             .join("");
           return `<article class="contract-card ${contract.archived ? "archived" : ""}">
-        <div class="contract-card-head"><div><span>${contract.type === "purchase" ? "Compra" : "Serviço"}</span><h4>${escapeHtml(contract.title)}</h4></div><span class="contract-status status-${escapeAttr(contract.status)}">${contract.archived ? "Arquivado" : escapeHtml(contractStatusLabels[contract.status] || contract.status)}</span></div>
+        <div class="contract-card-head"><div class="contract-document-title">${iconMarkup("mortgage-contract", `Documento: ${contract.title}`)}<div><span>${contract.type === "purchase" ? "Compra" : "Serviço"}</span><h4>${escapeHtml(contract.title)}</h4></div></div><span class="contract-status status-${escapeAttr(contract.status)}">${contract.archived ? "Arquivado" : escapeHtml(contractStatusLabels[contract.status] || contract.status)}</span></div>
         <div class="contract-meta"><span>${formatMoney(contract.amount)}</span><span>${escapeHtml(providerMap[contract.provider_id]?.name || "Sem prestador")}</span><span>${contract.type === "service" ? `${formatPaymentDate(contract.start_date)} — ${formatPaymentDate(contract.end_date)} · ${contract.work_days} dias${contract.work_period_status === "estimated" ? " · presumido" : ""}` : escapeHtml(contract.start_date || "Sem data")}</span></div>
         ${contract.type === "service" ? `<p class="contract-payment-resume">${escapeHtml(contractPaymentLabels[contract.payment_frequency] || contract.payment_frequency)} · ${(contract.payment_schedule || []).length} pagamento(s) · ${formatMoney((contract.payment_schedule || []).reduce((sum, payment) => sum + Number(payment.amount || 0), 0))}</p>` : ""}
         ${contract.metadata?.signature_status ? `<p class="contract-signature">${escapeHtml(contract.metadata.signature_status)} · conclusão ${escapeHtml(contract.metadata.signature_completed_at || "")}</p>` : ""}
@@ -2320,10 +2390,16 @@
         .join("") || '<p class="empty">Nenhum contrato nesta visualização.</p>';
     els.providerList.innerHTML =
       visibleProviders
-        .map(
-          (provider) =>
-            `<article class="provider-card ${provider.archived ? "archived" : ""}"><div><strong>${escapeHtml(provider.name)}</strong><span>${escapeHtml(provider.service_type || "Prestador")}</span></div><button class="btn" type="button" data-edit-provider="${escapeAttr(provider.id)}">Editar</button></article>`,
-        )
+        .map((provider) => {
+          const person = (state.project?.people || []).find(
+            (item) =>
+              item.id === "gelson" &&
+              String(provider.name || "")
+                .toLocaleLowerCase("pt-BR")
+                .includes("gelson"),
+          );
+          return `<article class="provider-card ${provider.archived ? "archived" : ""}"><div class="provider-identity">${person?.image_url ? `<img src="${escapeAttr(person.image_url)}" alt="${escapeAttr(provider.name)}" loading="lazy">` : ""}<div><strong>${escapeHtml(provider.name)}</strong><span>${escapeHtml(provider.service_type || "Prestador")}</span></div></div><button class="btn" type="button" data-edit-provider="${escapeAttr(provider.id)}">Editar</button></article>`;
+        })
         .join("") || '<p class="empty">Nenhum prestador cadastrado.</p>';
   }
 
@@ -3730,6 +3806,37 @@
         state.providers.find((item) => item.id === button.dataset.editProvider),
       );
   });
+  els.quickTaskForm.addEventListener("submit", createQuickTask);
+  els.quickTaskList.addEventListener("change", (event) => {
+    if (!event.target.matches("[data-quick-task-done]")) return;
+    updateQuickTaskFromRow(event.target.closest("[data-quick-task]")).catch(
+      (error) => setStatus(els.appStatus, "err", error.message),
+    );
+  });
+  els.quickTaskList.addEventListener("keydown", (event) => {
+    if (
+      event.key !== "Enter" ||
+      !event.target.matches("[data-quick-task-title]")
+    )
+      return;
+    event.preventDefault();
+    updateQuickTaskFromRow(event.target.closest("[data-quick-task]")).catch(
+      (error) => setStatus(els.appStatus, "err", error.message),
+    );
+  });
+  els.quickTaskList.addEventListener("click", (event) => {
+    const row = event.target.closest("[data-quick-task]");
+    if (!row) return;
+    if (event.target.closest("[data-save-quick-task]")) {
+      updateQuickTaskFromRow(row).catch((error) =>
+        setStatus(els.appStatus, "err", error.message),
+      );
+    } else if (event.target.closest("[data-delete-quick-task]")) {
+      deleteQuickTask(row.dataset.quickTask).catch((error) =>
+        setStatus(els.appStatus, "err", error.message),
+      );
+    }
+  });
 
   Promise.all([
     loadState(),
@@ -3739,6 +3846,7 @@
     loadHouse(),
     loadProviders(),
     loadContracts(),
+    loadQuickTasks(),
   ])
     .then(() => {
       renderContractCenter();

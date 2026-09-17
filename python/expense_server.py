@@ -34,6 +34,7 @@ from media_export import (  # noqa: E402
 )
 from note_store import NoteStore  # noqa: E402
 from provider_store import ProviderStore  # noqa: E402
+from quick_task_store import QuickTaskStore  # noqa: E402
 from task_store import TaskStore  # noqa: E402
 
 
@@ -47,6 +48,7 @@ _HOUSE: HouseStore | None = None
 _NOTES: NoteStore | None = None
 _PROVIDERS: ProviderStore | None = None
 _CONTRACTS: ContractStore | None = None
+_QUICK_TASKS: QuickTaskStore | None = None
 
 
 def get_store(data_dir: Path) -> ExpenseStore:
@@ -82,6 +84,13 @@ def get_notes(data_dir: Path) -> NoteStore:
     if _NOTES is None or _NOTES.data_dir != data_dir.resolve():
         _NOTES = NoteStore(data_dir)
     return _NOTES
+
+
+def get_quick_tasks(data_dir: Path) -> QuickTaskStore:
+    global _QUICK_TASKS
+    if _QUICK_TASKS is None or _QUICK_TASKS.data_dir != data_dir.resolve():
+        _QUICK_TASKS = QuickTaskStore(data_dir)
+    return _QUICK_TASKS
 
 
 def get_house(data_dir: Path) -> HouseStore:
@@ -232,6 +241,9 @@ class ExpenseHandler(BaseHTTPRequestHandler):
         if path == "/api/tasks":
             self._json(200, get_tasks(self.data_dir).state())
             return
+        if path == "/api/quick-tasks":
+            self._json(200, get_quick_tasks(self.data_dir).state())
+            return
         if path == "/api/notes":
             self._json(200, get_notes(self.data_dir).load())
             return
@@ -347,6 +359,8 @@ class ExpenseHandler(BaseHTTPRequestHandler):
                 result = get_tasks(self.data_dir).upsert(payload)
                 result["expense_state"] = get_store(self.data_dir).state()
                 self._json(200, result)
+            elif path == "/api/quick-tasks":
+                self._json(200, get_quick_tasks(self.data_dir).upsert(payload))
             elif path == "/api/notes":
                 self._json(200, get_notes(self.data_dir).save(payload))
             elif path == "/api/providers":
@@ -443,6 +457,13 @@ class ExpenseHandler(BaseHTTPRequestHandler):
                 result = get_tasks(self.data_dir).delete(path[len("/api/tasks/") :])
                 result["expense_state"] = get_store(self.data_dir).state()
                 self._json(200, result)
+            elif path.startswith("/api/quick-tasks/"):
+                self._json(
+                    200,
+                    get_quick_tasks(self.data_dir).delete(
+                        path[len("/api/quick-tasks/") :]
+                    ),
+                )
             elif path.startswith("/api/contracts/"):
                 self._json(200, get_contracts(self.data_dir).archive(path[len("/api/contracts/") :]))
             elif path.startswith("/api/providers/"):
@@ -474,6 +495,7 @@ def main() -> int:
     get_tasks(args.data_dir)
     get_providers(args.data_dir)
     get_contracts(args.data_dir)
+    get_quick_tasks(args.data_dir)
     server = ThreadingHTTPServer((args.host, args.port), make_handler(args.data_dir))
     url = f"http://{args.host}:{args.port}/"
     print(f"my-home server listening on {url}", flush=True)

@@ -138,7 +138,7 @@
       "title": "Reforma e melhorias",
       "description": "Marco da compra e transição do imóvel.",
       "priority": 2,
-      "sequence": 4,
+      "sequence": 3,
       "start_date": "2027-01-05",
       "end_date": "2027-10-14",
       "status": "pending",
@@ -182,7 +182,7 @@
       "title": "Pintura e acabamentos",
       "description": "Marco da compra e transição do imóvel.",
       "priority": 3,
-      "sequence": 5,
+      "sequence": 4,
       "start_date": "2027-06-04",
       "end_date": "2027-07-13",
       "status": "pending",
@@ -204,7 +204,7 @@
       "title": "Mudança",
       "description": "Marco da compra e transição do imóvel.",
       "priority": 3,
-      "sequence": 6,
+      "sequence": 5,
       "start_date": "2027-07-14",
       "end_date": "2027-08-07",
       "status": "pending",
@@ -2160,27 +2160,7 @@
       "source_refs": [],
       "created_at": "2026-09-16 19:53:17",
       "updated_at": "2026-09-16 19:55:46"
-    },
-    {
-      "id": "TASK_0099",
-      "title": "Fase 1 da reforma",
-      "description": "",
-      "priority": 1,
-      "sequence": 3,
-      "start_date": "2026-09-17",
-      "end_date": "2026-09-19",
-      "status": "pending",
-      "expense_allocations": [],
-      "icon_key": "masonry-work",
-      "icon_mode": "auto",
-      "date_status": "confirmed",
-      "activity_type": "macro",
-      "parent_id": "",
-      "progress": 0,
-      "source_refs": [],
-      "created_at": "2026-09-16 19:54:51",
-      "updated_at": "2026-09-16 19:54:51"
     }
   ],
-  "updated_at": "2026-09-16 21:45:31"
+  "updated_at": "2026-09-16 22:09:45"
 }

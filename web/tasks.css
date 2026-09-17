@@ -66,6 +66,7 @@
 }
 
 .contract-card-head > div > span,
+.contract-document-title > div > span,
 .provider-card span,
 .contract-card p,
 .muted {
@@ -74,6 +75,30 @@
 }
 
 .provider-card > div { display: grid; gap: 4px; }
+
+.provider-card .provider-identity {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.provider-identity > div {
+  display: grid;
+  gap: 3px;
+  min-width: 0;
+}
+
+.provider-identity img {
+  display: block;
+  width: 48px;
+  height: 48px;
+  flex: 0 0 48px;
+  object-fit: cover;
+  object-position: center top;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+}
 
 .contract-status {
   padding: 4px 8px;
@@ -101,7 +126,30 @@
 .contract-signature { color: #77e6a6 !important; }
 .contract-card-actions { margin: 12px 0; }
 .contract-versions { display: grid; gap: 7px; margin-top: 8px; }
-.contract-versions a { color: var(--gold); font-size: 12px; }
+.contract-versions a {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  color: var(--gold);
+  font-size: 12px;
+}
+.contract-versions img {
+  width: 24px;
+  height: 24px;
+  flex: 0 0 24px;
+  object-fit: contain;
+  padding: 2px;
+  border: 1px solid rgba(241, 196, 15, .2);
+  border-radius: 6px;
+  background: rgba(241, 196, 15, .06);
+}
+.contract-document-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+.contract-document-title > div { min-width: 0; }
 .contract-payment-resume {
   color: #e67e22 !important;
   font-variant-numeric: tabular-nums;
@@ -197,44 +245,169 @@ select[multiple] { min-height: 110px; }
   min-height: calc(100vh - 110px);
 }
 
-.dashboard-timeline-section {
+.dashboard-planning-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1.75fr) minmax(300px, .75fr);
+  gap: 10px;
+  align-items: stretch;
   margin: 6px 0 10px;
-  padding: 8px;
+}
+
+.dashboard-timeline-section {
+  min-width: 0;
+  min-height: 184px;
+  margin: 0;
+  padding: 12px;
 }
 
 .dashboard-timeline-section .section-heading-row {
-  gap: 8px;
+  gap: 12px;
 }
 
 .dashboard-timeline-section .section-title {
-  font-size: 12px;
+  margin: 0;
+  font-size: 16px;
 }
 
 .dashboard-timeline-section .section-sub {
-  display: none;
+  display: block;
+  margin: 3px 0 0;
+  font-size: 11px;
 }
 
 .dashboard-timeline-section .btn {
+  min-height: 30px;
+  padding: 4px 9px;
+  font-size: 11px;
+}
+
+.quick-tasks-panel {
+  display: flex;
+  min-width: 0;
+  min-height: 184px;
+  gap: 7px;
+  margin: 0;
+  padding: 10px;
+  flex-direction: column;
+}
+
+.quick-tasks-panel .panel-head {
+  margin: 0;
+}
+
+.quick-tasks-panel .panel-head h2 {
+  margin: 0;
+  font-size: 14px;
+}
+
+.quick-task-create {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 30px;
+  gap: 5px;
+}
+
+.quick-task-create input {
+  height: 30px;
+  min-width: 0;
+  padding: 4px 7px;
+  font-size: 11px;
+}
+
+.quick-task-create .btn {
+  width: 30px;
+  min-height: 30px;
+  padding-inline: 0;
+  font-size: 15px;
+}
+
+.quick-task-list {
+  display: grid;
+  gap: 4px;
+  max-height: 112px;
+  overflow-y: auto;
+}
+
+.quick-task-row {
+  display: grid;
+  grid-template-columns: 18px minmax(0, 1fr) auto auto;
+  gap: 6px;
+  align-items: center;
+  min-height: 34px;
+  padding: 3px 5px;
+  background: #18181a;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+}
+
+.quick-task-row > input[type="checkbox"] {
+  width: 15px;
+  height: 15px;
+  accent-color: var(--gold);
+}
+
+.quick-task-title {
+  min-width: 0;
+  padding: 4px 6px;
+  background: transparent;
+  border-color: transparent;
+}
+
+.quick-task-title:focus {
+  background: var(--input);
+  border-color: var(--gold);
+}
+
+.quick-task-row.done {
+  opacity: .62;
+}
+
+.quick-task-row.done .quick-task-title {
+  text-decoration: line-through;
+}
+
+.quick-task-row .btn {
   min-height: 26px;
   padding: 3px 7px;
-  font-size: 9px;
+  font-size: 10px;
+}
+
+.quick-task-empty {
+  margin: auto 0;
+  color: var(--muted);
+  text-align: center;
+}
+
+@media (max-width: 900px) {
+  .dashboard-planning-row {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard-timeline-section,
+  .quick-tasks-panel {
+    min-height: 0;
+  }
+
+  .quick-task-list {
+    max-height: 220px;
+  }
 }
 
 .macro-timeline {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(155px, 1fr));
-  gap: 4px;
-  margin-top: 6px;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 7px;
+  margin-top: 9px;
 }
 
 .macro-timeline-row {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
   align-items: center;
-  gap: 3px 6px;
+  gap: 5px 8px;
   width: 100%;
   min-width: 0;
-  padding: 5px 6px;
+  min-height: 56px;
+  padding: 8px 9px;
   border: 1px solid var(--line);
   border-radius: 4px;
   background: #171719;
@@ -256,21 +429,21 @@ select[multiple] { min-height: 110px; }
 }
 
 .macro-timeline-copy strong {
-  font-size: 9px;
-  line-height: 1.15;
+  font-size: 13px;
+  line-height: 1.2;
 }
 
 .macro-timeline-copy small {
-  margin-top: 1px;
+  margin-top: 2px;
   color: var(--muted);
-  font-size: 7px;
+  font-size: 10px;
 }
 
 .macro-timeline-track {
   position: relative;
   grid-column: 1 / -1;
   grid-row: 2;
-  height: 3px;
+  height: 5px;
   overflow: hidden;
   border-radius: 999px;
   background: #29292d;
@@ -278,8 +451,8 @@ select[multiple] { min-height: 110px; }
 
 .macro-timeline-row .task-count {
   min-width: 0;
-  padding: 2px 4px;
-  font-size: 7px;
+  padding: 3px 6px;
+  font-size: 10px;
 }
 
 .macro-timeline-track i {

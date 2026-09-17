@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="color-scheme" content="dark" />
     <title>my-home</title>
-    <link rel="stylesheet" href="/styles.css?v=20260916-20" />
-    <link rel="stylesheet" href="/tasks.css?v=20260916-18" />
+    <link rel="stylesheet" href="/styles.css?v=20260916-23" />
+    <link rel="stylesheet" href="/tasks.css?v=20260916-22" />
     <script type="importmap">
       { "imports": { "three": "/vendor/three/three.module.js" } }
     </script>
@@ -76,27 +76,60 @@
       ></p>
 
       <section id="view-dashboard" class="view">
-        <section class="panel dashboard-timeline-section">
-          <div class="section-heading-row">
-            <div>
-              <h2 class="section-title">Linha do tempo do projeto</h2>
-              <p class="section-sub">Visão resumida das macroatividades.</p>
+        <div class="dashboard-planning-row">
+          <section class="panel dashboard-timeline-section">
+            <div class="section-heading-row">
+              <div>
+                <h2 class="section-title">Linha do tempo do projeto</h2>
+                <p class="section-sub">Visão resumida das macroatividades.</p>
+              </div>
+              <button
+                type="button"
+                class="btn"
+                data-view="gantt"
+                aria-label="Abrir cronograma completo"
+              >
+                Abrir <kbd>Shift+G</kbd>
+              </button>
             </div>
-            <button
-              type="button"
-              class="btn"
-              data-view="gantt"
-              aria-label="Abrir cronograma completo"
-            >
-              Abrir <kbd>Shift+G</kbd>
-            </button>
-          </div>
-          <div
-            id="macro-timeline"
-            class="macro-timeline"
-            aria-label="Resumo das macroatividades"
-          ></div>
-        </section>
+            <div
+              id="macro-timeline"
+              class="macro-timeline"
+              aria-label="Resumo das macroatividades"
+            ></div>
+          </section>
+
+          <section
+            class="panel quick-tasks-panel"
+            aria-labelledby="quick-tasks-title"
+          >
+            <div class="panel-head">
+              <div>
+                <h2 id="quick-tasks-title">Tarefas rápidas</h2>
+                <p class="section-sub">
+                  Lista simples, separada do cronograma.
+                </p>
+              </div>
+              <span id="quick-task-count" class="panel-kicker"
+                >0 pendentes</span
+              >
+            </div>
+            <form id="quick-task-form" class="quick-task-create">
+              <input
+                id="quick-task-input"
+                maxlength="200"
+                required
+                placeholder="Adicionar uma tarefa..."
+                aria-label="Nova tarefa rápida"
+              />
+              <button type="submit" class="btn primary">+</button>
+            </form>
+            <div id="quick-task-list" class="quick-task-list"></div>
+            <p id="quick-task-empty" class="quick-task-empty">
+              Nenhuma tarefa rápida.
+            </p>
+          </section>
+        </div>
 
         <section
           class="dashboard-finance-container"
@@ -120,8 +153,12 @@
               </div>
               <strong id="dash-total-all" class="hero-metric">R$ 0,00</strong>
               <div class="scenario-summary" aria-label="Cenários de custo">
-                <span>Mínimo <strong id="dash-total-minimum">R$ 0,00</strong></span>
-                <span>Máximo <strong id="dash-total-maximum">R$ 0,00</strong></span>
+                <span
+                  >Mínimo <strong id="dash-total-minimum">R$ 0,00</strong></span
+                >
+                <span
+                  >Máximo <strong id="dash-total-maximum">R$ 0,00</strong></span
+                >
                 <span id="dash-unpriced-count">0 sem cotação</span>
               </div>
             </article>
@@ -170,6 +207,28 @@
           </div>
 
           <section
+            class="payment-projection-panel"
+            aria-labelledby="payment-projection-title"
+          >
+            <div class="panel-head">
+              <div>
+                <h3 id="payment-projection-title">
+                  Projeção de gastos por data de pagamento
+                </h3>
+                <p class="section-sub">
+                  Valores confirmados e previsões derivadas das quantidades do
+                  cronograma.
+                </p>
+              </div>
+              <span id="payment-projection-summary" class="panel-kicker"></span>
+            </div>
+            <div
+              id="payment-projection-chart"
+              class="payment-projection-chart"
+              aria-live="polite"
+            ></div>
+          </section>
+          <section
             class="dashboard-category-center"
             aria-labelledby="dashboard-category-center-title"
           >
@@ -209,32 +268,12 @@
               </article>
             </div>
           </section>
-          <section
-            class="payment-projection-panel"
-            aria-labelledby="payment-projection-title"
-          >
-            <div class="panel-head">
-              <div>
-                <h3 id="payment-projection-title">
-                  Projeção de gastos por data de pagamento
-                </h3>
-                <p class="section-sub">
-                  Valores confirmados e previsões derivadas das quantidades do
-                  cronograma.
-                </p>
-              </div>
-              <span id="payment-projection-summary" class="panel-kicker"></span>
-            </div>
-            <div
-              id="payment-projection-chart"
-              class="payment-projection-chart"
-              aria-live="polite"
-            ></div>
-          </section>
         </section>
 
         <section class="cockpit-grid dashboard-support-grid">
-          <article class="panel bento-card bento-blueprint">
+          <article
+            class="panel bento-card bento-blueprint dashboard-house-navigation"
+          >
             <a
               href="#house"
               data-view-link="house"
@@ -247,6 +286,21 @@
               <span
                 ><strong>Planta da casa</strong
                 ><small>Abrir a casa</small></span
+              >
+            </a>
+            <a
+              href="#model3d"
+              data-view-link="model3d"
+              class="dashboard-model-link"
+              aria-label="Abrir o modelo 3D da casa"
+            >
+              <img
+                src="/assets/dashboard-house-spin.gif"
+                alt=""
+                aria-hidden="true"
+              />
+              <span
+                ><strong>Modelo 3D</strong><small>Explorar a casa</small></span
               >
             </a>
           </article>
@@ -966,7 +1020,8 @@
             <div>
               <strong>Pagamentos confirmados</strong>
               <small
-                >Quando informados, substituem as projeções geradas pelas atividades.</small
+                >Quando informados, substituem as projeções geradas pelas
+                atividades.</small
               >
             </div>
             <button type="button" id="btn-add-payment" class="btn">
@@ -1337,7 +1392,9 @@
               <strong>Despesas e quantidades previstas</strong>
               <small>Vincule zero ou mais despesas a esta atividade.</small>
             </div>
-            <button type="button" id="btn-add-task-allocation" class="btn">+ Despesa</button>
+            <button type="button" id="btn-add-task-allocation" class="btn">
+              + Despesa
+            </button>
           </div>
           <div id="task-allocation-list" class="task-allocation-list"></div>
           <p id="task-allocation-total" class="expense-payment-total"></p>
@@ -1372,6 +1429,6 @@
     </dialog>
 
     <datalist id="category-suggestions"></datalist>
-    <script src="/app.js?v=20260916-29"></script>
+    <script src="/app.js?v=20260916-32"></script>
   </body>
 </html>
