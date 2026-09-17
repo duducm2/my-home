@@ -42,11 +42,23 @@ class TaskStoreTests(unittest.TestCase):
             writer.writerow(
                 {
                     "id": "EXP_0001",
-                    "priority": "1",
+                    "record_type": "material",
                     "category": "Material",
                     "description": "Cimento",
                     "icon_key": "paint",
-                    "value": "100.00",
+                    "unit": "saco",
+                    "default_expected_quantity": "1",
+                }
+            )
+            writer.writerow(
+                {
+                    "id": "EXP_0002",
+                    "record_type": "service",
+                    "category": "Mão de obra",
+                    "description": "Eletricista",
+                    "icon_key": "electrician-service",
+                    "unit": "hora",
+                    "default_expected_quantity": "8",
                 }
             )
         self.store = TaskStore(self.data_dir)
@@ -55,7 +67,7 @@ class TaskStoreTests(unittest.TestCase):
                 title="Obra",
                 activity_type="macro",
                 parent_id="",
-                expense_id="",
+                expense_allocations=[],
             )
         )
         self.macro_id = macro["task_id"]
@@ -72,7 +84,9 @@ class TaskStoreTests(unittest.TestCase):
             "start_date": "2026-09-16",
             "end_date": "2026-09-18",
             "status": "pending",
-            "expense_id": "EXP_0001",
+            "expense_allocations": [
+                {"expense_id": "EXP_0001", "expected_quantity": 2}
+            ],
             "icon_key": "home-expense",
             "date_status": "estimated",
             "activity_type": "task",
@@ -122,7 +136,22 @@ class TaskStoreTests(unittest.TestCase):
             self.payload(start_date="16/09/2026"),
             self.payload(start_date="2026-09-20", end_date="2026-09-18"),
             self.payload(status="unknown"),
-            self.payload(expense_id="EXP_9999"),
+            self.payload(
+                expense_allocations=[
+                    {"expense_id": "EXP_9999", "expected_quantity": 1}
+                ]
+            ),
+            self.payload(
+                expense_allocations=[
+                    {"expense_id": "EXP_0001", "expected_quantity": 0}
+                ]
+            ),
+            self.payload(
+                expense_allocations=[
+                    {"expense_id": "EXP_0001", "expected_quantity": 1},
+                    {"expense_id": "EXP_0001", "expected_quantity": 2},
+                ]
+            ),
             self.payload(icon_key="missing", icon_mode="manual"),
             self.payload(date_status="maybe"),
             self.payload(activity_type="unknown"),
@@ -132,13 +161,33 @@ class TaskStoreTests(unittest.TestCase):
             with self.subTest(payload=payload), self.assertRaises(ValueError):
                 self.store.upsert(payload)
 
+    def test_microactivity_supports_multiple_expense_allocations(self) -> None:
+        result = self.store.upsert(
+            self.payload(
+                expense_allocations=[
+                    {"expense_id": "EXP_0001", "expected_quantity": 5},
+                    {"expense_id": "EXP_0002", "expected_quantity": 12},
+                ]
+            )
+        )
+        task = next(
+            item for item in result["tasks"] if item["id"] == result["task_id"]
+        )
+        self.assertEqual(
+            [
+                {"expense_id": "EXP_0001", "expected_quantity": 5.0},
+                {"expense_id": "EXP_0002", "expected_quantity": 12.0},
+            ],
+            task["expense_allocations"],
+        )
+
     def test_atomic_file_remains_valid_json(self) -> None:
         self.store.upsert(self.payload())
         document = json.loads(
             (self.data_dir / "tasks.json").read_text(encoding="utf-8")
         )
         self.assertEqual(2, len(document["tasks"]))
-        self.assertEqual(2, document["version"])
+        self.assertEqual(3, document["version"])
         self.assertFalse((self.data_dir / "tasks.json.tmp").exists())
 
     def test_automatic_and_manual_icon_assignment(self) -> None:
@@ -152,7 +201,7 @@ class TaskStoreTests(unittest.TestCase):
         inferred = self.store.upsert(
             self.payload(
                 title="Revisão elétrica completa",
-                expense_id="",
+                expense_allocations=[],
                 icon_mode="auto",
             )
         )
@@ -163,7 +212,7 @@ class TaskStoreTests(unittest.TestCase):
         manual = self.store.upsert(
             self.payload(
                 title="Pintura",
-                expense_id="",
+                expense_allocations=[],
                 icon_key="home-expense",
                 icon_mode="manual",
             )
@@ -289,12 +338,16 @@ class MigrationIntegrityTests(unittest.TestCase):
             (ROOT / "data" / "tasks.json").read_text(encoding="utf-8")
         )
         tasks = document["tasks"]
-        self.assertEqual(2, document["version"])
+        self.assertEqual(3, document["version"])
         self.assertGreater(len(tasks), 0)
         self.assertTrue(
             all(task["date_status"] in {"estimated", "confirmed"} for task in tasks)
         )
         self.assertTrue(any(task["date_status"] == "estimated" for task in tasks))
+        self.assertTrue(all("expense_id" not in task for task in tasks))
+        self.assertTrue(
+            all(isinstance(task.get("expense_allocations"), list) for task in tasks)
+        )
         macros = {task["id"] for task in tasks if task["activity_type"] == "macro"}
         self.assertGreater(len(macros), 0)
         self.assertTrue(
@@ -310,7 +363,10 @@ class MigrationIntegrityTests(unittest.TestCase):
         with (ROOT / "data" / "expenses.csv").open(
             "r", encoding="utf-8-sig", newline=""
         ) as handle:
-            self.assertNotIn("phase", csv.DictReader(handle).fieldnames or [])
+            fields = csv.DictReader(handle).fieldnames or []
+            self.assertNotIn("phase", fields)
+            self.assertNotIn("priority", fields)
+            self.assertNotIn("quotations_json", fields)
         project = json.loads(
             (ROOT / "data" / "project.json").read_text(encoding="utf-8")
         )

@@ -30,7 +30,8 @@ class ContractSystemTests(unittest.TestCase):
                 "priority": 1,
                 "category": "Mão de obra",
                 "description": "Serviço de teste",
-                "value": 1000,
+                "unit": "serviço",
+                "default_expected_quantity": 1,
             }
         )["expense_id"]
         self.contracts = ContractStore(self.data)
@@ -108,6 +109,49 @@ class ContractSystemTests(unittest.TestCase):
                 }
             )
 
+    def test_contract_period_uses_activity_allocations(self) -> None:
+        (self.data / "tasks.json").write_text(
+            json.dumps(
+                {
+                    "version": 3,
+                    "tasks": [
+                        {
+                            "id": "TASK_0001",
+                            "title": "Serviço alocado",
+                            "activity_type": "task",
+                            "start_date": "2026-10-02",
+                            "end_date": "2026-10-12",
+                            "expense_allocations": [
+                                {
+                                    "expense_id": self.expense_id,
+                                    "expected_quantity": 10,
+                                }
+                            ],
+                        }
+                    ],
+                }
+            ),
+            encoding="utf-8",
+        )
+        result = self.contracts.upsert(
+            {
+                "type": "service",
+                "title": "Contrato alocado",
+                "provider_id": self.provider_id,
+                "expense_ids": [self.expense_id],
+                "status": "active",
+                "amount": 1000,
+                "payment_frequency": "one_time",
+            }
+        )
+        contract = next(
+            item
+            for item in result["contracts"]
+            if item["id"] == result["contract_id"]
+        )
+        self.assertEqual("2026-10-02", contract["start_date"])
+        self.assertEqual("2026-10-12", contract["end_date"])
+
     def test_pdf_versions_are_validated_and_preserved(self) -> None:
         contract_id = self._create_contract()
         with self.assertRaisesRegex(ValueError, "PDF"):
@@ -137,7 +181,8 @@ class ContractSystemTests(unittest.TestCase):
                     "priority": 1,
                     "category": "Material",
                     "description": "Material inválido",
-                    "value": 10,
+                    "unit": "unidade",
+                    "default_expected_quantity": 1,
                     "provider_id": self.provider_id,
                 }
             )

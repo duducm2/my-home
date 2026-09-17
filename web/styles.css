@@ -873,6 +873,25 @@ dialog {
   font-variant-numeric: tabular-nums;
 }
 
+.scenario-summary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 12px;
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 10px;
+}
+
+.scenario-summary span {
+  display: grid;
+  gap: 1px;
+}
+
+.scenario-summary strong {
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+}
+
 .metric-pair {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -3553,6 +3572,26 @@ body.model3d-active {
   gap: 10px;
 }
 
+.quotation-ingestion-steps {
+  display: grid;
+  gap: 4px;
+  margin: 0;
+  padding-left: 22px;
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.45;
+}
+
+.quotation-ai input[type="file"] {
+  min-width: min(100%, 240px);
+  color: var(--muted);
+  font-size: 10px;
+}
+
+.quotation-ai .code-box {
+  max-height: 240px;
+}
+
 .quotation-footer {
   position: sticky;
   bottom: -18px;
@@ -3732,14 +3771,18 @@ td.actions:has(.quotation-action-btn) {
 }
 
 .dashboard-support-grid {
-  grid-template-columns: minmax(220px, .8fr) minmax(0, 2fr);
+  grid-template-columns:
+    minmax(190px, 0.7fr)
+    minmax(280px, 1.25fr)
+    minmax(320px, 1.45fr);
   align-items: stretch;
   width: 100%;
   max-width: none;
 }
 
 .dashboard-support-grid .bento-blueprint,
-.dashboard-support-grid .dashboard-people-card {
+.dashboard-support-grid .dashboard-people-card,
+.dashboard-support-grid .dashboard-savings-card {
   grid-column: auto;
   grid-row: auto;
   min-height: 0;
@@ -3751,6 +3794,14 @@ td.actions:has(.quotation-action-btn) {
   }
 
   .finance-summary-grid .bento-coverage {
+    grid-column: 1 / -1;
+  }
+
+  .dashboard-support-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .dashboard-support-grid .bento-blueprint {
     grid-column: 1 / -1;
   }
 }
@@ -3767,7 +3818,8 @@ td.actions:has(.quotation-action-btn) {
 
   .finance-summary-grid .bento-coverage,
   .dashboard-support-grid .bento-blueprint,
-  .dashboard-support-grid .dashboard-people-card {
+  .dashboard-support-grid .dashboard-people-card,
+  .dashboard-support-grid .dashboard-savings-card {
     grid-column: 1;
   }
 }

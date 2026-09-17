@@ -1,0 +1,903 @@
+{
+  "version": 1,
+  "quotations": [
+    {
+      "expense_id": "EXP_0001",
+      "id": "QUOTE_001",
+      "source": "manual",
+      "vendor": "Estimativa migrada",
+      "unit_price": 62000.0,
+      "quantity": 1,
+      "unit": "unidade",
+      "shipping_cost": 0.0,
+      "total_price": 62000.0,
+      "product_url": "",
+      "checked_at": "2026-09-16 21:45:30",
+      "notes": "",
+      "metadata": {
+        "currency": "BRL",
+        "source_type": "manual",
+        "source_name": "legacy-expense-migration",
+        "ambiguities": ""
+      }
+    },
+    {
+      "expense_id": "EXP_0002",
+      "id": "QUOTE_001",
+      "source": "manual",
+      "vendor": "Estimativa migrada",
+      "unit_price": 6200.0,
+      "quantity": 1,
+      "unit": "unidade",
+      "shipping_cost": 0.0,
+      "total_price": 6200.0,
+      "product_url": "",
+      "checked_at": "2026-09-16 21:45:30",
+      "notes": "",
+      "metadata": {
+        "currency": "BRL",
+        "source_type": "manual",
+        "source_name": "legacy-expense-migration",
+        "ambiguities": ""
+      }
+    },
+    {
+      "expense_id": "EXP_0003",
+      "id": "QUOTE_001",
+      "source": "manual",
+      "vendor": "Estimativa migrada",
+      "unit_price": 1000.0,
+      "quantity": 1,
+      "unit": "unidade",
+      "shipping_cost": 0.0,
+      "total_price": 1000.0,
+      "product_url": "",
+      "checked_at": "2026-09-16 21:45:30",
+      "notes": "",
+      "metadata": {
+        "currency": "BRL",
+        "source_type": "manual",
+        "source_name": "legacy-expense-migration",
+        "ambiguities": ""
+      }
+    },
+    {
+      "expense_id": "EXP_0004",
+      "id": "QUOTE_001",
+      "source": "manual",
+      "vendor": "Estimativa migrada",
+      "unit_price": 3300.0,
+      "quantity": 1,
+      "unit": "unidade",
+      "shipping_cost": 0.0,
+      "total_price": 3300.0,
+      "product_url": "",
+      "checked_at": "2026-09-16 21:45:30",
+      "notes": "",
+      "metadata": {
+        "currency": "BRL",
+        "source_type": "manual",
+        "source_name": "legacy-expense-migration",
+        "ambiguities": ""
+      }
+    },
+    {
+      "expense_id": "EXP_0005",
+      "id": "QUOTE_001",
+      "source": "manual",
+      "vendor": "Estimativa migrada",
+      "unit_price": 700.0,
+      "quantity": 1,
+      "unit": "unidade",
+      "shipping_cost": 0.0,
+      "total_price": 700.0,
+      "product_url": "",
+      "checked_at": "2026-09-16 21:45:30",
+      "notes": "",
+      "metadata": {
+        "currency": "BRL",
+        "source_type": "manual",
+        "source_name": "legacy-expense-migration",
+        "ambiguities": ""
+      }
+    },
+    {
+      "expense_id": "EXP_0006",
+      "id": "QUOTE_001",
+      "source": "manual",
+      "vendor": "Estimativa migrada",
+      "unit_price": 300.0,
+      "quantity": 1,
+      "unit": "unidade",
+      "shipping_cost": 0.0,
+      "total_price": 300.0,
+      "product_url": "",
+      "checked_at": "2026-09-16 21:45:30",
+      "notes": "",
+      "metadata": {
+        "currency": "BRL",
+        "source_type": "manual",
+        "source_name": "legacy-expense-migration",
+        "ambiguities": ""
+      }
+    },
+    {
+      "expense_id": "EXP_0007",
+      "id": "QUOTE_001",
+      "source": "manual",
+      "vendor": "Estimativa migrada",
+      "unit_price": 4500.0,
+      "quantity": 1,
+      "unit": "unidade",
+      "shipping_cost": 0.0,
+      "total_price": 4500.0,
+      "product_url": "",
+      "checked_at": "2026-09-16 21:45:30",
+      "notes": "",
+      "metadata": {
+        "currency": "BRL",
+        "source_type": "manual",
+        "source_name": "legacy-expense-migration",
+        "ambiguities": ""
+      }
+    },
+    {
+      "expense_id": "EXP_0008",
+      "id": "QUOTE_001",
+      "source": "manual",
+      "vendor": "Estimativa migrada",
+      "unit_price": 7000.0,
+      "quantity": 1,
+      "unit": "unidade",
+      "shipping_cost": 0.0,
+      "total_price": 7000.0,
+      "product_url": "",
+      "checked_at": "2026-09-16 21:45:30",
+      "notes": "",
+      "metadata": {
+        "currency": "BRL",
+        "source_type": "manual",
+        "source_name": "legacy-expense-migration",
+        "ambiguities": ""
+      }
+    },
+    {
+      "expense_id": "EXP_0009",
+      "id": "QUOTE_001",
+      "source": "manual",
+      "vendor": "Estimativa migrada",
+      "unit_price": 2400.0,
+      "quantity": 1,
+      "unit": "unidade",
+      "shipping_cost": 0.0,
+      "total_price": 2400.0,
+      "product_url": "",
+      "checked_at": "2026-09-16 21:45:30",
+      "notes": "",
+      "metadata": {
+        "currency": "BRL",
+        "source_type": "manual",
+        "source_name": "legacy-expense-migration",
+        "ambiguities": ""
+      }
+    },
+    {
+      "expense_id": "EXP_0010",
+      "id": "QUOTE_001",
+      "source": "manual",
+      "vendor": "Estimativa migrada",
+      "unit_price": 1000.0,
+      "quantity": 1,
+      "unit": "unidade",
+      "shipping_cost": 0.0,
+      "total_price": 1000.0,
+      "product_url": "",
+      "checked_at": "2026-09-16 21:45:30",
+      "notes": "",
+      "metadata": {
+        "currency": "BRL",
+        "source_type": "manual",
+        "source_name": "legacy-expense-migration",
+        "ambiguities": ""
+      }
+    },
+    {
+      "expense_id": "EXP_0011",
+      "id": "QUOTE_001",
+      "source": "manual",
+      "vendor": "Estimativa migrada",
+      "unit_price": 2200.0,
+      "quantity": 1,
+      "unit": "unidade",
+      "shipping_cost": 0.0,
+      "total_price": 2200.0,
+      "product_url": "",
+      "checked_at": "2026-09-16 21:45:30",
+      "notes": "",
+      "metadata": {
+        "currency": "BRL",
+        "source_type": "manual",
+        "source_name": "legacy-expense-migration",
+        "ambiguities": ""
+      }
+    },
+    {
+      "expense_id": "EXP_0012",
+      "id": "QUOTE_001",
+      "source": "manual",
+      "vendor": "Estimativa migrada",
+      "unit_price": 1500.0,
+      "quantity": 1,
+      "unit": "unidade",
+      "shipping_cost": 0.0,
+      "total_price": 1500.0,
+      "product_url": "",
+      "checked_at": "2026-09-16 21:45:30",
+      "notes": "",
+      "metadata": {
+        "currency": "BRL",
+        "source_type": "manual",
+        "source_name": "legacy-expense-migration",
+        "ambiguities": ""
+      }
+    },
+    {
+      "expense_id": "EXP_0013",
+      "id": "QUOTE_001",
+      "source": "manual",
+      "vendor": "Estimativa migrada",
+      "unit_price": 15000.0,
+      "quantity": 1,
+      "unit": "unidade",
+      "shipping_cost": 0.0,
+      "total_price": 15000.0,
+      "product_url": "",
+      "checked_at": "2026-09-16 21:45:30",
+      "notes": "",
+      "metadata": {
+        "currency": "BRL",
+        "source_type": "manual",
+        "source_name": "legacy-expense-migration",
+        "ambiguities": ""
+      }
+    },
+    {
+      "expense_id": "EXP_0014",
+      "id": "QUOTE_001",
+      "source": "manual",
+      "vendor": "Leroy Merlin",
+      "unit_price": 45.9,
+      "quantity": 1.0,
+      "unit": "un",
+      "shipping_cost": 274.1,
+      "total_price": 320.0,
+      "product_url": "https://example.com/bianco",
+      "checked_at": "2026-09-15 22:11:43",
+      "notes": "promo",
+      "metadata": {
+        "ambiguities": "Legacy total exceeded unit arithmetic; difference preserved as freight/other cost."
+      }
+    },
+    {
+      "expense_id": "EXP_0015",
+      "id": "QUOTE_001",
+      "source": "manual",
+      "vendor": "Estimativa migrada",
+      "unit_price": 700.0,
+      "quantity": 1.0,
+      "unit": "unidade",
+      "shipping_cost": 0.0,
+      "total_price": 700.0,
+      "product_url": "",
+      "checked_at": "2026-09-16 21:45:30",
+      "notes": "",
+      "metadata": {
+        "currency": "BRL",
+        "source_type": "manual",
+        "source_name": "legacy-expense-migration",
+        "ambiguities": ""
+      }
+    },
+    {
+      "expense_id": "EXP_0016",
+      "id": "QUOTE_001",
+      "source": "manual",
+      "vendor": "Estimativa migrada",
+      "unit_price": 650.0,
+      "quantity": 1.0,
+      "unit": "unidade",
+      "shipping_cost": 0.0,
+      "total_price": 650.0,
+      "product_url": "",
+      "checked_at": "2026-09-16 21:45:31",
+      "notes": "",
+      "metadata": {
+        "currency": "BRL",
+        "source_type": "manual",
+        "source_name": "legacy-expense-migration",
+        "ambiguities": ""
+      }
+    },
+    {
+      "expense_id": "EXP_0017",
+      "id": "QUOTE_001",
+      "source": "manual",
+      "vendor": "Estimativa migrada",
+      "unit_price": 2000.0,
+      "quantity": 1.0,
+      "unit": "unidade",
+      "shipping_cost": 0.0,
+      "total_price": 2000.0,
+      "product_url": "",
+      "checked_at": "2026-09-16 21:45:31",
+      "notes": "",
+      "metadata": {
+        "currency": "BRL",
+        "source_type": "manual",
+        "source_name": "legacy-expense-migration",
+        "ambiguities": ""
+      }
+    },
+    {
+      "expense_id": "EXP_0018",
+      "id": "QUOTE_001",
+      "source": "manual",
+      "vendor": "Estimativa migrada",
+      "unit_price": 1300.0,
+      "quantity": 1.0,
+      "unit": "unidade",
+      "shipping_cost": 0.0,
+      "total_price": 1300.0,
+      "product_url": "",
+      "checked_at": "2026-09-16 21:45:31",
+      "notes": "",
+      "metadata": {
+        "currency": "BRL",
+        "source_type": "manual",
+        "source_name": "legacy-expense-migration",
+        "ambiguities": ""
+      }
+    },
+    {
+      "expense_id": "EXP_0019",
+      "id": "QUOTE_001",
+      "source": "manual",
+      "vendor": "Estimativa migrada",
+      "unit_price": 120.0,
+      "quantity": 1.0,
+      "unit": "unidade",
+      "shipping_cost": 0.0,
+      "total_price": 120.0,
+      "product_url": "",
+      "checked_at": "2026-09-16 21:45:31",
+      "notes": "",
+      "metadata": {
+        "currency": "BRL",
+        "source_type": "manual",
+        "source_name": "legacy-expense-migration",
+        "ambiguities": ""
+      }
+    },
+    {
+      "expense_id": "EXP_0020",
+      "id": "QUOTE_001",
+      "source": "manual",
+      "vendor": "Estimativa migrada",
+      "unit_price": 200.0,
+      "quantity": 1.0,
+      "unit": "unidade",
+      "shipping_cost": 0.0,
+      "total_price": 200.0,
+      "product_url": "",
+      "checked_at": "2026-09-16 21:45:31",
+      "notes": "",
+      "metadata": {
+        "currency": "BRL",
+        "source_type": "manual",
+        "source_name": "legacy-expense-migration",
+        "ambiguities": ""
+      }
+    },
+    {
+      "expense_id": "EXP_0021",
+      "id": "QUOTE_001",
+      "source": "manual",
+      "vendor": "Estimativa migrada",
+      "unit_price": 50.0,
+      "quantity": 1.0,
+      "unit": "unidade",
+      "shipping_cost": 0.0,
+      "total_price": 50.0,
+      "product_url": "",
+      "checked_at": "2026-09-16 21:45:31",
+      "notes": "",
+      "metadata": {
+        "currency": "BRL",
+        "source_type": "manual",
+        "source_name": "legacy-expense-migration",
+        "ambiguities": ""
+      }
+    },
+    {
+      "expense_id": "EXP_0022",
+      "id": "QUOTE_001",
+      "source": "manual",
+      "vendor": "Estimativa migrada",
+      "unit_price": 350.0,
+      "quantity": 1.0,
+      "unit": "unidade",
+      "shipping_cost": 0.0,
+      "total_price": 350.0,
+      "product_url": "",
+      "checked_at": "2026-09-16 21:45:31",
+      "notes": "",
+      "metadata": {
+        "currency": "BRL",
+        "source_type": "manual",
+        "source_name": "legacy-expense-migration",
+        "ambiguities": ""
+      }
+    },
+    {
+      "expense_id": "EXP_0023",
+      "id": "QUOTE_001",
+      "source": "manual",
+      "vendor": "Estimativa migrada",
+      "unit_price": 5750.0,
+      "quantity": 1.0,
+      "unit": "unidade",
+      "shipping_cost": 0.0,
+      "total_price": 5750.0,
+      "product_url": "",
+      "checked_at": "2026-09-16 21:45:31",
+      "notes": "",
+      "metadata": {
+        "currency": "BRL",
+        "source_type": "manual",
+        "source_name": "legacy-expense-migration",
+        "ambiguities": ""
+      }
+    },
+    {
+      "expense_id": "EXP_0024",
+      "id": "QUOTE_001",
+      "source": "manual",
+      "vendor": "Estimativa migrada",
+      "unit_price": 400.0,
+      "quantity": 1.0,
+      "unit": "unidade",
+      "shipping_cost": 0.0,
+      "total_price": 400.0,
+      "product_url": "",
+      "checked_at": "2026-09-16 21:45:31",
+      "notes": "",
+      "metadata": {
+        "currency": "BRL",
+        "source_type": "manual",
+        "source_name": "legacy-expense-migration",
+        "ambiguities": ""
+      }
+    },
+    {
+      "expense_id": "EXP_0025",
+      "id": "QUOTE_001",
+      "source": "manual",
+      "vendor": "Estimativa migrada",
+      "unit_price": 1800.0,
+      "quantity": 1.0,
+      "unit": "unidade",
+      "shipping_cost": 0.0,
+      "total_price": 1800.0,
+      "product_url": "",
+      "checked_at": "2026-09-16 21:45:31",
+      "notes": "",
+      "metadata": {
+        "currency": "BRL",
+        "source_type": "manual",
+        "source_name": "legacy-expense-migration",
+        "ambiguities": ""
+      }
+    },
+    {
+      "expense_id": "EXP_0026",
+      "id": "QUOTE_001",
+      "source": "manual",
+      "vendor": "Estimativa migrada",
+      "unit_price": 1500.0,
+      "quantity": 1.0,
+      "unit": "unidade",
+      "shipping_cost": 0.0,
+      "total_price": 1500.0,
+      "product_url": "",
+      "checked_at": "2026-09-16 21:45:31",
+      "notes": "",
+      "metadata": {
+        "currency": "BRL",
+        "source_type": "manual",
+        "source_name": "legacy-expense-migration",
+        "ambiguities": ""
+      }
+    },
+    {
+      "expense_id": "EXP_0028",
+      "id": "QUOTE_001",
+      "source": "manual",
+      "vendor": "Estimativa migrada",
+      "unit_price": 400.0,
+      "quantity": 1.0,
+      "unit": "unidade",
+      "shipping_cost": 0.0,
+      "total_price": 400.0,
+      "product_url": "",
+      "checked_at": "2026-09-16 21:45:31",
+      "notes": "",
+      "metadata": {
+        "currency": "BRL",
+        "source_type": "manual",
+        "source_name": "legacy-expense-migration",
+        "ambiguities": ""
+      }
+    },
+    {
+      "expense_id": "EXP_0029",
+      "id": "QUOTE_001",
+      "source": "manual",
+      "vendor": "Estimativa migrada",
+      "unit_price": 1700.0,
+      "quantity": 1.0,
+      "unit": "unidade",
+      "shipping_cost": 0.0,
+      "total_price": 1700.0,
+      "product_url": "",
+      "checked_at": "2026-09-16 21:45:31",
+      "notes": "",
+      "metadata": {
+        "currency": "BRL",
+        "source_type": "manual",
+        "source_name": "legacy-expense-migration",
+        "ambiguities": ""
+      }
+    },
+    {
+      "expense_id": "EXP_0030",
+      "id": "QUOTE_001",
+      "source": "manual",
+      "vendor": "Estimativa migrada",
+      "unit_price": 520.0,
+      "quantity": 1.0,
+      "unit": "unidade",
+      "shipping_cost": 0.0,
+      "total_price": 520.0,
+      "product_url": "",
+      "checked_at": "2026-09-16 21:45:31",
+      "notes": "",
+      "metadata": {
+        "currency": "BRL",
+        "source_type": "manual",
+        "source_name": "legacy-expense-migration",
+        "ambiguities": ""
+      }
+    },
+    {
+      "expense_id": "EXP_0031",
+      "id": "QUOTE_001",
+      "source": "manual",
+      "vendor": "Estimativa migrada",
+      "unit_price": 400.0,
+      "quantity": 1.0,
+      "unit": "unidade",
+      "shipping_cost": 0.0,
+      "total_price": 400.0,
+      "product_url": "",
+      "checked_at": "2026-09-16 21:45:31",
+      "notes": "",
+      "metadata": {
+        "currency": "BRL",
+        "source_type": "manual",
+        "source_name": "legacy-expense-migration",
+        "ambiguities": ""
+      }
+    },
+    {
+      "expense_id": "EXP_0032",
+      "id": "QUOTE_001",
+      "source": "manual",
+      "vendor": "Estimativa migrada",
+      "unit_price": 3500.0,
+      "quantity": 1,
+      "unit": "unidade",
+      "shipping_cost": 0.0,
+      "total_price": 3500.0,
+      "product_url": "",
+      "checked_at": "2026-09-16 21:45:31",
+      "notes": "",
+      "metadata": {
+        "currency": "BRL",
+        "source_type": "manual",
+        "source_name": "legacy-expense-migration",
+        "ambiguities": ""
+      }
+    },
+    {
+      "expense_id": "EXP_0033",
+      "id": "QUOTE_001",
+      "source": "manual",
+      "vendor": "Estimativa migrada",
+      "unit_price": 700.0,
+      "quantity": 1.0,
+      "unit": "unidade",
+      "shipping_cost": 0.0,
+      "total_price": 700.0,
+      "product_url": "",
+      "checked_at": "2026-09-16 21:45:31",
+      "notes": "",
+      "metadata": {
+        "currency": "BRL",
+        "source_type": "manual",
+        "source_name": "legacy-expense-migration",
+        "ambiguities": ""
+      }
+    },
+    {
+      "expense_id": "EXP_0034",
+      "id": "QUOTE_001",
+      "source": "manual",
+      "vendor": "Estimativa migrada",
+      "unit_price": 2800.0,
+      "quantity": 1.0,
+      "unit": "unidade",
+      "shipping_cost": 0.0,
+      "total_price": 2800.0,
+      "product_url": "",
+      "checked_at": "2026-09-16 21:45:31",
+      "notes": "",
+      "metadata": {
+        "currency": "BRL",
+        "source_type": "manual",
+        "source_name": "legacy-expense-migration",
+        "ambiguities": ""
+      }
+    },
+    {
+      "expense_id": "EXP_0035",
+      "id": "QUOTE_001",
+      "source": "manual",
+      "vendor": "Estimativa migrada",
+      "unit_price": 400.0,
+      "quantity": 1.0,
+      "unit": "unidade",
+      "shipping_cost": 0.0,
+      "total_price": 400.0,
+      "product_url": "",
+      "checked_at": "2026-09-16 21:45:31",
+      "notes": "",
+      "metadata": {
+        "currency": "BRL",
+        "source_type": "manual",
+        "source_name": "legacy-expense-migration",
+        "ambiguities": ""
+      }
+    },
+    {
+      "expense_id": "EXP_0036",
+      "id": "QUOTE_001",
+      "source": "manual",
+      "vendor": "Estimativa migrada",
+      "unit_price": 800.0,
+      "quantity": 1.0,
+      "unit": "unidade",
+      "shipping_cost": 0.0,
+      "total_price": 800.0,
+      "product_url": "",
+      "checked_at": "2026-09-16 21:45:31",
+      "notes": "",
+      "metadata": {
+        "currency": "BRL",
+        "source_type": "manual",
+        "source_name": "legacy-expense-migration",
+        "ambiguities": ""
+      }
+    },
+    {
+      "expense_id": "EXP_0037",
+      "id": "QUOTE_001",
+      "source": "manual",
+      "vendor": "Estimativa migrada",
+      "unit_price": 250.0,
+      "quantity": 1.0,
+      "unit": "unidade",
+      "shipping_cost": 0.0,
+      "total_price": 250.0,
+      "product_url": "",
+      "checked_at": "2026-09-16 21:45:31",
+      "notes": "",
+      "metadata": {
+        "currency": "BRL",
+        "source_type": "manual",
+        "source_name": "legacy-expense-migration",
+        "ambiguities": ""
+      }
+    },
+    {
+      "expense_id": "EXP_0038",
+      "id": "QUOTE_001",
+      "source": "manual",
+      "vendor": "Estimativa migrada",
+      "unit_price": 900.0,
+      "quantity": 1.0,
+      "unit": "unidade",
+      "shipping_cost": 0.0,
+      "total_price": 900.0,
+      "product_url": "",
+      "checked_at": "2026-09-16 21:45:31",
+      "notes": "",
+      "metadata": {
+        "currency": "BRL",
+        "source_type": "manual",
+        "source_name": "legacy-expense-migration",
+        "ambiguities": ""
+      }
+    },
+    {
+      "expense_id": "EXP_0039",
+      "id": "QUOTE_001",
+      "source": "manual",
+      "vendor": "Estimativa migrada",
+      "unit_price": 3500.0,
+      "quantity": 1.0,
+      "unit": "unidade",
+      "shipping_cost": 0.0,
+      "total_price": 3500.0,
+      "product_url": "",
+      "checked_at": "2026-09-16 21:45:31",
+      "notes": "",
+      "metadata": {
+        "currency": "BRL",
+        "source_type": "manual",
+        "source_name": "legacy-expense-migration",
+        "ambiguities": ""
+      }
+    },
+    {
+      "expense_id": "EXP_0042",
+      "id": "QUOTE_001",
+      "source": "manual",
+      "vendor": "Estimativa migrada",
+      "unit_price": 4500.0,
+      "quantity": 1.0,
+      "unit": "unidade",
+      "shipping_cost": 0.0,
+      "total_price": 4500.0,
+      "product_url": "",
+      "checked_at": "2026-09-16 21:45:31",
+      "notes": "",
+      "metadata": {
+        "currency": "BRL",
+        "source_type": "manual",
+        "source_name": "legacy-expense-migration",
+        "ambiguities": ""
+      }
+    },
+    {
+      "expense_id": "EXP_0043",
+      "id": "QUOTE_001",
+      "source": "manual",
+      "vendor": "Estimativa migrada",
+      "unit_price": 1200.0,
+      "quantity": 1.0,
+      "unit": "unidade",
+      "shipping_cost": 0.0,
+      "total_price": 1200.0,
+      "product_url": "",
+      "checked_at": "2026-09-16 21:45:31",
+      "notes": "",
+      "metadata": {
+        "currency": "BRL",
+        "source_type": "manual",
+        "source_name": "legacy-expense-migration",
+        "ambiguities": ""
+      }
+    },
+    {
+      "expense_id": "EXP_0044",
+      "id": "QUOTE_001",
+      "source": "manual",
+      "vendor": "Estimativa migrada",
+      "unit_price": 450.0,
+      "quantity": 1.0,
+      "unit": "unidade",
+      "shipping_cost": 0.0,
+      "total_price": 450.0,
+      "product_url": "",
+      "checked_at": "2026-09-16 21:45:31",
+      "notes": "",
+      "metadata": {
+        "currency": "BRL",
+        "source_type": "manual",
+        "source_name": "legacy-expense-migration",
+        "ambiguities": ""
+      }
+    },
+    {
+      "expense_id": "EXP_0045",
+      "id": "QUOTE_001",
+      "source": "manual",
+      "vendor": "Estimativa migrada",
+      "unit_price": 2000.0,
+      "quantity": 1.0,
+      "unit": "unidade",
+      "shipping_cost": 0.0,
+      "total_price": 2000.0,
+      "product_url": "",
+      "checked_at": "2026-09-16 21:45:31",
+      "notes": "",
+      "metadata": {
+        "currency": "BRL",
+        "source_type": "manual",
+        "source_name": "legacy-expense-migration",
+        "ambiguities": ""
+      }
+    },
+    {
+      "expense_id": "EXP_0046",
+      "id": "QUOTE_001",
+      "source": "manual",
+      "vendor": "Estimativa migrada",
+      "unit_price": 6000.0,
+      "quantity": 1.0,
+      "unit": "unidade",
+      "shipping_cost": 0.0,
+      "total_price": 6000.0,
+      "product_url": "",
+      "checked_at": "2026-09-16 21:45:31",
+      "notes": "",
+      "metadata": {
+        "currency": "BRL",
+        "source_type": "manual",
+        "source_name": "legacy-expense-migration",
+        "ambiguities": ""
+      }
+    },
+    {
+      "expense_id": "EXP_0047",
+      "id": "QUOTE_001",
+      "source": "manual",
+      "vendor": "Estimativa migrada",
+      "unit_price": 200.0,
+      "quantity": 1.0,
+      "unit": "unidade",
+      "shipping_cost": 0.0,
+      "total_price": 200.0,
+      "product_url": "",
+      "checked_at": "2026-09-16 21:45:31",
+      "notes": "",
+      "metadata": {
+        "currency": "BRL",
+        "source_type": "manual",
+        "source_name": "legacy-expense-migration",
+        "ambiguities": ""
+      }
+    },
+    {
+      "expense_id": "EXP_0048",
+      "id": "QUOTE_001",
+      "source": "manual",
+      "vendor": "Estimativa migrada",
+      "unit_price": 300.0,
+      "quantity": 1.0,
+      "unit": "unidade",
+      "shipping_cost": 0.0,
+      "total_price": 300.0,
+      "product_url": "",
+      "checked_at": "2026-09-16 21:45:31",
+      "notes": "",
+      "metadata": {
+        "currency": "BRL",
+        "source_type": "manual",
+        "source_name": "legacy-expense-migration",
+        "ambiguities": ""
+      }
+    }
+  ],
+  "updated_at": "2026-09-16 21:46:24"
+}

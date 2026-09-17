@@ -81,7 +81,15 @@ class ContractStore:
         tasks = [
             item
             for item in document.get("tasks", [])
-            if isinstance(item, dict) and str(item.get("expense_id") or "") in selected
+            if isinstance(item, dict)
+            and (
+                str(item.get("expense_id") or "") in selected
+                or any(
+                    isinstance(allocation, dict)
+                    and str(allocation.get("expense_id") or "") in selected
+                    for allocation in item.get("expense_allocations") or []
+                )
+            )
         ]
         if not tasks and contract_title:
             contract_words = {
@@ -414,6 +422,23 @@ class ContractStore:
             raise ValueError("amount must be non-negative")
         start_date = _date(payload.get("start_date"), "start_date")
         end_date = _date(payload.get("end_date"), "end_date")
+        work_period_status = str(
+            payload.get("work_period_status") or "confirmed"
+        ).strip()
+        if work_period_status not in {"estimated", "confirmed"}:
+            raise ValueError(
+                "work_period_status must be estimated or confirmed"
+            )
+        if contract_type == "service" and (not start_date or not end_date):
+            linked_start, linked_end = self._linked_task_period(
+                expense_ids, title
+            )
+            if not start_date and linked_start:
+                start_date = linked_start
+                work_period_status = "estimated"
+            if not end_date and linked_end:
+                end_date = linked_end
+                work_period_status = "estimated"
         if contract_type == "service" and not start_date:
             raise ValueError("service contracts require a work start date")
         if contract_type == "service" and not end_date:
@@ -440,7 +465,7 @@ class ContractStore:
                         start_date, end_date, payment_frequency
                     ),
                     payment_frequency,
-                    "confirmed",
+                    work_period_status,
                 )
         else:
             payment_frequency = "one_time"
@@ -472,7 +497,7 @@ class ContractStore:
                 "amount": amount,
                 "start_date": start_date,
                 "end_date": end_date,
-                "work_period_status": "confirmed",
+                "work_period_status": work_period_status,
                 "payment_frequency": payment_frequency,
                 "payment_schedule": payment_schedule,
                 "notes": str(payload.get("notes") or "").strip(),

@@ -1098,6 +1098,33 @@ select[multiple] { min-height: 110px; }
   padding-block: 8px;
 }
 
+.dashboard-savings-card {
+  display: flex;
+  min-width: 0;
+  min-height: 0;
+  height: 100%;
+  padding-block: 8px;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.dashboard-savings-card .section-sub {
+  margin: 2px 0 4px;
+  font-size: 8px;
+}
+
+.dashboard-savings-card .house-savings-line-chart {
+  min-height: 0;
+  height: 92px;
+  margin-top: auto;
+  overflow: hidden;
+}
+
+.dashboard-savings-card .house-savings-line-chart svg {
+  width: 100%;
+  height: 100%;
+}
+
 .dashboard-people-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 180px));
@@ -1530,6 +1557,44 @@ select[multiple] { min-height: 110px; }
 
 .expense-payment-total.mismatch {
   color: #ff8b7d;
+}
+
+.task-allocation-editor {
+  display: grid;
+  gap: 8px;
+  padding: 10px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--panel-2);
+}
+
+.task-allocation-list {
+  display: grid;
+  gap: 6px;
+}
+
+.task-allocation-row {
+  display: grid;
+  grid-template-columns: minmax(200px, 1.5fr) minmax(100px, .55fr) auto minmax(210px, 1fr) auto;
+  gap: 7px;
+  align-items: end;
+}
+
+.task-allocation-unit,
+.task-allocation-scenarios {
+  align-self: center;
+  color: var(--muted);
+  font-size: 10px;
+}
+
+@media (max-width: 720px) {
+  .task-allocation-row {
+    grid-template-columns: minmax(0, 1fr) 100px auto;
+  }
+
+  .task-allocation-scenarios {
+    grid-column: 1 / -1;
+  }
 }
 
 .monthly-savings-details {

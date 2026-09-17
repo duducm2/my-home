@@ -21,7 +21,10 @@
     cashflow: null,
     quotationExpenseId: "",
     quotationImportRows: [],
+    editingQuotationMetadata: {},
+    editingQuotationSource: "manual",
     editingPayments: [],
+    editingTaskAllocations: [],
     editingContractPayments: [],
     zoom: "week",
     ganttStatusFilter: "",
@@ -50,6 +53,9 @@
     btnPush: $("btn-push"),
     pushStatus: $("push-status"),
     dashTotalAll: $("dash-total-all"),
+    dashTotalMinimum: $("dash-total-minimum"),
+    dashTotalMaximum: $("dash-total-maximum"),
+    dashUnpricedCount: $("dash-unpriced-count"),
     fundsTotal: $("funds-total"),
     fundsDetail: $("funds-detail"),
     fundingPie: $("funding-pie"),
@@ -97,7 +103,10 @@
     taskStart: $("task-start"),
     taskEnd: $("task-end"),
     taskStatus: $("task-status"),
-    taskExpense: $("task-expense"),
+    taskAllocationEditor: $("task-allocation-editor"),
+    taskAllocationList: $("task-allocation-list"),
+    taskAllocationTotal: $("task-allocation-total"),
+    btnAddTaskAllocation: $("btn-add-task-allocation"),
     taskIcon: $("task-icon"),
     taskIconMode: $("task-icon-mode"),
     taskIconPreview: $("task-icon-preview"),
@@ -106,7 +115,6 @@
     taskFormError: $("task-form-error"),
     btnDeleteTask: $("btn-delete-task"),
     btnCancelTask: $("btn-cancel-task"),
-    priority: $("filter-priority"),
     category: $("filter-category"),
     search: $("filter-search"),
     rows: $("expense-rows"),
@@ -120,19 +128,13 @@
     dialogTitle: $("dialog-title"),
     fieldId: $("field-id"),
     fieldRecordType: $("field-record-type"),
-    fieldPriority: $("field-priority"),
     fieldCategory: $("field-category"),
     fieldDescription: $("field-description"),
     fieldIconKey: $("field-icon-key"),
     iconPreview: $("icon-preview"),
     iconPicker: $("icon-picker"),
-    fieldValue: $("field-value"),
     fieldQuantity: $("field-quantity"),
     fieldUnit: $("field-unit"),
-    fieldUnitPrice: $("field-unit-price"),
-    fieldVendor: $("field-vendor"),
-    fieldProductUrl: $("field-product-url"),
-    fieldPriceNotes: $("field-price-notes"),
     expensePaymentList: $("expense-payment-list"),
     expensePaymentTotal: $("expense-payment-total"),
     btnAddPayment: $("btn-add-payment"),
@@ -161,6 +163,9 @@
     quotationNotes: $("quotation-notes"),
     quotationFormError: $("quotation-form-error"),
     quotationAiPanel: $("quotation-ai-panel"),
+    quotationSourceInput: $("quotation-source-input"),
+    quotationSourceFile: $("quotation-source-file"),
+    quotationSourceStatus: $("quotation-source-status"),
     quotationPromptOutput: $("quotation-prompt-output"),
     quotationPackInput: $("quotation-pack-input"),
     quotationCorrectionInstructions: $("quotation-correction-instructions"),
@@ -347,13 +352,6 @@
 
   function renderFilters() {
     fillSelect(
-      els.priority,
-      [...new Set(state.expenses.map((item) => item.priority))].sort(
-        (a, b) => a - b,
-      ),
-      "Todas",
-    );
-    fillSelect(
       els.category,
       [...new Set(state.expenses.map((item) => item.category))].sort(),
       "Todas",
@@ -369,8 +367,6 @@
   function filteredExpenses() {
     const term = els.search.value.trim().toLowerCase();
     return state.expenses.filter((item) => {
-      if (els.priority.value && String(item.priority) !== els.priority.value)
-        return false;
       if (els.category.value && item.category !== els.category.value)
         return false;
       return (
@@ -386,6 +382,15 @@
     const parts = [];
     const count = (item.quotations || []).length;
     if (item.unit_price != null) parts.push(formatMoney(item.unit_price));
+    parts.push(
+      `${item.scenario?.expected_quantity ?? item.quantity ?? 0} ${escapeHtml(item.unit || "")}`,
+    );
+    if (item.scenario?.minimum != null && item.scenario?.maximum != null)
+      parts.push(
+        `mín. ${formatMoney(item.scenario.minimum)} · máx. ${formatMoney(item.scenario.maximum)}`,
+      );
+    if (item.scenario?.unpriced)
+      parts.push('<span class="badge">Sem cotação</span>');
     if (item.vendor) parts.push(escapeHtml(item.vendor));
     if (item.product_url)
       parts.push(
@@ -410,7 +415,7 @@
         (
           item,
         ) => `<tr class="expense-row" data-open-quotations="${escapeAttr(item.id)}" tabindex="0" aria-label="Gerenciar cotações de ${escapeAttr(item.description)}">
-      <td><span class="badge">${item.priority}</span></td><td>${escapeHtml(item.category)}</td>
+      <td>${escapeHtml(item.category)}</td>
       <td>${itemLabel(item.description, item.icon_key)}</td><td class="num">${formatMoney(item.value)}</td>
       <td>${priceCell(item)}</td><td class="actions"><button class="btn quotation-action-btn" data-open-expense-quotations="${escapeAttr(item.id)}" title="Abrir análise de preços e cotações">Cotações <span>${(item.quotations || []).length}/5</span></button><button class="btn" data-edit-expense="${item.id}">Editar</button><button class="btn danger" data-delete-expense="${item.id}">Excluir</button></td>
     </tr>`,
@@ -634,6 +639,7 @@
           ...payment,
           expenseId: expense.id,
           expenseIds: [expense.id],
+          taskId: payment.task_id || "",
           description: expense.description,
           category: expense.category,
           iconKey: expense.icon_key,
@@ -755,16 +761,25 @@
           (sum, item) => sum + Number(item.value || 0),
           0,
         );
+        const minimum = items.reduce(
+          (sum, item) => sum + Number(item.scenario?.minimum || 0),
+          0,
+        );
+        const maximum = items.reduce(
+          (sum, item) => sum + Number(item.scenario?.maximum || 0),
+          0,
+        );
+        const range = `${formatMoney(total)} · mín. ${formatMoney(minimum)} · máx. ${formatMoney(maximum)}`;
         return `<article class="dashboard-expense-category">
           <div class="dashboard-expense-category-head">
-            <span class="expense-hover-target category-hover-target" tabindex="0" data-hover-name="${escapeAttr(group.label)}" data-hover-amount="${escapeAttr(formatMoney(total))}" aria-label="${escapeAttr(`${group.label}: ${formatMoney(total)}`)}">${iconMarkup(group.icon, group.label)}</span>
+            <span class="expense-hover-target category-hover-target" tabindex="0" data-hover-name="${escapeAttr(group.label)}" data-hover-amount="${escapeAttr(range)}" aria-label="${escapeAttr(`${group.label}: ${range}`)}">${iconMarkup(group.icon, group.label)}</span>
             <span><strong>${escapeHtml(group.label)}</strong><small>${formatMoney(total)} · ${items.length} ${items.length === 1 ? "item" : "itens"}</small></span>
           </div>
           <div class="dashboard-expense-icons" aria-label="${escapeAttr(`Itens de ${group.label}`)}">
             ${items
               .map(
                 (item) =>
-                  `<span class="expense-hover-target dashboard-expense-icon" tabindex="0" data-hover-name="${escapeAttr(item.description)}" data-hover-amount="${escapeAttr(formatMoney(item.value))}" aria-label="${escapeAttr(`${item.description}: ${formatMoney(item.value)}`)}">${iconMarkup(item.icon_key, item.description)}</span>`,
+                  `<span class="expense-hover-target dashboard-expense-icon" tabindex="0" data-hover-name="${escapeAttr(item.description)}" data-hover-amount="${escapeAttr(`${formatMoney(item.value)} · mín. ${formatMoney(item.scenario?.minimum || 0)} · máx. ${formatMoney(item.scenario?.maximum || 0)}`)}" aria-label="${escapeAttr(`${item.description}: ${formatMoney(item.value)}`)}">${iconMarkup(item.icon_key, item.description)}</span>`,
               )
               .join("")}
           </div>
@@ -802,6 +817,13 @@
 
   function renderDashboard() {
     els.dashTotalAll.textContent = formatMoney(state.totals.all);
+    els.dashTotalMinimum.textContent = formatMoney(
+      state.totals.scenarios?.minimum || 0,
+    );
+    els.dashTotalMaximum.textContent = formatMoney(
+      state.totals.scenarios?.maximum || 0,
+    );
+    els.dashUnpricedCount.textContent = `${state.totals.scenarios?.unpriced_count || 0} sem cotação`;
     const funding = (state.project || {}).funding || {};
     const sources = funding.sources || [];
     const fundsTotal = sources.reduce(
@@ -1131,8 +1153,14 @@
             const isMacro = task.activity_type === "macro";
             const taskPayments = isMacro
               ? []
-              : paymentEvents().filter((payment) =>
-                  (payment.expenseIds || []).includes(task.expense_id),
+              : paymentEvents().filter(
+                  (payment) =>
+                    payment.taskId === task.id ||
+                    (task.expense_allocations || []).some((allocation) =>
+                      (payment.expenseIds || []).includes(
+                        allocation.expense_id,
+                      ),
+                    ),
                 );
             return `<div class="gantt-track${isMacro ? " macro" : " child"}" data-track-id="${task.id}">
             <button type="button" class="gantt-bar status-${task.status}${isMacro ? " macro" : ""}" ${isMacro ? `data-macro-bar="${task.id}"` : `data-task-bar="${task.id}"`} style="left:${left}px;width:${width}px" title="${escapeAttr(`${task.title} · ${task.start_date} — ${task.end_date}`)}">
@@ -1148,14 +1176,21 @@
       </div></div>
       <div class="gantt-labels">${tasks
         .map((task) => {
-          const linkedExpense = state.expenses.find(
-            (expense) => expense.id === task.expense_id,
-          );
-          const scheduled = (linkedExpense?.payments || [])
-            .map(
-              (payment) =>
-                `${formatPaymentDate(payment.date)} ${formatMoney(payment.amount)}`,
-            )
+          const taskExpenses = (task.expense_allocations || [])
+            .map((allocation) => {
+              const expense = state.expenses.find(
+                (item) => item.id === allocation.expense_id,
+              );
+              const cost = allocationCost(
+                expense,
+                allocation.expected_quantity,
+                "planned",
+              );
+              return expense
+                ? `${allocation.expected_quantity} ${expense.unit} ${expense.description}${cost == null ? " (sem cotação)" : ` ${formatMoney(cost)}`}`
+                : "";
+            })
+            .filter(Boolean)
             .join(" + ");
           const macroChildren = childTasks(task.id);
           const filteredChildren = macroChildren.filter(matchesGanttFilters);
@@ -1163,7 +1198,7 @@
             state.ganttStatusFilter || state.ganttPriorityFilter
               ? `${filteredChildren.length} de ${macroChildren.length} atividades`
               : `${macroChildren.length} atividades`;
-          const detail = `${task.activity_type === "macro" ? `${macroCount} · ${task.progress || 0}%` : `P${task.priority} · #${task.sequence}`} · ${escapeHtml(statusLabels[task.status])}${task.date_status === "estimated" ? " · estimada" : ""}${scheduled ? ` · paga ${scheduled}` : ""}`;
+          const detail = `${task.activity_type === "macro" ? `${macroCount} · ${task.progress || 0}%` : `P${task.priority} · #${task.sequence}`} · ${escapeHtml(statusLabels[task.status])}${task.date_status === "estimated" ? " · estimada" : ""}${taskExpenses ? ` · ${escapeHtml(taskExpenses)}` : ""}`;
           const content = `${iconMarkup(task.icon_key, task.title)}<span><strong>${escapeHtml(task.title)}</strong><small>${detail}</small></span>`;
           if (task.activity_type === "macro")
             return `<div class="gantt-label-row macro">
@@ -1304,7 +1339,6 @@
   }
 
   function fillTaskOptions(currentId = "") {
-    els.taskExpense.innerHTML = `<option value="">Nenhuma</option>${state.expenses.map((item) => `<option value="${item.id}">${escapeHtml(`${item.id} · ${item.description}`)}</option>`).join("")}`;
     els.taskParent.innerHTML = macroTasks()
       .filter((item) => item.id !== currentId)
       .map(
@@ -1314,9 +1348,83 @@
       .join("");
   }
 
+  function allocationCost(expense, quantity, scenarioName) {
+    const total = expense?.scenario?.[scenarioName];
+    const expenseQuantity = Number(expense?.scenario?.expected_quantity || 0);
+    if (total == null || expenseQuantity <= 0) return null;
+    const quoteId = expense.scenario[`${scenarioName}_quotation_id`];
+    const quote = (expense.quotations || []).find((item) => item.id === quoteId);
+    return Number(quantity || 0) * Number(quote?.unit_price || 0);
+  }
+
+  function renderTaskAllocations() {
+    els.taskAllocationList.innerHTML = state.editingTaskAllocations
+      .map((allocation, index) => {
+        const expense = state.expenses.find(
+          (item) => item.id === allocation.expense_id,
+        );
+        const options = state.expenses
+          .map(
+            (item) =>
+              `<option value="${escapeAttr(item.id)}" ${item.id === allocation.expense_id ? "selected" : ""}>${escapeHtml(`${item.description} · ${item.unit}`)}</option>`,
+          )
+          .join("");
+        const planned = allocationCost(
+          expense,
+          allocation.expected_quantity,
+          "planned",
+        );
+        const minimum = allocationCost(
+          expense,
+          allocation.expected_quantity,
+          "minimum",
+        );
+        const maximum = allocationCost(
+          expense,
+          allocation.expected_quantity,
+          "maximum",
+        );
+        return `<div class="task-allocation-row" data-allocation-index="${index}">
+          <label>Despesa<select data-allocation-field="expense_id" required><option value="">Selecione</option>${options}</select></label>
+          <label>Quantidade<input data-allocation-field="expected_quantity" type="number" min="0.0001" step="any" value="${Number(allocation.expected_quantity || 1)}" required></label>
+          <span class="task-allocation-unit">${escapeHtml(expense?.unit || "—")}</span>
+          <span class="task-allocation-scenarios">${planned == null ? "Sem cotação" : `Plan. ${formatMoney(planned)} · mín. ${formatMoney(minimum)} · máx. ${formatMoney(maximum)}`}</span>
+          <button type="button" class="btn danger" data-delete-allocation="${index}" aria-label="Remover despesa">×</button>
+        </div>`;
+      })
+      .join("");
+    const plannedTotal = state.editingTaskAllocations.reduce((sum, allocation) => {
+      const expense = state.expenses.find(
+        (item) => item.id === allocation.expense_id,
+      );
+      return (
+        sum +
+        Number(
+          allocationCost(expense, allocation.expected_quantity, "planned") || 0,
+        )
+      );
+    }, 0);
+    els.taskAllocationTotal.textContent = state.editingTaskAllocations.length
+      ? `Custo unitário planejado da atividade: ${formatMoney(plannedTotal)} (frete aplicado na projeção geral)`
+      : "Nenhuma despesa vinculada.";
+  }
+
+  function addTaskAllocation() {
+    const used = new Set(
+      state.editingTaskAllocations.map((item) => item.expense_id),
+    );
+    const expense = state.expenses.find((item) => !used.has(item.id));
+    if (!expense) return;
+    state.editingTaskAllocations.push({
+      expense_id: expense.id,
+      expected_quantity: expense.default_expected_quantity || 1,
+    });
+    renderTaskAllocations();
+  }
+
   function suggestTaskIcon() {
     const expense = state.expenses.find(
-      (item) => item.id === els.taskExpense.value,
+      (item) => item.id === state.editingTaskAllocations[0]?.expense_id,
     );
     if (expense?.icon_key) return expense.icon_key;
     const text = `${els.taskTitle.value} ${els.taskDescription.value}`
@@ -1386,7 +1494,7 @@
     document.querySelectorAll(".task-rollup-field").forEach((field) => {
       field.disabled = isMacro;
     });
-    els.taskExpense.disabled = isMacro;
+    els.taskAllocationEditor.classList.toggle("hidden", isMacro);
     els.taskDateBadge.textContent = isMacro
       ? "Datas, prioridade e status calculados pelas atividades"
       : "Datas confirmadas";
@@ -1416,7 +1524,10 @@
     els.taskStart.value = task?.start_date || tomorrow;
     els.taskEnd.value = task?.end_date || addDays(tomorrow, 2);
     els.taskStatus.value = task?.status || "pending";
-    els.taskExpense.value = task?.expense_id || "";
+    state.editingTaskAllocations = structuredClone(
+      task?.expense_allocations || [],
+    );
+    renderTaskAllocations();
     renderTaskIconPicker(task?.icon_key || "", task?.icon_mode || "auto");
     els.taskDateBadge.textContent =
       task?.date_status === "estimated"
@@ -1446,7 +1557,10 @@
       start_date: els.taskStart.value,
       end_date: els.taskEnd.value,
       status: els.taskStatus.value,
-      expense_id: els.taskExpense.value,
+      expense_allocations:
+        els.taskActivityType.value === "macro"
+          ? []
+          : state.editingTaskAllocations,
       icon_key: els.taskIcon.value,
       icon_mode: els.taskIconMode.value,
       date_status: "confirmed",
@@ -1475,6 +1589,7 @@
         method: "DELETE",
       });
       state.tasks = result.tasks;
+      if (result.expense_state) applyExpenseState(result.expense_state);
       els.taskDialog.close();
       renderGantt();
       renderMacroTimeline();
@@ -1552,39 +1667,17 @@
     els.fieldRecordType.value =
       item?.record_type ||
       (item?.category === "Material" ? "material" : "service");
-    els.fieldPriority.value = item?.priority || 1;
     els.fieldCategory.value = item?.category || "";
     els.fieldDescription.value = item?.description || "";
-    els.fieldValue.value = item ? Number(item.value).toFixed(2) : "0.00";
-    els.fieldQuantity.value = item?.quantity ?? "";
+    els.fieldQuantity.value = item?.default_expected_quantity ?? 1;
     els.fieldUnit.value = item?.unit || "";
-    els.fieldUnitPrice.value = item?.unit_price ?? "";
-    els.fieldVendor.value = item?.vendor || "";
-    els.fieldProductUrl.value = item?.product_url || "";
-    els.fieldPriceNotes.value = item?.price_notes || "";
     updateExpenseServiceLinks(item?.provider_id || "", item?.contract_id || "");
     renderIconPicker(item?.icon_key || "");
-    state.editingPayments = structuredClone(item?.payments || []);
-    if (!state.editingPayments.length) {
-      const presumedDate =
-        state.tasks
-          .filter((task) => task.activity_type === "task" && task.start_date)
-          .sort((left, right) =>
-            left.start_date.localeCompare(right.start_date),
-          )
-          .find((task) => task.start_date >= iso(new Date()))?.start_date ||
-        addDays(iso(new Date()), 7);
-      state.editingPayments = [
-        {
-          id: "PAY_001",
-          date: presumedDate,
-          amount: Number(els.fieldValue.value || 0),
-          date_status: "estimated",
-          source: "presumed",
-          notes: "",
-        },
-      ];
-    }
+    state.editingPayments = structuredClone(
+      (item?.payments || []).filter(
+        (payment) => payment.date_status === "confirmed",
+      ),
+    );
     renderExpensePayments();
     els.formError.classList.add("hidden");
     els.dialog.showModal();
@@ -1596,16 +1689,10 @@
       (sum, item) => sum + Number(item.amount || 0),
       0,
     );
-    const value = Number(els.fieldValue.value || 0);
-    const difference = Math.round((value - total) * 100) / 100;
-    els.expensePaymentTotal.classList.toggle(
-      "mismatch",
-      Math.abs(difference) > 0.01,
-    );
-    els.expensePaymentTotal.textContent =
-      Math.abs(difference) <= 0.01
-        ? `Pagamentos: ${formatMoney(total)}`
-        : `Pagamentos: ${formatMoney(total)} · diferença ${formatMoney(difference)}`;
+    els.expensePaymentTotal.classList.remove("mismatch");
+    els.expensePaymentTotal.textContent = state.editingPayments.length
+      ? `Pagamentos confirmados: ${formatMoney(total)}`
+      : "Sem pagamentos confirmados; a projeção seguirá as atividades.";
   }
 
   function renderExpensePayments() {
@@ -1618,7 +1705,7 @@
           <label>Valor<input type="number" data-payment-field="amount" min="0" step="0.01" value="${Number(payment.amount || 0).toFixed(2)}" required></label>
           <label>Precisão<select data-payment-field="date_status"><option value="estimated" ${payment.date_status === "estimated" ? "selected" : ""}>Presumida</option><option value="confirmed" ${payment.date_status === "confirmed" ? "selected" : ""}>Confirmada</option></select></label>
           <label class="payment-note">Observação<input data-payment-field="notes" maxlength="500" value="${escapeAttr(payment.notes || "")}" placeholder="Parcela, entrada..."></label>
-          <button type="button" class="btn danger" data-delete-payment="${escapeAttr(payment.id)}" ${state.editingPayments.length === 1 ? "disabled" : ""} aria-label="Excluir pagamento">×</button>
+          <button type="button" class="btn danger" data-delete-payment="${escapeAttr(payment.id)}" aria-label="Excluir pagamento">×</button>
         </div>`,
       )
       .join("");
@@ -1655,7 +1742,7 @@
         ? addDays(previous.date, 30)
         : addDays(iso(new Date()), 7),
       amount: 0,
-      date_status: "estimated",
+      date_status: "confirmed",
       source: "manual",
       notes: "",
     });
@@ -1678,9 +1765,32 @@
     els.quotationList.innerHTML = quotations
       .map((quote) => {
         const isSelected = quote.id === expense.selected_quotation_id;
+        const projectedQuoteTotal =
+          Number(quote.unit_price || 0) *
+            Number(expense.scenario?.expected_quantity || 0) +
+          Number(quote.shipping_cost || 0);
+        const metadata = quote.metadata || {};
+        const specification = [
+          metadata.brand,
+          metadata.model,
+          metadata.specifications,
+          metadata.package_size,
+        ]
+          .filter(Boolean)
+          .join(" · ");
+        const evidence = [
+          metadata.source_type,
+          metadata.source_name,
+          metadata.source_page ? `p. ${metadata.source_page}` : "",
+        ]
+          .filter(Boolean)
+          .join(" · ");
         return `<article class="quotation-card ${isSelected ? "selected" : ""}">
-          <header><div><strong>${escapeHtml(quote.vendor)}</strong><span class="quote-badges"><span class="badge">${quote.source === "ai" ? "IA" : "Manual"}</span>${isSelected ? '<span class="badge selected">Escolhida</span>' : ""}</span></div><strong class="quotation-total">${formatMoney(quote.total_price)}</strong></header>
+          <header><div><strong>${escapeHtml(quote.vendor)}</strong><span class="quote-badges"><span class="badge">${quote.source === "ai" ? "Importada" : "Manual"}</span>${isSelected ? '<span class="badge selected">Escolhida</span>' : ""}</span></div><strong class="quotation-total">${formatMoney(projectedQuoteTotal)}</strong></header>
           <dl><div><dt>Unitário</dt><dd>${formatMoney(quote.unit_price)} × ${quote.quantity} ${escapeHtml(quote.unit || "")}</dd></div><div><dt>Frete</dt><dd>${formatMoney(quote.shipping_cost)}</dd></div><div><dt>Verificada</dt><dd>${escapeHtml(quote.checked_at || "—")}</dd></div></dl>
+          ${specification ? `<p><strong>Especificação:</strong> ${escapeHtml(specification)}</p>` : ""}
+          ${evidence ? `<p><strong>Fonte:</strong> ${escapeHtml(evidence)}</p>` : ""}
+          ${metadata.ambiguities ? `<p><strong>Pendências:</strong> ${escapeHtml(metadata.ambiguities)}</p>` : ""}
           ${quote.notes ? `<p>${escapeHtml(quote.notes)}</p>` : ""}
           <div class="quotation-card-actions">
             ${quote.product_url ? `<a class="btn" href="${escapeAttr(quote.product_url)}" target="_blank" rel="noopener">Abrir oferta</a>` : ""}
@@ -1695,6 +1805,8 @@
 
   function openQuotationForm(quotation = null) {
     const expense = currentQuotationExpense();
+    state.editingQuotationMetadata = quotation?.metadata || {};
+    state.editingQuotationSource = quotation?.source || "manual";
     els.quotationFormTitle.textContent = quotation
       ? "Editar cotação"
       : "Nova cotação";
@@ -1720,6 +1832,9 @@
     state.quotationImportRows = [];
     els.quotationForm.classList.add("hidden");
     els.quotationAiPanel.open = false;
+    els.quotationSourceInput.value = "";
+    els.quotationSourceFile.value = "";
+    els.quotationSourceStatus.classList.add("hidden");
     els.quotationPromptOutput.value = "";
     els.quotationPackInput.value = "";
     els.quotationCorrectionInstructions.value = "";
@@ -1742,7 +1857,7 @@
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             id: els.quotationId.value,
-            source: "manual",
+            source: state.editingQuotationSource,
             vendor: els.quotationVendor.value.trim(),
             unit_price: els.quotationUnitPrice.value,
             quantity: els.quotationQuantity.value,
@@ -1752,6 +1867,7 @@
             checked_at: els.quotationCheckedAt.value,
             product_url: els.quotationUrl.value.trim(),
             notes: els.quotationNotes.value.trim(),
+            metadata: state.editingQuotationMetadata,
           }),
         },
       );
@@ -1786,13 +1902,133 @@
     renderQuotationManager();
   }
 
+  function quotationSourceTag(type, name, text, page = "") {
+    const safeName = String(name || "quotation")
+      .replaceAll("&", "&amp;")
+      .replaceAll('"', "&quot;")
+      .replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;");
+    const safeText = String(text || "")
+      .replaceAll("&", "&amp;")
+      .replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;");
+    const pageAttribute = page ? ` page="${page}"` : "";
+    return `<quotation_source type="${type}" name="${safeName}"${pageAttribute}>\n${safeText.trim()}\n</quotation_source>`;
+  }
+
+  function normalizedQuotationSource() {
+    const source = els.quotationSourceInput.value.trim();
+    if (!source) return "";
+    return source.startsWith("<quotation_source")
+      ? source
+      : quotationSourceTag("text", "pasted-text", source);
+  }
+
+  async function extractQuotationPdf(file) {
+    if (file.size > 25 * 1024 * 1024)
+      throw new Error("O PDF excede o limite de 25 MB.");
+    setStatus(
+      els.quotationSourceStatus,
+      "pending",
+      "Extraindo texto do PDF localmente...",
+    );
+    const pdfjs = await import(
+      "/vendor/pdfjs/node_modules/pdfjs-dist/build/pdf.mjs"
+    );
+    pdfjs.GlobalWorkerOptions.workerSrc =
+      "/vendor/pdfjs/node_modules/pdfjs-dist/build/pdf.worker.mjs";
+    const document = await pdfjs.getDocument({
+      data: new Uint8Array(await file.arrayBuffer()),
+    }).promise;
+    if (document.numPages > 100)
+      throw new Error("O PDF excede o limite de 100 páginas.");
+    const pages = [];
+    let characterCount = 0;
+    for (let pageNumber = 1; pageNumber <= document.numPages; pageNumber += 1) {
+      const page = await document.getPage(pageNumber);
+      const content = await page.getTextContent();
+      const text = content.items
+        .map((item) => `${item.str || ""}${item.hasEOL ? "\n" : " "}`)
+        .join("")
+        .replace(/[ \t]+\n/g, "\n")
+        .replace(/[ \t]{2,}/g, " ")
+        .trim();
+      if (text) {
+        characterCount += text.length;
+        if (characterCount > 500000)
+          throw new Error("O texto extraído excede 500.000 caracteres.");
+        pages.push(quotationSourceTag("pdf", file.name, text, pageNumber));
+      }
+    }
+    if (!pages.length)
+      throw new Error(
+        "Este PDF não contém texto selecionável. Use OCR ou anexe o PDF diretamente à sua IA.",
+      );
+    return { text: pages.join("\n\n"), pages: document.numPages };
+  }
+
+  async function loadQuotationSourceFile() {
+    const file = els.quotationSourceFile.files[0];
+    if (!file) return;
+    try {
+      if (
+        file.type === "application/pdf" ||
+        file.name.toLowerCase().endsWith(".pdf")
+      ) {
+        const extracted = await extractQuotationPdf(file);
+        els.quotationSourceInput.value = extracted.text;
+        setStatus(
+          els.quotationSourceStatus,
+          "ok",
+          `${extracted.pages} página(s) extraída(s) localmente. Revise o texto antes de gerar o prompt.`,
+        );
+      } else {
+        if (file.size > 2 * 1024 * 1024)
+          throw new Error("O arquivo de texto excede o limite de 2 MB.");
+        const text = await file.text();
+        if (!text.trim()) throw new Error("O arquivo de texto está vazio.");
+        els.quotationSourceInput.value = quotationSourceTag(
+          "text",
+          file.name,
+          text,
+        );
+        setStatus(
+          els.quotationSourceStatus,
+          "ok",
+          "Texto carregado localmente. Revise antes de gerar o prompt.",
+        );
+      }
+    } catch (error) {
+      const encrypted =
+        /password|encrypted/i.test(`${error?.name || ""} ${error?.message || ""}`);
+      setStatus(
+        els.quotationSourceStatus,
+        "err",
+        encrypted
+          ? "O PDF está protegido por senha. Remova a proteção ou anexe-o diretamente à sua IA."
+          : error.message,
+      );
+    }
+  }
+
   async function generateQuotationPrompt() {
-    const result = await request("/api/prompts/price-discovery", {
+    const sourceText = normalizedQuotationSource();
+    const result = await request("/api/prompts/quotation-ingestion", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ ids: [state.quotationExpenseId] }),
+      body: JSON.stringify({
+        ids: [state.quotationExpenseId],
+        source_text: sourceText,
+      }),
     });
     els.quotationPromptOutput.value = result.prompt || "";
+    setStatus(
+      els.quotationSourceStatus,
+      sourceText ? "ok" : "pending",
+      sourceText
+        ? "Prompt pronto. Copie e envie para sua IA."
+        : "Prompt pronto para usar com um PDF anexado diretamente à sua IA.",
+    );
   }
 
   async function previewQuotationImport() {
@@ -1827,22 +2063,44 @@
       result.ok && !wrongScope ? "ok" : "err",
       message,
     );
-    const fix = result.fix_text || "";
+    const fix =
+      result.fix_text ||
+      (wrongScope
+        ? `The importer rejected the pack because it contains a quotation for another expense.\n\nUse only expense id ${expense?.id || state.quotationExpenseId}: ${expense?.description || ""}.\nRepair and return the complete PRICE_PACK.txt with the exact required markers and headers.\nDo not browse, research, or invent values. Use only the quotation evidence already supplied.\n\nREJECTED RESPONSE FOR REPAIR\n${els.quotationPackInput.value}`
+        : "");
     els.quotationFixOutput.value = fix;
     els.quotationFixOutput.classList.toggle("hidden", !fix);
     els.btnCopyQuotationFix.classList.toggle("hidden", !fix);
   }
 
   async function commitQuotationImport() {
+    const expense = currentQuotationExpense();
     const result = await request("/api/import/commit", {
+      allowPayloadError: true,
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         rows: state.quotationImportRows,
         pack_text: els.quotationPackInput.value,
         pack_id: "price",
+        expense_context: expense
+          ? `${expense.id}: ${expense.description} (${expense.category})`
+          : "",
       }),
     });
+    if (!result.ok) {
+      const fix = result.fix_text || "";
+      els.quotationFixOutput.value = fix;
+      els.quotationFixOutput.classList.toggle("hidden", !fix);
+      els.btnCopyQuotationFix.classList.toggle("hidden", !fix);
+      setStatus(
+        els.quotationImportStatus,
+        "err",
+        (result.errors || ["Falha ao validar a importação."]).join(" · "),
+      );
+      els.btnCommitQuotationImport.disabled = true;
+      return;
+    }
     applyExpenseState(result.state);
     state.quotationImportRows = [];
     els.btnCommitQuotationImport.disabled = true;
@@ -1855,33 +2113,17 @@
     const payload = {
       id: els.fieldId.value,
       record_type: els.fieldRecordType.value,
-      priority: Number(els.fieldPriority.value),
       category: els.fieldCategory.value.trim(),
       description: els.fieldDescription.value.trim(),
       icon_key: els.fieldIconKey.value,
-      value: Number(els.fieldValue.value),
-      quantity: els.fieldQuantity.value,
+      default_expected_quantity: els.fieldQuantity.value,
       unit: els.fieldUnit.value.trim(),
-      unit_price: els.fieldUnitPrice.value,
-      vendor: els.fieldVendor.value.trim(),
-      product_url: els.fieldProductUrl.value.trim(),
-      price_notes: els.fieldPriceNotes.value.trim(),
       provider_id: els.fieldProvider.value,
       contract_id: els.fieldContract.value,
-      payments: state.editingPayments,
+      ...(state.editingPayments.length
+        ? { payments: state.editingPayments }
+        : {}),
     };
-    const paymentTotal = payload.payments.reduce(
-      (sum, item) => sum + Number(item.amount || 0),
-      0,
-    );
-    if (Math.abs(paymentTotal - payload.value) > 0.01) {
-      setStatus(
-        els.formError,
-        "err",
-        "A soma dos pagamentos deve ser igual ao valor da despesa.",
-      );
-      return;
-    }
     try {
       const result = await request("/api/expenses", {
         method: "POST",
@@ -3139,7 +3381,6 @@
   );
   els.btnSaveLayout.addEventListener("click", saveSceneLayout);
 
-  els.priority.addEventListener("change", renderExpenseTable);
   els.category.addEventListener("change", renderExpenseTable);
   els.search.addEventListener("input", renderExpenseTable);
   els.dashMaterials.addEventListener("mouseover", (event) => {
@@ -3175,22 +3416,11 @@
   });
   els.expensePaymentList.addEventListener("click", (event) => {
     const button = event.target.closest("[data-delete-payment]");
-    if (!button || state.editingPayments.length === 1) return;
+    if (!button) return;
     state.editingPayments = state.editingPayments.filter(
       (item) => item.id !== button.dataset.deletePayment,
     );
     renderExpensePayments();
-  });
-  els.fieldValue.addEventListener("input", () => {
-    if (
-      state.editingPayments.length === 1 &&
-      state.editingPayments[0].date_status === "estimated"
-    ) {
-      state.editingPayments[0].amount = Number(els.fieldValue.value || 0);
-      renderExpensePayments();
-    } else {
-      renderExpensePaymentTotal();
-    }
   });
   els.fieldRecordType.addEventListener("change", () =>
     updateExpenseServiceLinks(),
@@ -3299,6 +3529,18 @@
   els.btnCopyQuotationPrompt.addEventListener("click", () =>
     navigator.clipboard.writeText(els.quotationPromptOutput.value),
   );
+  els.quotationSourceFile.addEventListener("change", loadQuotationSourceFile);
+  els.quotationSourceInput.addEventListener("input", () => {
+    state.quotationImportRows = [];
+    els.quotationPromptOutput.value = "";
+    els.btnCommitQuotationImport.disabled = true;
+    if (els.quotationSourceInput.value.trim())
+      setStatus(
+        els.quotationSourceStatus,
+        "pending",
+        "Fonte alterada. Gere um novo prompt de processamento.",
+      );
+  });
   els.quotationPackFile.addEventListener("change", async () => {
     if (els.quotationPackFile.files[0])
       els.quotationPackInput.value =
@@ -3331,10 +3573,32 @@
     syncTaskHierarchyFields();
     if (els.taskIconMode.value === "auto") renderTaskIconPicker("", "auto");
   });
-  [els.taskTitle, els.taskDescription, els.taskExpense].forEach((field) => {
+  [els.taskTitle, els.taskDescription].forEach((field) => {
     field.addEventListener("change", () => {
       if (els.taskIconMode.value === "auto") renderTaskIconPicker("", "auto");
     });
+  });
+  els.btnAddTaskAllocation.addEventListener("click", addTaskAllocation);
+  els.taskAllocationList.addEventListener("change", (event) => {
+    const row = event.target.closest("[data-allocation-index]");
+    const field = event.target.dataset.allocationField;
+    if (!row || !field) return;
+    const allocation = state.editingTaskAllocations[Number(row.dataset.allocationIndex)];
+    allocation[field] =
+      field === "expected_quantity"
+        ? Number(event.target.value || 0)
+        : event.target.value;
+    renderTaskAllocations();
+    if (els.taskIconMode.value === "auto") renderTaskIconPicker("", "auto");
+  });
+  els.taskAllocationList.addEventListener("click", (event) => {
+    const button = event.target.closest("[data-delete-allocation]");
+    if (!button) return;
+    state.editingTaskAllocations.splice(
+      Number(button.dataset.deleteAllocation),
+      1,
+    );
+    renderTaskAllocations();
   });
   els.taskIconPicker.addEventListener("click", (event) => {
     const button = event.target.closest("[data-task-icon]");

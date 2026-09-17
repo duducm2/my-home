@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import math
 import os
 import threading
 import unicodedata
@@ -77,9 +78,10 @@ class TaskStore:
         self.data_dir.mkdir(parents=True, exist_ok=True)
         self._lock = threading.RLock()
         if not self.path.is_file():
-            self._write({"version": 2, "tasks": [], "updated_at": now_stamp()})
+            self._write({"version": 3, "tasks": [], "updated_at": now_stamp()})
         else:
             self._ensure_v2()
+            self._ensure_v3()
         self._ensure_icon_assignments()
 
     def _read(self) -> dict[str, Any]:
@@ -95,7 +97,7 @@ class TaskStore:
     def _write(self, payload: dict[str, Any]) -> None:
         with self._lock:
             payload = dict(payload)
-            payload["version"] = 2
+            payload["version"] = int(payload.get("version") or 2)
             payload["updated_at"] = now_stamp()
             temporary = self.path.with_suffix(".json.tmp")
             temporary.write_text(
@@ -198,6 +200,31 @@ class TaskStore:
             normalized = self._normalize_sequences(normalized)
             self._write({"version": 2, "tasks": self._rollup(normalized)})
 
+    def _ensure_v3(self) -> None:
+        with self._lock:
+            document = self._read()
+            if int(document.get("version") or 1) >= 3:
+                return
+            migrated = []
+            for raw in document["tasks"]:
+                item = dict(raw)
+                allocations = item.get("expense_allocations")
+                if not isinstance(allocations, list):
+                    expense_id = str(item.get("expense_id") or "").strip()
+                    allocations = (
+                        [{"expense_id": expense_id, "expected_quantity": 1.0}]
+                        if expense_id
+                        else []
+                    )
+                item["expense_allocations"] = allocations
+                item.pop("expense_id", None)
+                migrated.append(self._normalize(item))
+            document["version"] = 3
+            document["tasks"] = self._rollup(
+                self._normalize_sequences(migrated)
+            )
+            self._write(document)
+
     def _expense_ids(self) -> set[str]:
         if not self.expenses_path.is_file():
             return set()
@@ -231,9 +258,13 @@ class TaskStore:
         expense_icons: dict[str, str] | None = None,
     ) -> str:
         icons = self._icon_keys()
-        expense_icon = (expense_icons or self._expense_icons()).get(
-            str(task.get("expense_id") or "")
+        allocations = task.get("expense_allocations") or []
+        expense_id = (
+            str(allocations[0].get("expense_id") or "")
+            if allocations and isinstance(allocations[0], dict)
+            else ""
         )
+        expense_icon = (expense_icons or self._expense_icons()).get(expense_id)
         if expense_icon in icons:
             return expense_icon
         text = self._search_text(task.get("title"), task.get("description"))
@@ -290,6 +321,20 @@ class TaskStore:
         return set((manifest.get("icons") or {}).keys())
 
     def _normalize(self, task: dict[str, Any]) -> dict[str, Any]:
+        allocations = []
+        for item in task.get("expense_allocations") or []:
+            if not isinstance(item, dict):
+                continue
+            try:
+                quantity = float(item.get("expected_quantity") or 0)
+            except (TypeError, ValueError):
+                quantity = 0
+            allocations.append(
+                {
+                    "expense_id": str(item.get("expense_id") or ""),
+                    "expected_quantity": quantity,
+                }
+            )
         return {
             "id": str(task.get("id") or ""),
             "title": str(task.get("title") or ""),
@@ -299,7 +344,7 @@ class TaskStore:
             "start_date": str(task.get("start_date") or ""),
             "end_date": str(task.get("end_date") or ""),
             "status": str(task.get("status") or "pending"),
-            "expense_id": str(task.get("expense_id") or ""),
+            "expense_allocations": allocations,
             "icon_key": str(task.get("icon_key") or "home-expense"),
             "icon_mode": str(task.get("icon_mode") or "auto"),
             "date_status": str(task.get("date_status") or "confirmed"),
@@ -440,9 +485,46 @@ class TaskStore:
         date_status = str(payload.get("date_status") or "confirmed").strip()
         if date_status not in {"estimated", "confirmed"}:
             raise ValueError(f"invalid date_status: {date_status}")
-        expense_id = str(payload.get("expense_id") or "").strip()
-        if expense_id and expense_id not in self._expense_ids():
-            raise ValueError(f"expense not found: {expense_id}")
+        raw_allocations = payload.get("expense_allocations")
+        if raw_allocations is None:
+            legacy_id = str(payload.get("expense_id") or "").strip()
+            raw_allocations = (
+                [{"expense_id": legacy_id, "expected_quantity": 1}]
+                if legacy_id
+                else []
+            )
+        if not isinstance(raw_allocations, list):
+            raise ValueError("expense_allocations must be a list")
+        if activity_type == "macro" and raw_allocations:
+            raise ValueError("macro activities cannot have expense allocations")
+        expense_ids = self._expense_ids()
+        allocations: list[dict[str, Any]] = []
+        seen_expenses: set[str] = set()
+        for allocation in raw_allocations:
+            if not isinstance(allocation, dict):
+                raise ValueError("each expense allocation must be an object")
+            expense_id = str(allocation.get("expense_id") or "").strip()
+            if expense_id not in expense_ids:
+                raise ValueError(f"expense not found: {expense_id}")
+            if expense_id in seen_expenses:
+                raise ValueError(f"duplicate expense allocation: {expense_id}")
+            try:
+                expected_quantity = float(allocation.get("expected_quantity"))
+            except (TypeError, ValueError) as exc:
+                raise ValueError(
+                    "expected_quantity must be a finite positive number"
+                ) from exc
+            if not math.isfinite(expected_quantity) or expected_quantity <= 0:
+                raise ValueError(
+                    "expected_quantity must be a finite positive number"
+                )
+            seen_expenses.add(expense_id)
+            allocations.append(
+                {
+                    "expense_id": expense_id,
+                    "expected_quantity": expected_quantity,
+                }
+            )
         icon_mode = str(
             payload.get("icon_mode") or previous.get("icon_mode") or "auto"
         ).strip()
@@ -462,7 +544,7 @@ class TaskStore:
             "start_date": start_date,
             "end_date": end_date,
             "status": status,
-            "expense_id": expense_id,
+            "expense_allocations": allocations,
             "icon_key": icon_key,
             "icon_mode": icon_mode,
             "date_status": date_status,

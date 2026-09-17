@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="color-scheme" content="dark" />
     <title>my-home</title>
-    <link rel="stylesheet" href="/styles.css?v=20260916-13" />
-    <link rel="stylesheet" href="/tasks.css?v=20260916-14" />
+    <link rel="stylesheet" href="/styles.css?v=20260916-16" />
+    <link rel="stylesheet" href="/tasks.css?v=20260916-16" />
     <script type="importmap">
       { "imports": { "three": "/vendor/three/three.module.js" } }
     </script>
@@ -119,6 +119,11 @@
                 <h3>Orçamento total</h3>
               </div>
               <strong id="dash-total-all" class="hero-metric">R$ 0,00</strong>
+              <div class="scenario-summary" aria-label="Cenários de custo">
+                <span>Mínimo <strong id="dash-total-minimum">R$ 0,00</strong></span>
+                <span>Máximo <strong id="dash-total-maximum">R$ 0,00</strong></span>
+                <span id="dash-unpriced-count">0 sem cotação</span>
+              </div>
             </article>
             <article class="panel bento-card bento-resources">
               <div class="panel-head">
@@ -229,37 +234,22 @@
             </div>
             <div id="dashboard-people" class="dashboard-people-grid"></div>
           </article>
-        </section>
-
-        <section
-          class="financial-projection-section savings-only-section"
-          aria-labelledby="house-savings-title"
-        >
-          <div class="section-heading-row">
-            <div>
-              <h2 id="house-savings-title" class="section-title">
-                Reserva planejada para a casa
-              </h2>
-              <p class="section-sub">
-                Eduardo guarda R$ 400 e Leo guarda R$ 400 por mês.
-              </p>
+          <article
+            class="panel bento-card dashboard-savings-card"
+            aria-labelledby="house-savings-title"
+          >
+            <div class="panel-head">
+              <h2 id="house-savings-title">Reserva para a casa</h2>
+              <span class="panel-kicker">R$ 12.800</span>
             </div>
-            <span class="date-badge">R$ 12.800 em 16 meses</span>
-          </div>
-          <div class="savings-only-grid">
-            <article class="projection-panel">
-              <div class="projection-title">
-                <h3>Nossa economia para a casa</h3>
-                <span id="house-savings-plan-summary"
-                  >Eduardo + Leo · R$ 800/mês</span
-                >
-              </div>
-              <div
-                id="house-savings-line-chart"
-                class="cashflow-line-chart house-savings-line-chart"
-              ></div>
-            </article>
-          </div>
+            <p id="house-savings-plan-summary" class="section-sub">
+              Eduardo + Leo · R$ 800/mês
+            </p>
+            <div
+              id="house-savings-line-chart"
+              class="cashflow-line-chart house-savings-line-chart"
+            ></div>
+          </article>
         </section>
 
         <section
@@ -373,12 +363,6 @@
       <section id="view-expenses" class="view hidden">
         <section class="toolbar">
           <label
-            >Prioridade
-            <select id="filter-priority">
-              <option value="">Todas</option>
-            </select></label
-          >
-          <label
             >Categoria
             <select id="filter-category">
               <option value="">Todas</option>
@@ -404,8 +388,8 @@
             <strong>Cotações e análise de preços</strong>
             <p>
               Clique em uma despesa ou use o botão <b>Cotações</b> para
-              pesquisar faixas de preço, gerar o prompt da IA e comparar
-              ofertas.
+              registrar ofertas ou transformar textos e PDFs recebidos em dados
+              prontos para importar.
             </p>
           </div>
         </aside>
@@ -427,11 +411,10 @@
           <table>
             <thead>
               <tr>
-                <th>Pri</th>
                 <th>Categoria</th>
                 <th>Descrição</th>
-                <th class="num">Valor</th>
-                <th>Preço</th>
+                <th class="num">Planejado</th>
+                <th>Cenários e preço unitário</th>
                 <th class="actions">Ações</th>
               </tr>
             </thead>
@@ -927,14 +910,6 @@
               <option value="service">Serviço</option>
             </select></label
           ><label
-            >Prioridade
-            <input
-              id="field-priority"
-              type="number"
-              min="1"
-              required
-              value="1" /></label
-          ><label
             >Categoria
             <input id="field-category" required list="category-suggestions"
           /></label>
@@ -950,30 +925,14 @@
         </section>
         <div class="form-grid">
           <label
-            >Preço total
-            <input
-              id="field-value"
-              type="number"
-              min="0"
-              step="0.01"
-              required /></label
-          ><label
-            >Quantidade
+            >Quantidade padrão prevista
             <input
               id="field-quantity"
               type="number"
-              min="0"
-              step="any" /></label
-          ><label>Unidade <input id="field-unit" /></label
-          ><label
-            >Preço unitário
-            <input
-              id="field-unit-price"
-              type="number"
-              min="0"
-              step="0.01" /></label
-          ><label>Fornecedor <input id="field-vendor" /></label
-          ><label>URL <input id="field-product-url" type="url" /></label>
+              min="0.0001"
+              step="any"
+              required /></label
+          ><label>Unidade de medida <input id="field-unit" required /></label>
         </div>
         <div id="expense-service-links" class="form-grid">
           <label
@@ -991,9 +950,9 @@
         <section class="expense-payment-editor">
           <div class="expense-payment-head">
             <div>
-              <strong>Cronograma de pagamentos</strong>
+              <strong>Pagamentos confirmados</strong>
               <small
-                >As datas aparecem no dashboard e no gráfico de Gantt.</small
+                >Quando informados, substituem as projeções geradas pelas atividades.</small
               >
             </div>
             <button type="button" id="btn-add-payment" class="btn">
@@ -1003,9 +962,6 @@
           <div id="expense-payment-list" class="expense-payment-list"></div>
           <p id="expense-payment-total" class="expense-payment-total"></p>
         </section>
-        <label
-          >Notas <textarea id="field-price-notes" rows="2"></textarea>
-        </label>
         <p id="form-error" class="error hidden"></p>
         <div class="dialog-actions">
           <button type="button" id="btn-cancel" class="btn">Cancelar</button
@@ -1081,18 +1037,40 @@
         </form>
 
         <details id="quotation-ai-panel" class="quotation-ai">
-          <summary>Pesquisar com IA</summary>
+          <summary>Processar texto ou PDF com IA</summary>
           <p class="section-sub">
-            Gere o prompt, pesquise em sua IA e cole aqui a resposta completa.
+            A pesquisa acontece fora do app. Insira as cotações recebidas, gere
+            o prompt de formatação e envie tudo para sua IA.
           </p>
+          <ol class="quotation-ingestion-steps">
+            <li>Cole o texto ou escolha um PDF com texto selecionável.</li>
+            <li>Revise a extração e gere o prompt.</li>
+            <li>Cole na IA; se necessário, anexe também o PDF original.</li>
+            <li>Cole o pack devolvido, valide e importe.</li>
+          </ol>
+          <label
+            >Texto das cotações
+            <textarea
+              id="quotation-source-input"
+              class="code-box"
+              rows="6"
+              placeholder="Cole uma ou mais cotações aqui..."
+            ></textarea>
+          </label>
           <div class="panel-row">
+            <input
+              id="quotation-source-file"
+              type="file"
+              accept=".txt,.pdf,text/plain,application/pdf"
+            />
             <button id="btn-quotation-prompt" type="button" class="btn primary">
-              Gerar prompt
+              Gerar prompt de processamento
             </button>
             <button id="btn-copy-quotation-prompt" type="button" class="btn">
               Copiar prompt
             </button>
           </div>
+          <p id="quotation-source-status" class="push-status hidden"></p>
           <textarea
             id="quotation-prompt-output"
             class="code-box"
@@ -1100,7 +1078,7 @@
             readonly
           ></textarea>
           <label
-            >Resposta da IA
+            >Pack formatado pela IA
             <textarea
               id="quotation-pack-input"
               class="code-box"
@@ -1337,13 +1315,19 @@
               <option value="blocked">Bloqueada</option>
               <option value="completed">Concluída</option>
             </select></label
-          ><label
-            >Despesa vinculada
-            <select id="task-expense">
-              <option value="">Nenhuma</option>
-            </select></label
           >
         </div>
+        <section id="task-allocation-editor" class="task-allocation-editor">
+          <div class="expense-payment-head">
+            <div>
+              <strong>Despesas e quantidades previstas</strong>
+              <small>Vincule zero ou mais despesas a esta atividade.</small>
+            </div>
+            <button type="button" id="btn-add-task-allocation" class="btn">+ Despesa</button>
+          </div>
+          <div id="task-allocation-list" class="task-allocation-list"></div>
+          <p id="task-allocation-total" class="expense-payment-total"></p>
+        </section>
         <section class="icon-editor task-icon-editor">
           <div class="icon-editor-head">
             <span
@@ -1374,6 +1358,6 @@
     </dialog>
 
     <datalist id="category-suggestions"></datalist>
-    <script src="/app.js?v=20260916-23"></script>
+    <script src="/app.js?v=20260916-26"></script>
   </body>
 </html>

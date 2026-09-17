@@ -19,7 +19,12 @@ from contract_store import ContractStore, MAX_PDF_BYTES  # noqa: E402
 from expense_git import GitError, push_expenses  # noqa: E402
 from expense_store import ExpenseStore  # noqa: E402
 from house_store import HouseStore  # noqa: E402
-from import_pipeline import build_price_discovery_prompt, commit_rows, preview_pack  # noqa: E402
+from import_pipeline import (  # noqa: E402
+    build_price_discovery_prompt,
+    build_quotation_ingestion_prompt,
+    commit_rows,
+    preview_pack,
+)
 from media_export import (  # noqa: E402
     FFmpegUnavailable,
     MAX_VIDEO_BYTES,
@@ -193,6 +198,29 @@ class ExpenseHandler(BaseHTTPRequestHandler):
                 return
             self._serve_file(WEB_DIR / "vendor" / "utils" / filename)
             return
+        pdfjs_files = {
+            "/vendor/pdfjs/node_modules/pdfjs-dist/build/pdf.mjs": (
+                WEB_DIR
+                / "vendor"
+                / "pdfjs"
+                / "node_modules"
+                / "pdfjs-dist"
+                / "build"
+                / "pdf.mjs"
+            ),
+            "/vendor/pdfjs/node_modules/pdfjs-dist/build/pdf.worker.mjs": (
+                WEB_DIR
+                / "vendor"
+                / "pdfjs"
+                / "node_modules"
+                / "pdfjs-dist"
+                / "build"
+                / "pdf.worker.mjs"
+            ),
+        }
+        if path in pdfjs_files:
+            self._serve_file(pdfjs_files[path], "application/javascript")
+            return
         if path.startswith("/api/expenses/") and path.endswith("/quotations"):
             parts = [part for part in path.split("/") if part]
             if len(parts) == 4:
@@ -317,11 +345,7 @@ class ExpenseHandler(BaseHTTPRequestHandler):
                 self._json(200, result)
             elif path == "/api/tasks":
                 result = get_tasks(self.data_dir).upsert(payload)
-                expense_state = get_store(self.data_dir).sync_task_payment_date(
-                    payload.get("expense_id"), payload.get("start_date")
-                )
-                if expense_state is not None:
-                    result["expense_state"] = expense_state
+                result["expense_state"] = get_store(self.data_dir).state()
                 self._json(200, result)
             elif path == "/api/notes":
                 self._json(200, get_notes(self.data_dir).save(payload))
@@ -338,9 +362,26 @@ class ExpenseHandler(BaseHTTPRequestHandler):
                 self._json(200, get_house(self.data_dir).save_name(payload.get("name")))
             elif path == "/api/house/model3d-layout":
                 self._json(200, get_house(self.data_dir).save_model3d_layout(payload))
+            elif path == "/api/prompts/quotation-ingestion":
+                ids = payload.get("ids") if isinstance(payload.get("ids"), list) else None
+                self._json(
+                    200,
+                    build_quotation_ingestion_prompt(
+                        store,
+                        ids,
+                        str(payload.get("source_text") or ""),
+                    ),
+                )
             elif path == "/api/prompts/price-discovery":
                 ids = payload.get("ids") if isinstance(payload.get("ids"), list) else None
-                self._json(200, build_price_discovery_prompt(store, ids))
+                self._json(
+                    200,
+                    build_price_discovery_prompt(
+                        store,
+                        ids,
+                        str(payload.get("source_text") or ""),
+                    ),
+                )
             elif path == "/api/import/preview":
                 self._json(
                     200,
@@ -364,6 +405,9 @@ class ExpenseHandler(BaseHTTPRequestHandler):
                         rows,
                         pack_text=str(payload.get("pack_text") or ""),
                         pack_id=str(payload.get("pack_id") or "price"),
+                        expense_context=str(
+                            payload.get("expense_context") or ""
+                        ),
                     ),
                 )
             else:
@@ -396,7 +440,9 @@ class ExpenseHandler(BaseHTTPRequestHandler):
                 get_contracts(self.data_dir).sync_expense_link(expense_id)
                 self._json(200, result)
             elif path.startswith("/api/tasks/"):
-                self._json(200, get_tasks(self.data_dir).delete(path[len("/api/tasks/") :]))
+                result = get_tasks(self.data_dir).delete(path[len("/api/tasks/") :])
+                result["expense_state"] = get_store(self.data_dir).state()
+                self._json(200, result)
             elif path.startswith("/api/contracts/"):
                 self._json(200, get_contracts(self.data_dir).archive(path[len("/api/contracts/") :]))
             elif path.startswith("/api/providers/"):
