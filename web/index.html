@@ -6,7 +6,7 @@
     <meta name="color-scheme" content="dark" />
     <title>my-home</title>
     <link rel="stylesheet" href="/styles.css?v=20260916-13" />
-    <link rel="stylesheet" href="/tasks.css?v=20260916-13" />
+    <link rel="stylesheet" href="/tasks.css?v=20260916-14" />
     <script type="importmap">
       { "imports": { "three": "/vendor/three/three.module.js" } }
     </script>
@@ -157,7 +157,7 @@
                   </div>
                 </div>
                 <div class="coverage-donut-copy">
-                  <span>Base de 99,5% + reserva futura</span>
+                  <span>Recursos atuais + reserva futura</span>
                   <p id="overall-gap" class="section-sub"></p>
                 </div>
               </div>
@@ -232,53 +232,24 @@
         </section>
 
         <section
-          class="financial-projection-section"
-          aria-labelledby="financial-projection-title"
+          class="financial-projection-section savings-only-section"
+          aria-labelledby="house-savings-title"
         >
           <div class="section-heading-row">
             <div>
-              <h2 id="financial-projection-title" class="section-title">
-                Projeção financeira familiar
+              <h2 id="house-savings-title" class="section-title">
+                Reserva planejada para a casa
               </h2>
               <p class="section-sub">
-                Setembro de 2026 a dezembro de 2027 · renda conjunta de R$
-                11.500/mês
+                Eduardo guarda R$ 400 e Leo guarda R$ 400 por mês.
               </p>
             </div>
-            <span class="date-badge">16 meses</span>
+            <span class="date-badge">R$ 12.800 em 16 meses</span>
           </div>
-          <div class="cashflow-metrics">
-            <article>
-              <span>Economia projetada</span
-              ><strong id="cashflow-total-savings">R$ 0,00</strong>
-            </article>
-            <article>
-              <span>Média mensal</span
-              ><strong id="cashflow-average-savings">R$ 0,00</strong>
-            </article>
-            <article>
-              <span>Despesas no período</span
-              ><strong id="cashflow-total-expenses">R$ 0,00</strong>
-            </article>
-          </div>
-          <div class="projection-grid">
+          <div class="savings-only-grid">
             <article class="projection-panel">
               <div class="projection-title">
-                <h3>Distribuição das despesas</h3>
-                <span>Treemap do período completo</span>
-              </div>
-              <div id="expense-treemap" class="expense-treemap"></div>
-            </article>
-            <article class="projection-panel">
-              <div class="projection-title">
-                <h3>Fluxo de caixa mensal</h3>
-                <span>Valor líquido disponível para guardar</span>
-              </div>
-              <div id="cashflow-line-chart" class="cashflow-line-chart"></div>
-            </article>
-            <article class="projection-panel">
-              <div class="projection-title">
-                <h3>Reserva para a casa</h3>
+                <h3>Nossa economia para a casa</h3>
                 <span id="house-savings-plan-summary"
                   >Eduardo + Leo · R$ 800/mês</span
                 >
@@ -288,24 +259,7 @@
                 class="cashflow-line-chart house-savings-line-chart"
               ></div>
             </article>
-            <article class="projection-panel payment-projection-panel">
-              <div class="projection-title">
-                <h3>Despesas por dia de pagamento</h3>
-                <span id="payment-projection-summary"
-                  >Datas confirmadas e presumidas</span
-                >
-              </div>
-              <div
-                id="payment-projection-chart"
-                class="cashflow-line-chart payment-projection-chart"
-              ></div>
-            </article>
           </div>
-          <details class="monthly-savings-details">
-            <summary>Economia projetada por mês</summary>
-            <div id="monthly-savings-grid" class="monthly-savings-grid"></div>
-          </details>
-          <p id="cashflow-method" class="projection-method"></p>
         </section>
 
         <section
@@ -1420,6 +1374,6 @@
     </dialog>
 
     <datalist id="category-suggestions"></datalist>
-    <script src="/app.js?v=20260916-22"></script>
+    <script src="/app.js?v=20260916-23"></script>
   </body>
 </html>

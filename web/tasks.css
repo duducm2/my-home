@@ -1676,6 +1676,7 @@ select[multiple] { min-height: 110px; }
 #view-dashboard {
   width: calc(100% + 24px);
   margin-inline: -12px;
+  padding-inline: 8px;
 }
 
 #view-dashboard .cockpit-grid {

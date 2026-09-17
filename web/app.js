@@ -484,11 +484,14 @@
       0,
     );
     const totalExpenses = totalIncome - totalSavings;
-    els.cashflowTotalSavings.textContent = formatMoney(totalSavings);
-    els.cashflowAverageSavings.textContent = formatMoney(
-      months.length ? totalSavings / months.length : 0,
-    );
-    els.cashflowTotalExpenses.textContent = formatMoney(totalExpenses);
+    if (els.cashflowTotalSavings)
+      els.cashflowTotalSavings.textContent = formatMoney(totalSavings);
+    if (els.cashflowAverageSavings)
+      els.cashflowAverageSavings.textContent = formatMoney(
+        months.length ? totalSavings / months.length : 0,
+      );
+    if (els.cashflowTotalExpenses)
+      els.cashflowTotalExpenses.textContent = formatMoney(totalExpenses);
 
     const categoryTotals = categories
       .map((category, index) => ({
@@ -508,15 +511,16 @@
       }))
       .sort((a, b) => b.value - a.value);
     const rectangles = treemapLayout(categoryTotals);
-    els.expenseTreemap.innerHTML = `<svg viewBox="0 0 1000 360" role="img" aria-label="Treemap da distribuição das despesas">${rectangles
-      .map(
-        (item) => `
+    if (els.expenseTreemap)
+      els.expenseTreemap.innerHTML = `<svg viewBox="0 0 1000 360" role="img" aria-label="Treemap da distribuição das despesas">${rectangles
+        .map(
+          (item) => `
       <g><rect x="${item.x + 2}" y="${item.y + 2}" width="${Math.max(0, item.width - 4)}" height="${Math.max(0, item.height - 4)}" rx="8" fill="${item.color}" fill-opacity=".78"></rect>
       <text x="${item.x + 15}" y="${item.y + 27}" class="treemap-label">${escapeHtml(item.label)}</text>
       <text x="${item.x + 15}" y="${item.y + 49}" class="treemap-value">${formatMoney(item.value)}</text>
       <title>${escapeHtml(item.label)}: ${formatMoney(item.value)}</title></g>`,
-      )
-      .join("")}</svg>`;
+        )
+        .join("")}</svg>`;
 
     const width = 1000;
     const height = 280;
@@ -546,7 +550,8 @@
         return `<line x1="${margin.left}" y1="${y}" x2="${margin.left + plotWidth}" y2="${y}" class="cashflow-grid-line"></line><text x="${margin.left - 9}" y="${y + 4}" text-anchor="end" class="cashflow-axis-label">${formatMoney(maximum * ratio).replace(",00", "")}</text>`;
       })
       .join("");
-    els.cashflowLineChart.innerHTML = `<svg viewBox="0 0 ${width} ${height}" role="img" aria-label="Fluxo de caixa líquido mensal projetado">${grid}<polygon points="${area}" class="cashflow-area"></polygon><polyline points="${polyline}" class="cashflow-line"></polyline>${points.map(({ x, y, item }, index) => `<g><circle cx="${x}" cy="${y}" r="5" class="cashflow-point"></circle><title>${cashflowMonthLabel(item.month)}: ${formatMoney(item.net_savings)}</title>${index % 2 === 0 || index === points.length - 1 ? `<text x="${x}" y="${height - 15}" text-anchor="middle" class="cashflow-axis-label">${cashflowMonthLabel(item.month)}</text>` : ""}</g>`).join("")}</svg>`;
+    if (els.cashflowLineChart)
+      els.cashflowLineChart.innerHTML = `<svg viewBox="0 0 ${width} ${height}" role="img" aria-label="Fluxo de caixa líquido mensal projetado">${grid}<polygon points="${area}" class="cashflow-area"></polygon><polyline points="${polyline}" class="cashflow-line"></polyline>${points.map(({ x, y, item }, index) => `<g><circle cx="${x}" cy="${y}" r="5" class="cashflow-point"></circle><title>${cashflowMonthLabel(item.month)}: ${formatMoney(item.net_savings)}</title>${index % 2 === 0 || index === points.length - 1 ? `<text x="${x}" y="${height - 15}" text-anchor="middle" class="cashflow-axis-label">${cashflowMonthLabel(item.month)}</text>` : ""}</g>`).join("")}</svg>`;
 
     const savingsPlan = payload.house_savings_plan || {};
     const monthlyContribution =
@@ -596,14 +601,18 @@
     els.houseSavingsPlanSummary.textContent = `${formatMoney(savingsPlan.eduardo_monthly || 0)} Eduardo + ${formatMoney(savingsPlan.leonardo_monthly || 0)} Leo/mês · total ${formatMoney(projectedTotal)}`;
     els.houseSavingsLineChart.innerHTML = `<svg viewBox="0 0 ${width} ${height}" role="img" aria-label="Reserva acumulada de ${formatMoney(projectedTotal)} para despesas da casa">${savingsGrid}<polygon points="${savingsArea}" class="house-savings-area"></polygon><polyline points="${savingsPolyline}" class="house-savings-line"></polyline>${savingsPoints.map(({ x, y, item }, index) => `<g><circle cx="${x}" cy="${y}" r="5" class="house-savings-point"></circle><title>${cashflowMonthLabel(item.month)}: aporte ${formatMoney(item.contribution)} · acumulado ${formatMoney(item.cumulative)}</title>${index % 2 === 0 || index === savingsPoints.length - 1 ? `<text x="${x}" y="${height - 15}" text-anchor="middle" class="cashflow-axis-label">${cashflowMonthLabel(item.month)}</text>` : ""}</g>`).join("")}</svg>`;
 
-    let cumulative = 0;
-    els.monthlySavingsGrid.innerHTML = months
-      .map((item) => {
-        cumulative += Number(item.net_savings || 0);
-        return `<article><span>${cashflowMonthLabel(item.month)}${item.estimated ? " · estimado" : ""}</span><strong>${formatMoney(item.net_savings)}</strong><small>Acumulado ${formatMoney(cumulative)}</small></article>`;
-      })
-      .join("");
-    els.cashflowMethod.textContent = (payload.interpolation || {}).method || "";
+    if (els.monthlySavingsGrid) {
+      let cumulative = 0;
+      els.monthlySavingsGrid.innerHTML = months
+        .map((item) => {
+          cumulative += Number(item.net_savings || 0);
+          return `<article><span>${cashflowMonthLabel(item.month)}${item.estimated ? " · estimado" : ""}</span><strong>${formatMoney(item.net_savings)}</strong><small>Acumulado ${formatMoney(cumulative)}</small></article>`;
+        })
+        .join("");
+    }
+    if (els.cashflowMethod)
+      els.cashflowMethod.textContent =
+        (payload.interpolation || {}).method || "";
     renderDashboard();
   }
 
@@ -811,9 +820,7 @@
       {
         id: "fgts",
         label: sources.find((item) => item.id === "fgts")?.label || "FGTS",
-        value: Number(
-          sources.find((item) => item.id === "fgts")?.amount || 0,
-        ),
+        value: Number(sources.find((item) => item.id === "fgts")?.amount || 0),
       },
       {
         id: "flexible",
@@ -853,13 +860,7 @@
         .map((slice) => `${slice.label}: ${formatMoney(slice.value)}`)
         .join(" · "),
     );
-    const baselineCoverage = Number(
-      savingsPlan.baseline_coverage_percent ||
-        (state.totals.all ? (fundsTotal / state.totals.all) * 100 : 0),
-    );
-    const projectedCovered =
-      (Number(state.totals.all || 0) * baselineCoverage) / 100 +
-      projectedSavings;
+    const projectedCovered = fundsTotal + projectedSavings;
     const coverage = state.totals.all
       ? (projectedCovered / state.totals.all) * 100
       : 0;
@@ -873,7 +874,7 @@
       `${coverage.toFixed(1).replace(".", ",")}% do orçamento coberto`,
     );
     const gap = projectedCovered - Number(state.totals.all || 0);
-    els.overallGap.textContent = `Base ${baselineCoverage.toFixed(1).replace(".", ",")}% + ${formatMoney(projectedSavings)} · ${
+    els.overallGap.textContent = `${formatMoney(fundsTotal)} atuais + ${formatMoney(projectedSavings)} projetados · ${
       gap >= 0
         ? `margem de ${formatMoney(gap)}`
         : `lacuna de ${formatMoney(Math.abs(gap))}`
@@ -916,8 +917,7 @@
 
   function matchesGanttFilters(task) {
     return (
-      (!state.ganttStatusFilter ||
-        task.status === state.ganttStatusFilter) &&
+      (!state.ganttStatusFilter || task.status === state.ganttStatusFilter) &&
       (!state.ganttPriorityFilter ||
         Number(task.priority) === state.ganttPriorityFilter)
     );
@@ -933,8 +933,7 @@
       )
         return;
       visible.push(macro);
-      if (state.expandedMacros.has(macro.id))
-        visible.push(...children);
+      if (state.expandedMacros.has(macro.id)) visible.push(...children);
     });
     return visible;
   }
@@ -1071,7 +1070,8 @@
       .join("");
     const priorityCounts = allDetails.reduce(
       (map, task) => (
-        (map[task.priority] = (map[task.priority] || 0) + 1), map
+        (map[task.priority] = (map[task.priority] || 0) + 1),
+        map
       ),
       {},
     );

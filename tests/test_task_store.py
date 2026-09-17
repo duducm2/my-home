@@ -274,14 +274,10 @@ class MigrationIntegrityTests(unittest.TestCase):
         self.assertEqual(800.0, savings_plan["combined_monthly"])
         self.assertEqual(16, savings_plan["installments"])
         self.assertEqual(12800.0, savings_plan["projected_total"])
-        self.assertEqual(99.5, savings_plan["baseline_coverage_percent"])
         self.assertEqual(
             savings_plan["projected_total"],
             savings_plan["installments"]
-            * (
-                savings_plan["eduardo_monthly"]
-                + savings_plan["leonardo_monthly"]
-            ),
+            * (savings_plan["eduardo_monthly"] + savings_plan["leonardo_monthly"]),
         )
         self.assertEqual(
             savings_plan["projected_total"],
@@ -296,10 +292,7 @@ class MigrationIntegrityTests(unittest.TestCase):
         self.assertEqual(2, document["version"])
         self.assertGreater(len(tasks), 0)
         self.assertTrue(
-            all(
-                task["date_status"] in {"estimated", "confirmed"}
-                for task in tasks
-            )
+            all(task["date_status"] in {"estimated", "confirmed"} for task in tasks)
         )
         self.assertTrue(any(task["date_status"] == "estimated" for task in tasks))
         macros = {task["id"] for task in tasks if task["activity_type"] == "macro"}
