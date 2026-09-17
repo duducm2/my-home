@@ -168,6 +168,8 @@
     expenseServiceLinks: $("expense-service-links"),
     fieldProvider: $("field-provider"),
     fieldContract: $("field-contract"),
+    expenseAllocationList: $("expense-allocation-list"),
+    expenseAllocationEmpty: $("expense-allocation-empty"),
     expenseDocumentsHelp: $("expense-documents-help"),
     expenseDocumentUpload: $("expense-document-upload"),
     expenseSystemDocument: $("expense-system-document"),
@@ -199,6 +201,8 @@
     quotationVendorFilter: $("quotation-vendor-filter"),
     quotationStatusFilter: $("quotation-status-filter"),
     quotationShowArchived: $("quotation-show-archived"),
+    quotationBento: $("quotation-bento"),
+    quotationBentoStatus: $("quotation-bento-status"),
     quotationPagination: $("quotation-pagination"),
     quotationPageStatus: $("quotation-page-status"),
     btnQuotationPrevious: $("btn-quotation-previous"),
@@ -625,33 +629,20 @@
     });
   }
 
-  function priceCell(item) {
-    const parts = [];
-    const count = (item.quotations || []).length;
-    if (item.unit_price != null) parts.push(formatMoney(item.unit_price));
-    parts.push(
-      `${item.scenario?.expected_quantity ?? item.quantity ?? 0} ${escapeHtml(item.unit || "")}`,
+  function unitPriceCell(item) {
+    const minimumId = item.scenario?.minimum_quotation_id;
+    const cheapest = (item.quotations || []).find(
+      (quote) => quote.id === minimumId,
     );
-    if (item.scenario?.minimum != null && item.scenario?.maximum != null)
-      parts.push(
-        `mín. ${formatMoney(item.scenario.minimum)} · máx. ${formatMoney(item.scenario.maximum)}`,
-      );
-    if (item.scenario?.unpriced)
-      parts.push('<span class="badge">Sem cotação</span>');
-    if (item.vendor) parts.push(escapeHtml(item.vendor));
-    if (item.product_url)
-      parts.push(
-        `<a class="link-btn" href="${escapeAttr(item.product_url)}" target="_blank" rel="noopener">abrir</a>`,
-      );
-    parts.push(
-      `<span class="quote-count">${count} ${count === 1 ? "cotação" : "cotações"}</span>`,
-    );
-    const attachmentCount = (item.attachments || []).length;
-    if (attachmentCount)
-      parts.push(
-        `<span class="badge">${attachmentCount} ${attachmentCount === 1 ? "documento" : "documentos"}</span>`,
-      );
-    return parts.join(" · ") || "—";
+    if (!cheapest || cheapest.unit_price == null) {
+      return item.scenario?.unpriced
+        ? '<span class="badge">Sem cotação</span>'
+        : "—";
+    }
+    const vendor = cheapest.vendor
+      ? `<small class="unit-price-vendor">${escapeHtml(cheapest.vendor)}</small>`
+      : "";
+    return `<span class="unit-price-cell"><strong>${formatMoney(cheapest.unit_price)}</strong><span class="unit-price-suffix">/ ${escapeHtml(item.unit || cheapest.unit || "un")}</span>${vendor}</span>`;
   }
 
   function renderExpenseTable() {
@@ -668,8 +659,9 @@
           item,
         ) => `<tr class="expense-row" data-open-quotations="${escapeAttr(item.id)}" tabindex="0" aria-label="Gerenciar cotações de ${escapeAttr(item.description)}">
       <td>${escapeHtml(item.category)}</td>
-      <td>${itemLabel(item.description, item.icon_key)}</td><td class="num">${formatMoney(item.value)}</td>
-      <td>${priceCell(item)}</td><td class="actions"><button class="btn quotation-action-btn" data-open-expense-quotations="${escapeAttr(item.id)}" title="Abrir planejamento, respostas e cotações">Cotações <span>${(item.quotations || []).length}</span></button><button class="btn" data-edit-expense="${item.id}">Editar</button><button class="btn danger" data-delete-expense="${item.id}">Excluir</button></td>
+      <td>${itemLabel(item.description, item.icon_key)}</td>
+      <td class="num">${unitPriceCell(item)}</td>
+      <td class="actions"><button class="btn" data-edit-expense="${item.id}">Editar</button><button class="btn danger" data-delete-expense="${item.id}">Excluir</button></td>
     </tr>`,
       )
       .join("");
@@ -1536,15 +1528,35 @@
                 ? `${allocation.expected_quantity} ${expense.unit} ${expense.description}${cost == null ? " (sem cotação)" : ` ${formatMoney(cost)}`}`
                 : "";
             })
-            .filter(Boolean)
-            .join(" + ");
+            .filter(Boolean);
+          const activityTotal = (task.expense_allocations || []).reduce(
+            (sum, allocation) => {
+              const expense = state.expenses.find(
+                (item) => item.id === allocation.expense_id,
+              );
+              return (
+                sum +
+                Number(
+                  allocationCost(
+                    expense,
+                    allocation.expected_quantity,
+                    "planned",
+                  ) || 0,
+                )
+              );
+            },
+            0,
+          );
+          const expenseDetail = taskExpenses.length
+            ? ` · ${escapeHtml(taskExpenses.join(" + "))}${activityTotal ? ` · total ${formatMoney(activityTotal)}` : ""}`
+            : "";
           const macroChildren = childTasks(task.id);
           const filteredChildren = macroChildren.filter(matchesGanttFilters);
           const macroCount =
             state.ganttStatusFilter || state.ganttPriorityFilter
               ? `${filteredChildren.length} de ${macroChildren.length} atividades`
               : `${macroChildren.length} atividades`;
-          const detail = `${task.activity_type === "macro" ? `${macroCount} · ${task.progress || 0}%` : `P${task.priority} · #${task.sequence}`} · ${escapeHtml(statusLabels[task.status])}${task.date_status === "estimated" ? " · estimada" : ""}${taskExpenses ? ` · ${escapeHtml(taskExpenses)}` : ""}`;
+          const detail = `${task.activity_type === "macro" ? `${macroCount} · ${task.progress || 0}%` : `P${task.priority} · #${task.sequence}`} · ${escapeHtml(statusLabels[task.status])}${task.date_status === "estimated" ? " · estimada" : ""}${expenseDetail}`;
           const content = `${iconMarkup(task.icon_key, task.title)}<span><strong>${escapeHtml(task.title)}</strong><small>${detail}</small></span>`;
           if (task.activity_type === "macro")
             return `<div class="gantt-label-row macro">
@@ -1729,14 +1741,19 @@
   }
 
   function allocationCost(expense, quantity, scenarioName) {
-    const total = expense?.scenario?.[scenarioName];
-    const expenseQuantity = Number(expense?.scenario?.expected_quantity || 0);
-    if (total == null || expenseQuantity <= 0) return null;
-    const quoteId = expense.scenario[`${scenarioName}_quotation_id`];
-    const quote = (expense.quotations || []).find(
+    const quoteId = expense?.scenario?.[`${scenarioName}_quotation_id`];
+    const quote = (expense?.quotations || []).find(
       (item) => item.id === quoteId,
     );
-    return Number(quantity || 0) * Number(quote?.unit_price || 0);
+    if (!quote || quote.unit_price == null) return null;
+    return roundMoney(
+      Number(quantity || 0) * Number(quote.unit_price || 0) +
+        Number(quote.shipping_cost || 0),
+    );
+  }
+
+  function roundMoney(value) {
+    return Math.round((Number(value) || 0) * 100) / 100;
   }
 
   function renderTaskAllocations() {
@@ -1791,7 +1808,7 @@
       0,
     );
     els.taskAllocationTotal.textContent = state.editingTaskAllocations.length
-      ? `Custo unitário planejado da atividade: ${formatMoney(plannedTotal)} (frete aplicado na projeção geral)`
+      ? `Total de uso das despesas nesta atividade: ${formatMoney(plannedTotal)} (preço unitário × quantidade + frete)`
       : "Nenhuma despesa vinculada.";
   }
 
@@ -2182,6 +2199,27 @@
     }
   }
 
+  function renderExpenseAllocationUsage(item = null) {
+    const allocations = item?.expense_allocations || [];
+    els.expenseAllocationEmpty.classList.toggle(
+      "hidden",
+      allocations.length > 0,
+    );
+    els.expenseAllocationList.innerHTML = allocations
+      .map((allocation) => {
+        const qty = Number(allocation.expected_quantity || 0);
+        const unit = item?.unit || "";
+        return `<article class="expense-allocation-card">
+          <div>
+            <strong>${escapeHtml(allocation.task_title || allocation.task_id || "Atividade")}</strong>
+            <small>${escapeHtml(allocation.date || "—")}${allocation.date_status === "estimated" ? " · estimada" : ""}</small>
+          </div>
+          <span>${qty} ${escapeHtml(unit)}</span>
+        </article>`;
+      })
+      .join("");
+  }
+
   function openExpenseDialog(item = null) {
     els.dialogTitle.textContent = item ? "Editar despesa" : "Nova despesa";
     els.fieldId.value = item?.id || "";
@@ -2200,6 +2238,7 @@
       ),
     );
     renderExpensePayments();
+    renderExpenseAllocationUsage(item);
     els.expenseDocumentStatus.classList.add("hidden");
     renderExpenseDocuments();
     els.formError.classList.add("hidden");
@@ -2525,6 +2564,83 @@
     syncQuotationCategorySelection(true);
   }
 
+  function quotationEvidenceItems(expenseId, quote) {
+    const items = [];
+    if (quote.product_url) {
+      items.push({
+        kind: "web",
+        label: "Abrir oferta na web",
+        url: quote.product_url,
+      });
+    }
+    for (const document of quote.attachments || []) {
+      items.push({
+        kind: "document",
+        label: `PDF: ${document.original_filename || document.filename || document.id}`,
+        url: `/api/expenses/${encodeURIComponent(expenseId)}/quotations/${encodeURIComponent(quote.id)}/documents/${encodeURIComponent(document.id)}`,
+      });
+    }
+    return items;
+  }
+
+  function openQuotationEvidence(url) {
+    if (!url) return;
+    window.open(url, "_blank", "noopener");
+  }
+
+  function closeQuotationEvidenceMenus(exceptPill = null) {
+    els.quotationBento
+      ?.querySelectorAll(".quote-price-pill.open")
+      .forEach((pill) => {
+        if (pill !== exceptPill) pill.classList.remove("open");
+      });
+  }
+
+  function renderQuotationBento(expense, visible) {
+    if (!els.quotationBento) return;
+    els.quotationBentoStatus?.classList.add("hidden");
+    const cheapestId = expense.scenario?.minimum_quotation_id;
+    els.quotationBento.innerHTML = visible
+      .map((quote) => {
+        const isSelected = quote.id === expense.selected_quotation_id;
+        const isCheapest = quote.id === cheapestId;
+        const evidence = quotationEvidenceItems(expense.id, quote);
+        const landed =
+          Number(quote.unit_price || 0) *
+            Number(expense.scenario?.expected_quantity || 0) +
+          Number(quote.shipping_cost || 0);
+        const tip = [
+          quote.vendor,
+          quote.response_status || "recebida",
+          isSelected ? "escolhida" : "",
+          isCheapest ? "menor custo" : "",
+          `total projetado ${formatMoney(landed)}`,
+          evidence.length
+            ? `${evidence.length} evidência(s)`
+            : "sem evidência",
+        ]
+          .filter(Boolean)
+          .join(" · ");
+        const menu =
+          evidence.length > 1
+            ? `<div class="quote-evidence-menu" role="menu">${evidence
+                .map(
+                  (item) =>
+                    `<button type="button" class="quote-evidence-item" data-evidence-url="${escapeAttr(item.url)}" role="menuitem">${escapeHtml(item.label)}</button>`,
+                )
+                .join("")}</div>`
+            : "";
+        return `<button type="button" class="quote-price-pill${isSelected ? " selected" : ""}${isCheapest ? " cheapest" : ""}${evidence.length ? "" : " no-evidence"}" data-quote-pill="${escapeAttr(quote.id)}" data-evidence-count="${evidence.length}" ${evidence.length === 1 ? `data-evidence-url="${escapeAttr(evidence[0].url)}"` : ""} title="${escapeAttr(tip)}">
+          <strong>${formatMoney(quote.unit_price)}</strong>
+          <span>${escapeHtml(quote.vendor || "Sem fornecedor")}</span>
+          ${isCheapest ? '<em class="pill-flag">menor</em>' : ""}
+          ${isSelected ? '<em class="pill-flag selected">escolhida</em>' : ""}
+          ${menu}
+        </button>`;
+      })
+      .join("");
+  }
+
   function renderQuotationManager() {
     const expense = currentQuotationExpense();
     if (!expense) return;
@@ -2572,6 +2688,7 @@
             .toLocaleLowerCase("pt-BR")
             .includes(query)),
     );
+    renderQuotationBento(expense, visible);
     const totalPages = Math.max(
       1,
       Math.ceil(visible.length / QUOTATIONS_PER_PAGE),
@@ -2710,7 +2827,7 @@
     els.quotationVendorFilter.value = focusVendor;
     renderQuotationManager();
     renderQuotationPlanning();
-    setQuotationTab(focusVendor ? "responses" : "planning");
+    setQuotationTab("responses");
     els.quotationDialog.showModal();
   }
 
@@ -4629,6 +4746,40 @@
   els.quotationVendorFilter.addEventListener("change", () => {
     state.quotationPage = 1;
     renderQuotationManager();
+  });
+  els.quotationBento.addEventListener("click", (event) => {
+    const evidenceItem = event.target.closest("[data-evidence-url]");
+    if (evidenceItem?.dataset.evidenceUrl) {
+      event.preventDefault();
+      event.stopPropagation();
+      openQuotationEvidence(evidenceItem.dataset.evidenceUrl);
+      closeQuotationEvidenceMenus();
+      return;
+    }
+    const pill = event.target.closest("[data-quote-pill]");
+    if (!pill) return;
+    event.preventDefault();
+    const count = Number(pill.dataset.evidenceCount || 0);
+    if (count <= 0) {
+      setStatus(
+        els.quotationBentoStatus,
+        "err",
+        "Sem evidência (link ou PDF) nesta cotação.",
+      );
+      closeQuotationEvidenceMenus();
+      return;
+    }
+    if (count === 1 && pill.dataset.evidenceUrl) {
+      openQuotationEvidence(pill.dataset.evidenceUrl);
+      closeQuotationEvidenceMenus();
+      return;
+    }
+    const wasOpen = pill.classList.contains("open");
+    closeQuotationEvidenceMenus();
+    if (!wasOpen) pill.classList.add("open");
+  });
+  document.addEventListener("click", (event) => {
+    if (!event.target.closest("#quotation-bento")) closeQuotationEvidenceMenus();
   });
   els.btnQuotationPrevious.addEventListener("click", () => {
     if (state.quotationPage <= 1) return;

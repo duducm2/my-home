@@ -1807,6 +1807,33 @@ select[multiple] { min-height: 110px; }
   color: #ff8b7d;
 }
 
+.expense-allocation-usage {
+  display: grid;
+  gap: 8px;
+  margin: 10px 0 4px;
+}
+
+.expense-allocation-list {
+  display: grid;
+  gap: 6px;
+}
+
+.expense-allocation-card {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  align-items: center;
+  padding: 8px 10px;
+  border: 1px solid var(--line);
+  border-radius: calc(var(--radius) - 2px);
+}
+
+.expense-allocation-card small {
+  display: block;
+  margin-top: 2px;
+  color: var(--muted);
+}
+
 .expense-documents {
   display: grid;
   gap: 10px;

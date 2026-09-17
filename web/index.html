@@ -485,8 +485,8 @@
           <div>
             <strong>Workspace de cotações</strong>
             <p>
-              Abra uma despesa para planejar contatos com fornecedores, acompanhar
-              respostas e comparar todas as cotações recebidas.
+              Clique em uma despesa para abrir respostas, comparar preços no
+              bento e acessar evidências. Use Editar para dados e documentos.
             </p>
           </div>
         </aside>
@@ -506,7 +506,10 @@
               </p>
             </div>
           </div>
-          <div id="supplier-quotation-list" class="supplier-quotation-list"></div>
+          <div
+            id="supplier-quotation-list"
+            class="supplier-quotation-list"
+          ></div>
           <p id="supplier-quotation-empty" class="empty hidden">
             Nenhuma cotação deste fornecedor.
           </p>
@@ -531,8 +534,7 @@
               <tr>
                 <th>Categoria</th>
                 <th>Descrição</th>
-                <th class="num">Planejado</th>
-                <th>Cenários e preço unitário</th>
+                <th class="num">Preço por unidade</th>
                 <th class="actions">Ações</th>
               </tr>
             </thead>
@@ -569,8 +571,21 @@
           <h3 class="project-heading">Contratos</h3>
           <div id="contract-list" class="contract-grid"></div>
           <div class="provider-directory-heading">
-            <div><h3 class="project-heading">Diretório unificado de fornecedores e prestadores</h3><p class="section-sub">Contatos reutilizáveis em cotações, despesas e contratos.</p></div>
-            <label>Buscar no diretório <input id="provider-directory-search" type="search" placeholder="Nome, papel, cidade, categoria..." /></label>
+            <div>
+              <h3 class="project-heading">
+                Diretório unificado de fornecedores e prestadores
+              </h3>
+              <p class="section-sub">
+                Contatos reutilizáveis em cotações, despesas e contratos.
+              </p>
+            </div>
+            <label
+              >Buscar no diretório
+              <input
+                id="provider-directory-search"
+                type="search"
+                placeholder="Nome, papel, cidade, categoria..."
+            /></label>
           </div>
           <div id="provider-list" class="provider-grid"></div>
         </section>
@@ -1060,6 +1075,24 @@
             </select></label
           >
         </div>
+        <section id="expense-allocation-usage" class="expense-allocation-usage">
+          <div class="expense-payment-head">
+            <div>
+              <strong>Uso nas atividades</strong>
+              <small
+                >Quantidades vinculadas no cronograma (soma define a quantidade
+                desta despesa).</small
+              >
+            </div>
+          </div>
+          <div
+            id="expense-allocation-list"
+            class="expense-allocation-list"
+          ></div>
+          <p id="expense-allocation-empty" class="empty">
+            Nenhuma atividade vinculada.
+          </p>
+        </section>
         <section class="expense-payment-editor">
           <div class="expense-payment-head">
             <div>
@@ -1114,7 +1147,11 @@
           <p id="expense-document-empty" class="empty">
             Nenhum documento anexado.
           </p>
-          <p id="expense-document-status" class="push-status hidden" aria-live="polite"></p>
+          <p
+            id="expense-document-status"
+            class="push-status hidden"
+            aria-live="polite"
+          ></p>
         </section>
         <p id="form-error" class="error hidden"></p>
         <div class="dialog-actions">
@@ -1136,236 +1173,399 @@
             Fechar
           </button>
         </header>
-        <nav class="quotation-tabs" role="tablist" aria-label="Módulos da cotação">
-          <button id="quotation-planning-tab" type="button" class="btn active" role="tab" aria-selected="true" aria-controls="quotation-planning-panel" data-quotation-tab="planning">
+        <nav
+          class="quotation-tabs"
+          role="tablist"
+          aria-label="Módulos da cotação"
+        >
+          <button
+            id="quotation-planning-tab"
+            type="button"
+            class="btn active"
+            role="tab"
+            aria-selected="true"
+            aria-controls="quotation-planning-panel"
+            data-quotation-tab="planning"
+          >
             1. Planejamento e fornecedores
           </button>
-          <button id="quotation-responses-tab" type="button" class="btn" role="tab" aria-selected="false" aria-controls="quotation-responses-panel" data-quotation-tab="responses">
+          <button
+            id="quotation-responses-tab"
+            type="button"
+            class="btn"
+            role="tab"
+            aria-selected="false"
+            aria-controls="quotation-responses-panel"
+            data-quotation-tab="responses"
+          >
             2. Respostas e cotações
           </button>
         </nav>
 
-        <section id="quotation-planning-panel" class="quotation-module" role="tabpanel" aria-labelledby="quotation-planning-tab">
+        <section
+          id="quotation-planning-panel"
+          class="quotation-module"
+          role="tabpanel"
+          aria-labelledby="quotation-planning-tab"
+        >
           <div class="quotation-planning-grid">
             <aside class="quotation-scope">
               <div class="panel-head">
-                <div><span class="panel-kicker">Escopo persistente</span><h3>Itens para cotar</h3></div>
-                <button id="btn-save-quotation-scope" type="button" class="btn">Salvar seleção</button>
+                <div>
+                  <span class="panel-kicker">Escopo persistente</span>
+                  <h3>Itens para cotar</h3>
+                </div>
+                <button id="btn-save-quotation-scope" type="button" class="btn">
+                  Salvar seleção
+                </button>
               </div>
-              <p class="section-sub">Esta seleção é independente dos filtros da lista de despesas.</p>
-              <label>Buscar itens <input id="quotation-scope-search" type="search" placeholder="Categoria ou despesa..." /></label>
+              <p class="section-sub">
+                Esta seleção é independente dos filtros da lista de despesas.
+              </p>
+              <label
+                >Buscar itens
+                <input
+                  id="quotation-scope-search"
+                  type="search"
+                  placeholder="Categoria ou despesa..."
+              /></label>
               <div id="quotation-scope-list" class="quotation-scope-list"></div>
-              <p id="quotation-planning-status" class="push-status hidden" aria-live="polite"></p>
+              <p
+                id="quotation-planning-status"
+                class="push-status hidden"
+                aria-live="polite"
+              ></p>
             </aside>
             <div class="quotation-campaign">
               <div class="panel-head">
-                <div><span class="panel-kicker">Campanha desta despesa</span><h3>Contato com fornecedores</h3></div>
-                <button id="btn-save-quotation-campaign" type="button" class="btn primary">Salvar planejamento</button>
+                <div>
+                  <span class="panel-kicker">Campanha desta despesa</span>
+                  <h3>Contato com fornecedores</h3>
+                </div>
+                <button
+                  id="btn-save-quotation-campaign"
+                  type="button"
+                  class="btn primary"
+                >
+                  Salvar planejamento
+                </button>
               </div>
-              <label>Mensagem pronta para WhatsApp
-                <textarea id="quotation-outreach-message" rows="7" placeholder="Olá! Gostaria de solicitar uma cotação..."></textarea>
+              <label
+                >Mensagem pronta para WhatsApp
+                <textarea
+                  id="quotation-outreach-message"
+                  rows="7"
+                  placeholder="Olá! Gostaria de solicitar uma cotação..."
+                ></textarea>
               </label>
               <div class="panel-row">
-                <button id="btn-copy-outreach-message" type="button" class="btn">Copiar mensagem</button>
-                <span id="quotation-copy-status" class="clipboard-status" aria-live="polite"></span>
+                <button
+                  id="btn-copy-outreach-message"
+                  type="button"
+                  class="btn"
+                >
+                  Copiar mensagem
+                </button>
+                <span
+                  id="quotation-copy-status"
+                  class="clipboard-status"
+                  aria-live="polite"
+                ></span>
               </div>
               <div class="quotation-vendor-toolbar">
-                <label class="grow">Vincular fornecedor
-                  <select id="quotation-provider-select"><option value="">Selecione...</option></select>
+                <label class="grow"
+                  >Vincular fornecedor
+                  <select id="quotation-provider-select">
+                    <option value="">Selecione...</option>
+                  </select>
                 </label>
-                <button id="btn-link-quotation-provider" type="button" class="btn">Vincular</button>
-                <button id="btn-new-quotation-provider" type="button" class="btn">Novo fornecedor</button>
+                <button
+                  id="btn-link-quotation-provider"
+                  type="button"
+                  class="btn"
+                >
+                  Vincular
+                </button>
+                <button
+                  id="btn-new-quotation-provider"
+                  type="button"
+                  class="btn"
+                >
+                  Novo fornecedor
+                </button>
               </div>
-              <div id="quotation-linked-providers" class="quotation-linked-providers"></div>
+              <div
+                id="quotation-linked-providers"
+                class="quotation-linked-providers"
+              ></div>
             </div>
           </div>
         </section>
 
-        <section id="quotation-responses-panel" class="quotation-module hidden" role="tabpanel" aria-labelledby="quotation-responses-tab">
+        <section
+          id="quotation-responses-panel"
+          class="quotation-module hidden"
+          role="tabpanel"
+          aria-labelledby="quotation-responses-tab"
+        >
           <div class="quotation-response-toolbar">
-            <label class="grow">Buscar <input id="quotation-search" type="search" placeholder="Nota, canal, especificação..." /></label>
-            <label>Fornecedor
+            <label class="grow"
+              >Buscar
+              <input
+                id="quotation-search"
+                type="search"
+                placeholder="Nota, canal, especificação..."
+            /></label>
+            <label
+              >Fornecedor
               <select id="quotation-vendor-filter">
                 <option value="">Todos</option>
               </select>
             </label>
-            <label>Status
+            <label
+              >Status
               <select id="quotation-status-filter">
-                <option value="">Todos</option><option value="requested">Solicitada</option>
-                <option value="received">Recebida</option><option value="reviewing">Em análise</option>
-                <option value="accepted">Aceita</option><option value="declined">Recusada</option>
-              </select>
-            </label>
-            <label class="check"><input id="quotation-show-archived" type="checkbox" /> Mostrar arquivadas</label>
-            <button id="btn-new-quotation" type="button" class="btn primary">Adicionar cotação</button>
-          </div>
-          <div id="quotation-list" class="quotation-list"></div>
-          <p id="quotation-empty" class="empty">Nenhuma cotação nesta visualização.</p>
-          <nav id="quotation-pagination" class="quotation-pagination" aria-label="Paginação das cotações">
-            <button id="btn-quotation-previous" type="button" class="btn">Anterior</button>
-            <span id="quotation-page-status" aria-live="polite">Página 1 de 1</span>
-            <button id="btn-quotation-next" type="button" class="btn">Próxima</button>
-          </nav>
-
-          <form id="quotation-form" class="quotation-form hidden">
-          <input id="quotation-id" type="hidden" />
-          <h3 id="quotation-form-title">Nova cotação</h3>
-          <div class="form-grid">
-            <label>Fornecedor do diretório
-              <select id="quotation-provider"><option value="">Sem vínculo</option></select>
-            </label>
-            <label
-              >Fornecedor <input id="quotation-vendor" required maxlength="160"
-            /></label>
-            <label
-              >Preço unitário
-              <input
-                id="quotation-unit-price"
-                type="number"
-                min="0"
-                step="0.01"
-                required
-            /></label>
-            <label
-              >Quantidade
-              <input id="quotation-quantity" type="number" min="0" step="any"
-            /></label>
-            <label>Unidade <input id="quotation-unit" maxlength="40" /></label>
-            <label
-              >Frete
-              <input
-                id="quotation-shipping"
-                type="number"
-                min="0"
-                step="0.01"
-                value="0"
-            /></label>
-            <label
-              >Total efetivo
-              <input id="quotation-total" type="number" min="0" step="0.01"
-            /></label>
-            <label
-              >Data verificada <input id="quotation-checked-at" type="date"
-            /></label>
-            <label>URL direta <input id="quotation-url" type="url" /></label>
-            <label>Status da resposta
-              <select id="quotation-response-status">
-                <option value="requested">Solicitada</option><option value="received">Recebida</option>
-                <option value="reviewing">Em análise</option><option value="accepted">Aceita</option>
+                <option value="">Todos</option>
+                <option value="requested">Solicitada</option>
+                <option value="received">Recebida</option>
+                <option value="reviewing">Em análise</option>
+                <option value="accepted">Aceita</option>
                 <option value="declined">Recusada</option>
               </select>
             </label>
-            <label>Canal
-              <select id="quotation-response-channel">
-                <option value="">Não informado</option><option value="whatsapp">WhatsApp</option>
-                <option value="email">E-mail</option><option value="website">Site</option>
-                <option value="phone">Telefone</option><option value="in_person">Presencial</option>
-                <option value="other">Outro</option>
-              </select>
-            </label>
-            <label>Recebida em <input id="quotation-received-at" type="datetime-local" /></label>
-            <label>Anexar PDF <input id="quotation-document" type="file" accept=".pdf,application/pdf" /></label>
-          </div>
-          <label
-            >Notas <textarea id="quotation-notes" rows="2"></textarea>
-          </label>
-          <p id="quotation-form-error" class="error hidden"></p>
-          <div class="dialog-actions">
-            <button id="btn-cancel-quotation" type="button" class="btn">
-              Cancelar
+            <label class="check"
+              ><input id="quotation-show-archived" type="checkbox" /> Mostrar
+              arquivadas</label
+            >
+            <button id="btn-new-quotation" type="button" class="btn primary">
+              Adicionar cotação
             </button>
-            <button type="submit" class="btn primary">Salvar cotação</button>
           </div>
-        </form>
-
-        <details id="quotation-ai-panel" class="quotation-ai">
-          <summary>Processar texto ou PDF com IA</summary>
-          <p class="section-sub">
-            A pesquisa acontece fora do app. Insira as cotações recebidas, gere
-            o prompt de formatação e envie tudo para sua IA.
+          <div
+            id="quotation-bento"
+            class="quotation-bento"
+            aria-label="Preços das cotações"
+          ></div>
+          <p
+            id="quotation-bento-status"
+            class="quotation-bento-status hidden"
+            aria-live="polite"
+          ></p>
+          <div id="quotation-list" class="quotation-list"></div>
+          <p id="quotation-empty" class="empty">
+            Nenhuma cotação nesta visualização.
           </p>
-          <ol class="quotation-ingestion-steps">
-            <li>Cole o texto ou escolha um PDF com texto selecionável.</li>
-            <li>Revise a extração e gere o prompt.</li>
-            <li>Cole na IA; se necessário, anexe também o PDF original.</li>
-            <li>Cole o pack devolvido, valide e importe.</li>
-          </ol>
-          <label
-            >Texto das cotações
-            <textarea
-              id="quotation-source-input"
-              class="code-box"
-              rows="6"
-              placeholder="Cole uma ou mais cotações aqui..."
-            ></textarea>
-          </label>
-          <div class="panel-row">
-            <input
-              id="quotation-source-file"
-              type="file"
-              accept=".txt,.pdf,text/plain,application/pdf"
-            />
-            <button id="btn-quotation-prompt" type="button" class="btn primary">
-              Gerar prompt de processamento
+          <nav
+            id="quotation-pagination"
+            class="quotation-pagination"
+            aria-label="Paginação das cotações"
+          >
+            <button id="btn-quotation-previous" type="button" class="btn">
+              Anterior
             </button>
-            <button id="btn-copy-quotation-prompt" type="button" class="btn">
-              Copiar prompt
+            <span id="quotation-page-status" aria-live="polite"
+              >Página 1 de 1</span
+            >
+            <button id="btn-quotation-next" type="button" class="btn">
+              Próxima
             </button>
-          </div>
-          <p id="quotation-source-status" class="push-status hidden"></p>
-          <textarea
-            id="quotation-prompt-output"
-            class="code-box"
-            rows="7"
-            readonly
-          ></textarea>
-          <label
-            >Pack formatado pela IA
+          </nav>
+
+          <form id="quotation-form" class="quotation-form hidden">
+            <input id="quotation-id" type="hidden" />
+            <h3 id="quotation-form-title">Nova cotação</h3>
+            <div class="form-grid">
+              <label
+                >Fornecedor do diretório
+                <select id="quotation-provider">
+                  <option value="">Sem vínculo</option>
+                </select>
+              </label>
+              <label
+                >Fornecedor
+                <input id="quotation-vendor" required maxlength="160"
+              /></label>
+              <label
+                >Preço unitário
+                <input
+                  id="quotation-unit-price"
+                  type="number"
+                  min="0"
+                  step="0.01"
+                  required
+              /></label>
+              <label
+                >Quantidade
+                <input id="quotation-quantity" type="number" min="0" step="any"
+              /></label>
+              <label
+                >Unidade <input id="quotation-unit" maxlength="40"
+              /></label>
+              <label
+                >Frete
+                <input
+                  id="quotation-shipping"
+                  type="number"
+                  min="0"
+                  step="0.01"
+                  value="0"
+              /></label>
+              <label
+                >Total efetivo
+                <input id="quotation-total" type="number" min="0" step="0.01"
+              /></label>
+              <label
+                >Data verificada <input id="quotation-checked-at" type="date"
+              /></label>
+              <label>URL direta <input id="quotation-url" type="url" /></label>
+              <label
+                >Status da resposta
+                <select id="quotation-response-status">
+                  <option value="requested">Solicitada</option>
+                  <option value="received">Recebida</option>
+                  <option value="reviewing">Em análise</option>
+                  <option value="accepted">Aceita</option>
+                  <option value="declined">Recusada</option>
+                </select>
+              </label>
+              <label
+                >Canal
+                <select id="quotation-response-channel">
+                  <option value="">Não informado</option>
+                  <option value="whatsapp">WhatsApp</option>
+                  <option value="email">E-mail</option>
+                  <option value="website">Site</option>
+                  <option value="phone">Telefone</option>
+                  <option value="in_person">Presencial</option>
+                  <option value="other">Outro</option>
+                </select>
+              </label>
+              <label
+                >Recebida em
+                <input id="quotation-received-at" type="datetime-local"
+              /></label>
+              <label
+                >Anexar PDF
+                <input
+                  id="quotation-document"
+                  type="file"
+                  accept=".pdf,application/pdf"
+              /></label>
+            </div>
+            <label
+              >Notas <textarea id="quotation-notes" rows="2"></textarea>
+            </label>
+            <p id="quotation-form-error" class="error hidden"></p>
+            <div class="dialog-actions">
+              <button id="btn-cancel-quotation" type="button" class="btn">
+                Cancelar
+              </button>
+              <button type="submit" class="btn primary">Salvar cotação</button>
+            </div>
+          </form>
+
+          <details id="quotation-ai-panel" class="quotation-ai">
+            <summary>Processar texto ou PDF com IA</summary>
+            <p class="section-sub">
+              A pesquisa acontece fora do app. Insira as cotações recebidas,
+              gere o prompt de formatação e envie tudo para sua IA.
+            </p>
+            <ol class="quotation-ingestion-steps">
+              <li>Cole o texto ou escolha um PDF com texto selecionável.</li>
+              <li>Revise a extração e gere o prompt.</li>
+              <li>Cole na IA; se necessário, anexe também o PDF original.</li>
+              <li>Cole o pack devolvido, valide e importe.</li>
+            </ol>
+            <label
+              >Texto das cotações
+              <textarea
+                id="quotation-source-input"
+                class="code-box"
+                rows="6"
+                placeholder="Cole uma ou mais cotações aqui..."
+              ></textarea>
+            </label>
+            <div class="panel-row">
+              <input
+                id="quotation-source-file"
+                type="file"
+                accept=".txt,.pdf,text/plain,application/pdf"
+              />
+              <button
+                id="btn-quotation-prompt"
+                type="button"
+                class="btn primary"
+              >
+                Gerar prompt de processamento
+              </button>
+              <button id="btn-copy-quotation-prompt" type="button" class="btn">
+                Copiar prompt
+              </button>
+            </div>
+            <p id="quotation-source-status" class="push-status hidden"></p>
             <textarea
-              id="quotation-pack-input"
+              id="quotation-prompt-output"
               class="code-box"
               rows="7"
-              placeholder="Cole o pack aqui..."
+              readonly
             ></textarea>
-          </label>
-          <label
-            >Instruções para corrigir
+            <label
+              >Pack formatado pela IA
+              <textarea
+                id="quotation-pack-input"
+                class="code-box"
+                rows="7"
+                placeholder="Cole o pack aqui..."
+              ></textarea>
+            </label>
+            <label
+              >Instruções para corrigir
+              <textarea
+                id="quotation-correction-instructions"
+                rows="2"
+                placeholder="Opcional: explique à IA o que deve ajustar."
+              ></textarea>
+            </label>
+            <div class="panel-row">
+              <input
+                id="quotation-pack-file"
+                type="file"
+                accept=".txt,text/plain"
+              />
+              <button
+                id="btn-preview-quotation-import"
+                type="button"
+                class="btn"
+              >
+                Validar
+              </button>
+              <button
+                id="btn-commit-quotation-import"
+                type="button"
+                class="btn primary"
+              >
+                Importar cotações
+              </button>
+            </div>
+            <p id="quotation-import-status" class="push-status hidden"></p>
             <textarea
-              id="quotation-correction-instructions"
-              rows="2"
-              placeholder="Opcional: explique à IA o que deve ajustar."
+              id="quotation-fix-output"
+              class="code-box hidden"
+              rows="8"
+              readonly
             ></textarea>
-          </label>
-          <div class="panel-row">
-            <input
-              id="quotation-pack-file"
-              type="file"
-              accept=".txt,text/plain"
-            />
-            <button id="btn-preview-quotation-import" type="button" class="btn">
-              Validar
-            </button>
             <button
-              id="btn-commit-quotation-import"
+              id="btn-copy-quotation-fix"
               type="button"
-              class="btn primary"
+              class="btn hidden"
             >
-              Importar cotações
+              Copiar pedido de correção
             </button>
-          </div>
-          <p id="quotation-import-status" class="push-status hidden"></p>
-          <textarea
-            id="quotation-fix-output"
-            class="code-box hidden"
-            rows="8"
-            readonly
-          ></textarea>
-          <button id="btn-copy-quotation-fix" type="button" class="btn hidden">
-            Copiar pedido de correção
-          </button>
-        </details>
+          </details>
 
-        <footer class="quotation-footer"><span id="quotation-limit-label">0 cotações</span></footer>
+          <footer class="quotation-footer">
+            <span id="quotation-limit-label">0 cotações</span>
+          </footer>
         </section>
       </div>
     </dialog>
@@ -1378,21 +1578,71 @@
           >Nome <input id="provider-name" required maxlength="140"
         /></label>
         <div class="form-grid">
-          <label>Papéis <input id="provider-roles" maxlength="240" placeholder="Fornecedor, instalador..." /></label>
-          <label>Porte do negócio
-            <select id="provider-business-scale"><option value="">Não informado</option><option value="individual">Autônomo</option><option value="small">Pequeno</option><option value="medium">Médio</option><option value="large">Grande</option></select>
+          <label
+            >Papéis
+            <input
+              id="provider-roles"
+              maxlength="240"
+              placeholder="Fornecedor, instalador..."
+          /></label>
+          <label
+            >Porte do negócio
+            <select id="provider-business-scale">
+              <option value="">Não informado</option>
+              <option value="individual">Autônomo</option>
+              <option value="small">Pequeno</option>
+              <option value="medium">Médio</option>
+              <option value="large">Grande</option>
+            </select>
           </label>
-          <label>Profissão / serviço <input id="provider-service-type" maxlength="140" /></label>
-          <label>Cobertura <input id="provider-coverage" maxlength="240" placeholder="Local, regional, nacional..." /></label>
-          <label>Telefones <input id="provider-phones" maxlength="500" placeholder="Separe por vírgulas" /></label>
-          <label>E-mails <input id="provider-emails" maxlength="500" placeholder="Separe por vírgulas" /></label>
-          <label>Sites <input id="provider-websites" maxlength="500" placeholder="Separe por vírgulas" /></label>
-          <label>Categorias <input id="provider-categories" maxlength="500" placeholder="Separe por vírgulas" /></label>
-          <label>Endereço <input id="provider-address" maxlength="240" /></label>
+          <label
+            >Profissão / serviço
+            <input id="provider-service-type" maxlength="140"
+          /></label>
+          <label
+            >Cobertura
+            <input
+              id="provider-coverage"
+              maxlength="240"
+              placeholder="Local, regional, nacional..."
+          /></label>
+          <label
+            >Telefones
+            <input
+              id="provider-phones"
+              maxlength="500"
+              placeholder="Separe por vírgulas"
+          /></label>
+          <label
+            >E-mails
+            <input
+              id="provider-emails"
+              maxlength="500"
+              placeholder="Separe por vírgulas"
+          /></label>
+          <label
+            >Sites
+            <input
+              id="provider-websites"
+              maxlength="500"
+              placeholder="Separe por vírgulas"
+          /></label>
+          <label
+            >Categorias
+            <input
+              id="provider-categories"
+              maxlength="500"
+              placeholder="Separe por vírgulas"
+          /></label>
+          <label
+            >Endereço <input id="provider-address" maxlength="240"
+          /></label>
           <label>Cidade <input id="provider-city" maxlength="120" /></label>
           <label>Estado <input id="provider-state" maxlength="80" /></label>
         </div>
-        <label>Contato legado <input id="provider-contact" maxlength="240" /></label>
+        <label
+          >Contato legado <input id="provider-contact" maxlength="240"
+        /></label>
         <label>Notas <textarea id="provider-notes" rows="3"></textarea></label>
         <p id="provider-form-error" class="error hidden"></p>
         <div class="dialog-actions">
@@ -1405,7 +1655,9 @@
           ><span class="grow"></span
           ><button id="btn-cancel-provider" type="button" class="btn">
             Cancelar</button
-          ><button type="submit" class="btn primary">Salvar no diretório</button>
+          ><button type="submit" class="btn primary">
+            Salvar no diretório
+          </button>
         </div>
       </form>
     </dialog>
@@ -1569,7 +1821,10 @@
           <div class="expense-payment-head">
             <div>
               <strong>Despesas e quantidades previstas</strong>
-              <small>Vincule zero ou mais despesas a esta atividade.</small>
+              <small
+                >Vincule zero ou mais despesas a esta atividade. O total abaixo
+                soma o uso (unitário × quantidade + frete).</small
+              >
             </div>
             <button type="button" id="btn-add-task-allocation" class="btn">
               + Despesa
