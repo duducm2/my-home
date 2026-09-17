@@ -29,6 +29,7 @@
     zoom: "week",
     ganttStatusFilter: "",
     ganttPriorityFilter: 0,
+    expenseCategoryFilters: new Set(),
     expandedMacros: new Set(),
   };
   const statusLabels = {
@@ -115,7 +116,7 @@
     taskFormError: $("task-form-error"),
     btnDeleteTask: $("btn-delete-task"),
     btnCancelTask: $("btn-cancel-task"),
-    category: $("filter-category"),
+    expenseCategories: $("filter-categories"),
     search: $("filter-search"),
     rows: $("expense-rows"),
     empty: $("empty-state"),
@@ -229,7 +230,6 @@
     btnShareMedia: $("btn-share-media"),
     btnDownloadMedia: $("btn-download-media"),
     mediaStatus: $("media-status"),
-    requiredTools: $("required-tools"),
     showArchivedContracts: $("show-archived-contracts"),
     btnNewProvider: $("btn-new-provider"),
     btnNewContract: $("btn-new-contract"),
@@ -351,15 +351,28 @@
   }
 
   function renderFilters() {
-    fillSelect(
-      els.category,
-      [...new Set(state.expenses.map((item) => item.category))].sort(),
-      "Todas",
-    );
-    els.categorySuggestions.innerHTML = [
+    const categories = [
       ...new Set(state.expenses.map((item) => item.category)),
-    ]
-      .sort()
+    ].sort();
+    state.expenseCategoryFilters = new Set(
+      [...state.expenseCategoryFilters].filter((value) =>
+        categories.includes(value),
+      ),
+    );
+    const counts = Object.fromEntries(
+      categories.map((category) => [
+        category,
+        state.expenses.filter((item) => item.category === category).length,
+      ]),
+    );
+    els.expenseCategories.innerHTML = [
+      `<label class="expense-category-check all"><input type="checkbox" data-expense-category="" ${state.expenseCategoryFilters.size ? "" : "checked"}><span>Todas as categorias</span><strong>${state.expenses.length}</strong></label>`,
+      ...categories.map(
+        (category) =>
+          `<label class="expense-category-check"><input type="checkbox" data-expense-category="${escapeAttr(category)}" ${state.expenseCategoryFilters.has(category) ? "checked" : ""}><span>${escapeHtml(category)}</span><strong>${counts[category]}</strong></label>`,
+      ),
+    ].join("");
+    els.categorySuggestions.innerHTML = categories
       .map((value) => `<option value="${escapeAttr(value)}"></option>`)
       .join("");
   }
@@ -367,7 +380,10 @@
   function filteredExpenses() {
     const term = els.search.value.trim().toLowerCase();
     return state.expenses.filter((item) => {
-      if (els.category.value && item.category !== els.category.value)
+      if (
+        state.expenseCategoryFilters.size &&
+        !state.expenseCategoryFilters.has(item.category)
+      )
         return false;
       return (
         !term ||
@@ -689,9 +705,9 @@
         '<p class="payment-projection-empty">Nenhum pagamento programado.</p>';
       return;
     }
-    const width = Math.max(1000, days.length * 58);
-    const height = 300;
-    const margin = { left: 72, right: 28, top: 24, bottom: 48 };
+    const width = Math.max(1000, days.length * 88);
+    const height = 320;
+    const margin = { left: 72, right: 34, top: 52, bottom: 48 };
     const plotWidth = width - margin.left - margin.right;
     const plotHeight = height - margin.top - margin.bottom;
     const firstDate = days[0].date;
@@ -709,7 +725,6 @@
         return `<line x1="${margin.left}" y1="${y}" x2="${margin.left + plotWidth}" y2="${y}" class="cashflow-grid-line"></line><text x="${margin.left - 9}" y="${y + 4}" text-anchor="end" class="cashflow-axis-label">${formatMoney(maximum * ratio).replace(",00", "")}</text>`;
       })
       .join("");
-    const labelStep = Math.max(1, Math.ceil(days.length / 14));
     const polyline = points.map(({ x, y }) => `${x},${y}`).join(" ");
     const today = iso(new Date());
     const todayX =
@@ -722,14 +737,14 @@
     ).length;
     els.paymentProjectionSummary.textContent = `${days.length} dias · ${formatMoney(total)} · ${estimatedCount} datas presumidas`;
     els.paymentProjectionChart.innerHTML = `<svg viewBox="0 0 ${width} ${height}" style="min-width:${width}px" role="img" aria-label="Projeção de despesas por dia de pagamento">${grid}${todayX === null ? "" : `<line x1="${todayX}" y1="${margin.top}" x2="${todayX}" y2="${margin.top + plotHeight}" class="payment-today-line"></line><path d="M ${todayX - 7} ${margin.top + plotHeight + 9} L ${todayX + 7} ${margin.top + plotHeight + 9} L ${todayX} ${margin.top + plotHeight - 3} Z" class="payment-today-marker"><title>Hoje · ${formatPaymentDate(today)}</title></path>`}<polyline points="${polyline}" class="payment-projection-line"></polyline>${points
-      .map(({ x, y, item }, index) => {
+      .map(({ x, y, item }) => {
         const details = item.payments
           .map(
             (payment) =>
               `${payment.description}: ${formatMoney(payment.amount)}${payment.date_status === "estimated" ? " (presumido)" : ""}`,
           )
           .join(" · ");
-        return `<g class="${item.estimated ? "estimated" : "confirmed"}"><line x1="${x}" y1="${margin.top}" x2="${x}" y2="${margin.top + plotHeight}" class="payment-day-line"></line><circle cx="${x}" cy="${y}" r="6" class="payment-day-point"></circle><title>${escapeHtml(`${formatPaymentDate(item.date)} · ${formatMoney(item.amount)} · ${details}`)}</title>${index % labelStep === 0 || index === points.length - 1 ? `<text x="${x}" y="${height - 18}" text-anchor="middle" class="cashflow-axis-label">${formatPaymentDate(item.date).slice(0, 5)}</text>` : ""}</g>`;
+        return `<g class="${item.estimated ? "estimated" : "confirmed"}"><line x1="${x}" y1="${margin.top}" x2="${x}" y2="${margin.top + plotHeight}" class="payment-day-line"></line><circle cx="${x}" cy="${y}" r="6" class="payment-day-point"></circle><text x="${x}" y="${Math.max(18, y - 13)}" text-anchor="middle" class="payment-amount-label">${escapeHtml(formatMoney(item.amount))}</text><title>${escapeHtml(`${formatPaymentDate(item.date)} · ${formatMoney(item.amount)} · ${details}`)}</title><text x="${x}" y="${height - 18}" text-anchor="middle" class="cashflow-axis-label">${formatPaymentDate(item.date).slice(0, 5)}</text></g>`;
       })
       .join("")}</svg>`;
   }
@@ -2239,18 +2254,6 @@
     }
   }
 
-  function renderRequiredTools(project) {
-    if (!els.requiredTools || !project) return;
-    const tools = ((project.construction_resources || {}).required_tools || [])
-      .map(
-        (tool) =>
-          `<article class="required-tool">${iconMarkup(tool.icon_key, tool.name, "tool")}<div><strong>${escapeHtml(tool.name)}</strong><p>${escapeHtml(tool.purpose || "")}</p></div></article>`,
-      )
-      .join("");
-    els.requiredTools.innerHTML =
-      tools || "<p>Nenhuma ferramenta cadastrada.</p>";
-  }
-
   const contractStatusLabels = {
     draft: "Rascunho",
     signed: "Assinado",
@@ -3072,7 +3075,6 @@
           `<article class="house-card"><h3>${escapeHtml(room.label || room.name)}</h3><p>${escapeHtml(room.measured_dimensions || room.dimensions || "")}</p></article>`,
       )
       .join("");
-    renderRequiredTools(state.project);
     renderDashboard();
     if (!document.getElementById("view-model3d").classList.contains("hidden"))
       renderHouse3D();
@@ -3381,7 +3383,20 @@
   );
   els.btnSaveLayout.addEventListener("click", saveSceneLayout);
 
-  els.category.addEventListener("change", renderExpenseTable);
+  els.expenseCategories.addEventListener("change", (event) => {
+    const input = event.target.closest("[data-expense-category]");
+    if (!input) return;
+    const category = input.dataset.expenseCategory;
+    if (!category) {
+      state.expenseCategoryFilters.clear();
+    } else if (input.checked) {
+      state.expenseCategoryFilters.add(category);
+    } else {
+      state.expenseCategoryFilters.delete(category);
+    }
+    renderFilters();
+    renderExpenseTable();
+  });
   els.search.addEventListener("input", renderExpenseTable);
   els.dashMaterials.addEventListener("mouseover", (event) => {
     const target = event.target.closest(".expense-hover-target");

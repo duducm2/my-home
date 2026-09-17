@@ -862,27 +862,6 @@ select[multiple] { min-height: 110px; }
   box-shadow: 0 8px 24px #0008;
 }
 
-.required-tools-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-  gap: 8px;
-}
-
-.required-tool {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 10px;
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  background: var(--card);
-}
-.required-tool p {
-  margin: 3px 0 0;
-  color: var(--muted);
-  font-size: 11px;
-}
-
 .general-notes-section {
   margin: 18px 0;
   padding: 14px;
@@ -1446,6 +1425,35 @@ select[multiple] { min-height: 110px; }
   scrollbar-color: #555 #1b1b1e;
 }
 
+.payment-projection-panel {
+  min-width: 0;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: #18181a;
+}
+
+.payment-projection-panel .panel-head {
+  align-items: flex-start;
+  margin-bottom: 8px;
+}
+
+.payment-projection-panel .panel-head > div {
+  display: grid;
+  gap: 3px;
+}
+
+.payment-projection-panel h3,
+.payment-projection-panel p {
+  margin: 0;
+}
+
+.payment-projection-chart svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
 .payment-projection-line {
   fill: none;
   stroke: #e67e22;
@@ -1466,6 +1474,17 @@ select[multiple] { min-height: 110px; }
   stroke-width: 4;
 }
 
+.payment-amount-label {
+  fill: #f3b26d;
+  font-size: 10px;
+  font-weight: 700;
+  paint-order: stroke;
+  stroke: #18181a;
+  stroke-width: 4px;
+  stroke-linejoin: round;
+  font-variant-numeric: tabular-nums;
+}
+
 .payment-today-line {
   stroke: var(--gold);
   stroke-width: 1.5;
@@ -1484,6 +1503,10 @@ select[multiple] { min-height: 110px; }
 
 .payment-projection-chart .estimated .payment-day-point {
   stroke: #9b59b6;
+}
+
+.payment-projection-chart .estimated .payment-amount-label {
+  fill: #cda7df;
 }
 
 .payment-projection-empty {

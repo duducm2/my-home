@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="color-scheme" content="dark" />
     <title>my-home</title>
-    <link rel="stylesheet" href="/styles.css?v=20260916-16" />
-    <link rel="stylesheet" href="/tasks.css?v=20260916-16" />
+    <link rel="stylesheet" href="/styles.css?v=20260916-20" />
+    <link rel="stylesheet" href="/tasks.css?v=20260916-18" />
     <script type="importmap">
       { "imports": { "three": "/vendor/three/three.module.js" } }
     </script>
@@ -209,6 +209,28 @@
               </article>
             </div>
           </section>
+          <section
+            class="payment-projection-panel"
+            aria-labelledby="payment-projection-title"
+          >
+            <div class="panel-head">
+              <div>
+                <h3 id="payment-projection-title">
+                  Projeção de gastos por data de pagamento
+                </h3>
+                <p class="section-sub">
+                  Valores confirmados e previsões derivadas das quantidades do
+                  cronograma.
+                </p>
+              </div>
+              <span id="payment-projection-summary" class="panel-kicker"></span>
+            </div>
+            <div
+              id="payment-projection-chart"
+              class="payment-projection-chart"
+              aria-live="polite"
+            ></div>
+          </section>
         </section>
 
         <section class="cockpit-grid dashboard-support-grid">
@@ -361,15 +383,18 @@
       </section>
 
       <section id="view-expenses" class="view hidden">
-        <section class="toolbar">
-          <label
-            >Categoria
-            <select id="filter-category">
-              <option value="">Todas</option>
-            </select></label
-          >
-          <label class="grow"
-            >Busca
+        <aside class="expense-filter-sidebar" aria-label="Filtros de despesas">
+          <div>
+            <span class="panel-kicker">Filtros</span>
+            <h2>Categorias</h2>
+          </div>
+          <div
+            id="filter-categories"
+            class="expense-category-checks"
+            aria-label="Filtrar categorias"
+          ></div>
+          <label class="expense-filter-search"
+            >Buscar
             <input
               id="filter-search"
               type="search"
@@ -378,7 +403,7 @@
           <button type="button" id="btn-new" class="btn primary">
             Nova despesa
           </button>
-        </section>
+        </aside>
         <aside
           class="expense-quotation-guide"
           aria-label="Como analisar preços"
@@ -423,17 +448,6 @@
           <p id="empty-state" class="empty hidden">
             Nenhuma despesa encontrada.
           </p>
-        </section>
-        <section class="expense-project-resources">
-          <div class="section-heading-row">
-            <div>
-              <h2 class="section-title">Ferramentas necessárias</h2>
-              <p class="section-sub">
-                Equipamentos previstos para os serviços da obra.
-              </p>
-            </div>
-          </div>
-          <div id="required-tools" class="required-tools-grid"></div>
         </section>
         <section class="contract-center">
           <div class="section-heading-row">
@@ -1358,6 +1372,6 @@
     </dialog>
 
     <datalist id="category-suggestions"></datalist>
-    <script src="/app.js?v=20260916-26"></script>
+    <script src="/app.js?v=20260916-29"></script>
   </body>
 </html>
