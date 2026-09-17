@@ -44,6 +44,9 @@
             <button type="button" class="nav-btn" data-view="expenses">
               <span>Despesas</span><kbd>Shift+E</kbd>
             </button>
+            <button type="button" class="nav-btn" data-view="contracts">
+              <span>Contratos</span><kbd>Shift+P</kbd>
+            </button>
             <button type="button" class="nav-btn" data-view="house">
               <span>Casa</span><kbd>Shift+C</kbd>
             </button>
@@ -464,6 +467,12 @@
               type="search"
               placeholder="Descrição, categoria, fornecedor..."
           /></label>
+          <label class="expense-filter-search"
+            >Fornecedor das cotações
+            <select id="filter-quotation-vendor">
+              <option value="">Todos os fornecedores</option>
+            </select>
+          </label>
           <button type="button" id="btn-new" class="btn primary">
             Nova despesa
           </button>
@@ -481,6 +490,27 @@
             </p>
           </div>
         </aside>
+        <section
+          id="supplier-quotation-view"
+          class="supplier-quotation-view hidden"
+          aria-label="Cotações do fornecedor selecionado"
+        >
+          <div class="section-heading-row">
+            <div>
+              <h2 class="section-title" id="supplier-quotation-title">
+                Cotações do fornecedor
+              </h2>
+              <p class="section-sub" id="supplier-quotation-meta">
+                Selecione um fornecedor no filtro lateral para listar só as
+                cotações dele.
+              </p>
+            </div>
+          </div>
+          <div id="supplier-quotation-list" class="supplier-quotation-list"></div>
+          <p id="supplier-quotation-empty" class="empty hidden">
+            Nenhuma cotação deste fornecedor.
+          </p>
+        </section>
         <section class="summary">
           <div>
             <span class="summary-label">Total filtrado</span
@@ -512,6 +542,9 @@
             Nenhuma despesa encontrada.
           </p>
         </section>
+      </section>
+
+      <section id="view-contracts" class="view hidden">
         <section class="contract-center">
           <div class="section-heading-row">
             <div>
@@ -1043,6 +1076,46 @@
           <div id="expense-payment-list" class="expense-payment-list"></div>
           <p id="expense-payment-total" class="expense-payment-total"></p>
         </section>
+        <section id="expense-documents" class="expense-documents">
+          <div class="expense-payment-head">
+            <div>
+              <strong>Documentos</strong>
+              <small id="expense-documents-help"
+                >Anexe PDFs próprios ou documentos internos do sistema. Salve a
+                despesa antes de anexar.</small
+              >
+            </div>
+          </div>
+          <div class="expense-documents-toolbar">
+            <label
+              >Enviar PDF
+              <input
+                id="expense-document-upload"
+                type="file"
+                accept=".pdf,application/pdf"
+                disabled
+            /></label>
+            <label class="grow"
+              >Documento do sistema
+              <select id="expense-system-document" disabled>
+                <option value="">Selecione...</option>
+              </select></label
+            >
+            <button
+              type="button"
+              id="btn-link-expense-document"
+              class="btn"
+              disabled
+            >
+              Anexar documento do sistema
+            </button>
+          </div>
+          <div id="expense-document-list" class="expense-document-list"></div>
+          <p id="expense-document-empty" class="empty">
+            Nenhum documento anexado.
+          </p>
+          <p id="expense-document-status" class="push-status hidden" aria-live="polite"></p>
+        </section>
         <p id="form-error" class="error hidden"></p>
         <div class="dialog-actions">
           <button type="button" id="btn-cancel" class="btn">Cancelar</button
@@ -1110,7 +1183,12 @@
 
         <section id="quotation-responses-panel" class="quotation-module hidden" role="tabpanel" aria-labelledby="quotation-responses-tab">
           <div class="quotation-response-toolbar">
-            <label class="grow">Buscar <input id="quotation-search" type="search" placeholder="Fornecedor, nota, canal..." /></label>
+            <label class="grow">Buscar <input id="quotation-search" type="search" placeholder="Nota, canal, especificação..." /></label>
+            <label>Fornecedor
+              <select id="quotation-vendor-filter">
+                <option value="">Todos</option>
+              </select>
+            </label>
             <label>Status
               <select id="quotation-status-filter">
                 <option value="">Todos</option><option value="requested">Solicitada</option>

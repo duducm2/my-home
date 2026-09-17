@@ -16,6 +16,11 @@ from urllib.parse import unquote, urlparse
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from contract_store import ContractStore, MAX_PDF_BYTES  # noqa: E402
+from expense_attachment_store import (  # noqa: E402
+    MAX_PDF_BYTES as MAX_EXPENSE_PDF_BYTES,
+    list_system_documents,
+    system_document_path,
+)
 from expense_git import GitError, push_expenses  # noqa: E402
 from expense_store import ExpenseStore  # noqa: E402
 from house_store import HouseStore  # noqa: E402
@@ -265,6 +270,33 @@ class ExpenseHandler(BaseHTTPRequestHandler):
                     return
                 self._serve_file(target, "application/pdf")
                 return
+        if path.startswith("/api/expenses/") and "/documents/" in path:
+            parts = [part for part in path.split("/") if part]
+            if len(parts) == 5 and parts[3] == "documents":
+                try:
+                    target = get_store(self.data_dir).expense_document_path(
+                        parts[2], parts[4]
+                    )
+                except ValueError as exc:
+                    self._json(404, {"ok": False, "error": str(exc)})
+                    return
+                self._serve_file(target, "application/pdf")
+                return
+        if path == "/api/project/documents":
+            self._json(
+                200,
+                {"ok": True, "documents": list_system_documents(self.data_dir)},
+            )
+            return
+        if path.startswith("/api/project/documents/"):
+            document_id = path[len("/api/project/documents/") :].removesuffix(".pdf")
+            try:
+                target = system_document_path(self.data_dir, document_id)
+            except ValueError as exc:
+                self._json(404, {"ok": False, "error": str(exc)})
+                return
+            self._serve_file(target, "application/pdf")
+            return
         if path == "/api/state":
             self._json(200, get_store(self.data_dir).state())
             return
@@ -311,14 +343,6 @@ class ExpenseHandler(BaseHTTPRequestHandler):
         }
         if path in people:
             self._serve_file(self.data_dir / "people" / people[path])
-            return
-        documents = {
-            "/api/project/documents/purchase-contract.pdf": "purchase-contract-2026-09-08.pdf",
-            "/api/project/documents/gelson-contract-01.pdf": "gelson-contract-01-draft.pdf",
-            "/api/project/documents/gelson-contract-02.pdf": "gelson-contract-02-draft.pdf",
-        }
-        if path in documents:
-            self._serve_file(self.data_dir / "documents" / documents[path], "application/pdf")
             return
         if path.startswith("/api/contracts/") and "/documents/" in path:
             parts = [part for part in path.split("/") if part]
@@ -377,33 +401,59 @@ class ExpenseHandler(BaseHTTPRequestHandler):
             if path.startswith("/api/expenses/") and path.endswith("/documents"):
                 parts = [part for part in path.split("/") if part]
                 if (
-                    len(parts) != 6
-                    or parts[3] != "quotations"
-                    or parts[5] != "documents"
+                    len(parts) == 6
+                    and parts[3] == "quotations"
+                    and parts[5] == "documents"
                 ):
-                    raise ValueError("invalid quotation document upload route")
-                length = int(self.headers.get("Content-Length", "0") or "0")
-                if length <= 0 or length > MAX_QUOTATION_PDF_BYTES:
-                    raise ValueError("PDF must contain data and be at most 25 MB")
-                data = self.rfile.read(length)
-                filename = unquote(
-                    self.headers.get("X-Filename", "quotation.pdf")
-                )
-                document = get_store(self.data_dir).quotation_store.add_document(
-                    parts[2], parts[4], data, filename
-                )
+                    length = int(self.headers.get("Content-Length", "0") or "0")
+                    if length <= 0 or length > MAX_QUOTATION_PDF_BYTES:
+                        raise ValueError("PDF must contain data and be at most 25 MB")
+                    data = self.rfile.read(length)
+                    filename = unquote(
+                        self.headers.get("X-Filename", "quotation.pdf")
+                    )
+                    document = get_store(self.data_dir).quotation_store.add_document(
+                        parts[2], parts[4], data, filename
+                    )
+                    self._json(
+                        200,
+                        {
+                            "ok": True,
+                            "expense_id": parts[2],
+                            "quotation_id": parts[4],
+                            "document": document,
+                            "quotation_state": get_store(
+                                self.data_dir
+                            ).quotation_state(parts[2]),
+                            "state": get_store(self.data_dir).state(),
+                        },
+                    )
+                    return
+                if len(parts) == 4 and parts[3] == "documents":
+                    length = int(self.headers.get("Content-Length", "0") or "0")
+                    if length <= 0 or length > MAX_EXPENSE_PDF_BYTES:
+                        raise ValueError("PDF must contain data and be at most 25 MB")
+                    data = self.rfile.read(length)
+                    filename = unquote(self.headers.get("X-Filename", "expense.pdf"))
+                    self._json(
+                        200,
+                        get_store(self.data_dir).add_expense_document(
+                            parts[2], data, filename
+                        ),
+                    )
+                    return
+                raise ValueError("invalid document upload route")
+            if path.startswith("/api/expenses/") and path.endswith("/documents/link"):
+                parts = [part for part in path.split("/") if part]
+                if len(parts) != 5 or parts[3] != "documents" or parts[4] != "link":
+                    raise ValueError("invalid document link route")
+                payload = self._read_json()
                 self._json(
                     200,
-                    {
-                        "ok": True,
-                        "expense_id": parts[2],
-                        "quotation_id": parts[4],
-                        "document": document,
-                        "quotation_state": get_store(
-                            self.data_dir
-                        ).quotation_state(parts[2]),
-                        "state": get_store(self.data_dir).state(),
-                    },
+                    get_store(self.data_dir).link_expense_system_document(
+                        parts[2],
+                        str(payload.get("system_document_id") or ""),
+                    ),
                 )
                 return
             payload = self._read_json()
@@ -539,6 +589,16 @@ class ExpenseHandler(BaseHTTPRequestHandler):
                 self._json(
                     200,
                     get_store(self.data_dir).delete_quotation(parts[2], parts[4]),
+                )
+            elif path.startswith("/api/expenses/") and "/documents/" in path:
+                parts = [part for part in path.split("/") if part]
+                if len(parts) != 5 or parts[3] != "documents":
+                    raise ValueError("invalid expense document route")
+                self._json(
+                    200,
+                    get_store(self.data_dir).remove_expense_document(
+                        parts[2], parts[4]
+                    ),
                 )
             elif path.startswith("/api/expenses/"):
                 expense_id = path[len("/api/expenses/") :]

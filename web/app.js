@@ -43,6 +43,8 @@
     ganttStatusFilter: "",
     ganttPriorityFilter: 0,
     expenseCategoryFilters: new Set(),
+    expenseVendorFilter: "",
+    systemDocuments: [],
     expandedMacros: new Set(),
   };
   const statusLabels = {
@@ -136,6 +138,12 @@
     btnCancelTask: $("btn-cancel-task"),
     expenseCategories: $("filter-categories"),
     search: $("filter-search"),
+    quotationVendorFilterSidebar: $("filter-quotation-vendor"),
+    supplierQuotationView: $("supplier-quotation-view"),
+    supplierQuotationTitle: $("supplier-quotation-title"),
+    supplierQuotationMeta: $("supplier-quotation-meta"),
+    supplierQuotationList: $("supplier-quotation-list"),
+    supplierQuotationEmpty: $("supplier-quotation-empty"),
     rows: $("expense-rows"),
     empty: $("empty-state"),
     totalFiltered: $("total-filtered"),
@@ -160,6 +168,13 @@
     expenseServiceLinks: $("expense-service-links"),
     fieldProvider: $("field-provider"),
     fieldContract: $("field-contract"),
+    expenseDocumentsHelp: $("expense-documents-help"),
+    expenseDocumentUpload: $("expense-document-upload"),
+    expenseSystemDocument: $("expense-system-document"),
+    btnLinkExpenseDocument: $("btn-link-expense-document"),
+    expenseDocumentList: $("expense-document-list"),
+    expenseDocumentEmpty: $("expense-document-empty"),
+    expenseDocumentStatus: $("expense-document-status"),
     formError: $("form-error"),
     btnCancel: $("btn-cancel"),
     categorySuggestions: $("category-suggestions"),
@@ -181,6 +196,7 @@
     btnNewQuotationProvider: $("btn-new-quotation-provider"),
     quotationLinkedProviders: $("quotation-linked-providers"),
     quotationSearch: $("quotation-search"),
+    quotationVendorFilter: $("quotation-vendor-filter"),
     quotationStatusFilter: $("quotation-status-filter"),
     quotationShowArchived: $("quotation-show-archived"),
     quotationPagination: $("quotation-pagination"),
@@ -380,7 +396,9 @@
   const listValue = (value) =>
     (Array.isArray(value) ? value : splitList(value))
       .map((item) =>
-        item && typeof item === "object" ? item.value || item.label || "" : item,
+        item && typeof item === "object"
+          ? item.value || item.label || ""
+          : item,
       )
       .filter(Boolean);
 
@@ -485,17 +503,122 @@
       .join("");
   }
 
+  function quotationVendorNames(quotations = []) {
+    return [
+      ...new Set(
+        quotations
+          .map((quote) => String(quote.vendor || "").trim())
+          .filter(Boolean),
+      ),
+    ].sort((left, right) => left.localeCompare(right, "pt-BR"));
+  }
+
+  function expenseHasVendorQuote(item, vendor) {
+    if (!vendor) return true;
+    return (item.quotations || []).some(
+      (quote) =>
+        !quote.archived &&
+        String(quote.vendor || "")
+          .trim()
+          .toLocaleLowerCase("pt-BR") === vendor.toLocaleLowerCase("pt-BR"),
+    );
+  }
+
+  function allQuotationVendors() {
+    return quotationVendorNames(
+      state.expenses.flatMap((item) => item.quotations || []),
+    );
+  }
+
+  function renderQuotationVendorFilters() {
+    const vendors = allQuotationVendors();
+    const selected = state.expenseVendorFilter;
+    if (
+      selected &&
+      !vendors.some(
+        (vendor) =>
+          vendor.toLocaleLowerCase("pt-BR") ===
+          selected.toLocaleLowerCase("pt-BR"),
+      )
+    ) {
+      state.expenseVendorFilter = "";
+    }
+    const options =
+      '<option value="">Todos os fornecedores</option>' +
+      vendors
+        .map(
+          (vendor) =>
+            `<option value="${escapeAttr(vendor)}">${escapeHtml(vendor)}</option>`,
+        )
+        .join("");
+    els.quotationVendorFilterSidebar.innerHTML = options;
+    els.quotationVendorFilterSidebar.value = state.expenseVendorFilter;
+  }
+
+  function renderSupplierQuotationView() {
+    const vendor = state.expenseVendorFilter.trim();
+    const active = Boolean(vendor);
+    els.supplierQuotationView.classList.toggle("hidden", !active);
+    if (!active) {
+      els.supplierQuotationList.innerHTML = "";
+      els.supplierQuotationEmpty.classList.add("hidden");
+      return;
+    }
+    const vendorKey = vendor.toLocaleLowerCase("pt-BR");
+    const rows = state.expenses.flatMap((expense) =>
+      (expense.quotations || [])
+        .filter(
+          (quote) =>
+            !quote.archived &&
+            String(quote.vendor || "")
+              .trim()
+              .toLocaleLowerCase("pt-BR") === vendorKey,
+        )
+        .map((quote) => ({ expense, quote })),
+    );
+    rows.sort((left, right) =>
+      left.expense.description.localeCompare(
+        right.expense.description,
+        "pt-BR",
+      ),
+    );
+    els.supplierQuotationTitle.textContent = `Cotações · ${vendor}`;
+    els.supplierQuotationMeta.textContent = `${rows.length} cotação(ões) ativa(s) neste fornecedor. A tabela abaixo mostra só as despesas com oferta dele.`;
+    els.supplierQuotationEmpty.classList.toggle("hidden", rows.length > 0);
+    els.supplierQuotationList.innerHTML = rows
+      .map(({ expense, quote }) => {
+        const isSelected = quote.id === expense.selected_quotation_id;
+        return `<article class="supplier-quotation-card ${isSelected ? "selected" : ""}">
+          <header>
+            <div>
+              <strong>${escapeHtml(expense.description)}</strong>
+              <small>${escapeHtml(expense.category)}</small>
+            </div>
+            <strong>${formatMoney(quote.unit_price)}</strong>
+          </header>
+          <p>${formatMoney(quote.unit_price)} × ${escapeHtml(String(quote.quantity || 1))} ${escapeHtml(quote.unit || "")}${quote.shipping_cost ? ` · frete ${formatMoney(quote.shipping_cost)}` : ""}</p>
+          <div class="supplier-quotation-actions">
+            ${quote.product_url ? `<a class="btn" href="${escapeAttr(quote.product_url)}" target="_blank" rel="noopener">Abrir oferta</a>` : ""}
+            <button type="button" class="btn primary" data-open-expense-quotations="${escapeAttr(expense.id)}" data-focus-vendor="${escapeAttr(vendor)}">Ver na despesa</button>
+          </div>
+        </article>`;
+      })
+      .join("");
+  }
+
   function filteredExpenses() {
     const term = els.search.value.trim().toLowerCase();
+    const vendor = state.expenseVendorFilter.trim();
     return state.expenses.filter((item) => {
       if (
         state.expenseCategoryFilters.size &&
         !state.expenseCategoryFilters.has(item.category)
       )
         return false;
+      if (!expenseHasVendorQuote(item, vendor)) return false;
       return (
         !term ||
-        `${item.category} ${item.description} ${item.vendor || ""}`
+        `${item.category} ${item.description} ${item.vendor || ""} ${vendor}`
           .toLowerCase()
           .includes(term)
       );
@@ -523,6 +646,11 @@
     parts.push(
       `<span class="quote-count">${count} ${count === 1 ? "cotação" : "cotações"}</span>`,
     );
+    const attachmentCount = (item.attachments || []).length;
+    if (attachmentCount)
+      parts.push(
+        `<span class="badge">${attachmentCount} ${attachmentCount === 1 ? "documento" : "documentos"}</span>`,
+      );
     return parts.join(" · ") || "—";
   }
 
@@ -545,6 +673,7 @@
     </tr>`,
       )
       .join("");
+    renderSupplierQuotationView();
   }
 
   function cashflowMonthLabel(value) {
@@ -1115,11 +1244,7 @@
   }
 
   async function flushQuickTasks() {
-    if (
-      !state.pendingQuickTasks.size &&
-      !state.deletedQuickTasks.size
-    )
-      return;
+    if (!state.pendingQuickTasks.size && !state.deletedQuickTasks.size) return;
 
     let payload = null;
     for (const id of state.deletedQuickTasks) {
@@ -1135,7 +1260,8 @@
         title: String(task.title || "").trim(),
         done: Boolean(task.done),
       };
-      if (!savedTask.title) throw new Error("Toda tarefa rápida precisa de um título.");
+      if (!savedTask.title)
+        throw new Error("Toda tarefa rápida precisa de um título.");
       if (!task.id.startsWith("TEMP_")) savedTask.id = task.id;
       payload = await request("/api/quick-tasks", {
         method: "POST",
@@ -1498,7 +1624,8 @@
         const mode = resizeHandle?.dataset.resize || "move";
         const originX = event.clientX;
         const originalLeft = Number.parseFloat(bar.style.left) || 0;
-        const originalWidth = Number.parseFloat(bar.style.width) || geometry.dayWidth;
+        const originalWidth =
+          Number.parseFloat(bar.style.width) || geometry.dayWidth;
         const durationDays = dayDiff(task.start_date, task.end_date) + 1;
         let moved = false;
         let previewDays = 0;
@@ -1896,6 +2023,9 @@
   ) {
     const isService = els.fieldRecordType.value === "service";
     els.expenseServiceLinks.classList.toggle("hidden", !isService);
+    els.expenseDocumentsHelp.textContent = isService
+      ? "Prioridade para serviços: anexe contratos, orçamentos e evidências em PDF, ou escolha um documento interno do sistema."
+      : "Anexe PDFs próprios ou documentos internos do sistema. Salve a despesa antes de anexar.";
     if (!isService) {
       els.fieldProvider.value = "";
       els.fieldContract.value = "";
@@ -1920,6 +2050,138 @@
       : "";
   }
 
+  function currentExpenseAttachments() {
+    const expenseId = els.fieldId.value.trim();
+    if (!expenseId) return [];
+    return (
+      state.expenses.find((item) => item.id === expenseId)?.attachments || []
+    );
+  }
+
+  function populateSystemDocumentSelect() {
+    const previous = els.expenseSystemDocument.value;
+    els.expenseSystemDocument.innerHTML =
+      '<option value="">Selecione...</option>' +
+      state.systemDocuments
+        .map(
+          (document) =>
+            `<option value="${escapeAttr(document.id)}">${escapeHtml(document.filename || document.label || document.id)}</option>`,
+        )
+        .join("");
+    if (
+      previous &&
+      [...els.expenseSystemDocument.options].some(
+        (option) => option.value === previous,
+      )
+    ) {
+      els.expenseSystemDocument.value = previous;
+    }
+  }
+
+  function renderExpenseDocuments() {
+    const expenseId = els.fieldId.value.trim();
+    const canAttach = Boolean(expenseId);
+    els.expenseDocumentUpload.disabled = !canAttach;
+    els.expenseSystemDocument.disabled = !canAttach;
+    els.btnLinkExpenseDocument.disabled = !canAttach;
+    populateSystemDocumentSelect();
+    const attachments = currentExpenseAttachments();
+    els.expenseDocumentEmpty.classList.toggle("hidden", attachments.length > 0);
+    els.expenseDocumentEmpty.textContent = canAttach
+      ? "Nenhum documento anexado."
+      : "Salve a despesa para liberar anexos.";
+    els.expenseDocumentList.innerHTML = attachments
+      .map((document) => {
+        const sourceLabel =
+          document.source === "system" ? "Sistema" : "Enviado";
+        return `<article class="expense-document-card">
+          <div>
+            <strong>${escapeHtml(document.original_filename || document.id)}</strong>
+            <small>${escapeHtml(sourceLabel)} · ${escapeHtml(document.id)}</small>
+          </div>
+          <div class="expense-document-actions">
+            <a class="btn" href="/api/expenses/${encodeURIComponent(expenseId)}/documents/${encodeURIComponent(document.id)}" target="_blank" rel="noopener">Abrir</a>
+            <button type="button" class="btn danger" data-remove-expense-document="${escapeAttr(document.id)}">Remover</button>
+          </div>
+        </article>`;
+      })
+      .join("");
+  }
+
+  async function loadSystemDocuments() {
+    const result = await request("/api/project/documents");
+    state.systemDocuments = result.documents || [];
+    populateSystemDocumentSelect();
+  }
+
+  async function uploadExpenseDocument(file) {
+    const expenseId = els.fieldId.value.trim();
+    if (!expenseId || !file) return;
+    setStatus(els.expenseDocumentStatus, "ok", "Enviando PDF...");
+    try {
+      const result = await request(
+        `/api/expenses/${encodeURIComponent(expenseId)}/documents`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/pdf",
+            "X-Filename": encodeURIComponent(file.name),
+          },
+          body: file,
+        },
+      );
+      applyExpenseState(result.state);
+      els.expenseDocumentUpload.value = "";
+      renderExpenseDocuments();
+      setStatus(els.expenseDocumentStatus, "ok", "PDF anexado.");
+    } catch (error) {
+      setStatus(els.expenseDocumentStatus, "err", error.message);
+    }
+  }
+
+  async function linkExpenseSystemDocument() {
+    const expenseId = els.fieldId.value.trim();
+    const systemDocumentId = els.expenseSystemDocument.value.trim();
+    if (!expenseId || !systemDocumentId) return;
+    setStatus(els.expenseDocumentStatus, "ok", "Anexando documento...");
+    try {
+      const result = await request(
+        `/api/expenses/${encodeURIComponent(expenseId)}/documents/link`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ system_document_id: systemDocumentId }),
+        },
+      );
+      applyExpenseState(result.state);
+      renderExpenseDocuments();
+      setStatus(
+        els.expenseDocumentStatus,
+        "ok",
+        "Documento do sistema anexado.",
+      );
+    } catch (error) {
+      setStatus(els.expenseDocumentStatus, "err", error.message);
+    }
+  }
+
+  async function removeExpenseDocument(documentId) {
+    const expenseId = els.fieldId.value.trim();
+    if (!expenseId || !documentId) return;
+    if (!window.confirm("Remover este documento da despesa?")) return;
+    try {
+      const result = await request(
+        `/api/expenses/${encodeURIComponent(expenseId)}/documents/${encodeURIComponent(documentId)}`,
+        { method: "DELETE" },
+      );
+      applyExpenseState(result.state);
+      renderExpenseDocuments();
+      setStatus(els.expenseDocumentStatus, "ok", "Documento removido.");
+    } catch (error) {
+      setStatus(els.expenseDocumentStatus, "err", error.message);
+    }
+  }
+
   function openExpenseDialog(item = null) {
     els.dialogTitle.textContent = item ? "Editar despesa" : "Nova despesa";
     els.fieldId.value = item?.id || "";
@@ -1938,6 +2200,8 @@
       ),
     );
     renderExpensePayments();
+    els.expenseDocumentStatus.classList.add("hidden");
+    renderExpenseDocuments();
     els.formError.classList.add("hidden");
     els.dialog.showModal();
     els.fieldDescription.focus();
@@ -2090,7 +2354,9 @@
           selectedExpenses.add(expense.id);
       });
     }
-    const categories = [...new Set(state.expenses.map((item) => item.category))];
+    const categories = [
+      ...new Set(state.expenses.map((item) => item.category)),
+    ];
     state.quotationPlanning.selected_expense_ids = [...selectedExpenses];
     state.quotationPlanning.selected_category_ids = categories.filter(
       (category) => {
@@ -2107,11 +2373,15 @@
 
   function renderQuotationScope() {
     syncQuotationCategorySelection();
-    const search = els.quotationScopeSearch.value.trim().toLocaleLowerCase("pt-BR");
+    const search = els.quotationScopeSearch.value
+      .trim()
+      .toLocaleLowerCase("pt-BR");
     const selectedExpenses = new Set(
       state.quotationPlanning.selected_expense_ids || [],
     );
-    const categories = [...new Set(state.expenses.map((item) => item.category))];
+    const categories = [
+      ...new Set(state.expenses.map((item) => item.category)),
+    ];
     els.quotationScopeList.innerHTML = categories
       .map((category) => {
         const expenses = state.expenses.filter(
@@ -2147,7 +2417,9 @@
       .querySelectorAll("[data-quotation-category]")
       .forEach((checkbox) => {
         const childIds = state.expenses
-          .filter((item) => item.category === checkbox.dataset.quotationCategory)
+          .filter(
+            (item) => item.category === checkbox.dataset.quotationCategory,
+          )
           .map((item) => item.id);
         const selectedCount = childIds.filter((id) =>
           selectedExpenses.has(id),
@@ -2260,12 +2532,41 @@
     els.quotationExpenseTitle.textContent = expense.description;
     els.quotationExpenseMeta.textContent = `${expense.category} · orçamento ativo ${formatMoney(expense.value)}`;
     els.quotationLimitLabel.textContent = `${quotations.length} cotação(ões) registrada(s)`;
+    const vendors = quotationVendorNames(quotations);
+    const previousVendor = els.quotationVendorFilter.value;
+    els.quotationVendorFilter.innerHTML =
+      '<option value="">Todos</option>' +
+      vendors
+        .map(
+          (vendor) =>
+            `<option value="${escapeAttr(vendor)}">${escapeHtml(vendor)}</option>`,
+        )
+        .join("");
+    if (
+      previousVendor &&
+      vendors.some(
+        (vendor) =>
+          vendor.toLocaleLowerCase("pt-BR") ===
+          previousVendor.toLocaleLowerCase("pt-BR"),
+      )
+    ) {
+      els.quotationVendorFilter.value = previousVendor;
+    } else {
+      els.quotationVendorFilter.value = "";
+    }
     const query = els.quotationSearch.value.trim().toLocaleLowerCase("pt-BR");
     const status = els.quotationStatusFilter.value;
+    const vendorFilter = els.quotationVendorFilter.value
+      .trim()
+      .toLocaleLowerCase("pt-BR");
     const visible = quotations.filter(
       (quote) =>
         (els.quotationShowArchived.checked || !quote.archived) &&
         (!status || quote.response_status === status) &&
+        (!vendorFilter ||
+          String(quote.vendor || "")
+            .trim()
+            .toLocaleLowerCase("pt-BR") === vendorFilter) &&
         (!query ||
           `${quote.vendor} ${quote.notes || ""} ${quote.response_channel || ""}`
             .toLocaleLowerCase("pt-BR")
@@ -2342,8 +2643,14 @@
     els.quotationProvider.innerHTML =
       '<option value="">Sem vínculo</option>' +
       state.providers
-        .filter((provider) => !provider.archived || provider.id === quotation?.provider_id)
-        .map((provider) => `<option value="${escapeAttr(provider.id)}">${escapeHtml(provider.name)}</option>`)
+        .filter(
+          (provider) =>
+            !provider.archived || provider.id === quotation?.provider_id,
+        )
+        .map(
+          (provider) =>
+            `<option value="${escapeAttr(provider.id)}">${escapeHtml(provider.name)}</option>`,
+        )
         .join("");
     els.quotationProvider.value = quotation?.provider_id || "";
     els.quotationVendor.value = quotation?.vendor || "";
@@ -2358,10 +2665,11 @@
     els.quotationUrl.value = quotation?.product_url || "";
     els.quotationResponseStatus.value =
       quotation?.response_status || "received";
-    els.quotationResponseChannel.value =
-      quotation?.response_channel || "";
-    els.quotationReceivedAt.value = String(quotation?.received_at || "")
-      .slice(0, 16);
+    els.quotationResponseChannel.value = quotation?.response_channel || "";
+    els.quotationReceivedAt.value = String(quotation?.received_at || "").slice(
+      0,
+      16,
+    );
     els.quotationDocument.value = "";
     els.quotationNotes.value = quotation?.notes || "";
     els.quotationFormError.classList.add("hidden");
@@ -2369,7 +2677,7 @@
     els.quotationVendor.focus();
   }
 
-  function openQuotationManager(item) {
+  function openQuotationManager(item, options = {}) {
     state.quotationExpenseId = item.id;
     state.quotationPage = 1;
     state.quotationImportRows = [];
@@ -2387,9 +2695,22 @@
     els.quotationFixOutput.classList.add("hidden");
     els.btnCopyQuotationFix.classList.add("hidden");
     els.btnCommitQuotationImport.disabled = false;
+    els.quotationSearch.value = "";
+    els.quotationStatusFilter.value = "";
+    els.quotationShowArchived.checked = false;
+    const focusVendor = String(options.focusVendor || "").trim();
+    els.quotationVendorFilter.innerHTML =
+      '<option value="">Todos</option>' +
+      quotationVendorNames(item.quotations || [])
+        .map(
+          (vendor) =>
+            `<option value="${escapeAttr(vendor)}">${escapeHtml(vendor)}</option>`,
+        )
+        .join("");
+    els.quotationVendorFilter.value = focusVendor;
     renderQuotationManager();
     renderQuotationPlanning();
-    setQuotationTab("planning");
+    setQuotationTab(focusVendor ? "responses" : "planning");
     els.quotationDialog.showModal();
   }
 
@@ -2474,7 +2795,12 @@
   }
 
   async function deleteQuotation(quotationId) {
-    if (!window.confirm("Arquivar esta cotação? Ela poderá ser exibida novamente pelo filtro.")) return;
+    if (
+      !window.confirm(
+        "Arquivar esta cotação? Ela poderá ser exibida novamente pelo filtro.",
+      )
+    )
+      return;
     const result = await request(
       `/api/expenses/${encodeURIComponent(state.quotationExpenseId)}/quotations/${encodeURIComponent(quotationId)}`,
       { method: "DELETE" },
@@ -2755,6 +3081,7 @@
     state.materials = payload.materials || [];
     state.iconCatalog = payload.icon_catalog || state.iconCatalog;
     renderFilters();
+    renderQuotationVendorFilters();
     renderExpenseTable();
     renderDashboard();
   }
@@ -2930,7 +3257,9 @@
                 .includes("gelson"),
           );
           const roles = listValue(provider.roles);
-          const location = [provider.city, provider.state].filter(Boolean).join(" / ");
+          const location = [provider.city, provider.state]
+            .filter(Boolean)
+            .join(" / ");
           return `<article class="provider-card ${provider.archived ? "archived" : ""}"><div class="provider-identity">${person?.image_url ? `<img src="${escapeAttr(person.image_url)}" alt="${escapeAttr(provider.name)}" loading="lazy">` : ""}<div><strong>${escapeHtml(provider.name)}</strong><span>${escapeHtml(roles.join(", ") || provider.service_type || "Fornecedor / prestador")}</span><span>${escapeHtml([provider.business_scale, provider.coverage, location].filter(Boolean).join(" · "))}</span><span>${escapeHtml(providerContactSummary(provider))}</span></div></div><button class="btn" type="button" data-edit-provider="${escapeAttr(provider.id)}">Editar</button></article>`;
         })
         .join("") || '<p class="empty">Nenhum prestador cadastrado.</p>';
@@ -3725,6 +4054,7 @@
     const validViews = new Set([
       "dashboard",
       "expenses",
+      "contracts",
       "house",
       "model3d",
       "gantt",
@@ -3922,6 +4252,7 @@
       const view = {
         d: "dashboard",
         e: "expenses",
+        p: "contracts",
         c: "house",
         m: "model3d",
         g: "gantt",
@@ -4031,6 +4362,22 @@
     renderExpenseTable();
   });
   els.search.addEventListener("input", renderExpenseTable);
+  els.quotationVendorFilterSidebar.addEventListener("change", () => {
+    state.expenseVendorFilter = els.quotationVendorFilterSidebar.value;
+    renderExpenseTable();
+  });
+  els.supplierQuotationList.addEventListener("click", (event) => {
+    const quotations = event.target.closest("[data-open-expense-quotations]");
+    if (!quotations) return;
+    const item = state.expenses.find(
+      (expense) => expense.id === quotations.dataset.openExpenseQuotations,
+    );
+    if (item)
+      openQuotationManager(item, {
+        focusVendor:
+          quotations.dataset.focusVendor || state.expenseVendorFilter,
+      });
+  });
   els.dashMaterials.addEventListener("mouseover", (event) => {
     const target = event.target.closest(".expense-hover-target");
     if (target) showDashboardTooltip(target, event.clientX, event.clientY);
@@ -4053,6 +4400,22 @@
   els.btnNew.addEventListener("click", () => openExpenseDialog());
   els.form.addEventListener("submit", submitExpense);
   els.btnCancel.addEventListener("click", () => els.dialog.close());
+  els.expenseDocumentUpload.addEventListener("change", () => {
+    const file = els.expenseDocumentUpload.files?.[0];
+    if (file) uploadExpenseDocument(file);
+  });
+  els.btnLinkExpenseDocument.addEventListener("click", () => {
+    linkExpenseSystemDocument().catch((error) =>
+      setStatus(els.expenseDocumentStatus, "err", error.message),
+    );
+  });
+  els.expenseDocumentList.addEventListener("click", (event) => {
+    const button = event.target.closest("[data-remove-expense-document]");
+    if (!button) return;
+    removeExpenseDocument(button.dataset.removeExpenseDocument).catch((error) =>
+      setStatus(els.expenseDocumentStatus, "err", error.message),
+    );
+  });
   els.btnAddPayment.addEventListener("click", addExpensePayment);
   els.expensePaymentList.addEventListener("input", (event) => {
     if (event.target.matches("[data-payment-field]"))
@@ -4088,7 +4451,11 @@
       const item = state.expenses.find(
         (expense) => expense.id === quotations.dataset.openExpenseQuotations,
       );
-      if (item) openQuotationManager(item);
+      if (item)
+        openQuotationManager(item, {
+          focusVendor:
+            quotations.dataset.focusVendor || state.expenseVendorFilter,
+        });
       return;
     }
     if (edit) {
@@ -4110,7 +4477,10 @@
     const item = state.expenses.find(
       (expense) => expense.id === row?.dataset.openQuotations,
     );
-    if (item) openQuotationManager(item);
+    if (item)
+      openQuotationManager(item, {
+        focusVendor: state.expenseVendorFilter,
+      });
   });
   els.rows.addEventListener("keydown", (event) => {
     if (event.key !== "Enter" && event.key !== " ") return;
@@ -4121,17 +4491,21 @@
     );
     if (item) {
       event.preventDefault();
-      openQuotationManager(item);
+      openQuotationManager(item, {
+        focusVendor: state.expenseVendorFilter,
+      });
     }
   });
   els.btnCloseQuotations.addEventListener("click", () =>
     els.quotationDialog.close(),
   );
-  document.querySelectorAll("[data-quotation-tab]").forEach((button) =>
-    button.addEventListener("click", () =>
-      setQuotationTab(button.dataset.quotationTab),
-    ),
-  );
+  document
+    .querySelectorAll("[data-quotation-tab]")
+    .forEach((button) =>
+      button.addEventListener("click", () =>
+        setQuotationTab(button.dataset.quotationTab),
+      ),
+    );
   els.quotationScopeSearch.addEventListener("input", renderQuotationScope);
   els.quotationScopeList.addEventListener("change", (event) => {
     const category = event.target.dataset.quotationCategory;
@@ -4211,7 +4585,11 @@
     if (!link) return;
     link[field] = event.target.value;
     link.updated_at = new Date().toISOString();
-    if (field === "status" && event.target.value === "sent" && !link.contacted_at)
+    if (
+      field === "status" &&
+      event.target.value === "sent" &&
+      !link.contacted_at
+    )
       link.contacted_at = link.updated_at;
   });
   els.quotationLinkedProviders.addEventListener("click", (event) => {
@@ -4237,13 +4615,21 @@
       setStatus(els.quotationPlanningStatus, "err", error.message),
     );
   });
-  [els.quotationSearch, els.quotationStatusFilter, els.quotationShowArchived].forEach(
-    (field) =>
-      field.addEventListener("input", () => {
-        state.quotationPage = 1;
-        renderQuotationManager();
-      }),
+  [
+    els.quotationSearch,
+    els.quotationVendorFilter,
+    els.quotationStatusFilter,
+    els.quotationShowArchived,
+  ].forEach((field) =>
+    field.addEventListener("input", () => {
+      state.quotationPage = 1;
+      renderQuotationManager();
+    }),
   );
+  els.quotationVendorFilter.addEventListener("change", () => {
+    state.quotationPage = 1;
+    renderQuotationManager();
+  });
   els.btnQuotationPrevious.addEventListener("click", () => {
     if (state.quotationPage <= 1) return;
     state.quotationPage -= 1;
@@ -4302,7 +4688,11 @@
       );
   });
   els.btnQuotationPrompt.addEventListener("click", () =>
-    runBusy(els.btnQuotationPrompt, generateQuotationPrompt, "Gerando...").catch((error) =>
+    runBusy(
+      els.btnQuotationPrompt,
+      generateQuotationPrompt,
+      "Gerando...",
+    ).catch((error) =>
       setStatus(els.quotationImportStatus, "err", error.message),
     ),
   );
@@ -4346,12 +4736,20 @@
     );
   });
   els.btnPreviewQuotationImport.addEventListener("click", () =>
-    runBusy(els.btnPreviewQuotationImport, previewQuotationImport, "Validando...").catch((error) =>
+    runBusy(
+      els.btnPreviewQuotationImport,
+      previewQuotationImport,
+      "Validando...",
+    ).catch((error) =>
       setStatus(els.quotationImportStatus, "err", error.message),
     ),
   );
   els.btnCommitQuotationImport.addEventListener("click", () =>
-    runBusy(els.btnCommitQuotationImport, commitQuotationImport, "Importando...").catch((error) =>
+    runBusy(
+      els.btnCommitQuotationImport,
+      commitQuotationImport,
+      "Importando...",
+    ).catch((error) =>
       setStatus(els.quotationImportStatus, "err", error.message),
     ),
   );
@@ -4555,6 +4953,7 @@
     loadContracts(),
     loadQuotationPlanning(),
     loadQuickTasks(),
+    loadSystemDocuments(),
   ])
     .then(() => {
       renderContractCenter();

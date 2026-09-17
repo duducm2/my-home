@@ -3867,6 +3867,63 @@ body.model3d-active {
   font-weight: 650;
 }
 
+.expense-filter-search select {
+  width: 100%;
+}
+
+.supplier-quotation-view {
+  display: grid;
+  gap: 12px;
+  padding: 14px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+.supplier-quotation-list {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+}
+
+.supplier-quotation-card {
+  display: grid;
+  gap: 8px;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: calc(var(--radius) - 2px);
+  background: color-mix(in srgb, var(--panel) 88%, #000 12%);
+}
+
+.supplier-quotation-card.selected {
+  border-color: color-mix(in srgb, var(--accent, #e6b800) 70%, var(--line));
+}
+
+.supplier-quotation-card header {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  align-items: start;
+}
+
+.supplier-quotation-card header small {
+  display: block;
+  margin-top: 2px;
+  color: var(--muted);
+}
+
+.supplier-quotation-card p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.supplier-quotation-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
 .expense-category-checks {
   display: grid;
   gap: 2px;

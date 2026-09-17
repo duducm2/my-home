@@ -11,6 +11,14 @@
   background: var(--panel);
 }
 
+#view-contracts:not(.hidden) {
+  display: block;
+}
+
+#view-contracts .contract-center {
+  margin: 0;
+}
+
 .contract-actions,
 .contract-summary,
 .contract-card-actions {
@@ -1797,6 +1805,59 @@ select[multiple] { min-height: 110px; }
 
 .expense-payment-total.mismatch {
   color: #ff8b7d;
+}
+
+.expense-documents {
+  display: grid;
+  gap: 10px;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+}
+
+.expense-documents-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: end;
+}
+
+.expense-documents-toolbar label {
+  display: grid;
+  gap: 4px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.expense-documents-toolbar .grow {
+  flex: 1 1 180px;
+}
+
+.expense-document-list {
+  display: grid;
+  gap: 8px;
+}
+
+.expense-document-card {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  align-items: center;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: calc(var(--radius) - 2px);
+}
+
+.expense-document-card small {
+  display: block;
+  margin-top: 2px;
+  color: var(--muted);
+}
+
+.expense-document-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
 }
 
 .task-allocation-editor {

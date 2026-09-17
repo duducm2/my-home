@@ -14,6 +14,7 @@ from typing import Any
 from urllib.parse import urlparse
 
 from quotation_store import QuotationStore
+from expense_attachment_store import ExpenseAttachmentStore
 from persistence import atomic_write_text, coordinated_write
 
 
@@ -81,6 +82,7 @@ class ExpenseStore:
         if not self.csv_path.is_file():
             self._write_rows([])
         self.quotation_store = QuotationStore(self.data_dir)
+        self.attachment_store = ExpenseAttachmentStore(self.data_dir)
         self._migrate_schema()
         self._migrate_contract_links()
 
@@ -873,6 +875,7 @@ class ExpenseStore:
             "provider_id": row.get("provider_id", ""),
             "contract_id": row.get("contract_id", ""),
             "contract_ids": contract_ids,
+            "attachments": self.attachment_store.for_expense(str(row.get("id") or "")),
             "created_at": row.get("created_at", ""),
             "updated_at": row.get("updated_at", ""),
         }
@@ -1437,7 +1440,72 @@ class ExpenseStore:
         remaining = [row for row in rows if row.get("id") != expense_id]
         if len(remaining) == len(rows):
             raise ValueError(f"expense not found: {expense_id}")
-        with coordinated_write([self.csv_path, self.quotation_store.path]):
+        with coordinated_write(
+            [
+                self.csv_path,
+                self.quotation_store.path,
+                self.attachment_store.path,
+            ]
+        ):
             self._write_rows(remaining)
             self.quotation_store.delete_expense(expense_id)
+            self.attachment_store.delete_expense(expense_id)
         return {"ok": True, "deleted": expense_id, "state": self.state()}
+
+    def _known_expense_ids(self) -> set[str]:
+        return {str(row.get("id") or "") for row in self._read_rows() if row.get("id")}
+
+    def add_expense_document(
+        self, expense_id: str, data: bytes, original_filename: str
+    ) -> dict[str, Any]:
+        expense_id = str(expense_id or "").strip()
+        attachment = self.attachment_store.add_upload(
+            expense_id,
+            data,
+            original_filename,
+            expense_ids=self._known_expense_ids(),
+        )
+        return {
+            "ok": True,
+            "expense_id": expense_id,
+            "document": attachment,
+            "state": self.state(),
+        }
+
+    def link_expense_system_document(
+        self, expense_id: str, system_document_id: str
+    ) -> dict[str, Any]:
+        expense_id = str(expense_id or "").strip()
+        attachment = self.attachment_store.attach_system_document(
+            expense_id,
+            system_document_id,
+            expense_ids=self._known_expense_ids(),
+        )
+        return {
+            "ok": True,
+            "expense_id": expense_id,
+            "document": attachment,
+            "state": self.state(),
+        }
+
+    def remove_expense_document(
+        self, expense_id: str, document_id: str
+    ) -> dict[str, Any]:
+        expense_id = str(expense_id or "").strip()
+        document_id = str(document_id or "").strip()
+        removed = self.attachment_store.remove_attachment(
+            expense_id,
+            document_id,
+            expense_ids=self._known_expense_ids(),
+        )
+        return {
+            "ok": True,
+            "expense_id": expense_id,
+            "deleted": removed,
+            "state": self.state(),
+        }
+
+    def expense_document_path(self, expense_id: str, document_id: str) -> Path:
+        return self.attachment_store.document_path(
+            str(expense_id or "").strip(), str(document_id or "").strip()
+        )
