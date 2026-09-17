@@ -33,11 +33,11 @@ def build_quotation_ingestion_prompt(
         expenses = [item for item in expenses if item["id"] in idset]
         missing_ids = idset - {item["id"] for item in expenses}
         if missing_ids:
-            raise ValueError(
-                "expense not found: " + ", ".join(sorted(missing_ids))
-            )
+            raise ValueError("expense not found: " + ", ".join(sorted(missing_ids)))
     template_path = PROMPTS_DIR / "price-discovery.txt"
-    template = template_path.read_text(encoding="utf-8") if template_path.is_file() else ""
+    template = (
+        template_path.read_text(encoding="utf-8") if template_path.is_file() else ""
+    )
 
     context_lines = [
         "id,record_type,category,description,quantity,unit,current_value,quotation_count,existing_quotation_ids",
@@ -97,7 +97,7 @@ def build_price_discovery_prompt(
 
 
 def _csv_escape(value: str) -> str:
-    if any(c in value for c in ',\"\n'):
+    if any(c in value for c in ',"\n'):
         return '"' + value.replace('"', '""') + '"'
     return value
 
@@ -152,7 +152,9 @@ def preview_pack(
         fix = build_fix_text(
             pack_name=pack["canonical_pack"],
             file_name=pack["file_name"],
-            primary_error=validated["errors"][0] if validated["errors"] else "validation failed",
+            primary_error=(
+                validated["errors"][0] if validated["errors"] else "validation failed"
+            ),
             extra_notes=validated["errors"][1:],
             headers=pack["headers"],
             rejected_text=pack_text,
@@ -168,7 +170,11 @@ def preview_pack(
         }
 
     source_ids = sorted(
-        set(str(value).strip() for value in (source_document_ids or []) if str(value).strip())
+        set(
+            str(value).strip()
+            for value in (source_document_ids or [])
+            if str(value).strip()
+        )
     )
     digest = hashlib.sha256(
         json.dumps(
@@ -196,9 +202,14 @@ def commit_rows(
     expense_context: str = "",
     source_document_ids: list[str] | None = None,
     preview_digest: str = "",
+    preserve_financial_state: bool = False,
 ) -> dict[str, Any]:
     source_ids = sorted(
-        set(str(value).strip() for value in (source_document_ids or []) if str(value).strip())
+        set(
+            str(value).strip()
+            for value in (source_document_ids or [])
+            if str(value).strip()
+        )
     )
     expected_digest = hashlib.sha256(
         json.dumps(
@@ -249,7 +260,10 @@ def commit_rows(
             "archived": "",
             "state": store.state(),
         }
-    result = store.apply_price_rows(validated["rows"])
+    result = store.apply_price_rows(
+        validated["rows"],
+        preserve_financial_state=preserve_financial_state,
+    )
     fix_text = ""
     if not result["ok"]:
         fix_text = build_fix_text(
@@ -263,7 +277,9 @@ def commit_rows(
         )
     archived = ""
     if result["ok"] and pack_text.strip():
-        archived = archive_pack(store.data_dir, pack_text, prefix=pack["canonical_pack"].replace(".txt", ""))
+        archived = archive_pack(
+            store.data_dir, pack_text, prefix=pack["canonical_pack"].replace(".txt", "")
+        )
     return {
         "ok": result["ok"],
         "updated": result["updated"],

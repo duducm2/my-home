@@ -1,0 +1,447 @@
+{
+  "cluster": "electrical",
+  "checked_at": "2026-09-17",
+  "location_basis": "americana_proxy_for_nova_odessa",
+  "expenses": [
+    {
+      "expense_id": "EXP_0033",
+      "requested_item": "Quadro de distribuição",
+      "requested_unit": "unidade",
+      "match_status": "verified",
+      "candidates": [
+        {
+          "matched_product": "Quadro de Distribuição para Embutir PVC Branco IP40 - Tigre - 1 Unidade",
+          "sku": "672-45",
+          "seller": null,
+          "specifications": {
+            "brand": "Tigre",
+            "mounting": "Embutir",
+            "capacity": "12/16 disjuntores",
+            "material": "PVC",
+            "ip_rating": "IP40",
+            "dimensions": "34.48 x 7.87 x 25 cm"
+          },
+          "package_size": "1 unidade",
+          "displayed_price_brl": 103.09,
+          "normalized_unit_price_brl": 103.09,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "americana_proxy_for_nova_odessa",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.333obra.com.br/p/quadro-de-distribuicao-para-embutir-tigre-12-16-disjuntores.html",
+          "final_url": "https://www.333obra.com.br/p/quadro-de-distribuicao-para-embutir-tigre-12-16-disjuntores.html",
+          "http_status": 200,
+          "verification_method": "Direct .html product page fetched under verified Americana storefront location; title, SKU 672-45, 12/16 DIN capacity, visible Pix price, and stock matched. Arithmetic: R$103.09 / 1 unidade = R$103.09/unidade.",
+          "caveats": [
+            "Preferred capacity is 16/18 DIN; this board is 12/16 and is retained as the nearest lower comparable with a visible Americana Pix price.",
+            "The winning seller name was not exposed as a stable field; seller is null. Price is the displayed starting Pix price."
+          ]
+        },
+        {
+          "matched_product": "Quadro de Distribuição para Embutir PVC Branco para 18 a 24 Disjuntores - Tigre - 1 Unidade",
+          "sku": "674-25",
+          "seller": null,
+          "specifications": {
+            "brand": "Tigre",
+            "mounting": "Embutir",
+            "capacity": "18 a 24 disjuntores",
+            "material": "PVC",
+            "dimensions": "35 x 10 x 38 cm"
+          },
+          "package_size": "1 unidade",
+          "displayed_price_brl": 214.9,
+          "normalized_unit_price_brl": 214.9,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "americana_proxy_for_nova_odessa",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.333obra.com.br/p/quadro-distribuicao-embutir-tigre-18-24-disjuntores.html",
+          "final_url": "https://www.333obra.com.br/p/quadro-distribuicao-embutir-tigre-18-24-disjuntores.html",
+          "http_status": 200,
+          "verification_method": "Direct .html product page fetched under verified Americana storefront location; title, SKU 674-25, 18-24 DIN capacity, visible Pix price, and stock matched. Arithmetic: R$214.90 / 1 unidade = R$214.90/unidade.",
+          "caveats": [
+            "Includes preferred 18 DIN capacity but extends to 24 slots.",
+            "The winning seller name was not exposed as a stable field; seller is null."
+          ]
+        },
+        {
+          "matched_product": "Quadro de Distribuição Embutir Porta Branca 18/24 Disjuntores - Tigre - Unidade",
+          "sku": "216277-8",
+          "seller": null,
+          "specifications": {
+            "brand": "Tigre",
+            "mounting": "Embutir",
+            "capacity": "18/24 disjuntores",
+            "door": "Porta branca"
+          },
+          "package_size": "1 unidade",
+          "displayed_price_brl": 428.85,
+          "normalized_unit_price_brl": 428.85,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "americana_proxy_for_nova_odessa",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.333obra.com.br/p/quadro-de-distribuic-o-embutir-porta-branca-18-24-disjuntores-tigre-unidade.html",
+          "final_url": "https://www.333obra.com.br/p/quadro-de-distribuic-o-embutir-porta-branca-18-24-disjuntores-tigre-unidade.html",
+          "http_status": 200,
+          "verification_method": "Direct .html product page fetched under verified Americana storefront location; title, SKU 216277-8, 18/24 capacity, visible Pix price, and stock matched. Arithmetic: R$428.85 / 1 unidade = R$428.85/unidade.",
+          "caveats": [
+            "Higher-priced 18/24 board with white door; retained only as a comparable.",
+            "The winning seller name was not exposed as a stable field; seller is null."
+          ]
+        }
+      ],
+      "winner": {
+        "matched_product": "Quadro de Distribuição para Embutir PVC Branco IP40 - Tigre - 1 Unidade",
+        "sku": "672-45",
+        "seller": null,
+        "specifications": {
+          "brand": "Tigre",
+          "mounting": "Embutir",
+          "capacity": "12/16 disjuntores",
+          "material": "PVC",
+          "ip_rating": "IP40",
+          "dimensions": "34.48 x 7.87 x 25 cm"
+        },
+        "package_size": "1 unidade",
+        "displayed_price_brl": 103.09,
+        "normalized_unit_price_brl": 103.09,
+        "unit": "unidade",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "americana_proxy_for_nova_odessa",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.333obra.com.br/p/quadro-de-distribuicao-para-embutir-tigre-12-16-disjuntores.html",
+        "final_url": "https://www.333obra.com.br/p/quadro-de-distribuicao-para-embutir-tigre-12-16-disjuntores.html",
+        "http_status": 200,
+        "verification_method": "Direct .html product page fetched under verified Americana storefront location; title, SKU 672-45, 12/16 DIN capacity, visible Pix price, and stock matched. Arithmetic: R$103.09 / 1 unidade = R$103.09/unidade.",
+        "caveats": [
+          "Lowest verified quantity-1 Pix price among comparable distribution boards. Preferred 16/18 DIN was not found as an exact SKU; 12/16 is the nearest lower comparable."
+        ]
+      },
+      "no_match_reason": null
+    },
+    {
+      "expense_id": "EXP_0034",
+      "requested_item": "Conduítes",
+      "requested_unit": "metro linear (m)",
+      "match_status": "verified",
+      "candidates": [
+        {
+          "matched_product": "Eletroduto Corrugado 20mm PVC Amarelo 50 metros - Fortlev - 1 Unidade",
+          "sku": "775-12",
+          "seller": null,
+          "specifications": {
+            "brand": "Fortlev",
+            "type": "Eletroduto corrugado",
+            "diameter": "20 mm",
+            "material": "PVC",
+            "color": "Amarelo",
+            "roll_length_m": 50
+          },
+          "package_size": "rolo 50 m",
+          "displayed_price_brl": 89.9,
+          "normalized_unit_price_brl": 1.798,
+          "unit": "metro linear (m)",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "americana_proxy_for_nova_odessa",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.333obra.com.br/p/eletroduto-corrugado-amarelo-de-20mm-fortlev-50-metros.html",
+          "final_url": "https://www.333obra.com.br/p/eletroduto-corrugado-amarelo-de-20mm-fortlev-50-metros.html",
+          "http_status": 200,
+          "verification_method": "Direct .html product page fetched under verified Americana storefront location; title, SKU 775-12, 20 mm x 50 m roll, visible Pix price, and stock matched. Arithmetic: R$89.90 / 50 m = R$1.798/m.",
+          "caveats": [
+            "Sold only as a 50 m roll; unit price is normalized per meter.",
+            "The winning seller name was not exposed as a stable field; seller is null."
+          ]
+        },
+        {
+          "matched_product": "Eletroduto Corrugado 25mm PVC Amarelo 50 metros - Fortlev - 1 Unidade",
+          "sku": "777-29",
+          "seller": null,
+          "specifications": {
+            "brand": "Fortlev",
+            "type": "Eletroduto corrugado",
+            "diameter": "25 mm",
+            "material": "PVC",
+            "color": "Amarelo",
+            "roll_length_m": 50
+          },
+          "package_size": "rolo 50 m",
+          "displayed_price_brl": 107.9,
+          "normalized_unit_price_brl": 2.158,
+          "unit": "metro linear (m)",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "americana_proxy_for_nova_odessa",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.333obra.com.br/p/eletroduto-corrugado-amarelo-de-25-mm-fortlev-50-metros.html",
+          "final_url": "https://www.333obra.com.br/p/eletroduto-corrugado-amarelo-de-25-mm-fortlev-50-metros.html",
+          "http_status": 200,
+          "verification_method": "Direct .html product page fetched under verified Americana storefront location; title, SKU 777-29, 25 mm x 50 m roll, visible Pix price, and stock matched. Arithmetic: R$107.90 / 50 m = R$2.158/m.",
+          "caveats": [
+            "Sold only as a 50 m roll; unit price is normalized per meter.",
+            "The winning seller name was not exposed as a stable field; seller is null."
+          ]
+        },
+        {
+          "matched_product": "Conduíte Corrugado Amarelo 20mm - Krona - Rolo com 10 Metros",
+          "sku": "3809-14",
+          "seller": null,
+          "specifications": {
+            "brand": "Krona",
+            "type": "Conduíte corrugado",
+            "diameter": "20 mm",
+            "color": "Amarelo",
+            "roll_length_m": 10
+          },
+          "package_size": "rolo 10 m",
+          "displayed_price_brl": 22.5,
+          "normalized_unit_price_brl": 2.25,
+          "unit": "metro linear (m)",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "americana_proxy_for_nova_odessa",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.333obra.com.br/p/conduite-amarelo-corrugado-20mmx10m-krona.html",
+          "final_url": "https://www.333obra.com.br/p/conduite-amarelo-corrugado-20mmx10m-krona.html",
+          "http_status": 200,
+          "verification_method": "Direct .html product page fetched under verified Americana storefront location; title, SKU 3809-14, 20 mm x 10 m roll, visible Pix price, and stock matched. Arithmetic: R$22.50 / 10 m = R$2.25/m.",
+          "caveats": [
+            "Sold only as a 10 m roll; unit price is normalized per meter.",
+            "The winning seller name was not exposed as a stable field; seller is null."
+          ]
+        },
+        {
+          "matched_product": "Conduíte Corrugado Amarelo 25mm - Krona - Rolo com 10 Metros",
+          "sku": "3811-19",
+          "seller": null,
+          "specifications": {
+            "brand": "Krona",
+            "type": "Conduíte corrugado",
+            "diameter": "25 mm",
+            "color": "Amarelo",
+            "roll_length_m": 10
+          },
+          "package_size": "rolo 10 m",
+          "displayed_price_brl": 25.1,
+          "normalized_unit_price_brl": 2.51,
+          "unit": "metro linear (m)",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "americana_proxy_for_nova_odessa",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.333obra.com.br/p/conduite-amarelo-corrugado-25mmx10m-krona.html",
+          "final_url": "https://www.333obra.com.br/p/conduite-amarelo-corrugado-25mmx10m-krona.html",
+          "http_status": 200,
+          "verification_method": "Direct .html product page fetched under verified Americana storefront location; title, SKU 3811-19, 25 mm x 10 m roll, visible Pix price, and stock matched. Arithmetic: R$25.10 / 10 m = R$2.51/m.",
+          "caveats": [
+            "Sold only as a 10 m roll; unit price is normalized per meter.",
+            "The winning seller name was not exposed as a stable field; seller is null."
+          ]
+        },
+        {
+          "matched_product": "Eletroduto Corrugado PVC 25mm - Tigre - Rolo 50m",
+          "sku": "214009-7",
+          "seller": null,
+          "specifications": {
+            "brand": "Tigre",
+            "type": "Eletroduto corrugado",
+            "diameter": "25 mm",
+            "material": "PVC",
+            "roll_length_m": 50
+          },
+          "package_size": "rolo 50 m",
+          "displayed_price_brl": 140.0,
+          "normalized_unit_price_brl": 2.8,
+          "unit": "metro linear (m)",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "americana_proxy_for_nova_odessa",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.333obra.com.br/p/eletroduto-corrugado-pvc-25mm-tigre-rolo-50m.html",
+          "final_url": "https://www.333obra.com.br/p/eletroduto-corrugado-pvc-25mm-tigre-rolo-50m.html",
+          "http_status": 200,
+          "verification_method": "Direct .html product page fetched under verified Americana storefront location; title, SKU 214009-7, 25 mm x 50 m roll, visible Pix price, and stock matched. Arithmetic: R$140.00 / 50 m = R$2.80/m.",
+          "caveats": [
+            "Sold only as a 50 m roll; unit price is normalized per meter.",
+            "The winning seller name was not exposed as a stable field; seller is null."
+          ]
+        }
+      ],
+      "winner": {
+        "matched_product": "Eletroduto Corrugado 20mm PVC Amarelo 50 metros - Fortlev - 1 Unidade",
+        "sku": "775-12",
+        "seller": null,
+        "specifications": {
+          "brand": "Fortlev",
+          "type": "Eletroduto corrugado",
+          "diameter": "20 mm",
+          "material": "PVC",
+          "color": "Amarelo",
+          "roll_length_m": 50
+        },
+        "package_size": "rolo 50 m",
+        "displayed_price_brl": 89.9,
+        "normalized_unit_price_brl": 1.798,
+        "unit": "metro linear (m)",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "americana_proxy_for_nova_odessa",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.333obra.com.br/p/eletroduto-corrugado-amarelo-de-20mm-fortlev-50-metros.html",
+        "final_url": "https://www.333obra.com.br/p/eletroduto-corrugado-amarelo-de-20mm-fortlev-50-metros.html",
+        "http_status": 200,
+        "verification_method": "Direct .html product page fetched under verified Americana storefront location; title, SKU 775-12, 20 mm x 50 m roll, visible Pix price, and stock matched. Arithmetic: R$89.90 / 50 m = R$1.798/m.",
+        "caveats": [
+          "Lowest verified quantity-1 normalized per-meter price among comparable corrugated conduit rolls."
+        ]
+      },
+      "no_match_reason": null
+    },
+    {
+      "expense_id": "EXP_0035",
+      "requested_item": "Lâmpadas",
+      "requested_unit": "unidade",
+      "match_status": "verified",
+      "candidates": [
+        {
+          "matched_product": "Lâmpada Bulbo de LED E-27 TKL60 9W 6500K Bivolt - Taschibra - 1 Unidade",
+          "sku": "6102-18",
+          "seller": null,
+          "specifications": {
+            "brand": "Taschibra",
+            "type": "LED bulbo",
+            "model": "TKL60",
+            "power_w": 9,
+            "base": "E27",
+            "color_temperature_k": 6500,
+            "voltage": "Bivolt"
+          },
+          "package_size": "1 unidade",
+          "displayed_price_brl": 5.29,
+          "normalized_unit_price_brl": 5.29,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "americana_proxy_for_nova_odessa",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.333obra.com.br/p/lampada-de-led-bulbo-9w-bivolt-branca-taschibra.html",
+          "final_url": "https://www.333obra.com.br/p/lampada-de-led-bulbo-9w-bivolt-branca-taschibra.html",
+          "http_status": 200,
+          "verification_method": "Direct .html product page fetched under verified Americana storefront location; title, SKU 6102-18, LED bulbo E27 9W specs, visible Pix price, and stock matched. Arithmetic: R$5.29 / 1 unidade = R$5.29/unidade.",
+          "caveats": [
+            "Representative single LED bulb unit; seller name not exposed as a stable field."
+          ]
+        },
+        {
+          "matched_product": "Kit Lâmpada Pêra de LED 9W 6500K Bivolt Branco - Avant - Pacote com 6 Unidades",
+          "sku": "6172-11",
+          "seller": null,
+          "specifications": {
+            "brand": "Avant",
+            "type": "LED pêra/bulbo kit",
+            "power_w": 9,
+            "color_temperature_k": 6500,
+            "voltage": "Bivolt",
+            "pack_count": 6
+          },
+          "package_size": "pacote com 6 unidades",
+          "displayed_price_brl": 13.99,
+          "normalized_unit_price_brl": 2.3317,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "americana_proxy_for_nova_odessa",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.333obra.com.br/p/kit-com-lampadas-led-9w-6500k-branca-bivolt-avant.html",
+          "final_url": "https://www.333obra.com.br/p/kit-com-lampadas-led-9w-6500k-branca-bivolt-avant.html",
+          "http_status": 200,
+          "verification_method": "Direct .html product page fetched under verified Americana storefront location; title, SKU 6172-11, 6-pack LED 9W specs, visible Pix price, and stock matched. Arithmetic: R$13.99 / 6 unidades = R$2.3317/unidade.",
+          "caveats": [
+            "Sold only as a 6-pack; normalized unit price divides the pack Pix price by 6.",
+            "Excluded from quantity-1 single-bulb winner ranking because the purchasable package is six bulbs."
+          ]
+        }
+      ],
+      "winner": {
+        "matched_product": "Lâmpada Bulbo de LED E-27 TKL60 9W 6500K Bivolt - Taschibra - 1 Unidade",
+        "sku": "6102-18",
+        "seller": null,
+        "specifications": {
+          "brand": "Taschibra",
+          "type": "LED bulbo",
+          "model": "TKL60",
+          "power_w": 9,
+          "base": "E27",
+          "color_temperature_k": 6500,
+          "voltage": "Bivolt"
+        },
+        "package_size": "1 unidade",
+        "displayed_price_brl": 5.29,
+        "normalized_unit_price_brl": 5.29,
+        "unit": "unidade",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "americana_proxy_for_nova_odessa",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.333obra.com.br/p/lampada-de-led-bulbo-9w-bivolt-branca-taschibra.html",
+        "final_url": "https://www.333obra.com.br/p/lampada-de-led-bulbo-9w-bivolt-branca-taschibra.html",
+        "http_status": 200,
+        "verification_method": "Direct .html product page fetched under verified Americana storefront location; title, SKU 6102-18, LED bulbo E27 9W specs, visible Pix price, and stock matched. Arithmetic: R$5.29 / 1 unidade = R$5.29/unidade.",
+        "caveats": [
+          "Lowest verified quantity-1 single LED bulb with visible Americana Pix price."
+        ]
+      },
+      "no_match_reason": null
+    },
+    {
+      "expense_id": "EXP_0038",
+      "requested_item": "Tomadas",
+      "requested_unit": "unidade",
+      "match_status": "no_match",
+      "candidates": [],
+      "winner": null,
+      "no_match_reason": "No individual .html complete 4x2 10A outlet set (placa + módulo 2P+T) with a visible Americana price was found. Catalog searches for conjunto tomada 2P+T, tomada 4x2 10A, Tramontina Liz, Alumbra, and placa 4x2 returned extensions, light boxes, disjuntores, or unrelated kits; the Interruptores e Tomadas category listed no priced product cards."
+    },
+    {
+      "expense_id": "EXP_0045",
+      "requested_item": "Dispositivos de segurança",
+      "requested_unit": "conjunto",
+      "match_status": "no_match",
+      "candidates": [],
+      "winner": null,
+      "no_match_reason": "No complete residential security kit (cameras + DVR/storage) with a visible Americana .html price was found. Searches for kit câmera/CFTV/Intelbras returned unrelated kits; Controladores de Acesso only offered Protection PT-270 electronic door phones, which are not complete security-device kits."
+    }
+  ]
+}

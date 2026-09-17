@@ -52,19 +52,13 @@ class ExpenseQuotationTests(unittest.TestCase):
         }
 
     def test_manual_crud_selection_projection_and_selected_deletion(self) -> None:
-        created = self.store.upsert_quotation(
-            self.expense_id, self.quote()
-        )
+        created = self.store.upsert_quotation(self.expense_id, self.quote())
         quotation_id = created["quotation_id"]
         self.assertEqual(len(created["quotations"]), 1)
-        selected = self.store.select_quotation(
-            self.expense_id, quotation_id
-        )
+        selected = self.store.select_quotation(self.expense_id, quotation_id)
         self.assertEqual(selected["expense"]["value"], 45)
         self.assertEqual(selected["expense"]["vendor"], "Loja A")
-        self.assertEqual(
-            selected["expense"]["selected_quotation_id"], quotation_id
-        )
+        self.assertEqual(selected["expense"]["selected_quotation_id"], quotation_id)
 
         self.store.upsert_quotation(
             self.expense_id,
@@ -73,9 +67,7 @@ class ExpenseQuotationTests(unittest.TestCase):
         self.assertEqual(
             self.store.quotation_state(self.expense_id)["expense"]["value"], 55
         )
-        deleted = self.store.delete_quotation(
-            self.expense_id, quotation_id
-        )
+        deleted = self.store.delete_quotation(self.expense_id, quotation_id)
         self.assertEqual(deleted["selected_quotation_id"], "")
         self.assertEqual(deleted["quotations"], [])
         self.assertEqual(deleted["expense"]["value"], 0)
@@ -127,11 +119,8 @@ class ExpenseQuotationTests(unittest.TestCase):
                 }
             )
 
-
     def test_quotation_records_are_unlimited(self) -> None:
-        self.assertEqual(
-            self.store.quotation_state(self.expense_id)["quotations"], []
-        )
+        self.assertEqual(self.store.quotation_state(self.expense_id)["quotations"], [])
         for index in range(12):
             self.store.upsert_quotation(
                 self.expense_id, self.quote(f"Loja {index}", index + 1)
@@ -141,9 +130,9 @@ class ExpenseQuotationTests(unittest.TestCase):
         )
 
     def test_activity_quantities_drive_planned_minimum_and_maximum(self) -> None:
-        first = self.store.upsert_quotation(
-            self.expense_id, self.quote("Loja A", 20)
-        )["quotation_id"]
+        first = self.store.upsert_quotation(self.expense_id, self.quote("Loja A", 20))[
+            "quotation_id"
+        ]
         self.store.upsert_quotation(
             self.expense_id,
             {**self.quote("Loja B", 30), "shipping_cost": 0},
@@ -180,9 +169,7 @@ class ExpenseQuotationTests(unittest.TestCase):
                 },
             ],
         }
-        (self.data / "tasks.json").write_text(
-            json.dumps(tasks), encoding="utf-8"
-        )
+        (self.data / "tasks.json").write_text(json.dumps(tasks), encoding="utf-8")
         expense = self.store.state()["expenses"][0]
         self.assertEqual(5, expense["scenario"]["expected_quantity"])
         self.assertEqual(105, expense["scenario"]["planned"])
@@ -194,9 +181,7 @@ class ExpenseQuotationTests(unittest.TestCase):
 
     def test_invalid_numbers_urls_and_duplicate_ids_are_rejected(self) -> None:
         with self.assertRaisesRegex(ValueError, "finite nonnegative"):
-            self.store.upsert_quotation(
-                self.expense_id, self.quote(price=float("inf"))
-            )
+            self.store.upsert_quotation(self.expense_id, self.quote(price=float("inf")))
         invalid = self.quote()
         invalid["product_url"] = "javascript:alert(1)"
         with self.assertRaisesRegex(ValueError, "HTTP"):
@@ -224,9 +209,10 @@ class ExpenseQuotationTests(unittest.TestCase):
         result = self.store.apply_price_rows(rows)
         self.assertTrue(result["ok"])
         self.assertEqual(
-            [item["source"] for item in self.store.quotation_state(
-                self.expense_id
-            )["quotations"]],
+            [
+                item["source"]
+                for item in self.store.quotation_state(self.expense_id)["quotations"]
+            ],
             ["ai", "ai"],
         )
         rejected = self.store.apply_price_rows(
@@ -237,11 +223,29 @@ class ExpenseQuotationTests(unittest.TestCase):
         )
         self.assertFalse(rejected["ok"])
         self.assertEqual(
-            len(
-                self.store.quotation_state(self.expense_id)["quotations"]
-            ),
+            len(self.store.quotation_state(self.expense_id)["quotations"]),
             2,
         )
+
+    def test_source_import_can_preserve_financial_state(self) -> None:
+        before = self.store.quotation_state(self.expense_id)["expense"]
+        result = self.store.apply_price_rows(
+            [
+                {
+                    "id": self.expense_id,
+                    "quotation_id": "333OBRA_AMERICANA_20260917",
+                    **self.quote("333Obra", 31.5),
+                    "selected": True,
+                }
+            ],
+            preserve_financial_state=True,
+        )
+        self.assertTrue(result["ok"])
+        after = self.store.quotation_state(self.expense_id)["expense"]
+        self.assertEqual(after["value"], before["value"])
+        self.assertEqual(after["selected_quotation_id"], "")
+        self.assertEqual(after["baseline_quotation_id"], "")
+        self.assertEqual(len(after["quotations"]), 1)
 
     def test_deleting_expense_removes_embedded_quotations(self) -> None:
         self.store.upsert_quotation(self.expense_id, self.quote())
@@ -290,13 +294,9 @@ class ExpenseQuotationTests(unittest.TestCase):
         writer.writeheader()
         writer.writerow(row)
         pack_text = (
-            "===FILE: PRICE_PACK.csv===\n"
-            + stream.getvalue()
-            + "===END_FILE===\n"
+            "===FILE: PRICE_PACK.csv===\n" + stream.getvalue() + "===END_FILE===\n"
         )
-        preview = preview_pack(
-            pack_text, source_document_ids=["DOC_B", "DOC_A"]
-        )
+        preview = preview_pack(pack_text, source_document_ids=["DOC_B", "DOC_A"])
         self.assertTrue(preview["ok"])
         self.assertEqual(["DOC_A", "DOC_B"], preview["source_document_ids"])
         with self.assertRaisesRegex(ValueError, "preview_digest"):
@@ -314,9 +314,7 @@ class ExpenseQuotationTests(unittest.TestCase):
             "Loja A: 2 sacos de cimento por R$ 20 cada\n"
             "</quotation_source>"
         )
-        result = build_quotation_ingestion_prompt(
-            self.store, [self.expense_id], source
-        )
+        result = build_quotation_ingestion_prompt(self.store, [self.expense_id], source)
         self.assertEqual("quotation-ingestion-prompt.txt", result["filename"])
         self.assertIn("<quotation_sources>", result["prompt"])
         self.assertIn(source, result["prompt"])
@@ -375,9 +373,9 @@ class ExpenseQuotationTests(unittest.TestCase):
             "source_type": "manual",
             "custom_evidence": {"reviewer": "Eduardo"},
         }
-        quotation_id = self.store.upsert_quotation(
-            self.expense_id, payload
-        )["quotation_id"]
+        quotation_id = self.store.upsert_quotation(self.expense_id, payload)[
+            "quotation_id"
+        ]
         quotation = self.store.quotation_state(self.expense_id)["quotations"][0]
         self.assertEqual(
             {"reviewer": "Eduardo"}, quotation["metadata"]["custom_evidence"]
@@ -392,9 +390,9 @@ class ExpenseQuotationTests(unittest.TestCase):
         )
 
     def test_pdf_archive_and_ai_upsert_preserve_attachments(self) -> None:
-        quotation_id = self.store.upsert_quotation(
-            self.expense_id, self.quote()
-        )["quotation_id"]
+        quotation_id = self.store.upsert_quotation(self.expense_id, self.quote())[
+            "quotation_id"
+        ]
         pdf = b"%PDF-1.4\n1 0 obj<</Type /Page>>endobj\n%%EOF"
         attachment = self.store.quotation_store.add_document(
             self.expense_id, quotation_id, pdf, "../../quote.pdf"
@@ -426,9 +424,11 @@ class ExpenseQuotationTests(unittest.TestCase):
             if item["id"] == quotation_id
         )
         self.assertTrue(archived["archived"])
-        self.assertTrue(self.store.quotation_store.document_path(
-            self.expense_id, quotation_id, attachment["id"]
-        ).is_file())
+        self.assertTrue(
+            self.store.quotation_store.document_path(
+                self.expense_id, quotation_id, attachment["id"]
+            ).is_file()
+        )
 
     def test_metadata_arithmetic_and_commit_are_revalidated(self) -> None:
         base = {header: "" for header in PRICE_PACK["headers"]}
@@ -467,9 +467,7 @@ class ExpenseQuotationTests(unittest.TestCase):
         self.assertFalse(committed["ok"])
         self.assertIn("product_url", committed["fix_text"])
         self.assertIn(self.expense_id, committed["fix_text"])
-        self.assertEqual(
-            [], self.store.quotation_state(self.expense_id)["quotations"]
-        )
+        self.assertEqual([], self.store.quotation_state(self.expense_id)["quotations"])
 
 
 class ExpenseQuotationMigrationTests(unittest.TestCase):

@@ -1,0 +1,543 @@
+{
+  "cluster": "plumbing",
+  "checked_at": "2026-09-17",
+  "location_basis": "americana_proxy_for_nova_odessa",
+  "expenses": [
+    {
+      "expense_id": "EXP_0028",
+      "requested_item": "Vaso",
+      "requested_unit": "unidade",
+      "match_status": "verified",
+      "candidates": [
+        {
+          "matched_product": "Vaso com Caixa Acoplada Way Branco 6L Lorenzetti",
+          "sku": "119987-4",
+          "seller": "Barbosa Materiais para Construção",
+          "specifications": {
+            "brand": "Lorenzetti",
+            "model": "Way",
+            "color": "Branco",
+            "tank_capacity_l": 6,
+            "components": "bacia com caixa acoplada",
+            "finish": "branco brilhante"
+          },
+          "package_size": "1 unidade",
+          "displayed_price_brl": 399.9,
+          "normalized_unit_price_brl": 399.9,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "americana_proxy_for_nova_odessa",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.333obra.com.br/p/vaso-com-caixa-acoplada-way-branco-6l-lorenzetti.html",
+          "final_url": "https://www.333obra.com.br/p/vaso-com-caixa-acoplada-way-branco-6l-lorenzetti.html",
+          "http_status": 200,
+          "verification_method": "Direct .html product page fetched under verified Americana storefront location; title, SKU 119987-4, winning seller Barbosa, visible Pix price R$399.90, and 6L coupled-tank description matched. Arithmetic: R$399.90 / 1 unidade = R$399.90/unidade.",
+          "caveats": [
+            "Page description confirms coupled 6L tank and white finish; seat/accessories are not explicitly itemized as included.",
+            "Structured Peso attribute showed 0.000000 and is ignored."
+          ]
+        },
+        {
+          "matched_product": "Vaso com Caixa Acoplada Loren One Cerâmica Branco - Lorenzetti 1 Unidade",
+          "sku": "9167-4",
+          "seller": "Azefer Materiais para Construção",
+          "specifications": {
+            "brand": "Lorenzetti",
+            "model": "Loren One",
+            "material": "Cerâmica",
+            "color": "Branco",
+            "components": "bacia com caixa acoplada",
+            "weight_kg": 31.8
+          },
+          "package_size": "1 unidade",
+          "displayed_price_brl": 499.99,
+          "normalized_unit_price_brl": 499.99,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "americana_proxy_for_nova_odessa",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.333obra.com.br/p/combo-completo-de-bacia-com-caixa-acoplada-loren-way-branco.html",
+          "final_url": "https://www.333obra.com.br/p/combo-completo-de-bacia-com-caixa-acoplada-loren-way-branco.html",
+          "http_status": 200,
+          "verification_method": "Direct .html product page fetched under verified Americana storefront location; title, SKU 9167-4, winning seller Azefer, ceramic coupled-tank set, and visible Pix price R$499.99 matched. Arithmetic: R$499.99 / 1 unidade = R$499.99/unidade.",
+          "caveats": [
+            "URL slug mentions Loren Way while the H1/title is Loren One; retained as the loaded product title.",
+            "Seat/installation kit contents are not fully itemized beyond the coupled ceramic set."
+          ]
+        }
+      ],
+      "winner": {
+        "matched_product": "Vaso com Caixa Acoplada Way Branco 6L Lorenzetti",
+        "sku": "119987-4",
+        "seller": "Barbosa Materiais para Construção",
+        "specifications": {
+          "brand": "Lorenzetti",
+          "model": "Way",
+          "color": "Branco",
+          "tank_capacity_l": 6,
+          "components": "bacia com caixa acoplada",
+          "finish": "branco brilhante"
+        },
+        "package_size": "1 unidade",
+        "displayed_price_brl": 399.9,
+        "normalized_unit_price_brl": 399.9,
+        "unit": "unidade",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "americana_proxy_for_nova_odessa",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.333obra.com.br/p/vaso-com-caixa-acoplada-way-branco-6l-lorenzetti.html",
+        "final_url": "https://www.333obra.com.br/p/vaso-com-caixa-acoplada-way-branco-6l-lorenzetti.html",
+        "http_status": 200,
+        "verification_method": "Direct .html product page fetched under verified Americana storefront location; title, SKU 119987-4, winning seller Barbosa, visible Pix price R$399.90, and 6L coupled-tank description matched. Arithmetic: R$399.90 / 1 unidade = R$399.90/unidade.",
+        "caveats": [
+          "Lowest verified quantity-1 Pix price among complete white coupled-tank toilet candidates.",
+          "Page description confirms coupled 6L tank; seat/accessories are not explicitly itemized as included."
+        ]
+      },
+      "no_match_reason": null
+    },
+    {
+      "expense_id": "EXP_0036",
+      "requested_item": "Torneiras",
+      "requested_unit": "unidade",
+      "match_status": "verified",
+      "candidates": [
+        {
+          "matched_product": "Torneira Lavatório Mesa Cromo Cross 1/2\" - Tigre - Unidade",
+          "sku": "226515-1",
+          "seller": "PEZÃO MATERIAIS DE CONSTRUÇÃO",
+          "specifications": {
+            "brand": "Tigre",
+            "line": "Cross",
+            "finish": "Cromo",
+            "mount": "mesa / lavatório",
+            "connection": "1/2\""
+          },
+          "package_size": "1 unidade",
+          "displayed_price_brl": 13.6,
+          "normalized_unit_price_brl": 13.6,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "americana_proxy_for_nova_odessa",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.333obra.com.br/p/torneira-lavatorio-mesa-cromo-cross-1-2-tigre-unidade.html",
+          "final_url": "https://www.333obra.com.br/p/torneira-lavatorio-mesa-cromo-cross-1-2-tigre-unidade.html",
+          "http_status": 200,
+          "verification_method": "Direct .html product page fetched under verified Americana storefront location; title, SKU 226515-1, winning seller PEZÃO, chrome lavatory deck faucet, and visible Pix price R$13.60 matched. Arithmetic: R$13.60 / 1 unidade = R$13.60/unidade.",
+          "caveats": [
+            "Title confirms chrome lavatory deck mount and 1/2\" connection; spout height (bica alta) is not declared on the product page."
+          ]
+        },
+        {
+          "matched_product": "Torneira Lavatório Mesa Orbe Branco/Cromado 1/2\" Tigre",
+          "sku": "226519-3",
+          "seller": "PEZÃO MATERIAIS DE CONSTRUÇÃO",
+          "specifications": {
+            "brand": "Tigre",
+            "line": "Orbe",
+            "finish": "Branco/Cromado",
+            "mount": "mesa / lavatório",
+            "connection": "1/2\""
+          },
+          "package_size": "1 unidade",
+          "displayed_price_brl": 34.99,
+          "normalized_unit_price_brl": 34.99,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "americana_proxy_for_nova_odessa",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.333obra.com.br/p/torneira-lavatorio-mesa-orbe-branco-cromado-1-2-tigre.html",
+          "final_url": "https://www.333obra.com.br/p/torneira-lavatorio-mesa-orbe-branco-cromado-1-2-tigre.html",
+          "http_status": 200,
+          "verification_method": "Direct .html product page fetched under verified Americana storefront location; title, SKU 226519-3, winning seller PEZÃO, lavatory deck faucet, and visible Pix price R$34.99 matched. Arithmetic: R$34.99 / 1 unidade = R$34.99/unidade.",
+          "caveats": [
+            "Finish is listed as Branco/Cromado rather than fully chrome.",
+            "Spout height (bica alta) is not declared on the product page."
+          ]
+        }
+      ],
+      "winner": {
+        "matched_product": "Torneira Lavatório Mesa Cromo Cross 1/2\" - Tigre - Unidade",
+        "sku": "226515-1",
+        "seller": "PEZÃO MATERIAIS DE CONSTRUÇÃO",
+        "specifications": {
+          "brand": "Tigre",
+          "line": "Cross",
+          "finish": "Cromo",
+          "mount": "mesa / lavatório",
+          "connection": "1/2\""
+        },
+        "package_size": "1 unidade",
+        "displayed_price_brl": 13.6,
+        "normalized_unit_price_brl": 13.6,
+        "unit": "unidade",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "americana_proxy_for_nova_odessa",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.333obra.com.br/p/torneira-lavatorio-mesa-cromo-cross-1-2-tigre-unidade.html",
+        "final_url": "https://www.333obra.com.br/p/torneira-lavatorio-mesa-cromo-cross-1-2-tigre-unidade.html",
+        "http_status": 200,
+        "verification_method": "Direct .html product page fetched under verified Americana storefront location; title, SKU 226515-1, winning seller PEZÃO, chrome lavatory deck faucet, and visible Pix price R$13.60 matched. Arithmetic: R$13.60 / 1 unidade = R$13.60/unidade.",
+        "caveats": [
+          "Lowest verified quantity-1 Pix price among chrome/chrome-accent lavatory deck faucets.",
+          "Spout height (bica alta) is not declared on the product page."
+        ]
+      },
+      "no_match_reason": null
+    },
+    {
+      "expense_id": "EXP_0037",
+      "requested_item": "Sifões e ralos",
+      "requested_unit": "unidade",
+      "match_status": "verified",
+      "candidates": [
+        {
+          "matched_product": "Sifão Sanfonado Multiuso Universal Branco 3332 - krona",
+          "sku": "2893-31",
+          "seller": "Azefer Materiais para Construção",
+          "specifications": {
+            "brand": "Krona",
+            "model": "3332",
+            "type": "sifão sanfonado multiuso universal",
+            "color": "Branco",
+            "components": "sifão flexível, adaptador 1.1/2''x1.1/4'' ou 7/8'', 03 anéis de vedação em termoplástico vulcanizado e braçadeira",
+            "length_cm": 10,
+            "width_cm": 20
+          },
+          "package_size": "1 unidade",
+          "displayed_price_brl": 9.04,
+          "normalized_unit_price_brl": 9.04,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "americana_proxy_for_nova_odessa",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.333obra.com.br/p/sif-o-sanfonado-multiuso-universal-branco-3332-krona.html",
+          "final_url": "https://www.333obra.com.br/p/sif-o-sanfonado-multiuso-universal-branco-3332-krona.html",
+          "http_status": 200,
+          "verification_method": "Direct .html product page fetched under verified Americana storefront location; title, SKU 2893-31, winning seller Azefer, bellows universal siphon components, and visible Pix price R$9.04 matched. Arithmetic: R$9.04 / 1 unidade = R$9.04/unidade.",
+          "caveats": [
+            "Representative siphon only; expense label also includes drains (ralos), which are not covered by this unit price.",
+            "Structured dimensions 10x20 cm look like packaging fields rather than installed length."
+          ]
+        },
+        {
+          "matched_product": "Sifão Ajustável Multiuso 66cm Branco - Tigre - Unidade",
+          "sku": "202500-16",
+          "seller": "Construdeva",
+          "specifications": {
+            "brand": "Tigre",
+            "type": "sifão ajustável multiuso",
+            "color": "Branco",
+            "length_cm": 66
+          },
+          "package_size": "1 unidade",
+          "displayed_price_brl": 11.57,
+          "normalized_unit_price_brl": 11.57,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "americana_proxy_for_nova_odessa",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.333obra.com.br/p/sif-o-universal-plastico-branco-tigre.html",
+          "final_url": "https://www.333obra.com.br/p/sif-o-universal-plastico-branco-tigre.html",
+          "http_status": 200,
+          "verification_method": "Direct .html product page fetched under verified Americana storefront location; title, SKU 202500-16, winning seller Construdeva, 66 cm adjustable siphon, and visible Pix price R$11.57 matched. Arithmetic: R$11.57 / 1 unidade = R$11.57/unidade.",
+          "caveats": [
+            "Representative siphon only; expense label also includes drains (ralos), which are not covered by this unit price."
+          ]
+        }
+      ],
+      "winner": {
+        "matched_product": "Sifão Sanfonado Multiuso Universal Branco 3332 - krona",
+        "sku": "2893-31",
+        "seller": "Azefer Materiais para Construção",
+        "specifications": {
+          "brand": "Krona",
+          "model": "3332",
+          "type": "sifão sanfonado multiuso universal",
+          "color": "Branco",
+          "components": "sifão flexível, adaptador 1.1/2''x1.1/4'' ou 7/8'', 03 anéis de vedação em termoplástico vulcanizado e braçadeira",
+          "length_cm": 10,
+          "width_cm": 20
+        },
+        "package_size": "1 unidade",
+        "displayed_price_brl": 9.04,
+        "normalized_unit_price_brl": 9.04,
+        "unit": "unidade",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "americana_proxy_for_nova_odessa",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.333obra.com.br/p/sif-o-sanfonado-multiuso-universal-branco-3332-krona.html",
+        "final_url": "https://www.333obra.com.br/p/sif-o-sanfonado-multiuso-universal-branco-3332-krona.html",
+        "http_status": 200,
+        "verification_method": "Direct .html product page fetched under verified Americana storefront location; title, SKU 2893-31, winning seller Azefer, bellows universal siphon components, and visible Pix price R$9.04 matched. Arithmetic: R$9.04 / 1 unidade = R$9.04/unidade.",
+        "caveats": [
+          "Lowest verified quantity-1 Pix price among representative universal siphon candidates.",
+          "Representative siphon only; expense label also includes drains (ralos), which are not covered by this unit price."
+        ]
+      },
+      "no_match_reason": null
+    },
+    {
+      "expense_id": "EXP_0039",
+      "requested_item": "Pias e bancadas",
+      "requested_unit": "conjunto",
+      "match_status": "verified",
+      "candidates": [
+        {
+          "matched_product": "Pia de Mármore Sintético Standard Travertino 150cm - Rorato - 1 Unidade",
+          "sku": "3245-13",
+          "seller": "CONSTRUFORT",
+          "specifications": {
+            "brand": "Rorato",
+            "material": "mármore sintético",
+            "finish": "Travertino / granitado gel coat",
+            "length_cm": 150,
+            "width_cm": 55,
+            "height_cm": 15,
+            "weight_kg": 100
+          },
+          "package_size": "1 unidade (150 x 55 x 15 cm)",
+          "displayed_price_brl": 247.8,
+          "normalized_unit_price_brl": 247.8,
+          "unit": "conjunto",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "americana_proxy_for_nova_odessa",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.333obra.com.br/p/pia-de-marmore-sintetico-standart-150cm-travertino-5045-14-rorato.html",
+          "final_url": "https://www.333obra.com.br/p/pia-de-marmore-sintetico-standart-150cm-travertino-5045-14-rorato.html",
+          "http_status": 200,
+          "verification_method": "Direct .html product page fetched under verified Americana storefront location; title, SKU 3245-13, winning seller CONSTRUFORT, 150x55x15 cm synthetic-marble sink, and visible Pix price R$247.80 matched. Arithmetic: R$247.80 / 1 conjunto = R$247.80/conjunto.",
+          "caveats": [
+            "This is a 150 cm synthetic-marble sink set, not stainless steel; treated as a comparable pia/bancada unit."
+          ]
+        },
+        {
+          "matched_product": "Pia de Inox Aço Inox 430 Plus 30 - Ghelplus - 1 Unidade",
+          "sku": "3565-6",
+          "seller": "CONSTRUFORT",
+          "specifications": {
+            "brand": "Ghelplus",
+            "line": "Plus 30",
+            "material": "Aço Inox 430",
+            "length_cm": 120,
+            "depth_cm": 57,
+            "height_cm": 5,
+            "weight_kg": 20,
+            "components": "pia de inox; URL/title notes base de concreto; sem válvula"
+          },
+          "package_size": "1 unidade (120 x 57 cm; sem válvula)",
+          "displayed_price_brl": 269.9,
+          "normalized_unit_price_brl": 269.9,
+          "unit": "conjunto",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "americana_proxy_for_nova_odessa",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.333obra.com.br/p/pia-de-inox-120cm-com-base-de-concreto-sem-valvula-pia-plus-30-ghelplus.html",
+          "final_url": "https://www.333obra.com.br/p/pia-de-inox-120cm-com-base-de-concreto-sem-valvula-pia-plus-30-ghelplus.html",
+          "http_status": 200,
+          "verification_method": "Direct .html product page fetched under verified Americana storefront location; title, SKU 3565-6, winning seller CONSTRUFORT, 120 cm stainless sink specs, and visible Pix price R$269.90 matched. Arithmetic: R$269.90 / 1 conjunto = R$269.90/conjunto.",
+          "caveats": [
+            "URL states concrete base and no valve; valve is excluded from the listed package.",
+            "Structured attributes list Largura 120 cm and Comprimento 57 cm (interpreted as 120 x 57 cm footprint)."
+          ]
+        }
+      ],
+      "winner": {
+        "matched_product": "Pia de Mármore Sintético Standard Travertino 150cm - Rorato - 1 Unidade",
+        "sku": "3245-13",
+        "seller": "CONSTRUFORT",
+        "specifications": {
+          "brand": "Rorato",
+          "material": "mármore sintético",
+          "finish": "Travertino / granitado gel coat",
+          "length_cm": 150,
+          "width_cm": 55,
+          "height_cm": 15,
+          "weight_kg": 100
+        },
+        "package_size": "1 unidade (150 x 55 x 15 cm)",
+        "displayed_price_brl": 247.8,
+        "normalized_unit_price_brl": 247.8,
+        "unit": "conjunto",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "americana_proxy_for_nova_odessa",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.333obra.com.br/p/pia-de-marmore-sintetico-standart-150cm-travertino-5045-14-rorato.html",
+        "final_url": "https://www.333obra.com.br/p/pia-de-marmore-sintetico-standart-150cm-travertino-5045-14-rorato.html",
+        "http_status": 200,
+        "verification_method": "Direct .html product page fetched under verified Americana storefront location; title, SKU 3245-13, winning seller CONSTRUFORT, 150x55x15 cm synthetic-marble sink, and visible Pix price R$247.80 matched. Arithmetic: R$247.80 / 1 conjunto = R$247.80/conjunto.",
+        "caveats": [
+          "Lowest verified quantity-1 Pix price among pia/bancada candidates.",
+          "Synthetic-marble 150 cm set; the stainless 120 cm Ghelplus candidate is closer to prior inox comparable specs but costs more."
+        ]
+      },
+      "no_match_reason": null
+    },
+    {
+      "expense_id": "EXP_0040",
+      "requested_item": "Box de vidro",
+      "requested_unit": "unidade",
+      "match_status": "no_match",
+      "candidates": [],
+      "winner": null,
+      "no_match_reason": "No individual .html glass shower-box (box de vidro temperado) product page with a visible Americana price was found. Searches for 'box vidro' and 'box banheiro' returned cleaners, electrical Combibox panels, furniture, and unrelated items rather than tempered-glass shower enclosures."
+    },
+    {
+      "expense_id": "EXP_0044",
+      "requested_item": "Caixa de água",
+      "requested_unit": "unidade",
+      "match_status": "verified",
+      "candidates": [
+        {
+          "matched_product": "Caixa D'água 1000 Litros em Polietileno Azul - Fortlev - 1 Unidade",
+          "sku": "146-78",
+          "seller": "Construeva Materias Para Construção",
+          "specifications": {
+            "brand": "Fortlev",
+            "material": "polietileno",
+            "color": "Azul",
+            "capacity_l": 1000,
+            "lid": "tampa com sistema exclusivo de encaixe (não roscada no título)"
+          },
+          "package_size": "1 unidade (1000 L)",
+          "displayed_price_brl": 440.8,
+          "normalized_unit_price_brl": 440.8,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [
+            {
+              "minimum_quantity": 2,
+              "displayed_price_brl": 428.9,
+              "normalized_unit_price_brl": 428.9
+            }
+          ],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "americana_proxy_for_nova_odessa",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.333obra.com.br/p/caixa-d-agua-de-polietileno-fortlev-1000-l.html",
+          "final_url": "https://www.333obra.com.br/p/caixa-d-agua-de-polietileno-fortlev-1000-l.html",
+          "http_status": 200,
+          "verification_method": "Direct .html product page fetched under verified Americana storefront location; title, SKU 146-78, winning seller Construeva, 1000 L polyethylene tank, and quantity-1 Pix price R$440.80 matched (strikethrough reference R$505.80 ignored for ranking). Arithmetic: R$440.80 / 1 unidade = R$440.80/unidade.",
+          "caveats": [
+            "Quantity-1 Pix price is R$440.80; R$505.80 appears only as a crossed-out reference.",
+            "Bulk tier from 2 units at R$428.90 is recorded separately and not used for quantity-1 ranking.",
+            "Exact tank dimensions were not exposed in the loaded attribute table."
+          ]
+        },
+        {
+          "matched_product": "Caixa D'água 1000 Litros em Polietileno Tampa Rosca - Fortlev - 1 Unidade",
+          "sku": "5273-10",
+          "seller": "Construeva Materias Para Construção",
+          "specifications": {
+            "brand": "Fortlev",
+            "material": "polietileno",
+            "capacity_l": 1000,
+            "lid": "tampa rosca",
+            "length_cm": 150,
+            "width_cm": 150,
+            "height_cm": 100
+          },
+          "package_size": "1 unidade (1000 L; 150 x 150 x 100 cm)",
+          "displayed_price_brl": 775.9,
+          "normalized_unit_price_brl": 775.9,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [
+            {
+              "minimum_quantity": 2,
+              "displayed_price_brl": 738.9,
+              "normalized_unit_price_brl": 738.9
+            }
+          ],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "americana_proxy_for_nova_odessa",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.333obra.com.br/p/caixa-d-agua-1000-litros-polietileno-fortlev-tampa-rosca.html",
+          "final_url": "https://www.333obra.com.br/p/caixa-d-agua-1000-litros-polietileno-fortlev-tampa-rosca.html",
+          "http_status": 200,
+          "verification_method": "Direct .html product page fetched under verified Americana storefront location; title, SKU 5273-10, winning seller Construeva, 1000 L screw-lid tank with 150x150x100 cm dimensions, and visible Pix price R$775.90 matched. Arithmetic: R$775.90 / 1 unidade = R$775.90/unidade.",
+          "caveats": [
+            "Screw-lid variant; higher quantity-1 price than the standard Fortlev 1000 L candidate.",
+            "Bulk tier from 2 units at R$738.90 is recorded separately."
+          ]
+        }
+      ],
+      "winner": {
+        "matched_product": "Caixa D'água 1000 Litros em Polietileno Azul - Fortlev - 1 Unidade",
+        "sku": "146-78",
+        "seller": "Construeva Materias Para Construção",
+        "specifications": {
+          "brand": "Fortlev",
+          "material": "polietileno",
+          "color": "Azul",
+          "capacity_l": 1000,
+          "lid": "tampa com sistema exclusivo de encaixe (não roscada no título)"
+        },
+        "package_size": "1 unidade (1000 L)",
+        "displayed_price_brl": 440.8,
+        "normalized_unit_price_brl": 440.8,
+        "unit": "unidade",
+        "minimum_quantity": 1,
+        "bulk_tiers": [
+          {
+            "minimum_quantity": 2,
+            "displayed_price_brl": 428.9,
+            "normalized_unit_price_brl": 428.9
+          }
+        ],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "americana_proxy_for_nova_odessa",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.333obra.com.br/p/caixa-d-agua-de-polietileno-fortlev-1000-l.html",
+        "final_url": "https://www.333obra.com.br/p/caixa-d-agua-de-polietileno-fortlev-1000-l.html",
+        "http_status": 200,
+        "verification_method": "Direct .html product page fetched under verified Americana storefront location; title, SKU 146-78, winning seller Construeva, 1000 L polyethylene tank, and quantity-1 Pix price R$440.80 matched (strikethrough reference R$505.80 ignored for ranking). Arithmetic: R$440.80 / 1 unidade = R$440.80/unidade.",
+        "caveats": [
+          "Lowest verified quantity-1 Pix price among 1000 L polyethylene tank candidates.",
+          "Quantity-1 Pix price is R$440.80; R$505.80 appears only as a crossed-out reference.",
+          "Bulk tier from 2 units at R$428.90 is recorded separately and not used for quantity-1 ranking."
+        ]
+      },
+      "no_match_reason": null
+    }
+  ]
+}

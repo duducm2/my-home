@@ -1,0 +1,307 @@
+{
+  "cluster": "finishes",
+  "checked_at": "2026-09-17T03:37:27Z",
+  "location_basis": "americana_proxy_for_nova_odessa",
+  "expenses": [
+    {
+      "expense_id": "EXP_0023",
+      "requested_item": "porcelanato",
+      "requested_unit": "m2",
+      "match_status": "no_match",
+      "candidates": [],
+      "winner": null,
+      "no_match_reason": "No individual .html porcelain-tile product page with a visible Americana price and evidenced package area was found. The porcelain category returned no product cards, while the catalog search results were cutters, cutting discs, drill bits, and grout rather than porcelain tiles."
+    },
+    {
+      "expense_id": "EXP_0024",
+      "requested_item": "rejunte",
+      "requested_unit": "kg",
+      "match_status": "verified",
+      "candidates": [
+        {
+          "matched_product": "Rejunte Flexível Cerâmica Preto 1Kg - Votomassa - 1 Unidade",
+          "sku": "69-66",
+          "seller": null,
+          "specifications": {
+            "type": "Flexível",
+            "brand": "Votomassa",
+            "packaging": "Saco de 1kg",
+            "indicated_use": "Fachadas, lajes e telhados, parede interna, pisos e rodapé",
+            "drying_time": "48 horas para tráfego de pessoas"
+          },
+          "package_size": "1 kg",
+          "displayed_price_brl": 5.59,
+          "normalized_unit_price_brl": 5.59,
+          "unit": "kg",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "americana_proxy_for_nova_odessa",
+          "checked_at": "2026-09-17T03:37:27Z",
+          "product_url": "https://www.333obra.com.br/p/rejunte-flexivel-votomassa-preto-1-kg.html",
+          "final_url": "https://www.333obra.com.br/p/rejunte-flexivel-votomassa-preto-1-kg.html",
+          "http_status": 200,
+          "verification_method": "Direct .html product page fetched under verified Americana storefront location; title, SKU, 1kg package, visible Pix price, specifications, and stock status matched. Arithmetic: R$5.59 / 1kg = R$5.59/kg.",
+          "caveats": [
+            "The visible page offered multiple nearby sellers but did not expose the winning seller name in the loaded product content; seller is therefore null. Price is the displayed starting Pix price."
+          ]
+        },
+        {
+          "matched_product": "Rejunte Resinado Extrafino Multiúso Portokoll Branco 1Kg - Portokoll - 1 Unidade",
+          "sku": "203281-4",
+          "seller": null,
+          "specifications": {
+            "type": "Resinado extrafino multiúso",
+            "brand": "Portokoll",
+            "color": "Branco"
+          },
+          "package_size": "1 kg",
+          "displayed_price_brl": 6.98,
+          "normalized_unit_price_brl": 6.98,
+          "unit": "kg",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "americana_proxy_for_nova_odessa",
+          "checked_at": "2026-09-17T03:37:27Z",
+          "product_url": "https://www.333obra.com.br/p/rejunte-porcelanato-branco-1kg-portokoll.html",
+          "final_url": "https://www.333obra.com.br/p/rejunte-porcelanato-branco-1kg-portokoll.html",
+          "http_status": 200,
+          "verification_method": "Direct .html product page fetched under verified Americana storefront location; title, SKU, visible Pix price, and stock status matched. Arithmetic: R$6.98 / 1kg = R$6.98/kg.",
+          "caveats": [
+            "The 1kg package is evidenced by the product title, while the page's structured Peso attribute incorrectly showed 0.000000. The winning seller name was not exposed; seller is null. Price is the displayed starting Pix price."
+          ]
+        },
+        {
+          "matched_product": "Rejunte Flexível Branco Pisokoll 1kg",
+          "sku": "60226-1",
+          "seller": null,
+          "specifications": {
+            "type": "Flexível",
+            "packaging": "Saco de 1kg",
+            "indicated_use": "Fachadas, lajes e telhados, parede interna, pisos e rodapé",
+            "drying_time": "24 horas para tráfego de pessoas"
+          },
+          "package_size": "1 kg",
+          "displayed_price_brl": 6.99,
+          "normalized_unit_price_brl": 6.99,
+          "unit": "kg",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "americana_proxy_for_nova_odessa",
+          "checked_at": "2026-09-17T03:37:27Z",
+          "product_url": "https://www.333obra.com.br/p/rejunte-flexivel-branco-pisokoll-1kg.html",
+          "final_url": "https://www.333obra.com.br/p/rejunte-flexivel-branco-pisokoll-1kg.html",
+          "http_status": 200,
+          "verification_method": "Direct .html product page fetched under verified Americana storefront location; title, SKU, 1kg package, visible Pix price, specifications, and stock status matched. Arithmetic: R$6.99 / 1kg = R$6.99/kg.",
+          "caveats": [
+            "The title says Pisokoll, but the page description refers to Quartzolit; the product is retained only as a price comparable and the inconsistency is not resolved. The winning seller name was not exposed; seller is null."
+          ]
+        }
+      ],
+      "winner": {
+        "matched_product": "Rejunte Flexível Cerâmica Preto 1Kg - Votomassa - 1 Unidade",
+        "sku": "69-66",
+        "seller": null,
+        "specifications": {
+          "type": "Flexível",
+          "brand": "Votomassa",
+          "packaging": "Saco de 1kg",
+          "indicated_use": "Fachadas, lajes e telhados, parede interna, pisos e rodapé",
+          "drying_time": "48 horas para tráfego de pessoas"
+        },
+        "package_size": "1 kg",
+        "displayed_price_brl": 5.59,
+        "normalized_unit_price_brl": 5.59,
+        "unit": "kg",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "americana_proxy_for_nova_odessa",
+        "checked_at": "2026-09-17T03:37:27Z",
+        "product_url": "https://www.333obra.com.br/p/rejunte-flexivel-votomassa-preto-1-kg.html",
+        "final_url": "https://www.333obra.com.br/p/rejunte-flexivel-votomassa-preto-1-kg.html",
+        "http_status": 200,
+        "verification_method": "Direct .html product page fetched under verified Americana storefront location; title, SKU, 1kg package, visible Pix price, specifications, and stock status matched. Arithmetic: R$5.59 / 1kg = R$5.59/kg.",
+        "caveats": [
+          "Lowest verified quantity-1 normalized price among comparable grout candidates. The visible page did not expose the winning seller name; seller is null."
+        ]
+      },
+      "no_match_reason": null
+    },
+    {
+      "expense_id": "EXP_0025",
+      "requested_item": "argamassa para porcelanato",
+      "requested_unit": "20kg bag",
+      "match_status": "verified",
+      "candidates": [
+        {
+          "matched_product": "Argamassa Colante ACIII Pisokoll 7 em 1 Interno e Externo Cinza 20kg - Pisokoll - 1 Unidade",
+          "sku": "9053-10",
+          "seller": null,
+          "specifications": {
+            "type": "ACIII, assentamento e revestimento",
+            "brand": "Pisokoll",
+            "color": "Cinza",
+            "indicated_use": "Porcelanatos e cerâmicas",
+            "open_time": "20 minutos"
+          },
+          "package_size": "20 kg bag",
+          "displayed_price_brl": 22.9,
+          "normalized_unit_price_brl": 22.9,
+          "unit": "20kg bag",
+          "minimum_quantity": 1,
+          "bulk_tiers": [
+            {
+              "minimum_quantity": 20,
+              "price_per_20kg_bag_brl": 21.5
+            }
+          ],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "americana_proxy_for_nova_odessa",
+          "checked_at": "2026-09-17T03:37:27Z",
+          "product_url": "https://www.333obra.com.br/p/argamassa-ac3-cinza-7-em-1-20-kg-pisokoll.html",
+          "final_url": "https://www.333obra.com.br/p/argamassa-ac3-cinza-7-em-1-20-kg-pisokoll.html",
+          "http_status": 200,
+          "verification_method": "Direct .html product page fetched under verified Americana storefront location; title, SKU, 20kg weight, porcelain indication, visible Pix price, stock, and bulk tier matched. Arithmetic: one 20kg bag at quantity 1 = R$22.90 per requested 20kg bag.",
+          "caveats": [
+            "The R$21.50 price applies only from 20 bags and was excluded from the quantity-1 winner ranking. The winning seller name was not exposed; seller is null."
+          ]
+        },
+        {
+          "matched_product": "Argamassa Polivalente ACIII Super Kerakoll Interno e Externo Cinza 20 kg - Kerakoll - 1 Unidade",
+          "sku": "97578-9",
+          "seller": null,
+          "specifications": {
+            "type": "ACIII polivalente",
+            "brand": "Kerakoll",
+            "color": "Cinza",
+            "indicated_use": "Assentamento e sobreposição de porcelanatos, cerâmicas, pastilhas de vidro, mármores, granitos e pedras naturais"
+          },
+          "package_size": "20 kg bag",
+          "displayed_price_brl": 36.9,
+          "normalized_unit_price_brl": 36.9,
+          "unit": "20kg bag",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "americana_proxy_for_nova_odessa",
+          "checked_at": "2026-09-17T03:37:27Z",
+          "product_url": "https://www.333obra.com.br/p/argamassa-interna-externa-aciii-polivalente-super-cinza-20kg-kerakoll.html",
+          "final_url": "https://www.333obra.com.br/p/argamassa-interna-externa-aciii-polivalente-super-cinza-20kg-kerakoll.html",
+          "http_status": 200,
+          "verification_method": "Direct .html product page fetched under verified Americana storefront location; title, SKU, 20kg weight, porcelain use in the visible description, price, and stock matched. Arithmetic: one 20kg bag = R$36.90 per requested 20kg bag.",
+          "caveats": [
+            "The winning seller name was not exposed; seller is null. Price is the displayed starting Pix price."
+          ]
+        },
+        {
+          "matched_product": "Argamassa Polivalente ACIII Super Kerakoll Interno e Externo Branco 20 kg - Kerakoll - 1 Unidade",
+          "sku": "97577-7",
+          "seller": null,
+          "specifications": {
+            "type": "ACIII polivalente",
+            "brand": "Kerakoll",
+            "color": "Branco",
+            "indicated_use": "Assentamento e sobreposição de porcelanatos, cerâmicas, pastilhas de vidro, mármores, granitos e pedras naturais"
+          },
+          "package_size": "20 kg bag",
+          "displayed_price_brl": 50.0,
+          "normalized_unit_price_brl": 50.0,
+          "unit": "20kg bag",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "americana_proxy_for_nova_odessa",
+          "checked_at": "2026-09-17T03:37:27Z",
+          "product_url": "https://www.333obra.com.br/p/argamassa-interna-externa-aciii-polivalente-super-branco-20kg-kerakoll.html",
+          "final_url": "https://www.333obra.com.br/p/argamassa-interna-externa-aciii-polivalente-super-branco-20kg-kerakoll.html",
+          "http_status": 200,
+          "verification_method": "Direct .html product page fetched under verified Americana storefront location; title, SKU, 20kg weight, porcelain use in the visible description, price, and stock matched. Arithmetic: one 20kg bag = R$50.00 per requested 20kg bag.",
+          "caveats": [
+            "The winning seller name was not exposed; seller is null. Price is the displayed starting Pix price."
+          ]
+        }
+      ],
+      "winner": {
+        "matched_product": "Argamassa Colante ACIII Pisokoll 7 em 1 Interno e Externo Cinza 20kg - Pisokoll - 1 Unidade",
+        "sku": "9053-10",
+        "seller": null,
+        "specifications": {
+          "type": "ACIII, assentamento e revestimento",
+          "brand": "Pisokoll",
+          "color": "Cinza",
+          "indicated_use": "Porcelanatos e cerâmicas",
+          "open_time": "20 minutos"
+        },
+        "package_size": "20 kg bag",
+        "displayed_price_brl": 22.9,
+        "normalized_unit_price_brl": 22.9,
+        "unit": "20kg bag",
+        "minimum_quantity": 1,
+        "bulk_tiers": [
+          {
+            "minimum_quantity": 20,
+            "price_per_20kg_bag_brl": 21.5
+          }
+        ],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "americana_proxy_for_nova_odessa",
+        "checked_at": "2026-09-17T03:37:27Z",
+        "product_url": "https://www.333obra.com.br/p/argamassa-ac3-cinza-7-em-1-20-kg-pisokoll.html",
+        "final_url": "https://www.333obra.com.br/p/argamassa-ac3-cinza-7-em-1-20-kg-pisokoll.html",
+        "http_status": 200,
+        "verification_method": "Direct .html product page fetched under verified Americana storefront location; title, SKU, 20kg weight, porcelain indication, visible Pix price, stock, and bulk tier matched. Arithmetic: one 20kg bag at quantity 1 = R$22.90 per requested 20kg bag.",
+        "caveats": [
+          "Lowest verified quantity-1 price. The R$21.50 price applies only from 20 bags and was excluded from ranking; seller name was not exposed."
+        ]
+      },
+      "no_match_reason": null
+    },
+    {
+      "expense_id": "EXP_0041",
+      "requested_item": "rodapé",
+      "requested_unit": "linear meter",
+      "match_status": "no_match",
+      "candidates": [],
+      "winner": null,
+      "no_match_reason": "The Americana storefront catalog search for rodapé returned no product cards, so no direct .html page with evidenced length and visible price could be verified or normalized per linear meter."
+    },
+    {
+      "expense_id": "EXP_0046",
+      "requested_item": "tinta",
+      "requested_unit": "18L package",
+      "match_status": "no_match",
+      "candidates": [],
+      "winner": null,
+      "no_match_reason": "No 18 L architectural wall paint with a visible Americana proxy price was verified. The located 18 L product was an asphalt waterproofing coating, which is not comparable to ordinary house paint."
+    },
+    {
+      "expense_id": "EXP_0048",
+      "requested_item": "silicone + espuma expansiva + selante PU kit",
+      "requested_unit": "kit",
+      "match_status": "no_match",
+      "candidates": [],
+      "winner": null,
+      "no_match_reason": "No single direct .html product page or evidenced kit price containing all three required components was found. Search results showed separately priced silicone, expanding foam, and PU sealant products only; these were not combined because the scope permits a match only when all components or kit pricing is evidenced."
+    },
+    {
+      "expense_id": "EXP_0049",
+      "requested_item": "lona",
+      "requested_unit": "m2",
+      "match_status": "no_match",
+      "candidates": [],
+      "winner": null,
+      "no_match_reason": "No tarp price could be reliably normalized per m2. The product title contains 4x50m and the wording o metro, but the page did not clearly tie the displayed price of 376.99 BRL to the complete 4x50 m roll; treating it as a 200 m2 roll price would be a guess."
+    }
+  ]
+}

@@ -1,0 +1,380 @@
+{
+  "cluster": "tools_logistics",
+  "checked_at": "2026-09-17",
+  "location_basis": "americana_proxy_for_nova_odessa",
+  "expenses": [
+    {
+      "expense_id": "EXP_0018",
+      "requested_item": "Ferramentas",
+      "requested_unit": "conjunto",
+      "match_status": "verified",
+      "candidates": [
+        {
+          "matched_product": "Kit de Ferramentas 5 Peças Metal/Plástico - Tramontina - 1 Kit",
+          "sku": "4412-10",
+          "seller": null,
+          "specifications": {
+            "brand": "Tramontina",
+            "model": "43408/500",
+            "piece_count": 5,
+            "materials": "Metal/Plástico",
+            "use": "Reparos e montagens domésticas",
+            "noted_tool": "Chave de fenda ponta chata 3/16x4\"",
+            "approx_dimensions_cm": "33 x 12 x 5"
+          },
+          "package_size": "1 kit / 5 peças",
+          "displayed_price_brl": 21.25,
+          "normalized_unit_price_brl": 21.25,
+          "unit": "conjunto",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "americana_proxy_for_nova_odessa",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.333obra.com.br/p/kit-de-ferramentas-5-pecas-43408-500-tramontina.html",
+          "final_url": "https://www.333obra.com.br/p/kit-de-ferramentas-5-pecas-43408-500-tramontina.html",
+          "http_status": 200,
+          "verification_method": "Direct .html product page fetched under verified Americana storefront location; title, SKU, visible Pix price, stock status, and clearly specified 5-piece kit identity matched. Arithmetic: R$21.25 / 1 kit = R$21.25/conjunto.",
+          "caveats": [
+            "Representative domestic repair kit, not a full construction toolbox; piece list beyond the flat screwdriver is only partially disclosed on-page.",
+            "Winning seller name was not exposed in loaded product content; seller is null. Price is the displayed starting Pix price."
+          ]
+        }
+      ],
+      "winner": {
+        "matched_product": "Kit de Ferramentas 5 Peças Metal/Plástico - Tramontina - 1 Kit",
+        "sku": "4412-10",
+        "seller": null,
+        "specifications": {
+          "brand": "Tramontina",
+          "model": "43408/500",
+          "piece_count": 5,
+          "materials": "Metal/Plástico",
+          "use": "Reparos e montagens domésticas",
+          "noted_tool": "Chave de fenda ponta chata 3/16x4\"",
+          "approx_dimensions_cm": "33 x 12 x 5"
+        },
+        "package_size": "1 kit / 5 peças",
+        "displayed_price_brl": 21.25,
+        "normalized_unit_price_brl": 21.25,
+        "unit": "conjunto",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "americana_proxy_for_nova_odessa",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.333obra.com.br/p/kit-de-ferramentas-5-pecas-43408-500-tramontina.html",
+        "final_url": "https://www.333obra.com.br/p/kit-de-ferramentas-5-pecas-43408-500-tramontina.html",
+        "http_status": 200,
+        "verification_method": "Direct .html product page fetched under verified Americana storefront location; title, SKU, visible Pix price, stock status, and clearly specified 5-piece kit identity matched. Arithmetic: R$21.25 / 1 kit = R$21.25/conjunto.",
+        "caveats": [
+          "Lowest verified quantity-1 price among clearly specified tool kits found. Domestic 5-piece set only; not equivalent to a full obra toolbox budget.",
+          "Winning seller name was not exposed; seller is null."
+        ]
+      },
+      "no_match_reason": null
+    },
+    {
+      "expense_id": "EXP_0020",
+      "requested_item": "Carrinho de mão",
+      "requested_unit": "unidade",
+      "match_status": "verified",
+      "candidates": [
+        {
+          "matched_product": "Carrinho de Mão Caçamba Redonda",
+          "sku": "97194-1",
+          "seller": null,
+          "specifications": {
+            "type": "Carrinho de mão com caçamba redonda",
+            "brand": "Fornecedor Local",
+            "dimensions_cm": "144.3 x 59.3 x 50.3",
+            "weight_kg": 9
+          },
+          "package_size": "1 unidade",
+          "displayed_price_brl": 169.9,
+          "normalized_unit_price_brl": 169.9,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "americana_proxy_for_nova_odessa",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.333obra.com.br/p/carrinho-de-m-o-cacamba-redonda.html",
+          "final_url": "https://www.333obra.com.br/p/carrinho-de-m-o-cacamba-redonda.html",
+          "http_status": 200,
+          "verification_method": "Direct .html product page fetched under verified Americana storefront location; title, SKU, visible Pix price, specifications, and stock status matched. Arithmetic: R$169.90 / 1 = R$169.90/unidade.",
+          "caveats": [
+            "Tray capacity in liters is not stated on the product page.",
+            "Winning seller name was not exposed; seller is null. Price is the displayed starting Pix price."
+          ]
+        },
+        {
+          "matched_product": "Carrinho de Mão 45L Vermelho - Cortag - Unidade",
+          "sku": "213253-1",
+          "seller": null,
+          "specifications": {
+            "type": "Carrinho de mão",
+            "brand": "Cortag",
+            "capacity_l": 45,
+            "color": "Vermelho"
+          },
+          "package_size": "1 unidade",
+          "displayed_price_brl": 187.85,
+          "normalized_unit_price_brl": 187.85,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "americana_proxy_for_nova_odessa",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.333obra.com.br/p/carrinho-de-m-o-45l-vermelho-cortag-unidade.html",
+          "final_url": "https://www.333obra.com.br/p/carrinho-de-m-o-45l-vermelho-cortag-unidade.html",
+          "http_status": 200,
+          "verification_method": "Direct .html product page fetched under verified Americana storefront location; title, SKU, 45L capacity in title, visible Pix price, and stock status matched. Arithmetic: R$187.85 / 1 = R$187.85/unidade.",
+          "caveats": [
+            "Structured weight attribute showed 0.000000; capacity is evidenced by the product title.",
+            "Winning seller name was not exposed; seller is null."
+          ]
+        },
+        {
+          "matched_product": "Carrinho de Pedreiro Azul - Tramontina",
+          "sku": "114317-24",
+          "seller": null,
+          "specifications": {
+            "type": "Carrinho de pedreiro",
+            "brand": "Tramontina",
+            "color": "Azul"
+          },
+          "package_size": "1 unidade",
+          "displayed_price_brl": 246.8,
+          "normalized_unit_price_brl": 246.8,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "americana_proxy_for_nova_odessa",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.333obra.com.br/p/carrinho-de-pedreiro-azul-tramontina.html",
+          "final_url": "https://www.333obra.com.br/p/carrinho-de-pedreiro-azul-tramontina.html",
+          "http_status": 200,
+          "verification_method": "Direct .html product page fetched under verified Americana storefront location; title, SKU, visible Pix price, and stock status matched. Arithmetic: R$246.80 / 1 = R$246.80/unidade.",
+          "caveats": [
+            "Capacity and detailed dimensions were not disclosed on the loaded product page.",
+            "Winning seller name was not exposed; seller is null."
+          ]
+        }
+      ],
+      "winner": {
+        "matched_product": "Carrinho de Mão Caçamba Redonda",
+        "sku": "97194-1",
+        "seller": null,
+        "specifications": {
+          "type": "Carrinho de mão com caçamba redonda",
+          "brand": "Fornecedor Local",
+          "dimensions_cm": "144.3 x 59.3 x 50.3",
+          "weight_kg": 9
+        },
+        "package_size": "1 unidade",
+        "displayed_price_brl": 169.9,
+        "normalized_unit_price_brl": 169.9,
+        "unit": "unidade",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "americana_proxy_for_nova_odessa",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.333obra.com.br/p/carrinho-de-m-o-cacamba-redonda.html",
+        "final_url": "https://www.333obra.com.br/p/carrinho-de-m-o-cacamba-redonda.html",
+        "http_status": 200,
+        "verification_method": "Direct .html product page fetched under verified Americana storefront location; title, SKU, visible Pix price, specifications, and stock status matched. Arithmetic: R$169.90 / 1 = R$169.90/unidade.",
+        "caveats": [
+          "Lowest verified quantity-1 wheelbarrow price among comparable candidates.",
+          "Tray capacity in liters is not stated; winning seller name was not exposed."
+        ]
+      },
+      "no_match_reason": null
+    },
+    {
+      "expense_id": "EXP_0022",
+      "requested_item": "Caçamba de entulho",
+      "requested_unit": "caçamba",
+      "match_status": "no_match",
+      "candidates": [],
+      "winner": null,
+      "no_match_reason": "No dumpster-rental .html product page with a visible Americana-compatible price was found. Search for cacamba returned only a wheelbarrow tray and a 14L paint tray; the Locação de Equipamentos category listed no priced products. Contact/specialist pages are not offers."
+    },
+    {
+      "expense_id": "EXP_0043",
+      "requested_item": "Calhas e rufos",
+      "requested_unit": "metro linear (m)",
+      "match_status": "no_match",
+      "candidates": [],
+      "winner": null,
+      "no_match_reason": "No individual .html gutter or flashing (calha/rufo) product page with a visible Americana price was found. Catalog searches for calha, rufo, and calhaforte returned no matching products under the Americana storefront location."
+    },
+    {
+      "expense_id": "EXP_0047",
+      "requested_item": "Pregos, parafusos, buchas",
+      "requested_unit": "pacote",
+      "match_status": "verified",
+      "candidates": [
+        {
+          "matched_product": "Prego Aço Polido Cabeça 22x48mm - Gerdau - Pacote 1kg",
+          "sku": "215764-11",
+          "seller": null,
+          "specifications": {
+            "brand": "Gerdau",
+            "type": "Prego aço polido com cabeça",
+            "size": "22x48mm",
+            "package": "Pacote 1kg"
+          },
+          "package_size": "1 kg",
+          "displayed_price_brl": 14.46,
+          "normalized_unit_price_brl": 14.46,
+          "unit": "pacote",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "americana_proxy_for_nova_odessa",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.333obra.com.br/p/prego-aco-polido-cabeca-22x48mm-gerdau-pacote-1kg.html",
+          "final_url": "https://www.333obra.com.br/p/prego-aco-polido-cabeca-22x48mm-gerdau-pacote-1kg.html",
+          "http_status": 200,
+          "verification_method": "Direct .html product page fetched under verified Americana storefront location; title, SKU, clearly specified 1kg package, visible Pix price, and stock status matched. Arithmetic: R$14.46 / 1 pacote = R$14.46/pacote.",
+          "caveats": [
+            "Representative fastener package (nails); not a mixed pregos+parafusos+buchas assortment.",
+            "Winning seller name was not exposed; seller is null. Price is the displayed starting Pix price."
+          ]
+        },
+        {
+          "matched_product": "Prego 19x36 - Gerdau - Pacote com 1kg",
+          "sku": "202515-28",
+          "seller": null,
+          "specifications": {
+            "brand": "Gerdau",
+            "type": "Prego",
+            "size": "19x36",
+            "package": "Pacote com 1kg"
+          },
+          "package_size": "1 kg",
+          "displayed_price_brl": 14.94,
+          "normalized_unit_price_brl": 14.94,
+          "unit": "pacote",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "americana_proxy_for_nova_odessa",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.333obra.com.br/p/prego-19x36-gerdau-pacote-com-1kg.html",
+          "final_url": "https://www.333obra.com.br/p/prego-19x36-gerdau-pacote-com-1kg.html",
+          "http_status": 200,
+          "verification_method": "Direct .html product page fetched under verified Americana storefront location; title, SKU, clearly specified 1kg package, visible Pix price, and stock status matched. Arithmetic: R$14.94 / 1 pacote = R$14.94/pacote.",
+          "caveats": [
+            "Representative nail package only.",
+            "Winning seller name was not exposed; seller is null."
+          ]
+        },
+        {
+          "matched_product": "Prego de Aço com Cabeça Gerdau 17x21cm 1kg",
+          "sku": "556-87",
+          "seller": null,
+          "specifications": {
+            "brand": "Gerdau",
+            "type": "Prego de aço com cabeça única",
+            "size": "17x21cm",
+            "material": "Aço",
+            "finish": "Liso",
+            "content": "1kg"
+          },
+          "package_size": "1 kg",
+          "displayed_price_brl": 16.0,
+          "normalized_unit_price_brl": 16.0,
+          "unit": "pacote",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "americana_proxy_for_nova_odessa",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.333obra.com.br/p/prego-com-cabeca-17-x-21-cm-gerdau-20-unidades.html",
+          "final_url": "https://www.333obra.com.br/p/prego-com-cabeca-17-x-21-cm-gerdau-20-unidades.html",
+          "http_status": 200,
+          "verification_method": "Direct .html product page fetched under verified Americana storefront location; title, SKU, Conteúdo 1kg, visible Pix price, and stock status matched. Arithmetic: R$16.00 / 1 pacote = R$16.00/pacote.",
+          "caveats": [
+            "URL slug mentions 20 unidades while title and Conteúdo attribute state 1kg; retained as a 1kg package candidate based on on-page title/spec.",
+            "Winning seller name was not exposed; seller is null."
+          ]
+        },
+        {
+          "matched_product": "Prego de Aço com Cabeça Gerdau 15x15cm 1kg",
+          "sku": "554-51",
+          "seller": null,
+          "specifications": {
+            "brand": "Gerdau",
+            "type": "Prego de aço com cabeça única",
+            "size": "15x15cm",
+            "material": "Aço",
+            "finish": "Liso",
+            "content": "1kg"
+          },
+          "package_size": "1 kg",
+          "displayed_price_brl": 16.8,
+          "normalized_unit_price_brl": 16.8,
+          "unit": "pacote",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "americana_proxy_for_nova_odessa",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.333obra.com.br/p/prego-com-cabeca-15-x-15-cm-gerdau-20-unidades.html",
+          "final_url": "https://www.333obra.com.br/p/prego-com-cabeca-15-x-15-cm-gerdau-20-unidades.html",
+          "http_status": 200,
+          "verification_method": "Direct .html product page fetched under verified Americana storefront location; title, SKU, Conteúdo 1kg, visible Pix price, and stock status matched. Arithmetic: R$16.80 / 1 pacote = R$16.80/pacote.",
+          "caveats": [
+            "URL slug mentions 20 unidades while title and Conteúdo attribute state 1kg.",
+            "Winning seller name was not exposed; seller is null."
+          ]
+        }
+      ],
+      "winner": {
+        "matched_product": "Prego Aço Polido Cabeça 22x48mm - Gerdau - Pacote 1kg",
+        "sku": "215764-11",
+        "seller": null,
+        "specifications": {
+          "brand": "Gerdau",
+          "type": "Prego aço polido com cabeça",
+          "size": "22x48mm",
+          "package": "Pacote 1kg"
+        },
+        "package_size": "1 kg",
+        "displayed_price_brl": 14.46,
+        "normalized_unit_price_brl": 14.46,
+        "unit": "pacote",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "americana_proxy_for_nova_odessa",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.333obra.com.br/p/prego-aco-polido-cabeca-22x48mm-gerdau-pacote-1kg.html",
+        "final_url": "https://www.333obra.com.br/p/prego-aco-polido-cabeca-22x48mm-gerdau-pacote-1kg.html",
+        "http_status": 200,
+        "verification_method": "Direct .html product page fetched under verified Americana storefront location; title, SKU, clearly specified 1kg package, visible Pix price, and stock status matched. Arithmetic: R$14.46 / 1 pacote = R$14.46/pacote.",
+        "caveats": [
+          "Lowest verified quantity-1 price among clearly specified fastener packages. Representative nail package only, not a mixed fasteners assortment.",
+          "Winning seller name was not exposed; seller is null."
+        ]
+      },
+      "no_match_reason": null
+    }
+  ]
+}

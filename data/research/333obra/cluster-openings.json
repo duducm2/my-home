@@ -1,0 +1,52 @@
+{
+  "cluster": "openings",
+  "checked_at": "2026-09-17",
+  "location_basis": "americana_proxy_for_nova_odessa",
+  "expenses": [
+    {
+      "expense_id": "EXP_0026",
+      "requested_item": "Portas internas",
+      "requested_unit": "unidade",
+      "match_status": "no_match",
+      "candidates": [],
+      "winner": null,
+      "no_match_reason": "Under verified Americana storefront location, the Portas e Janelas category listed only a wooden door frame (batente) and two aluminum venezianas. Catalog searches for folha de porta / porta interna 210x80 returned no direct .html door-leaf product page with a matching title, dimensions (~210x80 cm wood leaf), and visible Americana price."
+    },
+    {
+      "expense_id": "EXP_0027",
+      "requested_item": "Porta Balcão",
+      "requested_unit": "unidade",
+      "match_status": "no_match",
+      "candidates": [],
+      "winner": null,
+      "no_match_reason": "Under verified Americana storefront location, no direct .html sliding balcony door (porta-balcão / porta de correr ~200x210 cm, aluminum/glass, multi-leaf) product page with a matching title and visible Americana price was found. The Portas e Janelas category and related searches did not surface a comparable porta-balcão listing."
+    },
+    {
+      "expense_id": "EXP_0029",
+      "requested_item": "Janela (quartos e escritório)",
+      "requested_unit": "unidade",
+      "match_status": "no_match",
+      "candidates": [],
+      "winner": null,
+      "no_match_reason": "Under verified Americana storefront location, catalog search for janela returned no products. The only nearby category openings were aluminum venezianas with grade (6 leaves, 100x120 cm and 100x150 cm), which are not conservative matches for a ~120x120 cm 4-leaf aluminum sliding window with glass."
+    },
+    {
+      "expense_id": "EXP_0030",
+      "requested_item": "Vitrô Sala",
+      "requested_unit": "unidade",
+      "match_status": "no_match",
+      "candidates": [],
+      "winner": null,
+      "no_match_reason": "Under verified Americana storefront location, the closest priced openings item was a Veneziana em Aluminio 6 Folhas Abertura Central com Grade 100x120cm (Pix from R$699,00), but it is a 6-leaf graded veneziana rather than a 4-leaf aluminum sliding living-room window/vitrô with glass; conservatively rejected as non-comparable. No matching direct .html sliding-window product page was verified."
+    },
+    {
+      "expense_id": "EXP_0031",
+      "requested_item": "Vitrôs banheiros",
+      "requested_unit": "unidade",
+      "match_status": "no_match",
+      "candidates": [],
+      "winner": null,
+      "no_match_reason": "Under verified Americana storefront location, catalog search for basculante returned no products. No direct .html bathroom vitrô/janela basculante ~60x60 cm with frosted/canelado glass and a visible Americana price was found in the Portas e Janelas category or related searches."
+    }
+  ]
+}

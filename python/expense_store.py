@@ -1271,7 +1271,12 @@ class ExpenseStore:
                 self._write_rows(rows)
         return {**self.quotation_state(expense_id), "state": self.state()}
 
-    def apply_price_rows(self, price_rows: list[dict[str, Any]]) -> dict[str, Any]:
+    def apply_price_rows(
+        self,
+        price_rows: list[dict[str, Any]],
+        *,
+        preserve_financial_state: bool = False,
+    ) -> dict[str, Any]:
         with self._lock:
             rows = self._read_rows()
             by_id = {row["id"]: row for row in rows}
@@ -1336,7 +1341,7 @@ class ExpenseStore:
                         else:
                             quotations.append(quotation)
                             ids.add(quotation_id)
-                        if bool(item.get("selected")):
+                        if bool(item.get("selected")) and not preserve_financial_state:
                             if expense_id in selected:
                                 raise ValueError(
                                     f"{expense_id} has multiple selected quotations"
@@ -1355,7 +1360,11 @@ class ExpenseStore:
             stamp = now_stamp()
             for expense_id, quotations in prepared.items():
                 target = by_id[expense_id]
-                if not target.get("baseline_quotation_id") and quotations:
+                if (
+                    not preserve_financial_state
+                    and not target.get("baseline_quotation_id")
+                    and quotations
+                ):
                     target["baseline_quotation_id"] = str(
                         quotations[0].get("id") or ""
                     )

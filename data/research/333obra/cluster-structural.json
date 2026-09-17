@@ -1,0 +1,236 @@
+{
+  "cluster": "structural",
+  "checked_at": "2026-09-17",
+  "location_basis": "americana_proxy_for_nova_odessa",
+  "expenses": [
+    {
+      "expense_id": "EXP_0014",
+      "requested_item": "Impermeabilizante (bianco)",
+      "requested_unit": "balde",
+      "match_status": "no_match",
+      "candidates": [],
+      "winner": null,
+      "no_match_reason": "No verified 18kg Bianco direct priced .html product page under Americana proxy in this run."
+    },
+    {
+      "expense_id": "EXP_0015",
+      "requested_item": "Areia grossa, fina e pedrisco",
+      "requested_unit": "m³",
+      "match_status": "no_match",
+      "candidates": [],
+      "winner": null,
+      "no_match_reason": "No comparable m³-priced .html product page with a clear unit under Americana proxy in this run."
+    },
+    {
+      "expense_id": "EXP_0016",
+      "requested_item": "Cimento",
+      "requested_unit": "saco (50 kg)",
+      "match_status": "verified",
+      "candidates": [
+        {
+          "matched_product": "Cimento CPII 32 Nacional 50kg Multimax",
+          "sku": null,
+          "seller": null,
+          "specifications": {
+            "type": "CPII 32",
+            "brand": "Multimax / Nacional",
+            "weight": "50 kg"
+          },
+          "package_size": "50 kg",
+          "displayed_price_brl": 29.0,
+          "normalized_unit_price_brl": 29.0,
+          "unit": "saco (50 kg)",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": null,
+          "location_basis": "americana_proxy_for_nova_odessa",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.333obra.com.br/cimento-50kg-cpii-32-nacional.html",
+          "final_url": "https://www.333obra.com.br/cimento-50kg-cpii-32-nacional.html",
+          "http_status": 200,
+          "verification_method": "Direct .html product page verified under Americana storefront proxy; title and visible Pix price matched for one 50 kg bag. Arithmetic: R$29.00 / 1 saco = R$29.00 per saco (50 kg).",
+          "caveats": [
+            "Other 50 kg cement brands exist on 333Obra; only this Multimax/Nacional listing was recorded as the verified quantity-1 winner in this run.",
+            "SKU and seller were not captured from the verified page content; both are null."
+          ]
+        }
+      ],
+      "winner": {
+        "matched_product": "Cimento CPII 32 Nacional 50kg Multimax",
+        "sku": null,
+        "seller": null,
+        "specifications": {
+          "type": "CPII 32",
+          "brand": "Multimax / Nacional",
+          "weight": "50 kg"
+        },
+        "package_size": "50 kg",
+        "displayed_price_brl": 29.0,
+        "normalized_unit_price_brl": 29.0,
+        "unit": "saco (50 kg)",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": null,
+        "location_basis": "americana_proxy_for_nova_odessa",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.333obra.com.br/cimento-50kg-cpii-32-nacional.html",
+        "final_url": "https://www.333obra.com.br/cimento-50kg-cpii-32-nacional.html",
+        "http_status": 200,
+        "verification_method": "Direct .html product page verified under Americana storefront proxy; title and visible Pix price matched for one 50 kg bag. Arithmetic: R$29.00 / 1 saco = R$29.00 per saco (50 kg).",
+        "caveats": [
+          "Lowest verified quantity-1 price among candidates recorded for this expense; other brands exist but were not added as confirmed candidates in this write.",
+          "SKU and seller were not captured from the verified page content; both are null."
+        ]
+      },
+      "no_match_reason": null
+    },
+    {
+      "expense_id": "EXP_0017",
+      "requested_item": "Telha",
+      "requested_unit": "unidade",
+      "match_status": "verified",
+      "candidates": [
+        {
+          "matched_product": "Telha Portuguesa Resinada 40.4x24.1cm",
+          "sku": null,
+          "seller": null,
+          "specifications": {
+            "type": "Portuguesa resinada",
+            "dimensions": "40.4 cm x 24.1 cm",
+            "material": "ceramic (resinada)"
+          },
+          "package_size": "1 unidade",
+          "displayed_price_brl": 2.15,
+          "normalized_unit_price_brl": 2.15,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": null,
+          "location_basis": "americana_proxy_for_nova_odessa",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.333obra.com.br/telha-portuguesa-resinada-ceramica-40-4cm-x-24-1cm-x-35cm.html",
+          "final_url": "https://www.333obra.com.br/telha-portuguesa-resinada-ceramica-40-4cm-x-24-1cm-x-35cm.html",
+          "http_status": 200,
+          "verification_method": "Direct .html product page verified under Americana storefront proxy; ceramic Portuguese resinated roof tile title and visible Pix price matched. Arithmetic: R$2.15 / 1 unidade = R$2.15 per tile.",
+          "caveats": [
+            "URL path includes an extra x-35cm segment; dimensions used are the verified 40.4x24.1 cm title values.",
+            "SKU and seller were not captured from the verified page content; both are null."
+          ]
+        }
+      ],
+      "winner": {
+        "matched_product": "Telha Portuguesa Resinada 40.4x24.1cm",
+        "sku": null,
+        "seller": null,
+        "specifications": {
+          "type": "Portuguesa resinada",
+          "dimensions": "40.4 cm x 24.1 cm",
+          "material": "ceramic (resinada)"
+        },
+        "package_size": "1 unidade",
+        "displayed_price_brl": 2.15,
+        "normalized_unit_price_brl": 2.15,
+        "unit": "unidade",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": null,
+        "location_basis": "americana_proxy_for_nova_odessa",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.333obra.com.br/telha-portuguesa-resinada-ceramica-40-4cm-x-24-1cm-x-35cm.html",
+        "final_url": "https://www.333obra.com.br/telha-portuguesa-resinada-ceramica-40-4cm-x-24-1cm-x-35cm.html",
+        "http_status": 200,
+        "verification_method": "Direct .html product page verified under Americana storefront proxy; ceramic Portuguese resinated roof tile title and visible Pix price matched. Arithmetic: R$2.15 / 1 unidade = R$2.15 per tile.",
+        "caveats": [
+          "Only verified ceramic roof-tile candidate recorded for this expense in this run.",
+          "SKU and seller were not captured from the verified page content; both are null."
+        ]
+      },
+      "no_match_reason": null
+    },
+    {
+      "expense_id": "EXP_0019",
+      "requested_item": "Tijolinho de barro",
+      "requested_unit": "unidade",
+      "match_status": "no_match",
+      "candidates": [],
+      "winner": null,
+      "no_match_reason": "No verified unit-priced brick .html product page under Americana proxy in this run."
+    },
+    {
+      "expense_id": "EXP_0021",
+      "requested_item": "Arame recozido",
+      "requested_unit": "kg",
+      "match_status": "verified",
+      "candidates": [
+        {
+          "matched_product": "Arame Recozido Nº18 1kg",
+          "sku": null,
+          "seller": null,
+          "specifications": {
+            "gauge": "Nº18",
+            "package": "1 kg"
+          },
+          "package_size": "1 kg",
+          "displayed_price_brl": 13.6,
+          "normalized_unit_price_brl": 13.6,
+          "unit": "kg",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": null,
+          "location_basis": "americana_proxy_for_nova_odessa",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.333obra.com.br/arame-recozido-n-18.html",
+          "final_url": "https://www.333obra.com.br/arame-recozido-n-18.html",
+          "http_status": 200,
+          "verification_method": "Direct .html product page verified under Americana storefront proxy; title declares 1kg annealed wire Nº18 and visible Pix price matched. Arithmetic: R$13.60 / 1 kg = R$13.60/kg.",
+          "caveats": [
+            "Package mass is taken from the product title (1kg); no separate weight attribute was recorded.",
+            "SKU and seller were not captured from the verified page content; both are null."
+          ]
+        }
+      ],
+      "winner": {
+        "matched_product": "Arame Recozido Nº18 1kg",
+        "sku": null,
+        "seller": null,
+        "specifications": {
+          "gauge": "Nº18",
+          "package": "1 kg"
+        },
+        "package_size": "1 kg",
+        "displayed_price_brl": 13.6,
+        "normalized_unit_price_brl": 13.6,
+        "unit": "kg",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": null,
+        "location_basis": "americana_proxy_for_nova_odessa",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.333obra.com.br/arame-recozido-n-18.html",
+        "final_url": "https://www.333obra.com.br/arame-recozido-n-18.html",
+        "http_status": 200,
+        "verification_method": "Direct .html product page verified under Americana storefront proxy; title declares 1kg annealed wire Nº18 and visible Pix price matched. Arithmetic: R$13.60 / 1 kg = R$13.60/kg.",
+        "caveats": [
+          "Only verified annealed-wire candidate recorded for this expense in this run.",
+          "SKU and seller were not captured from the verified page content; both are null."
+        ]
+      },
+      "no_match_reason": null
+    },
+    {
+      "expense_id": "EXP_0042",
+      "requested_item": "Madeiramento ou estrutura metálica",
+      "requested_unit": "m²",
+      "match_status": "no_match",
+      "candidates": [],
+      "winner": null,
+      "no_match_reason": "No comparable m² roof-framing priced .html product page under Americana proxy in this run."
+    }
+  ]
+}
