@@ -1,0 +1,471 @@
+{
+  "cluster": "structural",
+  "checked_at": "2026-09-17",
+  "location_basis": "nova_odessa_cep_13380",
+  "expenses": [
+    {
+      "expense_id": "EXP_0014",
+      "requested_item": "Impermeabilizante (bianco)",
+      "requested_unit": "balde",
+      "match_status": "verified",
+      "candidates": [
+        {
+          "matched_product": "Aditivo Líquido De Alto Desempenho Bianco 18kg Vedacit",
+          "sku": "263915",
+          "seller": "Telhanorte",
+          "specifications": {
+            "brand": "Vedacit",
+            "product_line": "Bianco",
+            "net_content": "18 kg",
+            "form": "liquid additive / bonding agent"
+          },
+          "package_size": "18 kg",
+          "displayed_price_brl": 319.9,
+          "normalized_unit_price_brl": 319.9,
+          "unit": "balde",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.telhanorte.com.br/bianco-bd-18-kg-263915/p",
+          "final_url": "https://www.telhanorte.com.br/bianco-bd-18-kg-263915/p",
+          "http_status": 200,
+          "verification_method": "VTEX pub API fq=skuId:263915 plus browser /p page verification; visible card price R$319,90 matched API Price. Arithmetic: R$319.90 / 1 balde = R$319.90 per balde.",
+          "caveats": [
+            "Preferred ~18 kg Bianco/Vedacit balde; smaller Bianco SKUs (900g, 1kg, 3.6kg) exist but were not selected.",
+            "Freight not calculated for CEP 13380-000; freight_brl left null."
+          ]
+        }
+      ],
+      "winner": {
+        "matched_product": "Aditivo Líquido De Alto Desempenho Bianco 18kg Vedacit",
+        "sku": "263915",
+        "seller": "Telhanorte",
+        "specifications": {
+          "brand": "Vedacit",
+          "product_line": "Bianco",
+          "net_content": "18 kg",
+          "form": "liquid additive / bonding agent"
+        },
+        "package_size": "18 kg",
+        "displayed_price_brl": 319.9,
+        "normalized_unit_price_brl": 319.9,
+        "unit": "balde",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.telhanorte.com.br/bianco-bd-18-kg-263915/p",
+        "final_url": "https://www.telhanorte.com.br/bianco-bd-18-kg-263915/p",
+        "http_status": 200,
+        "verification_method": "VTEX pub API fq=skuId:263915 plus browser /p page verification; visible card price R$319,90 matched API Price. Arithmetic: R$319.90 / 1 balde = R$319.90 per balde.",
+        "caveats": [
+          "Preferred ~18 kg Bianco/Vedacit balde; smaller Bianco SKUs (900g, 1kg, 3.6kg) exist but were not selected.",
+          "Freight not calculated for CEP 13380-000; freight_brl left null."
+        ]
+      },
+      "no_match_reason": null
+    },
+    {
+      "expense_id": "EXP_0015",
+      "requested_item": "Areia grossa, fina e pedrisco",
+      "requested_unit": "m³",
+      "match_status": "no_match",
+      "candidates": [],
+      "winner": null,
+      "no_match_reason": "Only bagged 20 kg areia/pedrisco/brita listings found (e.g. Areia Fina Emic 20kg, Pedrisco Emic 20kg); no m³-priced bulk aggregate with a clear comparable unit price on a /p page."
+    },
+    {
+      "expense_id": "EXP_0016",
+      "requested_item": "Cimento",
+      "requested_unit": "saco (50 kg)",
+      "match_status": "verified",
+      "candidates": [
+        {
+          "matched_product": "Cimento Cinza CPII-E 50KG Campeão Nacional",
+          "sku": "2437279",
+          "seller": "Telhanorte",
+          "specifications": {
+            "brand": "Nacional",
+            "type": "CPII-E",
+            "weight": "50 kg"
+          },
+          "package_size": "50 kg",
+          "displayed_price_brl": 34.9,
+          "normalized_unit_price_brl": 34.9,
+          "unit": "saco (50 kg)",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.telhanorte.com.br/cimento-cinza-cp-ii-e-32-rs-campeao-50kg-2437279/p",
+          "final_url": "https://www.telhanorte.com.br/cimento-cinza-cp-ii-e-32-rs-campeao-50kg-2437279/p",
+          "http_status": 200,
+          "verification_method": "VTEX search ft=cimento 50kg plus browser /p page verification; visible card price R$34,90 matched API Price. Arithmetic: R$34.90 / 1 saco = R$34.90 per saco (50 kg).",
+          "caveats": [
+            "Lowest in-stock 50 kg cement among available comparable listings in this run.",
+            "Freight not calculated for CEP 13380-000; freight_brl left null."
+          ]
+        },
+        {
+          "matched_product": "Cimento Votoran Todas as Obras 50kgs CPII 32R",
+          "sku": "1444778",
+          "seller": "Telhanorte",
+          "specifications": {
+            "brand": "Votoran",
+            "type": "CPII 32R",
+            "weight": "50 kg"
+          },
+          "package_size": "50 kg",
+          "displayed_price_brl": 35.9,
+          "normalized_unit_price_brl": 35.9,
+          "unit": "saco (50 kg)",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.telhanorte.com.br/cimento-todas-as-obras-50kgs-cpii-32r-votoran-1444778/p",
+          "final_url": "https://www.telhanorte.com.br/cimento-todas-as-obras-50kgs-cpii-32r-votoran-1444778/p",
+          "http_status": 200,
+          "verification_method": "Seed URL re-verified via VTEX fq=skuId:1444778; API Price R$35.90 and /p HTTP 200. Arithmetic: R$35.90 / 1 saco = R$35.90 per saco (50 kg).",
+          "caveats": [
+            "Seed product retained as candidate; higher qty-1 price than Campeão Nacional winner.",
+            "Cheaper structural 50 kg SKUs (Itau/Votoran obras estruturais ~R$26.90) were API-listed but AvailableQuantity=0 and excluded from ranking."
+          ]
+        }
+      ],
+      "winner": {
+        "matched_product": "Cimento Cinza CPII-E 50KG Campeão Nacional",
+        "sku": "2437279",
+        "seller": "Telhanorte",
+        "specifications": {
+          "brand": "Nacional",
+          "type": "CPII-E",
+          "weight": "50 kg"
+        },
+        "package_size": "50 kg",
+        "displayed_price_brl": 34.9,
+        "normalized_unit_price_brl": 34.9,
+        "unit": "saco (50 kg)",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.telhanorte.com.br/cimento-cinza-cp-ii-e-32-rs-campeao-50kg-2437279/p",
+        "final_url": "https://www.telhanorte.com.br/cimento-cinza-cp-ii-e-32-rs-campeao-50kg-2437279/p",
+        "http_status": 200,
+        "verification_method": "VTEX search ft=cimento 50kg plus browser /p page verification; visible card price R$34,90 matched API Price. Arithmetic: R$34.90 / 1 saco = R$34.90 per saco (50 kg).",
+        "caveats": [
+          "Lowest in-stock 50 kg cement among available comparable listings in this run.",
+          "Freight not calculated for CEP 13380-000; freight_brl left null."
+        ]
+      },
+      "no_match_reason": null
+    },
+    {
+      "expense_id": "EXP_0017",
+      "requested_item": "Telha",
+      "requested_unit": "unidade",
+      "match_status": "verified",
+      "candidates": [
+        {
+          "matched_product": "Telha Portuguesa Premium 40x24 Vermelha Resinada Barrobello",
+          "sku": "1402951",
+          "seller": "Telhanorte",
+          "specifications": {
+            "brand": "Barrobello",
+            "type": "ceramic Portuguese resinated",
+            "dimensions": "40x24 cm (slug also cites 39x24 cm / 10 mm)",
+            "color": "vermelha"
+          },
+          "package_size": "1 unidade",
+          "displayed_price_brl": 1.99,
+          "normalized_unit_price_brl": 1.99,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.telhanorte.com.br/telha-portuguesa-de-ceramica-39x24cm-10mm-realeza-vermelha-resinada-barrobello-1402951/p",
+          "final_url": "https://www.telhanorte.com.br/telha-portuguesa-de-ceramica-39x24cm-10mm-realeza-vermelha-resinada-barrobello-1402951/p",
+          "http_status": 200,
+          "verification_method": "Seed URL re-verified via VTEX fq=skuId:1402951 plus browser /p page; visible card price R$1,99 matched API Price. Arithmetic: R$1.99 / 1 unidade = R$1.99 per tile.",
+          "caveats": [
+            "Preferred ceramic Portuguese tile; glass/polycarbonate Portuguese tiles were higher-priced and not selected.",
+            "Alternate ceramic Faulin listing (~R$2.19) was unavailable (AvailableQuantity=0).",
+            "Freight not calculated for CEP 13380-000; freight_brl left null."
+          ]
+        }
+      ],
+      "winner": {
+        "matched_product": "Telha Portuguesa Premium 40x24 Vermelha Resinada Barrobello",
+        "sku": "1402951",
+        "seller": "Telhanorte",
+        "specifications": {
+          "brand": "Barrobello",
+          "type": "ceramic Portuguese resinated",
+          "dimensions": "40x24 cm (slug also cites 39x24 cm / 10 mm)",
+          "color": "vermelha"
+        },
+        "package_size": "1 unidade",
+        "displayed_price_brl": 1.99,
+        "normalized_unit_price_brl": 1.99,
+        "unit": "unidade",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.telhanorte.com.br/telha-portuguesa-de-ceramica-39x24cm-10mm-realeza-vermelha-resinada-barrobello-1402951/p",
+        "final_url": "https://www.telhanorte.com.br/telha-portuguesa-de-ceramica-39x24cm-10mm-realeza-vermelha-resinada-barrobello-1402951/p",
+        "http_status": 200,
+        "verification_method": "Seed URL re-verified via VTEX fq=skuId:1402951 plus browser /p page; visible card price R$1,99 matched API Price. Arithmetic: R$1.99 / 1 unidade = R$1.99 per tile.",
+        "caveats": [
+          "Preferred ceramic Portuguese tile; glass/polycarbonate Portuguese tiles were higher-priced and not selected.",
+          "Alternate ceramic Faulin listing (~R$2.19) was unavailable (AvailableQuantity=0).",
+          "Freight not calculated for CEP 13380-000; freight_brl left null."
+        ]
+      },
+      "no_match_reason": null
+    },
+    {
+      "expense_id": "EXP_0019",
+      "requested_item": "Tijolinho de barro",
+      "requested_unit": "unidade",
+      "match_status": "verified",
+      "candidates": [
+        {
+          "matched_product": "Tijolo Maciço comum Emic Ensacado com 10 Unidades",
+          "sku": "2555646",
+          "seller": "Telhanorte",
+          "specifications": {
+            "brand": "Emic",
+            "type": "solid common clay brick (tijolo maciço / tijolinho)",
+            "pack_count": 10,
+            "material": "ceramic clay"
+          },
+          "package_size": "10 unidades",
+          "displayed_price_brl": 6.65,
+          "normalized_unit_price_brl": 0.665,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.telhanorte.com.br/tijolo-comum-ensacado-10un-emic--2555646/p",
+          "final_url": "https://www.telhanorte.com.br/tijolo-comum-ensacado-10un-emic--2555646/p",
+          "http_status": 200,
+          "verification_method": "VTEX fq=skuId:2555646 plus browser /p page; visible card price R$6,65 for pack of 10. Arithmetic: R$6.65 / 10 unidades = R$0.665 per unidade.",
+          "caveats": [
+            "Sold only as a 10-unit bag; normalized_unit_price_brl is per brick.",
+            "minimum_quantity remains 1 (one bag purchase)."
+          ]
+        },
+        {
+          "matched_product": "Tijolo Maciço comum AB Areias Ensacado com 10 Unidades",
+          "sku": "207810",
+          "seller": "Telhanorte",
+          "specifications": {
+            "brand": "AB Areias",
+            "type": "solid common clay brick (slug labels as tijolinho)",
+            "pack_count": 10,
+            "material": "ceramic clay"
+          },
+          "package_size": "10 unidades",
+          "displayed_price_brl": 9.5,
+          "normalized_unit_price_brl": 0.95,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.telhanorte.com.br/-tijolinho-ensacado-com-10-unidades-ab-areias-207810/p",
+          "final_url": "https://www.telhanorte.com.br/-tijolinho-ensacado-com-10-unidades-ab-areias-207810/p",
+          "http_status": 200,
+          "verification_method": "VTEX search/API for sku 207810; /p HTTP 200. Arithmetic: R$9.50 / 10 unidades = R$0.95 per unidade.",
+          "caveats": [
+            "URL slug explicitly uses 'tijolinho'; higher per-unit price than Emic winner."
+          ]
+        },
+        {
+          "matched_product": "Tijolo Laminado Cerâmico Martins 24,5x11,5x5,5cm Rústico",
+          "sku": "770140",
+          "seller": "Telhanorte",
+          "specifications": {
+            "brand": "Cerâmica Martins",
+            "type": "laminated ceramic brick (decorative / aparente)",
+            "dimensions": "24.5x11.5x5.5 cm"
+          },
+          "package_size": "1 unidade",
+          "displayed_price_brl": 4.39,
+          "normalized_unit_price_brl": 4.39,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.telhanorte.com.br/tijolo-laminado-24-5x11-5x5-5cm-martins-770140/p",
+          "final_url": "https://www.telhanorte.com.br/tijolo-laminado-24-5x11-5x5-5cm-martins-770140/p",
+          "http_status": 200,
+          "verification_method": "VTEX fq=skuId:770140; /p HTTP 200; API Price R$4.39. Arithmetic: R$4.39 / 1 unidade = R$4.39 per unidade.",
+          "caveats": [
+            "Laminated decorative brick; not selected as winner versus cheaper bagged solid clay tijolinho packs."
+          ]
+        }
+      ],
+      "winner": {
+        "matched_product": "Tijolo Maciço comum Emic Ensacado com 10 Unidades",
+        "sku": "2555646",
+        "seller": "Telhanorte",
+        "specifications": {
+          "brand": "Emic",
+          "type": "solid common clay brick (tijolo maciço / tijolinho)",
+          "pack_count": 10,
+          "material": "ceramic clay"
+        },
+        "package_size": "10 unidades",
+        "displayed_price_brl": 6.65,
+        "normalized_unit_price_brl": 0.665,
+        "unit": "unidade",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.telhanorte.com.br/tijolo-comum-ensacado-10un-emic--2555646/p",
+        "final_url": "https://www.telhanorte.com.br/tijolo-comum-ensacado-10un-emic--2555646/p",
+        "http_status": 200,
+        "verification_method": "VTEX fq=skuId:2555646 plus browser /p page; visible card price R$6,65 for pack of 10. Arithmetic: R$6.65 / 10 unidades = R$0.665 per unidade.",
+        "caveats": [
+          "Sold only as a 10-unit bag; normalized_unit_price_brl is per brick.",
+          "minimum_quantity remains 1 (one bag purchase).",
+          "Freight not calculated for CEP 13380-000; freight_brl left null."
+        ]
+      },
+      "no_match_reason": null
+    },
+    {
+      "expense_id": "EXP_0021",
+      "requested_item": "Arame recozido",
+      "requested_unit": "kg",
+      "match_status": "verified",
+      "candidates": [
+        {
+          "matched_product": "Arame Recozido 1,24mm ArcelorMittal 1kg",
+          "sku": "1554875",
+          "seller": "Telhanorte",
+          "specifications": {
+            "brand": "ArcelorMittal",
+            "diameter": "1.24 mm",
+            "package": "1 kg roll"
+          },
+          "package_size": "1 kg",
+          "displayed_price_brl": 23.9,
+          "normalized_unit_price_brl": 23.9,
+          "unit": "kg",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.telhanorte.com.br/arame-recozido-1-24mm-rl-1kg-arcelormittal-1554875/p",
+          "final_url": "https://www.telhanorte.com.br/arame-recozido-1-24mm-rl-1kg-arcelormittal-1554875/p",
+          "http_status": 200,
+          "verification_method": "Seed URL re-verified via VTEX fq=skuId:1554875 plus browser /p page; visible card price R$23,90 matched API Price. Arithmetic: R$23.90 / 1 kg = R$23.90/kg.",
+          "caveats": [
+            "Page also advertises a Pix discount (~15% off); stored displayed_price_brl is the card/list price R$23.90.",
+            "Freight not calculated for CEP 13380-000; freight_brl left null."
+          ]
+        },
+        {
+          "matched_product": "Arame Recozido Trançado 1,24mm 1kg ArcelorMittal",
+          "sku": "1554867",
+          "seller": "Telhanorte",
+          "specifications": {
+            "brand": "ArcelorMittal",
+            "diameter": "1.24 mm",
+            "form": "braided / trançado",
+            "package": "1 kg"
+          },
+          "package_size": "1 kg",
+          "displayed_price_brl": 30.9,
+          "normalized_unit_price_brl": 30.9,
+          "unit": "kg",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.telhanorte.com.br/arame-recozido-1-24mm-tranc-rl1kg-arcelormittal-1554867/p",
+          "final_url": "https://www.telhanorte.com.br/arame-recozido-1-24mm-tranc-rl1kg-arcelormittal-1554867/p",
+          "http_status": 200,
+          "verification_method": "VTEX search ft=arame recozido; /p HTTP 200; API Price R$30.90. Arithmetic: R$30.90 / 1 kg = R$30.90/kg.",
+          "caveats": [
+            "Braided variant; higher price than plain recozido winner."
+          ]
+        }
+      ],
+      "winner": {
+        "matched_product": "Arame Recozido 1,24mm ArcelorMittal 1kg",
+        "sku": "1554875",
+        "seller": "Telhanorte",
+        "specifications": {
+          "brand": "ArcelorMittal",
+          "diameter": "1.24 mm",
+          "package": "1 kg roll"
+        },
+        "package_size": "1 kg",
+        "displayed_price_brl": 23.9,
+        "normalized_unit_price_brl": 23.9,
+        "unit": "kg",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.telhanorte.com.br/arame-recozido-1-24mm-rl-1kg-arcelormittal-1554875/p",
+        "final_url": "https://www.telhanorte.com.br/arame-recozido-1-24mm-rl-1kg-arcelormittal-1554875/p",
+        "http_status": 200,
+        "verification_method": "Seed URL re-verified via VTEX fq=skuId:1554875 plus browser /p page; visible card price R$23,90 matched API Price. Arithmetic: R$23.90 / 1 kg = R$23.90/kg.",
+        "caveats": [
+          "Page also advertises a Pix discount (~15% off); stored displayed_price_brl is the card/list price R$23.90.",
+          "Gerdau BWG 18 1kg (~R$10.90) appeared in search but AvailableQuantity=0 and was excluded.",
+          "Freight not calculated for CEP 13380-000; freight_brl left null."
+        ]
+      },
+      "no_match_reason": null
+    },
+    {
+      "expense_id": "EXP_0042",
+      "requested_item": "Madeiramento ou estrutura metálica",
+      "requested_unit": "m²",
+      "match_status": "no_match",
+      "candidates": [],
+      "winner": null,
+      "no_match_reason": "No in-stock madeiramento or metal roof-framing product sold/priced per m². Found caibros priced per piece but unavailable (AvailableQuantity=0); metal sandwich roof panels are roofing (not framing) and priced per unit, not m² structure."
+    }
+  ]
+}

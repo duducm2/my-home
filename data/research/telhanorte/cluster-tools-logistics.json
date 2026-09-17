@@ -1,0 +1,440 @@
+{
+  "cluster": "tools_logistics",
+  "checked_at": "2026-09-17",
+  "location_basis": "nova_odessa_cep_13380",
+  "expenses": [
+    {
+      "expense_id": "EXP_0018",
+      "requested_item": "Ferramentas",
+      "requested_unit": "conjunto",
+      "match_status": "verified",
+      "candidates": [
+        {
+          "matched_product": "Kit De Ferramentas 4 Peças Com 2 Chaves De Fenda 1 Estilete 1 Mini Arco De Serra 43408304 Tramontina",
+          "sku": "287326",
+          "seller": "Telhanorte",
+          "specifications": {
+            "brand": "Tramontina",
+            "model": "43408304",
+            "piece_count": 4,
+            "contents": "2 chaves de fenda, 1 estilete, 1 mini arco de serra"
+          },
+          "package_size": "1 kit / 4 peças",
+          "displayed_price_brl": 37.9,
+          "normalized_unit_price_brl": 37.9,
+          "unit": "conjunto",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.telhanorte.com.br/kit-de-ferramentas-4-pecas-com-2-chaves-de-fenda-1-estilete-1-mini-arco-de-serra-43408304-tramontina-287326/p",
+          "final_url": "https://www.telhanorte.com.br/kit-de-ferramentas-4-pecas-com-2-chaves-de-fenda-1-estilete-1-mini-arco-de-serra-43408304-tramontina-287326/p",
+          "http_status": 200,
+          "verification_method": "Direct /p product page loaded; title, SKU 287326, visible card price R$37,90, and stock confirmed. Arithmetic: R$37.90 / 1 kit = R$37.90/conjunto.",
+          "caveats": [
+            "Basic domestic/obra hand-tool kit (4 pieces), not a full construction toolbox.",
+            "Freight not calculated for CEP 13380-000; freight_brl left null."
+          ]
+        },
+        {
+          "matched_product": "Kit De Ferramentas 5 Peças Com 1 Trena 1 Estilete 3 Chaves De Fenda 43408500 Tramontina",
+          "sku": "287911",
+          "seller": "Telhanorte",
+          "specifications": {
+            "brand": "Tramontina",
+            "model": "43408500",
+            "piece_count": 5,
+            "contents": "1 trena, 1 estilete, 3 chaves de fenda"
+          },
+          "package_size": "1 kit / 5 peças",
+          "displayed_price_brl": 49.9,
+          "normalized_unit_price_brl": 49.9,
+          "unit": "conjunto",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.telhanorte.com.br/kit-de-ferramentas-5-pecas-com-1-trena-1-estilete-3-chaves-de-fenda-43408500-tramontina-287911/p",
+          "final_url": "https://www.telhanorte.com.br/kit-de-ferramentas-5-pecas-com-1-trena-1-estilete-3-chaves-de-fenda-43408500-tramontina-287911/p",
+          "http_status": 200,
+          "verification_method": "VTEX productId 287911 offer cross-checked with catalog search; available qty-1 card price R$49,90. Arithmetic: R$49.90 / 1 kit = R$49.90/conjunto.",
+          "caveats": [
+            "Clear basic tool kit; higher price than the 4-piece winner."
+          ]
+        },
+        {
+          "matched_product": "Kit De Ferramentas 4 Peças com 1 Trena 2 Chaves Fenda Alicate 7 43408112 Tramontina",
+          "sku": "475548",
+          "seller": "Telhanorte",
+          "specifications": {
+            "brand": "Tramontina",
+            "model": "43408112",
+            "piece_count": 4,
+            "contents": "1 trena, 2 chaves de fenda, 1 alicate 7\""
+          },
+          "package_size": "1 kit / 4 peças",
+          "displayed_price_brl": 66.9,
+          "normalized_unit_price_brl": 66.9,
+          "unit": "conjunto",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.telhanorte.com.br/kit-de-ferramentas-4-pecas-com-1-trena-2-chaves-fenda-alicate-7-43408112-tramontina-475548/p",
+          "final_url": "https://www.telhanorte.com.br/kit-de-ferramentas-4-pecas-com-1-trena-2-chaves-fenda-alicate-7-43408112-tramontina-475548/p",
+          "http_status": 200,
+          "verification_method": "VTEX productId 475548 offer cross-checked; available qty-1 card price R$66,90. Arithmetic: R$66.90 / 1 kit = R$66.90/conjunto.",
+          "caveats": [
+            "Includes pliers; still a small hand-tool kit rather than a full obra set."
+          ]
+        }
+      ],
+      "winner": {
+        "matched_product": "Kit De Ferramentas 4 Peças Com 2 Chaves De Fenda 1 Estilete 1 Mini Arco De Serra 43408304 Tramontina",
+        "sku": "287326",
+        "seller": "Telhanorte",
+        "specifications": {
+          "brand": "Tramontina",
+          "model": "43408304",
+          "piece_count": 4,
+          "contents": "2 chaves de fenda, 1 estilete, 1 mini arco de serra"
+        },
+        "package_size": "1 kit / 4 peças",
+        "displayed_price_brl": 37.9,
+        "normalized_unit_price_brl": 37.9,
+        "unit": "conjunto",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.telhanorte.com.br/kit-de-ferramentas-4-pecas-com-2-chaves-de-fenda-1-estilete-1-mini-arco-de-serra-43408304-tramontina-287326/p",
+        "final_url": "https://www.telhanorte.com.br/kit-de-ferramentas-4-pecas-com-2-chaves-de-fenda-1-estilete-1-mini-arco-de-serra-43408304-tramontina-287326/p",
+        "http_status": 200,
+        "verification_method": "Direct /p product page loaded; title, SKU 287326, visible card price R$37,90, and stock confirmed. Arithmetic: R$37.90 / 1 kit = R$37.90/conjunto.",
+        "caveats": [
+          "Lowest verified qty-1 price among clearly specified basic hand-tool kits.",
+          "Small 4-piece domestic/obra kit, not equivalent to a full construction toolbox budget.",
+          "Freight not calculated for CEP 13380-000; freight_brl left null."
+        ]
+      },
+      "no_match_reason": null
+    },
+    {
+      "expense_id": "EXP_0020",
+      "requested_item": "Carrinho de mão",
+      "requested_unit": "unidade",
+      "match_status": "verified",
+      "candidates": [
+        {
+          "matched_product": "Carrinho de mão com caçamba metálica rasa 50 litros Tramontina",
+          "sku": "1555111",
+          "seller": "Telhanorte",
+          "specifications": {
+            "brand": "Tramontina",
+            "type": "Carrinho de mão com caçamba metálica redonda/rasa",
+            "capacity_l": 50,
+            "load_capacity_kg": 120,
+            "color": "Azul",
+            "tire": "Pneu de borracha",
+            "dimensions_cm": "144 x 50 x 50,3"
+          },
+          "package_size": "1 unidade",
+          "displayed_price_brl": 219.9,
+          "normalized_unit_price_brl": 219.9,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.telhanorte.com.br/carrinho-de-mao-braco-metalico-cacamba-metalica-redonda-de-azul-pneu-borracha-tramontina-1555111/p",
+          "final_url": "https://www.telhanorte.com.br/carrinho-de-mao-braco-metalico-cacamba-metalica-redonda-de-azul-pneu-borracha-tramontina-1555111/p",
+          "http_status": 200,
+          "verification_method": "Direct /p product page loaded; title, SKU 1555111, visible card price R$219,90, and store stock listings confirmed. Arithmetic: R$219.90 / 1 = R$219.90/unidade.",
+          "caveats": [
+            "Only available qty-1 priced wheelbarrow found on Telhanorte at check time; extraforte 65 L variants were out of stock or unpriced.",
+            "Freight not calculated for CEP 13380-000; freight_brl left null."
+          ]
+        }
+      ],
+      "winner": {
+        "matched_product": "Carrinho de mão com caçamba metálica rasa 50 litros Tramontina",
+        "sku": "1555111",
+        "seller": "Telhanorte",
+        "specifications": {
+          "brand": "Tramontina",
+          "type": "Carrinho de mão com caçamba metálica redonda/rasa",
+          "capacity_l": 50,
+          "load_capacity_kg": 120,
+          "color": "Azul",
+          "tire": "Pneu de borracha",
+          "dimensions_cm": "144 x 50 x 50,3"
+        },
+        "package_size": "1 unidade",
+        "displayed_price_brl": 219.9,
+        "normalized_unit_price_brl": 219.9,
+        "unit": "unidade",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.telhanorte.com.br/carrinho-de-mao-braco-metalico-cacamba-metalica-redonda-de-azul-pneu-borracha-tramontina-1555111/p",
+        "final_url": "https://www.telhanorte.com.br/carrinho-de-mao-braco-metalico-cacamba-metalica-redonda-de-azul-pneu-borracha-tramontina-1555111/p",
+        "http_status": 200,
+        "verification_method": "Direct /p product page loaded; title, SKU 1555111, visible card price R$219,90, and store stock listings confirmed. Arithmetic: R$219.90 / 1 = R$219.90/unidade.",
+        "caveats": [
+          "Sole verified in-stock wheelbarrow /p offer at check time.",
+          "Freight not calculated for CEP 13380-000; freight_brl left null."
+        ]
+      },
+      "no_match_reason": null
+    },
+    {
+      "expense_id": "EXP_0022",
+      "requested_item": "Caçamba de entulho",
+      "requested_unit": "caçamba",
+      "match_status": "no_match",
+      "candidates": [],
+      "winner": null,
+      "no_match_reason": "No dumpster-rental or construction-debris caçamba sold as a priced /p product. Searches for caçamba/entulho returned only paint trays, wheelbarrow trays, and raffia debris bags—not a rental dumpster service."
+    },
+    {
+      "expense_id": "EXP_0043",
+      "requested_item": "Calhas e rufos",
+      "requested_unit": "metro linear (m)",
+      "match_status": "verified",
+      "candidates": [
+        {
+          "matched_product": "Rufo Externo 20 2 Metros Galvanizado Calhaforte",
+          "sku": "688231",
+          "seller": "Telhanorte",
+          "specifications": {
+            "brand": "Calhaforte",
+            "type": "Rufo externo",
+            "cut": "20",
+            "material": "Aço galvanizado",
+            "length_m": 2
+          },
+          "package_size": "2 metros",
+          "displayed_price_brl": 41.9,
+          "normalized_unit_price_brl": 20.95,
+          "unit": "metro linear (m)",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.telhanorte.com.br/rufo-externo-20-2-metros-galvanizado-calhaforte-688231/p",
+          "final_url": "https://www.telhanorte.com.br/rufo-externo-20-2-metros-galvanizado-calhaforte-688231/p",
+          "http_status": 200,
+          "verification_method": "Direct /p product page loaded; title, SKU 688231, visible card price R$41,90 for 2 m piece, stock confirmed. Arithmetic: R$41.90 / 2 m = R$20.95/m.",
+          "caveats": [
+            "Sold as a 2 m piece; unit price normalized per linear meter.",
+            "Freight not calculated for CEP 13380-000; freight_brl left null."
+          ]
+        },
+        {
+          "matched_product": "Calha Galvanizada Moldura 28 Polegadas 2 Metros para Platibanda Calhaforte",
+          "sku": "688070",
+          "seller": "Telhanorte",
+          "specifications": {
+            "brand": "Calhaforte",
+            "type": "Calha moldura para platibanda",
+            "size": "28 polegadas",
+            "material": "Aço galvanizado",
+            "length_m": 2
+          },
+          "package_size": "2 metros",
+          "displayed_price_brl": 48.9,
+          "normalized_unit_price_brl": 24.45,
+          "unit": "metro linear (m)",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.telhanorte.com.br/calha-galvanizada-moldura-28-2-metros-platibanda-calhaforte-688070/p",
+          "final_url": "https://www.telhanorte.com.br/calha-galvanizada-moldura-28-2-metros-platibanda-calhaforte-688070/p",
+          "http_status": 200,
+          "verification_method": "Direct /p product page loaded; title, SKU 688070, visible card price R$48,90 for 2 m piece. Arithmetic: R$48.90 / 2 m = R$24.45/m.",
+          "caveats": [
+            "Page also advertised a Pix discount; recorded displayed card price R$48,90.",
+            "Higher R$/m than the winning rufo."
+          ]
+        },
+        {
+          "matched_product": "Calha Galvanizada Moldura 28 Polegadas 2 Metros Calhaforte",
+          "sku": "688037",
+          "seller": "Telhanorte",
+          "specifications": {
+            "brand": "Calhaforte",
+            "type": "Calha moldura",
+            "size": "28 polegadas",
+            "material": "Aço galvanizado",
+            "length_m": 2
+          },
+          "package_size": "2 metros",
+          "displayed_price_brl": 52.9,
+          "normalized_unit_price_brl": 26.45,
+          "unit": "metro linear (m)",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.telhanorte.com.br/calha-galvanizada-moldura-28-2-metros-calhaforte-688037/p",
+          "final_url": "https://www.telhanorte.com.br/calha-galvanizada-moldura-28-2-metros-calhaforte-688037/p",
+          "http_status": 200,
+          "verification_method": "VTEX productId 688037 offer and related /p listing price R$52,90 for 2 m. Arithmetic: R$52.90 / 2 m = R$26.45/m.",
+          "caveats": [
+            "Standard moldura calha; higher R$/m than platibanda calha and rufo candidates."
+          ]
+        }
+      ],
+      "winner": {
+        "matched_product": "Rufo Externo 20 2 Metros Galvanizado Calhaforte",
+        "sku": "688231",
+        "seller": "Telhanorte",
+        "specifications": {
+          "brand": "Calhaforte",
+          "type": "Rufo externo",
+          "cut": "20",
+          "material": "Aço galvanizado",
+          "length_m": 2
+        },
+        "package_size": "2 metros",
+        "displayed_price_brl": 41.9,
+        "normalized_unit_price_brl": 20.95,
+        "unit": "metro linear (m)",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.telhanorte.com.br/rufo-externo-20-2-metros-galvanizado-calhaforte-688231/p",
+        "final_url": "https://www.telhanorte.com.br/rufo-externo-20-2-metros-galvanizado-calhaforte-688231/p",
+        "http_status": 200,
+        "verification_method": "Direct /p product page loaded; title, SKU 688231, visible card price R$41,90 for 2 m piece, stock confirmed. Arithmetic: R$41.90 / 2 m = R$20.95/m.",
+        "caveats": [
+          "Lowest verified R$/m among available calha/rufo linear /p products.",
+          "Representative rufo (not a full calha run); sold as 2 m piece.",
+          "Freight not calculated for CEP 13380-000; freight_brl left null."
+        ]
+      },
+      "no_match_reason": null
+    },
+    {
+      "expense_id": "EXP_0047",
+      "requested_item": "Pregos, parafusos, buchas",
+      "requested_unit": "pacote",
+      "match_status": "verified",
+      "candidates": [
+        {
+          "matched_product": "Kit Prático com 30 Peças de Buchas, Parafusos e Broca 5mm Bemfixa",
+          "sku": "1331396",
+          "seller": "Telhanorte",
+          "specifications": {
+            "brand": "Bemfixa",
+            "type": "Kit de fixação (buchas + parafusos + broca)",
+            "piece_count": 30,
+            "drill_bit_mm": 5,
+            "screw_size": "3,2mm x 30mm (compatível com buchas 5mm)"
+          },
+          "package_size": "1 kit / 30 peças",
+          "displayed_price_brl": 22.9,
+          "normalized_unit_price_brl": 22.9,
+          "unit": "pacote",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.telhanorte.com.br/kit-pratico-de-30-pecas-buchas-parafusos-e-broca-bemfixa-1331396/p",
+          "final_url": "https://www.telhanorte.com.br/kit-pratico-de-30-pecas-buchas-parafusos-e-broca-bemfixa-1331396/p",
+          "http_status": 200,
+          "verification_method": "Direct /p product page loaded; title, SKU 1331396, visible card price R$22,90, stock confirmed. Arithmetic: R$22.90 / 1 pacote = R$22.90/pacote.",
+          "caveats": [
+            "Assortment of parafusos + buchas (+ broca); does not include pregos.",
+            "Freight not calculated for CEP 13380-000; freight_brl left null."
+          ]
+        },
+        {
+          "matched_product": "MALETA PARAFUSOS E BUCHAS 100 PECAS COM 50 PARAFUSOS 50 BUCHAS",
+          "sku": "1693948",
+          "seller": "Telhanorte",
+          "specifications": {
+            "brand": null,
+            "type": "Maleta de parafusos e buchas",
+            "piece_count": 100,
+            "screws": 50,
+            "anchors": 50
+          },
+          "package_size": "1 maleta / 100 peças",
+          "displayed_price_brl": 34.9,
+          "normalized_unit_price_brl": 34.9,
+          "unit": "pacote",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.telhanorte.com.br/maleta-parafusos-e-buchas-100-pecas-com-50-parafusos-50-buchas-1693948/p",
+          "final_url": "https://www.telhanorte.com.br/maleta-parafusos-e-buchas-100-pecas-com-50-parafusos-50-buchas-1693948/p",
+          "http_status": 200,
+          "verification_method": "VTEX productId 1693948 offer and /p catalog link; available qty-1 card price R$34,90. Arithmetic: R$34.90 / 1 pacote = R$34.90/pacote.",
+          "caveats": [
+            "Larger parafusos+buchas assortment; no pregos; higher pack price than the 30-piece kit."
+          ]
+        }
+      ],
+      "winner": {
+        "matched_product": "Kit Prático com 30 Peças de Buchas, Parafusos e Broca 5mm Bemfixa",
+        "sku": "1331396",
+        "seller": "Telhanorte",
+        "specifications": {
+          "brand": "Bemfixa",
+          "type": "Kit de fixação (buchas + parafusos + broca)",
+          "piece_count": 30,
+          "drill_bit_mm": 5,
+          "screw_size": "3,2mm x 30mm (compatível com buchas 5mm)"
+        },
+        "package_size": "1 kit / 30 peças",
+        "displayed_price_brl": 22.9,
+        "normalized_unit_price_brl": 22.9,
+        "unit": "pacote",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.telhanorte.com.br/kit-pratico-de-30-pecas-buchas-parafusos-e-broca-bemfixa-1331396/p",
+        "final_url": "https://www.telhanorte.com.br/kit-pratico-de-30-pecas-buchas-parafusos-e-broca-bemfixa-1331396/p",
+        "http_status": 200,
+        "verification_method": "Direct /p product page loaded; title, SKU 1331396, visible card price R$22,90, stock confirmed. Arithmetic: R$22.90 / 1 pacote = R$22.90/pacote.",
+        "caveats": [
+          "Lowest verified hardware assortment pack (parafusos + buchas); does not include pregos.",
+          "Freight not calculated for CEP 13380-000; freight_brl left null."
+        ]
+      },
+      "no_match_reason": null
+    }
+  ]
+}

@@ -1,0 +1,586 @@
+{
+  "cluster": "electrical",
+  "checked_at": "2026-09-17",
+  "location_basis": "nova_odessa_cep_13380",
+  "expenses": [
+    {
+      "expense_id": "EXP_0033",
+      "requested_item": "Quadro de distribuição",
+      "requested_unit": "unidade",
+      "match_status": "verified",
+      "candidates": [
+        {
+          "matched_product": "Quadro De Embutir Ouro Box 16 Din Porta Opaca Steck",
+          "sku": "1399993",
+          "seller": "Telhanorte",
+          "specifications": {
+            "brand": "Steck",
+            "mounting": "Embutir",
+            "capacity": "16 disjuntores DIN",
+            "door": "Porta opaca",
+            "line": "Ouro Box"
+          },
+          "package_size": "1 unidade",
+          "displayed_price_brl": 55.9,
+          "normalized_unit_price_brl": 55.9,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [
+            {
+              "minimum_quantity": 15,
+              "price_brl": 49.75,
+              "note": "Visible tier 'Comprando acima de 15 unidades' at R$49,75"
+            }
+          ],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.telhanorte.com.br/quadro-de-embutir-para-16-disjuntores-din-branco-porta-opaca-ouro-box-steck-1399993/p",
+          "final_url": "https://www.telhanorte.com.br/quadro-de-embutir-para-16-disjuntores-din-branco-porta-opaca-ouro-box-steck-1399993/p",
+          "http_status": 200,
+          "verification_method": "Browser product page on telhanorte.com.br /p; title, REF 1399993, 16 DIN, Estoque Disponível, and card price R$55,90 verified. Bulk tier R$49,75 above 15 units recorded separately. Arithmetic: R$55.90 / 1 unidade = R$55.90/unidade.",
+          "caveats": [
+            "Preferred capacity is 16/18 DIN; this board is exactly 16 DIN.",
+            "No separate Pix discount was shown for quantity 1; R$49,75 is a bulk tier, not the qty-1 price."
+          ]
+        },
+        {
+          "matched_product": "Quadro De Distribuição Com Barramento Neutro / Terra 16 Din Forceline",
+          "sku": "2571935",
+          "seller": "Telhanorte",
+          "specifications": {
+            "brand": "Forceline",
+            "capacity": "16 disjuntores DIN",
+            "includes": "Barramento neutro/terra"
+          },
+          "package_size": "1 unidade",
+          "displayed_price_brl": 91.92,
+          "normalized_unit_price_brl": 91.92,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.telhanorte.com.br/quadro-de-distribuicao-com-barramento-neutro-terra-16-din-forceline-2571935/p",
+          "final_url": "https://www.telhanorte.com.br/quadro-de-distribuicao-com-barramento-neutro-terra-16-din-forceline-2571935/p",
+          "http_status": 200,
+          "verification_method": "Browser product page; REF 2571935, Estoque Disponível, Pix R$91,92 (20% OFF from card R$114,90) verified. Arithmetic: R$91.92 / 1 unidade = R$91.92/unidade.",
+          "caveats": [
+            "Includes neutro/terra busbar; higher priced than the Steck 16 DIN qty-1 offer."
+          ]
+        },
+        {
+          "matched_product": "Quadro 12/16 disjuntores porta branca sem barramento Tigre",
+          "sku": "530620",
+          "seller": "Telhanorte",
+          "specifications": {
+            "brand": "Tigre",
+            "capacity": "12/16 disjuntores",
+            "door": "Porta branca",
+            "barramento": "Sem barramento"
+          },
+          "package_size": "1 unidade",
+          "displayed_price_brl": 126.26,
+          "normalized_unit_price_brl": 126.26,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.telhanorte.com.br/quadro-1216-disjuntores-porta-branca-sem-barramento-tigre-530620/p",
+          "final_url": "https://www.telhanorte.com.br/quadro-1216-disjuntores-porta-branca-sem-barramento-tigre-530620/p",
+          "http_status": 200,
+          "verification_method": "Browser product page; REF 530620, Estoque Disponível, Pix R$126,26 (5% OFF from card R$132,90) verified. Arithmetic: R$126.26 / 1 unidade = R$126.26/unidade.",
+          "caveats": [
+            "12/16 capacity is the nearest Tigre lower comparable to preferred 16/18 DIN."
+          ]
+        },
+        {
+          "matched_product": "Quadro 18/24 disjuntores porta branca sem barramento Tigre",
+          "sku": "530743",
+          "seller": "Telhanorte",
+          "specifications": {
+            "brand": "Tigre",
+            "capacity": "18/24 disjuntores",
+            "door": "Porta branca",
+            "barramento": "Sem barramento"
+          },
+          "package_size": "1 unidade",
+          "displayed_price_brl": 287.91,
+          "normalized_unit_price_brl": 287.91,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.telhanorte.com.br/quadro-1824-disjuntores-porta-branca-sem-barramento-tigre-530743/p",
+          "final_url": "https://www.telhanorte.com.br/quadro-1824-disjuntores-porta-branca-sem-barramento-tigre-530743/p",
+          "http_status": 200,
+          "verification_method": "Browser product page; REF 530743, Estoque Disponível, Pix R$287,91 (10% OFF; save R$31,99) verified. Arithmetic: R$287.91 / 1 unidade = R$287.91/unidade.",
+          "caveats": [
+            "Includes preferred 18 DIN capacity but extends to 24 slots; retained as a higher-priced comparable."
+          ]
+        }
+      ],
+      "winner": {
+        "matched_product": "Quadro De Embutir Ouro Box 16 Din Porta Opaca Steck",
+        "sku": "1399993",
+        "seller": "Telhanorte",
+        "specifications": {
+          "brand": "Steck",
+          "mounting": "Embutir",
+          "capacity": "16 disjuntores DIN",
+          "door": "Porta opaca",
+          "line": "Ouro Box"
+        },
+        "package_size": "1 unidade",
+        "displayed_price_brl": 55.9,
+        "normalized_unit_price_brl": 55.9,
+        "unit": "unidade",
+        "minimum_quantity": 1,
+        "bulk_tiers": [
+          {
+            "minimum_quantity": 15,
+            "price_brl": 49.75,
+            "note": "Visible tier 'Comprando acima de 15 unidades' at R$49,75"
+          }
+        ],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.telhanorte.com.br/quadro-de-embutir-para-16-disjuntores-din-branco-porta-opaca-ouro-box-steck-1399993/p",
+        "final_url": "https://www.telhanorte.com.br/quadro-de-embutir-para-16-disjuntores-din-branco-porta-opaca-ouro-box-steck-1399993/p",
+        "http_status": 200,
+        "verification_method": "Browser product page on telhanorte.com.br /p; title, REF 1399993, 16 DIN, Estoque Disponível, and card price R$55,90 verified. Bulk tier R$49,75 above 15 units recorded separately. Arithmetic: R$55.90 / 1 unidade = R$55.90/unidade.",
+        "caveats": [
+          "Lowest verified quantity-1 price among comparable 16/18-class distribution boards."
+        ]
+      },
+      "no_match_reason": null
+    },
+    {
+      "expense_id": "EXP_0034",
+      "requested_item": "Conduítes",
+      "requested_unit": "metro linear (m)",
+      "match_status": "verified",
+      "candidates": [
+        {
+          "matched_product": "Corrugado Leve Dn25 3/4\" 50M Tramontina",
+          "sku": "1672614",
+          "seller": "Telhanorte",
+          "specifications": {
+            "brand": "Tramontina",
+            "type": "Eletroduto corrugado leve",
+            "diameter": "DN25 / 3/4\"",
+            "roll_length_m": 50
+          },
+          "package_size": "rolo 50 m",
+          "displayed_price_brl": 69.9,
+          "normalized_unit_price_brl": 1.398,
+          "unit": "metro linear (m)",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.telhanorte.com.br/corrugado-leve-dn25-34-50m-tramontina-1672614/p",
+          "final_url": "https://www.telhanorte.com.br/corrugado-leve-dn25-34-50m-tramontina-1672614/p",
+          "http_status": 200,
+          "verification_method": "Browser product page; REF 1672614, DN25 50 m roll, Estoque Disponível, card/list sale price R$69,90 (no separate Pix line) verified. Arithmetic: R$69.90 / 50 m = R$1.398/m.",
+          "caveats": [
+            "Sold only as a 50 m roll; unit price is normalized per meter."
+          ]
+        },
+        {
+          "matched_product": "Corrugado Leve Dn20 1/2\" 50M Tramontina",
+          "sku": "1672606",
+          "seller": "Telhanorte",
+          "specifications": {
+            "brand": "Tramontina",
+            "type": "Eletroduto corrugado leve",
+            "diameter": "DN20 / 1/2\"",
+            "roll_length_m": 50
+          },
+          "package_size": "rolo 50 m",
+          "displayed_price_brl": 79.9,
+          "normalized_unit_price_brl": 1.598,
+          "unit": "metro linear (m)",
+          "minimum_quantity": 1,
+          "bulk_tiers": [
+            {
+              "minimum_quantity": 8,
+              "price_brl": 71.11,
+              "note": "Visible tier 'Comprando acima de 8 unidades' at R$71,11 per roll"
+            }
+          ],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.telhanorte.com.br/corrugado-leve-dn20-12-50m-tramontina-1672606/p",
+          "final_url": "https://www.telhanorte.com.br/corrugado-leve-dn20-12-50m-tramontina-1672606/p",
+          "http_status": 200,
+          "verification_method": "Browser product page; REF 1672606, DN20 50 m roll, Estoque Disponível, qty-1 price R$79,90 (list R$112,90) verified; R$71,11 is bulk above 8 rolls. Arithmetic: R$79.90 / 50 m = R$1.598/m.",
+          "caveats": [
+            "Sold only as a 50 m roll; unit price is normalized per meter.",
+            "R$71,11 is a bulk tier, not the quantity-1 price."
+          ]
+        },
+        {
+          "matched_product": "Eletroduto Corrugado Flexível Am 5/8 Dn 20 – 50m Force Line",
+          "sku": "1636383",
+          "seller": "Telhanorte",
+          "specifications": {
+            "brand": "Forceline",
+            "type": "Eletroduto corrugado flexível",
+            "diameter": "DN20 / 5/8\"",
+            "color": "Amarelo",
+            "roll_length_m": 50
+          },
+          "package_size": "rolo 50 m",
+          "displayed_price_brl": 82.36,
+          "normalized_unit_price_brl": 1.6472,
+          "unit": "metro linear (m)",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.telhanorte.com.br/eletroduto-corrugado-flexivel-58-dn20-50m-amarelo-forceline-1636383/p",
+          "final_url": "https://www.telhanorte.com.br/eletroduto-corrugado-flexivel-58-dn20-50m-amarelo-forceline-1636383/p",
+          "http_status": 200,
+          "verification_method": "Browser product page; REF 1636383, DN20 50 m roll, Estoque Disponível, Pix R$82,36 (15% OFF from card R$96,90) verified. Arithmetic: R$82.36 / 50 m = R$1.6472/m.",
+          "caveats": [
+            "Sold only as a 50 m roll; unit price is normalized per meter."
+          ]
+        }
+      ],
+      "winner": {
+        "matched_product": "Corrugado Leve Dn25 3/4\" 50M Tramontina",
+        "sku": "1672614",
+        "seller": "Telhanorte",
+        "specifications": {
+          "brand": "Tramontina",
+          "type": "Eletroduto corrugado leve",
+          "diameter": "DN25 / 3/4\"",
+          "roll_length_m": 50
+        },
+        "package_size": "rolo 50 m",
+        "displayed_price_brl": 69.9,
+        "normalized_unit_price_brl": 1.398,
+        "unit": "metro linear (m)",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.telhanorte.com.br/corrugado-leve-dn25-34-50m-tramontina-1672614/p",
+        "final_url": "https://www.telhanorte.com.br/corrugado-leve-dn25-34-50m-tramontina-1672614/p",
+        "http_status": 200,
+        "verification_method": "Browser product page; REF 1672614, DN25 50 m roll, Estoque Disponível, card/list sale price R$69,90 (no separate Pix line) verified. Arithmetic: R$69.90 / 50 m = R$1.398/m.",
+        "caveats": [
+          "Lowest verified quantity-1 normalized per-meter price among comparable corrugated conduit rolls."
+        ]
+      },
+      "no_match_reason": null
+    },
+    {
+      "expense_id": "EXP_0035",
+      "requested_item": "Lâmpadas",
+      "requested_unit": "unidade",
+      "match_status": "verified",
+      "candidates": [
+        {
+          "matched_product": "Lampada Led 9W Branca E27 Biv Ldv Bellalux",
+          "sku": "2603314",
+          "seller": "Telhanorte",
+          "specifications": {
+            "brand": "Ledvance / Bellalux",
+            "type": "LED bulbo",
+            "power_w": 9,
+            "base": "E27",
+            "color": "Branca",
+            "voltage": "Bivolt"
+          },
+          "package_size": "1 unidade",
+          "displayed_price_brl": 2.87,
+          "normalized_unit_price_brl": 2.87,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.telhanorte.com.br/lampada-led-9w-branca-e27-biv-bellalux-2603314/p",
+          "final_url": "https://www.telhanorte.com.br/lampada-led-9w-branca-e27-biv-bellalux-2603314/p",
+          "http_status": 200,
+          "verification_method": "Browser product page; REF 2603314, LED 9W E27 bivolt, Estoque Disponível, Pix R$2,87 (20% OFF from card R$3,59) verified. Arithmetic: R$2.87 / 1 unidade = R$2.87/unidade.",
+          "caveats": [
+            "Representative single LED bulb unit; color temperature Kelvin not stated in the product title."
+          ]
+        },
+        {
+          "matched_product": "Lâmpada Led 9W Branca E27 Bivolt Ledvance",
+          "sku": "2588242",
+          "seller": "Telhanorte",
+          "specifications": {
+            "brand": "Ledvance",
+            "type": "LED bulbo",
+            "power_w": 9,
+            "base": "E27",
+            "color": "Branca",
+            "voltage": "Bivolt"
+          },
+          "package_size": "1 unidade",
+          "displayed_price_brl": 3.03,
+          "normalized_unit_price_brl": 3.03,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.telhanorte.com.br/lampada-led-9w-branca-e27-bivolt-ledvance--2588242/p",
+          "final_url": "https://www.telhanorte.com.br/lampada-led-9w-branca-e27-bivolt-ledvance--2588242/p",
+          "http_status": 200,
+          "verification_method": "Browser product page; REF 2588242, LED 9W E27 bivolt, Estoque Disponível, Pix R$3,03 (20% OFF from card R$3,79; list R$3,90) verified. Arithmetic: R$3.03 / 1 unidade = R$3.03/unidade.",
+          "caveats": [
+            "Marked EXCLUSIVO ONLINE on the product page."
+          ]
+        },
+        {
+          "matched_product": "Lampada Led Bulbo A60 9W 6500K Bivolt Black Decker",
+          "sku": "2582708",
+          "seller": "Telhanorte",
+          "specifications": {
+            "brand": "Black Decker",
+            "type": "LED bulbo A60",
+            "power_w": 9,
+            "color_temperature_k": 6500,
+            "voltage": "Bivolt"
+          },
+          "package_size": "1 unidade",
+          "displayed_price_brl": 3.9,
+          "normalized_unit_price_brl": 3.9,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.telhanorte.com.br/lampada-led-bulbo-a60-9w-6500k-bivolt-black-decker-2582708/p",
+          "final_url": "https://www.telhanorte.com.br/lampada-led-bulbo-a60-9w-6500k-bivolt-black-decker-2582708/p",
+          "http_status": 200,
+          "verification_method": "Browser product page; REF 2582708, LED bulbo A60 9W 6500K, Estoque Disponível, price R$3,90 with no separate Pix discount verified. Arithmetic: R$3.90 / 1 unidade = R$3.90/unidade.",
+          "caveats": [
+            "Explicit 6500K bulbo comparable; higher than Bellalux/Ledvance Pix offers."
+          ]
+        }
+      ],
+      "winner": {
+        "matched_product": "Lampada Led 9W Branca E27 Biv Ldv Bellalux",
+        "sku": "2603314",
+        "seller": "Telhanorte",
+        "specifications": {
+          "brand": "Ledvance / Bellalux",
+          "type": "LED bulbo",
+          "power_w": 9,
+          "base": "E27",
+          "color": "Branca",
+          "voltage": "Bivolt"
+        },
+        "package_size": "1 unidade",
+        "displayed_price_brl": 2.87,
+        "normalized_unit_price_brl": 2.87,
+        "unit": "unidade",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.telhanorte.com.br/lampada-led-9w-branca-e27-biv-bellalux-2603314/p",
+        "final_url": "https://www.telhanorte.com.br/lampada-led-9w-branca-e27-biv-bellalux-2603314/p",
+        "http_status": 200,
+        "verification_method": "Browser product page; REF 2603314, LED 9W E27 bivolt, Estoque Disponível, Pix R$2,87 (20% OFF from card R$3,59) verified. Arithmetic: R$2.87 / 1 unidade = R$2.87/unidade.",
+        "caveats": [
+          "Lowest verified quantity-1 single LED bulb Pix price among comparable 9W E27 offers."
+        ]
+      },
+      "no_match_reason": null
+    },
+    {
+      "expense_id": "EXP_0038",
+      "requested_item": "Tomadas",
+      "requested_unit": "unidade",
+      "match_status": "verified",
+      "candidates": [
+        {
+          "matched_product": "Conjunto 4X2 1 Tomada 10A Branco Rivez Dicompel",
+          "sku": "2536811",
+          "seller": "Telhanorte",
+          "specifications": {
+            "brand": "Dicompel",
+            "line": "Rivez / Ritz",
+            "type": "Conjunto completo 4x2",
+            "modules": "1 tomada 10A",
+            "color": "Branco"
+          },
+          "package_size": "1 unidade",
+          "displayed_price_brl": 6.99,
+          "normalized_unit_price_brl": 6.99,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.telhanorte.com.br/conjunto-4x2-1-tomada-10a-branco-ritz-dicompel-2536811/p",
+          "final_url": "https://www.telhanorte.com.br/conjunto-4x2-1-tomada-10a-branco-ritz-dicompel-2536811/p",
+          "http_status": 200,
+          "verification_method": "Browser product page; REF 2536811, conjunto 4x2 1 tomada 10A, Estoque Disponível, price R$6,99 with no separate Pix discount verified. Arithmetic: R$6.99 / 1 unidade = R$6.99/unidade.",
+          "caveats": [
+            "Complete 4x2 outlet set; 2P+T polarity is implied by the 10A outlet set category but not spelled out as '2P+T' in the title."
+          ]
+        },
+        {
+          "matched_product": "Conjunto Tomada Pop 2P T 10A 4x2 Legrand",
+          "sku": "2308169",
+          "seller": "Telhanorte",
+          "specifications": {
+            "brand": "Legrand",
+            "line": "Pop",
+            "type": "Conjunto completo 4x2",
+            "modules": "1 tomada 2P+T 10A",
+            "color": "Branco"
+          },
+          "package_size": "1 unidade",
+          "displayed_price_brl": 7.59,
+          "normalized_unit_price_brl": 7.59,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.telhanorte.com.br/conjunto-tomada-pop-2p-t-10a-4x2-legrand-2308169/p",
+          "final_url": "https://www.telhanorte.com.br/conjunto-tomada-pop-2p-t-10a-4x2-legrand-2308169/p",
+          "http_status": 200,
+          "verification_method": "Browser product page; REF 2308169, conjunto 2P+T 10A 4x2, Estoque Disponível, Pix R$7,59 (5% OFF from card R$7,99; list R$11,90) verified. Arithmetic: R$7.59 / 1 unidade = R$7.59/unidade.",
+          "caveats": []
+        },
+        {
+          "matched_product": "Conjunto Tomada 2p T 10a 250v Pl Branco Miluz Schneider",
+          "sku": "1325256",
+          "seller": "Telhanorte",
+          "specifications": {
+            "brand": "Schneider",
+            "line": "Miluz",
+            "type": "Conjunto completo",
+            "modules": "1 tomada 2P+T 10A 250V",
+            "color": "Branco"
+          },
+          "package_size": "1 unidade",
+          "displayed_price_brl": 11.82,
+          "normalized_unit_price_brl": 11.82,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.telhanorte.com.br/conjunto-tomada-2p-t-10a-250v-miluz-schneider-1325256/p",
+          "final_url": "https://www.telhanorte.com.br/conjunto-tomada-2p-t-10a-250v-miluz-schneider-1325256/p",
+          "http_status": 200,
+          "verification_method": "Browser product page (seed URL); REF 1325256, conjunto Miluz 2P+T 10A, Estoque Disponível, Pix R$11,82 (15% OFF from card R$13,90) verified. Arithmetic: R$11.82 / 1 unidade = R$11.82/unidade.",
+          "caveats": [
+            "Seed URL retained as a branded comparable; higher than Dicompel/Legrand qty-1 offers."
+          ]
+        },
+        {
+          "matched_product": "Conjunto 1 Tomada 10A 250V~ Linha Gracia 4x2cm Branco Alumbra",
+          "sku": "1538055",
+          "seller": "Telhanorte",
+          "specifications": {
+            "brand": "Alumbra",
+            "line": "Gracia",
+            "type": "Conjunto completo 4x2",
+            "modules": "1 tomada 10A 250V",
+            "color": "Branco"
+          },
+          "package_size": "1 unidade",
+          "displayed_price_brl": 12.9,
+          "normalized_unit_price_brl": 12.9,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.telhanorte.com.br/conjunto-1-tomada-10a-250v~-4x2-linha-gracia-branco-alumbra-1538055/p",
+          "final_url": "https://www.telhanorte.com.br/conjunto-1-tomada-10a-250v~-4x2-linha-gracia-branco-alumbra-1538055/p",
+          "http_status": 200,
+          "verification_method": "Browser product page; REF 1538055, conjunto Gracia 4x2 1 tomada 10A, Estoque Disponível, price R$12,90 with no separate Pix discount verified. Arithmetic: R$12.90 / 1 unidade = R$12.90/unidade.",
+          "caveats": []
+        }
+      ],
+      "winner": {
+        "matched_product": "Conjunto 4X2 1 Tomada 10A Branco Rivez Dicompel",
+        "sku": "2536811",
+        "seller": "Telhanorte",
+        "specifications": {
+          "brand": "Dicompel",
+          "line": "Rivez / Ritz",
+          "type": "Conjunto completo 4x2",
+          "modules": "1 tomada 10A",
+          "color": "Branco"
+        },
+        "package_size": "1 unidade",
+        "displayed_price_brl": 6.99,
+        "normalized_unit_price_brl": 6.99,
+        "unit": "unidade",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.telhanorte.com.br/conjunto-4x2-1-tomada-10a-branco-ritz-dicompel-2536811/p",
+        "final_url": "https://www.telhanorte.com.br/conjunto-4x2-1-tomada-10a-branco-ritz-dicompel-2536811/p",
+        "http_status": 200,
+        "verification_method": "Browser product page; REF 2536811, conjunto 4x2 1 tomada 10A, Estoque Disponível, price R$6,99 with no separate Pix discount verified. Arithmetic: R$6.99 / 1 unidade = R$6.99/unidade.",
+        "caveats": [
+          "Lowest verified quantity-1 complete 4x2 single-outlet set among comparable listings including the Schneider Miluz seed."
+        ]
+      },
+      "no_match_reason": null
+    },
+    {
+      "expense_id": "EXP_0045",
+      "requested_item": "Dispositivos de segurança",
+      "requested_unit": "conjunto",
+      "match_status": "no_match",
+      "candidates": [],
+      "winner": null,
+      "no_match_reason": "No clear residential safety-device conjunto (smoke detector kit or residual-device kit) with a verified /p price was found. Catalog searches for detector de fumaça / sensor fumaça returned no products; alarme incêndio only surfaced an unavailable signage plate; IDR/DR residual devices are sold as individual units (not a conjunto); the only camera kit (VTV Digital 1542338) was out of stock; porteiro eletrônico kits are access-control packages rather than smoke/residual safety kits."
+    }
+  ]
+}

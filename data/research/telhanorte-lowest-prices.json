@@ -1,0 +1,1234 @@
+{
+  "source": "Telhanorte",
+  "source_url": "https://www.telhanorte.com.br/",
+  "location_basis": "nova_odessa_cep_13380",
+  "checked_at": "2026-09-17",
+  "summary": {
+    "total_material_expenses": 35,
+    "verified_matches": 30,
+    "no_match": 5
+  },
+  "expenses": [
+    {
+      "expense_id": "EXP_0014",
+      "requested_item": "Impermeabilizante (bianco)",
+      "requested_unit": "balde",
+      "match_status": "verified",
+      "winner": {
+        "matched_product": "Aditivo Líquido De Alto Desempenho Bianco 18kg Vedacit",
+        "sku": "263915",
+        "seller": "Telhanorte",
+        "specifications": {
+          "brand": "Vedacit",
+          "product_line": "Bianco",
+          "net_content": "18 kg",
+          "form": "liquid additive / bonding agent"
+        },
+        "package_size": "18 kg",
+        "displayed_price_brl": 319.9,
+        "normalized_unit_price_brl": 319.9,
+        "unit": "balde",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.telhanorte.com.br/bianco-bd-18-kg-263915/p",
+        "final_url": "https://www.telhanorte.com.br/bianco-bd-18-kg-263915/p",
+        "http_status": 200,
+        "verification_method": "VTEX pub API fq=skuId:263915 plus browser /p page verification; visible card price R$319,90 matched API Price. Arithmetic: R$319.90 / 1 balde = R$319.90 per balde.",
+        "caveats": [
+          "Preferred ~18 kg Bianco/Vedacit balde; smaller Bianco SKUs (900g, 1kg, 3.6kg) exist but were not selected.",
+          "Freight not calculated for CEP 13380-000; freight_brl left null."
+        ]
+      },
+      "candidate_count": 1,
+      "no_match_reason": ""
+    },
+    {
+      "expense_id": "EXP_0015",
+      "requested_item": "Areia grossa, fina e pedrisco",
+      "requested_unit": "metro cúbico (m³)",
+      "match_status": "no_match",
+      "winner": null,
+      "candidate_count": 0,
+      "no_match_reason": "Only bagged 20 kg areia/pedrisco/brita listings found (e.g. Areia Fina Emic 20kg, Pedrisco Emic 20kg); no m³-priced bulk aggregate with a clear comparable unit price on a /p page."
+    },
+    {
+      "expense_id": "EXP_0016",
+      "requested_item": "Cimento",
+      "requested_unit": "saco (50 kg)",
+      "match_status": "verified",
+      "winner": {
+        "matched_product": "Cimento Cinza CPII-E 50KG Campeão Nacional",
+        "sku": "2437279",
+        "seller": "Telhanorte",
+        "specifications": {
+          "brand": "Nacional",
+          "type": "CPII-E",
+          "weight": "50 kg"
+        },
+        "package_size": "50 kg",
+        "displayed_price_brl": 34.9,
+        "normalized_unit_price_brl": 34.9,
+        "unit": "saco (50 kg)",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.telhanorte.com.br/cimento-cinza-cp-ii-e-32-rs-campeao-50kg-2437279/p",
+        "final_url": "https://www.telhanorte.com.br/cimento-cinza-cp-ii-e-32-rs-campeao-50kg-2437279/p",
+        "http_status": 200,
+        "verification_method": "VTEX search ft=cimento 50kg plus browser /p page verification; visible card price R$34,90 matched API Price. Arithmetic: R$34.90 / 1 saco = R$34.90 per saco (50 kg).",
+        "caveats": [
+          "Lowest in-stock 50 kg cement among available comparable listings in this run.",
+          "Freight not calculated for CEP 13380-000; freight_brl left null."
+        ]
+      },
+      "candidate_count": 2,
+      "no_match_reason": ""
+    },
+    {
+      "expense_id": "EXP_0017",
+      "requested_item": "Telha",
+      "requested_unit": "unidade",
+      "match_status": "verified",
+      "winner": {
+        "matched_product": "Telha Portuguesa Premium 40x24 Vermelha Resinada Barrobello",
+        "sku": "1402951",
+        "seller": "Telhanorte",
+        "specifications": {
+          "brand": "Barrobello",
+          "type": "ceramic Portuguese resinated",
+          "dimensions": "40x24 cm (slug also cites 39x24 cm / 10 mm)",
+          "color": "vermelha"
+        },
+        "package_size": "1 unidade",
+        "displayed_price_brl": 1.99,
+        "normalized_unit_price_brl": 1.99,
+        "unit": "unidade",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.telhanorte.com.br/telha-portuguesa-de-ceramica-39x24cm-10mm-realeza-vermelha-resinada-barrobello-1402951/p",
+        "final_url": "https://www.telhanorte.com.br/telha-portuguesa-de-ceramica-39x24cm-10mm-realeza-vermelha-resinada-barrobello-1402951/p",
+        "http_status": 200,
+        "verification_method": "Seed URL re-verified via VTEX fq=skuId:1402951 plus browser /p page; visible card price R$1,99 matched API Price. Arithmetic: R$1.99 / 1 unidade = R$1.99 per tile.",
+        "caveats": [
+          "Preferred ceramic Portuguese tile; glass/polycarbonate Portuguese tiles were higher-priced and not selected.",
+          "Alternate ceramic Faulin listing (~R$2.19) was unavailable (AvailableQuantity=0).",
+          "Freight not calculated for CEP 13380-000; freight_brl left null."
+        ]
+      },
+      "candidate_count": 1,
+      "no_match_reason": ""
+    },
+    {
+      "expense_id": "EXP_0019",
+      "requested_item": "Tijolinho de barro",
+      "requested_unit": "unidade",
+      "match_status": "verified",
+      "winner": {
+        "matched_product": "Tijolo Maciço comum Emic Ensacado com 10 Unidades",
+        "sku": "2555646",
+        "seller": "Telhanorte",
+        "specifications": {
+          "brand": "Emic",
+          "type": "solid common clay brick (tijolo maciço / tijolinho)",
+          "pack_count": 10,
+          "material": "ceramic clay"
+        },
+        "package_size": "10 unidades",
+        "displayed_price_brl": 6.65,
+        "normalized_unit_price_brl": 0.665,
+        "unit": "unidade",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.telhanorte.com.br/tijolo-comum-ensacado-10un-emic--2555646/p",
+        "final_url": "https://www.telhanorte.com.br/tijolo-comum-ensacado-10un-emic--2555646/p",
+        "http_status": 200,
+        "verification_method": "VTEX fq=skuId:2555646 plus browser /p page; visible card price R$6,65 for pack of 10. Arithmetic: R$6.65 / 10 unidades = R$0.665 per unidade.",
+        "caveats": [
+          "Sold only as a 10-unit bag; normalized_unit_price_brl is per brick.",
+          "minimum_quantity remains 1 (one bag purchase).",
+          "Freight not calculated for CEP 13380-000; freight_brl left null."
+        ]
+      },
+      "candidate_count": 3,
+      "no_match_reason": ""
+    },
+    {
+      "expense_id": "EXP_0021",
+      "requested_item": "Arame recuzido",
+      "requested_unit": "quilograma (kg)",
+      "match_status": "verified",
+      "winner": {
+        "matched_product": "Arame Recozido 1,24mm ArcelorMittal 1kg",
+        "sku": "1554875",
+        "seller": "Telhanorte",
+        "specifications": {
+          "brand": "ArcelorMittal",
+          "diameter": "1.24 mm",
+          "package": "1 kg roll"
+        },
+        "package_size": "1 kg",
+        "displayed_price_brl": 23.9,
+        "normalized_unit_price_brl": 23.9,
+        "unit": "quilograma (kg)",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.telhanorte.com.br/arame-recozido-1-24mm-rl-1kg-arcelormittal-1554875/p",
+        "final_url": "https://www.telhanorte.com.br/arame-recozido-1-24mm-rl-1kg-arcelormittal-1554875/p",
+        "http_status": 200,
+        "verification_method": "Seed URL re-verified via VTEX fq=skuId:1554875 plus browser /p page; visible card price R$23,90 matched API Price. Arithmetic: R$23.90 / 1 kg = R$23.90/kg.",
+        "caveats": [
+          "Page also advertises a Pix discount (~15% off); stored displayed_price_brl is the card/list price R$23.90.",
+          "Gerdau BWG 18 1kg (~R$10.90) appeared in search but AvailableQuantity=0 and was excluded.",
+          "Freight not calculated for CEP 13380-000; freight_brl left null."
+        ]
+      },
+      "candidate_count": 2,
+      "no_match_reason": ""
+    },
+    {
+      "expense_id": "EXP_0042",
+      "requested_item": "Madeiramento ou estrutura metálica",
+      "requested_unit": "metro quadrado (m²)",
+      "match_status": "no_match",
+      "winner": null,
+      "candidate_count": 0,
+      "no_match_reason": "No in-stock madeiramento or metal roof-framing product sold/priced per m². Found caibros priced per piece but unavailable (AvailableQuantity=0); metal sandwich roof panels are roofing (not framing) and priced per unit, not m² structure."
+    },
+    {
+      "expense_id": "EXP_0023",
+      "requested_item": "Porcelanato",
+      "requested_unit": "metro quadrado (m²)",
+      "match_status": "verified",
+      "winner": {
+        "matched_product": "Porcelanato Chicago Retificado Acetinado Cinza 61x61cm 2,67m2 Embramaco",
+        "sku": "2537362",
+        "seller": "Telhanorte",
+        "specifications": {
+          "brand": "Embramaco",
+          "format_cm": "61 x 61",
+          "finish": "Acetinado retificado",
+          "color": "Cinza / Chicago Gray",
+          "box_area_m2": 2.67
+        },
+        "package_size": "caixa 2,67 m²",
+        "displayed_price_brl": 114.54,
+        "normalized_unit_price_brl": 42.9,
+        "unit": "metro quadrado (m²)",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.telhanorte.com.br/porcelanato-acetinado-61-8x61-8-chicago-gray-dp61108-cx2-67m-embra-2537362/p",
+        "final_url": "https://www.telhanorte.com.br/porcelanato-acetinado-61-8x61-8-chicago-gray-dp61108-cx2-67m-embra-2537362/p",
+        "http_status": 200,
+        "verification_method": "VTEX product API + /p page HEAD 200 + browser snapshot; page shows box R$114,54 for 2,67 m² and Estoque Disponível. Arithmetic: API Price R$42.90/m²; box total 42.90×2.67=114.54.",
+        "caveats": [
+          "Lowest verified quantity-1 per-m² price among available porcelain candidates.",
+          "Page also advertises optional Pix 5% off on the box total; ranking uses the card/API list price, not Pix."
+        ]
+      },
+      "candidate_count": 3,
+      "no_match_reason": ""
+    },
+    {
+      "expense_id": "EXP_0024",
+      "requested_item": "Rejunte de porcelanato",
+      "requested_unit": "quilograma (kg)",
+      "match_status": "verified",
+      "winner": {
+        "matched_product": "Rejunte Acrílico Branco 1kg PortoKoll",
+        "sku": "1385224",
+        "seller": "Telhanorte",
+        "specifications": {
+          "brand": "PortoKoll",
+          "type": "Acrílico",
+          "color": "Branco",
+          "weight_kg": 1
+        },
+        "package_size": "1 kg",
+        "displayed_price_brl": 35.9,
+        "normalized_unit_price_brl": 35.9,
+        "unit": "quilograma (kg)",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.telhanorte.com.br/rejunte-acrilico-1kg-branco-portokoll-1385224/p",
+        "final_url": "https://www.telhanorte.com.br/rejunte-acrilico-1kg-branco-portokoll-1385224/p",
+        "http_status": 200,
+        "verification_method": "VTEX product API + /p HEAD 200. Arithmetic: R$35.90 / 1 kg = R$35.90/kg.",
+        "caveats": [
+          "Lowest verified quantity-1 acrylic (porcelain-oriented) white grout among candidates."
+        ]
+      },
+      "candidate_count": 3,
+      "no_match_reason": ""
+    },
+    {
+      "expense_id": "EXP_0025",
+      "requested_item": "Argamassa para o porcelanato",
+      "requested_unit": "saco (20 kg)",
+      "match_status": "verified",
+      "winner": {
+        "matched_product": "Argamassa ACIII Porcelanato Cerâmica Interno Externo Cinza 20kg Royal Gres",
+        "sku": "2495414",
+        "seller": "Telhanorte",
+        "specifications": {
+          "brand": "Royal Gres",
+          "type": "ACIII",
+          "color": "Cinza",
+          "weight_kg": 20,
+          "use": "Porcelanato/cerâmica interno e externo"
+        },
+        "package_size": "saco 20 kg",
+        "displayed_price_brl": 34.9,
+        "normalized_unit_price_brl": 34.9,
+        "unit": "saco (20 kg)",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.telhanorte.com.br/argamassa-aciii-interexter-plastico-20kg-royal-gres-2495414/p",
+        "final_url": "https://www.telhanorte.com.br/argamassa-aciii-interexter-plastico-20kg-royal-gres-2495414/p",
+        "http_status": 200,
+        "verification_method": "VTEX product API + /p HEAD 200. Arithmetic: one 20 kg ACIII bag at qty-1 = R$34.90.",
+        "caveats": [
+          "Lowest verified quantity-1 ACIII 20 kg bag among candidates."
+        ]
+      },
+      "candidate_count": 3,
+      "no_match_reason": ""
+    },
+    {
+      "expense_id": "EXP_0041",
+      "requested_item": "Rodapés para acompanhar o porcelanato (R$1500)",
+      "requested_unit": "metro linear (m)",
+      "match_status": "verified",
+      "winner": {
+        "matched_product": "Rodapé Porcelanato Branco Boleado Acetinado Retificado 14,5x120cm Eliane",
+        "sku": "2391643",
+        "seller": "Telhanorte",
+        "specifications": {
+          "brand": "Eliane",
+          "material": "Porcelanato",
+          "piece_cm": "14,5 x 120",
+          "pieces_per_box": 4,
+          "box_linear_m": 4.8,
+          "finish": "Acetinado boleado retificado",
+          "color": "Branco"
+        },
+        "package_size": "caixa 4 peças (4,80 m)",
+        "displayed_price_brl": 289.9,
+        "normalized_unit_price_brl": 60.4,
+        "unit": "metro linear (m)",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.telhanorte.com.br/rodape-branco-boleado-14-5x120-acetinado-caixa-4-pcs-eliane-2391643/p",
+        "final_url": "https://www.telhanorte.com.br/rodape-branco-boleado-14-5x120-acetinado-caixa-4-pcs-eliane-2391643/p",
+        "http_status": 200,
+        "verification_method": "VTEX API + browser /p page: R$289,90/box; specs state 4 pieces × 120 cm. Arithmetic: 289.90 / (4 × 1.20 m) = 60.3958 ≈ R$60.40/m.",
+        "caveats": [
+          "Lowest verified available qty-1 normalized per-meter price among porcelain rodapé boxes with evidenced piece count.",
+          "Click & Retire showed no nearby store stock on the page; online AvailableQuantity from API is positive and Add to Cart is enabled."
+        ]
+      },
+      "candidate_count": 3,
+      "no_match_reason": ""
+    },
+    {
+      "expense_id": "EXP_0046",
+      "requested_item": "Tinta",
+      "requested_unit": "lata (18 L)",
+      "match_status": "verified",
+      "winner": {
+        "matched_product": "Tinta Acrílica Nova Eco Quartzolit Branco Neve Interna 18L",
+        "sku": "1826808",
+        "seller": "Telhanorte",
+        "specifications": {
+          "brand": "Weber Quartzolit",
+          "type": "Acrílica Nova Eco",
+          "color": "Branco Neve",
+          "volume_l": 18,
+          "use": "Interna / parede"
+        },
+        "package_size": "lata 18 L",
+        "displayed_price_brl": 149.9,
+        "normalized_unit_price_brl": 149.9,
+        "unit": "lata (18 L)",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.telhanorte.com.br/tinta-acrilica-nova-eco-p-parede-18l-branco-neve-quartzolit-1826808/p",
+        "final_url": "https://www.telhanorte.com.br/tinta-acrilica-nova-eco-p-parede-18l-branco-neve-quartzolit-1826808/p",
+        "http_status": 200,
+        "verification_method": "VTEX API + browser /p: R$149,90 no cartão; Embalagem 18 Litros; Estoque Disponível.",
+        "caveats": [
+          "Lowest verified quantity-1 18 L wall acrylic paint among candidates.",
+          "Optional Pix 5% off advertised on page; ranking uses card/API price R$149.90."
+        ]
+      },
+      "candidate_count": 3,
+      "no_match_reason": ""
+    },
+    {
+      "expense_id": "EXP_0048",
+      "requested_item": "Silicone, espuma expansiva, selante PU",
+      "requested_unit": "kit",
+      "match_status": "verified",
+      "winner": {
+        "matched_product": "Kit 3 produtos: Silicone Multiuso Acético Incolor 280ml Soudal + Espuma Expansiva PU 500ml/280g Chemicolor + Selante Adesivo PU Uso Geral Branco 270ml/445g Soudal",
+        "sku": "2493268+2628341+2546728",
+        "seller": "Telhanorte",
+        "specifications": {
+          "components": [
+            {
+              "role": "silicone",
+              "product": "Silicone Multiuso Acetico Incolor 280ml Soudal",
+              "sku": "2493268",
+              "price_brl": 31.9,
+              "url": "https://www.telhanorte.com.br/silicone-multiuso-acetico-incolor-280ml-soudal-2493268/p"
+            },
+            {
+              "role": "espuma_expansiva",
+              "product": "Espuma Expansiva Pu 500Ml/280G Imp Chemicolor",
+              "sku": "2628341",
+              "price_brl": 17.9,
+              "url": "https://www.telhanorte.com.br/espuma-expansiva-pu-500ml280g-imp-chemicolor-2628341/p"
+            },
+            {
+              "role": "selante_pu",
+              "product": "Selante Adesivo Pu Uso Geral Branco 270Ml/445G Soudal",
+              "sku": "2546728",
+              "price_brl": 33.9,
+              "url": "https://www.telhanorte.com.br/selante-adesivo-pu-uso-geral-branco-270ml445g-soudal-2546728/p"
+            }
+          ]
+        },
+        "package_size": "kit 3 produtos (comprados separados)",
+        "displayed_price_brl": 83.7,
+        "normalized_unit_price_brl": 83.7,
+        "unit": "kit",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.telhanorte.com.br/silicone-multiuso-acetico-incolor-280ml-soudal-2493268/p",
+        "final_url": "https://www.telhanorte.com.br/silicone-multiuso-acetico-incolor-280ml-soudal-2493268/p",
+        "http_status": 200,
+        "verification_method": "Three separate /p pages verified HTTP 200 via HEAD; prices from VTEX API. Kit sum: 31.90+17.90+33.90=83.70. Winner URL is primary silicone.",
+        "caveats": [
+          "No single catalog SKU kit of all three was used; price is the sum of three separate qty-1 products.",
+          "Component URLs: silicone https://www.telhanorte.com.br/silicone-multiuso-acetico-incolor-280ml-soudal-2493268/p ; espuma https://www.telhanorte.com.br/espuma-expansiva-pu-500ml280g-imp-chemicolor-2628341/p ; selante PU https://www.telhanorte.com.br/selante-adesivo-pu-uso-geral-branco-270ml445g-soudal-2546728/p"
+        ]
+      },
+      "candidate_count": 1,
+      "no_match_reason": ""
+    },
+    {
+      "expense_id": "EXP_0049",
+      "requested_item": "Lona para proteção da obra",
+      "requested_unit": "metro quadrado (m²)",
+      "match_status": "verified",
+      "winner": {
+        "matched_product": "Lona Plástica Bb 4mx25m Preta Plasitap",
+        "sku": "2344416",
+        "seller": "Telhanorte",
+        "specifications": {
+          "brand": "Plasitap",
+          "color": "Preta",
+          "sheet_m": "4 x 25",
+          "area_m2": 100
+        },
+        "package_size": "folha/rolo 4×25 m (100 m²)",
+        "displayed_price_brl": 129.9,
+        "normalized_unit_price_brl": 1.3,
+        "unit": "metro quadrado (m²)",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.telhanorte.com.br/lona-4x25-plastica-preto-plasitap-2344416/p",
+        "final_url": "https://www.telhanorte.com.br/lona-4x25-plastica-preto-plasitap-2344416/p",
+        "http_status": 200,
+        "verification_method": "VTEX API + /p HEAD 200. Arithmetic: R$129.90 / (4×25=100 m²) = R$1.299/m² ≈ R$1.30/m².",
+        "caveats": [
+          "Lowest verified normalized per-m² price among available black plastic tarp sheets/rolls."
+        ]
+      },
+      "candidate_count": 3,
+      "no_match_reason": ""
+    },
+    {
+      "expense_id": "EXP_0026",
+      "requested_item": "Portas internas",
+      "requested_unit": "unidade",
+      "match_status": "verified",
+      "winner": {
+        "matched_product": "Kit Porta Açomad Batente 6cm Branco Direita 215X75 Branco Mgm",
+        "sku": "2556022",
+        "seller": "Telhanorte",
+        "specifications": {
+          "brand": "MGM",
+          "line": "Açomad",
+          "material": "Madeira",
+          "composition": "Semi Oca",
+          "finish": "Melamínico liso branco",
+          "dimensions_cm": "215 x 75 x 3,5",
+          "opening": "Direito",
+          "includes": "Fechadura, dobradiça, batente, alizar"
+        },
+        "package_size": "1 kit porta completa",
+        "displayed_price_brl": 365.42,
+        "normalized_unit_price_brl": 365.42,
+        "unit": "unidade",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.telhanorte.com.br/kit-porta-acomad-batente-6cm-branco-direita-215x75-branco-mgm-2556022/p",
+        "final_url": "https://www.telhanorte.com.br/kit-porta-acomad-batente-6cm-branco-direita-215x75-branco-mgm-2556022/p",
+        "http_status": 200,
+        "verification_method": "Direct /p product page fetched on Telhanorte; title, SKU 2556022, JSON-LD Pix/offer price R$365.42, InStock, and wood semi-oca interior kit specs matched. Arithmetic: R$365.42 / 1 = R$365.42/unidade.",
+        "caveats": [
+          "Lowest verified qty-1 price among comparable interior wood door kits near standard ~80x210. Width is 75 cm. Complete kit, not leaf-only. Freight for CEP 13380-000 not calculated."
+        ]
+      },
+      "candidate_count": 3,
+      "no_match_reason": ""
+    },
+    {
+      "expense_id": "EXP_0027",
+      "requested_item": "Porta Balcão (R$2000)",
+      "requested_unit": "unidade",
+      "match_status": "verified",
+      "winner": {
+        "matched_product": "Porta Balcão de Alumínio 3 Folhas Móveis 210x120 cm Vidro Liso Preta Fortsul",
+        "sku": "2531933",
+        "seller": "Telhanorte",
+        "specifications": {
+          "brand": "Esquadrisul",
+          "line": "Fortsul",
+          "material": "Alumínio",
+          "color": "Preto",
+          "dimensions_cm": "210 x 120",
+          "leaves": 3,
+          "glass": "Vidro liso",
+          "type": "Porta balcão de correr"
+        },
+        "package_size": "1 porta balcão",
+        "displayed_price_brl": 1903.41,
+        "normalized_unit_price_brl": 1903.41,
+        "unit": "unidade",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.telhanorte.com.br/porta-balcao-3-folhas-moveis-210x120-vidro-liso-black-fortsul-esquadrisul-2531933/p",
+        "final_url": "https://www.telhanorte.com.br/porta-balcao-3-folhas-moveis-210x120-vidro-liso-black-fortsul-esquadrisul-2531933/p",
+        "http_status": 200,
+        "verification_method": "Direct /p product page fetched on Telhanorte; title, SKU 2531933, JSON-LD offer/Pix price R$1903.41, InStock, and sliding balcony-door identity matched. Arithmetic: R$1903.41 / 1 = R$1903.41/unidade.",
+        "caveats": [
+          "Lowest verified qty-1 price among in-stock sliding porta-balcão /p pages. Width 120 cm is narrower than a typical ~200 cm balcony opening; a 210x200 alternative is listed as a higher-priced candidate. Freight for CEP 13380-000 not calculated."
+        ]
+      },
+      "candidate_count": 3,
+      "no_match_reason": ""
+    },
+    {
+      "expense_id": "EXP_0029",
+      "requested_item": "Janela (quartos e escritório)",
+      "requested_unit": "unidade",
+      "match_status": "verified",
+      "winner": {
+        "matched_product": "Janela de Alumínio de Correr 100x120 Branco Ecosul Esquadrisul",
+        "sku": "1621335",
+        "seller": "Telhanorte",
+        "specifications": {
+          "brand": "Esquadrisul",
+          "line": "Ecosul",
+          "material": "Alumínio",
+          "color": "Branco",
+          "dimensions_cm": "100 x 120",
+          "leaves": 4,
+          "opening": "Central",
+          "glass": "Com vidro",
+          "grade": "Não"
+        },
+        "package_size": "1 janela de correr",
+        "displayed_price_brl": 494.91,
+        "normalized_unit_price_brl": 494.91,
+        "unit": "unidade",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.telhanorte.com.br/janela-de-correr-de-aluminio-4-folhas-100x120cm-branca-ecosul-central-esquadrisul-1621335/p",
+        "final_url": "https://www.telhanorte.com.br/janela-de-correr-de-aluminio-4-folhas-100x120cm-branca-ecosul-central-esquadrisul-1621335/p",
+        "http_status": 200,
+        "verification_method": "Direct /p product page fetched on Telhanorte; title, SKU 1621335, visible Pix R$494.91, JSON-LD InStock, 4 leaves and 100x120 aluminum sliding-window specs matched. Arithmetic: R$494.91 / 1 = R$494.91/unidade.",
+        "caveats": [
+          "Selected as lowest-priced verified 4-leaf aluminum sliding window with glass near bedroom/office use. Height is 100 cm vs a ~120x120 comparable; a exact-size 120x120 option exists but includes integrated blinds and costs much more. Freight for CEP 13380-000 not calculated."
+        ]
+      },
+      "candidate_count": 3,
+      "no_match_reason": ""
+    },
+    {
+      "expense_id": "EXP_0030",
+      "requested_item": "Vitrô Sala",
+      "requested_unit": "unidade",
+      "match_status": "verified",
+      "winner": {
+        "matched_product": "Janela de Alumínio de Correr 100x120 Branco Ecosul Esquadrisul",
+        "sku": "1621335",
+        "seller": "Telhanorte",
+        "specifications": {
+          "brand": "Esquadrisul",
+          "line": "Ecosul",
+          "material": "Alumínio",
+          "color": "Branco",
+          "dimensions_cm": "100 x 120",
+          "leaves": 4,
+          "opening": "Central",
+          "glass": "Com vidro",
+          "grade": "Não"
+        },
+        "package_size": "1 janela de correr",
+        "displayed_price_brl": 494.91,
+        "normalized_unit_price_brl": 494.91,
+        "unit": "unidade",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.telhanorte.com.br/janela-de-correr-de-aluminio-4-folhas-100x120cm-branca-ecosul-central-esquadrisul-1621335/p",
+        "final_url": "https://www.telhanorte.com.br/janela-de-correr-de-aluminio-4-folhas-100x120cm-branca-ecosul-central-esquadrisul-1621335/p",
+        "http_status": 200,
+        "verification_method": "Direct /p product page fetched on Telhanorte; title, SKU 1621335, visible Pix R$494.91, JSON-LD InStock, and 4-leaf 100x120 aluminum sliding vitrô specs matched. Arithmetic: R$494.91 / 1 = R$494.91/unidade.",
+        "caveats": [
+          "Chosen as the lowest verified 4-leaf 100x120 aluminum sliding window with glass (sala vitrô comparable). Cheaper 2-leaf 100x120 options exist as candidates. Freight for CEP 13380-000 not calculated."
+        ]
+      },
+      "candidate_count": 3,
+      "no_match_reason": ""
+    },
+    {
+      "expense_id": "EXP_0031",
+      "requested_item": "Vitrôs banheiros",
+      "requested_unit": "unidade",
+      "match_status": "verified",
+      "winner": {
+        "matched_product": "Janela Basculante de Alumínio 60x60 Preta Ecosul Esquadrisul",
+        "sku": "2465493",
+        "seller": "Telhanorte",
+        "specifications": {
+          "brand": "Esquadrisul",
+          "line": "Ecosul",
+          "material": "Alumínio",
+          "color": "Preto",
+          "dimensions_cm": "60 x 60",
+          "type": "Basculante",
+          "glass": "Mini Boreal",
+          "indicated_use": "Banheiros"
+        },
+        "package_size": "1 janela basculante",
+        "displayed_price_brl": 145.26,
+        "normalized_unit_price_brl": 145.26,
+        "unit": "unidade",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.telhanorte.com.br/janela-basculante-1-sessao-60x60-vidro-mini-boreal-black-ecosul-2465493/p",
+        "final_url": "https://www.telhanorte.com.br/janela-basculante-1-sessao-60x60-vidro-mini-boreal-black-ecosul-2465493/p",
+        "http_status": 200,
+        "verification_method": "Direct /p product page fetched on Telhanorte; title, SKU 2465493, JSON-LD offer/Pix price R$145.26, InStock, bathroom indication and Mini Boreal glass matched. Arithmetic: R$145.26 / 1 = R$145.26/unidade.",
+        "caveats": [
+          "Lowest verified qty-1 bathroom-comparable with evidenced privacy glass (Mini Boreal). A cheaper clear/unspecified-glass basculante exists at R$139.90 but was not selected as winner. Freight for CEP 13380-000 not calculated."
+        ]
+      },
+      "candidate_count": 3,
+      "no_match_reason": ""
+    },
+    {
+      "expense_id": "EXP_0028",
+      "requested_item": "Vaso",
+      "requested_unit": "unidade",
+      "match_status": "verified",
+      "winner": {
+        "matched_product": "Vaso Sanitário com Caixa Acoplada Porto 3/6L Branco Luzarte",
+        "sku": "1000000222",
+        "seller": "Telhanorte",
+        "specifications": {
+          "brand": "Luzarte",
+          "model": "Porto",
+          "color": "Branco",
+          "tank_capacity_l": "3/6",
+          "components": "bacia + caixa acoplada com tampa e mecanismo completo",
+          "product_reference": "K2619130-2619148"
+        },
+        "package_size": "1 unidade (kit acoplado)",
+        "displayed_price_brl": 319.9,
+        "normalized_unit_price_brl": 319.9,
+        "unit": "unidade",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.telhanorte.com.br/vaso-sanitario-com-caixa-acoplada-porto-3-6l-branco-luzarte-k2619130-2619148/p",
+        "final_url": "https://www.telhanorte.com.br/vaso-sanitario-com-caixa-acoplada-porto-3-6l-branco-luzarte-k2619130-2619148/p",
+        "http_status": 200,
+        "verification_method": "Direct /p product page loaded; H1 and REF K2619130-2619148 matched kit bacia+caixa acoplada Porto 3/6L Branco Luzarte; visible site price R$319,90; Add to cart enabled; VTEX offer Price 319.9 / AvailableQuantity 100. Arithmetic: R$319.90 / 1 unidade = R$319.90/unidade.",
+        "caveats": [
+          "Lowest verified quantity-1 coupled-tank toilet kit among comparable white kits.",
+          "Kit includes bowl and 3/6L coupled tank with mechanism; seat/assento is not listed in the package contents.",
+          "Freight not calculated for CEP 13380-000; freight_brl left null."
+        ]
+      },
+      "candidate_count": 2,
+      "no_match_reason": ""
+    },
+    {
+      "expense_id": "EXP_0036",
+      "requested_item": "Torneiras",
+      "requested_unit": "unidade",
+      "match_status": "verified",
+      "winner": {
+        "matched_product": "Torneira Lavatório Mesa Bica Alta Lagune Branca Viqua",
+        "sku": "2448815",
+        "seller": "Telhanorte",
+        "specifications": {
+          "brand": "Viqua",
+          "line": "Lagune",
+          "mount": "mesa / lavatório",
+          "spout": "bica alta",
+          "finish": "Branca"
+        },
+        "package_size": "1 unidade",
+        "displayed_price_brl": 34.9,
+        "normalized_unit_price_brl": 34.9,
+        "unit": "unidade",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.telhanorte.com.br/torneira-lavatorio-mesa-bica-alta-lagune-branca-viqua-2448815/p",
+        "final_url": "https://www.telhanorte.com.br/torneira-lavatorio-mesa-bica-alta-lagune-branca-viqua-2448815/p",
+        "http_status": 200,
+        "verification_method": "Direct /p product page loaded; H1 lavatório mesa bica alta Lagune Branca Viqua; visible site price R$34,90; Add to cart enabled; VTEX offer Price 34.9. Arithmetic: R$34.90 / 1 unidade = R$34.90/unidade.",
+        "caveats": [
+          "Lowest verified quantity-1 bathroom-basin (lavatório mesa) faucet.",
+          "Catalog category tree lists kitchen faucets, but the product title/spec is lavatório mesa (basin faucet).",
+          "Freight not calculated for CEP 13380-000; freight_brl left null."
+        ]
+      },
+      "candidate_count": 2,
+      "no_match_reason": ""
+    },
+    {
+      "expense_id": "EXP_0037",
+      "requested_item": "Sifões e ralos",
+      "requested_unit": "unidade",
+      "match_status": "verified",
+      "winner": {
+        "matched_product": "Sifão Sanfonado Universal SSUM Astra",
+        "sku": "1734008",
+        "seller": "Telhanorte",
+        "specifications": {
+          "brand": "Astra",
+          "model": "SSUM",
+          "type": "sifão sanfonado universal",
+          "material": "polipropileno",
+          "color": "Branco",
+          "length_mm": 663
+        },
+        "package_size": "1 unidade",
+        "displayed_price_brl": 10.9,
+        "normalized_unit_price_brl": 10.9,
+        "unit": "unidade",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.telhanorte.com.br/sifao-sanfonado-663mm-propileno-branco-ssum-astra-1734008/p",
+        "final_url": "https://www.telhanorte.com.br/sifao-sanfonado-663mm-propileno-branco-ssum-astra-1734008/p",
+        "http_status": 200,
+        "verification_method": "Direct /p product page loaded; H1 Sifão Sanfonado Universal SSUM Astra; visible site price R$10,90; Estoque Disponível; VTEX offer Price 10.9. Arithmetic: R$10.90 / 1 unidade = R$10.90/unidade.",
+        "caveats": [
+          "Lowest verified quantity-1 representative universal siphon.",
+          "Representative siphon only; expense label also includes drains (ralos), which are not covered by this unit price.",
+          "Freight not calculated for CEP 13380-000; freight_brl left null."
+        ]
+      },
+      "candidate_count": 2,
+      "no_match_reason": ""
+    },
+    {
+      "expense_id": "EXP_0039",
+      "requested_item": "Pias e bancadas",
+      "requested_unit": "conjunto",
+      "match_status": "verified",
+      "winner": {
+        "matched_product": "Pia de Cozinha em Aço Inox 430 120x52cm com Cuba Simples e Furo para Torneira Fabrinox",
+        "sku": "2340593",
+        "seller": "Telhanorte",
+        "specifications": {
+          "brand": "Fabrinox",
+          "model": "PS1200",
+          "material": "Aço Inox 430",
+          "length_cm": 120,
+          "width_cm": 52,
+          "bowl": "cuba simples central 46x30x11cm",
+          "features": "fundo concretado; furo para torneira; válvula 3.1/2\""
+        },
+        "package_size": "1 unidade (120 x 52 cm)",
+        "displayed_price_brl": 230.9,
+        "normalized_unit_price_brl": 230.9,
+        "unit": "conjunto",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.telhanorte.com.br/pia-inox-aco-430-120x52cm-cuba-simples-central-furo-torneira-ps1200-fabrinox-2340593/p",
+        "final_url": "https://www.telhanorte.com.br/pia-inox-aco-430-120x52cm-cuba-simples-central-furo-torneira-ps1200-fabrinox-2340593/p",
+        "http_status": 200,
+        "verification_method": "Direct /p product page loaded; H1 Pia de Cozinha Inox 120x52cm Fabrinox; visible site price R$230,90; Estoque Disponível (Aricanduva/Guarulhos); VTEX offer Price 230.9. Arithmetic: R$230.90 / 1 conjunto = R$230.90/conjunto.",
+        "caveats": [
+          "Selected as the lowest verified kitchen pia/bancada comparable (inox 120 cm), matching prior research product class.",
+          "Cerocha Capella bathroom vanity at R$169,90 is cheaper but is furniture (cuba+espelheira), not a countertop sink set.",
+          "Freight not calculated for CEP 13380-000; freight_brl left null."
+        ]
+      },
+      "candidate_count": 2,
+      "no_match_reason": ""
+    },
+    {
+      "expense_id": "EXP_0040",
+      "requested_item": "Box de vidro para o banheiro (R$850)",
+      "requested_unit": "unidade",
+      "match_status": "no_match",
+      "winner": null,
+      "candidate_count": 0,
+      "no_match_reason": "No individual Telhanorte /p tempered-glass shower-box (box de vidro) product page with a visible current price was found. Searches for box frontal/canto/temperado/blindex/vidro returned accessories (puxadores), curtains, cleaners, furniture, and unrelated items rather than glass shower enclosures."
+    },
+    {
+      "expense_id": "EXP_0044",
+      "requested_item": "Caixa de água",
+      "requested_unit": "unidade",
+      "match_status": "verified",
+      "winner": {
+        "matched_product": "Caixa d'Água 1000 Litros +Green em Polietileno Acqualimp",
+        "sku": "2365006",
+        "seller": "Telhanorte",
+        "specifications": {
+          "brand": "Acqualimp",
+          "line": "+Green",
+          "material": "polietileno",
+          "capacity_l": 1000
+        },
+        "package_size": "1 unidade (1000 L)",
+        "displayed_price_brl": 499.9,
+        "normalized_unit_price_brl": 499.9,
+        "unit": "unidade",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.telhanorte.com.br/caixa-de-aguagreen-1000-litros-acqualimp-2365006/p",
+        "final_url": "https://www.telhanorte.com.br/caixa-de-aguagreen-1000-litros-acqualimp-2365006/p",
+        "http_status": 200,
+        "verification_method": "Seed /p page loaded; H1 Caixa d'Água Acqualimp +Green 1000 Litros; visible site price R$499,90; Estoque Disponível; VTEX offer Price 499.9. Arithmetic: R$499.90 / 1 unidade = R$499.90/unidade.",
+        "caveats": [
+          "Lowest verified quantity-1 1000 L water tank among available Acqualimp listings.",
+          "Optional Pix discount callout appeared on page; recorded the main displayed site/card price R$499,90.",
+          "Freight not calculated for CEP 13380-000; freight_brl left null."
+        ]
+      },
+      "candidate_count": 2,
+      "no_match_reason": ""
+    },
+    {
+      "expense_id": "EXP_0033",
+      "requested_item": "Quadro de distribuição",
+      "requested_unit": "unidade",
+      "match_status": "verified",
+      "winner": {
+        "matched_product": "Quadro De Embutir Ouro Box 16 Din Porta Opaca Steck",
+        "sku": "1399993",
+        "seller": "Telhanorte",
+        "specifications": {
+          "brand": "Steck",
+          "mounting": "Embutir",
+          "capacity": "16 disjuntores DIN",
+          "door": "Porta opaca",
+          "line": "Ouro Box"
+        },
+        "package_size": "1 unidade",
+        "displayed_price_brl": 55.9,
+        "normalized_unit_price_brl": 55.9,
+        "unit": "unidade",
+        "minimum_quantity": 1,
+        "bulk_tiers": [
+          {
+            "minimum_quantity": 15,
+            "price_brl": 49.75,
+            "note": "Visible tier 'Comprando acima de 15 unidades' at R$49,75"
+          }
+        ],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.telhanorte.com.br/quadro-de-embutir-para-16-disjuntores-din-branco-porta-opaca-ouro-box-steck-1399993/p",
+        "final_url": "https://www.telhanorte.com.br/quadro-de-embutir-para-16-disjuntores-din-branco-porta-opaca-ouro-box-steck-1399993/p",
+        "http_status": 200,
+        "verification_method": "Browser product page on telhanorte.com.br /p; title, REF 1399993, 16 DIN, Estoque Disponível, and card price R$55,90 verified. Bulk tier R$49,75 above 15 units recorded separately. Arithmetic: R$55.90 / 1 unidade = R$55.90/unidade.",
+        "caveats": [
+          "Lowest verified quantity-1 price among comparable 16/18-class distribution boards."
+        ]
+      },
+      "candidate_count": 4,
+      "no_match_reason": ""
+    },
+    {
+      "expense_id": "EXP_0034",
+      "requested_item": "Conduítes",
+      "requested_unit": "metro linear (m)",
+      "match_status": "verified",
+      "winner": {
+        "matched_product": "Corrugado Leve Dn25 3/4\" 50M Tramontina",
+        "sku": "1672614",
+        "seller": "Telhanorte",
+        "specifications": {
+          "brand": "Tramontina",
+          "type": "Eletroduto corrugado leve",
+          "diameter": "DN25 / 3/4\"",
+          "roll_length_m": 50
+        },
+        "package_size": "rolo 50 m",
+        "displayed_price_brl": 69.9,
+        "normalized_unit_price_brl": 1.398,
+        "unit": "metro linear (m)",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.telhanorte.com.br/corrugado-leve-dn25-34-50m-tramontina-1672614/p",
+        "final_url": "https://www.telhanorte.com.br/corrugado-leve-dn25-34-50m-tramontina-1672614/p",
+        "http_status": 200,
+        "verification_method": "Browser product page; REF 1672614, DN25 50 m roll, Estoque Disponível, card/list sale price R$69,90 (no separate Pix line) verified. Arithmetic: R$69.90 / 50 m = R$1.398/m.",
+        "caveats": [
+          "Lowest verified quantity-1 normalized per-meter price among comparable corrugated conduit rolls."
+        ]
+      },
+      "candidate_count": 3,
+      "no_match_reason": ""
+    },
+    {
+      "expense_id": "EXP_0035",
+      "requested_item": "Lâmpadas",
+      "requested_unit": "unidade",
+      "match_status": "verified",
+      "winner": {
+        "matched_product": "Lampada Led 9W Branca E27 Biv Ldv Bellalux",
+        "sku": "2603314",
+        "seller": "Telhanorte",
+        "specifications": {
+          "brand": "Ledvance / Bellalux",
+          "type": "LED bulbo",
+          "power_w": 9,
+          "base": "E27",
+          "color": "Branca",
+          "voltage": "Bivolt"
+        },
+        "package_size": "1 unidade",
+        "displayed_price_brl": 2.87,
+        "normalized_unit_price_brl": 2.87,
+        "unit": "unidade",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.telhanorte.com.br/lampada-led-9w-branca-e27-biv-bellalux-2603314/p",
+        "final_url": "https://www.telhanorte.com.br/lampada-led-9w-branca-e27-biv-bellalux-2603314/p",
+        "http_status": 200,
+        "verification_method": "Browser product page; REF 2603314, LED 9W E27 bivolt, Estoque Disponível, Pix R$2,87 (20% OFF from card R$3,59) verified. Arithmetic: R$2.87 / 1 unidade = R$2.87/unidade.",
+        "caveats": [
+          "Lowest verified quantity-1 single LED bulb Pix price among comparable 9W E27 offers."
+        ]
+      },
+      "candidate_count": 3,
+      "no_match_reason": ""
+    },
+    {
+      "expense_id": "EXP_0038",
+      "requested_item": "Tomadas",
+      "requested_unit": "unidade",
+      "match_status": "verified",
+      "winner": {
+        "matched_product": "Conjunto 4X2 1 Tomada 10A Branco Rivez Dicompel",
+        "sku": "2536811",
+        "seller": "Telhanorte",
+        "specifications": {
+          "brand": "Dicompel",
+          "line": "Rivez / Ritz",
+          "type": "Conjunto completo 4x2",
+          "modules": "1 tomada 10A",
+          "color": "Branco"
+        },
+        "package_size": "1 unidade",
+        "displayed_price_brl": 6.99,
+        "normalized_unit_price_brl": 6.99,
+        "unit": "unidade",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.telhanorte.com.br/conjunto-4x2-1-tomada-10a-branco-ritz-dicompel-2536811/p",
+        "final_url": "https://www.telhanorte.com.br/conjunto-4x2-1-tomada-10a-branco-ritz-dicompel-2536811/p",
+        "http_status": 200,
+        "verification_method": "Browser product page; REF 2536811, conjunto 4x2 1 tomada 10A, Estoque Disponível, price R$6,99 with no separate Pix discount verified. Arithmetic: R$6.99 / 1 unidade = R$6.99/unidade.",
+        "caveats": [
+          "Lowest verified quantity-1 complete 4x2 single-outlet set among comparable listings including the Schneider Miluz seed."
+        ]
+      },
+      "candidate_count": 4,
+      "no_match_reason": ""
+    },
+    {
+      "expense_id": "EXP_0045",
+      "requested_item": "Dispositivos de segurança",
+      "requested_unit": "conjunto",
+      "match_status": "no_match",
+      "winner": null,
+      "candidate_count": 0,
+      "no_match_reason": "No clear residential safety-device conjunto (smoke detector kit or residual-device kit) with a verified /p price was found. Catalog searches for detector de fumaça / sensor fumaça returned no products; alarme incêndio only surfaced an unavailable signage plate; IDR/DR residual devices are sold as individual units (not a conjunto); the only camera kit (VTV Digital 1542338) was out of stock; porteiro eletrônico kits are access-control packages rather than smoke/residual safety kits."
+    },
+    {
+      "expense_id": "EXP_0018",
+      "requested_item": "Ferramentas",
+      "requested_unit": "conjunto",
+      "match_status": "verified",
+      "winner": {
+        "matched_product": "Kit De Ferramentas 4 Peças Com 2 Chaves De Fenda 1 Estilete 1 Mini Arco De Serra 43408304 Tramontina",
+        "sku": "287326",
+        "seller": "Telhanorte",
+        "specifications": {
+          "brand": "Tramontina",
+          "model": "43408304",
+          "piece_count": 4,
+          "contents": "2 chaves de fenda, 1 estilete, 1 mini arco de serra"
+        },
+        "package_size": "1 kit / 4 peças",
+        "displayed_price_brl": 37.9,
+        "normalized_unit_price_brl": 37.9,
+        "unit": "conjunto",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.telhanorte.com.br/kit-de-ferramentas-4-pecas-com-2-chaves-de-fenda-1-estilete-1-mini-arco-de-serra-43408304-tramontina-287326/p",
+        "final_url": "https://www.telhanorte.com.br/kit-de-ferramentas-4-pecas-com-2-chaves-de-fenda-1-estilete-1-mini-arco-de-serra-43408304-tramontina-287326/p",
+        "http_status": 200,
+        "verification_method": "Direct /p product page loaded; title, SKU 287326, visible card price R$37,90, and stock confirmed. Arithmetic: R$37.90 / 1 kit = R$37.90/conjunto.",
+        "caveats": [
+          "Lowest verified qty-1 price among clearly specified basic hand-tool kits.",
+          "Small 4-piece domestic/obra kit, not equivalent to a full construction toolbox budget.",
+          "Freight not calculated for CEP 13380-000; freight_brl left null."
+        ]
+      },
+      "candidate_count": 3,
+      "no_match_reason": ""
+    },
+    {
+      "expense_id": "EXP_0020",
+      "requested_item": "Carrinho de mão",
+      "requested_unit": "unidade",
+      "match_status": "verified",
+      "winner": {
+        "matched_product": "Carrinho de mão com caçamba metálica rasa 50 litros Tramontina",
+        "sku": "1555111",
+        "seller": "Telhanorte",
+        "specifications": {
+          "brand": "Tramontina",
+          "type": "Carrinho de mão com caçamba metálica redonda/rasa",
+          "capacity_l": 50,
+          "load_capacity_kg": 120,
+          "color": "Azul",
+          "tire": "Pneu de borracha",
+          "dimensions_cm": "144 x 50 x 50,3"
+        },
+        "package_size": "1 unidade",
+        "displayed_price_brl": 219.9,
+        "normalized_unit_price_brl": 219.9,
+        "unit": "unidade",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.telhanorte.com.br/carrinho-de-mao-braco-metalico-cacamba-metalica-redonda-de-azul-pneu-borracha-tramontina-1555111/p",
+        "final_url": "https://www.telhanorte.com.br/carrinho-de-mao-braco-metalico-cacamba-metalica-redonda-de-azul-pneu-borracha-tramontina-1555111/p",
+        "http_status": 200,
+        "verification_method": "Direct /p product page loaded; title, SKU 1555111, visible card price R$219,90, and store stock listings confirmed. Arithmetic: R$219.90 / 1 = R$219.90/unidade.",
+        "caveats": [
+          "Sole verified in-stock wheelbarrow /p offer at check time.",
+          "Freight not calculated for CEP 13380-000; freight_brl left null."
+        ]
+      },
+      "candidate_count": 1,
+      "no_match_reason": ""
+    },
+    {
+      "expense_id": "EXP_0022",
+      "requested_item": "Caçamba de entulho",
+      "requested_unit": "caçamba",
+      "match_status": "no_match",
+      "winner": null,
+      "candidate_count": 0,
+      "no_match_reason": "No dumpster-rental or construction-debris caçamba sold as a priced /p product. Searches for caçamba/entulho returned only paint trays, wheelbarrow trays, and raffia debris bags—not a rental dumpster service."
+    },
+    {
+      "expense_id": "EXP_0043",
+      "requested_item": "Calhas e rufos",
+      "requested_unit": "metro linear (m)",
+      "match_status": "verified",
+      "winner": {
+        "matched_product": "Rufo Externo 20 2 Metros Galvanizado Calhaforte",
+        "sku": "688231",
+        "seller": "Telhanorte",
+        "specifications": {
+          "brand": "Calhaforte",
+          "type": "Rufo externo",
+          "cut": "20",
+          "material": "Aço galvanizado",
+          "length_m": 2
+        },
+        "package_size": "2 metros",
+        "displayed_price_brl": 41.9,
+        "normalized_unit_price_brl": 20.95,
+        "unit": "metro linear (m)",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.telhanorte.com.br/rufo-externo-20-2-metros-galvanizado-calhaforte-688231/p",
+        "final_url": "https://www.telhanorte.com.br/rufo-externo-20-2-metros-galvanizado-calhaforte-688231/p",
+        "http_status": 200,
+        "verification_method": "Direct /p product page loaded; title, SKU 688231, visible card price R$41,90 for 2 m piece, stock confirmed. Arithmetic: R$41.90 / 2 m = R$20.95/m.",
+        "caveats": [
+          "Lowest verified R$/m among available calha/rufo linear /p products.",
+          "Representative rufo (not a full calha run); sold as 2 m piece.",
+          "Freight not calculated for CEP 13380-000; freight_brl left null."
+        ]
+      },
+      "candidate_count": 3,
+      "no_match_reason": ""
+    },
+    {
+      "expense_id": "EXP_0047",
+      "requested_item": "Pregos, parafusos, buchas",
+      "requested_unit": "pacote",
+      "match_status": "verified",
+      "winner": {
+        "matched_product": "Kit Prático com 30 Peças de Buchas, Parafusos e Broca 5mm Bemfixa",
+        "sku": "1331396",
+        "seller": "Telhanorte",
+        "specifications": {
+          "brand": "Bemfixa",
+          "type": "Kit de fixação (buchas + parafusos + broca)",
+          "piece_count": 30,
+          "drill_bit_mm": 5,
+          "screw_size": "3,2mm x 30mm (compatível com buchas 5mm)"
+        },
+        "package_size": "1 kit / 30 peças",
+        "displayed_price_brl": 22.9,
+        "normalized_unit_price_brl": 22.9,
+        "unit": "pacote",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.telhanorte.com.br/kit-pratico-de-30-pecas-buchas-parafusos-e-broca-bemfixa-1331396/p",
+        "final_url": "https://www.telhanorte.com.br/kit-pratico-de-30-pecas-buchas-parafusos-e-broca-bemfixa-1331396/p",
+        "http_status": 200,
+        "verification_method": "Direct /p product page loaded; title, SKU 1331396, visible card price R$22,90, stock confirmed. Arithmetic: R$22.90 / 1 pacote = R$22.90/pacote.",
+        "caveats": [
+          "Lowest verified hardware assortment pack (parafusos + buchas); does not include pregos.",
+          "Freight not calculated for CEP 13380-000; freight_brl left null."
+        ]
+      },
+      "candidate_count": 2,
+      "no_match_reason": ""
+    }
+  ]
+}

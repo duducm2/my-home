@@ -1,0 +1,851 @@
+{
+  "cluster": "finishes",
+  "checked_at": "2026-09-17",
+  "location_basis": "nova_odessa_cep_13380",
+  "expenses": [
+    {
+      "expense_id": "EXP_0023",
+      "requested_item": "Porcelanato",
+      "requested_unit": "m²",
+      "match_status": "verified",
+      "candidates": [
+        {
+          "matched_product": "Porcelanato Chicago Retificado Acetinado Cinza 61x61cm 2,67m2 Embramaco",
+          "sku": "2537362",
+          "seller": "Telhanorte",
+          "specifications": {
+            "brand": "Embramaco",
+            "format_cm": "61 x 61",
+            "finish": "Acetinado retificado",
+            "color": "Cinza / Chicago Gray",
+            "box_area_m2": 2.67
+          },
+          "package_size": "caixa 2,67 m²",
+          "displayed_price_brl": 114.54,
+          "normalized_unit_price_brl": 42.9,
+          "unit": "m²",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.telhanorte.com.br/porcelanato-acetinado-61-8x61-8-chicago-gray-dp61108-cx2-67m-embra-2537362/p",
+          "final_url": "https://www.telhanorte.com.br/porcelanato-acetinado-61-8x61-8-chicago-gray-dp61108-cx2-67m-embra-2537362/p",
+          "http_status": 200,
+          "verification_method": "VTEX product API + /p page HEAD 200 + browser snapshot; page shows box R$114,54 for 2,67 m² and Estoque Disponível. Arithmetic: API Price R$42.90/m²; box total 42.90×2.67=114.54.",
+          "caveats": [
+            "Lowest verified quantity-1 per-m² price among available porcelain candidates.",
+            "Page also advertises optional Pix 5% off on the box total; ranking uses the card/API list price, not Pix."
+          ]
+        },
+        {
+          "matched_product": "Porcelanato Prime Branco Acetinado 60X60cm Caixa com 2,16 m² Retificado Incepa",
+          "sku": "1819879",
+          "seller": "Telhanorte",
+          "specifications": {
+            "brand": "Incepa",
+            "format_cm": "60 x 60",
+            "finish": "Acetinado retificado",
+            "color": "Branco",
+            "box_area_m2": 2.16
+          },
+          "package_size": "caixa 2,16 m²",
+          "displayed_price_brl": 107.78,
+          "normalized_unit_price_brl": 49.9,
+          "unit": "m²",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.telhanorte.com.br/porcelanato-prime-branco-acetinado-60x60-cm-caixa-com-2-16-m2-retificado-incepa-1819879/p",
+          "final_url": "https://www.telhanorte.com.br/porcelanato-prime-branco-acetinado-60x60-cm-caixa-com-2-16-m2-retificado-incepa-1819879/p",
+          "http_status": 200,
+          "verification_method": "VTEX product API + /p HEAD 200. Arithmetic: R$49.90/m² × 2.16 m² box ≈ R$107.78/box.",
+          "caveats": []
+        },
+        {
+          "matched_product": "Porcelanato Urban Soft 60X60Cm Esmaltado Acetinado Caixa 1,80M2 Elizabeth",
+          "sku": "2521156",
+          "seller": "Telhanorte",
+          "specifications": {
+            "brand": "Elizabeth",
+            "format_cm": "60 x 60",
+            "finish": "Esmaltado acetinado",
+            "line": "Urban Soft",
+            "box_area_m2": 1.8
+          },
+          "package_size": "caixa 1,80 m²",
+          "displayed_price_brl": 118.62,
+          "normalized_unit_price_brl": 65.9,
+          "unit": "m²",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.telhanorte.com.br/porcelanato-urban-soft-60x60cm-esmaltado-acetinado-caixa-180m2-elizabeth-2521156/p",
+          "final_url": "https://www.telhanorte.com.br/porcelanato-urban-soft-60x60cm-esmaltado-acetinado-caixa-180m2-elizabeth-2521156/p",
+          "http_status": 200,
+          "verification_method": "Seed /p re-verified via VTEX API + browser; page shows R$118,62 for 1,80 m² box. Arithmetic: 65.90×1.80=118.62.",
+          "caveats": [
+            "Seed URL re-verified; not the lowest per-m² candidate."
+          ]
+        }
+      ],
+      "winner": {
+        "matched_product": "Porcelanato Chicago Retificado Acetinado Cinza 61x61cm 2,67m2 Embramaco",
+        "sku": "2537362",
+        "seller": "Telhanorte",
+        "specifications": {
+          "brand": "Embramaco",
+          "format_cm": "61 x 61",
+          "finish": "Acetinado retificado",
+          "color": "Cinza / Chicago Gray",
+          "box_area_m2": 2.67
+        },
+        "package_size": "caixa 2,67 m²",
+        "displayed_price_brl": 114.54,
+        "normalized_unit_price_brl": 42.9,
+        "unit": "m²",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.telhanorte.com.br/porcelanato-acetinado-61-8x61-8-chicago-gray-dp61108-cx2-67m-embra-2537362/p",
+        "final_url": "https://www.telhanorte.com.br/porcelanato-acetinado-61-8x61-8-chicago-gray-dp61108-cx2-67m-embra-2537362/p",
+        "http_status": 200,
+        "verification_method": "VTEX product API + /p page HEAD 200 + browser snapshot; page shows box R$114,54 for 2,67 m² and Estoque Disponível. Arithmetic: API Price R$42.90/m²; box total 42.90×2.67=114.54.",
+        "caveats": [
+          "Lowest verified quantity-1 per-m² price among available porcelain candidates.",
+          "Page also advertises optional Pix 5% off on the box total; ranking uses the card/API list price, not Pix."
+        ]
+      },
+      "no_match_reason": null
+    },
+    {
+      "expense_id": "EXP_0024",
+      "requested_item": "Rejunte de porcelanato",
+      "requested_unit": "kg",
+      "match_status": "verified",
+      "candidates": [
+        {
+          "matched_product": "Rejunte Acrílico Branco 1kg PortoKoll",
+          "sku": "1385224",
+          "seller": "Telhanorte",
+          "specifications": {
+            "brand": "PortoKoll",
+            "type": "Acrílico",
+            "color": "Branco",
+            "weight_kg": 1
+          },
+          "package_size": "1 kg",
+          "displayed_price_brl": 35.9,
+          "normalized_unit_price_brl": 35.9,
+          "unit": "kg",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.telhanorte.com.br/rejunte-acrilico-1kg-branco-portokoll-1385224/p",
+          "final_url": "https://www.telhanorte.com.br/rejunte-acrilico-1kg-branco-portokoll-1385224/p",
+          "http_status": 200,
+          "verification_method": "VTEX product API + /p HEAD 200. Arithmetic: R$35.90 / 1 kg = R$35.90/kg.",
+          "caveats": [
+            "Lowest verified quantity-1 acrylic (porcelain-oriented) white grout among candidates."
+          ]
+        },
+        {
+          "matched_product": "Rejunte Acrílico Branco 1KG Quartzolit",
+          "sku": "1335073",
+          "seller": "Telhanorte",
+          "specifications": {
+            "brand": "Weber Quartzolit",
+            "type": "Acrílico",
+            "color": "Branco",
+            "weight_kg": 1
+          },
+          "package_size": "1 kg",
+          "displayed_price_brl": 49.9,
+          "normalized_unit_price_brl": 49.9,
+          "unit": "kg",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.telhanorte.com.br/rejunte-acrilico-1kg-branco-quartzolit-1335073/p",
+          "final_url": "https://www.telhanorte.com.br/rejunte-acrilico-1kg-branco-quartzolit-1335073/p",
+          "http_status": 200,
+          "verification_method": "Seed /p re-verified via VTEX API + HEAD 200. Arithmetic: R$49.90 / 1 kg = R$49.90/kg.",
+          "caveats": [
+            "Seed URL re-verified; higher than PortoKoll acrylic white."
+          ]
+        },
+        {
+          "matched_product": "Rejunte Cerâmicas Branco 1KG Quartzolit",
+          "sku": "493210",
+          "seller": "Telhanorte",
+          "specifications": {
+            "brand": "Weber Quartzolit",
+            "type": "Flexível cerâmicas (Weber Flex)",
+            "color": "Branco",
+            "weight_kg": 1
+          },
+          "package_size": "1 kg",
+          "displayed_price_brl": 17.9,
+          "normalized_unit_price_brl": 17.9,
+          "unit": "kg",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.telhanorte.com.br/rejunte-weber-flex-1kg-branco-quartzolit-493210/p",
+          "final_url": "https://www.telhanorte.com.br/rejunte-weber-flex-1kg-branco-quartzolit-493210/p",
+          "http_status": 200,
+          "verification_method": "VTEX product API + /p HEAD 200.",
+          "caveats": [
+            "Cheaper ceramic-flex grout; not ranked as winner because acrylic is the closer match class for porcelain (seed was acrylic)."
+          ]
+        }
+      ],
+      "winner": {
+        "matched_product": "Rejunte Acrílico Branco 1kg PortoKoll",
+        "sku": "1385224",
+        "seller": "Telhanorte",
+        "specifications": {
+          "brand": "PortoKoll",
+          "type": "Acrílico",
+          "color": "Branco",
+          "weight_kg": 1
+        },
+        "package_size": "1 kg",
+        "displayed_price_brl": 35.9,
+        "normalized_unit_price_brl": 35.9,
+        "unit": "kg",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.telhanorte.com.br/rejunte-acrilico-1kg-branco-portokoll-1385224/p",
+        "final_url": "https://www.telhanorte.com.br/rejunte-acrilico-1kg-branco-portokoll-1385224/p",
+        "http_status": 200,
+        "verification_method": "VTEX product API + /p HEAD 200. Arithmetic: R$35.90 / 1 kg = R$35.90/kg.",
+        "caveats": [
+          "Lowest verified quantity-1 acrylic (porcelain-oriented) white grout among candidates."
+        ]
+      },
+      "no_match_reason": null
+    },
+    {
+      "expense_id": "EXP_0025",
+      "requested_item": "Argamassa para o porcelanato",
+      "requested_unit": "saco (20 kg)",
+      "match_status": "verified",
+      "candidates": [
+        {
+          "matched_product": "Argamassa ACIII Porcelanato Cerâmica Interno Externo Cinza 20kg Royal Gres",
+          "sku": "2495414",
+          "seller": "Telhanorte",
+          "specifications": {
+            "brand": "Royal Gres",
+            "type": "ACIII",
+            "color": "Cinza",
+            "weight_kg": 20,
+            "use": "Porcelanato/cerâmica interno e externo"
+          },
+          "package_size": "saco 20 kg",
+          "displayed_price_brl": 34.9,
+          "normalized_unit_price_brl": 34.9,
+          "unit": "saco (20 kg)",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.telhanorte.com.br/argamassa-aciii-interexter-plastico-20kg-royal-gres-2495414/p",
+          "final_url": "https://www.telhanorte.com.br/argamassa-aciii-interexter-plastico-20kg-royal-gres-2495414/p",
+          "http_status": 200,
+          "verification_method": "VTEX product API + /p HEAD 200. Arithmetic: one 20 kg ACIII bag at qty-1 = R$34.90.",
+          "caveats": [
+            "Lowest verified quantity-1 ACIII 20 kg bag among candidates."
+          ]
+        },
+        {
+          "matched_product": "Argamassa ACIII Porcelanato Interno e Externo Cinza 20kg Quartzolit",
+          "sku": "27073",
+          "seller": "Telhanorte",
+          "specifications": {
+            "brand": "Weber Quartzolit",
+            "type": "ACIII flexível",
+            "color": "Cinza",
+            "weight_kg": 20
+          },
+          "package_size": "saco 20 kg",
+          "displayed_price_brl": 44.9,
+          "normalized_unit_price_brl": 44.9,
+          "unit": "saco (20 kg)",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.telhanorte.com.br/argamassa-de-uso-externo-e-interno-ac3-flexivel-20kg-cinza-quartzolit-27073/p",
+          "final_url": "https://www.telhanorte.com.br/argamassa-de-uso-externo-e-interno-ac3-flexivel-20kg-cinza-quartzolit-27073/p",
+          "http_status": 200,
+          "verification_method": "VTEX product API (also seen as R$44,90 on porcelain product companion cards).",
+          "caveats": []
+        },
+        {
+          "matched_product": "Argamassa ACIII Porcelanato Cerâmica Interna e Externa Branca 20kg Ligamax",
+          "sku": "1376250",
+          "seller": "Telhanorte",
+          "specifications": {
+            "brand": "PortoKoll / Ligamax",
+            "type": "ACIII",
+            "color": "Branca",
+            "weight_kg": 20
+          },
+          "package_size": "saco 20 kg",
+          "displayed_price_brl": 62.9,
+          "normalized_unit_price_brl": 62.9,
+          "unit": "saco (20 kg)",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.telhanorte.com.br/argamassa-perfomance-aciii-20kg-branca-ligamax-1376250/p",
+          "final_url": "https://www.telhanorte.com.br/argamassa-perfomance-aciii-20kg-branca-ligamax-1376250/p",
+          "http_status": 200,
+          "verification_method": "Seed /p re-verified via VTEX API + HEAD 200.",
+          "caveats": [
+            "Seed URL re-verified; white ACIII preferred finish but higher qty-1 price than Royal Gres cinza."
+          ]
+        }
+      ],
+      "winner": {
+        "matched_product": "Argamassa ACIII Porcelanato Cerâmica Interno Externo Cinza 20kg Royal Gres",
+        "sku": "2495414",
+        "seller": "Telhanorte",
+        "specifications": {
+          "brand": "Royal Gres",
+          "type": "ACIII",
+          "color": "Cinza",
+          "weight_kg": 20,
+          "use": "Porcelanato/cerâmica interno e externo"
+        },
+        "package_size": "saco 20 kg",
+        "displayed_price_brl": 34.9,
+        "normalized_unit_price_brl": 34.9,
+        "unit": "saco (20 kg)",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.telhanorte.com.br/argamassa-aciii-interexter-plastico-20kg-royal-gres-2495414/p",
+        "final_url": "https://www.telhanorte.com.br/argamassa-aciii-interexter-plastico-20kg-royal-gres-2495414/p",
+        "http_status": 200,
+        "verification_method": "VTEX product API + /p HEAD 200. Arithmetic: one 20 kg ACIII bag at qty-1 = R$34.90.",
+        "caveats": [
+          "Lowest verified quantity-1 ACIII 20 kg bag among candidates."
+        ]
+      },
+      "no_match_reason": null
+    },
+    {
+      "expense_id": "EXP_0041",
+      "requested_item": "Rodapés para acompanhar o porcelanato",
+      "requested_unit": "metro linear (m)",
+      "match_status": "verified",
+      "candidates": [
+        {
+          "matched_product": "Rodapé Porcelanato Branco Boleado Acetinado Retificado 14,5x120cm Eliane",
+          "sku": "2391643",
+          "seller": "Telhanorte",
+          "specifications": {
+            "brand": "Eliane",
+            "material": "Porcelanato",
+            "piece_cm": "14,5 x 120",
+            "pieces_per_box": 4,
+            "box_linear_m": 4.8,
+            "finish": "Acetinado boleado retificado",
+            "color": "Branco"
+          },
+          "package_size": "caixa 4 peças (4,80 m)",
+          "displayed_price_brl": 289.9,
+          "normalized_unit_price_brl": 60.4,
+          "unit": "metro linear (m)",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.telhanorte.com.br/rodape-branco-boleado-14-5x120-acetinado-caixa-4-pcs-eliane-2391643/p",
+          "final_url": "https://www.telhanorte.com.br/rodape-branco-boleado-14-5x120-acetinado-caixa-4-pcs-eliane-2391643/p",
+          "http_status": 200,
+          "verification_method": "VTEX API + browser /p page: R$289,90/box; specs state 4 pieces × 120 cm. Arithmetic: 289.90 / (4 × 1.20 m) = 60.3958 ≈ R$60.40/m.",
+          "caveats": [
+            "Lowest verified available qty-1 normalized per-meter price among porcelain rodapé boxes with evidenced piece count.",
+            "Click & Retire showed no nearby store stock on the page; online AvailableQuantity from API is positive and Add to Cart is enabled."
+          ]
+        },
+        {
+          "matched_product": "Rodapé Porcelanato Branco Cetim Natural Retificado 15x60cm Bianco Portobello",
+          "sku": "2500248",
+          "seller": "Telhanorte",
+          "specifications": {
+            "brand": "Portobello",
+            "material": "Porcelanato",
+            "piece_cm": "15 x 60",
+            "pieces_per_box": 5,
+            "box_linear_m": 3.0,
+            "finish": "Cetim natural retificado",
+            "color": "Branco Bianco"
+          },
+          "package_size": "caixa 5 peças (3,00 m)",
+          "displayed_price_brl": 184.9,
+          "normalized_unit_price_brl": 61.63,
+          "unit": "metro linear (m)",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.telhanorte.com.br/rodape-cetim-bianco-15x60-cm-natural-retificado-caixa-5-pecas-portobello-2500248/p",
+          "final_url": "https://www.telhanorte.com.br/rodape-cetim-bianco-15x60-cm-natural-retificado-caixa-5-pecas-portobello-2500248/p",
+          "http_status": 200,
+          "verification_method": "VTEX API + /p HEAD 200; slug and title evidence caixa 5 peças × 60 cm. Arithmetic: 184.90 / (5 × 0.60 m) = R$61.633/m.",
+          "caveats": []
+        },
+        {
+          "matched_product": "Rodapé Porcelanato Cinza Retificado 20x120cm Nord Ris Natural Portobello",
+          "sku": "1458744",
+          "seller": "Telhanorte",
+          "specifications": {
+            "brand": "Portobello",
+            "material": "Porcelanato",
+            "piece_cm": "20 x 120",
+            "pieces_per_box": 2,
+            "box_linear_m": 2.4,
+            "color": "Cinza Nord Ris"
+          },
+          "package_size": "caixa 2 peças (2,40 m)",
+          "displayed_price_brl": 198.9,
+          "normalized_unit_price_brl": 82.88,
+          "unit": "metro linear (m)",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.telhanorte.com.br/rodape-nord-ris-20x120-cm-caixa-com-2-pecas-retificado-portobello-1458744/p",
+          "final_url": "https://www.telhanorte.com.br/rodape-nord-ris-20x120-cm-caixa-com-2-pecas-retificado-portobello-1458744/p",
+          "http_status": 200,
+          "verification_method": "VTEX API + /p HEAD 200. Arithmetic: 198.90 / (2 × 1.20 m) = R$82.875/m.",
+          "caveats": []
+        }
+      ],
+      "winner": {
+        "matched_product": "Rodapé Porcelanato Branco Boleado Acetinado Retificado 14,5x120cm Eliane",
+        "sku": "2391643",
+        "seller": "Telhanorte",
+        "specifications": {
+          "brand": "Eliane",
+          "material": "Porcelanato",
+          "piece_cm": "14,5 x 120",
+          "pieces_per_box": 4,
+          "box_linear_m": 4.8,
+          "finish": "Acetinado boleado retificado",
+          "color": "Branco"
+        },
+        "package_size": "caixa 4 peças (4,80 m)",
+        "displayed_price_brl": 289.9,
+        "normalized_unit_price_brl": 60.4,
+        "unit": "metro linear (m)",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.telhanorte.com.br/rodape-branco-boleado-14-5x120-acetinado-caixa-4-pcs-eliane-2391643/p",
+        "final_url": "https://www.telhanorte.com.br/rodape-branco-boleado-14-5x120-acetinado-caixa-4-pcs-eliane-2391643/p",
+        "http_status": 200,
+        "verification_method": "VTEX API + browser /p page: R$289,90/box; specs state 4 pieces × 120 cm. Arithmetic: 289.90 / (4 × 1.20 m) = 60.3958 ≈ R$60.40/m.",
+        "caveats": [
+          "Lowest verified available qty-1 normalized per-meter price among porcelain rodapé boxes with evidenced piece count.",
+          "Click & Retire showed no nearby store stock on the page; online AvailableQuantity from API is positive and Add to Cart is enabled."
+        ]
+      },
+      "no_match_reason": null
+    },
+    {
+      "expense_id": "EXP_0046",
+      "requested_item": "Tinta",
+      "requested_unit": "lata (18 L)",
+      "match_status": "verified",
+      "candidates": [
+        {
+          "matched_product": "Tinta Acrílica Nova Eco Quartzolit Branco Neve Interna 18L",
+          "sku": "1826808",
+          "seller": "Telhanorte",
+          "specifications": {
+            "brand": "Weber Quartzolit",
+            "type": "Acrílica Nova Eco",
+            "color": "Branco Neve",
+            "volume_l": 18,
+            "use": "Interna / parede"
+          },
+          "package_size": "lata 18 L",
+          "displayed_price_brl": 149.9,
+          "normalized_unit_price_brl": 149.9,
+          "unit": "lata (18 L)",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.telhanorte.com.br/tinta-acrilica-nova-eco-p-parede-18l-branco-neve-quartzolit-1826808/p",
+          "final_url": "https://www.telhanorte.com.br/tinta-acrilica-nova-eco-p-parede-18l-branco-neve-quartzolit-1826808/p",
+          "http_status": 200,
+          "verification_method": "VTEX API + browser /p: R$149,90 no cartão; Embalagem 18 Litros; Estoque Disponível.",
+          "caveats": [
+            "Lowest verified quantity-1 18 L wall acrylic paint among candidates.",
+            "Optional Pix 5% off advertised on page; ranking uses card/API price R$149.90."
+          ]
+        },
+        {
+          "matched_product": "Tinta Acrílica Standard Novacor Extra Fosco Branco 18L Sherwin Willians",
+          "sku": "826448",
+          "seller": "Telhanorte",
+          "specifications": {
+            "brand": "Sherwin Williams / Novacor",
+            "type": "Acrílica standard extra fosco",
+            "color": "Branco",
+            "volume_l": 18
+          },
+          "package_size": "lata 18 L",
+          "displayed_price_brl": 349.9,
+          "normalized_unit_price_brl": 349.9,
+          "unit": "lata (18 L)",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.telhanorte.com.br/tinta-latex-novacor-acrilico-18-litros-branco-sherwin-williams-826448/p",
+          "final_url": "https://www.telhanorte.com.br/tinta-latex-novacor-acrilico-18-litros-branco-sherwin-williams-826448/p",
+          "http_status": 200,
+          "verification_method": "VTEX product API + /p HEAD 200.",
+          "caveats": []
+        },
+        {
+          "matched_product": "Tinta Acrílica Premium Super Lavável Antimanchas Interior Branco Eggshell 18l Coral",
+          "sku": "1509721",
+          "seller": "Telhanorte",
+          "specifications": {
+            "brand": "Coral",
+            "type": "Acrílica premium super lavável eggshell",
+            "color": "Branco",
+            "volume_l": 18
+          },
+          "package_size": "lata 18 L",
+          "displayed_price_brl": 739.9,
+          "normalized_unit_price_brl": 739.9,
+          "unit": "lata (18 L)",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.telhanorte.com.br/tinta-acrilica-super-lavavel-eggshell-branco-18l-coral-1509721/p",
+          "final_url": "https://www.telhanorte.com.br/tinta-acrilica-super-lavavel-eggshell-branco-18l-coral-1509721/p",
+          "http_status": 200,
+          "verification_method": "Seed /p re-verified via VTEX API + HEAD 200.",
+          "caveats": [
+            "Seed URL re-verified; premium tier, not lowest qty-1."
+          ]
+        }
+      ],
+      "winner": {
+        "matched_product": "Tinta Acrílica Nova Eco Quartzolit Branco Neve Interna 18L",
+        "sku": "1826808",
+        "seller": "Telhanorte",
+        "specifications": {
+          "brand": "Weber Quartzolit",
+          "type": "Acrílica Nova Eco",
+          "color": "Branco Neve",
+          "volume_l": 18,
+          "use": "Interna / parede"
+        },
+        "package_size": "lata 18 L",
+        "displayed_price_brl": 149.9,
+        "normalized_unit_price_brl": 149.9,
+        "unit": "lata (18 L)",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.telhanorte.com.br/tinta-acrilica-nova-eco-p-parede-18l-branco-neve-quartzolit-1826808/p",
+        "final_url": "https://www.telhanorte.com.br/tinta-acrilica-nova-eco-p-parede-18l-branco-neve-quartzolit-1826808/p",
+        "http_status": 200,
+        "verification_method": "VTEX API + browser /p: R$149,90 no cartão; Embalagem 18 Litros; Estoque Disponível.",
+        "caveats": [
+          "Lowest verified quantity-1 18 L wall acrylic paint among candidates.",
+          "Optional Pix 5% off advertised on page; ranking uses card/API price R$149.90."
+        ]
+      },
+      "no_match_reason": null
+    },
+    {
+      "expense_id": "EXP_0048",
+      "requested_item": "Silicone, espuma expansiva, selante PU",
+      "requested_unit": "kit",
+      "match_status": "verified",
+      "candidates": [
+        {
+          "matched_product": "Kit 3 produtos: Silicone Multiuso Acético Incolor 280ml Soudal + Espuma Expansiva PU 500ml/280g Chemicolor + Selante Adesivo PU Uso Geral Branco 270ml/445g Soudal",
+          "sku": "2493268+2628341+2546728",
+          "seller": "Telhanorte",
+          "specifications": {
+            "components": [
+              {
+                "role": "silicone",
+                "product": "Silicone Multiuso Acetico Incolor 280ml Soudal",
+                "sku": "2493268",
+                "price_brl": 31.9,
+                "url": "https://www.telhanorte.com.br/silicone-multiuso-acetico-incolor-280ml-soudal-2493268/p"
+              },
+              {
+                "role": "espuma_expansiva",
+                "product": "Espuma Expansiva Pu 500Ml/280G Imp Chemicolor",
+                "sku": "2628341",
+                "price_brl": 17.9,
+                "url": "https://www.telhanorte.com.br/espuma-expansiva-pu-500ml280g-imp-chemicolor-2628341/p"
+              },
+              {
+                "role": "selante_pu",
+                "product": "Selante Adesivo Pu Uso Geral Branco 270Ml/445G Soudal",
+                "sku": "2546728",
+                "price_brl": 33.9,
+                "url": "https://www.telhanorte.com.br/selante-adesivo-pu-uso-geral-branco-270ml445g-soudal-2546728/p"
+              }
+            ]
+          },
+          "package_size": "kit 3 produtos (comprados separados)",
+          "displayed_price_brl": 83.7,
+          "normalized_unit_price_brl": 83.7,
+          "unit": "kit",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.telhanorte.com.br/silicone-multiuso-acetico-incolor-280ml-soudal-2493268/p",
+          "final_url": "https://www.telhanorte.com.br/silicone-multiuso-acetico-incolor-280ml-soudal-2493268/p",
+          "http_status": 200,
+          "verification_method": "Three separate /p pages verified HTTP 200 via HEAD; prices from VTEX API. Kit sum: 31.90+17.90+33.90=83.70. Winner URL is primary silicone.",
+          "caveats": [
+            "No single catalog SKU kit of all three was used; price is the sum of three separate qty-1 products.",
+            "Component URLs: silicone https://www.telhanorte.com.br/silicone-multiuso-acetico-incolor-280ml-soudal-2493268/p ; espuma https://www.telhanorte.com.br/espuma-expansiva-pu-500ml280g-imp-chemicolor-2628341/p ; selante PU https://www.telhanorte.com.br/selante-adesivo-pu-uso-geral-branco-270ml445g-soudal-2546728/p"
+          ]
+        }
+      ],
+      "winner": {
+        "matched_product": "Kit 3 produtos: Silicone Multiuso Acético Incolor 280ml Soudal + Espuma Expansiva PU 500ml/280g Chemicolor + Selante Adesivo PU Uso Geral Branco 270ml/445g Soudal",
+        "sku": "2493268+2628341+2546728",
+        "seller": "Telhanorte",
+        "specifications": {
+          "components": [
+            {
+              "role": "silicone",
+              "product": "Silicone Multiuso Acetico Incolor 280ml Soudal",
+              "sku": "2493268",
+              "price_brl": 31.9,
+              "url": "https://www.telhanorte.com.br/silicone-multiuso-acetico-incolor-280ml-soudal-2493268/p"
+            },
+            {
+              "role": "espuma_expansiva",
+              "product": "Espuma Expansiva Pu 500Ml/280G Imp Chemicolor",
+              "sku": "2628341",
+              "price_brl": 17.9,
+              "url": "https://www.telhanorte.com.br/espuma-expansiva-pu-500ml280g-imp-chemicolor-2628341/p"
+            },
+            {
+              "role": "selante_pu",
+              "product": "Selante Adesivo Pu Uso Geral Branco 270Ml/445G Soudal",
+              "sku": "2546728",
+              "price_brl": 33.9,
+              "url": "https://www.telhanorte.com.br/selante-adesivo-pu-uso-geral-branco-270ml445g-soudal-2546728/p"
+            }
+          ]
+        },
+        "package_size": "kit 3 produtos (comprados separados)",
+        "displayed_price_brl": 83.7,
+        "normalized_unit_price_brl": 83.7,
+        "unit": "kit",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.telhanorte.com.br/silicone-multiuso-acetico-incolor-280ml-soudal-2493268/p",
+        "final_url": "https://www.telhanorte.com.br/silicone-multiuso-acetico-incolor-280ml-soudal-2493268/p",
+        "http_status": 200,
+        "verification_method": "Three separate /p pages verified HTTP 200 via HEAD; prices from VTEX API. Kit sum: 31.90+17.90+33.90=83.70. Winner URL is primary silicone.",
+        "caveats": [
+          "No single catalog SKU kit of all three was used; price is the sum of three separate qty-1 products.",
+          "Component URLs: silicone https://www.telhanorte.com.br/silicone-multiuso-acetico-incolor-280ml-soudal-2493268/p ; espuma https://www.telhanorte.com.br/espuma-expansiva-pu-500ml280g-imp-chemicolor-2628341/p ; selante PU https://www.telhanorte.com.br/selante-adesivo-pu-uso-geral-branco-270ml445g-soudal-2546728/p"
+        ]
+      },
+      "no_match_reason": null
+    },
+    {
+      "expense_id": "EXP_0049",
+      "requested_item": "Lona para proteção da obra",
+      "requested_unit": "m²",
+      "match_status": "verified",
+      "candidates": [
+        {
+          "matched_product": "Lona Plástica Bb 4mx25m Preta Plasitap",
+          "sku": "2344416",
+          "seller": "Telhanorte",
+          "specifications": {
+            "brand": "Plasitap",
+            "color": "Preta",
+            "sheet_m": "4 x 25",
+            "area_m2": 100
+          },
+          "package_size": "folha/rolo 4×25 m (100 m²)",
+          "displayed_price_brl": 129.9,
+          "normalized_unit_price_brl": 1.3,
+          "unit": "m²",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.telhanorte.com.br/lona-4x25-plastica-preto-plasitap-2344416/p",
+          "final_url": "https://www.telhanorte.com.br/lona-4x25-plastica-preto-plasitap-2344416/p",
+          "http_status": 200,
+          "verification_method": "VTEX API + /p HEAD 200. Arithmetic: R$129.90 / (4×25=100 m²) = R$1.299/m² ≈ R$1.30/m².",
+          "caveats": [
+            "Lowest verified normalized per-m² price among available black plastic tarp sheets/rolls."
+          ]
+        },
+        {
+          "matched_product": "Lona Plástica Bb 4mx10m Preta Plasitap",
+          "sku": "2344408",
+          "seller": "Telhanorte",
+          "specifications": {
+            "brand": "Plasitap",
+            "color": "Preta",
+            "sheet_m": "4 x 10",
+            "area_m2": 40
+          },
+          "package_size": "folha/rolo 4×10 m (40 m²)",
+          "displayed_price_brl": 53.9,
+          "normalized_unit_price_brl": 1.35,
+          "unit": "m²",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.telhanorte.com.br/lona-4x10-plastica-preto-plasitap-2344408/p",
+          "final_url": "https://www.telhanorte.com.br/lona-4x10-plastica-preto-plasitap-2344408/p",
+          "http_status": 200,
+          "verification_method": "VTEX API + /p HEAD 200. Arithmetic: 53.90 / 40 = R$1.3475/m².",
+          "caveats": []
+        },
+        {
+          "matched_product": "Lona Plástica Preta Plasilona 5m x 6m Plasitap",
+          "sku": "685038",
+          "seller": "Telhanorte",
+          "specifications": {
+            "brand": "Plasitap",
+            "color": "Preta",
+            "sheet_m": "5 x 6",
+            "area_m2": 30
+          },
+          "package_size": "folha 5×6 m (30 m²)",
+          "displayed_price_brl": 43.9,
+          "normalized_unit_price_brl": 1.46,
+          "unit": "m²",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.telhanorte.com.br/lona-plastica-preta-5x6m-plasitap-685038/p",
+          "final_url": "https://www.telhanorte.com.br/lona-plastica-preta-5x6m-plasitap-685038/p",
+          "http_status": 200,
+          "verification_method": "Seed /p re-verified via VTEX API + HEAD 200. Arithmetic: 43.90 / 30 = R$1.4633/m².",
+          "caveats": [
+            "Seed URL re-verified; higher per-m² than 4×25 m roll."
+          ]
+        }
+      ],
+      "winner": {
+        "matched_product": "Lona Plástica Bb 4mx25m Preta Plasitap",
+        "sku": "2344416",
+        "seller": "Telhanorte",
+        "specifications": {
+          "brand": "Plasitap",
+          "color": "Preta",
+          "sheet_m": "4 x 25",
+          "area_m2": 100
+        },
+        "package_size": "folha/rolo 4×25 m (100 m²)",
+        "displayed_price_brl": 129.9,
+        "normalized_unit_price_brl": 1.3,
+        "unit": "m²",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.telhanorte.com.br/lona-4x25-plastica-preto-plasitap-2344416/p",
+        "final_url": "https://www.telhanorte.com.br/lona-4x25-plastica-preto-plasitap-2344416/p",
+        "http_status": 200,
+        "verification_method": "VTEX API + /p HEAD 200. Arithmetic: R$129.90 / (4×25=100 m²) = R$1.299/m² ≈ R$1.30/m².",
+        "caveats": [
+          "Lowest verified normalized per-m² price among available black plastic tarp sheets/rolls."
+        ]
+      },
+      "no_match_reason": null
+    }
+  ]
+}

@@ -1,0 +1,694 @@
+{
+  "cluster": "openings",
+  "checked_at": "2026-09-17",
+  "location_basis": "nova_odessa_cep_13380",
+  "expenses": [
+    {
+      "expense_id": "EXP_0026",
+      "requested_item": "Portas internas",
+      "requested_unit": "unidade",
+      "match_status": "verified",
+      "candidates": [
+        {
+          "matched_product": "Kit Porta Açomad Batente 6cm Branco Direita 215X75 Branco Mgm",
+          "sku": "2556022",
+          "seller": "Telhanorte",
+          "specifications": {
+            "brand": "MGM",
+            "line": "Açomad",
+            "material": "Madeira",
+            "composition": "Semi Oca",
+            "finish": "Melamínico liso branco",
+            "dimensions_cm": "215 x 75 x 3,5",
+            "opening": "Direito",
+            "includes": "Fechadura, dobradiça, batente, alizar"
+          },
+          "package_size": "1 kit porta completa",
+          "displayed_price_brl": 365.42,
+          "normalized_unit_price_brl": 365.42,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.telhanorte.com.br/kit-porta-acomad-batente-6cm-branco-direita-215x75-branco-mgm-2556022/p",
+          "final_url": "https://www.telhanorte.com.br/kit-porta-acomad-batente-6cm-branco-direita-215x75-branco-mgm-2556022/p",
+          "http_status": 200,
+          "verification_method": "Direct /p product page fetched on Telhanorte; title, SKU 2556022, JSON-LD Pix/offer price R$365.42, InStock, and wood semi-oca interior kit specs matched. Arithmetic: R$365.42 / 1 = R$365.42/unidade.",
+          "caveats": [
+            "Width is 75 cm (near standard 80 cm). Complete kit with batente/ferragens, not leaf-only."
+          ]
+        },
+        {
+          "matched_product": "Kit Porta de Madeira 215X85cm Esquerda Branco Batente em Aço 6cm Branco Açomad Mgm",
+          "sku": "2556057",
+          "seller": "Telhanorte",
+          "specifications": {
+            "brand": "MGM",
+            "line": "Açomad",
+            "material": "Madeira",
+            "composition": "Semi Oca",
+            "finish": "Melamínico liso branco",
+            "dimensions_cm": "215 x 85 x 3,5",
+            "opening": "Esquerdo",
+            "includes": "Fechadura, dobradiça, batente, alizar"
+          },
+          "package_size": "1 kit porta completa",
+          "displayed_price_brl": 395.91,
+          "normalized_unit_price_brl": 395.91,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.telhanorte.com.br/kit-porta-acomad-batente-6cm-branco-esquerda-215x85-branco-mgm-2556057/p",
+          "final_url": "https://www.telhanorte.com.br/kit-porta-acomad-batente-6cm-branco-esquerda-215x85-branco-mgm-2556057/p",
+          "http_status": 200,
+          "verification_method": "Direct /p product page fetched on Telhanorte; title, SKU 2556057, JSON-LD offer price R$395.91, InStock, and interior wood kit specs matched. Arithmetic: R$395.91 / 1 = R$395.91/unidade.",
+          "caveats": [
+            "Width 85 cm is near standard 80 cm; left-hand opening."
+          ]
+        },
+        {
+          "matched_product": "Kit Porta com Batente 7,5cm Miolo Colmeia Primer 210x82x35 para Drywall Direito Eucatex",
+          "sku": "1569821",
+          "seller": "Telhanorte",
+          "specifications": {
+            "brand": "Eucatex",
+            "material": "Madeira (MDF RU)",
+            "core": "Miolo colmeia",
+            "finish": "Primer branco liso",
+            "dimensions_cm": "210 x 82 x 3,5",
+            "opening": "Direito",
+            "includes": "Porta, batente com guarnição 50mm, borracha amortecedora, dobradiças",
+            "use": "Interno / drywall"
+          },
+          "package_size": "1 kit porta completa",
+          "displayed_price_brl": 413.51,
+          "normalized_unit_price_brl": 413.51,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.telhanorte.com.br/kit-porta-batente-7-5-miolo-colmeia-primer-2100x82x35-direito-eucatex-1569821/p",
+          "final_url": "https://www.telhanorte.com.br/kit-porta-batente-7-5-miolo-colmeia-primer-2100x82x35-direito-eucatex-1569821/p",
+          "http_status": 200,
+          "verification_method": "Direct /p product page fetched on Telhanorte; title, SKU 1569821, visible Pix R$413.51, JSON-LD InStock, and 210x82x3,5 MDF RU kit specs matched. Arithmetic: R$413.51 / 1 = R$413.51/unidade.",
+          "caveats": [
+            "Closest verified size to ~80x210 among priced wood/MDF kits; primer finish needs painting; drywall-oriented kit."
+          ]
+        }
+      ],
+      "winner": {
+        "matched_product": "Kit Porta Açomad Batente 6cm Branco Direita 215X75 Branco Mgm",
+        "sku": "2556022",
+        "seller": "Telhanorte",
+        "specifications": {
+          "brand": "MGM",
+          "line": "Açomad",
+          "material": "Madeira",
+          "composition": "Semi Oca",
+          "finish": "Melamínico liso branco",
+          "dimensions_cm": "215 x 75 x 3,5",
+          "opening": "Direito",
+          "includes": "Fechadura, dobradiça, batente, alizar"
+        },
+        "package_size": "1 kit porta completa",
+        "displayed_price_brl": 365.42,
+        "normalized_unit_price_brl": 365.42,
+        "unit": "unidade",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.telhanorte.com.br/kit-porta-acomad-batente-6cm-branco-direita-215x75-branco-mgm-2556022/p",
+        "final_url": "https://www.telhanorte.com.br/kit-porta-acomad-batente-6cm-branco-direita-215x75-branco-mgm-2556022/p",
+        "http_status": 200,
+        "verification_method": "Direct /p product page fetched on Telhanorte; title, SKU 2556022, JSON-LD Pix/offer price R$365.42, InStock, and wood semi-oca interior kit specs matched. Arithmetic: R$365.42 / 1 = R$365.42/unidade.",
+        "caveats": [
+          "Lowest verified qty-1 price among comparable interior wood door kits near standard ~80x210. Width is 75 cm. Complete kit, not leaf-only. Freight for CEP 13380-000 not calculated."
+        ]
+      },
+      "no_match_reason": null
+    },
+    {
+      "expense_id": "EXP_0027",
+      "requested_item": "Porta Balcão",
+      "requested_unit": "unidade",
+      "match_status": "verified",
+      "candidates": [
+        {
+          "matched_product": "Porta Balcão de Alumínio 3 Folhas Móveis 210x120 cm Vidro Liso Preta Fortsul",
+          "sku": "2531933",
+          "seller": "Telhanorte",
+          "specifications": {
+            "brand": "Esquadrisul",
+            "line": "Fortsul",
+            "material": "Alumínio",
+            "color": "Preto",
+            "dimensions_cm": "210 x 120",
+            "leaves": 3,
+            "glass": "Vidro liso",
+            "type": "Porta balcão de correr"
+          },
+          "package_size": "1 porta balcão",
+          "displayed_price_brl": 1903.41,
+          "normalized_unit_price_brl": 1903.41,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.telhanorte.com.br/porta-balcao-3-folhas-moveis-210x120-vidro-liso-black-fortsul-esquadrisul-2531933/p",
+          "final_url": "https://www.telhanorte.com.br/porta-balcao-3-folhas-moveis-210x120-vidro-liso-black-fortsul-esquadrisul-2531933/p",
+          "http_status": 200,
+          "verification_method": "Direct /p product page fetched on Telhanorte; title, SKU 2531933, JSON-LD offer/Pix price R$1903.41, InStock, and sliding balcony-door identity matched. Arithmetic: R$1903.41 / 1 = R$1903.41/unidade.",
+          "caveats": [
+            "Width 120 cm is narrower than a typical ~200 cm porta-balcão opening."
+          ]
+        },
+        {
+          "matched_product": "Porta Balcao 3 Folhas Moveis 210X150 Vidro Liso Black Fortsul",
+          "sku": "2531941",
+          "seller": "Telhanorte",
+          "specifications": {
+            "brand": "Esquadrisul",
+            "line": "Fortsul",
+            "material": "Alumínio",
+            "color": "Preto",
+            "dimensions_cm": "210 x 150",
+            "leaves": 3,
+            "glass": "Vidro liso",
+            "type": "Porta balcão de correr"
+          },
+          "package_size": "1 porta balcão",
+          "displayed_price_brl": 2581.9,
+          "normalized_unit_price_brl": 2581.9,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.telhanorte.com.br/porta-balcao-3-folhas-moveis-210x150-vidro-liso-black-fortsul-esquadrisul-2531941/p",
+          "final_url": "https://www.telhanorte.com.br/porta-balcao-3-folhas-moveis-210x150-vidro-liso-black-fortsul-esquadrisul-2531941/p",
+          "http_status": 200,
+          "verification_method": "Direct /p product page fetched on Telhanorte; title, SKU 2531941, JSON-LD offer price R$2581.90, InStock, and sliding balcony-door identity matched. Arithmetic: R$2581.90 / 1 = R$2581.90/unidade.",
+          "caveats": [
+            "Width 150 cm; still below a ~200 cm balcony opening."
+          ]
+        },
+        {
+          "matched_product": "Porta Balcão de Alumínio 210x200 Prata Ecosul Esquadrisul",
+          "sku": "1641352",
+          "seller": "Telhanorte",
+          "specifications": {
+            "brand": "Esquadrisul",
+            "line": "Ecosul",
+            "material": "Alumínio",
+            "color": "Prata",
+            "dimensions_cm": "210 x 200",
+            "leaves": 6,
+            "glass": "Com vidro",
+            "opening": "Central",
+            "type": "Porta balcão"
+          },
+          "package_size": "1 porta balcão",
+          "displayed_price_brl": 3799.9,
+          "normalized_unit_price_brl": 3799.9,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.telhanorte.com.br/porta-balcao-veneziana-de-correr-abertura-central-de-aluminio-6-folhas-ecosul-esquadrisul-alt-alt-210cm-x-comp-200cm-aluminio-brilhante-1641352/p",
+          "final_url": "https://www.telhanorte.com.br/porta-balcao-veneziana-de-correr-abertura-central-de-aluminio-6-folhas-ecosul-esquadrisul-alt-alt-210cm-x-comp-200cm-aluminio-brilhante-1641352/p",
+          "http_status": 200,
+          "verification_method": "Direct /p product page fetched on Telhanorte; title, SKU 1641352, JSON-LD offer price R$3799.90, InStock, and 210x200 aluminum balcony door specs matched. Arithmetic: R$3799.90 / 1 = R$3799.90/unidade.",
+          "caveats": [
+            "Closest verified ~200 cm width match; 6 leaves rather than 4. URL slug contains 'veneziana' while the product title/model are porta balcão."
+          ]
+        }
+      ],
+      "winner": {
+        "matched_product": "Porta Balcão de Alumínio 3 Folhas Móveis 210x120 cm Vidro Liso Preta Fortsul",
+        "sku": "2531933",
+        "seller": "Telhanorte",
+        "specifications": {
+          "brand": "Esquadrisul",
+          "line": "Fortsul",
+          "material": "Alumínio",
+          "color": "Preto",
+          "dimensions_cm": "210 x 120",
+          "leaves": 3,
+          "glass": "Vidro liso",
+          "type": "Porta balcão de correr"
+        },
+        "package_size": "1 porta balcão",
+        "displayed_price_brl": 1903.41,
+        "normalized_unit_price_brl": 1903.41,
+        "unit": "unidade",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.telhanorte.com.br/porta-balcao-3-folhas-moveis-210x120-vidro-liso-black-fortsul-esquadrisul-2531933/p",
+        "final_url": "https://www.telhanorte.com.br/porta-balcao-3-folhas-moveis-210x120-vidro-liso-black-fortsul-esquadrisul-2531933/p",
+        "http_status": 200,
+        "verification_method": "Direct /p product page fetched on Telhanorte; title, SKU 2531933, JSON-LD offer/Pix price R$1903.41, InStock, and sliding balcony-door identity matched. Arithmetic: R$1903.41 / 1 = R$1903.41/unidade.",
+        "caveats": [
+          "Lowest verified qty-1 price among in-stock sliding porta-balcão /p pages. Width 120 cm is narrower than a typical ~200 cm balcony opening; a 210x200 alternative is listed as a higher-priced candidate. Freight for CEP 13380-000 not calculated."
+        ]
+      },
+      "no_match_reason": null
+    },
+    {
+      "expense_id": "EXP_0029",
+      "requested_item": "Janela (quartos e escritório)",
+      "requested_unit": "unidade",
+      "match_status": "verified",
+      "candidates": [
+        {
+          "matched_product": "Janela de Alumínio de Correr 100x120 Branco Ecosul Esquadrisul",
+          "sku": "1621335",
+          "seller": "Telhanorte",
+          "specifications": {
+            "brand": "Esquadrisul",
+            "line": "Ecosul",
+            "material": "Alumínio",
+            "color": "Branco",
+            "dimensions_cm": "100 x 120",
+            "leaves": 4,
+            "opening": "Central",
+            "glass": "Com vidro",
+            "grade": "Não"
+          },
+          "package_size": "1 janela de correr",
+          "displayed_price_brl": 494.91,
+          "normalized_unit_price_brl": 494.91,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.telhanorte.com.br/janela-de-correr-de-aluminio-4-folhas-100x120cm-branca-ecosul-central-esquadrisul-1621335/p",
+          "final_url": "https://www.telhanorte.com.br/janela-de-correr-de-aluminio-4-folhas-100x120cm-branca-ecosul-central-esquadrisul-1621335/p",
+          "http_status": 200,
+          "verification_method": "Direct /p product page fetched on Telhanorte; title, SKU 1621335, visible Pix R$494.91, JSON-LD InStock, 4 leaves and 100x120 aluminum sliding-window specs matched. Arithmetic: R$494.91 / 1 = R$494.91/unidade.",
+          "caveats": [
+            "Height 100 cm rather than ~120 cm bedroom/office comparable."
+          ]
+        },
+        {
+          "matched_product": "Janela de Alumínio de Correr 100x120 Direita Preta Ecosul Esquadrisul",
+          "sku": "2465515",
+          "seller": "Telhanorte",
+          "specifications": {
+            "brand": "Esquadrisul",
+            "line": "Ecosul",
+            "material": "Alumínio",
+            "color": "Preto",
+            "dimensions_cm": "100 x 120",
+            "leaves": 2,
+            "glass": "Vidro liso",
+            "indicated_use": "Cozinha, lavanderia e sala"
+          },
+          "package_size": "1 janela de correr",
+          "displayed_price_brl": 388.71,
+          "normalized_unit_price_brl": 388.71,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.telhanorte.com.br/janela-2-folhas-100x120-direita-vidro-liso-black-ecosul-2465515/p",
+          "final_url": "https://www.telhanorte.com.br/janela-2-folhas-100x120-direita-vidro-liso-black-ecosul-2465515/p",
+          "http_status": 200,
+          "verification_method": "Direct /p product page fetched on Telhanorte; title, SKU 2465515, JSON-LD offer/Pix price R$388.71, InStock, and 2-leaf aluminum sliding window specs matched. Arithmetic: R$388.71 / 1 = R$388.71/unidade.",
+          "caveats": [
+            "Only 2 leaves; height 100 cm vs ~120 cm."
+          ]
+        },
+        {
+          "matched_product": "Janela De Correr 2 Folhas Móveis Vidro Liso Com Persiana Integrada 120x120 Branco Topsul Esquadrisul",
+          "sku": "1632213",
+          "seller": "Telhanorte",
+          "specifications": {
+            "brand": "Esquadrisul",
+            "line": "Topsul",
+            "material": "Alumínio",
+            "color": "Branco",
+            "dimensions_cm": "120 x 120",
+            "leaves": 2,
+            "glass": "Vidro liso",
+            "extra": "Persiana integrada"
+          },
+          "package_size": "1 janela de correr com persiana",
+          "displayed_price_brl": 1899.9,
+          "normalized_unit_price_brl": 1899.9,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.telhanorte.com.br/janela-com-veneziana-integrada-de-aluminio-2-folhas-topsul-esquadrisul-alt-120-cm-x-comp-120-cm-branco-1632213/p",
+          "final_url": "https://www.telhanorte.com.br/janela-com-veneziana-integrada-de-aluminio-2-folhas-topsul-esquadrisul-alt-120-cm-x-comp-120-cm-branco-1632213/p",
+          "http_status": 200,
+          "verification_method": "Direct /p product page fetched on Telhanorte; title, SKU 1632213, JSON-LD offer price R$1899.90, InStock, and exact 120x120 size matched. Arithmetic: R$1899.90 / 1 = R$1899.90/unidade.",
+          "caveats": [
+            "Exact 120x120 size but includes integrated blinds and only 2 leaves; substantially higher priced."
+          ]
+        }
+      ],
+      "winner": {
+        "matched_product": "Janela de Alumínio de Correr 100x120 Branco Ecosul Esquadrisul",
+        "sku": "1621335",
+        "seller": "Telhanorte",
+        "specifications": {
+          "brand": "Esquadrisul",
+          "line": "Ecosul",
+          "material": "Alumínio",
+          "color": "Branco",
+          "dimensions_cm": "100 x 120",
+          "leaves": 4,
+          "opening": "Central",
+          "glass": "Com vidro",
+          "grade": "Não"
+        },
+        "package_size": "1 janela de correr",
+        "displayed_price_brl": 494.91,
+        "normalized_unit_price_brl": 494.91,
+        "unit": "unidade",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.telhanorte.com.br/janela-de-correr-de-aluminio-4-folhas-100x120cm-branca-ecosul-central-esquadrisul-1621335/p",
+        "final_url": "https://www.telhanorte.com.br/janela-de-correr-de-aluminio-4-folhas-100x120cm-branca-ecosul-central-esquadrisul-1621335/p",
+        "http_status": 200,
+        "verification_method": "Direct /p product page fetched on Telhanorte; title, SKU 1621335, visible Pix R$494.91, JSON-LD InStock, 4 leaves and 100x120 aluminum sliding-window specs matched. Arithmetic: R$494.91 / 1 = R$494.91/unidade.",
+        "caveats": [
+          "Selected as lowest-priced verified 4-leaf aluminum sliding window with glass near bedroom/office use. Height is 100 cm vs a ~120x120 comparable; a exact-size 120x120 option exists but includes integrated blinds and costs much more. Freight for CEP 13380-000 not calculated."
+        ]
+      },
+      "no_match_reason": null
+    },
+    {
+      "expense_id": "EXP_0030",
+      "requested_item": "Vitrô Sala",
+      "requested_unit": "unidade",
+      "match_status": "verified",
+      "candidates": [
+        {
+          "matched_product": "Janela de Correr de Alumínio 100x120 Direita Branco Ecosul Esquadrisul",
+          "sku": "1621351",
+          "seller": "Telhanorte",
+          "specifications": {
+            "brand": "Esquadrisul",
+            "line": "Ecosul",
+            "material": "Alumínio",
+            "color": "Branco",
+            "dimensions_cm": "100 x 120",
+            "leaves": 2,
+            "opening": "Direita",
+            "glass": "Com vidro",
+            "grade": "Não"
+          },
+          "package_size": "1 janela de correr",
+          "displayed_price_brl": 373.92,
+          "normalized_unit_price_brl": 373.92,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.telhanorte.com.br/janela-veneziana-de-correr-direita-esquadrisul-de-aluminio-2-folhas-ecosul-a-100cm-x-c-120cm-branca-1621351/p",
+          "final_url": "https://www.telhanorte.com.br/janela-veneziana-de-correr-direita-esquadrisul-de-aluminio-2-folhas-ecosul-a-100cm-x-c-120cm-branca-1621351/p",
+          "http_status": 200,
+          "verification_method": "Direct /p product page fetched on Telhanorte; title, SKU 1621351, JSON-LD offer/Pix price R$373.92, InStock, and 100x120 aluminum sliding window specs matched. Arithmetic: R$373.92 / 1 = R$373.92/unidade.",
+          "caveats": [
+            "URL slug mentions veneziana, but product title/model are a 2-leaf sliding window without grade."
+          ]
+        },
+        {
+          "matched_product": "Janela de Alumínio de Correr 100x120 Direita Preta Ecosul Esquadrisul",
+          "sku": "2465515",
+          "seller": "Telhanorte",
+          "specifications": {
+            "brand": "Esquadrisul",
+            "line": "Ecosul",
+            "material": "Alumínio",
+            "color": "Preto",
+            "dimensions_cm": "100 x 120",
+            "leaves": 2,
+            "glass": "Vidro liso",
+            "indicated_use": "Cozinha, lavanderia e sala"
+          },
+          "package_size": "1 janela de correr",
+          "displayed_price_brl": 388.71,
+          "normalized_unit_price_brl": 388.71,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.telhanorte.com.br/janela-2-folhas-100x120-direita-vidro-liso-black-ecosul-2465515/p",
+          "final_url": "https://www.telhanorte.com.br/janela-2-folhas-100x120-direita-vidro-liso-black-ecosul-2465515/p",
+          "http_status": 200,
+          "verification_method": "Direct /p product page fetched on Telhanorte; title, SKU 2465515, JSON-LD offer/Pix price R$388.71, InStock, sala-indicated 100x120 sliding window matched. Arithmetic: R$388.71 / 1 = R$388.71/unidade.",
+          "caveats": [
+            "2 leaves rather than 4."
+          ]
+        },
+        {
+          "matched_product": "Janela de Alumínio de Correr 100x120 Branco Ecosul Esquadrisul",
+          "sku": "1621335",
+          "seller": "Telhanorte",
+          "specifications": {
+            "brand": "Esquadrisul",
+            "line": "Ecosul",
+            "material": "Alumínio",
+            "color": "Branco",
+            "dimensions_cm": "100 x 120",
+            "leaves": 4,
+            "opening": "Central",
+            "glass": "Com vidro",
+            "grade": "Não"
+          },
+          "package_size": "1 janela de correr",
+          "displayed_price_brl": 494.91,
+          "normalized_unit_price_brl": 494.91,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.telhanorte.com.br/janela-de-correr-de-aluminio-4-folhas-100x120cm-branca-ecosul-central-esquadrisul-1621335/p",
+          "final_url": "https://www.telhanorte.com.br/janela-de-correr-de-aluminio-4-folhas-100x120cm-branca-ecosul-central-esquadrisul-1621335/p",
+          "http_status": 200,
+          "verification_method": "Direct /p product page fetched on Telhanorte; title, SKU 1621335, visible Pix R$494.91, JSON-LD InStock, and 4-leaf 100x120 living-room vitrô comparable matched. Arithmetic: R$494.91 / 1 = R$494.91/unidade.",
+          "caveats": [
+            "Best leaf-count match (4) for sala vitrô; higher than 2-leaf 100x120 options."
+          ]
+        }
+      ],
+      "winner": {
+        "matched_product": "Janela de Alumínio de Correr 100x120 Branco Ecosul Esquadrisul",
+        "sku": "1621335",
+        "seller": "Telhanorte",
+        "specifications": {
+          "brand": "Esquadrisul",
+          "line": "Ecosul",
+          "material": "Alumínio",
+          "color": "Branco",
+          "dimensions_cm": "100 x 120",
+          "leaves": 4,
+          "opening": "Central",
+          "glass": "Com vidro",
+          "grade": "Não"
+        },
+        "package_size": "1 janela de correr",
+        "displayed_price_brl": 494.91,
+        "normalized_unit_price_brl": 494.91,
+        "unit": "unidade",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.telhanorte.com.br/janela-de-correr-de-aluminio-4-folhas-100x120cm-branca-ecosul-central-esquadrisul-1621335/p",
+        "final_url": "https://www.telhanorte.com.br/janela-de-correr-de-aluminio-4-folhas-100x120cm-branca-ecosul-central-esquadrisul-1621335/p",
+        "http_status": 200,
+        "verification_method": "Direct /p product page fetched on Telhanorte; title, SKU 1621335, visible Pix R$494.91, JSON-LD InStock, and 4-leaf 100x120 aluminum sliding vitrô specs matched. Arithmetic: R$494.91 / 1 = R$494.91/unidade.",
+        "caveats": [
+          "Chosen as the lowest verified 4-leaf 100x120 aluminum sliding window with glass (sala vitrô comparable). Cheaper 2-leaf 100x120 options exist as candidates. Freight for CEP 13380-000 not calculated."
+        ]
+      },
+      "no_match_reason": null
+    },
+    {
+      "expense_id": "EXP_0031",
+      "requested_item": "Vitrôs banheiros",
+      "requested_unit": "unidade",
+      "match_status": "verified",
+      "candidates": [
+        {
+          "matched_product": "Janela Basculante de Alumínio 60x60 Preta Ecosul Esquadrisul",
+          "sku": "2465493",
+          "seller": "Telhanorte",
+          "specifications": {
+            "brand": "Esquadrisul",
+            "line": "Ecosul",
+            "material": "Alumínio",
+            "color": "Preto",
+            "dimensions_cm": "60 x 60",
+            "type": "Basculante",
+            "glass": "Mini Boreal",
+            "indicated_use": "Banheiros"
+          },
+          "package_size": "1 janela basculante",
+          "displayed_price_brl": 145.26,
+          "normalized_unit_price_brl": 145.26,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.telhanorte.com.br/janela-basculante-1-sessao-60x60-vidro-mini-boreal-black-ecosul-2465493/p",
+          "final_url": "https://www.telhanorte.com.br/janela-basculante-1-sessao-60x60-vidro-mini-boreal-black-ecosul-2465493/p",
+          "http_status": 200,
+          "verification_method": "Direct /p product page fetched on Telhanorte; title, SKU 2465493, JSON-LD offer/Pix price R$145.26, InStock, bathroom indication and Mini Boreal glass matched. Arithmetic: R$145.26 / 1 = R$145.26/unidade.",
+          "caveats": []
+        },
+        {
+          "matched_product": "Janela Basculante de Alumínio 60x60 Prata Ecosul Esquadrisul",
+          "sku": "1621262",
+          "seller": "Telhanorte",
+          "specifications": {
+            "brand": "Esquadrisul",
+            "line": "Ecosul",
+            "material": "Alumínio",
+            "color": "Prata",
+            "dimensions_cm": "60 x 60",
+            "type": "Basculante",
+            "glass": "Com vidro (tipo não declarado como fosco/canelado)"
+          },
+          "package_size": "1 janela basculante",
+          "displayed_price_brl": 139.9,
+          "normalized_unit_price_brl": 139.9,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.telhanorte.com.br/janela-basculante-esquadrisul-de-aluminio-1-secao-ecosul-a-60cm-x-c-60cm-brilhante-1621262/p",
+          "final_url": "https://www.telhanorte.com.br/janela-basculante-esquadrisul-de-aluminio-1-secao-ecosul-a-60cm-x-c-60cm-brilhante-1621262/p",
+          "http_status": 200,
+          "verification_method": "Direct /p product page fetched on Telhanorte; title, SKU 1621262, JSON-LD offer price R$139.90, InStock, and 60x60 basculante identity matched. Arithmetic: R$139.90 / 1 = R$139.90/unidade.",
+          "caveats": [
+            "Cheaper, but glass privacy type (fosco/canelado/mini boreal) is not evidenced on the page."
+          ]
+        },
+        {
+          "matched_product": "Janela Maxim-ar de Alumínio 60x60 Preta Ecosul Esquadrisul",
+          "sku": "2465507",
+          "seller": "Telhanorte",
+          "specifications": {
+            "brand": "Esquadrisul",
+            "line": "Ecosul",
+            "material": "Alumínio",
+            "color": "Preto",
+            "dimensions_cm": "60 x 60",
+            "type": "Maxim-ar",
+            "glass": "Mini Boreal"
+          },
+          "package_size": "1 janela maxim-ar",
+          "displayed_price_brl": 184.2,
+          "normalized_unit_price_brl": 184.2,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.telhanorte.com.br/janela-maximar-1-sessao-60x60-vidro-mini-boreal-black-ecosul-2465507/p",
+          "final_url": "https://www.telhanorte.com.br/janela-maximar-1-sessao-60x60-vidro-mini-boreal-black-ecosul-2465507/p",
+          "http_status": 200,
+          "verification_method": "Direct /p product page fetched on Telhanorte; title, SKU 2465507, JSON-LD offer/Pix price R$184.20, InStock, and Mini Boreal 60x60 specs matched. Arithmetic: R$184.20 / 1 = R$184.20/unidade.",
+          "caveats": [
+            "Maxim-ar opening rather than classic basculante; still privacy glass suitable for bathroom."
+          ]
+        }
+      ],
+      "winner": {
+        "matched_product": "Janela Basculante de Alumínio 60x60 Preta Ecosul Esquadrisul",
+        "sku": "2465493",
+        "seller": "Telhanorte",
+        "specifications": {
+          "brand": "Esquadrisul",
+          "line": "Ecosul",
+          "material": "Alumínio",
+          "color": "Preto",
+          "dimensions_cm": "60 x 60",
+          "type": "Basculante",
+          "glass": "Mini Boreal",
+          "indicated_use": "Banheiros"
+        },
+        "package_size": "1 janela basculante",
+        "displayed_price_brl": 145.26,
+        "normalized_unit_price_brl": 145.26,
+        "unit": "unidade",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.telhanorte.com.br/janela-basculante-1-sessao-60x60-vidro-mini-boreal-black-ecosul-2465493/p",
+        "final_url": "https://www.telhanorte.com.br/janela-basculante-1-sessao-60x60-vidro-mini-boreal-black-ecosul-2465493/p",
+        "http_status": 200,
+        "verification_method": "Direct /p product page fetched on Telhanorte; title, SKU 2465493, JSON-LD offer/Pix price R$145.26, InStock, bathroom indication and Mini Boreal glass matched. Arithmetic: R$145.26 / 1 = R$145.26/unidade.",
+        "caveats": [
+          "Lowest verified qty-1 bathroom-comparable with evidenced privacy glass (Mini Boreal). A cheaper clear/unspecified-glass basculante exists at R$139.90 but was not selected as winner. Freight for CEP 13380-000 not calculated."
+        ]
+      },
+      "no_match_reason": null
+    }
+  ]
+}

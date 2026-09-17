@@ -1,0 +1,513 @@
+{
+  "cluster": "plumbing",
+  "checked_at": "2026-09-17",
+  "location_basis": "nova_odessa_cep_13380",
+  "expenses": [
+    {
+      "expense_id": "EXP_0028",
+      "requested_item": "Vaso",
+      "requested_unit": "unidade",
+      "match_status": "verified",
+      "candidates": [
+        {
+          "matched_product": "Vaso Sanitário com Caixa Acoplada Porto 3/6L Branco Luzarte",
+          "sku": "1000000222",
+          "seller": "Telhanorte",
+          "specifications": {
+            "brand": "Luzarte",
+            "model": "Porto",
+            "color": "Branco",
+            "tank_capacity_l": "3/6",
+            "components": "bacia + caixa acoplada com tampa e mecanismo completo",
+            "product_reference": "K2619130-2619148"
+          },
+          "package_size": "1 unidade (kit acoplado)",
+          "displayed_price_brl": 319.9,
+          "normalized_unit_price_brl": 319.9,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.telhanorte.com.br/vaso-sanitario-com-caixa-acoplada-porto-3-6l-branco-luzarte-k2619130-2619148/p",
+          "final_url": "https://www.telhanorte.com.br/vaso-sanitario-com-caixa-acoplada-porto-3-6l-branco-luzarte-k2619130-2619148/p",
+          "http_status": 200,
+          "verification_method": "Direct /p product page loaded; H1 and REF K2619130-2619148 matched kit bacia+caixa acoplada Porto 3/6L Branco Luzarte; visible site price R$319,90; Add to cart enabled; VTEX offer Price 319.9 / AvailableQuantity 100. Arithmetic: R$319.90 / 1 unidade = R$319.90/unidade.",
+          "caveats": [
+            "Kit includes bowl and 3/6L coupled tank with mechanism; seat/assento is not listed in the package contents.",
+            "Freight not calculated for CEP 13380-000; freight_brl left null."
+          ]
+        },
+        {
+          "matched_product": "Vaso Sanitário com Caixa Acoplada Gap Completo Branco Roca",
+          "sku": "1538489",
+          "seller": "Telhanorte",
+          "specifications": {
+            "brand": "Roca",
+            "model": "Gap Completo",
+            "color": "Branco",
+            "components": "kit bacia com caixa acoplada completo"
+          },
+          "package_size": "1 unidade (kit completo)",
+          "displayed_price_brl": 2349.9,
+          "normalized_unit_price_brl": 2349.9,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.telhanorte.com.br/kit-bacia-com-caixa-acoplada-gap-completo-branco-roca-1538489/p",
+          "final_url": "https://www.telhanorte.com.br/kit-bacia-com-caixa-acoplada-gap-completo-branco-roca-1538489/p",
+          "http_status": 200,
+          "verification_method": "Seed /p page loaded; H1 Gap Completo Branco Roca; REF 1538489; visible site price R$2.349,90 (list R$2.499,90); Estoque Disponível. Arithmetic: R$2349.90 / 1 unidade = R$2349.90/unidade.",
+          "caveats": [
+            "Seed URL retained as higher-priced premium candidate; not selected as winner."
+          ]
+        }
+      ],
+      "winner": {
+        "matched_product": "Vaso Sanitário com Caixa Acoplada Porto 3/6L Branco Luzarte",
+        "sku": "1000000222",
+        "seller": "Telhanorte",
+        "specifications": {
+          "brand": "Luzarte",
+          "model": "Porto",
+          "color": "Branco",
+          "tank_capacity_l": "3/6",
+          "components": "bacia + caixa acoplada com tampa e mecanismo completo",
+          "product_reference": "K2619130-2619148"
+        },
+        "package_size": "1 unidade (kit acoplado)",
+        "displayed_price_brl": 319.9,
+        "normalized_unit_price_brl": 319.9,
+        "unit": "unidade",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.telhanorte.com.br/vaso-sanitario-com-caixa-acoplada-porto-3-6l-branco-luzarte-k2619130-2619148/p",
+        "final_url": "https://www.telhanorte.com.br/vaso-sanitario-com-caixa-acoplada-porto-3-6l-branco-luzarte-k2619130-2619148/p",
+        "http_status": 200,
+        "verification_method": "Direct /p product page loaded; H1 and REF K2619130-2619148 matched kit bacia+caixa acoplada Porto 3/6L Branco Luzarte; visible site price R$319,90; Add to cart enabled; VTEX offer Price 319.9 / AvailableQuantity 100. Arithmetic: R$319.90 / 1 unidade = R$319.90/unidade.",
+        "caveats": [
+          "Lowest verified quantity-1 coupled-tank toilet kit among comparable white kits.",
+          "Kit includes bowl and 3/6L coupled tank with mechanism; seat/assento is not listed in the package contents.",
+          "Freight not calculated for CEP 13380-000; freight_brl left null."
+        ]
+      },
+      "no_match_reason": null
+    },
+    {
+      "expense_id": "EXP_0036",
+      "requested_item": "Torneiras",
+      "requested_unit": "unidade",
+      "match_status": "verified",
+      "candidates": [
+        {
+          "matched_product": "Torneira Lavatório Mesa Bica Alta Lagune Branca Viqua",
+          "sku": "2448815",
+          "seller": "Telhanorte",
+          "specifications": {
+            "brand": "Viqua",
+            "line": "Lagune",
+            "mount": "mesa / lavatório",
+            "spout": "bica alta",
+            "finish": "Branca"
+          },
+          "package_size": "1 unidade",
+          "displayed_price_brl": 34.9,
+          "normalized_unit_price_brl": 34.9,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.telhanorte.com.br/torneira-lavatorio-mesa-bica-alta-lagune-branca-viqua-2448815/p",
+          "final_url": "https://www.telhanorte.com.br/torneira-lavatorio-mesa-bica-alta-lagune-branca-viqua-2448815/p",
+          "http_status": 200,
+          "verification_method": "Direct /p product page loaded; H1 lavatório mesa bica alta Lagune Branca Viqua; visible site price R$34,90; Add to cart enabled; VTEX offer Price 34.9. Arithmetic: R$34.90 / 1 unidade = R$34.90/unidade.",
+          "caveats": [
+            "Catalog category tree lists kitchen faucets, but the product title/spec is lavatório mesa (basin faucet).",
+            "No Clique & Retire store stock shown on page; online purchase still available."
+          ]
+        },
+        {
+          "matched_product": "Torneira Lavatório Mesa Bica Alta Basic Celite",
+          "sku": "1439090",
+          "seller": "Telhanorte",
+          "specifications": {
+            "brand": "Celite",
+            "line": "Basic",
+            "mount": "mesa / lavatório",
+            "spout": "bica alta"
+          },
+          "package_size": "1 unidade",
+          "displayed_price_brl": 279.9,
+          "normalized_unit_price_brl": 279.9,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.telhanorte.com.br/torneira-lavatorio-mesa-bica-alta-basic-celite-1439090/p",
+          "final_url": "https://www.telhanorte.com.br/torneira-lavatorio-mesa-bica-alta-basic-celite-1439090/p",
+          "http_status": 200,
+          "verification_method": "Seed /p page loaded; H1 Celite Basic lavatório mesa bica alta; visible site price R$279,90; Estoque Disponível. Arithmetic: R$279.90 / 1 unidade = R$279.90/unidade.",
+          "caveats": [
+            "Seed URL retained as bathroom-category Celite candidate; higher than Viqua winner."
+          ]
+        }
+      ],
+      "winner": {
+        "matched_product": "Torneira Lavatório Mesa Bica Alta Lagune Branca Viqua",
+        "sku": "2448815",
+        "seller": "Telhanorte",
+        "specifications": {
+          "brand": "Viqua",
+          "line": "Lagune",
+          "mount": "mesa / lavatório",
+          "spout": "bica alta",
+          "finish": "Branca"
+        },
+        "package_size": "1 unidade",
+        "displayed_price_brl": 34.9,
+        "normalized_unit_price_brl": 34.9,
+        "unit": "unidade",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.telhanorte.com.br/torneira-lavatorio-mesa-bica-alta-lagune-branca-viqua-2448815/p",
+        "final_url": "https://www.telhanorte.com.br/torneira-lavatorio-mesa-bica-alta-lagune-branca-viqua-2448815/p",
+        "http_status": 200,
+        "verification_method": "Direct /p product page loaded; H1 lavatório mesa bica alta Lagune Branca Viqua; visible site price R$34,90; Add to cart enabled; VTEX offer Price 34.9. Arithmetic: R$34.90 / 1 unidade = R$34.90/unidade.",
+        "caveats": [
+          "Lowest verified quantity-1 bathroom-basin (lavatório mesa) faucet.",
+          "Catalog category tree lists kitchen faucets, but the product title/spec is lavatório mesa (basin faucet).",
+          "Freight not calculated for CEP 13380-000; freight_brl left null."
+        ]
+      },
+      "no_match_reason": null
+    },
+    {
+      "expense_id": "EXP_0037",
+      "requested_item": "Sifões e ralos",
+      "requested_unit": "unidade",
+      "match_status": "verified",
+      "candidates": [
+        {
+          "matched_product": "Sifão Sanfonado Universal SSUM Astra",
+          "sku": "1734008",
+          "seller": "Telhanorte",
+          "specifications": {
+            "brand": "Astra",
+            "model": "SSUM",
+            "type": "sifão sanfonado universal",
+            "material": "polipropileno",
+            "color": "Branco",
+            "length_mm": 663
+          },
+          "package_size": "1 unidade",
+          "displayed_price_brl": 10.9,
+          "normalized_unit_price_brl": 10.9,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.telhanorte.com.br/sifao-sanfonado-663mm-propileno-branco-ssum-astra-1734008/p",
+          "final_url": "https://www.telhanorte.com.br/sifao-sanfonado-663mm-propileno-branco-ssum-astra-1734008/p",
+          "http_status": 200,
+          "verification_method": "Direct /p product page loaded; H1 Sifão Sanfonado Universal SSUM Astra; visible site price R$10,90; Estoque Disponível; VTEX offer Price 10.9. Arithmetic: R$10.90 / 1 unidade = R$10.90/unidade.",
+          "caveats": [
+            "Representative siphon only; expense label also includes drains (ralos), which are not covered by this unit price."
+          ]
+        },
+        {
+          "matched_product": "Sifão Sanfonado Universal Preto Astra",
+          "sku": "2422840",
+          "seller": "Telhanorte",
+          "specifications": {
+            "brand": "Astra",
+            "model": "SSUM3",
+            "type": "sifão sanfonado universal",
+            "color": "Preto"
+          },
+          "package_size": "1 unidade",
+          "displayed_price_brl": 12.9,
+          "normalized_unit_price_brl": 12.9,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.telhanorte.com.br/sifao-sanfonado-universal-preto-ssum3-astra-2422840/p",
+          "final_url": "https://www.telhanorte.com.br/sifao-sanfonado-universal-preto-ssum3-astra-2422840/p",
+          "http_status": 200,
+          "verification_method": "Seed /p page verified HTTP 200; VTEX offer Price 12.9 for black SSUM3 Astra. Arithmetic: R$12.90 / 1 unidade = R$12.90/unidade.",
+          "caveats": [
+            "Seed black variant retained as alternate representative siphon."
+          ]
+        }
+      ],
+      "winner": {
+        "matched_product": "Sifão Sanfonado Universal SSUM Astra",
+        "sku": "1734008",
+        "seller": "Telhanorte",
+        "specifications": {
+          "brand": "Astra",
+          "model": "SSUM",
+          "type": "sifão sanfonado universal",
+          "material": "polipropileno",
+          "color": "Branco",
+          "length_mm": 663
+        },
+        "package_size": "1 unidade",
+        "displayed_price_brl": 10.9,
+        "normalized_unit_price_brl": 10.9,
+        "unit": "unidade",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.telhanorte.com.br/sifao-sanfonado-663mm-propileno-branco-ssum-astra-1734008/p",
+        "final_url": "https://www.telhanorte.com.br/sifao-sanfonado-663mm-propileno-branco-ssum-astra-1734008/p",
+        "http_status": 200,
+        "verification_method": "Direct /p product page loaded; H1 Sifão Sanfonado Universal SSUM Astra; visible site price R$10,90; Estoque Disponível; VTEX offer Price 10.9. Arithmetic: R$10.90 / 1 unidade = R$10.90/unidade.",
+        "caveats": [
+          "Lowest verified quantity-1 representative universal siphon.",
+          "Representative siphon only; expense label also includes drains (ralos), which are not covered by this unit price.",
+          "Freight not calculated for CEP 13380-000; freight_brl left null."
+        ]
+      },
+      "no_match_reason": null
+    },
+    {
+      "expense_id": "EXP_0039",
+      "requested_item": "Pias e bancadas",
+      "requested_unit": "conjunto",
+      "match_status": "verified",
+      "candidates": [
+        {
+          "matched_product": "Pia de Cozinha em Aço Inox 430 120x52cm com Cuba Simples e Furo para Torneira Fabrinox",
+          "sku": "2340593",
+          "seller": "Telhanorte",
+          "specifications": {
+            "brand": "Fabrinox",
+            "model": "PS1200",
+            "material": "Aço Inox 430",
+            "length_cm": 120,
+            "width_cm": 52,
+            "bowl": "cuba simples central 46x30x11cm",
+            "features": "fundo concretado; furo para torneira; válvula 3.1/2\""
+          },
+          "package_size": "1 unidade (120 x 52 cm)",
+          "displayed_price_brl": 230.9,
+          "normalized_unit_price_brl": 230.9,
+          "unit": "conjunto",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.telhanorte.com.br/pia-inox-aco-430-120x52cm-cuba-simples-central-furo-torneira-ps1200-fabrinox-2340593/p",
+          "final_url": "https://www.telhanorte.com.br/pia-inox-aco-430-120x52cm-cuba-simples-central-furo-torneira-ps1200-fabrinox-2340593/p",
+          "http_status": 200,
+          "verification_method": "Direct /p product page loaded; H1 Pia de Cozinha Inox 120x52cm Fabrinox; visible site price R$230,90; Estoque Disponível (Aricanduva/Guarulhos); VTEX offer Price 230.9. Arithmetic: R$230.90 / 1 conjunto = R$230.90/conjunto.",
+          "caveats": [
+            "Kitchen stainless sink/countertop set treated as comparable pia/bancada conjunto; faucet and valve hardware not included beyond the pre-drilled faucet hole."
+          ]
+        },
+        {
+          "matched_product": "Conjunto De Banheiro Com Cuba E Espelheira Capella 40Cm Berlin Branco Cerocha",
+          "sku": "1615769",
+          "seller": "Telhanorte",
+          "specifications": {
+            "brand": "Cerocha",
+            "line": "Capella",
+            "width_cm": 40,
+            "finish": "Berlin Branco",
+            "material": "MDF",
+            "components": "gabinete/cuba + espelheira"
+          },
+          "package_size": "1 conjunto (40 cm)",
+          "displayed_price_brl": 169.9,
+          "normalized_unit_price_brl": 169.9,
+          "unit": "conjunto",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.telhanorte.com.br/-conjunto-de-banheiro-com-cuba-e-espelheira-capella-40cm-berlin-branco-cerocha-1615769/p",
+          "final_url": "https://www.telhanorte.com.br/-conjunto-de-banheiro-com-cuba-e-espelheira-capella-40cm-berlin-branco-cerocha-1615769/p",
+          "http_status": 200,
+          "verification_method": "Direct /p product page loaded; H1 Capella 40cm Berlin Branco Cerocha; visible site price R$169,90; Estoque Disponível. Arithmetic: R$169.90 / 1 conjunto = R$169.90/conjunto.",
+          "caveats": [
+            "Bathroom vanity+mirror furniture conjunto; cheaper than the stainless kitchen pia but not a pia/bancada countertop comparable to prior research specs."
+          ]
+        }
+      ],
+      "winner": {
+        "matched_product": "Pia de Cozinha em Aço Inox 430 120x52cm com Cuba Simples e Furo para Torneira Fabrinox",
+        "sku": "2340593",
+        "seller": "Telhanorte",
+        "specifications": {
+          "brand": "Fabrinox",
+          "model": "PS1200",
+          "material": "Aço Inox 430",
+          "length_cm": 120,
+          "width_cm": 52,
+          "bowl": "cuba simples central 46x30x11cm",
+          "features": "fundo concretado; furo para torneira; válvula 3.1/2\""
+        },
+        "package_size": "1 unidade (120 x 52 cm)",
+        "displayed_price_brl": 230.9,
+        "normalized_unit_price_brl": 230.9,
+        "unit": "conjunto",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.telhanorte.com.br/pia-inox-aco-430-120x52cm-cuba-simples-central-furo-torneira-ps1200-fabrinox-2340593/p",
+        "final_url": "https://www.telhanorte.com.br/pia-inox-aco-430-120x52cm-cuba-simples-central-furo-torneira-ps1200-fabrinox-2340593/p",
+        "http_status": 200,
+        "verification_method": "Direct /p product page loaded; H1 Pia de Cozinha Inox 120x52cm Fabrinox; visible site price R$230,90; Estoque Disponível (Aricanduva/Guarulhos); VTEX offer Price 230.9. Arithmetic: R$230.90 / 1 conjunto = R$230.90/conjunto.",
+        "caveats": [
+          "Selected as the lowest verified kitchen pia/bancada comparable (inox 120 cm), matching prior research product class.",
+          "Cerocha Capella bathroom vanity at R$169,90 is cheaper but is furniture (cuba+espelheira), not a countertop sink set.",
+          "Freight not calculated for CEP 13380-000; freight_brl left null."
+        ]
+      },
+      "no_match_reason": null
+    },
+    {
+      "expense_id": "EXP_0040",
+      "requested_item": "Box de vidro para o banheiro",
+      "requested_unit": "unidade",
+      "match_status": "no_match",
+      "candidates": [],
+      "winner": null,
+      "no_match_reason": "No individual Telhanorte /p tempered-glass shower-box (box de vidro) product page with a visible current price was found. Searches for box frontal/canto/temperado/blindex/vidro returned accessories (puxadores), curtains, cleaners, furniture, and unrelated items rather than glass shower enclosures."
+    },
+    {
+      "expense_id": "EXP_0044",
+      "requested_item": "Caixa de água",
+      "requested_unit": "unidade",
+      "match_status": "verified",
+      "candidates": [
+        {
+          "matched_product": "Caixa d'Água 1000 Litros +Green em Polietileno Acqualimp",
+          "sku": "2365006",
+          "seller": "Telhanorte",
+          "specifications": {
+            "brand": "Acqualimp",
+            "line": "+Green",
+            "material": "polietileno",
+            "capacity_l": 1000
+          },
+          "package_size": "1 unidade (1000 L)",
+          "displayed_price_brl": 499.9,
+          "normalized_unit_price_brl": 499.9,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.telhanorte.com.br/caixa-de-aguagreen-1000-litros-acqualimp-2365006/p",
+          "final_url": "https://www.telhanorte.com.br/caixa-de-aguagreen-1000-litros-acqualimp-2365006/p",
+          "http_status": 200,
+          "verification_method": "Seed /p page loaded; H1 Caixa d'Água Acqualimp +Green 1000 Litros; visible site price R$499,90; Estoque Disponível; VTEX offer Price 499.9. Arithmetic: R$499.90 / 1 unidade = R$499.90/unidade.",
+          "caveats": [
+            "Preferred 1000 L capacity matched.",
+            "Optional Pix discount callout appeared on page; recorded the main displayed site/card price R$499,90.",
+            "Freight not calculated for CEP 13380-000; freight_brl left null."
+          ]
+        },
+        {
+          "matched_product": "Tanque Caixa d'água 1000 Litros +Green Polietileno Acqualimp",
+          "sku": "2432498",
+          "seller": "Telhanorte",
+          "specifications": {
+            "brand": "Acqualimp",
+            "line": "+Green",
+            "material": "polietileno",
+            "capacity_l": 1000
+          },
+          "package_size": "1 unidade (1000 L)",
+          "displayed_price_brl": 679.9,
+          "normalized_unit_price_brl": 679.9,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.telhanorte.com.br/tanque-green-1000-litros-acqualimp-2432498/p",
+          "final_url": "https://www.telhanorte.com.br/tanque-green-1000-litros-acqualimp-2432498/p",
+          "http_status": 200,
+          "verification_method": "VTEX catalog search returned available 1000 L Acqualimp tanque/caixa at Price 679.9; URL ends with /p. Arithmetic: R$679.90 / 1 unidade = R$679.90/unidade.",
+          "caveats": [
+            "Higher-priced alternate 1000 L Acqualimp listing; seed +Green at R$499,90 preferred."
+          ]
+        }
+      ],
+      "winner": {
+        "matched_product": "Caixa d'Água 1000 Litros +Green em Polietileno Acqualimp",
+        "sku": "2365006",
+        "seller": "Telhanorte",
+        "specifications": {
+          "brand": "Acqualimp",
+          "line": "+Green",
+          "material": "polietileno",
+          "capacity_l": 1000
+        },
+        "package_size": "1 unidade (1000 L)",
+        "displayed_price_brl": 499.9,
+        "normalized_unit_price_brl": 499.9,
+        "unit": "unidade",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.telhanorte.com.br/caixa-de-aguagreen-1000-litros-acqualimp-2365006/p",
+        "final_url": "https://www.telhanorte.com.br/caixa-de-aguagreen-1000-litros-acqualimp-2365006/p",
+        "http_status": 200,
+        "verification_method": "Seed /p page loaded; H1 Caixa d'Água Acqualimp +Green 1000 Litros; visible site price R$499,90; Estoque Disponível; VTEX offer Price 499.9. Arithmetic: R$499.90 / 1 unidade = R$499.90/unidade.",
+        "caveats": [
+          "Lowest verified quantity-1 1000 L water tank among available Acqualimp listings.",
+          "Optional Pix discount callout appeared on page; recorded the main displayed site/card price R$499,90.",
+          "Freight not calculated for CEP 13380-000; freight_brl left null."
+        ]
+      },
+      "no_match_reason": null
+    }
+  ]
+}
