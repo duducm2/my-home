@@ -36,28 +36,52 @@ def _first_line(text: str) -> str:
     return ""
 
 
+def _pathspecs(repo: Path, data_files: list[Path] | None) -> list[str]:
+    """Build git pathspecs for app data, skipping gitignored paths.
+
+    Passing every file under data/ to ``git add`` fails when backups match
+    ``.gitignore`` (``*.bak``, ``.backups/``). Staging the ``data`` tree (or
+    only non-ignored explicit paths) lets git skip those silently.
+    """
+    if data_files is None:
+        data_root = repo / "data"
+        if not data_root.is_dir():
+            raise GitError("no data files found to push")
+        return ["data"]
+
+    rels: list[str] = []
+    for data_file in data_files:
+        absolute = (repo / data_file).resolve()
+        if absolute.is_file():
+            rels.append(Path(data_file).as_posix())
+    if not rels:
+        raise GitError("no data files found to push")
+
+    ignored = _run(repo, ["check-ignore", "--", *rels])
+    ignored_set: set[str] = set()
+    if ignored.returncode in (0, 1):
+        ignored_set = {
+            line.strip().replace("\\", "/")
+            for line in ignored.stdout.splitlines()
+            if line.strip()
+        }
+    kept = [
+        rel for rel in rels if rel.replace("\\", "/") not in ignored_set
+    ]
+    if not kept:
+        raise GitError("no data files found to push")
+    return kept
+
+
 def push_expenses(repo_root: Path, data_files: list[Path] | None = None) -> dict[str, Any]:
     """Stage app data files, commit if dirty, then push to origin."""
     repo = repo_root.resolve()
     if not (repo / ".git").exists():
         raise GitError("not a git repository")
 
-    if data_files is None:
-        data_root = repo / "data"
-        data_files = sorted(
-            path.relative_to(repo)
-            for path in data_root.rglob("*")
-            if path.is_file()
-        )
-    rels = []
-    for data_file in data_files:
-        absolute = (repo / data_file).resolve()
-        if absolute.is_file():
-            rels.append(data_file.as_posix())
-    if not rels:
-        raise GitError("no data files found to push")
+    pathspecs = _pathspecs(repo, data_files)
 
-    status = _run(repo, ["status", "--porcelain", "--", *rels])
+    status = _run(repo, ["status", "--porcelain", "--", *pathspecs])
     if status.returncode != 0:
         raise GitError(_first_line(status.stderr) or "status failed")
 
@@ -66,7 +90,7 @@ def push_expenses(repo_root: Path, data_files: list[Path] | None = None) -> dict
     message = ""
 
     if status.stdout.strip():
-        add = _run(repo, ["add", "--", *rels])
+        add = _run(repo, ["add", "--", *pathspecs])
         if add.returncode != 0:
             raise GitError(_first_line(add.stderr) or "add failed")
 

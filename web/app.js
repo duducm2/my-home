@@ -45,6 +45,7 @@
     paymentProjectionScale: "day",
     ganttStatusFilter: "",
     ganttPriorityFilter: 0,
+    ganttQuickFilter: "",
     lastAutoOutreachMessage: "",
     expenseCategoryFilters: new Set(),
     expenseQuickFilter: "",
@@ -74,6 +75,7 @@
     houseNameInput: $("house-name-input"),
     houseNameStatus: $("house-name-status"),
     model3dHouseName: $("model3d-house-name"),
+    dashboardLoading: $("dashboard-loading"),
     btnPush: $("btn-push"),
     pushStatus: $("push-status"),
     dashTotalAll: $("dash-total-all"),
@@ -160,6 +162,8 @@
     search: $("filter-search"),
     expenseQuickFind: $("expense-quick-find"),
     expenseQuickFilter: $("expense-quick-filter"),
+    ganttQuickFind: $("gantt-quick-find"),
+    ganttQuickFilter: $("gantt-quick-filter"),
     quotationVendorFilterSidebar: $("filter-quotation-vendor"),
     supplierQuotationView: $("supplier-quotation-view"),
     supplierQuotationTitle: $("supplier-quotation-title"),
@@ -765,6 +769,7 @@
 
   function openExpenseQuickFind() {
     if (!els.expenseQuickFind || !els.expenseQuickFilter) return;
+    closeGanttQuickFind({ clear: false });
     const wasOnExpenses = !els.viewExpenses.classList.contains("hidden");
     if (!wasOnExpenses) showView("expenses");
     els.expenseQuickFind.classList.remove("hidden");
@@ -783,6 +788,88 @@
       els.expenseQuickFind.classList.add("hidden");
       els.expenseQuickFind.hidden = true;
     }
+  }
+
+  function isGanttQuickFindOpen() {
+    return Boolean(
+      els.ganttQuickFind && !els.ganttQuickFind.classList.contains("hidden"),
+    );
+  }
+
+  function openGanttQuickFind() {
+    if (!els.ganttQuickFind || !els.ganttQuickFilter) return;
+    closeExpenseQuickFind({ clear: false });
+    const ganttVisible = !document
+      .getElementById("view-gantt")
+      ?.classList.contains("hidden");
+    if (!ganttVisible) showView("gantt");
+    els.ganttQuickFind.classList.remove("hidden");
+    els.ganttQuickFind.hidden = false;
+    els.ganttQuickFilter.focus();
+    els.ganttQuickFilter.select();
+  }
+
+  function closeGanttQuickFind({ clear = true } = {}) {
+    if (clear) {
+      state.ganttQuickFilter = "";
+      if (els.ganttQuickFilter) els.ganttQuickFilter.value = "";
+      renderGantt();
+    }
+    if (els.ganttQuickFind) {
+      els.ganttQuickFind.classList.add("hidden");
+      els.ganttQuickFind.hidden = true;
+    }
+  }
+
+  function matchesGanttQuickFilter(task) {
+    const quick = normalizeFilterText(state.ganttQuickFilter);
+    if (!quick) return true;
+    return (
+      normalizeFilterText(task.title).includes(quick) ||
+      normalizeFilterText(task.description).includes(quick)
+    );
+  }
+
+  function firstGanttQuickMatch() {
+    const quick = normalizeFilterText(state.ganttQuickFilter);
+    const pool = visibleGanttTasks();
+    if (!quick)
+      return pool.find((task) => task.activity_type !== "macro") || pool[0];
+    return (
+      pool.find(
+        (task) =>
+          task.activity_type !== "macro" && matchesGanttQuickFilter(task),
+      ) || pool.find((task) => matchesGanttQuickFilter(task))
+    );
+  }
+
+  function selectFirstFilteredGanttTask() {
+    const first = firstGanttQuickMatch();
+    if (!first) {
+      setStatus(
+        els.appStatus,
+        "err",
+        "Nenhuma atividade corresponde ao filtro.",
+      );
+      return false;
+    }
+    closeGanttQuickFind({ clear: false });
+    if (first.activity_type !== "macro" && first.parent_id) {
+      state.expandedMacros.add(first.parent_id);
+      persistExpandedMacros();
+    }
+    renderGantt();
+    selectGanttTask(first.id);
+    requestAnimationFrame(() => {
+      const row =
+        els.gantt?.querySelector(
+          `[data-task-label="${CSS.escape(first.id)}"]`,
+        ) ||
+        els.gantt?.querySelector(`[data-track-id="${CSS.escape(first.id)}"]`);
+      row?.scrollIntoView({ block: "center", behavior: "smooth" });
+      openTaskDialog(first);
+    });
+    return true;
   }
 
   function selectFirstFilteredExpense() {
@@ -1948,8 +2035,20 @@
 
   function visibleGanttTasks() {
     const visible = [];
+    const quick = normalizeFilterText(state.ganttQuickFilter);
     macroTasks().forEach((macro) => {
       const children = childTasks(macro.id).filter(matchesGanttFilters);
+      const matchingChildren = quick
+        ? children.filter(matchesGanttQuickFilter)
+        : children;
+      const macroMatches = !quick || matchesGanttQuickFilter(macro);
+      if (quick) {
+        if (!macroMatches && !matchingChildren.length) return;
+        visible.push(macro);
+        if (matchingChildren.length) visible.push(...matchingChildren);
+        else if (macroMatches) visible.push(...children);
+        return;
+      }
       if (
         (state.ganttStatusFilter || state.ganttPriorityFilter) &&
         !children.length
@@ -1973,6 +2072,7 @@
     const previousExpanded = new Set(state.expandedMacros);
     const previousStatusFilter = state.ganttStatusFilter;
     const previousPriorityFilter = state.ganttPriorityFilter;
+    const previousQuickFilter = state.ganttQuickFilter;
     const previousTitle = document.title;
     const houseName =
       String(
@@ -1991,6 +2091,9 @@
     state.expandedMacros = new Set(macroTasks().map((item) => item.id));
     state.ganttStatusFilter = "";
     state.ganttPriorityFilter = 0;
+    state.ganttQuickFilter = "";
+    if (els.ganttQuickFilter) els.ganttQuickFilter.value = "";
+    closeGanttQuickFind({ clear: false });
     showView("gantt");
     renderGantt();
     document.body.classList.add("printing-gantt");
@@ -2021,6 +2124,9 @@
       state.expandedMacros = previousExpanded;
       state.ganttStatusFilter = previousStatusFilter;
       state.ganttPriorityFilter = previousPriorityFilter;
+      state.ganttQuickFilter = previousQuickFilter;
+      if (els.ganttQuickFilter)
+        els.ganttQuickFilter.value = previousQuickFilter;
       renderGantt();
       els.btnPrintGantt.disabled = false;
       window.removeEventListener("afterprint", restore);
@@ -2241,7 +2347,9 @@
       .join("");
     if (!tasks.length) {
       els.gantt.innerHTML = `<div class="gantt-empty">${
-        state.ganttStatusFilter || state.ganttPriorityFilter
+        state.ganttStatusFilter ||
+        state.ganttPriorityFilter ||
+        state.ganttQuickFilter.trim()
           ? "Nenhuma atividade corresponde aos filtros selecionados."
           : "Nenhuma tarefa. Crie a primeira para começar o cronograma."
       }</div>`;
@@ -2674,7 +2782,7 @@
           task.date_status = "confirmed";
           renderGantt();
           try {
-            await saveTaskRecord(task);
+            applyTaskSaveSideEffects(await saveTaskRecord(task));
           } catch (error) {
             Object.assign(task, previous);
             renderGantt();
@@ -2698,10 +2806,13 @@
       body: JSON.stringify(task),
     });
     state.tasks = payload.tasks || state.tasks;
-    if (payload.expense_state) applyExpenseState(payload.expense_state);
+    return payload;
+  }
+
+  function applyTaskSaveSideEffects(payload) {
+    if (payload?.expense_state) applyExpenseState(payload.expense_state);
     renderGantt();
     renderMacroTimeline();
-    return payload;
   }
 
   function snapshotTask(task) {
@@ -2837,12 +2948,17 @@
         const created = await saveTaskRecord(
           cloneTaskPayload(root, { parentId }),
         );
+        applyTaskSaveSideEffects(created);
         lastId = created.task_id || lastId;
         if (root.activity_type === "macro" && lastId) {
           state.expandedMacros.add(lastId);
           persistExpandedMacros();
           for (const child of bundle.children || []) {
-            await saveTaskRecord(cloneTaskPayload(child, { parentId: lastId }));
+            applyTaskSaveSideEffects(
+              await saveTaskRecord(
+                cloneTaskPayload(child, { parentId: lastId }),
+              ),
+            );
           }
         }
       }
@@ -3158,8 +3274,7 @@
       const result = await saveTaskRecord(payload);
       state.tasks = result.tasks;
       els.taskDialog.close();
-      renderGantt();
-      renderMacroTimeline();
+      applyTaskSaveSideEffects(result);
       setStatus(
         els.appStatus,
         "ok",
@@ -3553,8 +3668,8 @@
         ? addDays(previous.date, 30)
         : addDays(iso(new Date()), 7),
       amount: 0,
-      date_status: "confirmed",
-      source: "manual",
+      date_status: "estimated",
+      source: "presumed",
       notes: "",
     });
     renderExpensePayments();
@@ -4586,6 +4701,42 @@
 
   async function loadCashflow() {
     renderCashflow(await request("/api/cashflow"));
+  }
+
+  let dashboardRefreshInFlight = null;
+
+  function setDashboardLoading(on) {
+    if (!els.dashboardLoading) return;
+    els.dashboardLoading.classList.toggle("hidden", !on);
+    els.dashboardLoading.hidden = !on;
+    els.dashboardLoading.setAttribute("aria-busy", on ? "true" : "false");
+  }
+
+  async function refreshDashboard() {
+    if (dashboardRefreshInFlight) return dashboardRefreshInFlight;
+    showView("dashboard");
+    setDashboardLoading(true);
+    setStatus(els.appStatus, "", "Atualizando dashboard…");
+    dashboardRefreshInFlight = (async () => {
+      try {
+        await flushQuickTasks();
+        await Promise.all([
+          loadState(),
+          loadCashflow(),
+          loadTasks(),
+          loadQuickTasks(),
+        ]);
+        renderMacroTimeline();
+        renderDashboard();
+        setStatus(els.appStatus, "ok", "Dashboard atualizado.");
+      } catch (error) {
+        setStatus(els.appStatus, "err", error.message);
+      } finally {
+        setDashboardLoading(false);
+        dashboardRefreshInFlight = null;
+      }
+    })();
+    return dashboardRefreshInFlight;
   }
 
   async function loadTasks() {
@@ -5649,6 +5800,9 @@
     const isModel3D = name === "model3d";
     const wasModel3D = document.body.classList.contains("model3d-active");
     const wasOnExpenses = !els.viewExpenses.classList.contains("hidden");
+    const wasOnGantt = !document
+      .getElementById("view-gantt")
+      ?.classList.contains("hidden");
     document
       .querySelectorAll(".view")
       .forEach((view) =>
@@ -5670,6 +5824,11 @@
     } else if (name !== "expenses" && wasOnExpenses) {
       resetExpenseQuickFilter();
     }
+    if (name === "gantt" && !wasOnGantt) {
+      closeGanttQuickFind({ clear: true });
+    } else if (name !== "gantt" && wasOnGantt) {
+      closeGanttQuickFind({ clear: true });
+    }
     if (isModel3D) {
       renderHouse3D();
       requestAnimationFrame(() =>
@@ -5686,20 +5845,22 @@
     }
   }
 
-  document
-    .querySelectorAll("[data-view]")
-    .forEach((button) =>
-      button.addEventListener("click", () => showView(button.dataset.view)),
-    );
+  document.querySelectorAll("[data-view]").forEach((button) =>
+    button.addEventListener("click", () => {
+      if (button.dataset.view === "dashboard") refreshDashboard();
+      else showView(button.dataset.view);
+    }),
+  );
   document.querySelectorAll("[data-view-link]").forEach((link) =>
     link.addEventListener("click", (event) => {
       event.preventDefault();
-      showView(link.dataset.viewLink);
+      if (link.dataset.viewLink === "dashboard") refreshDashboard();
+      else showView(link.dataset.viewLink);
     }),
   );
   $("home-link").addEventListener("click", (event) => {
     event.preventDefault();
-    showView("dashboard");
+    refreshDashboard();
   });
   els.btnExportBlueprint.addEventListener("click", exportBlueprintJson);
   document.querySelectorAll("[data-blueprint-action]").forEach((button) => {
@@ -5831,6 +5992,15 @@
       }
       if (
         event.key === "Escape" &&
+        isGanttQuickFindOpen() &&
+        !els.taskDialog?.open
+      ) {
+        event.preventDefault();
+        closeGanttQuickFind({ clear: true });
+        return;
+      }
+      if (
+        event.key === "Escape" &&
         isExpenseQuickFindOpen() &&
         !els.dialog?.open &&
         !els.quotationDialog?.open
@@ -5856,10 +6026,16 @@
         !els.dialog?.open &&
         !els.quotationDialog?.open &&
         !els.taskDialog?.open &&
-        (!typing || document.activeElement === els.expenseQuickFilter)
+        (!typing ||
+          document.activeElement === els.expenseQuickFilter ||
+          document.activeElement === els.ganttQuickFilter)
       ) {
         event.preventDefault();
-        openExpenseQuickFind();
+        const ganttVisible = !document
+          .getElementById("view-gantt")
+          ?.classList.contains("hidden");
+        if (ganttVisible) openGanttQuickFind();
+        else openExpenseQuickFind();
         return;
       }
       if (
@@ -5867,7 +6043,7 @@
         !document.getElementById("view-model3d").classList.contains("hidden")
       ) {
         event.preventDefault();
-        showView("dashboard");
+        refreshDashboard();
         return;
       }
       const ganttVisible = !document
@@ -5931,12 +6107,13 @@
       }[event.key.toLowerCase()];
       if (view) {
         event.preventDefault();
-        showView(view);
+        if (view === "dashboard") refreshDashboard();
+        else showView(view);
       }
     },
     true,
   );
-  els.btnModel3dHome.addEventListener("click", () => showView("dashboard"));
+  els.btnModel3dHome.addEventListener("click", () => refreshDashboard());
   els.btnModel3dHelp.addEventListener("click", () =>
     els.model3dHelpDialog.showModal(),
   );
@@ -6048,6 +6225,23 @@
       event.preventDefault();
       event.stopPropagation();
       selectFirstFilteredExpense();
+    }
+  });
+  els.ganttQuickFilter?.addEventListener("input", () => {
+    state.ganttQuickFilter = els.ganttQuickFilter.value;
+    renderGantt();
+  });
+  els.ganttQuickFilter?.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      event.preventDefault();
+      event.stopPropagation();
+      closeGanttQuickFind({ clear: true });
+      return;
+    }
+    if (event.key === "Enter") {
+      event.preventDefault();
+      event.stopPropagation();
+      selectFirstFilteredGanttTask();
     }
   });
   els.toggleExpenseQuotePills?.addEventListener("change", () => {
@@ -6586,11 +6780,7 @@
         event.preventDefault();
         event.stopPropagation();
         event.stopImmediatePropagation();
-        if (typeof els.taskForm.requestSubmit === "function") {
-          els.taskForm.requestSubmit();
-        } else {
-          submitTask(event);
-        }
+        submitTask(event);
         return;
       }
       if ((event.ctrlKey || event.metaKey) && !event.shiftKey) {

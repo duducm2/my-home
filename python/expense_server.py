@@ -302,7 +302,8 @@ class ExpenseHandler(BaseHTTPRequestHandler):
             self._serve_file(target, "application/pdf")
             return
         if path == "/api/state":
-            self._json(200, get_store(self.data_dir).state())
+            # Keep payday chart aligned with current Gantt allocation dates.
+            self._json(200, get_store(self.data_dir).sync_all_allocation_payments())
             return
         if path == "/api/tasks":
             self._json(200, get_tasks(self.data_dir).state())
@@ -520,11 +521,13 @@ class ExpenseHandler(BaseHTTPRequestHandler):
                     ordered_ids,
                     str(payload.get("moved_id") or ""),
                 )
-                result["expense_state"] = get_store(self.data_dir).state()
+                store = get_store(self.data_dir)
+                result["expense_state"] = store.sync_all_allocation_payments()
                 self._json(200, result)
             elif path == "/api/tasks":
                 result = get_tasks(self.data_dir).upsert(payload)
-                result["expense_state"] = get_store(self.data_dir).state()
+                store = get_store(self.data_dir)
+                result["expense_state"] = store.sync_all_allocation_payments()
                 self._json(200, result)
             elif path == "/api/quick-tasks":
                 self._json(200, get_quick_tasks(self.data_dir).upsert(payload))
@@ -667,7 +670,8 @@ class ExpenseHandler(BaseHTTPRequestHandler):
                 self._json(200, result)
             elif path.startswith("/api/tasks/"):
                 result = get_tasks(self.data_dir).delete(path[len("/api/tasks/") :])
-                result["expense_state"] = get_store(self.data_dir).state()
+                store = get_store(self.data_dir)
+                result["expense_state"] = store.sync_all_allocation_payments()
                 self._json(200, result)
             elif path.startswith("/api/quick-tasks/"):
                 self._json(

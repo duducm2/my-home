@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="color-scheme" content="dark" />
     <title>my-home</title>
-    <link rel="stylesheet" href="/styles.css?v=20260918-quick-find-float" />
+    <link rel="stylesheet" href="/styles.css?v=20260918-dashboard-refresh" />
     <link rel="stylesheet" href="/tasks.css?v=20260918-manual-payments" />
     <script type="importmap">
       { "imports": { "three": "/vendor/three/three.module.js" } }
@@ -80,6 +80,19 @@
       ></p>
 
       <section id="view-dashboard" class="view">
+        <div
+          id="dashboard-loading"
+          class="dashboard-loading hidden"
+          hidden
+          aria-live="polite"
+          aria-busy="false"
+        >
+          <div class="dashboard-loading-card">
+            <span class="dashboard-spinner" aria-hidden="true"></span>
+            <strong>Atualizando dashboard…</strong>
+            <small>Recarregando despesas, cronograma e fluxo de caixa</small>
+          </div>
+        </div>
         <div class="dashboard-planning-row">
           <section class="panel dashboard-timeline-section">
             <div class="section-heading-row">
@@ -288,8 +301,8 @@
                   Gastos por data de pagamento
                 </h3>
                 <p class="section-sub">
-                  Acumulado dos pagamentos cadastrados nas despesas e nos
-                  contratos ao longo das datas.
+                  Acumulado dos pagamentos cadastrados nas despesas ao longo das
+                  datas.
                 </p>
               </div>
               <div class="payment-projection-controls">
@@ -489,6 +502,29 @@
           id="expense-quick-filter"
           type="search"
           placeholder="Digite letras do nome da despesa…"
+          autocomplete="off"
+          spellcheck="false"
+          aria-keyshortcuts="Shift+F"
+        />
+        <span class="expense-quick-find-hint"
+          ><kbd>Enter</kbd> abre a 1ª · <kbd>Esc</kbd> limpa ·
+          <kbd>Shift+F</kbd></span
+        >
+      </div>
+
+      <div
+        id="gantt-quick-find"
+        class="expense-quick-find hidden"
+        hidden
+        role="search"
+      >
+        <label class="expense-quick-find-label" for="gantt-quick-filter"
+          >Filtrar atividades</label
+        >
+        <input
+          id="gantt-quick-filter"
+          type="search"
+          placeholder="Digite letras do título da atividade…"
           autocomplete="off"
           spellcheck="false"
           aria-keyshortcuts="Shift+F"
@@ -2022,6 +2058,6 @@
     </dialog>
 
     <datalist id="category-suggestions"></datalist>
-    <script src="/app.js?v=20260918-ctrl-enter-dialog"></script>
+    <script src="/app.js?v=20260918-gantt-payday-sync"></script>
   </body>
 </html>

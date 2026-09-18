@@ -1,0 +1,233 @@
+from __future__ import annotations
+
+import csv
+import json
+import sys
+import tempfile
+import unittest
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / "python"))
+
+from expense_store import HEADERS, ExpenseStore  # noqa: E402
+from task_store import TaskStore  # noqa: E402
+
+
+class AllocationPaymentSyncTests(unittest.TestCase):
+    def setUp(self) -> None:
+        self.temporary = tempfile.TemporaryDirectory()
+        self.data_dir = Path(self.temporary.name)
+        manifest = {
+            "defaults": {"expense": "home-expense"},
+            "icons": {
+                "home-expense": {"label": "Despesa", "filename": "home-expense.png"},
+                "paint": {"label": "Tinta", "filename": "paint.png"},
+            },
+        }
+        (self.data_dir / "icon-manifest.json").write_text(
+            json.dumps(manifest), encoding="utf-8"
+        )
+        with (self.data_dir / "expenses.csv").open(
+            "w", encoding="utf-8", newline=""
+        ) as handle:
+            writer = csv.DictWriter(handle, fieldnames=HEADERS)
+            writer.writeheader()
+            writer.writerow(
+                {
+                    "id": "EXP_EMPTY",
+                    "record_type": "material",
+                    "category": "Material",
+                    "description": "Sem pagamento",
+                    "icon_key": "paint",
+                    "unit": "unidade",
+                    "default_expected_quantity": "1",
+                    "payments_json": "[]",
+                }
+            )
+            writer.writerow(
+                {
+                    "id": "EXP_OLD",
+                    "record_type": "material",
+                    "category": "Material",
+                    "description": "Data antiga",
+                    "icon_key": "paint",
+                    "unit": "unidade",
+                    "default_expected_quantity": "1",
+                    "payments_json": json.dumps(
+                        [
+                            {
+                                "id": "PAY_001",
+                                "date": "2027-02-02",
+                                "amount": 100.0,
+                                "date_status": "estimated",
+                                "source": "presumed",
+                                "notes": "",
+                            }
+                        ],
+                        ensure_ascii=False,
+                        separators=(",", ":"),
+                    ),
+                }
+            )
+            writer.writerow(
+                {
+                    "id": "EXP_CONFIRMED",
+                    "record_type": "service",
+                    "category": "Serviço",
+                    "description": "Legado confirmed",
+                    "icon_key": "home-expense",
+                    "unit": "unidade",
+                    "default_expected_quantity": "1",
+                    "payments_json": json.dumps(
+                        [
+                            {
+                                "id": "PAY_001",
+                                "date": "2026-09-17",
+                                "amount": 50.0,
+                                "date_status": "confirmed",
+                                "source": "manual",
+                                "notes": "hist",
+                            }
+                        ],
+                        ensure_ascii=False,
+                        separators=(",", ":"),
+                    ),
+                }
+            )
+        self.expenses = ExpenseStore(self.data_dir)
+        self.tasks = TaskStore(self.data_dir)
+        macro = self.tasks.upsert(
+            self.payload(
+                title="Macro",
+                activity_type="macro",
+                parent_id="",
+                expense_allocations=[],
+            )
+        )
+        self.macro_id = macro["task_id"]
+
+    def tearDown(self) -> None:
+        self.temporary.cleanup()
+
+    def payload(self, **overrides):
+        item = {
+            "title": "Atividade",
+            "description": "Teste",
+            "priority": 1,
+            "sequence": 1,
+            "start_date": "2026-09-17",
+            "end_date": "2026-10-05",
+            "status": "pending",
+            "expense_allocations": [],
+            "icon_key": "home-expense",
+            "date_status": "estimated",
+            "activity_type": "task",
+            "parent_id": getattr(self, "macro_id", ""),
+        }
+        item.update(overrides)
+        return item
+
+    def test_legacy_confirmed_normalizes_to_estimated_presumed(self) -> None:
+        expense = next(
+            item
+            for item in self.expenses.list_expenses()
+            if item["id"] == "EXP_CONFIRMED"
+        )
+        payment = expense["payments"][0]
+        self.assertEqual(payment["date_status"], "estimated")
+        self.assertEqual(payment["source"], "presumed")
+        self.assertEqual(payment["date"], "2026-09-17")
+        self.assertEqual(payment["notes"], "hist")
+
+    def test_upsert_creates_missing_payment_at_task_start(self) -> None:
+        self.tasks.upsert(
+            self.payload(
+                title="Demolição",
+                expense_allocations=[
+                    {"expense_id": "EXP_EMPTY", "expected_quantity": 1}
+                ],
+            )
+        )
+        state = self.expenses.sync_all_allocation_payments()
+        expense = next(item for item in state["expenses"] if item["id"] == "EXP_EMPTY")
+        self.assertEqual(len(expense["payments"]), 1)
+        self.assertEqual(expense["payments"][0]["date"], "2026-09-17")
+        self.assertEqual(expense["payments"][0]["source"], "task_start")
+        self.assertEqual(expense["payments"][0]["date_status"], "estimated")
+
+    def test_task_start_change_moves_presumed_payments(self) -> None:
+        created = self.tasks.upsert(
+            self.payload(
+                title="Ferramentas",
+                end_date="2026-09-20",
+                expense_allocations=[{"expense_id": "EXP_OLD", "expected_quantity": 1}],
+            )
+        )
+        self.expenses.sync_all_allocation_payments()
+        self.tasks.upsert(
+            self.payload(
+                id=created["task_id"],
+                title="Ferramentas",
+                start_date="2026-10-01",
+                end_date="2026-10-05",
+                expense_allocations=[{"expense_id": "EXP_OLD", "expected_quantity": 1}],
+            )
+        )
+        state = self.expenses.sync_all_allocation_payments()
+        expense = next(item for item in state["expenses"] if item["id"] == "EXP_OLD")
+        self.assertEqual(expense["payments"][0]["date"], "2026-10-01")
+        self.assertEqual(expense["payments"][0]["source"], "task_start")
+
+    def test_multi_task_allocation_uses_earliest_start(self) -> None:
+        self.tasks.upsert(
+            self.payload(
+                title="Primeira",
+                start_date="2026-10-01",
+                end_date="2026-10-05",
+                expense_allocations=[{"expense_id": "EXP_OLD", "expected_quantity": 1}],
+            )
+        )
+        self.tasks.upsert(
+            self.payload(
+                title="Segunda",
+                start_date="2026-09-17",
+                end_date="2026-09-20",
+                expense_allocations=[{"expense_id": "EXP_OLD", "expected_quantity": 1}],
+            )
+        )
+        state = self.expenses.sync_all_allocation_payments()
+        expense = next(item for item in state["expenses"] if item["id"] == "EXP_OLD")
+        self.assertEqual(expense["payments"][0]["date"], "2026-09-17")
+
+    def test_validate_payments_coerces_confirmed_input(self) -> None:
+        result = self.expenses.upsert_expense(
+            {
+                "id": "EXP_CONFIRMED",
+                "record_type": "service",
+                "category": "Serviço",
+                "description": "Legado confirmed",
+                "unit": "unidade",
+                "default_expected_quantity": 1,
+                "payments": [
+                    {
+                        "id": "PAY_001",
+                        "date": "2026-11-01",
+                        "amount": 12,
+                        "date_status": "confirmed",
+                        "source": "manual",
+                    }
+                ],
+            }
+        )
+        payment = result["state"]["expenses"]
+        payment = next(item for item in payment if item["id"] == "EXP_CONFIRMED")[
+            "payments"
+        ][0]
+        self.assertEqual(payment["date_status"], "estimated")
+        self.assertEqual(payment["source"], "presumed")
+        self.assertEqual(payment["date"], "2026-11-01")
+
+
+if __name__ == "__main__":
+    unittest.main()

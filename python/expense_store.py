@@ -85,6 +85,7 @@ class ExpenseStore:
         self.attachment_store = ExpenseAttachmentStore(self.data_dir)
         self._migrate_schema()
         self._migrate_contract_links()
+        self._migrate_presumed_payments()
 
     def _migrate_contract_links(self) -> None:
         """Reconcile the legacy single contract projection from contract authority."""
@@ -574,11 +575,24 @@ class ExpenseStore:
             except ValueError:
                 continue
             valid_dates.append(task_date)
-            expense_id = str(task.get("expense_id") or "").strip()
-            if expense_id and (
-                expense_id not in linked or task_date.isoformat() < linked[expense_id]
-            ):
-                linked[expense_id] = task_date.isoformat()
+            if task.get("activity_type") == "macro":
+                continue
+            expense_ids: list[str] = []
+            allocations = task.get("expense_allocations")
+            if isinstance(allocations, list):
+                for allocation in allocations:
+                    if not isinstance(allocation, dict):
+                        continue
+                    expense_id = str(allocation.get("expense_id") or "").strip()
+                    if expense_id:
+                        expense_ids.append(expense_id)
+            legacy_id = str(task.get("expense_id") or "").strip()
+            if legacy_id:
+                expense_ids.append(legacy_id)
+            start_iso = task_date.isoformat()
+            for expense_id in expense_ids:
+                if expense_id not in linked or start_iso < linked[expense_id]:
+                    linked[expense_id] = start_iso
         start = min(valid_dates, default=date.today())
         end = max(valid_dates, default=start + timedelta(days=365))
         if end <= start:
@@ -654,24 +668,52 @@ class ExpenseStore:
             amount = round(_parse_value(raw.get("amount")), 2)
             if not math.isfinite(amount) or amount < 0:
                 raise ValueError("payment amount must be a finite nonnegative number")
-            date_status = str(raw.get("date_status") or "confirmed").strip()
-            if date_status not in {"estimated", "confirmed"}:
-                raise ValueError("payment date_status must be estimated or confirmed")
+            raw_source = str(raw.get("source") or "presumed").strip()[:40]
+            if raw_source in {"", "manual", "confirmed"}:
+                raw_source = "presumed"
             result.append(
                 {
                     "id": payment_id,
                     "date": payment_date,
                     "amount": amount,
-                    "date_status": date_status,
-                    "source": str(raw.get("source") or "manual").strip()[:40],
+                    "date_status": "estimated",
+                    "source": raw_source,
                     "notes": str(raw.get("notes") or "").strip()[:500],
                 }
             )
         result.sort(key=lambda item: (item["date"], item["id"]))
         return result
 
+    def _migrate_presumed_payments(self) -> None:
+        """Normalize legacy confirmed/manual payment flags to presumed estimates."""
+        with self._lock:
+            rows = self._read_rows()
+            changed = False
+            for row in rows:
+                raw = str(row.get("payments_json") or "").strip()
+                if not raw or raw == "[]":
+                    continue
+                try:
+                    payments = self._parse_payments(row)
+                except ValueError:
+                    continue
+                normalized = self._validate_payments(payments)
+                serialized = self._serialize_payments(normalized)
+                if serialized != row.get("payments_json"):
+                    row["payments_json"] = serialized
+                    row["updated_at"] = now_stamp()
+                    changed = True
+            if changed:
+                self._write_rows(rows)
+
+    def _payment_amount_for_row(self, row: dict[str, str]) -> float:
+        quotations = self._parse_quotations(row)
+        allocations = self._allocation_context().get(str(row.get("id") or ""), [])
+        scenario = self._scenario(row, quotations, allocations)
+        return round(float(scenario.get("planned") or 0), 2)
+
     def _sync_payment_total(self, row: dict[str, str]) -> None:
-        # Quotation selection no longer mutates confirmed payment schedules.
+        # Quotation selection no longer mutates presumed payment schedules.
         return
 
     def _allocation_context(self) -> dict[str, list[dict[str, Any]]]:
@@ -1396,44 +1438,60 @@ class ExpenseStore:
             "state": self.state(),
         }
 
+    def sync_all_allocation_payments(self) -> dict[str, Any]:
+        """Snap allocated expense payments to each expense's earliest task start."""
+        linked, _, _ = self._task_payment_context()
+        with self._lock:
+            rows = self._read_rows()
+            by_id = {str(row.get("id") or ""): row for row in rows}
+            changed = False
+            for expense_id, start_date in linked.items():
+                row = by_id.get(expense_id)
+                if not row:
+                    continue
+                payments = self._parse_payments(row)
+                if not payments:
+                    payments = [
+                        {
+                            "id": "PAY_001",
+                            "date": start_date,
+                            "amount": self._payment_amount_for_row(row),
+                            "date_status": "estimated",
+                            "source": "task_start",
+                            "notes": "",
+                        }
+                    ]
+                    row_changed = True
+                else:
+                    row_changed = False
+                    for payment in payments:
+                        if (
+                            payment.get("date") != start_date
+                            or payment.get("source") != "task_start"
+                            or payment.get("date_status") != "estimated"
+                        ):
+                            row_changed = True
+                        payment["date"] = start_date
+                        payment["source"] = "task_start"
+                        payment["date_status"] = "estimated"
+                    payments.sort(key=lambda item: (item["date"], item["id"]))
+                if row_changed:
+                    row["payments_json"] = self._serialize_payments(payments)
+                    row["updated_at"] = now_stamp()
+                    changed = True
+            if changed:
+                self._write_rows(rows)
+        return self.state()
+
     def sync_task_payment_date(
         self, expense_id: Any, start_date: Any
     ) -> dict[str, Any] | None:
+        """Legacy single-expense hook; prefer sync_all_allocation_payments."""
+        del start_date
         expense_id = str(expense_id or "").strip()
-        start_date = str(start_date or "").strip()
         if not expense_id:
             return None
-        try:
-            date.fromisoformat(start_date)
-        except ValueError as exc:
-            raise ValueError("task start_date must use YYYY-MM-DD") from exc
-        with self._lock:
-            rows = self._read_rows()
-            row = self._expense_row(rows, expense_id)
-            payments = self._parse_payments(row)
-            linked = [
-                payment
-                for payment in payments
-                if payment.get("source") == "task_start"
-                and payment.get("date_status") == "estimated"
-            ]
-            if (
-                not linked
-                and len(payments) == 1
-                and payments[0].get("source") == "presumed"
-                and payments[0].get("date_status") == "estimated"
-            ):
-                linked = payments
-                linked[0]["source"] = "task_start"
-            if not linked:
-                return self.state()
-            for payment in linked:
-                payment["date"] = start_date
-            payments.sort(key=lambda item: (item["date"], item["id"]))
-            row["payments_json"] = self._serialize_payments(payments)
-            row["updated_at"] = now_stamp()
-            self._write_rows(rows)
-        return self.state()
+        return self.sync_all_allocation_payments()
 
     def delete_expense(self, expense_id: str) -> dict[str, Any]:
         expense_id = str(expense_id or "").strip()
