@@ -1963,6 +1963,29 @@ select[multiple] { min-height: 110px; }
   stroke-width: 4;
 }
 
+.payment-day-hit {
+  fill: transparent;
+  stroke: none;
+  pointer-events: all;
+  cursor: pointer;
+}
+
+.payment-day-group.expense-hover-target {
+  outline: none;
+  cursor: pointer;
+}
+
+.payment-day-hover.expense-hover-target {
+  outline: none;
+  cursor: pointer;
+}
+
+.payment-day-hover.expense-hover-target:focus-visible .payment-day-point,
+.payment-day-hover.expense-hover-target:hover .payment-day-point {
+  stroke: var(--gold);
+  stroke-width: 5;
+}
+
 .payment-amount-label {
   fill: #f3b26d;
   font-size: 10px;
@@ -1972,6 +1995,19 @@ select[multiple] { min-height: 110px; }
   stroke-width: 4px;
   stroke-linejoin: round;
   font-variant-numeric: tabular-nums;
+}
+
+.payment-cumulative-total {
+  fill: var(--gold);
+  font-size: 13px;
+  font-weight: 800;
+  stroke-width: 5px;
+}
+
+.payment-day-point.payment-cumulative-point {
+  fill: #171719;
+  stroke: var(--gold);
+  stroke-width: 5;
 }
 
 .payment-today-line {

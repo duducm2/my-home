@@ -23,6 +23,7 @@
     house: null,
     project: null,
     cashflow: null,
+    paymentProjectionByDate: null,
     quotationExpenseId: "",
     quotationImportRows: [],
     quotationPreviewDigest: "",
@@ -1205,6 +1206,11 @@
       day.estimated ||= payment.date_status === "estimated";
     }
     const days = [...grouped.values()];
+    let running = 0;
+    for (const day of days) {
+      running += day.amount;
+      day.cumulative = running;
+    }
     if (!days.length) {
       els.paymentProjectionSummary.textContent =
         "Cadastre pagamentos nas despesas ou contratos.";
@@ -1220,10 +1226,11 @@
     const firstDate = days[0].date;
     const lastDate = days.at(-1).date;
     const span = Math.max(1, dayDiff(firstDate, lastDate));
-    const maximum = Math.max(1, ...days.map((item) => item.amount));
+    const total = days.at(-1).cumulative;
+    const maximum = Math.max(1, total);
     const points = days.map((item) => ({
       x: margin.left + (dayDiff(firstDate, item.date) / span) * plotWidth,
-      y: margin.top + plotHeight - (item.amount / maximum) * plotHeight,
+      y: margin.top + plotHeight - (item.cumulative / maximum) * plotHeight,
       item,
     }));
     const grid = [0, 0.25, 0.5, 0.75, 1]
@@ -1238,19 +1245,34 @@
       today >= firstDate && today <= lastDate
         ? margin.left + (dayDiff(firstDate, today) / span) * plotWidth
         : null;
-    const total = days.reduce((sum, item) => sum + item.amount, 0);
-    els.paymentProjectionSummary.textContent = `${days.length} dias · ${formatMoney(total)}`;
-    els.paymentProjectionChart.innerHTML = `<svg viewBox="0 0 ${width} ${height}" style="min-width:${width}px" role="img" aria-label="Gastos por data de pagamento">${grid}${todayX === null ? "" : `<line x1="${todayX}" y1="${margin.top}" x2="${todayX}" y2="${margin.top + plotHeight}" class="payment-today-line"></line><path d="M ${todayX - 7} ${margin.top + plotHeight + 9} L ${todayX + 7} ${margin.top + plotHeight + 9} L ${todayX} ${margin.top + plotHeight - 3} Z" class="payment-today-marker"><title>Hoje · ${formatPaymentDate(today)}</title></path>`}<polyline points="${polyline}" class="payment-projection-line"></polyline>${points
-      .map(({ x, y, item }) => {
-        const details = item.payments
-          .map(
-            (payment) =>
-              `${payment.description}: ${formatMoney(payment.amount)}`,
-          )
-          .join(" · ");
-        return `<g><line x1="${x}" y1="${margin.top}" x2="${x}" y2="${margin.top + plotHeight}" class="payment-day-line"></line><circle cx="${x}" cy="${y}" r="6" class="payment-day-point"></circle><text x="${x}" y="${Math.max(18, y - 13)}" text-anchor="middle" class="payment-amount-label">${escapeHtml(formatMoney(item.amount))}</text><title>${escapeHtml(`${formatPaymentDate(item.date)} · ${formatMoney(item.amount)} · ${details}`)}</title><text x="${x}" y="${height - 18}" text-anchor="middle" class="cashflow-axis-label">${formatPaymentDate(item.date).slice(0, 5)}</text></g>`;
+    els.paymentProjectionSummary.textContent = `${days.length} dias · acumulado ${formatMoney(total)}`;
+    state.paymentProjectionByDate = new Map(days.map((day) => [day.date, day]));
+    els.paymentProjectionChart.innerHTML = `<svg viewBox="0 0 ${width} ${height}" style="min-width:${width}px" role="img" aria-label="Gastos acumulados por data de pagamento">${grid}${todayX === null ? "" : `<line x1="${todayX}" y1="${margin.top}" x2="${todayX}" y2="${margin.top + plotHeight}" class="payment-today-line"></line><path d="M ${todayX - 7} ${margin.top + plotHeight + 9} L ${todayX + 7} ${margin.top + plotHeight + 9} L ${todayX} ${margin.top + plotHeight - 3} Z" class="payment-today-marker"><title>Hoje · ${formatPaymentDate(today)}</title></path>`}<polyline points="${polyline}" class="payment-projection-line"></polyline>${points
+      .map(({ x, y, item }, index) => {
+        const isLast = index === points.length - 1;
+        const labelClass = isLast
+          ? "payment-amount-label payment-cumulative-total"
+          : "payment-amount-label";
+        const aria = `${formatPaymentDate(item.date)}: dia ${formatMoney(item.amount)}, acumulado ${formatMoney(item.cumulative)}`;
+        return `<g class="payment-day-group${item.estimated ? " estimated" : ""}"><line x1="${x}" y1="${margin.top}" x2="${x}" y2="${margin.top + plotHeight}" class="payment-day-line"></line><g class="expense-hover-target payment-day-hover" tabindex="0" data-hover-payment-date="${escapeAttr(item.date)}" aria-label="${escapeAttr(aria)}"><circle cx="${x}" cy="${y}" r="14" class="payment-day-hit"></circle><circle cx="${x}" cy="${y}" r="${isLast ? 7 : 6}" class="payment-day-point${isLast ? " payment-cumulative-point" : ""}"></circle><text x="${x}" y="${Math.max(18, y - 13)}" text-anchor="middle" class="${labelClass}">${escapeHtml(formatMoney(item.cumulative))}</text></g><text x="${x}" y="${height - 18}" text-anchor="middle" class="cashflow-axis-label">${formatPaymentDate(item.date).slice(0, 5)}</text></g>`;
       })
       .join("")}</svg>`;
+  }
+
+  function paymentDayTooltip(day) {
+    if (!day?.payments?.length) return null;
+    const lines = day.payments.map((payment) => ({
+      name: payment.description,
+      totalLabel: formatMoney(payment.amount),
+      detail: payment.contractId ? "Contrato" : payment.category || "Despesa",
+    }));
+    const html = `<strong>${escapeHtml(formatPaymentDate(day.date))}</strong><span>Dia ${escapeHtml(formatMoney(day.amount))} · acumulado ${escapeHtml(formatMoney(day.cumulative))}</span><ul class="gantt-expense-tooltip-list">${lines
+      .map(
+        (line) =>
+          `<li><b>${escapeHtml(line.name)}</b><em>${escapeHtml(line.totalLabel)}</em><small>${escapeHtml(line.detail)}</small></li>`,
+      )
+      .join("")}</ul>`;
+    return { html };
   }
 
   function dashboardExpenseGroup(item) {
@@ -1376,6 +1398,18 @@
   function showDashboardTooltip(target, x, y) {
     const tooltip = ensureHoverTooltipHost();
     if (!tooltip || !target) return;
+    const paymentDate = target.dataset.hoverPaymentDate;
+    if (paymentDate) {
+      const day = state.paymentProjectionByDate?.get(paymentDate);
+      const tip = day ? paymentDayTooltip(day) : null;
+      if (tip) {
+        tooltip.innerHTML = tip.html;
+        tooltip.classList.add("visible");
+        tooltip.setAttribute("aria-hidden", "false");
+        positionDashboardTooltip(x, y, target);
+        return;
+      }
+    }
     const taskExpenseId = target.dataset.hoverTaskExpenses;
     if (taskExpenseId) {
       const task = state.tasks.find((item) => item.id === taskExpenseId);
@@ -6011,6 +6045,33 @@
     const target = event.target.closest(".expense-hover-target");
     if (target && !target.contains(event.relatedTarget)) hideDashboardTooltip();
   });
+  if (els.paymentProjectionChart) {
+    els.paymentProjectionChart.addEventListener("mouseover", (event) => {
+      const target = event.target.closest(".expense-hover-target");
+      if (target) showDashboardTooltip(target, event.clientX, event.clientY);
+    });
+    els.paymentProjectionChart.addEventListener("mousemove", (event) => {
+      const target = event.target.closest(".expense-hover-target");
+      if (target)
+        positionDashboardTooltip(event.clientX, event.clientY, target);
+    });
+    els.paymentProjectionChart.addEventListener("mouseout", (event) => {
+      const target = event.target.closest(".expense-hover-target");
+      if (target && !target.contains(event.relatedTarget))
+        hideDashboardTooltip();
+    });
+    els.paymentProjectionChart.addEventListener("focusin", (event) => {
+      const target = event.target.closest(".expense-hover-target");
+      if (!target) return;
+      const rect = target.getBoundingClientRect();
+      showDashboardTooltip(target, rect.right, rect.top);
+    });
+    els.paymentProjectionChart.addEventListener("focusout", (event) => {
+      const target = event.target.closest(".expense-hover-target");
+      if (target && !target.contains(event.relatedTarget))
+        hideDashboardTooltip();
+    });
+  }
   els.btnNew.addEventListener("click", () => openExpenseDialog());
   els.form.addEventListener(
     "keydown",

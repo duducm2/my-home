@@ -64,7 +64,7 @@
       "title": "Regularização e preparação",
       "description": "Marco da compra e transição do imóvel.",
       "priority": 1,
-      "sequence": 5,
+      "sequence": 6,
       "start_date": "2026-09-19",
       "end_date": "2027-08-25",
       "status": "pending",
@@ -79,7 +79,7 @@
         "project.purchase_workflow"
       ],
       "created_at": "2026-09-15 23:51:00",
-      "updated_at": "2026-09-18 15:26:08"
+      "updated_at": "2026-09-18 15:55:59"
     },
     {
       "id": "TASK_0004",
@@ -167,7 +167,7 @@
       "title": "Reforma e melhorias",
       "description": "Marco da compra e transição do imóvel.",
       "priority": 2,
-      "sequence": 6,
+      "sequence": 7,
       "start_date": "2027-01-05",
       "end_date": "2027-10-14",
       "status": "pending",
@@ -182,7 +182,7 @@
         "project.purchase_workflow"
       ],
       "created_at": "2026-09-15 23:51:00",
-      "updated_at": "2026-09-18 15:26:08"
+      "updated_at": "2026-09-18 15:55:59"
     },
     {
       "id": "TASK_0008",
@@ -207,20 +207,20 @@
       "icon_mode": "auto",
       "date_status": "estimated",
       "activity_type": "task",
-      "parent_id": "TASK_0097",
+      "parent_id": "TASK_0010",
       "progress": 0,
       "source_refs": [
         "project.purchase_workflow"
       ],
       "created_at": "2026-09-15 23:51:00",
-      "updated_at": "2026-09-18 15:52:24"
+      "updated_at": "2026-09-18 15:55:00"
     },
     {
       "id": "TASK_0009",
       "title": "Pintura e acabamentos",
       "description": "Marco da compra e transição do imóvel.",
       "priority": 3,
-      "sequence": 7,
+      "sequence": 8,
       "start_date": "2027-06-04",
       "end_date": "2027-07-13",
       "status": "pending",
@@ -235,15 +235,15 @@
         "project.purchase_workflow"
       ],
       "created_at": "2026-09-15 23:51:00",
-      "updated_at": "2026-09-18 15:26:08"
+      "updated_at": "2026-09-18 15:55:59"
     },
     {
       "id": "TASK_0010",
       "title": "Mudança",
       "description": "Marco da compra e transição do imóvel.",
-      "priority": 3,
-      "sequence": 8,
-      "start_date": "2027-07-14",
+      "priority": 1,
+      "sequence": 5,
+      "start_date": "2026-10-07",
       "end_date": "2027-08-07",
       "status": "pending",
       "expense_allocations": [],
@@ -258,7 +258,7 @@
         "project.work_plan"
       ],
       "created_at": "2026-09-15 23:51:00",
-      "updated_at": "2026-09-18 15:26:08"
+      "updated_at": "2026-09-18 15:55:59"
     },
     {
       "id": "TASK_0011",
@@ -2441,7 +2441,7 @@
         "project.work_plan"
       ],
       "created_at": "2026-09-15 23:51:00",
-      "updated_at": "2026-09-15 23:51:00"
+      "updated_at": "2026-09-18 15:55:00"
     },
     {
       "id": "TASK_0077",
@@ -2468,7 +2468,7 @@
         "project.work_plan"
       ],
       "created_at": "2026-09-15 23:51:00",
-      "updated_at": "2026-09-15 23:51:00"
+      "updated_at": "2026-09-18 15:55:00"
     },
     {
       "id": "TASK_0078",
@@ -2490,7 +2490,7 @@
         "project.work_plan"
       ],
       "created_at": "2026-09-15 23:51:00",
-      "updated_at": "2026-09-15 23:51:00"
+      "updated_at": "2026-09-18 15:55:00"
     },
     {
       "id": "TASK_0079",
@@ -2512,7 +2512,7 @@
         "project.work_plan"
       ],
       "created_at": "2026-09-15 23:51:00",
-      "updated_at": "2026-09-15 23:51:00"
+      "updated_at": "2026-09-18 15:55:00"
     },
     {
       "id": "TASK_0080",
@@ -2534,21 +2534,21 @@
         "project.work_plan"
       ],
       "created_at": "2026-09-15 23:51:00",
-      "updated_at": "2026-09-15 23:51:00"
+      "updated_at": "2026-09-18 15:55:00"
     },
     {
       "id": "TASK_0097",
       "title": "Compra e financiamento",
       "description": "Compra, regularizações documentais, Caixa e transição do imóvel.",
       "priority": 1,
-      "sequence": 2,
-      "start_date": "2026-09-16",
+      "sequence": 3,
+      "start_date": "2026-10-15",
       "end_date": "2026-10-21",
       "status": "pending",
       "expense_allocations": [],
       "icon_key": "mortgage-contract",
       "icon_mode": "auto",
-      "date_status": "estimated",
+      "date_status": "confirmed",
       "activity_type": "macro",
       "parent_id": "",
       "progress": 0,
@@ -2556,16 +2556,16 @@
         "project.purchase_workflow"
       ],
       "created_at": "2026-09-16 15:19:49",
-      "updated_at": "2026-09-18 15:26:08"
+      "updated_at": "2026-09-18 15:55:59"
     },
     {
       "id": "TASK_0098",
-      "title": "Regularização da matrícula por parte dos herdeiros",
+      "title": "Regularização da matrícula por parte dos herdeiros (abrir firma, etc)",
       "description": "",
       "priority": 1,
-      "sequence": 7,
-      "start_date": "2026-09-16",
-      "end_date": "2026-10-16",
+      "sequence": 6,
+      "start_date": "2026-10-16",
+      "end_date": "2026-10-21",
       "status": "pending",
       "expense_allocations": [
         {
@@ -2581,7 +2581,7 @@
       "progress": 0,
       "source_refs": [],
       "created_at": "2026-09-16 19:53:17",
-      "updated_at": "2026-09-18 15:52:24"
+      "updated_at": "2026-09-18 15:59:16"
     },
     {
       "id": "TASK_0099",
@@ -2601,7 +2601,7 @@
       "progress": 0,
       "source_refs": [],
       "created_at": "2026-09-18 13:54:33",
-      "updated_at": "2026-09-18 15:26:08"
+      "updated_at": "2026-09-18 15:55:59"
     },
     {
       "id": "TASK_0100",
@@ -2683,7 +2683,7 @@
       "title": "👱‍♀️ Jane",
       "description": "",
       "priority": 1,
-      "sequence": 3,
+      "sequence": 2,
       "start_date": "2026-10-22",
       "end_date": "2026-12-22",
       "status": "pending",
@@ -2696,7 +2696,7 @@
       "progress": 0,
       "source_refs": [],
       "created_at": "2026-09-18 13:58:18",
-      "updated_at": "2026-09-18 15:26:08"
+      "updated_at": "2026-09-18 15:55:59"
     },
     {
       "id": "TASK_0104",
@@ -2761,7 +2761,7 @@
       "progress": 100,
       "source_refs": [],
       "created_at": "2026-09-18 15:25:38",
-      "updated_at": "2026-09-18 15:26:08"
+      "updated_at": "2026-09-18 15:55:59"
     },
     {
       "id": "TASK_0107",
@@ -2789,5 +2789,5 @@
       "updated_at": "2026-09-18 15:53:16"
     }
   ],
-  "updated_at": "2026-09-18 15:53:16"
+  "updated_at": "2026-09-18 15:59:16"
 }
