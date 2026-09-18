@@ -185,37 +185,6 @@
       "updated_at": "2026-09-18 15:55:59"
     },
     {
-      "id": "TASK_0008",
-      "title": "Nossa saída",
-      "description": "Marco da compra e transição do imóvel.",
-      "priority": 1,
-      "sequence": 3,
-      "start_date": "2026-12-23",
-      "end_date": "2027-01-19",
-      "status": "pending",
-      "expense_allocations": [
-        {
-          "expense_id": "EXP_0005",
-          "expected_quantity": 1.0
-        },
-        {
-          "expense_id": "EXP_0009",
-          "expected_quantity": 1.0
-        }
-      ],
-      "icon_key": "moving-service",
-      "icon_mode": "auto",
-      "date_status": "confirmed",
-      "activity_type": "task",
-      "parent_id": "TASK_0010",
-      "progress": 0,
-      "source_refs": [
-        "project.purchase_workflow"
-      ],
-      "created_at": "2026-09-15 23:51:00",
-      "updated_at": "2026-09-18 17:20:53"
-    },
-    {
       "id": "TASK_0009",
       "title": "Pintura e acabamentos",
       "description": "Marco da compra e transição do imóvel.",
@@ -243,7 +212,7 @@
       "description": "Marco da compra e transição do imóvel.",
       "priority": 1,
       "sequence": 5,
-      "start_date": "2026-09-19",
+      "start_date": "2026-12-06",
       "end_date": "2027-08-07",
       "status": "pending",
       "expense_allocations": [],
@@ -2422,67 +2391,13 @@
       "description": "Mudança. Casa estruturalmente pronta",
       "priority": 3,
       "sequence": 4,
-      "start_date": "2027-07-14",
-      "end_date": "2027-07-18",
-      "status": "pending",
-      "expense_allocations": [
-        {
-          "expense_id": "EXP_0049",
-          "expected_quantity": 60.672
-        }
-      ],
-      "icon_key": "materials-crate",
-      "icon_mode": "auto",
-      "date_status": "estimated",
-      "activity_type": "task",
-      "parent_id": "TASK_0010",
-      "progress": 0,
-      "source_refs": [
-        "project.work_plan"
-      ],
-      "created_at": "2026-09-15 23:51:00",
-      "updated_at": "2026-09-18 17:20:53"
-    },
-    {
-      "id": "TASK_0077",
-      "title": "Instalação de móveis",
-      "description": "Mudança. Casa estruturalmente pronta",
-      "priority": 3,
-      "sequence": 5,
-      "start_date": "2027-07-19",
-      "end_date": "2027-07-23",
-      "status": "pending",
-      "expense_allocations": [
-        {
-          "expense_id": "EXP_0005",
-          "expected_quantity": 1.0
-        }
-      ],
-      "icon_key": "moving-service",
-      "icon_mode": "auto",
-      "date_status": "estimated",
-      "activity_type": "task",
-      "parent_id": "TASK_0010",
-      "progress": 0,
-      "source_refs": [
-        "project.work_plan"
-      ],
-      "created_at": "2026-09-15 23:51:00",
-      "updated_at": "2026-09-18 17:20:53"
-    },
-    {
-      "id": "TASK_0078",
-      "title": "Eletrodomésticos",
-      "description": "Mudança. Casa estruturalmente pronta",
-      "priority": 3,
-      "sequence": 6,
-      "start_date": "2027-07-24",
-      "end_date": "2027-07-28",
+      "start_date": "2026-12-23",
+      "end_date": "2026-12-29",
       "status": "pending",
       "expense_allocations": [],
-      "icon_key": "moving-service",
+      "icon_key": "cleaning-service",
       "icon_mode": "auto",
-      "date_status": "estimated",
+      "date_status": "confirmed",
       "activity_type": "task",
       "parent_id": "TASK_0010",
       "progress": 0,
@@ -2490,14 +2405,14 @@
         "project.work_plan"
       ],
       "created_at": "2026-09-15 23:51:00",
-      "updated_at": "2026-09-18 17:20:53"
+      "updated_at": "2026-09-18 17:24:13"
     },
     {
       "id": "TASK_0079",
       "title": "Organização dos ambientes",
       "description": "Mudança. Casa estruturalmente pronta",
       "priority": 3,
-      "sequence": 7,
+      "sequence": 5,
       "start_date": "2027-07-29",
       "end_date": "2027-08-02",
       "status": "pending",
@@ -2512,14 +2427,14 @@
         "project.work_plan"
       ],
       "created_at": "2026-09-15 23:51:00",
-      "updated_at": "2026-09-18 17:20:53"
+      "updated_at": "2026-09-18 17:22:59"
     },
     {
       "id": "TASK_0080",
       "title": "Ajustes finais",
       "description": "Mudança. Casa estruturalmente pronta",
       "priority": 3,
-      "sequence": 8,
+      "sequence": 6,
       "start_date": "2027-08-03",
       "end_date": "2027-08-07",
       "status": "pending",
@@ -2534,7 +2449,7 @@
         "project.work_plan"
       ],
       "created_at": "2026-09-15 23:51:00",
-      "updated_at": "2026-09-18 17:20:53"
+      "updated_at": "2026-09-18 17:22:59"
     },
     {
       "id": "TASK_0097",
@@ -2795,7 +2710,7 @@
       "priority": 1,
       "sequence": 1,
       "start_date": "2026-12-06",
-      "end_date": "2026-12-22",
+      "end_date": "2026-12-15",
       "status": "pending",
       "expense_allocations": [],
       "icon_key": "moving-service",
@@ -2806,7 +2721,7 @@
       "progress": 0,
       "source_refs": [],
       "created_at": "2026-09-18 17:20:16",
-      "updated_at": "2026-09-18 17:20:53"
+      "updated_at": "2026-09-18 17:23:44"
     },
     {
       "id": "TASK_0109",
@@ -2814,8 +2729,8 @@
       "description": "",
       "priority": 1,
       "sequence": 2,
-      "start_date": "2026-09-19",
-      "end_date": "2026-09-21",
+      "start_date": "2026-12-14",
+      "end_date": "2026-12-22",
       "status": "pending",
       "expense_allocations": [
         {
@@ -2831,8 +2746,33 @@
       "progress": 0,
       "source_refs": [],
       "created_at": "2026-09-18 17:20:48",
-      "updated_at": "2026-09-18 17:20:53"
+      "updated_at": "2026-09-18 17:23:26"
+    },
+    {
+      "id": "TASK_0110",
+      "title": "Transporte da empresa de mudança",
+      "description": "",
+      "priority": 1,
+      "sequence": 3,
+      "start_date": "2026-12-23",
+      "end_date": "2026-12-28",
+      "status": "pending",
+      "expense_allocations": [
+        {
+          "expense_id": "EXP_0005",
+          "expected_quantity": 1.0
+        }
+      ],
+      "icon_key": "moving-service",
+      "icon_mode": "auto",
+      "date_status": "confirmed",
+      "activity_type": "task",
+      "parent_id": "TASK_0010",
+      "progress": 0,
+      "source_refs": [],
+      "created_at": "2026-09-18 17:22:48",
+      "updated_at": "2026-09-18 17:24:29"
     }
   ],
-  "updated_at": "2026-09-18 17:20:53"
+  "updated_at": "2026-09-18 17:24:51"
 }

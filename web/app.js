@@ -1277,10 +1277,24 @@
     return formatPaymentDate(bucketDate).slice(0, 5);
   }
 
+  function ganttAllocatedExpenseIds() {
+    const ids = new Set();
+    for (const task of state.tasks || []) {
+      if (task.activity_type === "macro") continue;
+      for (const allocation of task.expense_allocations || []) {
+        const expenseId = String(allocation.expense_id || "").trim();
+        if (expenseId) ids.add(expenseId);
+      }
+    }
+    return ids;
+  }
+
   function paymentEvents() {
-    // Canon: payment dates/amounts live on expenses. Contract payment_schedule
-    // is PDF/metadata only and must not drive projection or Gantt markers.
+    // Canon: payday chart only shows expenses allocated on the Gantt.
+    // Contract payment_schedule is PDF/metadata only.
+    const allocatedIds = ganttAllocatedExpenseIds();
     return state.expenses
+      .filter((expense) => allocatedIds.has(expense.id))
       .flatMap((expense) => {
         const payments = expense.payments || [];
         if (!payments.length) return [];
@@ -1353,9 +1367,9 @@
     }
     if (!days.length) {
       els.paymentProjectionSummary.textContent =
-        "Cadastre pagamentos nas despesas.";
+        "Vincule despesas a atividades no cronograma.";
       els.paymentProjectionChart.innerHTML =
-        '<p class="payment-projection-empty">Nenhum pagamento cadastrado.</p>';
+        '<p class="payment-projection-empty">Nenhum pagamento de despesa vinculada ao cronograma.</p>';
       return;
     }
     const pointGap = { day: 88, week: 110, month: 120 }[scale] || 88;
@@ -1527,22 +1541,12 @@
         };
       },
     );
-    const linkedExpenseIds = new Set(
-      activities.flatMap((activity) =>
-        activity.expenses.map((expense) => expense.id),
-      ),
-    );
-    const orphanPayments = (day.payments || []).filter((payment) => {
-      const expenseId = payment.expenseId || payment.expenseIds?.[0] || "";
-      return expenseId && !linkedExpenseIds.has(expenseId);
-    });
     return {
       periodTitle,
       periodLabel: scaleLabels[scale] || "Dia",
       range,
       day,
       activities,
-      orphanPayments,
     };
   }
 
@@ -1582,17 +1586,7 @@
           })
           .join("")
       : `<p class="payment-period-empty">Nenhuma atividade do cronograma neste período.</p>`;
-    const orphanHtml = model.orphanPayments.length
-      ? `<section class="payment-period-section"><h3>Pagamentos sem atividade no período</h3><ul class="payment-period-expense-list">${model.orphanPayments
-          .map((payment) => {
-            const expense = expenseById(
-              payment.expenseId || payment.expenseIds?.[0] || "",
-            );
-            return `<li>${iconMarkup(payment.iconKey || expense?.icon_key, payment.description)}<b>${escapeHtml(payment.description)}</b><em>${escapeHtml(formatMoney(payment.amount))}</em><small>${escapeHtml([payment.category || expense?.category || "Despesa", formatPaymentDate(payment.date)].filter(Boolean).join(" · "))}</small></li>`;
-          })
-          .join("")}</ul></section>`
-      : "";
-    els.paymentPeriodBody.innerHTML = `<section class="payment-period-section"><h3>Atividades do cronograma</h3>${activityHtml}</section>${orphanHtml}`;
+    els.paymentPeriodBody.innerHTML = `<section class="payment-period-section"><h3>Atividades do cronograma</h3>${activityHtml}</section>`;
     els.paymentPeriodDialog.showModal();
   }
 
