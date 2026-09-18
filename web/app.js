@@ -3908,6 +3908,15 @@
     return true;
   }
 
+  function quotationOfferTotal(quote) {
+    const stored = Number(quote?.total_price);
+    if (Number.isFinite(stored) && stored >= 0) return stored;
+    return (
+      Number(quote?.unit_price || 0) * Number(quote?.quantity || 1) +
+      Number(quote?.shipping_cost || 0)
+    );
+  }
+
   function renderQuotationManager() {
     const expense = currentQuotationExpense();
     if (!expense) return;
@@ -3964,10 +3973,7 @@
     els.quotationList.innerHTML = pageQuotations
       .map((quote) => {
         const isSelected = quote.id === expense.selected_quotation_id;
-        const projectedQuoteTotal =
-          Number(quote.unit_price || 0) *
-            Number(expense.scenario?.expected_quantity || 0) +
-          Number(quote.shipping_cost || 0);
+        const offerTotal = quotationOfferTotal(quote);
         const metadata = quote.metadata || {};
         const specification = [
           metadata.brand,
@@ -3986,7 +3992,7 @@
           .join(" · ");
         const documents = quote.attachments || [];
         return `<article class="quotation-card ${isSelected ? "selected" : ""} ${quote.archived ? "archived" : ""}">
-          <header><div><strong>${escapeHtml(quote.vendor)}</strong><span class="quote-badges"><span class="badge">${quote.source === "ai" ? "Importada" : "Manual"}</span><span class="badge">${escapeHtml(quote.response_status || "recebida")}</span>${isSelected ? '<span class="badge selected">Escolhida</span>' : ""}${quote.archived ? '<span class="badge">Arquivada</span>' : ""}</span></div><strong class="quotation-total">${formatMoney(projectedQuoteTotal)}</strong></header>
+          <header><div><strong>${escapeHtml(quote.vendor)}</strong><span class="quote-badges"><span class="badge">${quote.source === "ai" ? "Importada" : "Manual"}</span><span class="badge">${escapeHtml(quote.response_status || "recebida")}</span>${isSelected ? '<span class="badge selected">Escolhida</span>' : ""}${quote.archived ? '<span class="badge">Arquivada</span>' : ""}</span></div><strong class="quotation-total">${formatMoney(offerTotal)}</strong></header>
           <dl><div><dt>Unitário</dt><dd>${formatMoney(quote.unit_price)} × ${quote.quantity} ${escapeHtml(quote.unit || "")}</dd></div><div><dt>Frete</dt><dd>${formatMoney(quote.shipping_cost)}</dd></div><div><dt>Recebida</dt><dd>${escapeHtml(formatDateTime(quote.received_at || quote.checked_at))}</dd></div><div><dt>Canal</dt><dd>${escapeHtml(quote.response_channel || "—")}</dd></div></dl>
           ${specification ? `<p><strong>Especificação:</strong> ${escapeHtml(specification)}</p>` : ""}
           ${evidence ? `<p><strong>Fonte:</strong> ${escapeHtml(evidence)}</p>` : ""}
