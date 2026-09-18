@@ -65,7 +65,7 @@
       "description": "Marco da compra e transição do imóvel.",
       "priority": 1,
       "sequence": 6,
-      "start_date": "2026-09-19",
+      "start_date": "2026-09-17",
       "end_date": "2027-08-25",
       "status": "pending",
       "expense_allocations": [],
@@ -266,7 +266,7 @@
       "description": "Regularizar, corrigir problemas existentes, melhorar a conservação e deixar o imóvel adequado para Prefeitura e Caixa. Após assinatura do contrato com a imobiliária",
       "priority": 1,
       "sequence": 1,
-      "start_date": "2026-09-19",
+      "start_date": "2026-09-17",
       "end_date": "2026-10-05",
       "status": "pending",
       "expense_allocations": [
@@ -297,7 +297,7 @@
         "project.work_plan"
       ],
       "created_at": "2026-09-15 23:51:00",
-      "updated_at": "2026-09-18 15:25:51"
+      "updated_at": "2026-09-18 16:47:12"
     },
     {
       "id": "TASK_0012",
@@ -2789,5 +2789,5 @@
       "updated_at": "2026-09-18 15:53:16"
     }
   ],
-  "updated_at": "2026-09-18 15:59:16"
+  "updated_at": "2026-09-18 16:47:12"
 }
