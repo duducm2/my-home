@@ -1,0 +1,861 @@
+{
+  "cluster": "openings",
+  "checked_at": "2026-09-17",
+  "location_basis": "nova_odessa_cep_13380",
+  "expenses": [
+    {
+      "expense_id": "EXP_0026",
+      "requested_item": "Portas internas",
+      "requested_unit": "unidade",
+      "match_status": "verified",
+      "candidates": [
+        {
+          "matched_product": "Kit Porta 80x210cm Abertura Esquerda Batente de 75mm em Pintura Uv sem Fechadura Pronta para Instalar",
+          "sku": "1694411002",
+          "seller": "Sodimac Brasil",
+          "specifications": {
+            "brand": "Eucatex",
+            "material": "MDF RU com pintura UV",
+            "core": "Colmeia",
+            "dimensions_cm": "210 x 80 x 3,5",
+            "opening": "Esquerda",
+            "includes": "Batentes, guarnição, folha, borracha amortecedora, dobradiças",
+            "lock": "Não contém fechadura",
+            "use": "Porta de giro ambiente interno"
+          },
+          "package_size": "1 kit porta completa",
+          "displayed_price_brl": 634.0,
+          "normalized_unit_price_brl": 634.0,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.sodimac.com.br/sodimac-br/product/1694411002/kit-porta-80x210cm-abertura-esquerda-batente-de-75mm-em-pintura-uv-sem-fechadura-pronta-para-instalar/1694411002/",
+          "final_url": "https://www.sodimac.com.br/sodimac-br/product/1694411002/kit-porta-80x210cm-abertura-esquerda-batente-de-75mm-em-pintura-uv-sem-fechadura-pronta-para-instalar/1694411002/",
+          "http_status": 200,
+          "verification_method": "Direct Sodimac product page HTTP 200; displayName, SKU 1694411002, minPrice/card R$634, qty-1 available (máx. 6), and kit specs (batente/guarnição/folha/dobradiças) matched from NEXT_DATA attributes. Arithmetic: R$634.00 / 1 = R$634.00/unidade.",
+          "caveats": [
+            "Complete interior kit near standard 80x210; does not include fechadura."
+          ]
+        },
+        {
+          "matched_product": "Porta Montada de Giro Lisa Madeira Colmeia Curupixa UV Acabado Esquerda 214x77x10cm",
+          "sku": "882674002",
+          "seller": "Sodimac Brasil",
+          "specifications": {
+            "brand": "Abrilar",
+            "material": "Madeira colmeia",
+            "finish": "Curupixa UV acabado",
+            "dimensions_cm": "214 x 77",
+            "opening": "Esquerda",
+            "includes": "Porta montada no batente com guarnição regulável 7cm",
+            "batente": "Regulável 10 a 16cm",
+            "lock": "Não acompanha fechadura"
+          },
+          "package_size": "1 porta montada",
+          "displayed_price_brl": 859.9,
+          "normalized_unit_price_brl": 859.9,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.sodimac.com.br/sodimac-br/product/882674002/porta-montada-de-giro-lisa-madeira-colmeia-curupixa-uv-acabado-esquerda-214x77x10cm/882674002/",
+          "final_url": "https://www.sodimac.com.br/sodimac-br/product/882674002/porta-montada-de-giro-lisa-madeira-colmeia-curupixa-uv-acabado-esquerda-214x77x10cm/882674002/",
+          "http_status": 200,
+          "verification_method": "Direct Sodimac product page HTTP 200; SKU 882674002, minPrice R$859.90, and montada/giro interior specs matched. Arithmetic: R$859.90 / 1 = R$859.90/unidade.",
+          "caveats": [
+            "Width 77 cm; higher qty-1 price than Eucatex kit winner."
+          ]
+        },
+        {
+          "matched_product": "Kit Porta Lisa Mdp Branco Uv com Batente Regulável Branco Acabado Acompanha Dobradiça 215x82x08cm Vert",
+          "sku": "1801452",
+          "seller": "Sodimac Brasil",
+          "specifications": {
+            "brand": "Vert",
+            "material": "MDP / HDF",
+            "finish": "Branco UV",
+            "dimensions_cm": "215 x 82 x 8",
+            "includes": "Porta lisa, batente regulável branco, dobradiça"
+          },
+          "package_size": "1 kit porta completa",
+          "displayed_price_brl": 939.9,
+          "normalized_unit_price_brl": 939.9,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.sodimac.com.br/sodimac-br/product/1801452/Kit-Porta-Lisa-Mdp-Branco-Uv-com-Batente-Regulavel-Branco-Acabado-Acompanha-Dobradica-215x82x08cm-Vert/1801452/",
+          "final_url": "https://www.sodimac.com.br/sodimac-br/product/1801452/Kit-Porta-Lisa-Mdp-Branco-Uv-com-Batente-Regulavel-Branco-Acabado-Acompanha-Dobradica-215x82x08cm-Vert/1801452/",
+          "http_status": 200,
+          "verification_method": "Direct Sodimac product page HTTP 200; SKU 1801452, minPrice R$939.90, and kit contents matched. Arithmetic: R$939.90 / 1 = R$939.90/unidade.",
+          "caveats": [
+            "Near-standard 82 cm width; higher qty-1 than Eucatex winner."
+          ]
+        },
+        {
+          "matched_product": "Kit Porta Mdf 80x210x35 Batente 11cm Super Branco New Rocha",
+          "sku": "1817927",
+          "seller": "Sodimac Brasil",
+          "specifications": {
+            "brand": "Rocha Porta Pronta",
+            "material": "MDF hidro resistente com pintura UV",
+            "finish": "Super branco",
+            "dimensions_cm": "210 x 80 x 3,5",
+            "batente": "11cm com alisares 7cm",
+            "model": "Kit Porta Pronta 080x210x035 Super Branco New"
+          },
+          "package_size": "1 kit porta completa",
+          "displayed_price_brl": 979.0,
+          "normalized_unit_price_brl": 979.0,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.sodimac.com.br/sodimac-br/product/1817927/kit-porta-mdf-80x210x35-batente-11cm-super-branco-new-rocha/1817927/",
+          "final_url": "https://www.sodimac.com.br/sodimac-br/product/1817927/kit-porta-mdf-80x210x35-batente-11cm-super-branco-new-rocha/1817927/",
+          "http_status": 200,
+          "verification_method": "Direct Sodimac product page HTTP 200; SKU 1817927, visible/card minPrice R$979, exact 80x210 kit identity matched. Arithmetic: R$979.00 / 1 = R$979.00/unidade.",
+          "caveats": [
+            "Exact 80x210 size but higher qty-1 than Eucatex kit winner."
+          ]
+        }
+      ],
+      "winner": {
+        "matched_product": "Kit Porta 80x210cm Abertura Esquerda Batente de 75mm em Pintura Uv sem Fechadura Pronta para Instalar",
+        "sku": "1694411002",
+        "seller": "Sodimac Brasil",
+        "specifications": {
+          "brand": "Eucatex",
+          "material": "MDF RU com pintura UV",
+          "core": "Colmeia",
+          "dimensions_cm": "210 x 80 x 3,5",
+          "opening": "Esquerda",
+          "includes": "Batentes, guarnição, folha, borracha amortecedora, dobradiças",
+          "lock": "Não contém fechadura",
+          "use": "Porta de giro ambiente interno"
+        },
+        "package_size": "1 kit porta completa",
+        "displayed_price_brl": 634.0,
+        "normalized_unit_price_brl": 634.0,
+        "unit": "unidade",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.sodimac.com.br/sodimac-br/product/1694411002/kit-porta-80x210cm-abertura-esquerda-batente-de-75mm-em-pintura-uv-sem-fechadura-pronta-para-instalar/1694411002/",
+        "final_url": "https://www.sodimac.com.br/sodimac-br/product/1694411002/kit-porta-80x210cm-abertura-esquerda-batente-de-75mm-em-pintura-uv-sem-fechadura-pronta-para-instalar/1694411002/",
+        "http_status": 200,
+        "verification_method": "Direct Sodimac product page HTTP 200; displayName, SKU 1694411002, minPrice/card R$634, qty-1 available (máx. 6), and kit specs (batente/guarnição/folha/dobradiças) matched from NEXT_DATA attributes. Arithmetic: R$634.00 / 1 = R$634.00/unidade.",
+        "caveats": [
+          "Lowest verified qty-1 price among comparable complete interior door kits near standard 80x210. Leaf-only opções (e.g. folha 210x82) are cheaper but excluded from winner ranking as incomplete kits. Fechadura not included. Freight for CEP 13380-000 not calculated."
+        ]
+      },
+      "no_match_reason": null
+    },
+    {
+      "expense_id": "EXP_0027",
+      "requested_item": "Porta Balcão",
+      "requested_unit": "unidade",
+      "match_status": "verified",
+      "candidates": [
+        {
+          "matched_product": "Porta de Correr 3 Folhas Moveis Vidro Liso Branca 210x150",
+          "sku": "1701989",
+          "seller": "Sodimac Brasil",
+          "specifications": {
+            "material": "Alumínio",
+            "color": "Branco",
+            "dimensions_cm": "210 x 150",
+            "leaves": 3,
+            "glass": "Vidro liso",
+            "type": "Porta de correr"
+          },
+          "package_size": "1 porta de correr",
+          "displayed_price_brl": 2199.0,
+          "normalized_unit_price_brl": 2199.0,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.sodimac.com.br/sodimac-br/product/1701989/porta-de-correr-3-folhas-moveis-vidro-liso-branca-210x150/1701989/",
+          "final_url": "https://www.sodimac.com.br/sodimac-br/product/1701989/porta-de-correr-3-folhas-moveis-vidro-liso-branca-210x150/1701989/",
+          "http_status": 200,
+          "verification_method": "Direct Sodimac product page HTTP 200; title/SKU 1701989, minPrice R$2199, qty-1 available (máx. 25), and 3-leaf sliding glass door identity matched. Arithmetic: R$2199.00 / 1 = R$2199.00/unidade.",
+          "caveats": [
+            "Width 150 cm rather than a typical ~200 cm balcony opening; attribute labels for altura/largura appear swapped vs title 210x150."
+          ]
+        },
+        {
+          "matched_product": "Porta de Correr com Travessa Alumínio Branco 2 Folhas Móveis 210x120x8,6cm Topsul",
+          "sku": "792581",
+          "seller": "Sodimac Brasil",
+          "specifications": {
+            "brand": "Esquadrisul",
+            "line": "Topsul",
+            "material": "Alumínio",
+            "color": "Branco",
+            "dimensions_cm": "210 x 120",
+            "leaves": 2,
+            "glass": "Vidro liso transparente",
+            "type": "Porta de correr com travessa",
+            "batente": "Incluído"
+          },
+          "package_size": "1 porta de correr",
+          "displayed_price_brl": 2364.0,
+          "normalized_unit_price_brl": 2364.0,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.sodimac.com.br/sodimac-br/product/792581/porta-de-correr-com-travessa-aluminio-branco-2-folhas-moveis-210x120x86cm-topsul/792581/",
+          "final_url": "https://www.sodimac.com.br/sodimac-br/product/792581/porta-de-correr-com-travessa-aluminio-branco-2-folhas-moveis-210x120x86cm-topsul/792581/",
+          "http_status": 200,
+          "verification_method": "Direct Sodimac product page HTTP 200; SKU 792581, minPrice R$2364, Topsul 2-leaf glass specs matched. Arithmetic: R$2364.00 / 1 = R$2364.00/unidade.",
+          "caveats": [
+            "Narrower 120 cm width; only 2 leaves; higher than 210x150 3-leaf candidate."
+          ]
+        },
+        {
+          "matched_product": "Porta Balcão Veneziana de Correr Sem Fechadura Alumínio Corten 3 Folhas Esquerda 210x120x11,5cm Super 25",
+          "sku": "875573",
+          "seller": "Sodimac Brasil",
+          "specifications": {
+            "brand": "Brimak",
+            "line": "Super 25",
+            "material": "Alumínio",
+            "color": "Corten",
+            "dimensions_cm": "210 x 120",
+            "leaves": 3,
+            "glass": "Vidro liso incolor 3mm",
+            "type": "Porta balcão veneziana de correr",
+            "lock": "Sem fechadura (fecho incluso)"
+          },
+          "package_size": "1 porta balcão veneziana",
+          "displayed_price_brl": 2375.9,
+          "normalized_unit_price_brl": 2375.9,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.sodimac.com.br/sodimac-br/product/875573/porta-balcao-veneziana-de-correr-sem-fechadura-aluminio-corten-3-folhas-esquerda-210x120x115cm-super-25/875573/",
+          "final_url": "https://www.sodimac.com.br/sodimac-br/product/875573/porta-balcao-veneziana-de-correr-sem-fechadura-aluminio-corten-3-folhas-esquerda-210x120x115cm-super-25/875573/",
+          "http_status": 200,
+          "verification_method": "Direct Sodimac product page HTTP 200; SKU 875573, minPrice R$2375.90, and porta-balcão veneziana 3-leaf specs matched. Arithmetic: R$2375.90 / 1 = R$2375.90/unidade.",
+          "caveats": [
+            "Includes veneziana/shutters; width 120 cm; higher than plain glass sliding winner."
+          ]
+        },
+        {
+          "matched_product": "Porta Balcão Veneziana de Correr Sem Fechadura Alumínio Branco 3 Folhas Esquerda 210x150x11,5cm Super 25",
+          "sku": "628338",
+          "seller": "Sodimac Brasil",
+          "specifications": {
+            "brand": "Brimak",
+            "line": "Super 25",
+            "material": "Alumínio",
+            "color": "Branco",
+            "dimensions_cm": "210 x 150",
+            "leaves": 3,
+            "glass": "Vidro liso incolor 3mm",
+            "type": "Porta balcão veneziana de correr",
+            "lock": "Sem fechadura (fecho incluso)"
+          },
+          "package_size": "1 porta balcão veneziana",
+          "displayed_price_brl": 3247.0,
+          "normalized_unit_price_brl": 3247.0,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.sodimac.com.br/sodimac-br/product/628338/porta-balcao-veneziana-de-correr-sem-fechadura-aluminio-branco-3-folhas-esquerda-210x150x115cm-super-25/628338/",
+          "final_url": "https://www.sodimac.com.br/sodimac-br/product/628338/porta-balcao-veneziana-de-correr-sem-fechadura-aluminio-branco-3-folhas-esquerda-210x150x115cm-super-25/628338/",
+          "http_status": 200,
+          "verification_method": "Direct Sodimac product page HTTP 200; SKU 628338, minPrice R$3247, and 210x150 3-leaf porta-balcão veneziana specs matched. Arithmetic: R$3247.00 / 1 = R$3247.00/unidade.",
+          "caveats": [
+            "Closer size match with veneziana; substantially higher qty-1 price."
+          ]
+        }
+      ],
+      "winner": {
+        "matched_product": "Porta de Correr 3 Folhas Moveis Vidro Liso Branca 210x150",
+        "sku": "1701989",
+        "seller": "Sodimac Brasil",
+        "specifications": {
+          "material": "Alumínio",
+          "color": "Branco",
+          "dimensions_cm": "210 x 150",
+          "leaves": 3,
+          "glass": "Vidro liso",
+          "type": "Porta de correr"
+        },
+        "package_size": "1 porta de correr",
+        "displayed_price_brl": 2199.0,
+        "normalized_unit_price_brl": 2199.0,
+        "unit": "unidade",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.sodimac.com.br/sodimac-br/product/1701989/porta-de-correr-3-folhas-moveis-vidro-liso-branca-210x150/1701989/",
+        "final_url": "https://www.sodimac.com.br/sodimac-br/product/1701989/porta-de-correr-3-folhas-moveis-vidro-liso-branca-210x150/1701989/",
+        "http_status": 200,
+        "verification_method": "Direct Sodimac product page HTTP 200; title/SKU 1701989, minPrice R$2199, qty-1 available (máx. 25), and 3-leaf sliding glass door identity matched. Arithmetic: R$2199.00 / 1 = R$2199.00/unidade.",
+        "caveats": [
+          "Lowest verified qty-1 sliding aluminum/glass porta-balcão comparable. Width 150 cm is narrower than a typical ~200 cm balcony opening; veneziana alternatives are higher-priced candidates. Freight for CEP 13380-000 not calculated."
+        ]
+      },
+      "no_match_reason": null
+    },
+    {
+      "expense_id": "EXP_0029",
+      "requested_item": "Janela",
+      "requested_unit": "unidade",
+      "match_status": "verified",
+      "candidates": [
+        {
+          "matched_product": "Janela de Correr 4 Folhas sem Grade Alumínio Branco 100x120cm",
+          "sku": "1701519",
+          "seller": "Sodimac Brasil",
+          "specifications": {
+            "material": "Alumínio, vidro e acessórios",
+            "color": "Branco",
+            "dimensions_cm": "100 x 120",
+            "leaves": 4,
+            "grade": "Não",
+            "type": "Janela de correr"
+          },
+          "package_size": "1 janela de correr",
+          "displayed_price_brl": 349.0,
+          "normalized_unit_price_brl": 349.0,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.sodimac.com.br/sodimac-br/product/1701519/janela-de-correr-4-folhas-sem-grade-aluminio-branco-100x120cm/1701519/",
+          "final_url": "https://www.sodimac.com.br/sodimac-br/product/1701519/janela-de-correr-4-folhas-sem-grade-aluminio-branco-100x120cm/1701519/",
+          "http_status": 200,
+          "verification_method": "Direct Sodimac product page HTTP 200; H1/title SKU 1701519 states 4 folhas 100x120 sem grade, minPrice R$349, qty-1 available (máx. 4). Arithmetic: R$349.00 / 1 = R$349.00/unidade.",
+          "caveats": [
+            "Height 100 cm vs ~120 cm bedroom/office comparable. NEXT_DATA 'Incluso' text oddly says '2 Folhas'; title/H1 used as primary leaf-count evidence."
+          ]
+        },
+        {
+          "matched_product": "Janela de Correr Alumínio Branco 4 Folhas Central 100x120x5cm Fortsul",
+          "sku": "843010",
+          "seller": "Sodimac Brasil",
+          "specifications": {
+            "brand": "Esquadrisul",
+            "line": "Fortsul",
+            "material": "Alumínio",
+            "color": "Branco",
+            "dimensions_cm": "100 x 120",
+            "leaves": 4,
+            "opening": "Central",
+            "glass": "Vidro liso transparente",
+            "type": "Janela de correr"
+          },
+          "package_size": "1 janela de correr",
+          "displayed_price_brl": 499.0,
+          "normalized_unit_price_brl": 499.0,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.sodimac.com.br/sodimac-br/product/843010/janela-de-correr-aluminio-branco-4-folhas-central-100x120x5cm-fortsul/843010/",
+          "final_url": "https://www.sodimac.com.br/sodimac-br/product/843010/janela-de-correr-aluminio-branco-4-folhas-central-100x120x5cm-fortsul/843010/",
+          "http_status": 200,
+          "verification_method": "Direct Sodimac product page HTTP 200; SKU 843010, minPrice R$499, Quantidades de Folhas=4 and glass type matched. Arithmetic: R$499.00 / 1 = R$499.00/unidade.",
+          "caveats": [
+            "Explicit 4-leaf attribute confirmation; higher than 1701519."
+          ]
+        },
+        {
+          "matched_product": "Janela de Correr 2 Folhas Móveis sem Grade Alumínio Branco 100x120cm",
+          "sku": "1701517",
+          "seller": "Sodimac Brasil",
+          "specifications": {
+            "material": "Alumínio, vidro e acessórios",
+            "color": "Branco",
+            "dimensions_cm": "100 x 120",
+            "leaves": 2,
+            "grade": "Não",
+            "type": "Janela de correr"
+          },
+          "package_size": "1 janela de correr",
+          "displayed_price_brl": 259.0,
+          "normalized_unit_price_brl": 259.0,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.sodimac.com.br/sodimac-br/product/1701517/janela-de-correr-2-folhas-moveis-sem-grade-aluminio-branco-100x120cm/1701517/",
+          "final_url": "https://www.sodimac.com.br/sodimac-br/product/1701517/janela-de-correr-2-folhas-moveis-sem-grade-aluminio-branco-100x120cm/1701517/",
+          "http_status": 200,
+          "verification_method": "Direct Sodimac product page HTTP 200; SKU 1701517, minPrice R$259, 2-leaf 100x120 identity matched. Arithmetic: R$259.00 / 1 = R$259.00/unidade.",
+          "caveats": [
+            "Cheaper 2-leaf option; not selected as bedroom/office 4-leaf comparable winner."
+          ]
+        },
+        {
+          "matched_product": "Janela de Correr Alumínio Branco 2 Folhas Esquerda 100x120x5cm Ecosul",
+          "sku": "763879",
+          "seller": "Sodimac Brasil",
+          "specifications": {
+            "brand": "Esquadrisul",
+            "line": "Ecosul",
+            "material": "Alumínio",
+            "color": "Branco",
+            "dimensions_cm": "100 x 120",
+            "leaves": 2,
+            "opening": "Esquerda",
+            "glass": "Vidro liso transparente",
+            "type": "Janela de correr"
+          },
+          "package_size": "1 janela de correr",
+          "displayed_price_brl": 459.0,
+          "normalized_unit_price_brl": 459.0,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.sodimac.com.br/sodimac-br/product/763879/janela-de-correr-aluminio-branco-2-folhas-esquerda-100x120x5cm-ecosul/763879/",
+          "final_url": "https://www.sodimac.com.br/sodimac-br/product/763879/janela-de-correr-aluminio-branco-2-folhas-esquerda-100x120x5cm-ecosul/763879/",
+          "http_status": 200,
+          "verification_method": "Direct Sodimac product page HTTP 200; SKU 763879, minPrice R$459, Ecosul 2-leaf glass specs matched. Arithmetic: R$459.00 / 1 = R$459.00/unidade.",
+          "caveats": [
+            "Only 2 leaves; higher than 4-leaf 1701519."
+          ]
+        }
+      ],
+      "winner": {
+        "matched_product": "Janela de Correr 4 Folhas sem Grade Alumínio Branco 100x120cm",
+        "sku": "1701519",
+        "seller": "Sodimac Brasil",
+        "specifications": {
+          "material": "Alumínio, vidro e acessórios",
+          "color": "Branco",
+          "dimensions_cm": "100 x 120",
+          "leaves": 4,
+          "grade": "Não",
+          "type": "Janela de correr"
+        },
+        "package_size": "1 janela de correr",
+        "displayed_price_brl": 349.0,
+        "normalized_unit_price_brl": 349.0,
+        "unit": "unidade",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.sodimac.com.br/sodimac-br/product/1701519/janela-de-correr-4-folhas-sem-grade-aluminio-branco-100x120cm/1701519/",
+        "final_url": "https://www.sodimac.com.br/sodimac-br/product/1701519/janela-de-correr-4-folhas-sem-grade-aluminio-branco-100x120cm/1701519/",
+        "http_status": 200,
+        "verification_method": "Direct Sodimac product page HTTP 200; H1/title SKU 1701519 states 4 folhas 100x120 sem grade, minPrice R$349, qty-1 available (máx. 4). Arithmetic: R$349.00 / 1 = R$349.00/unidade.",
+        "caveats": [
+          "Lowest verified qty-1 4-leaf aluminum sliding window (title/H1) near bedroom/office use. Height is 100 cm vs ~120 cm; Fortsul 843010 confirms 4 leaves explicitly at higher price. Freight for CEP 13380-000 not calculated."
+        ]
+      },
+      "no_match_reason": null
+    },
+    {
+      "expense_id": "EXP_0030",
+      "requested_item": "Vitrô Sala",
+      "requested_unit": "unidade",
+      "match_status": "verified",
+      "candidates": [
+        {
+          "matched_product": "Janela de Correr 4 Folhas sem Grade Alumínio Branco 100x120cm",
+          "sku": "1701519",
+          "seller": "Sodimac Brasil",
+          "specifications": {
+            "material": "Alumínio, vidro e acessórios",
+            "color": "Branco",
+            "dimensions_cm": "100 x 120",
+            "leaves": 4,
+            "grade": "Não",
+            "type": "Janela de correr",
+            "indicated_use": "Sala / vitrô comparável"
+          },
+          "package_size": "1 janela de correr",
+          "displayed_price_brl": 349.0,
+          "normalized_unit_price_brl": 349.0,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.sodimac.com.br/sodimac-br/product/1701519/janela-de-correr-4-folhas-sem-grade-aluminio-branco-100x120cm/1701519/",
+          "final_url": "https://www.sodimac.com.br/sodimac-br/product/1701519/janela-de-correr-4-folhas-sem-grade-aluminio-branco-100x120cm/1701519/",
+          "http_status": 200,
+          "verification_method": "Direct Sodimac product page HTTP 200; SKU 1701519 4-leaf 100x120 sliding window (title/H1), minPrice R$349. Arithmetic: R$349.00 / 1 = R$349.00/unidade.",
+          "caveats": [
+            "Best leaf-count match for sala vitrô among lowest priced options; Incluso field inconsistently mentions 2 folhas."
+          ]
+        },
+        {
+          "matched_product": "Janela de Correr Alumínio Branco 4 Folhas Central 100x120x5cm Fortsul",
+          "sku": "843010",
+          "seller": "Sodimac Brasil",
+          "specifications": {
+            "brand": "Esquadrisul",
+            "line": "Fortsul",
+            "material": "Alumínio",
+            "color": "Branco",
+            "dimensions_cm": "100 x 120",
+            "leaves": 4,
+            "opening": "Central",
+            "glass": "Vidro liso transparente",
+            "type": "Janela de correr"
+          },
+          "package_size": "1 janela de correr",
+          "displayed_price_brl": 499.0,
+          "normalized_unit_price_brl": 499.0,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.sodimac.com.br/sodimac-br/product/843010/janela-de-correr-aluminio-branco-4-folhas-central-100x120x5cm-fortsul/843010/",
+          "final_url": "https://www.sodimac.com.br/sodimac-br/product/843010/janela-de-correr-aluminio-branco-4-folhas-central-100x120x5cm-fortsul/843010/",
+          "http_status": 200,
+          "verification_method": "Direct Sodimac product page HTTP 200; SKU 843010, minPrice R$499, explicit 4-leaf Fortsul specs matched. Arithmetic: R$499.00 / 1 = R$499.00/unidade.",
+          "caveats": [
+            "Stronger attribute confirmation of 4 leaves; higher qty-1 than 1701519."
+          ]
+        },
+        {
+          "matched_product": "Janela de Correr 2 Folhas Móveis sem Grade Alumínio Branco 100x120cm",
+          "sku": "1701517",
+          "seller": "Sodimac Brasil",
+          "specifications": {
+            "material": "Alumínio, vidro e acessórios",
+            "color": "Branco",
+            "dimensions_cm": "100 x 120",
+            "leaves": 2,
+            "grade": "Não",
+            "type": "Janela de correr"
+          },
+          "package_size": "1 janela de correr",
+          "displayed_price_brl": 259.0,
+          "normalized_unit_price_brl": 259.0,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.sodimac.com.br/sodimac-br/product/1701517/janela-de-correr-2-folhas-moveis-sem-grade-aluminio-branco-100x120cm/1701517/",
+          "final_url": "https://www.sodimac.com.br/sodimac-br/product/1701517/janela-de-correr-2-folhas-moveis-sem-grade-aluminio-branco-100x120cm/1701517/",
+          "http_status": 200,
+          "verification_method": "Direct Sodimac product page HTTP 200; SKU 1701517, minPrice R$259, 2-leaf 100x120 matched. Arithmetic: R$259.00 / 1 = R$259.00/unidade.",
+          "caveats": [
+            "Cheaper 2-leaf sala option; not ranked as 4-leaf vitrô winner."
+          ]
+        },
+        {
+          "matched_product": "Janela de Correr Alumínio Branco 2 Folhas Esquerda 100x120x5cm Ecosul",
+          "sku": "763879",
+          "seller": "Sodimac Brasil",
+          "specifications": {
+            "brand": "Esquadrisul",
+            "line": "Ecosul",
+            "material": "Alumínio",
+            "color": "Branco",
+            "dimensions_cm": "100 x 120",
+            "leaves": 2,
+            "opening": "Esquerda",
+            "glass": "Vidro liso transparente",
+            "type": "Janela de correr"
+          },
+          "package_size": "1 janela de correr",
+          "displayed_price_brl": 459.0,
+          "normalized_unit_price_brl": 459.0,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.sodimac.com.br/sodimac-br/product/763879/janela-de-correr-aluminio-branco-2-folhas-esquerda-100x120x5cm-ecosul/763879/",
+          "final_url": "https://www.sodimac.com.br/sodimac-br/product/763879/janela-de-correr-aluminio-branco-2-folhas-esquerda-100x120x5cm-ecosul/763879/",
+          "http_status": 200,
+          "verification_method": "Direct Sodimac product page HTTP 200; SKU 763879, minPrice R$459, Ecosul glass specs matched. Arithmetic: R$459.00 / 1 = R$459.00/unidade.",
+          "caveats": [
+            "2 leaves rather than 4."
+          ]
+        }
+      ],
+      "winner": {
+        "matched_product": "Janela de Correr 4 Folhas sem Grade Alumínio Branco 100x120cm",
+        "sku": "1701519",
+        "seller": "Sodimac Brasil",
+        "specifications": {
+          "material": "Alumínio, vidro e acessórios",
+          "color": "Branco",
+          "dimensions_cm": "100 x 120",
+          "leaves": 4,
+          "grade": "Não",
+          "type": "Janela de correr",
+          "indicated_use": "Sala / vitrô comparável"
+        },
+        "package_size": "1 janela de correr",
+        "displayed_price_brl": 349.0,
+        "normalized_unit_price_brl": 349.0,
+        "unit": "unidade",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.sodimac.com.br/sodimac-br/product/1701519/janela-de-correr-4-folhas-sem-grade-aluminio-branco-100x120cm/1701519/",
+        "final_url": "https://www.sodimac.com.br/sodimac-br/product/1701519/janela-de-correr-4-folhas-sem-grade-aluminio-branco-100x120cm/1701519/",
+        "http_status": 200,
+        "verification_method": "Direct Sodimac product page HTTP 200; SKU 1701519 4-leaf 100x120 sliding window (title/H1), minPrice R$349. Arithmetic: R$349.00 / 1 = R$349.00/unidade.",
+        "caveats": [
+          "Chosen as lowest verified 4-leaf 100x120 aluminum sliding vitrô comparable (title/H1). Cheaper 2-leaf 100x120 options exist as candidates. Freight for CEP 13380-000 not calculated."
+        ]
+      },
+      "no_match_reason": null
+    },
+    {
+      "expense_id": "EXP_0031",
+      "requested_item": "Vitrôs banheiros",
+      "requested_unit": "unidade",
+      "match_status": "verified",
+      "candidates": [
+        {
+          "matched_product": "Basculante 60x60 Branco Vidro Mini Boreal",
+          "sku": "1701508",
+          "seller": "Sodimac Brasil",
+          "specifications": {
+            "material": "Alumínio, vidro e acessórios",
+            "color": "Branco",
+            "dimensions_cm": "60 x 60",
+            "type": "Basculante",
+            "glass": "Mini Boreal",
+            "indicated_use": "Banheiros"
+          },
+          "package_size": "1 janela basculante",
+          "displayed_price_brl": 139.0,
+          "normalized_unit_price_brl": 139.0,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.sodimac.com.br/sodimac-br/product/1701508/basculante-60x60-branco-vidro-mini-boreal/1701508/",
+          "final_url": "https://www.sodimac.com.br/sodimac-br/product/1701508/basculante-60x60-branco-vidro-mini-boreal/1701508/",
+          "http_status": 200,
+          "verification_method": "Direct Sodimac product page HTTP 200; title/SKU 1701508 Mini Boreal 60x60, minPrice R$139. Arithmetic: R$139.00 / 1 = R$139.00/unidade.",
+          "caveats": []
+        },
+        {
+          "matched_product": "Basculante 1 Seção 60x60 Brilho",
+          "sku": "1700038",
+          "seller": "Sodimac Brasil",
+          "specifications": {
+            "brand": "Lux Esquadrias",
+            "material": "Alumínio, vidro, acessórios e plástico",
+            "color": "Brilhante",
+            "dimensions_cm": "60 x 60",
+            "type": "Basculante",
+            "glass": "Não declarado como fosco/canelado/mini boreal"
+          },
+          "package_size": "1 janela basculante",
+          "displayed_price_brl": 133.0,
+          "normalized_unit_price_brl": 133.0,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.sodimac.com.br/sodimac-br/product/1700038/Basculante-1-Secao-60x60-Brilho/1700038/",
+          "final_url": "https://www.sodimac.com.br/sodimac-br/product/1700038/Basculante-1-Secao-60x60-Brilho/1700038/",
+          "http_status": 200,
+          "verification_method": "Direct Sodimac product page HTTP 200; SKU 1700038, minPrice R$133, 60x60 basculante identity matched. Arithmetic: R$133.00 / 1 = R$133.00/unidade.",
+          "caveats": [
+            "Cheaper, but privacy glass type is not evidenced on the page."
+          ]
+        },
+        {
+          "matched_product": "Janela Basculante Alumínio Branco 60x60x2,3cm Master",
+          "sku": "628309",
+          "seller": "Sodimac Brasil",
+          "specifications": {
+            "brand": "Brimak",
+            "line": "Master",
+            "material": "Alumínio",
+            "color": "Branco",
+            "dimensions_cm": "60 x 60",
+            "type": "Basculante",
+            "glass": "Vidro Mini Boreal 4mm"
+          },
+          "package_size": "1 janela basculante",
+          "displayed_price_brl": 149.9,
+          "normalized_unit_price_brl": 149.9,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.sodimac.com.br/sodimac-br/product/628309/janela-basculante-aluminio-branco-60x60x23cm-master/628309/",
+          "final_url": "https://www.sodimac.com.br/sodimac-br/product/628309/janela-basculante-aluminio-branco-60x60x23cm-master/628309/",
+          "http_status": 200,
+          "verification_method": "Direct Sodimac product page HTTP 200; SKU 628309, minPrice R$149.90, Tipo de Vidro Mini Boreal 4mm matched. Arithmetic: R$149.90 / 1 = R$149.90/unidade.",
+          "caveats": [
+            "Explicit Mini Boreal attribute; slightly higher than 1701508."
+          ]
+        },
+        {
+          "matched_product": "Janela Basculante Vidro Canelado Alumínio Branco 60x60x2,3cm Master",
+          "sku": "628304",
+          "seller": "Sodimac Brasil",
+          "specifications": {
+            "brand": "Brimak",
+            "line": "Master",
+            "material": "Alumínio",
+            "color": "Branco",
+            "dimensions_cm": "60 x 60",
+            "type": "Basculante",
+            "glass": "Vidro canelado 3/4 mm"
+          },
+          "package_size": "1 janela basculante",
+          "displayed_price_brl": 167.0,
+          "normalized_unit_price_brl": 167.0,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.sodimac.com.br/sodimac-br/product/628304/janela-basculante-vidro-canelado-aluminio-branco-60x60x23cm-master/628304/",
+          "final_url": "https://www.sodimac.com.br/sodimac-br/product/628304/janela-basculante-vidro-canelado-aluminio-branco-60x60x23cm-master/628304/",
+          "http_status": 200,
+          "verification_method": "Direct Sodimac product page HTTP 200; SKU 628304, minPrice R$167, canelado privacy glass matched. Arithmetic: R$167.00 / 1 = R$167.00/unidade.",
+          "caveats": [
+            "Privacy glass alternative; higher than Mini Boreal winner."
+          ]
+        },
+        {
+          "matched_product": "Janela MaximAr Alumínio Branco 60x60x2,5cm Ecosul",
+          "sku": "747478",
+          "seller": "Sodimac Brasil",
+          "specifications": {
+            "brand": "Esquadrisul",
+            "line": "Ecosul",
+            "material": "Alumínio",
+            "color": "Branco",
+            "dimensions_cm": "60 x 60",
+            "type": "Maxim-ar",
+            "glass": "Vidro Mini Boreal"
+          },
+          "package_size": "1 janela maxim-ar",
+          "displayed_price_brl": 179.0,
+          "normalized_unit_price_brl": 179.0,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.sodimac.com.br/sodimac-br/product/747478/janela-maximar-aluminio-branco-60x60x25cm-ecosul/747478/",
+          "final_url": "https://www.sodimac.com.br/sodimac-br/product/747478/janela-maximar-aluminio-branco-60x60x25cm-ecosul/747478/",
+          "http_status": 200,
+          "verification_method": "Direct Sodimac product page HTTP 200; SKU 747478, minPrice R$179, Mini Boreal maxim-ar specs matched. Arithmetic: R$179.00 / 1 = R$179.00/unidade.",
+          "caveats": [
+            "Maxim-ar opening rather than classic basculante; still privacy glass suitable for bathroom."
+          ]
+        }
+      ],
+      "winner": {
+        "matched_product": "Basculante 60x60 Branco Vidro Mini Boreal",
+        "sku": "1701508",
+        "seller": "Sodimac Brasil",
+        "specifications": {
+          "material": "Alumínio, vidro e acessórios",
+          "color": "Branco",
+          "dimensions_cm": "60 x 60",
+          "type": "Basculante",
+          "glass": "Mini Boreal",
+          "indicated_use": "Banheiros"
+        },
+        "package_size": "1 janela basculante",
+        "displayed_price_brl": 139.0,
+        "normalized_unit_price_brl": 139.0,
+        "unit": "unidade",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.sodimac.com.br/sodimac-br/product/1701508/basculante-60x60-branco-vidro-mini-boreal/1701508/",
+        "final_url": "https://www.sodimac.com.br/sodimac-br/product/1701508/basculante-60x60-branco-vidro-mini-boreal/1701508/",
+        "http_status": 200,
+        "verification_method": "Direct Sodimac product page HTTP 200; title/SKU 1701508 Mini Boreal 60x60, minPrice R$139. Arithmetic: R$139.00 / 1 = R$139.00/unidade.",
+        "caveats": [
+          "Lowest verified qty-1 bathroom-comparable with evidenced privacy glass (Mini Boreal in title). A cheaper clear/unspecified-glass basculante exists at R$133.00 but was not selected as winner. Freight for CEP 13380-000 not calculated."
+        ]
+      },
+      "no_match_reason": null
+    }
+  ]
+}

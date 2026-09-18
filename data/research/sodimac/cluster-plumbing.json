@@ -1,0 +1,1008 @@
+{
+  "cluster": "plumbing",
+  "checked_at": "2026-09-17",
+  "location_basis": "nova_odessa_cep_13380",
+  "expenses": [
+    {
+      "expense_id": "EXP_0028",
+      "requested_item": "Vaso",
+      "requested_unit": "unidade",
+      "match_status": "verified",
+      "candidates": [
+        {
+          "matched_product": "Kit Vaso Sanitário com Caixa Acoplada Araxa 6L Branco Santa Clara",
+          "sku": "1806853C",
+          "seller": "Sodimac",
+          "specifications": {
+            "brand": "Santa Clara",
+            "model": "Araxa",
+            "color": "Branco",
+            "tank_capacity_l": 6,
+            "components": "bacia com caixa acoplada"
+          },
+          "package_size": "1 unidade (kit acoplado)",
+          "displayed_price_brl": 318.0,
+          "normalized_unit_price_brl": 318.0,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.sodimac.com.br/sodimac-br/product/1806853C/kit-vaso-sanitario-com-caixa-acoplada-araxa-6l-branco-santa-clara/1806853C/",
+          "final_url": "https://www.sodimac.com.br/sodimac-br/product/1806853C/kit-vaso-sanitario-com-caixa-acoplada-araxa-6l-branco-santa-clara/1806853C/",
+          "http_status": 200,
+          "verification_method": "Sodimac product page HTTP 200 + __NEXT_DATA__ productData; title Kit Vaso Sanitário com Caixa Acoplada Araxa 6L Branco Santa Clara; brand Santa Clara; internetPrice R$318.00 verified (isOutOfStock=false, isPurchaseable=true). Arithmetic: R$318.00 / 1 unidade = R$318.00/unidade.",
+          "caveats": [
+            "SSR topSpecifications empty on page; title/brand/price taken from productData.",
+            "Freight not calculated for CEP 13380-000; freight_brl left null."
+          ]
+        },
+        {
+          "matched_product": "Kit Bacia Mariana com Caixa Acoplada Assentos e Fixações 76,5x40x61,5cm Branco Icasa",
+          "sku": "876353",
+          "seller": "Sodimac",
+          "specifications": {
+            "brand": "Icasa",
+            "model": "Mariana",
+            "color": "Branco",
+            "components": "bacia + caixa acoplada IC46 + assento + fixações + anel + flexível",
+            "dimensions_cm": "76,5 x 40 x 61,5"
+          },
+          "package_size": "1 unidade (kit completo)",
+          "displayed_price_brl": 539.0,
+          "normalized_unit_price_brl": 539.0,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.sodimac.com.br/sodimac-br/product/876353/kit-bacia-mariana-com-caixa-acoplada-assentos-e-fixacoes-765x40x615cm-branco-icasa/876353/",
+          "final_url": "https://www.sodimac.com.br/sodimac-br/product/876353/kit-bacia-mariana-com-caixa-acoplada-assentos-e-fixacoes-765x40x615cm-branco-icasa/876353/",
+          "http_status": 200,
+          "verification_method": "Sodimac product page HTTP 200 + __NEXT_DATA__ productData; title Kit Bacia Mariana com Caixa Acoplada Assentos e Fixações 76,5x40x61,5cm Branco Icasa; brand Icasa; eventPrice R$539.00 verified (isOutOfStock=false, isPurchaseable=true). Arithmetic: R$539.00 / 1 unidade = R$539.00/unidade.",
+          "caveats": [
+            "Higher than Araxa Santa Clara winner."
+          ]
+        },
+        {
+          "matched_product": "Kit Completo Saveiro Bacia com Caixa Assento e Fixação",
+          "sku": "875959",
+          "seller": "Sodimac",
+          "specifications": {
+            "brand": "Celite",
+            "model": "Saveiro",
+            "color": "Branco",
+            "tank_capacity_l": "3/6",
+            "components": "bacia + caixa acoplada + assento + flexível + anel + fixação"
+          },
+          "package_size": "1 unidade (kit completo)",
+          "displayed_price_brl": 549.0,
+          "normalized_unit_price_brl": 549.0,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.sodimac.com.br/sodimac-br/product/875959/kit-completo-saveiro-bacia-com-caixa-assento-e-fixacao/875959/",
+          "final_url": "https://www.sodimac.com.br/sodimac-br/product/875959/kit-completo-saveiro-bacia-com-caixa-assento-e-fixacao/875959/",
+          "http_status": 200,
+          "verification_method": "Sodimac product page HTTP 200 + __NEXT_DATA__ productData; title Kit Completo Saveiro Bacia com Caixa Assento e Fixação; brand Celite; internetPrice R$549.00 verified (isOutOfStock=false, isPurchaseable=true). Arithmetic: R$549.00 / 1 unidade = R$549.00/unidade.",
+          "caveats": [
+            "Higher-priced Celite complete kit."
+          ]
+        },
+        {
+          "matched_product": "Kit Completo Bacia com Caixa Acoplada Lirio Branco Fiori",
+          "sku": "1027137",
+          "seller": "Sodimac",
+          "specifications": {
+            "brand": "Fiori",
+            "model": "Lirio",
+            "color": "Branco",
+            "components": "vaso + caixa acoplada + kit instalação + assento"
+          },
+          "package_size": "1 unidade (kit completo)",
+          "displayed_price_brl": 569.0,
+          "normalized_unit_price_brl": 569.0,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.sodimac.com.br/sodimac-br/product/1027137/kit-completo-bacia-com-caixa-acoplada-lirio-branco-fiori/1027137/",
+          "final_url": "https://www.sodimac.com.br/sodimac-br/product/1027137/kit-completo-bacia-com-caixa-acoplada-lirio-branco-fiori/1027137/",
+          "http_status": 200,
+          "verification_method": "Sodimac product page HTTP 200 + __NEXT_DATA__ productData; title Kit Completo Bacia com Caixa Acoplada Lirio Branco Fiori; brand Fiori; internetPrice R$569.00 verified (isOutOfStock=false, isPurchaseable=true). Arithmetic: R$569.00 / 1 unidade = R$569.00/unidade.",
+          "caveats": [
+            "Higher-priced Fiori Lirio kit."
+          ]
+        },
+        {
+          "matched_product": "Kit Vaso Sanitário com Caixa Acoplada e Assento Branco Duplo Acionamento 3/6L Aspen Deca",
+          "sku": "1793605",
+          "seller": "Sodimac",
+          "specifications": {
+            "brand": "Deca",
+            "model": "Aspen",
+            "color": "Branco",
+            "tank_capacity_l": "3/6",
+            "components": "vaso + caixa acoplada + assento; duplo acionamento"
+          },
+          "package_size": "1 unidade (kit completo)",
+          "displayed_price_brl": 689.0,
+          "normalized_unit_price_brl": 689.0,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.sodimac.com.br/sodimac-br/product/1793605/kit-vaso-sanitario-com-caixa-acoplada-e-assento-branco-duplo-acionamento-3-6l-aspen-deca/1793605/",
+          "final_url": "https://www.sodimac.com.br/sodimac-br/product/1793605/kit-vaso-sanitario-com-caixa-acoplada-e-assento-branco-duplo-acionamento-3-6l-aspen-deca/1793605/",
+          "http_status": 200,
+          "verification_method": "Sodimac product page HTTP 200 + __NEXT_DATA__ productData; title Kit Vaso Sanitário com Caixa Acoplada e Assento Branco Duplo Acionamento 3/6L Aspen Deca; brand Deca; internetPrice R$689.00 verified (isOutOfStock=false, isPurchaseable=true). Arithmetic: R$689.00 / 1 unidade = R$689.00/unidade.",
+          "caveats": [
+            "Premium Deca Aspen kit; higher price."
+          ]
+        }
+      ],
+      "winner": {
+        "matched_product": "Kit Vaso Sanitário com Caixa Acoplada Araxa 6L Branco Santa Clara",
+        "sku": "1806853C",
+        "seller": "Sodimac",
+        "specifications": {
+          "brand": "Santa Clara",
+          "model": "Araxa",
+          "color": "Branco",
+          "tank_capacity_l": 6,
+          "components": "bacia com caixa acoplada"
+        },
+        "package_size": "1 unidade (kit acoplado)",
+        "displayed_price_brl": 318.0,
+        "normalized_unit_price_brl": 318.0,
+        "unit": "unidade",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.sodimac.com.br/sodimac-br/product/1806853C/kit-vaso-sanitario-com-caixa-acoplada-araxa-6l-branco-santa-clara/1806853C/",
+        "final_url": "https://www.sodimac.com.br/sodimac-br/product/1806853C/kit-vaso-sanitario-com-caixa-acoplada-araxa-6l-branco-santa-clara/1806853C/",
+        "http_status": 200,
+        "verification_method": "Sodimac product page HTTP 200 + __NEXT_DATA__ productData; title Kit Vaso Sanitário com Caixa Acoplada Araxa 6L Branco Santa Clara; brand Santa Clara; internetPrice R$318.00 verified (isOutOfStock=false, isPurchaseable=true). Arithmetic: R$318.00 / 1 unidade = R$318.00/unidade.",
+        "caveats": [
+          "Lowest verified quantity-1 complete coupled-tank toilet kit among priced candidates.",
+          "SSR topSpecifications empty on page; title/brand/price taken from productData.",
+          "Freight not calculated for CEP 13380-000; freight_brl left null."
+        ]
+      },
+      "no_match_reason": null
+    },
+    {
+      "expense_id": "EXP_0036",
+      "requested_item": "Torneiras",
+      "requested_unit": "unidade",
+      "match_status": "verified",
+      "candidates": [
+        {
+          "matched_product": "Torneira Lavatório Bica Baixa Sevilla Cromado",
+          "sku": "780183",
+          "seller": "Sodimac",
+          "specifications": {
+            "brand": "Karson",
+            "model": "Sevilla",
+            "finish": "Cromado",
+            "mount": "mesa / lavatório",
+            "spout": "bica baixa",
+            "material": "ABS",
+            "water": "água fria"
+          },
+          "package_size": "1 unidade",
+          "displayed_price_brl": 34.9,
+          "normalized_unit_price_brl": 34.9,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.sodimac.com.br/sodimac-br/product/780183/torneira-lavatorio-bica-baixa-sevilla-cromado/780183/",
+          "final_url": "https://www.sodimac.com.br/sodimac-br/product/780183/torneira-lavatorio-bica-baixa-sevilla-cromado/780183/",
+          "http_status": 200,
+          "verification_method": "Sodimac product page HTTP 200 + __NEXT_DATA__ productData; title Torneira Lavatório Bica Baixa Sevilla Cromado; brand Karson; internetPrice R$34.90 verified (isOutOfStock=false, isPurchaseable=true). Arithmetic: R$34.90 / 1 unidade = R$34.90/unidade.",
+          "caveats": [
+            "ABS chrome-finish lavatory faucet; installation accessories included.",
+            "Freight not calculated for CEP 13380-000; freight_brl left null."
+          ]
+        },
+        {
+          "matched_product": "Torneira de Mesa Bica Baixa para Lavatório Cromada C31 1194",
+          "sku": "1046352",
+          "seller": "Sodimac",
+          "specifications": {
+            "brand": "Bognar Metais",
+            "line": "C31 1194",
+            "finish": "Cromada",
+            "mount": "mesa / lavatório",
+            "spout": "bica baixa"
+          },
+          "package_size": "1 unidade",
+          "displayed_price_brl": 59.9,
+          "normalized_unit_price_brl": 59.9,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.sodimac.com.br/sodimac-br/product/1046352/torneira-de-mesa-bica-baixa-para-lavatorio-cromada-c31-1194/1046352/",
+          "final_url": "https://www.sodimac.com.br/sodimac-br/product/1046352/torneira-de-mesa-bica-baixa-para-lavatorio-cromada-c31-1194/1046352/",
+          "http_status": 200,
+          "verification_method": "Sodimac product page HTTP 200 + __NEXT_DATA__ productData; title Torneira de Mesa Bica Baixa para Lavatório Cromada C31 1194; brand Bognar Metais; internetPrice R$59.90 verified (isOutOfStock=false, isPurchaseable=true). Arithmetic: R$59.90 / 1 unidade = R$59.90/unidade.",
+          "caveats": [
+            "Metal lavatory faucet; higher than Karson Sevilla."
+          ]
+        },
+        {
+          "matched_product": "Torneira de Mesa Bica Baixa para Lavatório Cromada C29 1194",
+          "sku": "1046351",
+          "seller": "Sodimac",
+          "specifications": {
+            "brand": "Bognar Metais",
+            "line": "C29 1194",
+            "finish": "Cromada",
+            "mount": "mesa / lavatório",
+            "spout": "bica baixa"
+          },
+          "package_size": "1 unidade",
+          "displayed_price_brl": 59.9,
+          "normalized_unit_price_brl": 59.9,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.sodimac.com.br/sodimac-br/product/1046351/torneira-de-mesa-bica-baixa-para-lavatorio-cromada-c29-1194/1046351/",
+          "final_url": "https://www.sodimac.com.br/sodimac-br/product/1046351/torneira-de-mesa-bica-baixa-para-lavatorio-cromada-c29-1194/1046351/",
+          "http_status": 200,
+          "verification_method": "Sodimac product page HTTP 200 + __NEXT_DATA__ productData; title Torneira de Mesa Bica Baixa para Lavatório Cromada C29 1194; brand Bognar Metais; internetPrice R$59.90 verified (isOutOfStock=false, isPurchaseable=true). Arithmetic: R$59.90 / 1 unidade = R$59.90/unidade.",
+          "caveats": [
+            "Same price tier as C31; alternate finish code."
+          ]
+        },
+        {
+          "matched_product": "Torneira Lavatorio Bica Alta Mesa C62",
+          "sku": "870070",
+          "seller": "Sodimac",
+          "specifications": {
+            "brand": "Sensi Dacqua",
+            "line": "C62",
+            "mount": "mesa / lavatório",
+            "spout": "bica alta"
+          },
+          "package_size": "1 unidade",
+          "displayed_price_brl": 189.0,
+          "normalized_unit_price_brl": 189.0,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.sodimac.com.br/sodimac-br/product/870070/torneira-lavatorio-bica-alta-mesa-c62/870070/",
+          "final_url": "https://www.sodimac.com.br/sodimac-br/product/870070/torneira-lavatorio-bica-alta-mesa-c62/870070/",
+          "http_status": 200,
+          "verification_method": "Sodimac product page HTTP 200 + __NEXT_DATA__ productData; title Torneira Lavatorio Bica Alta Mesa C62; brand Sensi Dacqua; internetPrice R$189.00 verified (isOutOfStock=false, isPurchaseable=true). Arithmetic: R$189.00 / 1 unidade = R$189.00/unidade.",
+          "caveats": [
+            "Bica alta option; higher price."
+          ]
+        },
+        {
+          "matched_product": "Torneira Lavatório Mesa Romarmatic New Cromado 1/2x3/4 15x20x6m",
+          "sku": "570155",
+          "seller": "Sodimac",
+          "specifications": {
+            "brand": "Romar",
+            "model": "Romarmatic New",
+            "finish": "Cromado",
+            "mount": "mesa / lavatório",
+            "connection": "1/2x3/4"
+          },
+          "package_size": "1 unidade",
+          "displayed_price_brl": 190.0,
+          "normalized_unit_price_brl": 190.0,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.sodimac.com.br/sodimac-br/product/570155/torneira-lavatorio-mesa-romarmatic-new-cromado-1-2x3-4-15x20x6m/570155/",
+          "final_url": "https://www.sodimac.com.br/sodimac-br/product/570155/torneira-lavatorio-mesa-romarmatic-new-cromado-1-2x3-4-15x20x6m/570155/",
+          "http_status": 200,
+          "verification_method": "Sodimac product page HTTP 200 + __NEXT_DATA__ productData; title Torneira Lavatório Mesa Romarmatic New Cromado 1/2x3/4 15x20x6m; brand Romar; internetPrice R$190.00 verified (isOutOfStock=false, isPurchaseable=true). Arithmetic: R$190.00 / 1 unidade = R$190.00/unidade.",
+          "caveats": [
+            "Higher-priced Romar metal faucet."
+          ]
+        }
+      ],
+      "winner": {
+        "matched_product": "Torneira Lavatório Bica Baixa Sevilla Cromado",
+        "sku": "780183",
+        "seller": "Sodimac",
+        "specifications": {
+          "brand": "Karson",
+          "model": "Sevilla",
+          "finish": "Cromado",
+          "mount": "mesa / lavatório",
+          "spout": "bica baixa",
+          "material": "ABS",
+          "water": "água fria"
+        },
+        "package_size": "1 unidade",
+        "displayed_price_brl": 34.9,
+        "normalized_unit_price_brl": 34.9,
+        "unit": "unidade",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.sodimac.com.br/sodimac-br/product/780183/torneira-lavatorio-bica-baixa-sevilla-cromado/780183/",
+        "final_url": "https://www.sodimac.com.br/sodimac-br/product/780183/torneira-lavatorio-bica-baixa-sevilla-cromado/780183/",
+        "http_status": 200,
+        "verification_method": "Sodimac product page HTTP 200 + __NEXT_DATA__ productData; title Torneira Lavatório Bica Baixa Sevilla Cromado; brand Karson; internetPrice R$34.90 verified (isOutOfStock=false, isPurchaseable=true). Arithmetic: R$34.90 / 1 unidade = R$34.90/unidade.",
+        "caveats": [
+          "Lowest verified quantity-1 lavatory faucet with visible internetPrice.",
+          "ABS chrome-finish lavatory faucet; installation accessories included.",
+          "Freight not calculated for CEP 13380-000; freight_brl left null."
+        ]
+      },
+      "no_match_reason": null
+    },
+    {
+      "expense_id": "EXP_0037",
+      "requested_item": "Sifões/ralos",
+      "requested_unit": "unidade",
+      "match_status": "verified",
+      "candidates": [
+        {
+          "matched_product": "Sifão Sanfonado Extensivel Universal",
+          "sku": "1024259",
+          "seller": "Sodimac",
+          "specifications": {
+            "brand": "Krona",
+            "type": "sifão sanfonado extensível universal",
+            "material": "PVC",
+            "color": "Branco",
+            "application": "pia / lavatório"
+          },
+          "package_size": "1 unidade",
+          "displayed_price_brl": 5.9,
+          "normalized_unit_price_brl": 5.9,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.sodimac.com.br/sodimac-br/product/1024259/sifao-sanfonado-extensivel-universal/1024259/",
+          "final_url": "https://www.sodimac.com.br/sodimac-br/product/1024259/sifao-sanfonado-extensivel-universal/1024259/",
+          "http_status": 200,
+          "verification_method": "Sodimac product page HTTP 200 + __NEXT_DATA__ productData; title Sifão Sanfonado Extensivel Universal; brand Krona; internetPrice R$5.90 verified (isOutOfStock=false, isPurchaseable=true). Arithmetic: R$5.90 / 1 unidade = R$5.90/unidade.",
+          "caveats": [
+            "Representative siphon only; expense label also includes drains (ralos).",
+            "Freight not calculated for CEP 13380-000; freight_brl left null."
+          ]
+        },
+        {
+          "matched_product": "Sifão Sanfonado Universal Preto Astra",
+          "sku": "1797033",
+          "seller": "Sodimac",
+          "specifications": {
+            "brand": "Astra",
+            "type": "sifão sanfonado universal",
+            "color": "Preto"
+          },
+          "package_size": "1 unidade",
+          "displayed_price_brl": 9.9,
+          "normalized_unit_price_brl": 9.9,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.sodimac.com.br/sodimac-br/product/1797033/sifao-sanfonado-universal-preto-astra/1797033/",
+          "final_url": "https://www.sodimac.com.br/sodimac-br/product/1797033/sifao-sanfonado-universal-preto-astra/1797033/",
+          "http_status": 200,
+          "verification_method": "Sodimac product page HTTP 200 + __NEXT_DATA__ productData; title Sifão Sanfonado Universal Preto Astra; brand Astra; internetPrice R$9.90 verified (isOutOfStock=false, isPurchaseable=true). Arithmetic: R$9.90 / 1 unidade = R$9.90/unidade.",
+          "caveats": [
+            "Black Astra alternate; higher than Krona."
+          ]
+        },
+        {
+          "matched_product": "Sifão Sanfonado Extensivel Universal",
+          "sku": "737794",
+          "seller": "Sodimac",
+          "specifications": {
+            "brand": "Blukit",
+            "type": "sifão sanfonado extensível universal"
+          },
+          "package_size": "1 unidade",
+          "displayed_price_brl": 12.9,
+          "normalized_unit_price_brl": 12.9,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.sodimac.com.br/sodimac-br/product/737794/sifao-sanfonado-extensivel-universal/737794/",
+          "final_url": "https://www.sodimac.com.br/sodimac-br/product/737794/sifao-sanfonado-extensivel-universal/737794/",
+          "http_status": 200,
+          "verification_method": "Sodimac product page HTTP 200 + __NEXT_DATA__ productData; title Sifão Sanfonado Extensivel Universal; brand Blukit; internetPrice R$12.90 verified (isOutOfStock=false, isPurchaseable=true). Arithmetic: R$12.90 / 1 unidade = R$12.90/unidade.",
+          "caveats": [
+            "Higher-priced Blukit universal siphon."
+          ]
+        },
+        {
+          "matched_product": "Ralo Linear com Grelha 7x52 Cinza",
+          "sku": "1793810004",
+          "seller": "Sodimac",
+          "specifications": {
+            "brand": "Gemell",
+            "type": "ralo linear com grelha",
+            "size": "7x52 cm",
+            "color": "Cinza"
+          },
+          "package_size": "1 unidade",
+          "displayed_price_brl": 67.9,
+          "normalized_unit_price_brl": 67.9,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.sodimac.com.br/sodimac-br/product/1793810004/ralo-linear-com-grelha-7x52-cinza/1793810004/",
+          "final_url": "https://www.sodimac.com.br/sodimac-br/product/1793810004/ralo-linear-com-grelha-7x52-cinza/1793810004/",
+          "http_status": 200,
+          "verification_method": "Sodimac product page HTTP 200 + __NEXT_DATA__ productData; title Ralo Linear com Grelha 7x52 Cinza; brand Gemell; internetPrice R$67.90 verified (isOutOfStock=false, isPurchaseable=true). Arithmetic: R$67.90 / 1 unidade = R$67.90/unidade.",
+          "caveats": [
+            "Drain (ralo) alternate under same expense label; not selected vs cheaper siphon."
+          ]
+        }
+      ],
+      "winner": {
+        "matched_product": "Sifão Sanfonado Extensivel Universal",
+        "sku": "1024259",
+        "seller": "Sodimac",
+        "specifications": {
+          "brand": "Krona",
+          "type": "sifão sanfonado extensível universal",
+          "material": "PVC",
+          "color": "Branco",
+          "application": "pia / lavatório"
+        },
+        "package_size": "1 unidade",
+        "displayed_price_brl": 5.9,
+        "normalized_unit_price_brl": 5.9,
+        "unit": "unidade",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.sodimac.com.br/sodimac-br/product/1024259/sifao-sanfonado-extensivel-universal/1024259/",
+        "final_url": "https://www.sodimac.com.br/sodimac-br/product/1024259/sifao-sanfonado-extensivel-universal/1024259/",
+        "http_status": 200,
+        "verification_method": "Sodimac product page HTTP 200 + __NEXT_DATA__ productData; title Sifão Sanfonado Extensivel Universal; brand Krona; internetPrice R$5.90 verified (isOutOfStock=false, isPurchaseable=true). Arithmetic: R$5.90 / 1 unidade = R$5.90/unidade.",
+        "caveats": [
+          "Lowest verified quantity-1 representative universal siphon.",
+          "Representative siphon only; expense label also includes drains (ralos).",
+          "Freight not calculated for CEP 13380-000; freight_brl left null."
+        ]
+      },
+      "no_match_reason": null
+    },
+    {
+      "expense_id": "EXP_0039",
+      "requested_item": "Pias/bancadas conjunto",
+      "requested_unit": "conjunto",
+      "match_status": "verified",
+      "candidates": [
+        {
+          "matched_product": "Pia Aço Inox 120x52x11 Forminox",
+          "sku": "1804069",
+          "seller": "Sodimac",
+          "specifications": {
+            "brand": "Forminox",
+            "material": "Aço inox",
+            "length_cm": 120,
+            "width_cm": 52,
+            "depth_cm": 11,
+            "bowl": "cuba integrada"
+          },
+          "package_size": "1 unidade (120 x 52 x 11 cm)",
+          "displayed_price_brl": 199.0,
+          "normalized_unit_price_brl": 199.0,
+          "unit": "conjunto",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.sodimac.com.br/sodimac-br/product/1804069/pia-aco-inox-120x52x11-forminox/1804069/",
+          "final_url": "https://www.sodimac.com.br/sodimac-br/product/1804069/pia-aco-inox-120x52x11-forminox/1804069/",
+          "http_status": 200,
+          "verification_method": "Sodimac product page HTTP 200 + __NEXT_DATA__ productData; title Pia Aço Inox 120x52x11 Forminox; brand Forminox; internetPrice R$199.00 verified (isOutOfStock=false, isPurchaseable=true). Arithmetic: R$199.00 / 1 conjunto = R$199.00/conjunto.",
+          "caveats": [
+            "Kitchen stainless pia/bancada treated as pia/bancada conjunto.",
+            "Freight not calculated for CEP 13380-000; freight_brl left null."
+          ]
+        },
+        {
+          "matched_product": "Pia de Aço Inox com Cuba 120x53cm Prata Ghelplus",
+          "sku": "1768940",
+          "seller": "Sodimac",
+          "specifications": {
+            "brand": "Ghel Plus",
+            "material": "Aço inox",
+            "length_cm": 120,
+            "width_cm": 53,
+            "color": "Prata",
+            "bowl": "com cuba"
+          },
+          "package_size": "1 unidade (120 x 53 cm)",
+          "displayed_price_brl": 259.0,
+          "normalized_unit_price_brl": 259.0,
+          "unit": "conjunto",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.sodimac.com.br/sodimac-br/product/1768940/pia-de-aco-inox-com-cuba-120x53cm-prata-ghelplus/1768940/",
+          "final_url": "https://www.sodimac.com.br/sodimac-br/product/1768940/pia-de-aco-inox-com-cuba-120x53cm-prata-ghelplus/1768940/",
+          "http_status": 200,
+          "verification_method": "Sodimac product page HTTP 200 + __NEXT_DATA__ productData; title Pia de Aço Inox com Cuba 120x53cm Prata Ghelplus; brand Ghel Plus; internetPrice R$259.00 verified (isOutOfStock=false, isPurchaseable=true). Arithmetic: R$259.00 / 1 conjunto = R$259.00/conjunto.",
+          "caveats": [
+            "Comparable 120 cm inox pia; higher than Forminox."
+          ]
+        },
+        {
+          "matched_product": "Pia Plus 30 Cuba N495 1000x530cm Ghelplus",
+          "sku": "1022916",
+          "seller": "Sodimac",
+          "specifications": {
+            "brand": "Ghelplus",
+            "model": "Plus 30 / N495",
+            "material": "Inox",
+            "length_cm": 100,
+            "width_cm": 53,
+            "thickness_mm": 0.7
+          },
+          "package_size": "1 unidade (1000 x 530 mm)",
+          "displayed_price_brl": 309.0,
+          "normalized_unit_price_brl": 309.0,
+          "unit": "conjunto",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.sodimac.com.br/sodimac-br/product/1022916/pia-plus-30-cuba-n495-1000x530cm-ghelplus/1022916/",
+          "final_url": "https://www.sodimac.com.br/sodimac-br/product/1022916/pia-plus-30-cuba-n495-1000x530cm-ghelplus/1022916/",
+          "http_status": 200,
+          "verification_method": "Sodimac product page HTTP 200 + __NEXT_DATA__ productData; title Pia Plus 30 Cuba N495 1000x530cm Ghelplus; brand Ghelplus; internetPrice R$309.00 verified (isOutOfStock=false, isPurchaseable=true). Arithmetic: R$309.00 / 1 conjunto = R$309.00/conjunto.",
+          "caveats": [
+            "100 cm Plus 30 pia; higher than Forminox 120 cm."
+          ]
+        },
+        {
+          "matched_product": "Pia Plus 30 Cuba N495 1200x530cm Ghelplus",
+          "sku": "1022915",
+          "seller": "Sodimac",
+          "specifications": {
+            "brand": "Ghelplus",
+            "model": "Plus 30 / N495",
+            "material": "Inox",
+            "length_cm": 120,
+            "width_cm": 53,
+            "thickness_mm": 0.7
+          },
+          "package_size": "1 unidade (1200 x 530 mm)",
+          "displayed_price_brl": 349.0,
+          "normalized_unit_price_brl": 349.0,
+          "unit": "conjunto",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.sodimac.com.br/sodimac-br/product/1022915/pia-plus-30-cuba-n495-1200x530cm-ghelplus/1022915/",
+          "final_url": "https://www.sodimac.com.br/sodimac-br/product/1022915/pia-plus-30-cuba-n495-1200x530cm-ghelplus/1022915/",
+          "http_status": 200,
+          "verification_method": "Sodimac product page HTTP 200 + __NEXT_DATA__ productData; title Pia Plus 30 Cuba N495 1200x530cm Ghelplus; brand Ghelplus; internetPrice R$349.00 verified (isOutOfStock=false, isPurchaseable=true). Arithmetic: R$349.00 / 1 conjunto = R$349.00/conjunto.",
+          "caveats": [
+            "120 cm Plus 30 pia; higher price tier."
+          ]
+        }
+      ],
+      "winner": {
+        "matched_product": "Pia Aço Inox 120x52x11 Forminox",
+        "sku": "1804069",
+        "seller": "Sodimac",
+        "specifications": {
+          "brand": "Forminox",
+          "material": "Aço inox",
+          "length_cm": 120,
+          "width_cm": 52,
+          "depth_cm": 11,
+          "bowl": "cuba integrada"
+        },
+        "package_size": "1 unidade (120 x 52 x 11 cm)",
+        "displayed_price_brl": 199.0,
+        "normalized_unit_price_brl": 199.0,
+        "unit": "conjunto",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.sodimac.com.br/sodimac-br/product/1804069/pia-aco-inox-120x52x11-forminox/1804069/",
+        "final_url": "https://www.sodimac.com.br/sodimac-br/product/1804069/pia-aco-inox-120x52x11-forminox/1804069/",
+        "http_status": 200,
+        "verification_method": "Sodimac product page HTTP 200 + __NEXT_DATA__ productData; title Pia Aço Inox 120x52x11 Forminox; brand Forminox; internetPrice R$199.00 verified (isOutOfStock=false, isPurchaseable=true). Arithmetic: R$199.00 / 1 conjunto = R$199.00/conjunto.",
+        "caveats": [
+          "Lowest verified quantity-1 kitchen inox pia/bancada conjunto (~120 cm).",
+          "Kitchen stainless pia/bancada treated as pia/bancada conjunto.",
+          "Freight not calculated for CEP 13380-000; freight_brl left null."
+        ]
+      },
+      "no_match_reason": null
+    },
+    {
+      "expense_id": "EXP_0040",
+      "requested_item": "Box vidro",
+      "requested_unit": "unidade",
+      "match_status": "verified",
+      "candidates": [
+        {
+          "matched_product": "Box de Banheiro de Vidro Incolor 6 mm Branco 100 cm Speed Temper",
+          "sku": "853903",
+          "seller": "Sodimac",
+          "specifications": {
+            "brand": "Speed Temper",
+            "glass": "vidro temperado incolor 6 mm",
+            "frame": "alumínio branco",
+            "width_cm": 100,
+            "components": "porta + fixo + kit alumínio branco"
+          },
+          "package_size": "1 unidade (box ~100 cm)",
+          "displayed_price_brl": 709.0,
+          "normalized_unit_price_brl": 709.0,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.sodimac.com.br/sodimac-br/product/853903/box-de-banheiro-de-vidro-incolor-6-mm-branco-100-cm-speed-temper/853903/",
+          "final_url": "https://www.sodimac.com.br/sodimac-br/product/853903/box-de-banheiro-de-vidro-incolor-6-mm-branco-100-cm-speed-temper/853903/",
+          "http_status": 200,
+          "verification_method": "Sodimac product page HTTP 200 + __NEXT_DATA__ productData; title Box de Banheiro de Vidro Incolor 6 mm Branco 100 cm Speed Temper; brand Speed Temper; internetPrice R$709.00 verified (isOutOfStock=false, isPurchaseable=true). Arithmetic: R$709.00 / 1 unidade = R$709.00/unidade.",
+          "caveats": [
+            "Lowest verified qty-1 tempered-glass shower box among Speed Temper listings.",
+            "Freight not calculated for CEP 13380-000; freight_brl left null."
+          ]
+        },
+        {
+          "matched_product": "Box de Banheiro de Vidro Incolor 6 mm Branco 110 cm Speed Temper",
+          "sku": "853904",
+          "seller": "Sodimac",
+          "specifications": {
+            "brand": "Speed Temper",
+            "glass": "vidro temperado incolor 6 mm",
+            "frame": "alumínio branco",
+            "width_cm": 110
+          },
+          "package_size": "1 unidade (box ~110 cm)",
+          "displayed_price_brl": 749.0,
+          "normalized_unit_price_brl": 749.0,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.sodimac.com.br/sodimac-br/product/853904/box-de-banheiro-de-vidro-incolor-6-mm-branco-110-cm-speed-temper/853904/",
+          "final_url": "https://www.sodimac.com.br/sodimac-br/product/853904/box-de-banheiro-de-vidro-incolor-6-mm-branco-110-cm-speed-temper/853904/",
+          "http_status": 200,
+          "verification_method": "Sodimac product page HTTP 200 + __NEXT_DATA__ productData; title Box de Banheiro de Vidro Incolor 6 mm Branco 110 cm Speed Temper; brand Speed Temper; internetPrice R$749.00 verified (isOutOfStock=false, isPurchaseable=true). Arithmetic: R$749.00 / 1 unidade = R$749.00/unidade.",
+          "caveats": [
+            "110 cm width; higher than 100 cm winner."
+          ]
+        },
+        {
+          "matched_product": "Box de Banheiro de Vidro Incolor 6 mm Branco 140 cm Speed Temper",
+          "sku": "853907",
+          "seller": "Sodimac",
+          "specifications": {
+            "brand": "Speed Temper",
+            "glass": "vidro temperado incolor 6 mm",
+            "frame": "alumínio branco",
+            "width_cm": 140
+          },
+          "package_size": "1 unidade (box ~140 cm)",
+          "displayed_price_brl": 899.0,
+          "normalized_unit_price_brl": 899.0,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.sodimac.com.br/sodimac-br/product/853907/box-de-banheiro-de-vidro-incolor-6-mm-branco-140-cm-speed-temper/853907/",
+          "final_url": "https://www.sodimac.com.br/sodimac-br/product/853907/box-de-banheiro-de-vidro-incolor-6-mm-branco-140-cm-speed-temper/853907/",
+          "http_status": 200,
+          "verification_method": "Sodimac product page HTTP 200 + __NEXT_DATA__ productData; title Box de Banheiro de Vidro Incolor 6 mm Branco 140 cm Speed Temper; brand Speed Temper; internetPrice R$899.00 verified (isOutOfStock=false, isPurchaseable=true). Arithmetic: R$899.00 / 1 unidade = R$899.00/unidade.",
+          "caveats": [
+            "140 cm width; higher price."
+          ]
+        },
+        {
+          "matched_product": "Box de Abrir para Banheiro de Vidro Incolor 8 mm Branco 90x8x190 cm Speed Temper",
+          "sku": "855256",
+          "seller": "Sodimac",
+          "specifications": {
+            "brand": "Speed Temper",
+            "type": "box de abrir",
+            "glass": "vidro temperado incolor 8 mm",
+            "frame": "branco",
+            "dimensions_cm": "90 x 8 x 190"
+          },
+          "package_size": "1 unidade (90x8x190 cm)",
+          "displayed_price_brl": 1058.0,
+          "normalized_unit_price_brl": 1058.0,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.sodimac.com.br/sodimac-br/product/855256/box-de-abrir-para-banheiro-de-vidro-incolor-8-mm-branco-90x8x190-cm-speed-temper/855256/",
+          "final_url": "https://www.sodimac.com.br/sodimac-br/product/855256/box-de-abrir-para-banheiro-de-vidro-incolor-8-mm-branco-90x8x190-cm-speed-temper/855256/",
+          "http_status": 200,
+          "verification_method": "Sodimac product page HTTP 200 + __NEXT_DATA__ productData; title Box de Abrir para Banheiro de Vidro Incolor 8 mm Branco 90x8x190 cm Speed Temper; brand Speed Temper; internetPrice R$1058.00 verified (isOutOfStock=false, isPurchaseable=true). Arithmetic: R$1058.00 / 1 unidade = R$1058.00/unidade.",
+          "caveats": [
+            "Hinged/open box; higher than frontal 100 cm."
+          ]
+        }
+      ],
+      "winner": {
+        "matched_product": "Box de Banheiro de Vidro Incolor 6 mm Branco 100 cm Speed Temper",
+        "sku": "853903",
+        "seller": "Sodimac",
+        "specifications": {
+          "brand": "Speed Temper",
+          "glass": "vidro temperado incolor 6 mm",
+          "frame": "alumínio branco",
+          "width_cm": 100,
+          "components": "porta + fixo + kit alumínio branco"
+        },
+        "package_size": "1 unidade (box ~100 cm)",
+        "displayed_price_brl": 709.0,
+        "normalized_unit_price_brl": 709.0,
+        "unit": "unidade",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.sodimac.com.br/sodimac-br/product/853903/box-de-banheiro-de-vidro-incolor-6-mm-branco-100-cm-speed-temper/853903/",
+        "final_url": "https://www.sodimac.com.br/sodimac-br/product/853903/box-de-banheiro-de-vidro-incolor-6-mm-branco-100-cm-speed-temper/853903/",
+        "http_status": 200,
+        "verification_method": "Sodimac product page HTTP 200 + __NEXT_DATA__ productData; title Box de Banheiro de Vidro Incolor 6 mm Branco 100 cm Speed Temper; brand Speed Temper; internetPrice R$709.00 verified (isOutOfStock=false, isPurchaseable=true). Arithmetic: R$709.00 / 1 unidade = R$709.00/unidade.",
+        "caveats": [
+          "Lowest verified quantity-1 tempered-glass bathroom box.",
+          "Lowest verified qty-1 tempered-glass shower box among Speed Temper listings.",
+          "Freight not calculated for CEP 13380-000; freight_brl left null."
+        ]
+      },
+      "no_match_reason": null
+    },
+    {
+      "expense_id": "EXP_0044",
+      "requested_item": "Caixa d'água",
+      "requested_unit": "unidade",
+      "match_status": "verified",
+      "candidates": [
+        {
+          "matched_product": "Caixa De Água 1.000L Polietileno Tampa Encaixe Azul Fortlev",
+          "sku": "7449",
+          "seller": "Sodimac",
+          "specifications": {
+            "brand": "Fortlev",
+            "material": "polietileno",
+            "capacity_l": 1000,
+            "lid": "tampa encaixe",
+            "color": "Azul",
+            "shape": "Redonda"
+          },
+          "package_size": "1 unidade (1000 L)",
+          "displayed_price_brl": 429.9,
+          "normalized_unit_price_brl": 429.9,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.sodimac.com.br/sodimac-br/product/7449/caixa-de-agua-1000l-polietileno-tampa-encaixe-azul-fortlev/7449/",
+          "final_url": "https://www.sodimac.com.br/sodimac-br/product/7449/caixa-de-agua-1000l-polietileno-tampa-encaixe-azul-fortlev/7449/",
+          "http_status": 200,
+          "verification_method": "Sodimac product page HTTP 200 + __NEXT_DATA__ productData; title Caixa De Água 1.000L Polietileno Tampa Encaixe Azul Fortlev; brand Fortlev; eventPrice R$429.90 verified (isOutOfStock=false, isPurchaseable=true). Arithmetic: R$429.90 / 1 unidade = R$429.90/unidade.",
+          "caveats": [
+            "Preferred 1000 L capacity matched.",
+            "Freight not calculated for CEP 13380-000; freight_brl left null."
+          ]
+        },
+        {
+          "matched_product": "Caixa De Água 1.000L Polietileno Tampa Encaixe Azul",
+          "sku": "628090",
+          "seller": "Sodimac",
+          "specifications": {
+            "brand": "Amanco",
+            "material": "polietileno",
+            "capacity_l": 1000,
+            "lid": "tampa encaixe",
+            "color": "Azul"
+          },
+          "package_size": "1 unidade (1000 L)",
+          "displayed_price_brl": 460.51,
+          "normalized_unit_price_brl": 460.51,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.sodimac.com.br/sodimac-br/product/628090/caixa-de-agua-1000l-polietileno-tampa-encaixe-azul/628090/",
+          "final_url": "https://www.sodimac.com.br/sodimac-br/product/628090/caixa-de-agua-1000l-polietileno-tampa-encaixe-azul/628090/",
+          "http_status": 200,
+          "verification_method": "Sodimac product page HTTP 200 + __NEXT_DATA__ productData; title Caixa De Água 1.000L Polietileno Tampa Encaixe Azul; brand Amanco; eventPrice R$460.51 verified (isOutOfStock=false, isPurchaseable=true). Arithmetic: R$460.51 / 1 unidade = R$460.51/unidade.",
+          "caveats": [
+            "Alternate 1000 L Amanco; higher than Fortlev."
+          ]
+        },
+        {
+          "matched_product": "Tanque Green 1000 Litros",
+          "sku": "885838",
+          "seller": "Sodimac",
+          "specifications": {
+            "brand": "Acqualimp",
+            "line": "Green",
+            "material": "polietileno",
+            "capacity_l": 1000,
+            "type": "tanque"
+          },
+          "package_size": "1 unidade (1000 L)",
+          "displayed_price_brl": 654.9,
+          "normalized_unit_price_brl": 654.9,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.sodimac.com.br/sodimac-br/product/885838/tanque-green-1000-litros/885838/",
+          "final_url": "https://www.sodimac.com.br/sodimac-br/product/885838/tanque-green-1000-litros/885838/",
+          "http_status": 200,
+          "verification_method": "Sodimac product page HTTP 200 + __NEXT_DATA__ productData; title Tanque Green 1000 Litros; brand Acqualimp; internetPrice R$654.90 verified (isOutOfStock=false, isPurchaseable=true). Arithmetic: R$654.90 / 1 unidade = R$654.90/unidade.",
+          "caveats": [
+            "Acqualimp Green 1000 L tanque; higher price."
+          ]
+        },
+        {
+          "matched_product": "Caixa de Água 1.000L Polietileno Tampa Rosca Bege Fortlev",
+          "sku": "750312",
+          "seller": "Sodimac",
+          "specifications": {
+            "brand": "Fortlev",
+            "material": "polietileno",
+            "capacity_l": 1000,
+            "lid": "tampa rosca",
+            "color": "Bege"
+          },
+          "package_size": "1 unidade (1000 L)",
+          "displayed_price_brl": 779.9,
+          "normalized_unit_price_brl": 779.9,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.sodimac.com.br/sodimac-br/product/750312/caixa-de-agua-1000l-polietileno-tampa-rosca-bege-fortlev/750312/",
+          "final_url": "https://www.sodimac.com.br/sodimac-br/product/750312/caixa-de-agua-1000l-polietileno-tampa-rosca-bege-fortlev/750312/",
+          "http_status": 200,
+          "verification_method": "Sodimac product page HTTP 200 + __NEXT_DATA__ productData; title Caixa de Água 1.000L Polietileno Tampa Rosca Bege Fortlev; brand Fortlev; eventPrice R$779.90 verified (isOutOfStock=false, isPurchaseable=true). Arithmetic: R$779.90 / 1 unidade = R$779.90/unidade.",
+          "caveats": [
+            "Fortlev screw-lid beige 1000 L; higher than encaixe azul."
+          ]
+        }
+      ],
+      "winner": {
+        "matched_product": "Caixa De Água 1.000L Polietileno Tampa Encaixe Azul Fortlev",
+        "sku": "7449",
+        "seller": "Sodimac",
+        "specifications": {
+          "brand": "Fortlev",
+          "material": "polietileno",
+          "capacity_l": 1000,
+          "lid": "tampa encaixe",
+          "color": "Azul",
+          "shape": "Redonda"
+        },
+        "package_size": "1 unidade (1000 L)",
+        "displayed_price_brl": 429.9,
+        "normalized_unit_price_brl": 429.9,
+        "unit": "unidade",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.sodimac.com.br/sodimac-br/product/7449/caixa-de-agua-1000l-polietileno-tampa-encaixe-azul-fortlev/7449/",
+        "final_url": "https://www.sodimac.com.br/sodimac-br/product/7449/caixa-de-agua-1000l-polietileno-tampa-encaixe-azul-fortlev/7449/",
+        "http_status": 200,
+        "verification_method": "Sodimac product page HTTP 200 + __NEXT_DATA__ productData; title Caixa De Água 1.000L Polietileno Tampa Encaixe Azul Fortlev; brand Fortlev; eventPrice R$429.90 verified (isOutOfStock=false, isPurchaseable=true). Arithmetic: R$429.90 / 1 unidade = R$429.90/unidade.",
+        "caveats": [
+          "Lowest verified quantity-1 1000 L water tank among available listings.",
+          "Preferred 1000 L capacity matched.",
+          "Freight not calculated for CEP 13380-000; freight_brl left null."
+        ]
+      },
+      "no_match_reason": null
+    }
+  ]
+}

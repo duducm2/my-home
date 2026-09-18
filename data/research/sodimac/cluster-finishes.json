@@ -1,0 +1,800 @@
+{
+  "cluster": "finishes",
+  "checked_at": "2026-09-17",
+  "location_basis": "nova_odessa_cep_13380",
+  "expenses": [
+    {
+      "expense_id": "EXP_0023",
+      "requested_item": "Porcelanato",
+      "requested_unit": "m²",
+      "match_status": "verified",
+      "candidates": [
+        {
+          "matched_product": "Piso Porcelanato Acetinado Retificado Bege Interno 60x60cm Champagne Branco Cetim Incesa Caixa 2,2m²",
+          "sku": "898363",
+          "seller": "Sodimac Brasil",
+          "specifications": {
+            "brand": "Incesa",
+            "format_cm": "60 x 60",
+            "finish": "Acetinado retificado",
+            "color": "Bege / Champagne Branco Cetim",
+            "box_area_m2": 2.2,
+            "use": "Interno; chão/parede"
+          },
+          "package_size": "caixa 2,2 m²",
+          "displayed_price_brl": 87.78,
+          "normalized_unit_price_brl": 39.9,
+          "unit": "m²",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.sodimac.com.br/sodimac-br/product/898363/piso-porcelanato-acetinado-retificado-bege-interno-60x60cm-champagne-branco-cetim-caixa-2-2m2/898363/",
+          "final_url": "https://www.sodimac.com.br/sodimac-br/product/898363/piso-porcelanato-acetinado-retificado-bege-interno-60x60cm-champagne-branco-cetim-caixa-2-2m2/898363/",
+          "http_status": 200,
+          "verification_method": "Sodimac product page HTTP 200 + __NEXT_DATA__ productData; eventPrice box R$87,78 with unitPrice R$39,90/m² for 2,2 m²; isOutOfStock=false. Arithmetic: 39.90×2.2=87.78.",
+          "caveats": [
+            "Lowest verified quantity-1 per-m² price among available porcelain candidates.",
+            "Ranking uses visible event/internet card price; freight for CEP 13380-000 not calculated."
+          ]
+        },
+        {
+          "matched_product": "Piso Porcelanato Acetinado Retificado Cinza Interno 60x60cm Paviment White Incesa Caixa 2,2m²",
+          "sku": "898372",
+          "seller": "Sodimac Brasil",
+          "specifications": {
+            "brand": "Incesa",
+            "format_cm": "60 x 60",
+            "finish": "Acetinado retificado",
+            "color": "Cinza / Paviment White",
+            "box_area_m2": 2.2,
+            "use": "Interno"
+          },
+          "package_size": "caixa 2,2 m²",
+          "displayed_price_brl": 87.78,
+          "normalized_unit_price_brl": 39.9,
+          "unit": "m²",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.sodimac.com.br/sodimac-br/product/898372/piso-porcelanato-acetinado-retificado-cinza-interno-60x60cm-paviment-white-caixa-2-2m2/898372/",
+          "final_url": "https://www.sodimac.com.br/sodimac-br/product/898372/piso-porcelanato-acetinado-retificado-cinza-interno-60x60cm-paviment-white-caixa-2-2m2/898372/",
+          "http_status": 200,
+          "verification_method": "Sodimac product page HTTP 200 + __NEXT_DATA__; eventPrice box R$87,78; unitPrice R$39,90/m² × 2,2 m².",
+          "caveats": [
+            "Same per-m² price as Champagne Bege winner; alternate colorway."
+          ]
+        },
+        {
+          "matched_product": "Porcelanato Prime Branco 60x60cm Caixa 2,16m² Retificado Branco",
+          "sku": "762354",
+          "seller": "Sodimac Brasil",
+          "specifications": {
+            "brand": "Incepa",
+            "format_cm": "60 x 60",
+            "finish": "Retificado",
+            "color": "Branco",
+            "box_area_m2": 2.16
+          },
+          "package_size": "caixa 2,16 m²",
+          "displayed_price_brl": 92.66,
+          "normalized_unit_price_brl": 42.9,
+          "unit": "m²",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.sodimac.com.br/sodimac-br/product/762354/porcelanato-prime-branco-60x60cm-caixa-2-16m2-retificado-branco/762354/",
+          "final_url": "https://www.sodimac.com.br/sodimac-br/product/762354/porcelanato-prime-branco-60x60cm-caixa-2-16m2-retificado-branco/762354/",
+          "http_status": 200,
+          "verification_method": "Sodimac product page HTTP 200 + __NEXT_DATA__; eventPrice box R$92,66; unitPrice R$42,90/m².",
+          "caveats": []
+        }
+      ],
+      "winner": {
+        "matched_product": "Piso Porcelanato Acetinado Retificado Bege Interno 60x60cm Champagne Branco Cetim Incesa Caixa 2,2m²",
+        "sku": "898363",
+        "seller": "Sodimac Brasil",
+        "specifications": {
+          "brand": "Incesa",
+          "format_cm": "60 x 60",
+          "finish": "Acetinado retificado",
+          "color": "Bege / Champagne Branco Cetim",
+          "box_area_m2": 2.2,
+          "use": "Interno; chão/parede"
+        },
+        "package_size": "caixa 2,2 m²",
+        "displayed_price_brl": 87.78,
+        "normalized_unit_price_brl": 39.9,
+        "unit": "m²",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.sodimac.com.br/sodimac-br/product/898363/piso-porcelanato-acetinado-retificado-bege-interno-60x60cm-champagne-branco-cetim-caixa-2-2m2/898363/",
+        "final_url": "https://www.sodimac.com.br/sodimac-br/product/898363/piso-porcelanato-acetinado-retificado-bege-interno-60x60cm-champagne-branco-cetim-caixa-2-2m2/898363/",
+        "http_status": 200,
+        "verification_method": "Sodimac product page HTTP 200 + __NEXT_DATA__ productData; eventPrice box R$87,78 with unitPrice R$39,90/m² for 2,2 m²; isOutOfStock=false. Arithmetic: 39.90×2.2=87.78.",
+        "caveats": [
+          "Lowest verified quantity-1 per-m² price among available porcelain candidates.",
+          "Ranking uses visible event/internet card price; freight for CEP 13380-000 not calculated."
+        ]
+      },
+      "no_match_reason": null
+    },
+    {
+      "expense_id": "EXP_0024",
+      "requested_item": "Rejunte de porcelanato",
+      "requested_unit": "kg",
+      "match_status": "verified",
+      "candidates": [
+        {
+          "matched_product": "Rejunte Acrílico 1kg Branco Quartzolit",
+          "sku": "637939002",
+          "seller": "Sodimac Brasil",
+          "specifications": {
+            "brand": "Quartzolit",
+            "type": "Acrílico",
+            "color": "Branco",
+            "weight_kg": 1
+          },
+          "package_size": "1 kg",
+          "displayed_price_brl": 54.9,
+          "normalized_unit_price_brl": 54.9,
+          "unit": "kg",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.sodimac.com.br/sodimac-br/product/637939002/rejunte-acrilico-1kg-branco/637939002/",
+          "final_url": "https://www.sodimac.com.br/sodimac-br/product/637939002/rejunte-acrilico-1kg-branco/637939002/",
+          "http_status": 200,
+          "verification_method": "Seed URL re-verified: product page HTTP 200 + __NEXT_DATA__; internetPrice R$54,90; brand Quartzolit; isOutOfStock=false. Arithmetic: R$54.90 / 1 kg = R$54.90/kg.",
+          "caveats": [
+            "Seed URL re-verified; white acrylic 1 kg used as porcelain-oriented comparable.",
+            "Freight for CEP 13380-000 not calculated."
+          ]
+        },
+        {
+          "matched_product": "Rejunte Acrílico 1kg Cinza Platina",
+          "sku": "736524",
+          "seller": "Sodimac Brasil",
+          "specifications": {
+            "brand": "Quartzolit",
+            "type": "Acrílico",
+            "color": "Cinza Platina",
+            "weight_kg": 1
+          },
+          "package_size": "1 kg",
+          "displayed_price_brl": 54.9,
+          "normalized_unit_price_brl": 54.9,
+          "unit": "kg",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.sodimac.com.br/sodimac-br/product/736524/rejunte-acrilico-1kg-cinza-platina/736524/",
+          "final_url": "https://www.sodimac.com.br/sodimac-br/product/736524/rejunte-acrilico-1kg-cinza-platina/736524/",
+          "http_status": 200,
+          "verification_method": "Sodimac product page HTTP 200 + __NEXT_DATA__; internetPrice R$54,90. Arithmetic: R$54.90 / 1 kg = R$54.90/kg.",
+          "caveats": [
+            "Same unit price as white seed; alternate color."
+          ]
+        }
+      ],
+      "winner": {
+        "matched_product": "Rejunte Acrílico 1kg Branco Quartzolit",
+        "sku": "637939002",
+        "seller": "Sodimac Brasil",
+        "specifications": {
+          "brand": "Quartzolit",
+          "type": "Acrílico",
+          "color": "Branco",
+          "weight_kg": 1
+        },
+        "package_size": "1 kg",
+        "displayed_price_brl": 54.9,
+        "normalized_unit_price_brl": 54.9,
+        "unit": "kg",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.sodimac.com.br/sodimac-br/product/637939002/rejunte-acrilico-1kg-branco/637939002/",
+        "final_url": "https://www.sodimac.com.br/sodimac-br/product/637939002/rejunte-acrilico-1kg-branco/637939002/",
+        "http_status": 200,
+        "verification_method": "Seed URL re-verified: product page HTTP 200 + __NEXT_DATA__; internetPrice R$54,90; brand Quartzolit; isOutOfStock=false. Arithmetic: R$54.90 / 1 kg = R$54.90/kg.",
+        "caveats": [
+          "Seed URL re-verified; white acrylic 1 kg used as porcelain-oriented comparable.",
+          "Freight for CEP 13380-000 not calculated."
+        ]
+      },
+      "no_match_reason": null
+    },
+    {
+      "expense_id": "EXP_0025",
+      "requested_item": "Argamassa para o porcelanato",
+      "requested_unit": "saco (20 kg)",
+      "match_status": "verified",
+      "candidates": [
+        {
+          "matched_product": "Argamassa Flexível ACIII 20Kg Cinza Quartzolit",
+          "sku": "739012",
+          "seller": "Sodimac Brasil",
+          "specifications": {
+            "brand": "Quartzolit",
+            "type": "ACIII flexível",
+            "color": "Cinza",
+            "weight_kg": 20,
+            "use": "Interno/externo; cerâmica, porcelanato, mármore, granito e pedras naturais"
+          },
+          "package_size": "saco 20 kg",
+          "displayed_price_brl": 44.9,
+          "normalized_unit_price_brl": 44.9,
+          "unit": "saco (20 kg)",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.sodimac.com.br/sodimac-br/product/739012/argamassa-flexivel-aciii-20kg-cinza/739012/",
+          "final_url": "https://www.sodimac.com.br/sodimac-br/product/739012/argamassa-flexivel-aciii-20kg-cinza/739012/",
+          "http_status": 200,
+          "verification_method": "Seed URL re-verified: product page HTTP 200 + __NEXT_DATA__; internetPrice R$44,90; type ACIII; isOutOfStock=false. Arithmetic: R$44.90 / 1 saco = R$44.90/saco.",
+          "caveats": [
+            "Seed URL re-verified; lowest verified quantity-1 ACIII 20 kg bag among candidates.",
+            "Freight for CEP 13380-000 not calculated."
+          ]
+        },
+        {
+          "matched_product": "Argamassa Flexível ACIII Branca 20Kg",
+          "sku": "866114",
+          "seller": "Sodimac Brasil",
+          "specifications": {
+            "brand": "Quartzolit",
+            "type": "ACIII flexível",
+            "color": "Branca",
+            "weight_kg": 20
+          },
+          "package_size": "saco 20 kg",
+          "displayed_price_brl": 59.9,
+          "normalized_unit_price_brl": 59.9,
+          "unit": "saco (20 kg)",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.sodimac.com.br/sodimac-br/product/866114/argamassa-flexivel-aciii-branca-20kg/866114/",
+          "final_url": "https://www.sodimac.com.br/sodimac-br/product/866114/argamassa-flexivel-aciii-branca-20kg/866114/",
+          "http_status": 200,
+          "verification_method": "Sodimac product page HTTP 200 + __NEXT_DATA__; internetPrice R$59,90.",
+          "caveats": [
+            "White ACIII alternative; higher than cinza seed."
+          ]
+        }
+      ],
+      "winner": {
+        "matched_product": "Argamassa Flexível ACIII 20Kg Cinza Quartzolit",
+        "sku": "739012",
+        "seller": "Sodimac Brasil",
+        "specifications": {
+          "brand": "Quartzolit",
+          "type": "ACIII flexível",
+          "color": "Cinza",
+          "weight_kg": 20,
+          "use": "Interno/externo; cerâmica, porcelanato, mármore, granito e pedras naturais"
+        },
+        "package_size": "saco 20 kg",
+        "displayed_price_brl": 44.9,
+        "normalized_unit_price_brl": 44.9,
+        "unit": "saco (20 kg)",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.sodimac.com.br/sodimac-br/product/739012/argamassa-flexivel-aciii-20kg-cinza/739012/",
+        "final_url": "https://www.sodimac.com.br/sodimac-br/product/739012/argamassa-flexivel-aciii-20kg-cinza/739012/",
+        "http_status": 200,
+        "verification_method": "Seed URL re-verified: product page HTTP 200 + __NEXT_DATA__; internetPrice R$44,90; type ACIII; isOutOfStock=false. Arithmetic: R$44.90 / 1 saco = R$44.90/saco.",
+        "caveats": [
+          "Seed URL re-verified; lowest verified quantity-1 ACIII 20 kg bag among candidates.",
+          "Freight for CEP 13380-000 not calculated."
+        ]
+      },
+      "no_match_reason": null
+    },
+    {
+      "expense_id": "EXP_0041",
+      "requested_item": "Rodapés para acompanhar o porcelanato",
+      "requested_unit": "metro linear (m)",
+      "match_status": "verified",
+      "candidates": [
+        {
+          "matched_product": "Rodapé Porcelanato Acetinado Esmaltado Branco 20X120cm Portobello Retificado Michelangelo",
+          "sku": "1031133",
+          "seller": "Sodimac Brasil",
+          "specifications": {
+            "brand": "Portobello",
+            "line": "Michelangelo",
+            "format_cm": "20 x 120",
+            "finish": "Acetinado esmaltado retificado",
+            "color": "Branco",
+            "piece_length_m": 1.2,
+            "quantity_per_sale": "peça"
+          },
+          "package_size": "1 peça 1,20 m",
+          "displayed_price_brl": 109.9,
+          "normalized_unit_price_brl": 91.58,
+          "unit": "metro linear (m)",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.sodimac.com.br/sodimac-br/product/1031133/rodape-porcelanato-acetinado-esmaltado-branco-20x120cm-retificado-michelangelo/1031133/",
+          "final_url": "https://www.sodimac.com.br/sodimac-br/product/1031133/rodape-porcelanato-acetinado-esmaltado-branco-20x120cm-retificado-michelangelo/1031133/",
+          "http_status": 200,
+          "verification_method": "Sodimac product page HTTP 200 + __NEXT_DATA__; internetPrice R$109,90 per peça; specs length 120 cm and Quantidade por Caixa=PEÇA. Arithmetic: 109.90 / 1.2 = 91.5833… → R$91.58/m.",
+          "caveats": [
+            "Only verified porcelain/ceramic rodapé with evidenced length and visible price; polystyrene skirting excluded as non-comparable to porcelain companion.",
+            "Freight for CEP 13380-000 not calculated."
+          ]
+        }
+      ],
+      "winner": {
+        "matched_product": "Rodapé Porcelanato Acetinado Esmaltado Branco 20X120cm Portobello Retificado Michelangelo",
+        "sku": "1031133",
+        "seller": "Sodimac Brasil",
+        "specifications": {
+          "brand": "Portobello",
+          "line": "Michelangelo",
+          "format_cm": "20 x 120",
+          "finish": "Acetinado esmaltado retificado",
+          "color": "Branco",
+          "piece_length_m": 1.2,
+          "quantity_per_sale": "peça"
+        },
+        "package_size": "1 peça 1,20 m",
+        "displayed_price_brl": 109.9,
+        "normalized_unit_price_brl": 91.58,
+        "unit": "metro linear (m)",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.sodimac.com.br/sodimac-br/product/1031133/rodape-porcelanato-acetinado-esmaltado-branco-20x120cm-retificado-michelangelo/1031133/",
+        "final_url": "https://www.sodimac.com.br/sodimac-br/product/1031133/rodape-porcelanato-acetinado-esmaltado-branco-20x120cm-retificado-michelangelo/1031133/",
+        "http_status": 200,
+        "verification_method": "Sodimac product page HTTP 200 + __NEXT_DATA__; internetPrice R$109,90 per peça; specs length 120 cm and Quantidade por Caixa=PEÇA. Arithmetic: 109.90 / 1.2 = 91.5833… → R$91.58/m.",
+        "caveats": [
+          "Only verified porcelain/ceramic rodapé with evidenced length and visible price; polystyrene skirting excluded as non-comparable to porcelain companion.",
+          "Freight for CEP 13380-000 not calculated."
+        ]
+      },
+      "no_match_reason": null
+    },
+    {
+      "expense_id": "EXP_0046",
+      "requested_item": "Tinta",
+      "requested_unit": "lata (18 L)",
+      "match_status": "verified",
+      "candidates": [
+        {
+          "matched_product": "Tinta Acrílica Econômica Branco 18l Karson",
+          "sku": "1806739",
+          "seller": "Sodimac Brasil",
+          "specifications": {
+            "brand": "Karson",
+            "type": "Acrílica econômica fosco",
+            "color": "Branco",
+            "volume_l": 18,
+            "use": "Interna (também listado para externas nas recomendações de aplicação)"
+          },
+          "package_size": "lata 18 L",
+          "displayed_price_brl": 99.9,
+          "normalized_unit_price_brl": 99.9,
+          "unit": "lata (18 L)",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.sodimac.com.br/sodimac-br/product/1806739/tinta-acrilica-economica-branco-18l/1806739/",
+          "final_url": "https://www.sodimac.com.br/sodimac-br/product/1806739/tinta-acrilica-economica-branco-18l/1806739/",
+          "http_status": 200,
+          "verification_method": "Sodimac product page HTTP 200 + __NEXT_DATA__; eventPrice R$99,90; volume 18 L; isOutOfStock=false. Arithmetic: R$99.90 / 1 lata = R$99.90/lata.",
+          "caveats": [
+            "Lowest verified quantity-1 18 L wall acrylic white among candidates.",
+            "Freight for CEP 13380-000 not calculated."
+          ]
+        },
+        {
+          "matched_product": "Tinta Acrílica Fosco Interior Klasse 18L Branco Qualyvinil",
+          "sku": "743787",
+          "seller": "Sodimac Brasil",
+          "specifications": {
+            "brand": "Qualyvinil",
+            "type": "Acrílica fosco interior Klasse",
+            "color": "Branco",
+            "volume_l": 18
+          },
+          "package_size": "lata 18 L",
+          "displayed_price_brl": 129.0,
+          "normalized_unit_price_brl": 129.0,
+          "unit": "lata (18 L)",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.sodimac.com.br/sodimac-br/product/743787/tinta-acrilica-fosco-interior-klasse-18l-branco-qualyvinil/743787/",
+          "final_url": "https://www.sodimac.com.br/sodimac-br/product/743787/tinta-acrilica-fosco-interior-klasse-18l-branco-qualyvinil/743787/",
+          "http_status": 200,
+          "verification_method": "Sodimac product page HTTP 200 + __NEXT_DATA__; internetPrice R$129.",
+          "caveats": []
+        },
+        {
+          "matched_product": "Tinta Acrílica Toque de Seda Premium Acetinado Interno e Externo Branco Neve 18L Suvinil",
+          "sku": "1696828",
+          "seller": "Sodimac Brasil",
+          "specifications": {
+            "brand": "Suvinil",
+            "type": "Acrílica premium acetinado",
+            "color": "Branco Neve",
+            "volume_l": 18
+          },
+          "package_size": "lata 18 L",
+          "displayed_price_brl": 759.0,
+          "normalized_unit_price_brl": 759.0,
+          "unit": "lata (18 L)",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.sodimac.com.br/sodimac-br/product/1696828/tinta-acrilica-toque-de-seda-premium-acetinado-interno-e-externo-branco-neve-18l/1696828/",
+          "final_url": "https://www.sodimac.com.br/sodimac-br/product/1696828/tinta-acrilica-toque-de-seda-premium-acetinado-interno-e-externo-branco-neve-18l/1696828/",
+          "http_status": 200,
+          "verification_method": "Sodimac product page HTTP 200 + __NEXT_DATA__; internetPrice R$759.",
+          "caveats": [
+            "Premium tier; not lowest qty-1."
+          ]
+        }
+      ],
+      "winner": {
+        "matched_product": "Tinta Acrílica Econômica Branco 18l Karson",
+        "sku": "1806739",
+        "seller": "Sodimac Brasil",
+        "specifications": {
+          "brand": "Karson",
+          "type": "Acrílica econômica fosco",
+          "color": "Branco",
+          "volume_l": 18,
+          "use": "Interna (também listado para externas nas recomendações de aplicação)"
+        },
+        "package_size": "lata 18 L",
+        "displayed_price_brl": 99.9,
+        "normalized_unit_price_brl": 99.9,
+        "unit": "lata (18 L)",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.sodimac.com.br/sodimac-br/product/1806739/tinta-acrilica-economica-branco-18l/1806739/",
+        "final_url": "https://www.sodimac.com.br/sodimac-br/product/1806739/tinta-acrilica-economica-branco-18l/1806739/",
+        "http_status": 200,
+        "verification_method": "Sodimac product page HTTP 200 + __NEXT_DATA__; eventPrice R$99,90; volume 18 L; isOutOfStock=false. Arithmetic: R$99.90 / 1 lata = R$99.90/lata.",
+        "caveats": [
+          "Lowest verified quantity-1 18 L wall acrylic white among candidates.",
+          "Freight for CEP 13380-000 not calculated."
+        ]
+      },
+      "no_match_reason": null
+    },
+    {
+      "expense_id": "EXP_0048",
+      "requested_item": "Silicone, espuma expansiva, selante PU",
+      "requested_unit": "kit",
+      "match_status": "verified",
+      "candidates": [
+        {
+          "matched_product": "Kit 3 produtos: Silicone Acético Pro Sil Uso Geral Incolor 250ml Topex + Espuma Expansiva PU 320g/500ml Tekbond + Selante PU 40 Branco 400G",
+          "sku": "1091565+1804243+913163",
+          "seller": "Sodimac Brasil",
+          "specifications": {
+            "components": [
+              {
+                "role": "silicone",
+                "product": "Silicone Acetico Pro Sil Uso Geral 250ml Topex (incolor)",
+                "sku": "1091565",
+                "price_brl": 26.9,
+                "url": "https://www.sodimac.com.br/sodimac-br/product/1091565/silicone-acetico-pro-sil-uso-geral-250ml/1091565/"
+              },
+              {
+                "role": "espuma_expansiva",
+                "product": "Espuma Expansiva de Pu 320g/500ml Tekbond",
+                "sku": "1804243",
+                "price_brl": 32.9,
+                "url": "https://www.sodimac.com.br/sodimac-br/product/1804243/espuma-expansiva-de-pu-320g-500ml/1804243/"
+              },
+              {
+                "role": "selante_pu",
+                "product": "Selante Pu 40 Branco 400G",
+                "sku": "913163",
+                "price_brl": 23.9,
+                "url": "https://www.sodimac.com.br/sodimac-br/product/913163/selante-pu-40-branco-400g/913163/"
+              }
+            ]
+          },
+          "package_size": "kit 3 produtos (comprados separados)",
+          "displayed_price_brl": 83.7,
+          "normalized_unit_price_brl": 83.7,
+          "unit": "kit",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.sodimac.com.br/sodimac-br/product/1091565/silicone-acetico-pro-sil-uso-geral-250ml/1091565/",
+          "final_url": "https://www.sodimac.com.br/sodimac-br/product/1091565/silicone-acetico-pro-sil-uso-geral-250ml/1091565/",
+          "http_status": 200,
+          "verification_method": "Three separate product pages verified HTTP 200 + __NEXT_DATA__ prices. Kit sum: 26.90+32.90+23.90=83.70. Winner URL is primary silicone.",
+          "caveats": [
+            "No single catalog SKU kit of all three was used; price is the sum of three separate qty-1 products.",
+            "Silicone is 250 ml incolor (near 250–280 ml comparable). PU cartridge is 400 g (near 300–360 g comparable).",
+            "Component URLs: silicone https://www.sodimac.com.br/sodimac-br/product/1091565/silicone-acetico-pro-sil-uso-geral-250ml/1091565/ ; espuma https://www.sodimac.com.br/sodimac-br/product/1804243/espuma-expansiva-de-pu-320g-500ml/1804243/ ; selante PU https://www.sodimac.com.br/sodimac-br/product/913163/selante-pu-40-branco-400g/913163/",
+            "Freight for CEP 13380-000 not calculated."
+          ]
+        },
+        {
+          "matched_product": "Kit 3 produtos: Silicone Acético Pro Sil Uso Geral Incolor 250ml Topex + Espuma Expansiva Manual 500ml Topex + Selante PU 40 Branco 400G",
+          "sku": "1091565+1091563+913163",
+          "seller": "Sodimac Brasil",
+          "specifications": {
+            "components": [
+              {
+                "role": "silicone",
+                "product": "Silicone Acetico Pro Sil Uso Geral 250ml Topex (incolor)",
+                "sku": "1091565",
+                "price_brl": 26.9,
+                "url": "https://www.sodimac.com.br/sodimac-br/product/1091565/silicone-acetico-pro-sil-uso-geral-250ml/1091565/"
+              },
+              {
+                "role": "espuma_expansiva",
+                "product": "Topex Espuma Expansiva Manual 500ml",
+                "sku": "1091563",
+                "price_brl": 43.9,
+                "url": "https://www.sodimac.com.br/sodimac-br/product/1091563/topex-espuma-expansiva-manual-500ml/1091563/"
+              },
+              {
+                "role": "selante_pu",
+                "product": "Selante Pu 40 Branco 400G",
+                "sku": "913163",
+                "price_brl": 23.9,
+                "url": "https://www.sodimac.com.br/sodimac-br/product/913163/selante-pu-40-branco-400g/913163/"
+              }
+            ]
+          },
+          "package_size": "kit 3 produtos (comprados separados)",
+          "displayed_price_brl": 94.7,
+          "normalized_unit_price_brl": 94.7,
+          "unit": "kit",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.sodimac.com.br/sodimac-br/product/1091565/silicone-acetico-pro-sil-uso-geral-250ml/1091565/",
+          "final_url": "https://www.sodimac.com.br/sodimac-br/product/1091565/silicone-acetico-pro-sil-uso-geral-250ml/1091565/",
+          "http_status": 200,
+          "verification_method": "Three separate product pages verified HTTP 200 + __NEXT_DATA__. Kit sum: 26.90+43.90+23.90=94.70.",
+          "caveats": [
+            "Higher than Tekbond 500 ml foam alternative."
+          ]
+        }
+      ],
+      "winner": {
+        "matched_product": "Kit 3 produtos: Silicone Acético Pro Sil Uso Geral Incolor 250ml Topex + Espuma Expansiva PU 320g/500ml Tekbond + Selante PU 40 Branco 400G",
+        "sku": "1091565+1804243+913163",
+        "seller": "Sodimac Brasil",
+        "specifications": {
+          "components": [
+            {
+              "role": "silicone",
+              "product": "Silicone Acetico Pro Sil Uso Geral 250ml Topex (incolor)",
+              "sku": "1091565",
+              "price_brl": 26.9,
+              "url": "https://www.sodimac.com.br/sodimac-br/product/1091565/silicone-acetico-pro-sil-uso-geral-250ml/1091565/"
+            },
+            {
+              "role": "espuma_expansiva",
+              "product": "Espuma Expansiva de Pu 320g/500ml Tekbond",
+              "sku": "1804243",
+              "price_brl": 32.9,
+              "url": "https://www.sodimac.com.br/sodimac-br/product/1804243/espuma-expansiva-de-pu-320g-500ml/1804243/"
+            },
+            {
+              "role": "selante_pu",
+              "product": "Selante Pu 40 Branco 400G",
+              "sku": "913163",
+              "price_brl": 23.9,
+              "url": "https://www.sodimac.com.br/sodimac-br/product/913163/selante-pu-40-branco-400g/913163/"
+            }
+          ]
+        },
+        "package_size": "kit 3 produtos (comprados separados)",
+        "displayed_price_brl": 83.7,
+        "normalized_unit_price_brl": 83.7,
+        "unit": "kit",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.sodimac.com.br/sodimac-br/product/1091565/silicone-acetico-pro-sil-uso-geral-250ml/1091565/",
+        "final_url": "https://www.sodimac.com.br/sodimac-br/product/1091565/silicone-acetico-pro-sil-uso-geral-250ml/1091565/",
+        "http_status": 200,
+        "verification_method": "Three separate product pages verified HTTP 200 + __NEXT_DATA__ prices. Kit sum: 26.90+32.90+23.90=83.70. Winner URL is primary silicone.",
+        "caveats": [
+          "No single catalog SKU kit of all three was used; price is the sum of three separate qty-1 products.",
+          "Silicone is 250 ml incolor (near 250–280 ml comparable). PU cartridge is 400 g (near 300–360 g comparable).",
+          "Component URLs: silicone https://www.sodimac.com.br/sodimac-br/product/1091565/silicone-acetico-pro-sil-uso-geral-250ml/1091565/ ; espuma https://www.sodimac.com.br/sodimac-br/product/1804243/espuma-expansiva-de-pu-320g-500ml/1804243/ ; selante PU https://www.sodimac.com.br/sodimac-br/product/913163/selante-pu-40-branco-400g/913163/",
+          "Freight for CEP 13380-000 not calculated."
+        ]
+      },
+      "no_match_reason": null
+    },
+    {
+      "expense_id": "EXP_0049",
+      "requested_item": "Lona para proteção da obra",
+      "requested_unit": "m²",
+      "match_status": "verified",
+      "candidates": [
+        {
+          "matched_product": "Lona Plástica Preto 4x50m Plasitap",
+          "sku": "1800435",
+          "seller": "Sodimac Brasil",
+          "specifications": {
+            "brand": "Plasitap",
+            "color": "Preta",
+            "dimensions_m": "4 x 50",
+            "area_m2": 200,
+            "material": "Polietileno"
+          },
+          "package_size": "bobina 4×50 m (200 m²)",
+          "displayed_price_brl": 129.0,
+          "normalized_unit_price_brl": 0.645,
+          "unit": "m²",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.sodimac.com.br/sodimac-br/product/1800435/lona-plastica-preto-4x50m/1800435/",
+          "final_url": "https://www.sodimac.com.br/sodimac-br/product/1800435/lona-plastica-preto-4x50m/1800435/",
+          "http_status": 200,
+          "verification_method": "Sodimac product page HTTP 200 + __NEXT_DATA__; internetPrice R$129; dimensions from title 4×50 m. Arithmetic: 129 / 200 = 0.645 R$/m².",
+          "caveats": [
+            "Lowest verified normalized per-m² price among available black plastic tarp sheets/rolls.",
+            "Freight for CEP 13380-000 not calculated."
+          ]
+        },
+        {
+          "matched_product": "Lona Plástica Preto 4x25m Plasitap",
+          "sku": "1800434",
+          "seller": "Sodimac Brasil",
+          "specifications": {
+            "brand": "Plasitap",
+            "color": "Preta",
+            "dimensions_m": "4 x 25",
+            "area_m2": 100
+          },
+          "package_size": "bobina 4×25 m (100 m²)",
+          "displayed_price_brl": 87.9,
+          "normalized_unit_price_brl": 0.879,
+          "unit": "m²",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.sodimac.com.br/sodimac-br/product/1800434/lona-plastica-preto-4x25m/1800434/",
+          "final_url": "https://www.sodimac.com.br/sodimac-br/product/1800434/lona-plastica-preto-4x25m/1800434/",
+          "http_status": 200,
+          "verification_method": "Sodimac product page HTTP 200 + __NEXT_DATA__; internetPrice R$87,90. Arithmetic: 87.90 / 100 = 0.879 R$/m².",
+          "caveats": []
+        },
+        {
+          "matched_product": "Lona Plástica Preto 4x10m Plasitap",
+          "sku": "1800433",
+          "seller": "Sodimac Brasil",
+          "specifications": {
+            "brand": "Plasitap",
+            "color": "Preta",
+            "dimensions_m": "4 x 10",
+            "area_m2": 40
+          },
+          "package_size": "bobina 4×10 m (40 m²)",
+          "displayed_price_brl": 35.9,
+          "normalized_unit_price_brl": 0.8975,
+          "unit": "m²",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.sodimac.com.br/sodimac-br/product/1800433/lona-plastica-preto-4x10m/1800433/",
+          "final_url": "https://www.sodimac.com.br/sodimac-br/product/1800433/lona-plastica-preto-4x10m/1800433/",
+          "http_status": 200,
+          "verification_method": "Sodimac product page HTTP 200 + __NEXT_DATA__; eventPrice R$35,90. Arithmetic: 35.90 / 40 = 0.8975 R$/m².",
+          "caveats": []
+        }
+      ],
+      "winner": {
+        "matched_product": "Lona Plástica Preto 4x50m Plasitap",
+        "sku": "1800435",
+        "seller": "Sodimac Brasil",
+        "specifications": {
+          "brand": "Plasitap",
+          "color": "Preta",
+          "dimensions_m": "4 x 50",
+          "area_m2": 200,
+          "material": "Polietileno"
+        },
+        "package_size": "bobina 4×50 m (200 m²)",
+        "displayed_price_brl": 129.0,
+        "normalized_unit_price_brl": 0.645,
+        "unit": "m²",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.sodimac.com.br/sodimac-br/product/1800435/lona-plastica-preto-4x50m/1800435/",
+        "final_url": "https://www.sodimac.com.br/sodimac-br/product/1800435/lona-plastica-preto-4x50m/1800435/",
+        "http_status": 200,
+        "verification_method": "Sodimac product page HTTP 200 + __NEXT_DATA__; internetPrice R$129; dimensions from title 4×50 m. Arithmetic: 129 / 200 = 0.645 R$/m².",
+        "caveats": [
+          "Lowest verified normalized per-m² price among available black plastic tarp sheets/rolls.",
+          "Freight for CEP 13380-000 not calculated."
+        ]
+      },
+      "no_match_reason": null
+    }
+  ]
+}

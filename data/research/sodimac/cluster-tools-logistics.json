@@ -1,0 +1,556 @@
+{
+  "cluster": "tools_logistics",
+  "checked_at": "2026-09-17",
+  "location_basis": "nova_odessa_cep_13380",
+  "expenses": [
+    {
+      "expense_id": "EXP_0018",
+      "requested_item": "Ferramentas",
+      "requested_unit": "conjunto",
+      "match_status": "verified",
+      "candidates": [
+        {
+          "matched_product": "Jogo de Ferramentas Western 9 Peças",
+          "sku": "1804924",
+          "seller": "Sodimac",
+          "specifications": {
+            "brand": "Western",
+            "piece_count": 9,
+            "contents": "1 chave de fenda 1/8x6, 1 chave Phillips 1/8x6, 1 trena 2m, 1 estilete, 5 chaves Allen 2-6mm",
+            "material": "Polipropileno, aço carbono",
+            "color": "Amarelo"
+          },
+          "package_size": "1 kit / 9 peças",
+          "displayed_price_brl": 19.9,
+          "normalized_unit_price_brl": 19.9,
+          "unit": "conjunto",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.sodimac.com.br/sodimac-br/product/1804924/jogo-de-ferramentas-western-9-pecas/1804924/",
+          "final_url": "https://www.sodimac.com.br/sodimac-br/product/1804924/jogo-de-ferramentas-western-9-pecas/1804924/",
+          "http_status": 200,
+          "verification_method": "Direct Sodimac product page loaded; title, SKU 1804924, visible card price R$19,90, schema.org InStock. Arithmetic: R$19.90 / 1 kit = R$19.90/conjunto.",
+          "caveats": [
+            "Basic 9-piece domestic/obra hand-tool kit (not a full construction toolbox).",
+            "Freight not calculated for CEP 13380-000; freight_brl left null."
+          ]
+        },
+        {
+          "matched_product": "Kit de Ferramentas com Chaves de Fenda e Chaves Fixas Doméstico 5 Peças Prata",
+          "sku": "741174",
+          "seller": "Sodimac",
+          "specifications": {
+            "brand": "Tramontina",
+            "piece_count": 5,
+            "contents": "chaves de fenda e chaves fixas",
+            "color": "Prata"
+          },
+          "package_size": "1 kit / 5 peças",
+          "displayed_price_brl": 40.9,
+          "normalized_unit_price_brl": 40.9,
+          "unit": "conjunto",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.sodimac.com.br/sodimac-br/product/741174/kit-de-ferramentas-com-chaves-de-fenda-e-chaves-fixas-domestico-5-pecas-prata/741174/",
+          "final_url": "https://www.sodimac.com.br/sodimac-br/product/741174/kit-de-ferramentas-com-chaves-de-fenda-e-chaves-fixas-domestico-5-pecas-prata/741174/",
+          "http_status": 200,
+          "verification_method": "Direct Sodimac product page loaded; title, SKU 741174, visible card price R$40,90, schema.org InStock. Arithmetic: R$40.90 / 1 kit = R$40.90/conjunto.",
+          "caveats": [
+            "Tramontina 5-piece domestic kit; higher than Western 9-piece winner."
+          ]
+        },
+        {
+          "matched_product": "Jogo de Ferramentas 5 Peças, Preto Azul, 310x110x35",
+          "sku": "12724",
+          "seller": "Sodimac",
+          "specifications": {
+            "brand": "Tramontina",
+            "piece_count": 5,
+            "color": "Preto/Azul",
+            "package_mm": "310x110x35"
+          },
+          "package_size": "1 kit / 5 peças",
+          "displayed_price_brl": 43.9,
+          "normalized_unit_price_brl": 43.9,
+          "unit": "conjunto",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.sodimac.com.br/sodimac-br/product/12724/jogo-de-ferramentas-5-pecas-preto-azul-310x110x35/12724/",
+          "final_url": "https://www.sodimac.com.br/sodimac-br/product/12724/jogo-de-ferramentas-5-pecas-preto-azul-310x110x35/12724/",
+          "http_status": 200,
+          "verification_method": "Sodimac product page HTTP 200; displayName and resolved internet/card price R$43,90 from product payload. Arithmetic: R$43.90 / 1 kit = R$43.90/conjunto.",
+          "caveats": [
+            "Another Tramontina 5-piece kit; higher than Western winner."
+          ]
+        }
+      ],
+      "winner": {
+        "matched_product": "Jogo de Ferramentas Western 9 Peças",
+        "sku": "1804924",
+        "seller": "Sodimac",
+        "specifications": {
+          "brand": "Western",
+          "piece_count": 9,
+          "contents": "1 chave de fenda 1/8x6, 1 chave Phillips 1/8x6, 1 trena 2m, 1 estilete, 5 chaves Allen 2-6mm",
+          "material": "Polipropileno, aço carbono",
+          "color": "Amarelo"
+        },
+        "package_size": "1 kit / 9 peças",
+        "displayed_price_brl": 19.9,
+        "normalized_unit_price_brl": 19.9,
+        "unit": "conjunto",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.sodimac.com.br/sodimac-br/product/1804924/jogo-de-ferramentas-western-9-pecas/1804924/",
+        "final_url": "https://www.sodimac.com.br/sodimac-br/product/1804924/jogo-de-ferramentas-western-9-pecas/1804924/",
+        "http_status": 200,
+        "verification_method": "Direct Sodimac product page loaded; title, SKU 1804924, visible card price R$19,90, schema.org InStock. Arithmetic: R$19.90 / 1 kit = R$19.90/conjunto.",
+        "caveats": [
+          "Lowest verified qty-1 price among clearly specified basic hand-tool kits.",
+          "Small 9-piece domestic/obra kit, not equivalent to a full construction toolbox budget.",
+          "Freight not calculated for CEP 13380-000; freight_brl left null."
+        ]
+      },
+      "no_match_reason": null
+    },
+    {
+      "expense_id": "EXP_0020",
+      "requested_item": "Carrinho de mão",
+      "requested_unit": "unidade",
+      "match_status": "verified",
+      "candidates": [
+        {
+          "matched_product": "Carrinho De Mao Aco Galvanizado 55L",
+          "sku": "1041694",
+          "seller": "Sodimac",
+          "specifications": {
+            "brand": "Botafogo",
+            "type": "Carrinho de mão com caçamba aço galvanizado",
+            "capacity_l": 55,
+            "material": "Aço galvanizado",
+            "dimensions_cm": "143 x 62 x 49"
+          },
+          "package_size": "1 unidade",
+          "displayed_price_brl": 149.9,
+          "normalized_unit_price_brl": 149.9,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.sodimac.com.br/sodimac-br/product/1041694/carrinho-de-mao-aco-galvanizado-55l/1041694/",
+          "final_url": "https://www.sodimac.com.br/sodimac-br/product/1041694/carrinho-de-mao-aco-galvanizado-55l/1041694/",
+          "http_status": 200,
+          "verification_method": "Direct Sodimac product page loaded; title, SKU 1041694, visible card price R$149,90, schema.org InStock. Arithmetic: R$149.90 / 1 = R$149.90/unidade.",
+          "caveats": [
+            "Freight not calculated for CEP 13380-000; freight_brl left null."
+          ]
+        },
+        {
+          "matched_product": "Carrinho de Mão 50L até 100kg Aço Azul 77704432",
+          "sku": "761158",
+          "seller": "Sodimac",
+          "specifications": {
+            "brand": "Tramontina",
+            "model": "77704432",
+            "type": "Carrinho de mão com caçamba metálica redonda",
+            "capacity_l": 50,
+            "load_capacity_kg": 100,
+            "color": "Azul",
+            "tire": "Pneu com câmara"
+          },
+          "package_size": "1 unidade",
+          "displayed_price_brl": 189.9,
+          "normalized_unit_price_brl": 189.9,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.sodimac.com.br/sodimac-br/product/761158/carrinho-de-mao-50l-ate-100kg-aco-azul-77704432/761158/",
+          "final_url": "https://www.sodimac.com.br/sodimac-br/product/761158/carrinho-de-mao-50l-ate-100kg-aco-azul-77704432/761158/",
+          "http_status": 200,
+          "verification_method": "Direct Sodimac product page loaded; title, SKU 761158, visible card price R$189,90, schema.org InStock. Arithmetic: R$189.90 / 1 = R$189.90/unidade.",
+          "caveats": [
+            "Tramontina 50 L; higher qty-1 price than Botafogo 55 L winner."
+          ]
+        },
+        {
+          "matched_product": "Carrinho De Mao Extra Forte 60L",
+          "sku": "1041695",
+          "seller": "Sodimac",
+          "specifications": {
+            "brand": null,
+            "type": "Carrinho de mão extra forte",
+            "capacity_l": 60
+          },
+          "package_size": "1 unidade",
+          "displayed_price_brl": 372.0,
+          "normalized_unit_price_brl": 372.0,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.sodimac.com.br/sodimac-br/product/1041695/carrinho-de-mao-extra-forte-60l/1041695/",
+          "final_url": "https://www.sodimac.com.br/sodimac-br/product/1041695/carrinho-de-mao-extra-forte-60l/1041695/",
+          "http_status": 200,
+          "verification_method": "Sodimac product page HTTP 200; resolved card/internet price R$372,00 from product payload. Arithmetic: R$372.00 / 1 = R$372.00/unidade.",
+          "caveats": [
+            "Extra-forte 60 L; substantially higher than lighter 50–55 L candidates."
+          ]
+        }
+      ],
+      "winner": {
+        "matched_product": "Carrinho De Mao Aco Galvanizado 55L",
+        "sku": "1041694",
+        "seller": "Sodimac",
+        "specifications": {
+          "brand": "Botafogo",
+          "type": "Carrinho de mão com caçamba aço galvanizado",
+          "capacity_l": 55,
+          "material": "Aço galvanizado",
+          "dimensions_cm": "143 x 62 x 49"
+        },
+        "package_size": "1 unidade",
+        "displayed_price_brl": 149.9,
+        "normalized_unit_price_brl": 149.9,
+        "unit": "unidade",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.sodimac.com.br/sodimac-br/product/1041694/carrinho-de-mao-aco-galvanizado-55l/1041694/",
+        "final_url": "https://www.sodimac.com.br/sodimac-br/product/1041694/carrinho-de-mao-aco-galvanizado-55l/1041694/",
+        "http_status": 200,
+        "verification_method": "Direct Sodimac product page loaded; title, SKU 1041694, visible card price R$149,90, schema.org InStock. Arithmetic: R$149.90 / 1 = R$149.90/unidade.",
+        "caveats": [
+          "Lowest verified qty-1 wheelbarrow among in-stock Sodimac offers checked.",
+          "Freight not calculated for CEP 13380-000; freight_brl left null."
+        ]
+      },
+      "no_match_reason": null
+    },
+    {
+      "expense_id": "EXP_0022",
+      "requested_item": "Caçamba de entulho",
+      "requested_unit": "caçamba",
+      "match_status": "no_match",
+      "candidates": [],
+      "winner": null,
+      "no_match_reason": "No dumpster-rental or construction-debris caçamba sold as a priced Sodimac product page. Searches for caçamba/entulho/aluguel returned paint trays, wheelbarrow trays, raffia debris bags, and unrelated painting accessories—not a rental dumpster service."
+    },
+    {
+      "expense_id": "EXP_0043",
+      "requested_item": "Calhas e rufos",
+      "requested_unit": "metro linear (m)",
+      "match_status": "verified",
+      "candidates": [
+        {
+          "matched_product": "Rufo Externo Corte20 3m,calhaforte",
+          "sku": "590920",
+          "seller": "Sodimac",
+          "specifications": {
+            "brand": "Calhaforte",
+            "type": "Rufo externo",
+            "cut": "20",
+            "material": "Aço galvanizado",
+            "length_m": 3,
+            "width_cm": 13,
+            "thickness_cm": 0.43
+          },
+          "package_size": "3 metros",
+          "displayed_price_brl": 61.9,
+          "normalized_unit_price_brl": 20.63,
+          "unit": "metro linear (m)",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.sodimac.com.br/sodimac-br/product/590920/rufo-externo-corte20-3mcalhaforte/590920/",
+          "final_url": "https://www.sodimac.com.br/sodimac-br/product/590920/rufo-externo-corte20-3mcalhaforte/590920/",
+          "http_status": 200,
+          "verification_method": "Direct Sodimac product page loaded; title, SKU 590920, visible card price R$61,90 for 3 m piece, schema.org InStock. Arithmetic: R$61.90 / 3 m = R$20.633… → R$20.63/m.",
+          "caveats": [
+            "Sold as a 3 m piece; unit price normalized per linear meter.",
+            "Freight not calculated for CEP 13380-000; freight_brl left null."
+          ]
+        },
+        {
+          "matched_product": "Rufo Externo Corte 20 2m, Calhaforte",
+          "sku": "32205",
+          "seller": "Sodimac",
+          "specifications": {
+            "brand": "Calhaforte",
+            "type": "Rufo externo",
+            "cut": "20",
+            "material": "Aço galvanizado",
+            "length_m": 2,
+            "thickness_cm": 0.43
+          },
+          "package_size": "2 metros",
+          "displayed_price_brl": 41.9,
+          "normalized_unit_price_brl": 20.95,
+          "unit": "metro linear (m)",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.sodimac.com.br/sodimac-br/product/32205/rufo-externo-corte-20-2m-calhaforte/32205/",
+          "final_url": "https://www.sodimac.com.br/sodimac-br/product/32205/rufo-externo-corte-20-2m-calhaforte/32205/",
+          "http_status": 200,
+          "verification_method": "Direct Sodimac product page loaded; title, SKU 32205, visible promo card price R$41,90 (crossed R$44,90) for 2 m piece, schema.org InStock. Arithmetic: R$41.90 / 2 m = R$20.95/m.",
+          "caveats": [
+            "Recorded promotional displayed price R$41,90; list price R$44,90 also shown.",
+            "Slightly higher R$/m than the 3 m Corte20 rufo winner."
+          ]
+        },
+        {
+          "matched_product": "Calha Moldura Corte28 3mt,calhaforte",
+          "sku": "636916",
+          "seller": "Sodimac",
+          "specifications": {
+            "brand": "Calhaforte",
+            "type": "Calha moldura",
+            "cut": "28",
+            "material": "Aço galvanizado",
+            "length_m": 3
+          },
+          "package_size": "3 metros",
+          "displayed_price_brl": 79.9,
+          "normalized_unit_price_brl": 26.63,
+          "unit": "metro linear (m)",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.sodimac.com.br/sodimac-br/product/636916/calha-moldura-corte28-3mtcalhaforte/636916/",
+          "final_url": "https://www.sodimac.com.br/sodimac-br/product/636916/calha-moldura-corte28-3mtcalhaforte/636916/",
+          "http_status": 200,
+          "verification_method": "Sodimac product page HTTP 200; resolved card/internet price R$79,90 for 3 m piece from product payload. Arithmetic: R$79.90 / 3 m = R$26.633… → R$26.63/m.",
+          "caveats": [
+            "True calha moldura (not rufo); higher R$/m than winning rufo."
+          ]
+        }
+      ],
+      "winner": {
+        "matched_product": "Rufo Externo Corte20 3m,calhaforte",
+        "sku": "590920",
+        "seller": "Sodimac",
+        "specifications": {
+          "brand": "Calhaforte",
+          "type": "Rufo externo",
+          "cut": "20",
+          "material": "Aço galvanizado",
+          "length_m": 3,
+          "width_cm": 13,
+          "thickness_cm": 0.43
+        },
+        "package_size": "3 metros",
+        "displayed_price_brl": 61.9,
+        "normalized_unit_price_brl": 20.63,
+        "unit": "metro linear (m)",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.sodimac.com.br/sodimac-br/product/590920/rufo-externo-corte20-3mcalhaforte/590920/",
+        "final_url": "https://www.sodimac.com.br/sodimac-br/product/590920/rufo-externo-corte20-3mcalhaforte/590920/",
+        "http_status": 200,
+        "verification_method": "Direct Sodimac product page loaded; title, SKU 590920, visible card price R$61,90 for 3 m piece, schema.org InStock. Arithmetic: R$61.90 / 3 m = R$20.633… → R$20.63/m.",
+        "caveats": [
+          "Lowest verified R$/m among available calha/rufo linear product pages.",
+          "Representative rufo (not a full calha run); sold as 3 m piece.",
+          "Freight not calculated for CEP 13380-000; freight_brl left null."
+        ]
+      },
+      "no_match_reason": null
+    },
+    {
+      "expense_id": "EXP_0047",
+      "requested_item": "Pregos, parafusos, buchas",
+      "requested_unit": "pacote",
+      "match_status": "verified",
+      "candidates": [
+        {
+          "matched_product": "Kit Bucha com Parafuso Cabeça Chata 28 Peças Foxmix",
+          "sku": "742810",
+          "seller": "Sodimac",
+          "specifications": {
+            "brand": "Foxmix",
+            "type": "Kit de fixação (buchas + parafusos cabeça chata)",
+            "piece_count": 28,
+            "contents": "buchas 5/6/8 mm e parafusos cabeça chata em tamanhos variados"
+          },
+          "package_size": "1 kit / 28 peças",
+          "displayed_price_brl": 25.9,
+          "normalized_unit_price_brl": 25.9,
+          "unit": "pacote",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.sodimac.com.br/sodimac-br/product/742810/kit-bucha-com-parafuso-cabeca-chata-28-pecas-foxmix/742810/",
+          "final_url": "https://www.sodimac.com.br/sodimac-br/product/742810/kit-bucha-com-parafuso-cabeca-chata-28-pecas-foxmix/742810/",
+          "http_status": 200,
+          "verification_method": "Direct Sodimac product page loaded; title, SKU 742810, visible card price R$25,90, schema.org InStock. Arithmetic: R$25.90 / 1 pacote = R$25.90/pacote.",
+          "caveats": [
+            "Assortment of parafusos + buchas; does not include pregos.",
+            "Freight not calculated for CEP 13380-000; freight_brl left null."
+          ]
+        },
+        {
+          "matched_product": "Kit Bucha com Parafuso Cabeça Sextavada Rosca Soberba 10 Peças Cinza",
+          "sku": "742813",
+          "seller": "Sodimac",
+          "specifications": {
+            "brand": "Foxmix",
+            "type": "Kit de fixação (buchas + parafusos cabeça sextavada)",
+            "piece_count": 10,
+            "color": "Cinza"
+          },
+          "package_size": "1 kit / 10 peças",
+          "displayed_price_brl": 24.9,
+          "normalized_unit_price_brl": 24.9,
+          "unit": "pacote",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.sodimac.com.br/sodimac-br/product/742813/kit-bucha-com-parafuso-cabeca-sextavada-rosca-soberba-10-pecas-cinza/742813/",
+          "final_url": "https://www.sodimac.com.br/sodimac-br/product/742813/kit-bucha-com-parafuso-cabeca-sextavada-rosca-soberba-10-pecas-cinza/742813/",
+          "http_status": 200,
+          "verification_method": "Direct Sodimac product page loaded; title, SKU 742813, visible card price R$24,90, schema.org InStock. Arithmetic: R$24.90 / 1 pacote = R$24.90/pacote.",
+          "caveats": [
+            "Smaller 10-piece assortment; still parafusos+buchas only (no pregos)."
+          ]
+        },
+        {
+          "matched_product": "Prego Comum sem Cabeça 17x21cm Pacote 200g Zincado",
+          "sku": "750623",
+          "seller": "Sodimac",
+          "specifications": {
+            "brand": null,
+            "type": "Prego comum sem cabeça",
+            "size": "17x21",
+            "package_g": 200,
+            "finish": "Zincado"
+          },
+          "package_size": "1 pacote / 200g",
+          "displayed_price_brl": 27.9,
+          "normalized_unit_price_brl": 27.9,
+          "unit": "pacote",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.sodimac.com.br/sodimac-br/product/750623/prego-comum-sem-cabeca-17x21cm-pacote-200g-zincado/750623/",
+          "final_url": "https://www.sodimac.com.br/sodimac-br/product/750623/prego-comum-sem-cabeca-17x21cm-pacote-200g-zincado/750623/",
+          "http_status": 200,
+          "verification_method": "Sodimac search ld+json + product page HTTP 200; resolved card price R$27,90 for 200 g nail pack. Arithmetic: R$27.90 / 1 pacote = R$27.90/pacote.",
+          "caveats": [
+            "Nails-only pack; does not include parafusos/buchas; higher than Foxmix assortment winner."
+          ]
+        },
+        {
+          "matched_product": "Kit Com Dois Parafusos E Bucha 08",
+          "sku": "1040063",
+          "seller": "Sodimac",
+          "specifications": {
+            "brand": null,
+            "type": "Kit mínimo parafusos + bucha",
+            "piece_count": 3,
+            "size": "08",
+            "contents": "2 parafusos + 1 bucha"
+          },
+          "package_size": "1 kit / 2 parafusos + 1 bucha",
+          "displayed_price_brl": 15.9,
+          "normalized_unit_price_brl": 15.9,
+          "unit": "pacote",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.sodimac.com.br/sodimac-br/product/1040063/kit-com-dois-parafusos-e-bucha-08/1040063/",
+          "final_url": "https://www.sodimac.com.br/sodimac-br/product/1040063/kit-com-dois-parafusos-e-bucha-08/1040063/",
+          "http_status": 200,
+          "verification_method": "Direct Sodimac product page loaded; title, SKU 1040063, visible card price R$15,90. Arithmetic: R$15.90 / 1 pacote = R$15.90/pacote.",
+          "caveats": [
+            "Minimal 2-screw + bushing pack; not selected as winner versus multi-size assortment kits."
+          ]
+        }
+      ],
+      "winner": {
+        "matched_product": "Kit Bucha com Parafuso Cabeça Sextavada Rosca Soberba 10 Peças Cinza",
+        "sku": "742813",
+        "seller": "Sodimac",
+        "specifications": {
+          "brand": "Foxmix",
+          "type": "Kit de fixação (buchas + parafusos cabeça sextavada)",
+          "piece_count": 10,
+          "color": "Cinza"
+        },
+        "package_size": "1 kit / 10 peças",
+        "displayed_price_brl": 24.9,
+        "normalized_unit_price_brl": 24.9,
+        "unit": "pacote",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.sodimac.com.br/sodimac-br/product/742813/kit-bucha-com-parafuso-cabeca-sextavada-rosca-soberba-10-pecas-cinza/742813/",
+        "final_url": "https://www.sodimac.com.br/sodimac-br/product/742813/kit-bucha-com-parafuso-cabeca-sextavada-rosca-soberba-10-pecas-cinza/742813/",
+        "http_status": 200,
+        "verification_method": "Direct Sodimac product page loaded; title, SKU 742813, visible card price R$24,90, schema.org InStock. Arithmetic: R$24.90 / 1 pacote = R$24.90/pacote.",
+        "caveats": [
+          "Lowest verified multi-piece parafusos+buchas assortment pack; cheaper 2-screw kits and nails-only packs exist but were not ranked as equivalent construction hardware assortments.",
+          "Does not include pregos.",
+          "Freight not calculated for CEP 13380-000; freight_brl left null."
+        ]
+      },
+      "no_match_reason": null
+    }
+  ]
+}

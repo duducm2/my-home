@@ -1,0 +1,650 @@
+{
+  "cluster": "electrical",
+  "checked_at": "2026-09-17",
+  "location_basis": "nova_odessa_cep_13380",
+  "expenses": [
+    {
+      "expense_id": "EXP_0033",
+      "requested_item": "Quadro de distribuição",
+      "requested_unit": "unidade",
+      "match_status": "verified",
+      "candidates": [
+        {
+          "matched_product": "Quadro Distr. Emb. 18p Din Iec-pb",
+          "sku": "1797682",
+          "seller": "Sodimac",
+          "specifications": {
+            "brand": "Soprano",
+            "mounting": "Embutir",
+            "capacity": "18 polos DIN",
+            "color": "Branco",
+            "protection": "IP40",
+            "door": "Com porta"
+          },
+          "package_size": "1 unidade",
+          "displayed_price_brl": 66.9,
+          "normalized_unit_price_brl": 66.9,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.sodimac.com.br/sodimac-br/product/1797682/quadro-distr-emb-18p-din-iec-pb/1797682/",
+          "final_url": "https://www.sodimac.com.br/sodimac-br/product/1797682/quadro-distr-emb-18p-din-iec-pb/1797682/",
+          "http_status": 200,
+          "verification_method": "Sodimac product page __NEXT_DATA__/productData; title Quadro Distr. Emb. 18p Din Iec-pb, brand Soprano, specs 18 polos DIN embutir, internetPrice R$66,90 verified. Arithmetic: R$66.90 / 1 unidade = R$66.90/unidade.",
+          "caveats": [
+            "Matches preferred 18 DIN capacity; embutir mounting."
+          ]
+        },
+        {
+          "matched_product": "Quadro Distr. Sob. 18p Din Iec-pb",
+          "sku": "1797676",
+          "seller": "Sodimac",
+          "specifications": {
+            "brand": "Soprano",
+            "mounting": "Sobrepor",
+            "capacity": "18 polos DIN",
+            "color": "Branco",
+            "protection": "IP40",
+            "door": "Com porta"
+          },
+          "package_size": "1 unidade",
+          "displayed_price_brl": 72.9,
+          "normalized_unit_price_brl": 72.9,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.sodimac.com.br/sodimac-br/product/1797676/quadro-distr-sob-18p-din-iec-pb/1797676/",
+          "final_url": "https://www.sodimac.com.br/sodimac-br/product/1797676/quadro-distr-sob-18p-din-iec-pb/1797676/",
+          "http_status": 200,
+          "verification_method": "Sodimac product page; title Quadro Distr. Sob. 18p Din Iec-pb, brand Soprano, 18 polos DIN sobrepor, internetPrice R$72,90 verified. Arithmetic: R$72.90 / 1 unidade = R$72.90/unidade.",
+          "caveats": [
+            "Sobrepor mounting; higher than embutir 18p Soprano."
+          ]
+        },
+        {
+          "matched_product": "Quadro Embutir Branco Para 16 Disjuntores",
+          "sku": "762240",
+          "seller": "Sodimac",
+          "specifications": {
+            "brand": "Steck",
+            "line": "Ouro Box",
+            "mounting": "Embutir",
+            "capacity": "16 disjuntores",
+            "color": "Branco"
+          },
+          "package_size": "1 unidade",
+          "displayed_price_brl": 138.0,
+          "normalized_unit_price_brl": 138.0,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.sodimac.com.br/sodimac-br/product/762240/quadro-embutir-branco-para-16-disjuntores/762240/",
+          "final_url": "https://www.sodimac.com.br/sodimac-br/product/762240/quadro-embutir-branco-para-16-disjuntores/762240/",
+          "http_status": 200,
+          "verification_method": "Sodimac product page; title Quadro Embutir Branco Para 16 Disjuntores, brand Steck Ouro Box, internetPrice R$138 verified. Arithmetic: R$138.00 / 1 unidade = R$138.00/unidade.",
+          "caveats": [
+            "Preferred 16 DIN capacity; higher priced than Soprano 18p."
+          ]
+        },
+        {
+          "matched_product": "Quadro de Distribuição Gabinete Schneider Eletric Easy9 16 módulos",
+          "sku": "743010",
+          "seller": "Sodimac",
+          "specifications": {
+            "brand": "Schneider Eletric",
+            "line": "Easy9",
+            "type": "Gabinete",
+            "capacity": "16 módulos",
+            "color": "Branco",
+            "includes": "Base, moldura, porta, obturadores, kit parafusos/travas DIN, etiquetas"
+          },
+          "package_size": "1 unidade",
+          "displayed_price_brl": 156.0,
+          "normalized_unit_price_brl": 156.0,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.sodimac.com.br/sodimac-br/product/743010/quadro-de-distribuicao-gabinete-schneider-eletric-easy9-16-modulos/743010/",
+          "final_url": "https://www.sodimac.com.br/sodimac-br/product/743010/quadro-de-distribuicao-gabinete-schneider-eletric-easy9-16-modulos/743010/",
+          "http_status": 200,
+          "verification_method": "Sodimac product page; Easy9 16 módulos Schneider, internetPrice R$156 verified. Arithmetic: R$156.00 / 1 unidade = R$156.00/unidade.",
+          "caveats": [
+            "Complete gabinete kit; highest among recorded 16/18-class candidates."
+          ]
+        }
+      ],
+      "winner": {
+        "matched_product": "Quadro Distr. Emb. 18p Din Iec-pb",
+        "sku": "1797682",
+        "seller": "Sodimac",
+        "specifications": {
+          "brand": "Soprano",
+          "mounting": "Embutir",
+          "capacity": "18 polos DIN",
+          "color": "Branco",
+          "protection": "IP40",
+          "door": "Com porta"
+        },
+        "package_size": "1 unidade",
+        "displayed_price_brl": 66.9,
+        "normalized_unit_price_brl": 66.9,
+        "unit": "unidade",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.sodimac.com.br/sodimac-br/product/1797682/quadro-distr-emb-18p-din-iec-pb/1797682/",
+        "final_url": "https://www.sodimac.com.br/sodimac-br/product/1797682/quadro-distr-emb-18p-din-iec-pb/1797682/",
+        "http_status": 200,
+        "verification_method": "Sodimac product page __NEXT_DATA__/productData; title Quadro Distr. Emb. 18p Din Iec-pb, brand Soprano, specs 18 polos DIN embutir, internetPrice R$66,90 verified. Arithmetic: R$66.90 / 1 unidade = R$66.90/unidade.",
+        "caveats": [
+          "Lowest verified quantity-1 price among comparable 16/18-class distribution boards."
+        ]
+      },
+      "no_match_reason": null
+    },
+    {
+      "expense_id": "EXP_0034",
+      "requested_item": "Conduítes",
+      "requested_unit": "metro linear (m)",
+      "match_status": "verified",
+      "candidates": [
+        {
+          "matched_product": "Eletroduto Corrugado DN25-3/4 50m Tramontina",
+          "sku": "867005",
+          "seller": "Sodimac",
+          "specifications": {
+            "brand": "Tramontina",
+            "type": "Eletroduto corrugado",
+            "diameter": "DN25 / 3/4\"",
+            "color": "Amarelo",
+            "roll_length_m": 50,
+            "material": "Termoplástico"
+          },
+          "package_size": "rolo 50 m",
+          "displayed_price_brl": 74.81,
+          "normalized_unit_price_brl": 1.4962,
+          "unit": "metro linear (m)",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.sodimac.com.br/sodimac-br/product/867005/eletroduto-corrugado-dn25-3-4-50m/867005/",
+          "final_url": "https://www.sodimac.com.br/sodimac-br/product/867005/eletroduto-corrugado-dn25-3-4-50m/867005/",
+          "http_status": 200,
+          "verification_method": "Sodimac product page; DN25-3/4 50 m Tramontina, eventPrice R$74,81 (normalPrice R$89,90) verified. Arithmetic: R$74.81 / 50 m = R$1.4962/m.",
+          "caveats": [
+            "Sold as a 50 m roll; unit price normalized per meter.",
+            "Title does not explicitly say 'reforçado'; treated as standard corrugated DN25 roll."
+          ]
+        },
+        {
+          "matched_product": "Eletroduto Corrugado Flexivel Am 3/4 Dn 25 - 50M",
+          "sku": "1026782",
+          "seller": "Sodimac",
+          "specifications": {
+            "brand": "Forceline",
+            "type": "Eletroduto corrugado flexível",
+            "diameter": "DN25 / 3/4\"",
+            "color": "Amarelo",
+            "roll_length_m": 50,
+            "material": "PVC"
+          },
+          "package_size": "rolo 50 m",
+          "displayed_price_brl": 79.9,
+          "normalized_unit_price_brl": 1.598,
+          "unit": "metro linear (m)",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.sodimac.com.br/sodimac-br/product/1026782/eletroduto-corrugado-flexivel-am-3-4-dn-25-50m/1026782/",
+          "final_url": "https://www.sodimac.com.br/sodimac-br/product/1026782/eletroduto-corrugado-flexivel-am-3-4-dn-25-50m/1026782/",
+          "http_status": 200,
+          "verification_method": "Sodimac product page; Forceline DN25 50 m, internetPrice R$79,90 verified. Arithmetic: R$79.90 / 50 m = R$1.598/m.",
+          "caveats": [
+            "Sold as a 50 m roll; unit price normalized per meter."
+          ]
+        },
+        {
+          "matched_product": "Eletroduto Corrugado 25mm x 50 Metros 3/4\" Amarelo",
+          "sku": "639391",
+          "seller": "Sodimac",
+          "specifications": {
+            "brand": "Amanco",
+            "model": "10113",
+            "type": "Eletroduto corrugado",
+            "diameter": "25 mm / 3/4\"",
+            "color": "Amarelo",
+            "roll_length_m": 50,
+            "material": "PVC"
+          },
+          "package_size": "rolo 50 m",
+          "displayed_price_brl": 99.9,
+          "normalized_unit_price_brl": 1.998,
+          "unit": "metro linear (m)",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.sodimac.com.br/sodimac-br/product/639391/eletroduto-corrugado-25mm-x-50-metros-3-4-amarelo/639391/",
+          "final_url": "https://www.sodimac.com.br/sodimac-br/product/639391/eletroduto-corrugado-25mm-x-50-metros-3-4-amarelo/639391/",
+          "http_status": 200,
+          "verification_method": "Sodimac product page; Amanco 25 mm x 50 m amarelo, eventPrice R$99,90 (normalPrice R$109) verified. Arithmetic: R$99.90 / 50 m = R$1.998/m.",
+          "caveats": [
+            "Sold as a 50 m roll; unit price normalized per meter."
+          ]
+        },
+        {
+          "matched_product": "Eletroduto Corrugado Flexível Reforçado 25mm x 50 metros Laranja",
+          "sku": "639421",
+          "seller": "Sodimac",
+          "specifications": {
+            "brand": "Amanco",
+            "model": "11913",
+            "type": "Eletroduto corrugado flexível reforçado",
+            "diameter": "25 mm",
+            "color": "Laranja",
+            "roll_length_m": 50,
+            "material": "PVC",
+            "use": "Lajes e pisos"
+          },
+          "package_size": "rolo 50 m",
+          "displayed_price_brl": 190.0,
+          "normalized_unit_price_brl": 3.8,
+          "unit": "metro linear (m)",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.sodimac.com.br/sodimac-br/product/639421/eletroduto-corrugado-flexivel-reforcado-25mm-x-50-metros-laranja/639421/",
+          "final_url": "https://www.sodimac.com.br/sodimac-br/product/639421/eletroduto-corrugado-flexivel-reforcado-25mm-x-50-metros-laranja/639421/",
+          "http_status": 200,
+          "verification_method": "Sodimac product page; Amanco reforçado 25 mm x 50 m laranja, internetPrice R$190 verified. Arithmetic: R$190.00 / 50 m = R$3.80/m.",
+          "caveats": [
+            "Explicitly reforçado; retained as higher-priced comparable to preferred reinforced spec.",
+            "Sold as a 50 m roll; unit price normalized per meter."
+          ]
+        }
+      ],
+      "winner": {
+        "matched_product": "Eletroduto Corrugado DN25-3/4 50m Tramontina",
+        "sku": "867005",
+        "seller": "Sodimac",
+        "specifications": {
+          "brand": "Tramontina",
+          "type": "Eletroduto corrugado",
+          "diameter": "DN25 / 3/4\"",
+          "color": "Amarelo",
+          "roll_length_m": 50,
+          "material": "Termoplástico"
+        },
+        "package_size": "rolo 50 m",
+        "displayed_price_brl": 74.81,
+        "normalized_unit_price_brl": 1.4962,
+        "unit": "metro linear (m)",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.sodimac.com.br/sodimac-br/product/867005/eletroduto-corrugado-dn25-3-4-50m/867005/",
+        "final_url": "https://www.sodimac.com.br/sodimac-br/product/867005/eletroduto-corrugado-dn25-3-4-50m/867005/",
+        "http_status": 200,
+        "verification_method": "Sodimac product page; DN25-3/4 50 m Tramontina, eventPrice R$74,81 (normalPrice R$89,90) verified. Arithmetic: R$74.81 / 50 m = R$1.4962/m.",
+        "caveats": [
+          "Lowest verified quantity-1 normalized per-meter price among DN25 ~50 m corrugated rolls."
+        ]
+      },
+      "no_match_reason": null
+    },
+    {
+      "expense_id": "EXP_0035",
+      "requested_item": "Lâmpadas",
+      "requested_unit": "unidade",
+      "match_status": "verified",
+      "candidates": [
+        {
+          "matched_product": "Lâmpada Bulbo 9w 3000k",
+          "sku": "1828209",
+          "seller": "Sodimac",
+          "specifications": {
+            "brand": "Ourolux",
+            "type": "LED bulbo",
+            "power_w": 9,
+            "base": "E27",
+            "color_temperature_k": 3000,
+            "voltage": "Bivolt",
+            "luminous_flux_lm": 803
+          },
+          "package_size": "1 unidade",
+          "displayed_price_brl": 2.79,
+          "normalized_unit_price_brl": 2.79,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.sodimac.com.br/sodimac-br/product/1828209/lampada-bulbo-9w-3000k/1828209/",
+          "final_url": "https://www.sodimac.com.br/sodimac-br/product/1828209/lampada-bulbo-9w-3000k/1828209/",
+          "http_status": 200,
+          "verification_method": "Sodimac product page; Ourolux bulbo 9W 3000K, specs Tipo de Soquete E27 / Potência 9w / Voltagem Bivolt, internetPrice R$2,79 verified. Arithmetic: R$2.79 / 1 unidade = R$2.79/unidade.",
+          "caveats": []
+        },
+        {
+          "matched_product": "Lâmpada Led Pera In Br6500k 200 9w",
+          "sku": "1044325",
+          "seller": "Sodimac",
+          "specifications": {
+            "brand": "Avant",
+            "type": "LED pera/bolinha",
+            "power_w": 9,
+            "base": "E27",
+            "color_temperature_k": 6500,
+            "voltage": "Bivolt"
+          },
+          "package_size": "1 unidade",
+          "displayed_price_brl": 3.49,
+          "normalized_unit_price_brl": 3.49,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.sodimac.com.br/sodimac-br/product/1044325/lampada-led-pera-in-br6500k-200-9w/1044325/",
+          "final_url": "https://www.sodimac.com.br/sodimac-br/product/1044325/lampada-led-pera-in-br6500k-200-9w/1044325/",
+          "http_status": 200,
+          "verification_method": "Sodimac product page; Avant LED pera 9W E27 6500K bivolt, internetPrice R$3,49 verified. Arithmetic: R$3.49 / 1 unidade = R$3.49/unidade.",
+          "caveats": [
+            "Pera/bolinha form factor rather than classic A60 bulbo; retained as 9W E27 comparable."
+          ]
+        },
+        {
+          "matched_product": "Lâmpada LED Bulbo A60 9W 3000K Bivolt Branco",
+          "sku": "782521",
+          "seller": "Sodimac",
+          "specifications": {
+            "brand": "Elgin",
+            "type": "LED bulbo A60",
+            "power_w": 9,
+            "color_temperature_k": 3000,
+            "voltage": "Bivolt",
+            "color": "Branco"
+          },
+          "package_size": "1 unidade",
+          "displayed_price_brl": 3.9,
+          "normalized_unit_price_brl": 3.9,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.sodimac.com.br/sodimac-br/product/782521/lampada-led-bulbo-a60-9w-3000k-bivolt-branco/782521/",
+          "final_url": "https://www.sodimac.com.br/sodimac-br/product/782521/lampada-led-bulbo-a60-9w-3000k-bivolt-branco/782521/",
+          "http_status": 200,
+          "verification_method": "Sodimac product page; Elgin LED bulbo A60 9W 3000K bivolt, internetPrice R$3,90 verified. Arithmetic: R$3.90 / 1 unidade = R$3.90/unidade.",
+          "caveats": [
+            "E27 base implied by A60 bulbo form; not restated as a separate specification field on the page."
+          ]
+        },
+        {
+          "matched_product": "Lâmpada Led TKL 60 9W E27 3000K Taschibra",
+          "sku": "669372",
+          "seller": "Sodimac",
+          "specifications": {
+            "brand": "Taschibra",
+            "line": "TKL 60",
+            "type": "LED bulbo",
+            "power_w": 9,
+            "base": "E27",
+            "color_temperature_k": 3000
+          },
+          "package_size": "1 unidade",
+          "displayed_price_brl": 5.9,
+          "normalized_unit_price_brl": 5.9,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.sodimac.com.br/sodimac-br/product/669372/lampada-led-tkl-60-9w-e27-3000k/669372/",
+          "final_url": "https://www.sodimac.com.br/sodimac-br/product/669372/lampada-led-tkl-60-9w-e27-3000k/669372/",
+          "http_status": 200,
+          "verification_method": "Sodimac product page; Taschibra TKL 60 9W E27 3000K, eventPrice R$5,90 (normalPrice R$6,90) verified. Arithmetic: R$5.90 / 1 unidade = R$5.90/unidade.",
+          "caveats": [
+            "Explicit E27 in title; higher than Ourolux/Avant/Elgin qty-1 offers."
+          ]
+        }
+      ],
+      "winner": {
+        "matched_product": "Lâmpada Bulbo 9w 3000k",
+        "sku": "1828209",
+        "seller": "Sodimac",
+        "specifications": {
+          "brand": "Ourolux",
+          "type": "LED bulbo",
+          "power_w": 9,
+          "base": "E27",
+          "color_temperature_k": 3000,
+          "voltage": "Bivolt",
+          "luminous_flux_lm": 803
+        },
+        "package_size": "1 unidade",
+        "displayed_price_brl": 2.79,
+        "normalized_unit_price_brl": 2.79,
+        "unit": "unidade",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.sodimac.com.br/sodimac-br/product/1828209/lampada-bulbo-9w-3000k/1828209/",
+        "final_url": "https://www.sodimac.com.br/sodimac-br/product/1828209/lampada-bulbo-9w-3000k/1828209/",
+        "http_status": 200,
+        "verification_method": "Sodimac product page; Ourolux bulbo 9W 3000K, specs Tipo de Soquete E27 / Potência 9w / Voltagem Bivolt, internetPrice R$2,79 verified. Arithmetic: R$2.79 / 1 unidade = R$2.79/unidade.",
+        "caveats": [
+          "Lowest verified quantity-1 single LED bulbo price among comparable 9W E27 offers."
+        ]
+      },
+      "no_match_reason": null
+    },
+    {
+      "expense_id": "EXP_0038",
+      "requested_item": "Tomadas",
+      "requested_unit": "unidade",
+      "match_status": "verified",
+      "candidates": [
+        {
+          "matched_product": "Conjunto Tomada 4X2 10A Stella Branco",
+          "sku": "788220",
+          "seller": "Sodimac",
+          "specifications": {
+            "brand": "Steck",
+            "line": "Stella",
+            "model": "869260",
+            "type": "Conjunto completo 4x2",
+            "modules": "1 tomada 2P+T 10A 250V",
+            "color": "Branco"
+          },
+          "package_size": "1 unidade",
+          "displayed_price_brl": 4.99,
+          "normalized_unit_price_brl": 4.99,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.sodimac.com.br/sodimac-br/product/788220/conjunto-tomada-4x2-10a-stella-branco/788220/",
+          "final_url": "https://www.sodimac.com.br/sodimac-br/product/788220/conjunto-tomada-4x2-10a-stella-branco/788220/",
+          "http_status": 200,
+          "verification_method": "Sodimac product page; Steck Stella conjunto 4x2 1 tomada 2P+T 10A 250V, eventPrice R$4,99 (normalPrice R$5,66) verified. Arithmetic: R$4.99 / 1 unidade = R$4.99/unidade.",
+          "caveats": [
+            "Complete plate+module set; characteristics explicitly state 2P+T 10A."
+          ]
+        },
+        {
+          "matched_product": "Conjunto Tomada 4X2 10A Lunare Branco",
+          "sku": "50220",
+          "seller": "Sodimac",
+          "specifications": {
+            "brand": "Schneider",
+            "line": "Lunare",
+            "type": "Conjunto completo 4x2",
+            "modules": "1 tomada 10A 250V",
+            "color": "Branco",
+            "includes_plate_support": true
+          },
+          "package_size": "1 unidade",
+          "displayed_price_brl": 12.72,
+          "normalized_unit_price_brl": 12.72,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.sodimac.com.br/sodimac-br/product/50220/conjunto-tomada-4x2-10a-lunare-branco/50220/",
+          "final_url": "https://www.sodimac.com.br/sodimac-br/product/50220/conjunto-tomada-4x2-10a-lunare-branco/50220/",
+          "http_status": 200,
+          "verification_method": "Sodimac product page; Schneider Lunare conjunto 4x2 10A, eventPrice R$12,72 (normalPrice R$17,90) verified. Arithmetic: R$12.72 / 1 unidade = R$12.72/unidade.",
+          "caveats": []
+        },
+        {
+          "matched_product": "Conjunto Tomada 4X2 10A Halux Deluxe Branco",
+          "sku": "858351",
+          "seller": "Sodimac",
+          "specifications": {
+            "brand": "Alumbra",
+            "line": "Halux Deluxe",
+            "type": "Conjunto completo 4x2",
+            "modules": "1 tomada 10A",
+            "color": "Branco",
+            "includes": "Placa + módulo + suporte + parafusos"
+          },
+          "package_size": "1 unidade",
+          "displayed_price_brl": 14.9,
+          "normalized_unit_price_brl": 14.9,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.sodimac.com.br/sodimac-br/product/858351/conjunto-tomada-4x2-10a-halux-deluxe-branco/858351/",
+          "final_url": "https://www.sodimac.com.br/sodimac-br/product/858351/conjunto-tomada-4x2-10a-halux-deluxe-branco/858351/",
+          "http_status": 200,
+          "verification_method": "Sodimac product page; Alumbra Halux Deluxe conjunto 4x2 10A with plate+module+support, internetPrice R$14,90 verified. Arithmetic: R$14.90 / 1 unidade = R$14.90/unidade.",
+          "caveats": []
+        },
+        {
+          "matched_product": "Conjunto Tomada 4X2 10A Lux2 Branco",
+          "sku": "750594",
+          "seller": "Sodimac",
+          "specifications": {
+            "brand": "Tramontina",
+            "line": "Lux2",
+            "type": "Conjunto completo 4x2",
+            "modules": "1 tomada 10A",
+            "color": "Branco",
+            "voltage": "Bivolt"
+          },
+          "package_size": "1 unidade",
+          "displayed_price_brl": 19.9,
+          "normalized_unit_price_brl": 19.9,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.sodimac.com.br/sodimac-br/product/750594/conjunto-tomada-4x2-10a-lux2-branco/750594/",
+          "final_url": "https://www.sodimac.com.br/sodimac-br/product/750594/conjunto-tomada-4x2-10a-lux2-branco/750594/",
+          "http_status": 200,
+          "verification_method": "Sodimac product page; Tramontina Lux2 conjunto 4x2 10A, internetPrice R$19,90 verified. Arithmetic: R$19.90 / 1 unidade = R$19.90/unidade.",
+          "caveats": []
+        }
+      ],
+      "winner": {
+        "matched_product": "Conjunto Tomada 4X2 10A Stella Branco",
+        "sku": "788220",
+        "seller": "Sodimac",
+        "specifications": {
+          "brand": "Steck",
+          "line": "Stella",
+          "model": "869260",
+          "type": "Conjunto completo 4x2",
+          "modules": "1 tomada 2P+T 10A 250V",
+          "color": "Branco"
+        },
+        "package_size": "1 unidade",
+        "displayed_price_brl": 4.99,
+        "normalized_unit_price_brl": 4.99,
+        "unit": "unidade",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.sodimac.com.br/sodimac-br/product/788220/conjunto-tomada-4x2-10a-stella-branco/788220/",
+        "final_url": "https://www.sodimac.com.br/sodimac-br/product/788220/conjunto-tomada-4x2-10a-stella-branco/788220/",
+        "http_status": 200,
+        "verification_method": "Sodimac product page; Steck Stella conjunto 4x2 1 tomada 2P+T 10A 250V, eventPrice R$4,99 (normalPrice R$5,66) verified. Arithmetic: R$4.99 / 1 unidade = R$4.99/unidade.",
+        "caveats": [
+          "Lowest verified quantity-1 complete 4x2 single-outlet set among recorded comparables."
+        ]
+      },
+      "no_match_reason": null
+    },
+    {
+      "expense_id": "EXP_0045",
+      "requested_item": "Dispositivos de segurança",
+      "requested_unit": "conjunto",
+      "match_status": "no_match",
+      "candidates": [],
+      "winner": null,
+      "no_match_reason": "No clear residential security-device conjunto (4 cameras + DVR/storage) with a verified Sodimac product URL was found. Closest hits were single-camera VTV kits with cable/power (SKU 878263/878264) and a separate 4-channel DVR+HD (SKU 878262), plus porteiro/vídeoporteiro access-control items—not a complete multi-camera security kit. Conservatively marked no_match."
+    }
+  ]
+}

@@ -1,0 +1,475 @@
+{
+  "cluster": "structural",
+  "checked_at": "2026-09-17",
+  "location_basis": "nova_odessa_cep_13380",
+  "expenses": [
+    {
+      "expense_id": "EXP_0014",
+      "requested_item": "Impermeabilizante (bianco)",
+      "requested_unit": "balde",
+      "match_status": "verified",
+      "candidates": [
+        {
+          "matched_product": "Aditivo para Argamassa e Chapisco PVA Bianco Balde 18 Litros Vedacit",
+          "sku": "3803",
+          "seller": "Sodimac",
+          "specifications": {
+            "brand": "Vedacit",
+            "product_line": "Bianco",
+            "net_content": "18 L",
+            "package_type": "Balde",
+            "form": "liquid PVA bonding additive"
+          },
+          "package_size": "18 L",
+          "displayed_price_brl": 314.9,
+          "normalized_unit_price_brl": 314.9,
+          "unit": "balde",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.sodimac.com.br/sodimac-br/product/3803/aditivo-para-argamassa-e-chapisco-pva-bianco-balde-18-litros-vedacit/3803/",
+          "final_url": "https://www.sodimac.com.br/sodimac-br/product/3803/aditivo-para-argamassa-e-chapisco-pva-bianco-balde-18-litros-vedacit/3803/",
+          "http_status": 200,
+          "verification_method": "Sodimac search Ntt=bianco vedacit plus product __NEXT_DATA__ variants[0].prices internetPrice and browser PDP visible price R$314,90; HTTP 200 on canonical /product/<id>/<slug>/<id>/ URL. Arithmetic: R$314.90 / 1 balde = R$314.90 per balde.",
+          "caveats": [
+            "Preferred ~18 L Bianco/Vedacit balde; smaller Bianco SKUs (900 g Sup, 3.6 L galão) exist but were not selected for balde unit ranking.",
+            "Freight not calculated for CEP 13380-000; freight_brl left null."
+          ]
+        },
+        {
+          "matched_product": "Aditivo para Argamassa e Chapisco PVA Bianco Galão 3,6 Litros Vedacit",
+          "sku": "3805",
+          "seller": "Sodimac",
+          "specifications": {
+            "brand": "Vedacit",
+            "product_line": "Bianco",
+            "net_content": "3.6 L",
+            "package_type": "Galão"
+          },
+          "package_size": "3.6 L",
+          "displayed_price_brl": 104.9,
+          "normalized_unit_price_brl": 104.9,
+          "unit": "balde",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.sodimac.com.br/sodimac-br/product/3805/aditivo-para-argamassa-e-chapisco-pva-bianco-galao-36-litros-vedacit/3805/",
+          "final_url": "https://www.sodimac.com.br/sodimac-br/product/3805/aditivo-para-argamassa-e-chapisco-pva-bianco-galao-36-litros-vedacit/3805/",
+          "http_status": 200,
+          "verification_method": "Product __NEXT_DATA__ eventPrice R$104,90 (normalPrice crossed R$109); HTTP 200 on /product/<id>/<slug>/<id>/ URL.",
+          "caveats": [
+            "Galão 3.6 L, not the preferred balde ~18 L package; retained as secondary Bianco candidate only."
+          ]
+        }
+      ],
+      "winner": {
+        "matched_product": "Aditivo para Argamassa e Chapisco PVA Bianco Balde 18 Litros Vedacit",
+        "sku": "3803",
+        "seller": "Sodimac",
+        "specifications": {
+          "brand": "Vedacit",
+          "product_line": "Bianco",
+          "net_content": "18 L",
+          "package_type": "Balde",
+          "form": "liquid PVA bonding additive"
+        },
+        "package_size": "18 L",
+        "displayed_price_brl": 314.9,
+        "normalized_unit_price_brl": 314.9,
+        "unit": "balde",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.sodimac.com.br/sodimac-br/product/3803/aditivo-para-argamassa-e-chapisco-pva-bianco-balde-18-litros-vedacit/3803/",
+        "final_url": "https://www.sodimac.com.br/sodimac-br/product/3803/aditivo-para-argamassa-e-chapisco-pva-bianco-balde-18-litros-vedacit/3803/",
+        "http_status": 200,
+        "verification_method": "Sodimac search Ntt=bianco vedacit plus product __NEXT_DATA__ variants[0].prices internetPrice and browser PDP visible price R$314,90; HTTP 200 on canonical /product/<id>/<slug>/<id>/ URL. Arithmetic: R$314.90 / 1 balde = R$314.90 per balde.",
+        "caveats": [
+          "Preferred ~18 L Bianco/Vedacit balde; smaller Bianco SKUs (900 g Sup, 3.6 L galão) exist but were not selected for balde unit ranking.",
+          "Freight not calculated for CEP 13380-000; freight_brl left null."
+        ]
+      },
+      "no_match_reason": null
+    },
+    {
+      "expense_id": "EXP_0015",
+      "requested_item": "Areia grossa, fina e pedrisco",
+      "requested_unit": "m³",
+      "match_status": "no_match",
+      "candidates": [],
+      "winner": null,
+      "no_match_reason": "Only bagged 20 kg areia/pedrisco/brita listings found (e.g. Areia Fina 20kg R$4.99, Areia Lavada Saco 20Kg R$4.99, Pedra Pedrisco 20kg R$7.48, Areia Média Emic 20kg R$5.90); no m³-priced bulk aggregate with a clear comparable unit price on a verified product page."
+    },
+    {
+      "expense_id": "EXP_0016",
+      "requested_item": "Cimento",
+      "requested_unit": "saco (50 kg)",
+      "match_status": "verified",
+      "candidates": [
+        {
+          "matched_product": "Cimento Cauê CPIIF32 Uso Geral 50kg",
+          "sku": "686667",
+          "seller": "Sodimac",
+          "specifications": {
+            "brand": "Cauê",
+            "type": "CP II F 32",
+            "weight": "50 kg"
+          },
+          "package_size": "50 kg",
+          "displayed_price_brl": 32.9,
+          "normalized_unit_price_brl": 32.9,
+          "unit": "saco (50 kg)",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.sodimac.com.br/sodimac-br/product/686667/cimento-caue-cpiif32-uso-geral-50kg/686667/",
+          "final_url": "https://www.sodimac.com.br/sodimac-br/product/686667/cimento-caue-cpiif32-uso-geral-50kg/686667/",
+          "http_status": 200,
+          "verification_method": "Sodimac search Ntt=cimento 50kg plus product __NEXT_DATA__ eventPrice R$32,90 (normalPrice crossed R$34,90); HTTP 200 on /product/<id>/<slug>/<id>/ URL. Arithmetic: R$32.90 / 1 saco = R$32.90 per saco (50 kg).",
+          "caveats": [
+            "Lowest in-stock 50 kg cement among comparable listings in this run (event/promo price).",
+            "Freight not calculated for CEP 13380-000; freight_brl left null."
+          ]
+        },
+        {
+          "matched_product": "Cimento Cinza Todas as Obras CPII 50 Kgs Votoran",
+          "sku": "738023",
+          "seller": "Sodimac",
+          "specifications": {
+            "brand": "Votoran",
+            "type": "CPII",
+            "weight": "50 kg"
+          },
+          "package_size": "50 kg",
+          "displayed_price_brl": 38.9,
+          "normalized_unit_price_brl": 38.9,
+          "unit": "saco (50 kg)",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.sodimac.com.br/sodimac-br/product/738023/cimento-cinza-todas-as-obras-cpii-50-kgs-votoran/738023/",
+          "final_url": "https://www.sodimac.com.br/sodimac-br/product/738023/cimento-cinza-todas-as-obras-cpii-50-kgs-votoran/738023/",
+          "http_status": 200,
+          "verification_method": "Product __NEXT_DATA__ internetPrice R$38,90; HTTP 200 on /product/<id>/<slug>/<id>/ URL. Arithmetic: R$38.90 / 1 saco = R$38.90 per saco (50 kg).",
+          "caveats": [
+            "Higher qty-1 price than Cauê winner; retained as secondary 50 kg candidate."
+          ]
+        }
+      ],
+      "winner": {
+        "matched_product": "Cimento Cauê CPIIF32 Uso Geral 50kg",
+        "sku": "686667",
+        "seller": "Sodimac",
+        "specifications": {
+          "brand": "Cauê",
+          "type": "CP II F 32",
+          "weight": "50 kg"
+        },
+        "package_size": "50 kg",
+        "displayed_price_brl": 32.9,
+        "normalized_unit_price_brl": 32.9,
+        "unit": "saco (50 kg)",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.sodimac.com.br/sodimac-br/product/686667/cimento-caue-cpiif32-uso-geral-50kg/686667/",
+        "final_url": "https://www.sodimac.com.br/sodimac-br/product/686667/cimento-caue-cpiif32-uso-geral-50kg/686667/",
+        "http_status": 200,
+        "verification_method": "Sodimac search Ntt=cimento 50kg plus product __NEXT_DATA__ eventPrice R$32,90 (normalPrice crossed R$34,90); HTTP 200 on /product/<id>/<slug>/<id>/ URL. Arithmetic: R$32.90 / 1 saco = R$32.90 per saco (50 kg).",
+        "caveats": [
+          "Lowest in-stock 50 kg cement among comparable listings in this run (event/promo price).",
+          "Freight not calculated for CEP 13380-000; freight_brl left null."
+        ]
+      },
+      "no_match_reason": null
+    },
+    {
+      "expense_id": "EXP_0017",
+      "requested_item": "Telha",
+      "requested_unit": "unidade",
+      "match_status": "verified",
+      "candidates": [
+        {
+          "matched_product": "Telha Portuguesa de Cerâmica Resinada 24cmx39cmx40mm Vermelho Resinado",
+          "sku": "647894",
+          "seller": "Sodimac",
+          "specifications": {
+            "brand": "Barrobello",
+            "type": "ceramic Portuguese resinated",
+            "dimensions": "24x39 cm x 40 mm",
+            "color": "vermelho resinado"
+          },
+          "package_size": "1 unidade",
+          "displayed_price_brl": 1.96,
+          "normalized_unit_price_brl": 1.96,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.sodimac.com.br/sodimac-br/product/647894/telha-portuguesa-de-ceramica-resinada-24cmx39cmx40mm-vermelho-resinado/647894/",
+          "final_url": "https://www.sodimac.com.br/sodimac-br/product/647894/telha-portuguesa-de-ceramica-resinada-24cmx39cmx40mm-vermelho-resinado/647894/",
+          "http_status": 200,
+          "verification_method": "Sodimac search Ntt=telha ceramica plus product __NEXT_DATA__ internetPrice R$1,96; HTTP 200 on /product/<id>/<slug>/<id>/ URL. Arithmetic: R$1.96 / 1 unidade = R$1.96 per unidade.",
+          "caveats": [
+            "Tied with Telha Romana at R$1.96; Portuguesa selected as winner among ceramic unit tiles.",
+            "Freight not calculated for CEP 13380-000; freight_brl left null."
+          ]
+        },
+        {
+          "matched_product": "Telha Romana de Cerâmica Resinada 23,6cmx40cmx40mm Vermelho Resinado",
+          "sku": "647893",
+          "seller": "Sodimac",
+          "specifications": {
+            "brand": "Barrobello",
+            "type": "ceramic Roman resinated",
+            "dimensions": "23.6x40 cm x 40 mm",
+            "color": "vermelho resinado"
+          },
+          "package_size": "1 unidade",
+          "displayed_price_brl": 1.96,
+          "normalized_unit_price_brl": 1.96,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.sodimac.com.br/sodimac-br/product/647893/telha-romana-de-ceramica-resinada-236cmx40cmx40mm-vermelho-resinado/647893/",
+          "final_url": "https://www.sodimac.com.br/sodimac-br/product/647893/telha-romana-de-ceramica-resinada-236cmx40cmx40mm-vermelho-resinado/647893/",
+          "http_status": 200,
+          "verification_method": "Product __NEXT_DATA__ internetPrice R$1,96; HTTP 200 on /product/<id>/<slug>/<id>/ URL. Arithmetic: R$1.96 / 1 unidade = R$1.96 per unidade.",
+          "caveats": [
+            "Same qty-1 price as Portuguesa winner; retained as tied alternate ceramic tile."
+          ]
+        },
+        {
+          "matched_product": "Telha Paulistinha de Cerâmica 16cmx41cmx50mm Vermelho",
+          "sku": "647896",
+          "seller": "Sodimac",
+          "specifications": {
+            "brand": "Barrobello",
+            "type": "ceramic Paulistinha",
+            "dimensions": "16x41 cm x 50 mm",
+            "color": "vermelho"
+          },
+          "package_size": "1 unidade",
+          "displayed_price_brl": 3.19,
+          "normalized_unit_price_brl": 3.19,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.sodimac.com.br/sodimac-br/product/647896/telha-paulistinha-de-ceramica-16cmx41cmx50mm-vermelho/647896/",
+          "final_url": "https://www.sodimac.com.br/sodimac-br/product/647896/telha-paulistinha-de-ceramica-16cmx41cmx50mm-vermelho/647896/",
+          "http_status": 200,
+          "verification_method": "Product __NEXT_DATA__ internetPrice R$3,19; HTTP 200 on /product/<id>/<slug>/<id>/ URL. Arithmetic: R$3.19 / 1 unidade = R$3.19 per unidade.",
+          "caveats": [
+            "Higher unit price than Portuguesa/Romana winners."
+          ]
+        }
+      ],
+      "winner": {
+        "matched_product": "Telha Portuguesa de Cerâmica Resinada 24cmx39cmx40mm Vermelho Resinado",
+        "sku": "647894",
+        "seller": "Sodimac",
+        "specifications": {
+          "brand": "Barrobello",
+          "type": "ceramic Portuguese resinated",
+          "dimensions": "24x39 cm x 40 mm",
+          "color": "vermelho resinado"
+        },
+        "package_size": "1 unidade",
+        "displayed_price_brl": 1.96,
+        "normalized_unit_price_brl": 1.96,
+        "unit": "unidade",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.sodimac.com.br/sodimac-br/product/647894/telha-portuguesa-de-ceramica-resinada-24cmx39cmx40mm-vermelho-resinado/647894/",
+        "final_url": "https://www.sodimac.com.br/sodimac-br/product/647894/telha-portuguesa-de-ceramica-resinada-24cmx39cmx40mm-vermelho-resinado/647894/",
+        "http_status": 200,
+        "verification_method": "Sodimac search Ntt=telha ceramica plus product __NEXT_DATA__ internetPrice R$1,96; HTTP 200 on /product/<id>/<slug>/<id>/ URL. Arithmetic: R$1.96 / 1 unidade = R$1.96 per unidade.",
+        "caveats": [
+          "Tied with Telha Romana at R$1.96; Portuguesa selected as winner among ceramic unit tiles.",
+          "Freight not calculated for CEP 13380-000; freight_brl left null."
+        ]
+      },
+      "no_match_reason": null
+    },
+    {
+      "expense_id": "EXP_0019",
+      "requested_item": "Tijolinho de barro",
+      "requested_unit": "unidade",
+      "match_status": "verified",
+      "candidates": [
+        {
+          "matched_product": "Tijolo Comum 10 peças",
+          "sku": "33939",
+          "seller": "Sodimac",
+          "specifications": {
+            "brand": "AB Areias",
+            "type": "solid common clay brick (tijolo comum / tijolinho)",
+            "pack_count": 10,
+            "material": "ceramic clay"
+          },
+          "package_size": "10 unidades",
+          "displayed_price_brl": 8.9,
+          "normalized_unit_price_brl": 0.89,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.sodimac.com.br/sodimac-br/product/33939/tijolo-comum-10-pe%C3%A7as/33939/",
+          "final_url": "https://www.sodimac.com.br/sodimac-br/product/33939/tijolo-comum-10-pe%C3%A7as/33939/",
+          "http_status": 200,
+          "verification_method": "Sodimac search Ntt=tijolo comum plus product __NEXT_DATA__ internetPrice R$8,90 for pack of 10; HTTP 200 on /product/<id>/<slug>/<id>/ URL. Arithmetic: R$8.90 / 10 unidades = R$0.89 per unidade.",
+          "caveats": [
+            "Sold only as a 10-unit bag; normalized_unit_price_brl is per brick.",
+            "minimum_quantity remains 1 (one bag purchase).",
+            "Decorative tijolo vazado / plaqueta refratária listings excluded as not comparable tijolinho de barro.",
+            "Freight not calculated for CEP 13380-000; freight_brl left null."
+          ]
+        }
+      ],
+      "winner": {
+        "matched_product": "Tijolo Comum 10 peças",
+        "sku": "33939",
+        "seller": "Sodimac",
+        "specifications": {
+          "brand": "AB Areias",
+          "type": "solid common clay brick (tijolo comum / tijolinho)",
+          "pack_count": 10,
+          "material": "ceramic clay"
+        },
+        "package_size": "10 unidades",
+        "displayed_price_brl": 8.9,
+        "normalized_unit_price_brl": 0.89,
+        "unit": "unidade",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.sodimac.com.br/sodimac-br/product/33939/tijolo-comum-10-pe%C3%A7as/33939/",
+        "final_url": "https://www.sodimac.com.br/sodimac-br/product/33939/tijolo-comum-10-pe%C3%A7as/33939/",
+        "http_status": 200,
+        "verification_method": "Sodimac search Ntt=tijolo comum plus product __NEXT_DATA__ internetPrice R$8,90 for pack of 10; HTTP 200 on /product/<id>/<slug>/<id>/ URL. Arithmetic: R$8.90 / 10 unidades = R$0.89 per unidade.",
+        "caveats": [
+          "Sold only as a 10-unit bag; normalized_unit_price_brl is per brick.",
+          "minimum_quantity remains 1 (one bag purchase).",
+          "Decorative tijolo vazado / plaqueta refratária listings excluded as not comparable tijolinho de barro.",
+          "Freight not calculated for CEP 13380-000; freight_brl left null."
+        ]
+      },
+      "no_match_reason": null
+    },
+    {
+      "expense_id": "EXP_0021",
+      "requested_item": "Arame recozido",
+      "requested_unit": "kg",
+      "match_status": "verified",
+      "candidates": [
+        {
+          "matched_product": "Arame Btc Recozido Bwg18 1,24mm Rl 1kg",
+          "sku": "1797341",
+          "seller": "Sodimac",
+          "specifications": {
+            "brand": "Comep",
+            "diameter": "1.24 mm (BWG18)",
+            "package": "1 kg roll",
+            "material": "arame recozido"
+          },
+          "package_size": "1 kg",
+          "displayed_price_brl": 21.9,
+          "normalized_unit_price_brl": 21.9,
+          "unit": "kg",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.sodimac.com.br/sodimac-br/product/1797341/arame-btc-recozido-bwg18-124mm-rl-1kg/1797341/",
+          "final_url": "https://www.sodimac.com.br/sodimac-br/product/1797341/arame-btc-recozido-bwg18-124mm-rl-1kg/1797341/",
+          "http_status": 200,
+          "verification_method": "Sodimac search Ntt=arame recozido redirects to this PDP; __NEXT_DATA__ internetPrice and browser visible price R$21,90; HTTP 200 on /product/<id>/<slug>/<id>/ URL. Arithmetic: R$21.90 / 1 kg = R$21.90/kg.",
+          "caveats": [
+            "Only recozido 1 kg SKU surfaced by Sodimac search in this run (search lands on this product page).",
+            "Freight not calculated for CEP 13380-000; freight_brl left null."
+          ]
+        }
+      ],
+      "winner": {
+        "matched_product": "Arame Btc Recozido Bwg18 1,24mm Rl 1kg",
+        "sku": "1797341",
+        "seller": "Sodimac",
+        "specifications": {
+          "brand": "Comep",
+          "diameter": "1.24 mm (BWG18)",
+          "package": "1 kg roll",
+          "material": "arame recozido"
+        },
+        "package_size": "1 kg",
+        "displayed_price_brl": 21.9,
+        "normalized_unit_price_brl": 21.9,
+        "unit": "kg",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.sodimac.com.br/sodimac-br/product/1797341/arame-btc-recozido-bwg18-124mm-rl-1kg/1797341/",
+        "final_url": "https://www.sodimac.com.br/sodimac-br/product/1797341/arame-btc-recozido-bwg18-124mm-rl-1kg/1797341/",
+        "http_status": 200,
+        "verification_method": "Sodimac search Ntt=arame recozido redirects to this PDP; __NEXT_DATA__ internetPrice and browser visible price R$21,90; HTTP 200 on /product/<id>/<slug>/<id>/ URL. Arithmetic: R$21.90 / 1 kg = R$21.90/kg.",
+        "caveats": [
+          "Only recozido 1 kg SKU surfaced by Sodimac search in this run (search lands on this product page).",
+          "Freight not calculated for CEP 13380-000; freight_brl left null."
+        ]
+      },
+      "no_match_reason": null
+    },
+    {
+      "expense_id": "EXP_0042",
+      "requested_item": "Madeiramento ou estrutura metálica",
+      "requested_unit": "m²",
+      "match_status": "no_match",
+      "candidates": [],
+      "winner": null,
+      "no_match_reason": "No in-stock madeiramento or metal roof-framing product sold/priced per m². Found caibros and vigas priced per piece only (e.g. Caibro Eucalipto 5x5x300cm R$16.90, Viga Bruta Eucalipto 5x11x300cm R$35.90); no comparable m² structural package with verified unit price."
+    }
+  ]
+}

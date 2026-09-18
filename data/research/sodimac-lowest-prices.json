@@ -1,0 +1,1264 @@
+{
+  "source": "Sodimac Brasil",
+  "source_url": "https://www.sodimac.com.br/",
+  "location_basis": "nova_odessa_cep_13380",
+  "checked_at": "2026-09-17",
+  "summary": {
+    "total_material_expenses": 35,
+    "verified_matches": 31,
+    "no_match": 4
+  },
+  "expenses": [
+    {
+      "expense_id": "EXP_0014",
+      "requested_item": "Impermeabilizante (bianco)",
+      "requested_unit": "balde",
+      "match_status": "verified",
+      "winner": {
+        "matched_product": "Aditivo para Argamassa e Chapisco PVA Bianco Balde 18 Litros Vedacit",
+        "sku": "3803",
+        "seller": "Sodimac",
+        "specifications": {
+          "brand": "Vedacit",
+          "product_line": "Bianco",
+          "net_content": "18 L",
+          "package_type": "Balde",
+          "form": "liquid PVA bonding additive"
+        },
+        "package_size": "18 L",
+        "displayed_price_brl": 314.9,
+        "normalized_unit_price_brl": 314.9,
+        "unit": "balde",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.sodimac.com.br/sodimac-br/product/3803/aditivo-para-argamassa-e-chapisco-pva-bianco-balde-18-litros-vedacit/3803/",
+        "final_url": "https://www.sodimac.com.br/sodimac-br/product/3803/aditivo-para-argamassa-e-chapisco-pva-bianco-balde-18-litros-vedacit/3803/",
+        "http_status": 200,
+        "verification_method": "Sodimac search Ntt=bianco vedacit plus product __NEXT_DATA__ variants[0].prices internetPrice and browser PDP visible price R$314,90; HTTP 200 on canonical /product/<id>/<slug>/<id>/ URL. Arithmetic: R$314.90 / 1 balde = R$314.90 per balde.",
+        "caveats": [
+          "Preferred ~18 L Bianco/Vedacit balde; smaller Bianco SKUs (900 g Sup, 3.6 L galão) exist but were not selected for balde unit ranking.",
+          "Freight not calculated for CEP 13380-000; freight_brl left null."
+        ]
+      },
+      "candidate_count": 2,
+      "no_match_reason": ""
+    },
+    {
+      "expense_id": "EXP_0015",
+      "requested_item": "Areia grossa, fina e pedrisco",
+      "requested_unit": "metro cúbico (m³)",
+      "match_status": "no_match",
+      "winner": null,
+      "candidate_count": 0,
+      "no_match_reason": "Only bagged 20 kg areia/pedrisco/brita listings found (e.g. Areia Fina 20kg R$4.99, Areia Lavada Saco 20Kg R$4.99, Pedra Pedrisco 20kg R$7.48, Areia Média Emic 20kg R$5.90); no m³-priced bulk aggregate with a clear comparable unit price on a verified product page."
+    },
+    {
+      "expense_id": "EXP_0016",
+      "requested_item": "Cimento",
+      "requested_unit": "saco (50 kg)",
+      "match_status": "verified",
+      "winner": {
+        "matched_product": "Cimento Cauê CPIIF32 Uso Geral 50kg",
+        "sku": "686667",
+        "seller": "Sodimac",
+        "specifications": {
+          "brand": "Cauê",
+          "type": "CP II F 32",
+          "weight": "50 kg"
+        },
+        "package_size": "50 kg",
+        "displayed_price_brl": 32.9,
+        "normalized_unit_price_brl": 32.9,
+        "unit": "saco (50 kg)",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.sodimac.com.br/sodimac-br/product/686667/cimento-caue-cpiif32-uso-geral-50kg/686667/",
+        "final_url": "https://www.sodimac.com.br/sodimac-br/product/686667/cimento-caue-cpiif32-uso-geral-50kg/686667/",
+        "http_status": 200,
+        "verification_method": "Sodimac search Ntt=cimento 50kg plus product __NEXT_DATA__ eventPrice R$32,90 (normalPrice crossed R$34,90); HTTP 200 on /product/<id>/<slug>/<id>/ URL. Arithmetic: R$32.90 / 1 saco = R$32.90 per saco (50 kg).",
+        "caveats": [
+          "Lowest in-stock 50 kg cement among comparable listings in this run (event/promo price).",
+          "Freight not calculated for CEP 13380-000; freight_brl left null."
+        ]
+      },
+      "candidate_count": 2,
+      "no_match_reason": ""
+    },
+    {
+      "expense_id": "EXP_0017",
+      "requested_item": "Telha",
+      "requested_unit": "unidade",
+      "match_status": "verified",
+      "winner": {
+        "matched_product": "Telha Portuguesa de Cerâmica Resinada 24cmx39cmx40mm Vermelho Resinado",
+        "sku": "647894",
+        "seller": "Sodimac",
+        "specifications": {
+          "brand": "Barrobello",
+          "type": "ceramic Portuguese resinated",
+          "dimensions": "24x39 cm x 40 mm",
+          "color": "vermelho resinado"
+        },
+        "package_size": "1 unidade",
+        "displayed_price_brl": 1.96,
+        "normalized_unit_price_brl": 1.96,
+        "unit": "unidade",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.sodimac.com.br/sodimac-br/product/647894/telha-portuguesa-de-ceramica-resinada-24cmx39cmx40mm-vermelho-resinado/647894/",
+        "final_url": "https://www.sodimac.com.br/sodimac-br/product/647894/telha-portuguesa-de-ceramica-resinada-24cmx39cmx40mm-vermelho-resinado/647894/",
+        "http_status": 200,
+        "verification_method": "Sodimac search Ntt=telha ceramica plus product __NEXT_DATA__ internetPrice R$1,96; HTTP 200 on /product/<id>/<slug>/<id>/ URL. Arithmetic: R$1.96 / 1 unidade = R$1.96 per unidade.",
+        "caveats": [
+          "Tied with Telha Romana at R$1.96; Portuguesa selected as winner among ceramic unit tiles.",
+          "Freight not calculated for CEP 13380-000; freight_brl left null."
+        ]
+      },
+      "candidate_count": 3,
+      "no_match_reason": ""
+    },
+    {
+      "expense_id": "EXP_0019",
+      "requested_item": "Tijolinho de barro",
+      "requested_unit": "unidade",
+      "match_status": "verified",
+      "winner": {
+        "matched_product": "Tijolo Comum 10 peças",
+        "sku": "33939",
+        "seller": "Sodimac",
+        "specifications": {
+          "brand": "AB Areias",
+          "type": "solid common clay brick (tijolo comum / tijolinho)",
+          "pack_count": 10,
+          "material": "ceramic clay"
+        },
+        "package_size": "10 unidades",
+        "displayed_price_brl": 8.9,
+        "normalized_unit_price_brl": 0.89,
+        "unit": "unidade",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.sodimac.com.br/sodimac-br/product/33939/tijolo-comum-10-pe%C3%A7as/33939/",
+        "final_url": "https://www.sodimac.com.br/sodimac-br/product/33939/tijolo-comum-10-pe%C3%A7as/33939/",
+        "http_status": 200,
+        "verification_method": "Sodimac search Ntt=tijolo comum plus product __NEXT_DATA__ internetPrice R$8,90 for pack of 10; HTTP 200 on /product/<id>/<slug>/<id>/ URL. Arithmetic: R$8.90 / 10 unidades = R$0.89 per unidade.",
+        "caveats": [
+          "Sold only as a 10-unit bag; normalized_unit_price_brl is per brick.",
+          "minimum_quantity remains 1 (one bag purchase).",
+          "Decorative tijolo vazado / plaqueta refratária listings excluded as not comparable tijolinho de barro.",
+          "Freight not calculated for CEP 13380-000; freight_brl left null."
+        ]
+      },
+      "candidate_count": 1,
+      "no_match_reason": ""
+    },
+    {
+      "expense_id": "EXP_0021",
+      "requested_item": "Arame recuzido",
+      "requested_unit": "quilograma (kg)",
+      "match_status": "verified",
+      "winner": {
+        "matched_product": "Arame Btc Recozido Bwg18 1,24mm Rl 1kg",
+        "sku": "1797341",
+        "seller": "Sodimac",
+        "specifications": {
+          "brand": "Comep",
+          "diameter": "1.24 mm (BWG18)",
+          "package": "1 kg roll",
+          "material": "arame recozido"
+        },
+        "package_size": "1 kg",
+        "displayed_price_brl": 21.9,
+        "normalized_unit_price_brl": 21.9,
+        "unit": "quilograma (kg)",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.sodimac.com.br/sodimac-br/product/1797341/arame-btc-recozido-bwg18-124mm-rl-1kg/1797341/",
+        "final_url": "https://www.sodimac.com.br/sodimac-br/product/1797341/arame-btc-recozido-bwg18-124mm-rl-1kg/1797341/",
+        "http_status": 200,
+        "verification_method": "Sodimac search Ntt=arame recozido redirects to this PDP; __NEXT_DATA__ internetPrice and browser visible price R$21,90; HTTP 200 on /product/<id>/<slug>/<id>/ URL. Arithmetic: R$21.90 / 1 kg = R$21.90/kg.",
+        "caveats": [
+          "Only recozido 1 kg SKU surfaced by Sodimac search in this run (search lands on this product page).",
+          "Freight not calculated for CEP 13380-000; freight_brl left null."
+        ]
+      },
+      "candidate_count": 1,
+      "no_match_reason": ""
+    },
+    {
+      "expense_id": "EXP_0042",
+      "requested_item": "Madeiramento ou estrutura metálica",
+      "requested_unit": "metro quadrado (m²)",
+      "match_status": "no_match",
+      "winner": null,
+      "candidate_count": 0,
+      "no_match_reason": "No in-stock madeiramento or metal roof-framing product sold/priced per m². Found caibros and vigas priced per piece only (e.g. Caibro Eucalipto 5x5x300cm R$16.90, Viga Bruta Eucalipto 5x11x300cm R$35.90); no comparable m² structural package with verified unit price."
+    },
+    {
+      "expense_id": "EXP_0023",
+      "requested_item": "Porcelanato",
+      "requested_unit": "metro quadrado (m²)",
+      "match_status": "verified",
+      "winner": {
+        "matched_product": "Piso Porcelanato Acetinado Retificado Bege Interno 60x60cm Champagne Branco Cetim Incesa Caixa 2,2m²",
+        "sku": "898363",
+        "seller": "Sodimac Brasil",
+        "specifications": {
+          "brand": "Incesa",
+          "format_cm": "60 x 60",
+          "finish": "Acetinado retificado",
+          "color": "Bege / Champagne Branco Cetim",
+          "box_area_m2": 2.2,
+          "use": "Interno; chão/parede"
+        },
+        "package_size": "caixa 2,2 m²",
+        "displayed_price_brl": 87.78,
+        "normalized_unit_price_brl": 39.9,
+        "unit": "metro quadrado (m²)",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.sodimac.com.br/sodimac-br/product/898363/piso-porcelanato-acetinado-retificado-bege-interno-60x60cm-champagne-branco-cetim-caixa-2-2m2/898363/",
+        "final_url": "https://www.sodimac.com.br/sodimac-br/product/898363/piso-porcelanato-acetinado-retificado-bege-interno-60x60cm-champagne-branco-cetim-caixa-2-2m2/898363/",
+        "http_status": 200,
+        "verification_method": "Sodimac product page HTTP 200 + __NEXT_DATA__ productData; eventPrice box R$87,78 with unitPrice R$39,90/m² for 2,2 m²; isOutOfStock=false. Arithmetic: 39.90×2.2=87.78.",
+        "caveats": [
+          "Lowest verified quantity-1 per-m² price among available porcelain candidates.",
+          "Ranking uses visible event/internet card price; freight for CEP 13380-000 not calculated."
+        ]
+      },
+      "candidate_count": 3,
+      "no_match_reason": ""
+    },
+    {
+      "expense_id": "EXP_0024",
+      "requested_item": "Rejunte de porcelanato",
+      "requested_unit": "quilograma (kg)",
+      "match_status": "verified",
+      "winner": {
+        "matched_product": "Rejunte Acrílico 1kg Branco Quartzolit",
+        "sku": "637939002",
+        "seller": "Sodimac Brasil",
+        "specifications": {
+          "brand": "Quartzolit",
+          "type": "Acrílico",
+          "color": "Branco",
+          "weight_kg": 1
+        },
+        "package_size": "1 kg",
+        "displayed_price_brl": 54.9,
+        "normalized_unit_price_brl": 54.9,
+        "unit": "quilograma (kg)",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.sodimac.com.br/sodimac-br/product/637939002/rejunte-acrilico-1kg-branco/637939002/",
+        "final_url": "https://www.sodimac.com.br/sodimac-br/product/637939002/rejunte-acrilico-1kg-branco/637939002/",
+        "http_status": 200,
+        "verification_method": "Seed URL re-verified: product page HTTP 200 + __NEXT_DATA__; internetPrice R$54,90; brand Quartzolit; isOutOfStock=false. Arithmetic: R$54.90 / 1 kg = R$54.90/kg.",
+        "caveats": [
+          "Seed URL re-verified; white acrylic 1 kg used as porcelain-oriented comparable.",
+          "Freight for CEP 13380-000 not calculated."
+        ]
+      },
+      "candidate_count": 2,
+      "no_match_reason": ""
+    },
+    {
+      "expense_id": "EXP_0025",
+      "requested_item": "Argamassa para o porcelanato",
+      "requested_unit": "saco (20 kg)",
+      "match_status": "verified",
+      "winner": {
+        "matched_product": "Argamassa Flexível ACIII 20Kg Cinza Quartzolit",
+        "sku": "739012",
+        "seller": "Sodimac Brasil",
+        "specifications": {
+          "brand": "Quartzolit",
+          "type": "ACIII flexível",
+          "color": "Cinza",
+          "weight_kg": 20,
+          "use": "Interno/externo; cerâmica, porcelanato, mármore, granito e pedras naturais"
+        },
+        "package_size": "saco 20 kg",
+        "displayed_price_brl": 44.9,
+        "normalized_unit_price_brl": 44.9,
+        "unit": "saco (20 kg)",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.sodimac.com.br/sodimac-br/product/739012/argamassa-flexivel-aciii-20kg-cinza/739012/",
+        "final_url": "https://www.sodimac.com.br/sodimac-br/product/739012/argamassa-flexivel-aciii-20kg-cinza/739012/",
+        "http_status": 200,
+        "verification_method": "Seed URL re-verified: product page HTTP 200 + __NEXT_DATA__; internetPrice R$44,90; type ACIII; isOutOfStock=false. Arithmetic: R$44.90 / 1 saco = R$44.90/saco.",
+        "caveats": [
+          "Seed URL re-verified; lowest verified quantity-1 ACIII 20 kg bag among candidates.",
+          "Freight for CEP 13380-000 not calculated."
+        ]
+      },
+      "candidate_count": 2,
+      "no_match_reason": ""
+    },
+    {
+      "expense_id": "EXP_0041",
+      "requested_item": "Rodapés para acompanhar o porcelanato (R$1500)",
+      "requested_unit": "metro linear (m)",
+      "match_status": "verified",
+      "winner": {
+        "matched_product": "Rodapé Porcelanato Acetinado Esmaltado Branco 20X120cm Portobello Retificado Michelangelo",
+        "sku": "1031133",
+        "seller": "Sodimac Brasil",
+        "specifications": {
+          "brand": "Portobello",
+          "line": "Michelangelo",
+          "format_cm": "20 x 120",
+          "finish": "Acetinado esmaltado retificado",
+          "color": "Branco",
+          "piece_length_m": 1.2,
+          "quantity_per_sale": "peça"
+        },
+        "package_size": "1 peça 1,20 m",
+        "displayed_price_brl": 109.9,
+        "normalized_unit_price_brl": 91.58,
+        "unit": "metro linear (m)",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.sodimac.com.br/sodimac-br/product/1031133/rodape-porcelanato-acetinado-esmaltado-branco-20x120cm-retificado-michelangelo/1031133/",
+        "final_url": "https://www.sodimac.com.br/sodimac-br/product/1031133/rodape-porcelanato-acetinado-esmaltado-branco-20x120cm-retificado-michelangelo/1031133/",
+        "http_status": 200,
+        "verification_method": "Sodimac product page HTTP 200 + __NEXT_DATA__; internetPrice R$109,90 per peça; specs length 120 cm and Quantidade por Caixa=PEÇA. Arithmetic: 109.90 / 1.2 = 91.5833… → R$91.58/m.",
+        "caveats": [
+          "Only verified porcelain/ceramic rodapé with evidenced length and visible price; polystyrene skirting excluded as non-comparable to porcelain companion.",
+          "Freight for CEP 13380-000 not calculated."
+        ]
+      },
+      "candidate_count": 1,
+      "no_match_reason": ""
+    },
+    {
+      "expense_id": "EXP_0046",
+      "requested_item": "Tinta",
+      "requested_unit": "lata (18 L)",
+      "match_status": "verified",
+      "winner": {
+        "matched_product": "Tinta Acrílica Econômica Branco 18l Karson",
+        "sku": "1806739",
+        "seller": "Sodimac Brasil",
+        "specifications": {
+          "brand": "Karson",
+          "type": "Acrílica econômica fosco",
+          "color": "Branco",
+          "volume_l": 18,
+          "use": "Interna (também listado para externas nas recomendações de aplicação)"
+        },
+        "package_size": "lata 18 L",
+        "displayed_price_brl": 99.9,
+        "normalized_unit_price_brl": 99.9,
+        "unit": "lata (18 L)",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.sodimac.com.br/sodimac-br/product/1806739/tinta-acrilica-economica-branco-18l/1806739/",
+        "final_url": "https://www.sodimac.com.br/sodimac-br/product/1806739/tinta-acrilica-economica-branco-18l/1806739/",
+        "http_status": 200,
+        "verification_method": "Sodimac product page HTTP 200 + __NEXT_DATA__; eventPrice R$99,90; volume 18 L; isOutOfStock=false. Arithmetic: R$99.90 / 1 lata = R$99.90/lata.",
+        "caveats": [
+          "Lowest verified quantity-1 18 L wall acrylic white among candidates.",
+          "Freight for CEP 13380-000 not calculated."
+        ]
+      },
+      "candidate_count": 3,
+      "no_match_reason": ""
+    },
+    {
+      "expense_id": "EXP_0048",
+      "requested_item": "Silicone, espuma expansiva, selante PU",
+      "requested_unit": "kit",
+      "match_status": "verified",
+      "winner": {
+        "matched_product": "Kit 3 produtos: Silicone Acético Pro Sil Uso Geral Incolor 250ml Topex + Espuma Expansiva PU 320g/500ml Tekbond + Selante PU 40 Branco 400G",
+        "sku": "1091565+1804243+913163",
+        "seller": "Sodimac Brasil",
+        "specifications": {
+          "components": [
+            {
+              "role": "silicone",
+              "product": "Silicone Acetico Pro Sil Uso Geral 250ml Topex (incolor)",
+              "sku": "1091565",
+              "price_brl": 26.9,
+              "url": "https://www.sodimac.com.br/sodimac-br/product/1091565/silicone-acetico-pro-sil-uso-geral-250ml/1091565/"
+            },
+            {
+              "role": "espuma_expansiva",
+              "product": "Espuma Expansiva de Pu 320g/500ml Tekbond",
+              "sku": "1804243",
+              "price_brl": 32.9,
+              "url": "https://www.sodimac.com.br/sodimac-br/product/1804243/espuma-expansiva-de-pu-320g-500ml/1804243/"
+            },
+            {
+              "role": "selante_pu",
+              "product": "Selante Pu 40 Branco 400G",
+              "sku": "913163",
+              "price_brl": 23.9,
+              "url": "https://www.sodimac.com.br/sodimac-br/product/913163/selante-pu-40-branco-400g/913163/"
+            }
+          ]
+        },
+        "package_size": "kit 3 produtos (comprados separados)",
+        "displayed_price_brl": 83.7,
+        "normalized_unit_price_brl": 83.7,
+        "unit": "kit",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.sodimac.com.br/sodimac-br/product/1091565/silicone-acetico-pro-sil-uso-geral-250ml/1091565/",
+        "final_url": "https://www.sodimac.com.br/sodimac-br/product/1091565/silicone-acetico-pro-sil-uso-geral-250ml/1091565/",
+        "http_status": 200,
+        "verification_method": "Three separate product pages verified HTTP 200 + __NEXT_DATA__ prices. Kit sum: 26.90+32.90+23.90=83.70. Winner URL is primary silicone.",
+        "caveats": [
+          "No single catalog SKU kit of all three was used; price is the sum of three separate qty-1 products.",
+          "Silicone is 250 ml incolor (near 250–280 ml comparable). PU cartridge is 400 g (near 300–360 g comparable).",
+          "Component URLs: silicone https://www.sodimac.com.br/sodimac-br/product/1091565/silicone-acetico-pro-sil-uso-geral-250ml/1091565/ ; espuma https://www.sodimac.com.br/sodimac-br/product/1804243/espuma-expansiva-de-pu-320g-500ml/1804243/ ; selante PU https://www.sodimac.com.br/sodimac-br/product/913163/selante-pu-40-branco-400g/913163/",
+          "Freight for CEP 13380-000 not calculated."
+        ]
+      },
+      "candidate_count": 2,
+      "no_match_reason": ""
+    },
+    {
+      "expense_id": "EXP_0049",
+      "requested_item": "Lona para proteção da obra",
+      "requested_unit": "metro quadrado (m²)",
+      "match_status": "verified",
+      "winner": {
+        "matched_product": "Lona Plástica Preto 4x50m Plasitap",
+        "sku": "1800435",
+        "seller": "Sodimac Brasil",
+        "specifications": {
+          "brand": "Plasitap",
+          "color": "Preta",
+          "dimensions_m": "4 x 50",
+          "area_m2": 200,
+          "material": "Polietileno"
+        },
+        "package_size": "bobina 4×50 m (200 m²)",
+        "displayed_price_brl": 129.0,
+        "normalized_unit_price_brl": 0.645,
+        "unit": "metro quadrado (m²)",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.sodimac.com.br/sodimac-br/product/1800435/lona-plastica-preto-4x50m/1800435/",
+        "final_url": "https://www.sodimac.com.br/sodimac-br/product/1800435/lona-plastica-preto-4x50m/1800435/",
+        "http_status": 200,
+        "verification_method": "Sodimac product page HTTP 200 + __NEXT_DATA__; internetPrice R$129; dimensions from title 4×50 m. Arithmetic: 129 / 200 = 0.645 R$/m².",
+        "caveats": [
+          "Lowest verified normalized per-m² price among available black plastic tarp sheets/rolls.",
+          "Freight for CEP 13380-000 not calculated."
+        ]
+      },
+      "candidate_count": 3,
+      "no_match_reason": ""
+    },
+    {
+      "expense_id": "EXP_0026",
+      "requested_item": "Portas internas",
+      "requested_unit": "unidade",
+      "match_status": "verified",
+      "winner": {
+        "matched_product": "Kit Porta 80x210cm Abertura Esquerda Batente de 75mm em Pintura Uv sem Fechadura Pronta para Instalar",
+        "sku": "1694411002",
+        "seller": "Sodimac Brasil",
+        "specifications": {
+          "brand": "Eucatex",
+          "material": "MDF RU com pintura UV",
+          "core": "Colmeia",
+          "dimensions_cm": "210 x 80 x 3,5",
+          "opening": "Esquerda",
+          "includes": "Batentes, guarnição, folha, borracha amortecedora, dobradiças",
+          "lock": "Não contém fechadura",
+          "use": "Porta de giro ambiente interno"
+        },
+        "package_size": "1 kit porta completa",
+        "displayed_price_brl": 634.0,
+        "normalized_unit_price_brl": 634.0,
+        "unit": "unidade",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.sodimac.com.br/sodimac-br/product/1694411002/kit-porta-80x210cm-abertura-esquerda-batente-de-75mm-em-pintura-uv-sem-fechadura-pronta-para-instalar/1694411002/",
+        "final_url": "https://www.sodimac.com.br/sodimac-br/product/1694411002/kit-porta-80x210cm-abertura-esquerda-batente-de-75mm-em-pintura-uv-sem-fechadura-pronta-para-instalar/1694411002/",
+        "http_status": 200,
+        "verification_method": "Direct Sodimac product page HTTP 200; displayName, SKU 1694411002, minPrice/card R$634, qty-1 available (máx. 6), and kit specs (batente/guarnição/folha/dobradiças) matched from NEXT_DATA attributes. Arithmetic: R$634.00 / 1 = R$634.00/unidade.",
+        "caveats": [
+          "Lowest verified qty-1 price among comparable complete interior door kits near standard 80x210. Leaf-only opções (e.g. folha 210x82) are cheaper but excluded from winner ranking as incomplete kits. Fechadura not included. Freight for CEP 13380-000 not calculated."
+        ]
+      },
+      "candidate_count": 4,
+      "no_match_reason": ""
+    },
+    {
+      "expense_id": "EXP_0027",
+      "requested_item": "Porta Balcão (R$2000)",
+      "requested_unit": "unidade",
+      "match_status": "verified",
+      "winner": {
+        "matched_product": "Porta de Correr 3 Folhas Moveis Vidro Liso Branca 210x150",
+        "sku": "1701989",
+        "seller": "Sodimac Brasil",
+        "specifications": {
+          "material": "Alumínio",
+          "color": "Branco",
+          "dimensions_cm": "210 x 150",
+          "leaves": 3,
+          "glass": "Vidro liso",
+          "type": "Porta de correr"
+        },
+        "package_size": "1 porta de correr",
+        "displayed_price_brl": 2199.0,
+        "normalized_unit_price_brl": 2199.0,
+        "unit": "unidade",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.sodimac.com.br/sodimac-br/product/1701989/porta-de-correr-3-folhas-moveis-vidro-liso-branca-210x150/1701989/",
+        "final_url": "https://www.sodimac.com.br/sodimac-br/product/1701989/porta-de-correr-3-folhas-moveis-vidro-liso-branca-210x150/1701989/",
+        "http_status": 200,
+        "verification_method": "Direct Sodimac product page HTTP 200; title/SKU 1701989, minPrice R$2199, qty-1 available (máx. 25), and 3-leaf sliding glass door identity matched. Arithmetic: R$2199.00 / 1 = R$2199.00/unidade.",
+        "caveats": [
+          "Lowest verified qty-1 sliding aluminum/glass porta-balcão comparable. Width 150 cm is narrower than a typical ~200 cm balcony opening; veneziana alternatives are higher-priced candidates. Freight for CEP 13380-000 not calculated."
+        ]
+      },
+      "candidate_count": 4,
+      "no_match_reason": ""
+    },
+    {
+      "expense_id": "EXP_0029",
+      "requested_item": "Janela (quartos e escritório)",
+      "requested_unit": "unidade",
+      "match_status": "verified",
+      "winner": {
+        "matched_product": "Janela de Correr 4 Folhas sem Grade Alumínio Branco 100x120cm",
+        "sku": "1701519",
+        "seller": "Sodimac Brasil",
+        "specifications": {
+          "material": "Alumínio, vidro e acessórios",
+          "color": "Branco",
+          "dimensions_cm": "100 x 120",
+          "leaves": 4,
+          "grade": "Não",
+          "type": "Janela de correr"
+        },
+        "package_size": "1 janela de correr",
+        "displayed_price_brl": 349.0,
+        "normalized_unit_price_brl": 349.0,
+        "unit": "unidade",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.sodimac.com.br/sodimac-br/product/1701519/janela-de-correr-4-folhas-sem-grade-aluminio-branco-100x120cm/1701519/",
+        "final_url": "https://www.sodimac.com.br/sodimac-br/product/1701519/janela-de-correr-4-folhas-sem-grade-aluminio-branco-100x120cm/1701519/",
+        "http_status": 200,
+        "verification_method": "Direct Sodimac product page HTTP 200; H1/title SKU 1701519 states 4 folhas 100x120 sem grade, minPrice R$349, qty-1 available (máx. 4). Arithmetic: R$349.00 / 1 = R$349.00/unidade.",
+        "caveats": [
+          "Lowest verified qty-1 4-leaf aluminum sliding window (title/H1) near bedroom/office use. Height is 100 cm vs ~120 cm; Fortsul 843010 confirms 4 leaves explicitly at higher price. Freight for CEP 13380-000 not calculated."
+        ]
+      },
+      "candidate_count": 4,
+      "no_match_reason": ""
+    },
+    {
+      "expense_id": "EXP_0030",
+      "requested_item": "Vitrô Sala",
+      "requested_unit": "unidade",
+      "match_status": "verified",
+      "winner": {
+        "matched_product": "Janela de Correr 4 Folhas sem Grade Alumínio Branco 100x120cm",
+        "sku": "1701519",
+        "seller": "Sodimac Brasil",
+        "specifications": {
+          "material": "Alumínio, vidro e acessórios",
+          "color": "Branco",
+          "dimensions_cm": "100 x 120",
+          "leaves": 4,
+          "grade": "Não",
+          "type": "Janela de correr",
+          "indicated_use": "Sala / vitrô comparável"
+        },
+        "package_size": "1 janela de correr",
+        "displayed_price_brl": 349.0,
+        "normalized_unit_price_brl": 349.0,
+        "unit": "unidade",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.sodimac.com.br/sodimac-br/product/1701519/janela-de-correr-4-folhas-sem-grade-aluminio-branco-100x120cm/1701519/",
+        "final_url": "https://www.sodimac.com.br/sodimac-br/product/1701519/janela-de-correr-4-folhas-sem-grade-aluminio-branco-100x120cm/1701519/",
+        "http_status": 200,
+        "verification_method": "Direct Sodimac product page HTTP 200; SKU 1701519 4-leaf 100x120 sliding window (title/H1), minPrice R$349. Arithmetic: R$349.00 / 1 = R$349.00/unidade.",
+        "caveats": [
+          "Chosen as lowest verified 4-leaf 100x120 aluminum sliding vitrô comparable (title/H1). Cheaper 2-leaf 100x120 options exist as candidates. Freight for CEP 13380-000 not calculated."
+        ]
+      },
+      "candidate_count": 4,
+      "no_match_reason": ""
+    },
+    {
+      "expense_id": "EXP_0031",
+      "requested_item": "Vitrôs banheiros",
+      "requested_unit": "unidade",
+      "match_status": "verified",
+      "winner": {
+        "matched_product": "Basculante 60x60 Branco Vidro Mini Boreal",
+        "sku": "1701508",
+        "seller": "Sodimac Brasil",
+        "specifications": {
+          "material": "Alumínio, vidro e acessórios",
+          "color": "Branco",
+          "dimensions_cm": "60 x 60",
+          "type": "Basculante",
+          "glass": "Mini Boreal",
+          "indicated_use": "Banheiros"
+        },
+        "package_size": "1 janela basculante",
+        "displayed_price_brl": 139.0,
+        "normalized_unit_price_brl": 139.0,
+        "unit": "unidade",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.sodimac.com.br/sodimac-br/product/1701508/basculante-60x60-branco-vidro-mini-boreal/1701508/",
+        "final_url": "https://www.sodimac.com.br/sodimac-br/product/1701508/basculante-60x60-branco-vidro-mini-boreal/1701508/",
+        "http_status": 200,
+        "verification_method": "Direct Sodimac product page HTTP 200; title/SKU 1701508 Mini Boreal 60x60, minPrice R$139. Arithmetic: R$139.00 / 1 = R$139.00/unidade.",
+        "caveats": [
+          "Lowest verified qty-1 bathroom-comparable with evidenced privacy glass (Mini Boreal in title). A cheaper clear/unspecified-glass basculante exists at R$133.00 but was not selected as winner. Freight for CEP 13380-000 not calculated."
+        ]
+      },
+      "candidate_count": 5,
+      "no_match_reason": ""
+    },
+    {
+      "expense_id": "EXP_0028",
+      "requested_item": "Vaso",
+      "requested_unit": "unidade",
+      "match_status": "verified",
+      "winner": {
+        "matched_product": "Kit Vaso Sanitário com Caixa Acoplada Araxa 6L Branco Santa Clara",
+        "sku": "1806853C",
+        "seller": "Sodimac",
+        "specifications": {
+          "brand": "Santa Clara",
+          "model": "Araxa",
+          "color": "Branco",
+          "tank_capacity_l": 6,
+          "components": "bacia com caixa acoplada"
+        },
+        "package_size": "1 unidade (kit acoplado)",
+        "displayed_price_brl": 318.0,
+        "normalized_unit_price_brl": 318.0,
+        "unit": "unidade",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.sodimac.com.br/sodimac-br/product/1806853C/kit-vaso-sanitario-com-caixa-acoplada-araxa-6l-branco-santa-clara/1806853C/",
+        "final_url": "https://www.sodimac.com.br/sodimac-br/product/1806853C/kit-vaso-sanitario-com-caixa-acoplada-araxa-6l-branco-santa-clara/1806853C/",
+        "http_status": 200,
+        "verification_method": "Sodimac product page HTTP 200 + __NEXT_DATA__ productData; title Kit Vaso Sanitário com Caixa Acoplada Araxa 6L Branco Santa Clara; brand Santa Clara; internetPrice R$318.00 verified (isOutOfStock=false, isPurchaseable=true). Arithmetic: R$318.00 / 1 unidade = R$318.00/unidade.",
+        "caveats": [
+          "Lowest verified quantity-1 complete coupled-tank toilet kit among priced candidates.",
+          "SSR topSpecifications empty on page; title/brand/price taken from productData.",
+          "Freight not calculated for CEP 13380-000; freight_brl left null."
+        ]
+      },
+      "candidate_count": 5,
+      "no_match_reason": ""
+    },
+    {
+      "expense_id": "EXP_0036",
+      "requested_item": "Torneiras",
+      "requested_unit": "unidade",
+      "match_status": "verified",
+      "winner": {
+        "matched_product": "Torneira Lavatório Bica Baixa Sevilla Cromado",
+        "sku": "780183",
+        "seller": "Sodimac",
+        "specifications": {
+          "brand": "Karson",
+          "model": "Sevilla",
+          "finish": "Cromado",
+          "mount": "mesa / lavatório",
+          "spout": "bica baixa",
+          "material": "ABS",
+          "water": "água fria"
+        },
+        "package_size": "1 unidade",
+        "displayed_price_brl": 34.9,
+        "normalized_unit_price_brl": 34.9,
+        "unit": "unidade",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.sodimac.com.br/sodimac-br/product/780183/torneira-lavatorio-bica-baixa-sevilla-cromado/780183/",
+        "final_url": "https://www.sodimac.com.br/sodimac-br/product/780183/torneira-lavatorio-bica-baixa-sevilla-cromado/780183/",
+        "http_status": 200,
+        "verification_method": "Sodimac product page HTTP 200 + __NEXT_DATA__ productData; title Torneira Lavatório Bica Baixa Sevilla Cromado; brand Karson; internetPrice R$34.90 verified (isOutOfStock=false, isPurchaseable=true). Arithmetic: R$34.90 / 1 unidade = R$34.90/unidade.",
+        "caveats": [
+          "Lowest verified quantity-1 lavatory faucet with visible internetPrice.",
+          "ABS chrome-finish lavatory faucet; installation accessories included.",
+          "Freight not calculated for CEP 13380-000; freight_brl left null."
+        ]
+      },
+      "candidate_count": 5,
+      "no_match_reason": ""
+    },
+    {
+      "expense_id": "EXP_0037",
+      "requested_item": "Sifões e ralos",
+      "requested_unit": "unidade",
+      "match_status": "verified",
+      "winner": {
+        "matched_product": "Sifão Sanfonado Extensivel Universal",
+        "sku": "1024259",
+        "seller": "Sodimac",
+        "specifications": {
+          "brand": "Krona",
+          "type": "sifão sanfonado extensível universal",
+          "material": "PVC",
+          "color": "Branco",
+          "application": "pia / lavatório"
+        },
+        "package_size": "1 unidade",
+        "displayed_price_brl": 5.9,
+        "normalized_unit_price_brl": 5.9,
+        "unit": "unidade",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.sodimac.com.br/sodimac-br/product/1024259/sifao-sanfonado-extensivel-universal/1024259/",
+        "final_url": "https://www.sodimac.com.br/sodimac-br/product/1024259/sifao-sanfonado-extensivel-universal/1024259/",
+        "http_status": 200,
+        "verification_method": "Sodimac product page HTTP 200 + __NEXT_DATA__ productData; title Sifão Sanfonado Extensivel Universal; brand Krona; internetPrice R$5.90 verified (isOutOfStock=false, isPurchaseable=true). Arithmetic: R$5.90 / 1 unidade = R$5.90/unidade.",
+        "caveats": [
+          "Lowest verified quantity-1 representative universal siphon.",
+          "Representative siphon only; expense label also includes drains (ralos).",
+          "Freight not calculated for CEP 13380-000; freight_brl left null."
+        ]
+      },
+      "candidate_count": 4,
+      "no_match_reason": ""
+    },
+    {
+      "expense_id": "EXP_0039",
+      "requested_item": "Pias e bancadas",
+      "requested_unit": "conjunto",
+      "match_status": "verified",
+      "winner": {
+        "matched_product": "Pia Aço Inox 120x52x11 Forminox",
+        "sku": "1804069",
+        "seller": "Sodimac",
+        "specifications": {
+          "brand": "Forminox",
+          "material": "Aço inox",
+          "length_cm": 120,
+          "width_cm": 52,
+          "depth_cm": 11,
+          "bowl": "cuba integrada"
+        },
+        "package_size": "1 unidade (120 x 52 x 11 cm)",
+        "displayed_price_brl": 199.0,
+        "normalized_unit_price_brl": 199.0,
+        "unit": "conjunto",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.sodimac.com.br/sodimac-br/product/1804069/pia-aco-inox-120x52x11-forminox/1804069/",
+        "final_url": "https://www.sodimac.com.br/sodimac-br/product/1804069/pia-aco-inox-120x52x11-forminox/1804069/",
+        "http_status": 200,
+        "verification_method": "Sodimac product page HTTP 200 + __NEXT_DATA__ productData; title Pia Aço Inox 120x52x11 Forminox; brand Forminox; internetPrice R$199.00 verified (isOutOfStock=false, isPurchaseable=true). Arithmetic: R$199.00 / 1 conjunto = R$199.00/conjunto.",
+        "caveats": [
+          "Lowest verified quantity-1 kitchen inox pia/bancada conjunto (~120 cm).",
+          "Kitchen stainless pia/bancada treated as pia/bancada conjunto.",
+          "Freight not calculated for CEP 13380-000; freight_brl left null."
+        ]
+      },
+      "candidate_count": 4,
+      "no_match_reason": ""
+    },
+    {
+      "expense_id": "EXP_0040",
+      "requested_item": "Box de vidro para o banheiro (R$850)",
+      "requested_unit": "unidade",
+      "match_status": "verified",
+      "winner": {
+        "matched_product": "Box de Banheiro de Vidro Incolor 6 mm Branco 100 cm Speed Temper",
+        "sku": "853903",
+        "seller": "Sodimac",
+        "specifications": {
+          "brand": "Speed Temper",
+          "glass": "vidro temperado incolor 6 mm",
+          "frame": "alumínio branco",
+          "width_cm": 100,
+          "components": "porta + fixo + kit alumínio branco"
+        },
+        "package_size": "1 unidade (box ~100 cm)",
+        "displayed_price_brl": 709.0,
+        "normalized_unit_price_brl": 709.0,
+        "unit": "unidade",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.sodimac.com.br/sodimac-br/product/853903/box-de-banheiro-de-vidro-incolor-6-mm-branco-100-cm-speed-temper/853903/",
+        "final_url": "https://www.sodimac.com.br/sodimac-br/product/853903/box-de-banheiro-de-vidro-incolor-6-mm-branco-100-cm-speed-temper/853903/",
+        "http_status": 200,
+        "verification_method": "Sodimac product page HTTP 200 + __NEXT_DATA__ productData; title Box de Banheiro de Vidro Incolor 6 mm Branco 100 cm Speed Temper; brand Speed Temper; internetPrice R$709.00 verified (isOutOfStock=false, isPurchaseable=true). Arithmetic: R$709.00 / 1 unidade = R$709.00/unidade.",
+        "caveats": [
+          "Lowest verified quantity-1 tempered-glass bathroom box.",
+          "Lowest verified qty-1 tempered-glass shower box among Speed Temper listings.",
+          "Freight not calculated for CEP 13380-000; freight_brl left null."
+        ]
+      },
+      "candidate_count": 4,
+      "no_match_reason": ""
+    },
+    {
+      "expense_id": "EXP_0044",
+      "requested_item": "Caixa de água",
+      "requested_unit": "unidade",
+      "match_status": "verified",
+      "winner": {
+        "matched_product": "Caixa De Água 1.000L Polietileno Tampa Encaixe Azul Fortlev",
+        "sku": "7449",
+        "seller": "Sodimac",
+        "specifications": {
+          "brand": "Fortlev",
+          "material": "polietileno",
+          "capacity_l": 1000,
+          "lid": "tampa encaixe",
+          "color": "Azul",
+          "shape": "Redonda"
+        },
+        "package_size": "1 unidade (1000 L)",
+        "displayed_price_brl": 429.9,
+        "normalized_unit_price_brl": 429.9,
+        "unit": "unidade",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.sodimac.com.br/sodimac-br/product/7449/caixa-de-agua-1000l-polietileno-tampa-encaixe-azul-fortlev/7449/",
+        "final_url": "https://www.sodimac.com.br/sodimac-br/product/7449/caixa-de-agua-1000l-polietileno-tampa-encaixe-azul-fortlev/7449/",
+        "http_status": 200,
+        "verification_method": "Sodimac product page HTTP 200 + __NEXT_DATA__ productData; title Caixa De Água 1.000L Polietileno Tampa Encaixe Azul Fortlev; brand Fortlev; eventPrice R$429.90 verified (isOutOfStock=false, isPurchaseable=true). Arithmetic: R$429.90 / 1 unidade = R$429.90/unidade.",
+        "caveats": [
+          "Lowest verified quantity-1 1000 L water tank among available listings.",
+          "Preferred 1000 L capacity matched.",
+          "Freight not calculated for CEP 13380-000; freight_brl left null."
+        ]
+      },
+      "candidate_count": 4,
+      "no_match_reason": ""
+    },
+    {
+      "expense_id": "EXP_0033",
+      "requested_item": "Quadro de distribuição",
+      "requested_unit": "unidade",
+      "match_status": "verified",
+      "winner": {
+        "matched_product": "Quadro Distr. Emb. 18p Din Iec-pb",
+        "sku": "1797682",
+        "seller": "Sodimac",
+        "specifications": {
+          "brand": "Soprano",
+          "mounting": "Embutir",
+          "capacity": "18 polos DIN",
+          "color": "Branco",
+          "protection": "IP40",
+          "door": "Com porta"
+        },
+        "package_size": "1 unidade",
+        "displayed_price_brl": 66.9,
+        "normalized_unit_price_brl": 66.9,
+        "unit": "unidade",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.sodimac.com.br/sodimac-br/product/1797682/quadro-distr-emb-18p-din-iec-pb/1797682/",
+        "final_url": "https://www.sodimac.com.br/sodimac-br/product/1797682/quadro-distr-emb-18p-din-iec-pb/1797682/",
+        "http_status": 200,
+        "verification_method": "Sodimac product page __NEXT_DATA__/productData; title Quadro Distr. Emb. 18p Din Iec-pb, brand Soprano, specs 18 polos DIN embutir, internetPrice R$66,90 verified. Arithmetic: R$66.90 / 1 unidade = R$66.90/unidade.",
+        "caveats": [
+          "Lowest verified quantity-1 price among comparable 16/18-class distribution boards."
+        ]
+      },
+      "candidate_count": 4,
+      "no_match_reason": ""
+    },
+    {
+      "expense_id": "EXP_0034",
+      "requested_item": "Conduítes",
+      "requested_unit": "metro linear (m)",
+      "match_status": "verified",
+      "winner": {
+        "matched_product": "Eletroduto Corrugado DN25-3/4 50m Tramontina",
+        "sku": "867005",
+        "seller": "Sodimac",
+        "specifications": {
+          "brand": "Tramontina",
+          "type": "Eletroduto corrugado",
+          "diameter": "DN25 / 3/4\"",
+          "color": "Amarelo",
+          "roll_length_m": 50,
+          "material": "Termoplástico"
+        },
+        "package_size": "rolo 50 m",
+        "displayed_price_brl": 74.81,
+        "normalized_unit_price_brl": 1.4962,
+        "unit": "metro linear (m)",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.sodimac.com.br/sodimac-br/product/867005/eletroduto-corrugado-dn25-3-4-50m/867005/",
+        "final_url": "https://www.sodimac.com.br/sodimac-br/product/867005/eletroduto-corrugado-dn25-3-4-50m/867005/",
+        "http_status": 200,
+        "verification_method": "Sodimac product page; DN25-3/4 50 m Tramontina, eventPrice R$74,81 (normalPrice R$89,90) verified. Arithmetic: R$74.81 / 50 m = R$1.4962/m.",
+        "caveats": [
+          "Lowest verified quantity-1 normalized per-meter price among DN25 ~50 m corrugated rolls."
+        ]
+      },
+      "candidate_count": 4,
+      "no_match_reason": ""
+    },
+    {
+      "expense_id": "EXP_0035",
+      "requested_item": "Lâmpadas",
+      "requested_unit": "unidade",
+      "match_status": "verified",
+      "winner": {
+        "matched_product": "Lâmpada Bulbo 9w 3000k",
+        "sku": "1828209",
+        "seller": "Sodimac",
+        "specifications": {
+          "brand": "Ourolux",
+          "type": "LED bulbo",
+          "power_w": 9,
+          "base": "E27",
+          "color_temperature_k": 3000,
+          "voltage": "Bivolt",
+          "luminous_flux_lm": 803
+        },
+        "package_size": "1 unidade",
+        "displayed_price_brl": 2.79,
+        "normalized_unit_price_brl": 2.79,
+        "unit": "unidade",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.sodimac.com.br/sodimac-br/product/1828209/lampada-bulbo-9w-3000k/1828209/",
+        "final_url": "https://www.sodimac.com.br/sodimac-br/product/1828209/lampada-bulbo-9w-3000k/1828209/",
+        "http_status": 200,
+        "verification_method": "Sodimac product page; Ourolux bulbo 9W 3000K, specs Tipo de Soquete E27 / Potência 9w / Voltagem Bivolt, internetPrice R$2,79 verified. Arithmetic: R$2.79 / 1 unidade = R$2.79/unidade.",
+        "caveats": [
+          "Lowest verified quantity-1 single LED bulbo price among comparable 9W E27 offers."
+        ]
+      },
+      "candidate_count": 4,
+      "no_match_reason": ""
+    },
+    {
+      "expense_id": "EXP_0038",
+      "requested_item": "Tomadas",
+      "requested_unit": "unidade",
+      "match_status": "verified",
+      "winner": {
+        "matched_product": "Conjunto Tomada 4X2 10A Stella Branco",
+        "sku": "788220",
+        "seller": "Sodimac",
+        "specifications": {
+          "brand": "Steck",
+          "line": "Stella",
+          "model": "869260",
+          "type": "Conjunto completo 4x2",
+          "modules": "1 tomada 2P+T 10A 250V",
+          "color": "Branco"
+        },
+        "package_size": "1 unidade",
+        "displayed_price_brl": 4.99,
+        "normalized_unit_price_brl": 4.99,
+        "unit": "unidade",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.sodimac.com.br/sodimac-br/product/788220/conjunto-tomada-4x2-10a-stella-branco/788220/",
+        "final_url": "https://www.sodimac.com.br/sodimac-br/product/788220/conjunto-tomada-4x2-10a-stella-branco/788220/",
+        "http_status": 200,
+        "verification_method": "Sodimac product page; Steck Stella conjunto 4x2 1 tomada 2P+T 10A 250V, eventPrice R$4,99 (normalPrice R$5,66) verified. Arithmetic: R$4.99 / 1 unidade = R$4.99/unidade.",
+        "caveats": [
+          "Lowest verified quantity-1 complete 4x2 single-outlet set among recorded comparables."
+        ]
+      },
+      "candidate_count": 4,
+      "no_match_reason": ""
+    },
+    {
+      "expense_id": "EXP_0045",
+      "requested_item": "Dispositivos de segurança",
+      "requested_unit": "conjunto",
+      "match_status": "no_match",
+      "winner": null,
+      "candidate_count": 0,
+      "no_match_reason": "No clear residential security-device conjunto (4 cameras + DVR/storage) with a verified Sodimac product URL was found. Closest hits were single-camera VTV kits with cable/power (SKU 878263/878264) and a separate 4-channel DVR+HD (SKU 878262), plus porteiro/vídeoporteiro access-control items—not a complete multi-camera security kit. Conservatively marked no_match."
+    },
+    {
+      "expense_id": "EXP_0018",
+      "requested_item": "Ferramentas",
+      "requested_unit": "conjunto",
+      "match_status": "verified",
+      "winner": {
+        "matched_product": "Jogo de Ferramentas Western 9 Peças",
+        "sku": "1804924",
+        "seller": "Sodimac",
+        "specifications": {
+          "brand": "Western",
+          "piece_count": 9,
+          "contents": "1 chave de fenda 1/8x6, 1 chave Phillips 1/8x6, 1 trena 2m, 1 estilete, 5 chaves Allen 2-6mm",
+          "material": "Polipropileno, aço carbono",
+          "color": "Amarelo"
+        },
+        "package_size": "1 kit / 9 peças",
+        "displayed_price_brl": 19.9,
+        "normalized_unit_price_brl": 19.9,
+        "unit": "conjunto",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.sodimac.com.br/sodimac-br/product/1804924/jogo-de-ferramentas-western-9-pecas/1804924/",
+        "final_url": "https://www.sodimac.com.br/sodimac-br/product/1804924/jogo-de-ferramentas-western-9-pecas/1804924/",
+        "http_status": 200,
+        "verification_method": "Direct Sodimac product page loaded; title, SKU 1804924, visible card price R$19,90, schema.org InStock. Arithmetic: R$19.90 / 1 kit = R$19.90/conjunto.",
+        "caveats": [
+          "Lowest verified qty-1 price among clearly specified basic hand-tool kits.",
+          "Small 9-piece domestic/obra kit, not equivalent to a full construction toolbox budget.",
+          "Freight not calculated for CEP 13380-000; freight_brl left null."
+        ]
+      },
+      "candidate_count": 3,
+      "no_match_reason": ""
+    },
+    {
+      "expense_id": "EXP_0020",
+      "requested_item": "Carrinho de mão",
+      "requested_unit": "unidade",
+      "match_status": "verified",
+      "winner": {
+        "matched_product": "Carrinho De Mao Aco Galvanizado 55L",
+        "sku": "1041694",
+        "seller": "Sodimac",
+        "specifications": {
+          "brand": "Botafogo",
+          "type": "Carrinho de mão com caçamba aço galvanizado",
+          "capacity_l": 55,
+          "material": "Aço galvanizado",
+          "dimensions_cm": "143 x 62 x 49"
+        },
+        "package_size": "1 unidade",
+        "displayed_price_brl": 149.9,
+        "normalized_unit_price_brl": 149.9,
+        "unit": "unidade",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.sodimac.com.br/sodimac-br/product/1041694/carrinho-de-mao-aco-galvanizado-55l/1041694/",
+        "final_url": "https://www.sodimac.com.br/sodimac-br/product/1041694/carrinho-de-mao-aco-galvanizado-55l/1041694/",
+        "http_status": 200,
+        "verification_method": "Direct Sodimac product page loaded; title, SKU 1041694, visible card price R$149,90, schema.org InStock. Arithmetic: R$149.90 / 1 = R$149.90/unidade.",
+        "caveats": [
+          "Lowest verified qty-1 wheelbarrow among in-stock Sodimac offers checked.",
+          "Freight not calculated for CEP 13380-000; freight_brl left null."
+        ]
+      },
+      "candidate_count": 3,
+      "no_match_reason": ""
+    },
+    {
+      "expense_id": "EXP_0022",
+      "requested_item": "Caçamba de entulho",
+      "requested_unit": "caçamba",
+      "match_status": "no_match",
+      "winner": null,
+      "candidate_count": 0,
+      "no_match_reason": "No dumpster-rental or construction-debris caçamba sold as a priced Sodimac product page. Searches for caçamba/entulho/aluguel returned paint trays, wheelbarrow trays, raffia debris bags, and unrelated painting accessories—not a rental dumpster service."
+    },
+    {
+      "expense_id": "EXP_0043",
+      "requested_item": "Calhas e rufos",
+      "requested_unit": "metro linear (m)",
+      "match_status": "verified",
+      "winner": {
+        "matched_product": "Rufo Externo Corte20 3m,calhaforte",
+        "sku": "590920",
+        "seller": "Sodimac",
+        "specifications": {
+          "brand": "Calhaforte",
+          "type": "Rufo externo",
+          "cut": "20",
+          "material": "Aço galvanizado",
+          "length_m": 3,
+          "width_cm": 13,
+          "thickness_cm": 0.43
+        },
+        "package_size": "3 metros",
+        "displayed_price_brl": 61.9,
+        "normalized_unit_price_brl": 20.63,
+        "unit": "metro linear (m)",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.sodimac.com.br/sodimac-br/product/590920/rufo-externo-corte20-3mcalhaforte/590920/",
+        "final_url": "https://www.sodimac.com.br/sodimac-br/product/590920/rufo-externo-corte20-3mcalhaforte/590920/",
+        "http_status": 200,
+        "verification_method": "Direct Sodimac product page loaded; title, SKU 590920, visible card price R$61,90 for 3 m piece, schema.org InStock. Arithmetic: R$61.90 / 3 m = R$20.633… → R$20.63/m.",
+        "caveats": [
+          "Lowest verified R$/m among available calha/rufo linear product pages.",
+          "Representative rufo (not a full calha run); sold as 3 m piece.",
+          "Freight not calculated for CEP 13380-000; freight_brl left null."
+        ]
+      },
+      "candidate_count": 3,
+      "no_match_reason": ""
+    },
+    {
+      "expense_id": "EXP_0047",
+      "requested_item": "Pregos, parafusos, buchas",
+      "requested_unit": "pacote",
+      "match_status": "verified",
+      "winner": {
+        "matched_product": "Kit Bucha com Parafuso Cabeça Sextavada Rosca Soberba 10 Peças Cinza",
+        "sku": "742813",
+        "seller": "Sodimac",
+        "specifications": {
+          "brand": "Foxmix",
+          "type": "Kit de fixação (buchas + parafusos cabeça sextavada)",
+          "piece_count": 10,
+          "color": "Cinza"
+        },
+        "package_size": "1 kit / 10 peças",
+        "displayed_price_brl": 24.9,
+        "normalized_unit_price_brl": 24.9,
+        "unit": "pacote",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.sodimac.com.br/sodimac-br/product/742813/kit-bucha-com-parafuso-cabeca-sextavada-rosca-soberba-10-pecas-cinza/742813/",
+        "final_url": "https://www.sodimac.com.br/sodimac-br/product/742813/kit-bucha-com-parafuso-cabeca-sextavada-rosca-soberba-10-pecas-cinza/742813/",
+        "http_status": 200,
+        "verification_method": "Direct Sodimac product page loaded; title, SKU 742813, visible card price R$24,90, schema.org InStock. Arithmetic: R$24.90 / 1 pacote = R$24.90/pacote.",
+        "caveats": [
+          "Lowest verified multi-piece parafusos+buchas assortment pack; cheaper 2-screw kits and nails-only packs exist but were not ranked as equivalent construction hardware assortments.",
+          "Does not include pregos.",
+          "Freight not calculated for CEP 13380-000; freight_brl left null."
+        ]
+      },
+      "candidate_count": 4,
+      "no_match_reason": ""
+    }
+  ]
+}
