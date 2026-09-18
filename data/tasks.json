@@ -79,7 +79,7 @@
         "project.purchase_workflow"
       ],
       "created_at": "2026-09-15 23:51:00",
-      "updated_at": "2026-09-15 23:51:00"
+      "updated_at": "2026-09-18 13:58:31"
     },
     {
       "id": "TASK_0004",
@@ -137,12 +137,12 @@
     },
     {
       "id": "TASK_0006",
-      "title": "Assinatura do financiamento",
+      "title": "Parcelas do Financiamento - 1",
       "description": "Marco da compra e transição do imóvel.",
       "priority": 1,
-      "sequence": 5,
+      "sequence": 1,
       "start_date": "2026-10-22",
-      "end_date": "2026-12-22",
+      "end_date": "2026-11-22",
       "status": "pending",
       "expense_allocations": [
         {
@@ -154,20 +154,20 @@
       "icon_mode": "auto",
       "date_status": "confirmed",
       "activity_type": "task",
-      "parent_id": "TASK_0097",
+      "parent_id": "TASK_0099",
       "progress": 0,
       "source_refs": [
         "project.purchase_workflow"
       ],
       "created_at": "2026-09-15 23:51:00",
-      "updated_at": "2026-09-18 13:40:36"
+      "updated_at": "2026-09-18 13:56:20"
     },
     {
       "id": "TASK_0007",
       "title": "Reforma e melhorias",
       "description": "Marco da compra e transição do imóvel.",
       "priority": 2,
-      "sequence": 3,
+      "sequence": 4,
       "start_date": "2027-01-05",
       "end_date": "2027-10-14",
       "status": "pending",
@@ -189,7 +189,7 @@
       "title": "Saída da ocupante",
       "description": "Marco da compra e transição do imóvel.",
       "priority": 1,
-      "sequence": 6,
+      "sequence": 5,
       "start_date": "2026-10-07",
       "end_date": "2026-10-09",
       "status": "pending",
@@ -220,7 +220,7 @@
       "title": "Pintura e acabamentos",
       "description": "Marco da compra e transição do imóvel.",
       "priority": 3,
-      "sequence": 4,
+      "sequence": 5,
       "start_date": "2027-06-04",
       "end_date": "2027-07-13",
       "status": "pending",
@@ -242,7 +242,7 @@
       "title": "Mudança",
       "description": "Marco da compra e transição do imóvel.",
       "priority": 3,
-      "sequence": 5,
+      "sequence": 6,
       "start_date": "2027-07-14",
       "end_date": "2027-08-07",
       "status": "pending",
@@ -2534,8 +2534,8 @@
       "description": "Compra, regularizações documentais, Caixa e transição do imóvel.",
       "priority": 1,
       "sequence": 1,
-      "start_date": "2026-10-07",
-      "end_date": "2026-12-22",
+      "start_date": "2026-09-19",
+      "end_date": "2026-10-21",
       "status": "pending",
       "expense_allocations": [],
       "icon_key": "mortgage-contract",
@@ -2574,7 +2574,122 @@
       "source_refs": [],
       "created_at": "2026-09-16 19:53:17",
       "updated_at": "2026-09-16 19:55:46"
+    },
+    {
+      "id": "TASK_0099",
+      "title": "Parcelas do financiamento",
+      "description": "",
+      "priority": 1,
+      "sequence": 3,
+      "start_date": "2026-10-22",
+      "end_date": "2027-02-27",
+      "status": "pending",
+      "expense_allocations": [],
+      "icon_key": "document-paper",
+      "icon_mode": "manual",
+      "date_status": "confirmed",
+      "activity_type": "macro",
+      "parent_id": "",
+      "progress": 0,
+      "source_refs": [],
+      "created_at": "2026-09-18 13:54:33",
+      "updated_at": "2026-09-18 13:58:31"
+    },
+    {
+      "id": "TASK_0100",
+      "title": "Parcelas do Financiamento - 2",
+      "description": "Marco da compra e transição do imóvel.",
+      "priority": 1,
+      "sequence": 2,
+      "start_date": "2026-11-25",
+      "end_date": "2026-12-25",
+      "status": "pending",
+      "expense_allocations": [
+        {
+          "expense_id": "EXP_0011",
+          "expected_quantity": 1.0
+        }
+      ],
+      "icon_key": "mortgage-installment",
+      "icon_mode": "auto",
+      "date_status": "confirmed",
+      "activity_type": "task",
+      "parent_id": "TASK_0099",
+      "progress": 0,
+      "source_refs": [],
+      "created_at": "2026-09-18 13:55:56",
+      "updated_at": "2026-09-18 13:57:27"
+    },
+    {
+      "id": "TASK_0101",
+      "title": "Parcelas do Financiamento - 3",
+      "description": "Marco da compra e transição do imóvel.",
+      "priority": 1,
+      "sequence": 3,
+      "start_date": "2026-12-26",
+      "end_date": "2027-01-26",
+      "status": "pending",
+      "expense_allocations": [
+        {
+          "expense_id": "EXP_0011",
+          "expected_quantity": 1.0
+        }
+      ],
+      "icon_key": "mortgage-installment",
+      "icon_mode": "auto",
+      "date_status": "confirmed",
+      "activity_type": "task",
+      "parent_id": "TASK_0099",
+      "progress": 0,
+      "source_refs": [],
+      "created_at": "2026-09-18 13:56:39",
+      "updated_at": "2026-09-18 13:57:28"
+    },
+    {
+      "id": "TASK_0102",
+      "title": "Parcelas do Financiamento - 3 (cópia)",
+      "description": "Marco da compra e transição do imóvel.",
+      "priority": 1,
+      "sequence": 4,
+      "start_date": "2027-01-27",
+      "end_date": "2027-02-27",
+      "status": "pending",
+      "expense_allocations": [
+        {
+          "expense_id": "EXP_0011",
+          "expected_quantity": 1.0
+        }
+      ],
+      "icon_key": "mortgage-installment",
+      "icon_mode": "auto",
+      "date_status": "confirmed",
+      "activity_type": "task",
+      "parent_id": "TASK_0099",
+      "progress": 0,
+      "source_refs": [],
+      "created_at": "2026-09-18 13:56:57",
+      "updated_at": "2026-09-18 13:57:30"
+    },
+    {
+      "id": "TASK_0103",
+      "title": "👱‍♀️ Últimos dias de Jane",
+      "description": "",
+      "priority": 1,
+      "sequence": 6,
+      "start_date": "2026-09-19",
+      "end_date": "2026-09-21",
+      "status": "pending",
+      "expense_allocations": [],
+      "icon_key": "mortgage-contract",
+      "icon_mode": "auto",
+      "date_status": "confirmed",
+      "activity_type": "task",
+      "parent_id": "TASK_0097",
+      "progress": 0,
+      "source_refs": [],
+      "created_at": "2026-09-18 13:58:18",
+      "updated_at": "2026-09-18 13:58:18"
     }
   ],
-  "updated_at": "2026-09-18 13:52:50"
+  "updated_at": "2026-09-18 13:58:31"
 }
