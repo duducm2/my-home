@@ -228,6 +228,68 @@ class AllocationPaymentSyncTests(unittest.TestCase):
         self.assertEqual(payment["source"], "presumed")
         self.assertEqual(payment["date"], "2026-11-01")
 
+    def test_quality_gate_detects_date_drift_then_sync_clears(self) -> None:
+        self.tasks.upsert(
+            self.payload(
+                title="Alinhamento",
+                start_date="2026-09-17",
+                end_date="2026-09-20",
+                expense_allocations=[{"expense_id": "EXP_OLD", "expected_quantity": 1}],
+            )
+        )
+        # Drift: payment still on the seeded 2027-02-02 date.
+        before = self.expenses.gantt_payday_quality_gate()
+        self.assertFalse(before["ok"])
+        self.assertTrue(
+            any(item["code"] == "date_mismatch" for item in before["violations"])
+        )
+        state = self.expenses.sync_all_allocation_payments()
+        gate = state["quality_gates"]["gantt_payday"]
+        self.assertTrue(gate["ok"], gate["violations"])
+        expense = next(item for item in state["expenses"] if item["id"] == "EXP_OLD")
+        self.assertEqual(expense["payments"][0]["date"], "2026-09-17")
+        self.assertEqual(expense["payments"][0]["source"], "task_start")
+
+    def test_quality_gate_detects_missing_payment(self) -> None:
+        self.tasks.upsert(
+            self.payload(
+                title="Sem pagamento",
+                expense_allocations=[
+                    {"expense_id": "EXP_EMPTY", "expected_quantity": 1}
+                ],
+            )
+        )
+        before = self.expenses.gantt_payday_quality_gate()
+        self.assertFalse(before["ok"])
+        self.assertTrue(
+            any(item["code"] == "missing_payment" for item in before["violations"])
+        )
+        state = self.expenses.sync_all_allocation_payments()
+        self.assertTrue(state["quality_gates"]["gantt_payday"]["ok"])
+
+
+class LiveGanttPaydayQualityGateTests(unittest.TestCase):
+    """Regression gate against the project data directory."""
+
+    def test_live_data_payday_matches_gantt_after_sync(self) -> None:
+        data_dir = ROOT / "data"
+        if not (data_dir / "expenses.csv").is_file():
+            self.skipTest("project data/expenses.csv not present")
+        if not (data_dir / "tasks.json").is_file():
+            self.skipTest("project data/tasks.json not present")
+        store = ExpenseStore(data_dir)
+        state = store.sync_all_allocation_payments()
+        gate = state["quality_gates"]["gantt_payday"]
+        self.assertTrue(
+            gate["ok"],
+            "Pay Day diverged from Gantt:\n"
+            + "\n".join(
+                f"- {item.get('message') or item}"
+                for item in gate.get("violations", [])
+            ),
+        )
+        self.assertGreater(gate["allocated_count"], 0)
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -41,6 +41,7 @@
     editingPayments: [],
     editingTaskAllocations: [],
     editingContractPayments: [],
+    qualityGates: {},
     zoom: "week",
     ganttRenderedGeometry: null,
     ganttViewAnchor: null,
@@ -1488,6 +1489,8 @@
     const periodWord =
       scale === "month" ? "meses" : scale === "week" ? "semanas" : "dias";
     els.paymentProjectionSummary.textContent = `${days.length} ${periodWord} · acumulado ${formatMoney(total)}`;
+    els.paymentProjectionSummary.dataset.baseSummary =
+      els.paymentProjectionSummary.textContent;
     state.paymentProjectionByDate = new Map(days.map((day) => [day.date, day]));
     els.paymentProjectionChart.innerHTML = `<svg viewBox="0 0 ${width} ${height}" style="min-width:${width}px" role="img" aria-label="Gastos acumulados por data de pagamento">${grid}${todayX === null ? "" : `<line x1="${todayX}" y1="${margin.top}" x2="${todayX}" y2="${margin.top + plotHeight}" class="payment-today-line"></line><path d="M ${todayX - 7} ${margin.top + plotHeight + 9} L ${todayX + 7} ${margin.top + plotHeight + 9} L ${todayX} ${margin.top + plotHeight - 3} Z" class="payment-today-marker"><title>Hoje · ${formatPaymentDate(today)}</title></path>`}<polyline points="${polyline}" class="payment-projection-line"></polyline>${points
       .map(({ x, y, item }, index) => {
@@ -1500,6 +1503,7 @@
         return `<g class="payment-day-group${item.estimated ? " estimated" : ""}"><line x1="${x}" y1="${margin.top}" x2="${x}" y2="${margin.top + plotHeight}" class="payment-day-line"></line><g class="expense-hover-target payment-day-hover" tabindex="0" role="button" data-hover-payment-date="${escapeAttr(item.date)}" data-open-payment-period="${escapeAttr(item.date)}" aria-label="${escapeAttr(aria)}"><circle cx="${x}" cy="${y}" r="14" class="payment-day-hit"></circle><circle cx="${x}" cy="${y}" r="${isLast ? 7 : 6}" class="payment-day-point${isLast ? " payment-cumulative-point" : ""}"></circle><text x="${x}" y="${Math.max(18, y - 13)}" text-anchor="middle" class="${labelClass}">${escapeHtml(formatMoney(item.cumulative))}</text></g><text x="${x}" y="${height - 18}" text-anchor="middle" class="cashflow-axis-label">${escapeHtml(paymentBucketLabel(item.date, scale))}</text></g>`;
       })
       .join("")}</svg>`;
+    reportGanttPaydayGate(state.qualityGates?.gantt_payday);
   }
 
   function paymentDayTooltip(day) {
@@ -5007,10 +5011,137 @@
     state.materials = payload.materials || [];
     state.budgetForecast = payload.budget_forecast || null;
     state.iconCatalog = payload.icon_catalog || state.iconCatalog;
+    state.qualityGates = payload.quality_gates || state.qualityGates || {};
     renderFilters();
     renderQuotationVendorFilters();
     renderExpenseTable();
     renderDashboard();
+    reportGanttPaydayGate(state.qualityGates?.gantt_payday);
+  }
+
+  function clientGanttPaydayGate() {
+    const expectedByExpense = new Map();
+    for (const task of state.tasks || []) {
+      if (task.activity_type === "macro") continue;
+      const startDate = String(task.start_date || "").trim();
+      if (!startDate) continue;
+      for (const allocation of task.expense_allocations || []) {
+        const expenseId = String(allocation.expense_id || "").trim();
+        if (!expenseId) continue;
+        const previous = expectedByExpense.get(expenseId);
+        if (!previous || startDate < previous) {
+          expectedByExpense.set(expenseId, startDate);
+        }
+      }
+    }
+    const expenseById = new Map(
+      (state.expenses || []).map((expense) => [expense.id, expense]),
+    );
+    const violations = [];
+    for (const [expenseId, expectedDate] of expectedByExpense) {
+      const expense = expenseById.get(expenseId);
+      if (!expense) {
+        violations.push({
+          code: "missing_expense",
+          expense_id: expenseId,
+          expected_date: expectedDate,
+        });
+        continue;
+      }
+      const payments = expense.payments || [];
+      if (!payments.length) {
+        violations.push({
+          code: "missing_payment",
+          expense_id: expenseId,
+          expected_date: expectedDate,
+        });
+        continue;
+      }
+      for (const payment of payments) {
+        if (payment.date !== expectedDate) {
+          violations.push({
+            code: "date_mismatch",
+            expense_id: expenseId,
+            payment_date: payment.date,
+            expected_date: expectedDate,
+          });
+        }
+        if (payment.source !== "task_start") {
+          violations.push({
+            code: "source_mismatch",
+            expense_id: expenseId,
+            source: payment.source,
+          });
+        }
+        if (payment.date_status !== "estimated") {
+          violations.push({
+            code: "status_mismatch",
+            expense_id: expenseId,
+            date_status: payment.date_status,
+          });
+        }
+      }
+    }
+    const events = paymentEvents();
+    for (const payment of events) {
+      if (!expectedByExpense.has(payment.expenseId)) {
+        violations.push({
+          code: "orphan_payday_event",
+          expense_id: payment.expenseId,
+          payment_date: payment.date,
+        });
+      }
+    }
+    return {
+      id: "gantt_payday",
+      ok: violations.length === 0,
+      allocated_count: expectedByExpense.size,
+      violation_count: violations.length,
+      violations,
+    };
+  }
+
+  function reportGanttPaydayGate(serverGate) {
+    const clientGate = clientGanttPaydayGate();
+    const gate =
+      serverGate?.ok === false
+        ? serverGate
+        : clientGate.ok === false
+          ? clientGate
+          : serverGate?.ok != null
+            ? serverGate
+            : clientGate;
+    state.qualityGates = {
+      ...(state.qualityGates || {}),
+      gantt_payday: gate,
+    };
+    if (!els.paymentProjectionSummary) return;
+    const base =
+      els.paymentProjectionSummary.dataset.baseSummary ||
+      els.paymentProjectionSummary.textContent;
+    if (gate.ok) {
+      if (els.paymentProjectionSummary.dataset.baseSummary) {
+        els.paymentProjectionSummary.textContent =
+          els.paymentProjectionSummary.dataset.baseSummary;
+      }
+      els.paymentProjectionSummary.classList.remove("quality-gate-fail");
+      els.paymentProjectionSummary.removeAttribute("title");
+      return;
+    }
+    const count = gate.violation_count || gate.violations?.length || 0;
+    const sample = (gate.violations || [])
+      .slice(0, 3)
+      .map((item) => item.message || item.code)
+      .join(" · ");
+    els.paymentProjectionSummary.dataset.baseSummary = base;
+    els.paymentProjectionSummary.classList.add("quality-gate-fail");
+    els.paymentProjectionSummary.title = sample || "Pay Day fora do Gantt";
+    els.paymentProjectionSummary.textContent = `⚠ Pay Day ≠ Gantt (${count})`;
+    setStatus(
+      els.appStatus,
+      "warn",
+      `Quality gate: Pay Day não reflete o Gantt (${count} divergência${count === 1 ? "" : "s"}).`,
+    );
   }
 
   async function loadState() {
@@ -5072,6 +5203,7 @@
     }
     renderGantt();
     renderMacroTimeline();
+    reportGanttPaydayGate(state.qualityGates?.gantt_payday);
   }
 
   async function loadNotes() {

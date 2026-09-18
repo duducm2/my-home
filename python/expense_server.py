@@ -305,6 +305,15 @@ class ExpenseHandler(BaseHTTPRequestHandler):
             # Keep payday chart aligned with current Gantt allocation dates.
             self._json(200, get_store(self.data_dir).sync_all_allocation_payments())
             return
+        if path == "/api/quality/gantt-payday":
+            store = get_store(self.data_dir)
+            # Sync first so the gate measures the post-alignment world.
+            store.sync_all_allocation_payments()
+            gate = store.gantt_payday_quality_gate()
+            self._json(
+                200 if gate.get("ok") else 409, {"ok": gate.get("ok"), "gate": gate}
+            )
+            return
         if path == "/api/tasks":
             self._json(200, get_tasks(self.data_dir).state())
             return

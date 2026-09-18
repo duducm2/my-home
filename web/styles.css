@@ -3983,10 +3983,9 @@ body.model3d-active {
 
 .quotation-linked-provider {
   display: grid;
-  grid-template-columns: minmax(150px, 1fr) minmax(110px, 0.7fr) minmax(
-      140px,
-      1fr
-    ) auto;
+  grid-template-columns:
+    minmax(150px, 1fr) minmax(110px, 0.7fr) minmax(140px, 1fr)
+    auto;
   align-items: end;
   gap: 7px;
   padding: 8px;
@@ -4839,6 +4838,16 @@ body.model3d-active {
 
 .dashboard-finance-container > .payment-projection-panel {
   margin-top: 12px;
+}
+
+#payment-projection-summary.quality-gate-fail {
+  color: #f0b4b4;
+  font-weight: 700;
+}
+
+.app-status.warn,
+#app-status.warn {
+  color: #e8c07a;
 }
 
 .dashboard-finance-container .dashboard-category-center {

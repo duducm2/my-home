@@ -1016,6 +1016,9 @@ class ExpenseStore:
                 "defaults": manifest.get("defaults", {}),
                 "icons": manifest.get("icons", {}),
             },
+            "quality_gates": {
+                "gantt_payday": self.gantt_payday_quality_gate(),
+            },
         }
 
     @staticmethod
@@ -1482,6 +1485,101 @@ class ExpenseStore:
             if changed:
                 self._write_rows(rows)
         return self.state()
+
+    def gantt_payday_quality_gate(self) -> dict[str, Any]:
+        """Quality gate: payday payments for Gantt-allocated expenses match task starts.
+
+        Invariants:
+        - every non-macro allocation points at an existing expense
+        - every allocated expense has at least one payment
+        - every payment on an allocated expense uses the earliest allocated
+          activity start_date, source=task_start, date_status=estimated
+        """
+        linked, _, _ = self._task_payment_context()
+        expenses = {item["id"]: item for item in self.list_expenses()}
+        violations: list[dict[str, Any]] = []
+
+        for expense_id, start_date in sorted(linked.items()):
+            expense = expenses.get(expense_id)
+            if not expense:
+                violations.append(
+                    {
+                        "code": "missing_expense",
+                        "expense_id": expense_id,
+                        "expected_date": start_date,
+                        "message": f"{expense_id} is allocated on the Gantt but missing from expenses",
+                    }
+                )
+                continue
+            payments = expense.get("payments") or []
+            if not payments:
+                violations.append(
+                    {
+                        "code": "missing_payment",
+                        "expense_id": expense_id,
+                        "expected_date": start_date,
+                        "message": f"{expense_id} is on the Gantt but has no payday payment",
+                    }
+                )
+                continue
+            for payment in payments:
+                payment_date = str(payment.get("date") or "")
+                source = str(payment.get("source") or "")
+                date_status = str(payment.get("date_status") or "")
+                if payment_date != start_date:
+                    violations.append(
+                        {
+                            "code": "date_mismatch",
+                            "expense_id": expense_id,
+                            "payment_id": payment.get("id"),
+                            "payment_date": payment_date,
+                            "expected_date": start_date,
+                            "message": (
+                                f"{expense_id} payday {payment_date} != "
+                                f"earliest Gantt start {start_date}"
+                            ),
+                        }
+                    )
+                if source != "task_start":
+                    violations.append(
+                        {
+                            "code": "source_mismatch",
+                            "expense_id": expense_id,
+                            "payment_id": payment.get("id"),
+                            "source": source,
+                            "expected_source": "task_start",
+                            "message": (
+                                f"{expense_id} payment source is {source!r}, "
+                                "expected 'task_start'"
+                            ),
+                        }
+                    )
+                if date_status != "estimated":
+                    violations.append(
+                        {
+                            "code": "status_mismatch",
+                            "expense_id": expense_id,
+                            "payment_id": payment.get("id"),
+                            "date_status": date_status,
+                            "expected_date_status": "estimated",
+                            "message": (
+                                f"{expense_id} payment date_status is "
+                                f"{date_status!r}, expected 'estimated'"
+                            ),
+                        }
+                    )
+
+        return {
+            "id": "gantt_payday",
+            "ok": not violations,
+            "allocated_count": len(linked),
+            "violation_count": len(violations),
+            "violations": violations,
+            "rule": (
+                "Pay Day expenses must be Gantt-allocated and dated to the "
+                "earliest linked activity start_date"
+            ),
+        }
 
     def sync_task_payment_date(
         self, expense_id: Any, start_date: Any
