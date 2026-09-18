@@ -6,9 +6,7 @@
       "type": "purchase",
       "title": "Instrumento Particular de Promessa de Venda e Compra de Bem Imóvel e Outras Avenças",
       "provider_id": "",
-      "expense_ids": [
-        "EXP_0001"
-      ],
+      "expense_ids": [],
       "status": "signed",
       "amount": 310000.0,
       "start_date": "2026-09-08",
@@ -45,7 +43,7 @@
         "property": "Lote 26, quadra B, Parque Fabrício, Nova Odessa/SP"
       },
       "created_at": "2026-09-16 14:01:46",
-      "updated_at": "2026-09-16 14:01:46"
+      "updated_at": "2026-09-18 15:30:22"
     },
     {
       "id": "CONTRACT_GELSON_01",
@@ -512,5 +510,5 @@
       "payment_frequency": "monthly"
     }
   ],
-  "updated_at": "2026-09-18 15:03:50"
+  "updated_at": "2026-09-18 15:30:22"
 }
