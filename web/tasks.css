@@ -924,6 +924,39 @@ select[multiple] { min-height: 110px; }
   );
 }
 
+.gantt-label-row.dragging {
+  opacity: 0.45;
+}
+
+.gantt-label-row.drop-before {
+  box-shadow: inset 0 2px 0 #f1c40f;
+}
+
+.gantt-label-row.drop-after {
+  box-shadow: inset 0 -2px 0 #f1c40f;
+}
+
+.gantt-label-row.drop-into {
+  background: #f1c40f28;
+  outline: 1px dashed #f1c40faa;
+  outline-offset: -2px;
+}
+
+.gantt-label-row.selected,
+.gantt-track.selected {
+  background: #f1c40f18;
+}
+
+.gantt-bar.selected {
+  outline: 2px solid #f1c40f;
+  outline-offset: 1px;
+  filter: brightness(1.12);
+}
+
+.gantt-label-row.selected .gantt-label-content {
+  color: #ffe9a0;
+}
+
 .gantt-expense-bento {
   position: absolute;
   top: 50%;

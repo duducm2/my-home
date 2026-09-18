@@ -7,8 +7,8 @@
       "description": "Marco da compra e transição do imóvel.",
       "priority": 1,
       "sequence": 1,
-      "start_date": "2026-09-16",
-      "end_date": "2026-09-18",
+      "start_date": "2026-10-15",
+      "end_date": "2026-10-21",
       "status": "pending",
       "expense_allocations": [
         {
@@ -18,7 +18,7 @@
       ],
       "icon_key": "down-payment",
       "icon_mode": "auto",
-      "date_status": "estimated",
+      "date_status": "confirmed",
       "activity_type": "task",
       "parent_id": "TASK_0097",
       "progress": 0,
@@ -26,7 +26,7 @@
         "project.purchase_workflow"
       ],
       "created_at": "2026-09-15 23:51:00",
-      "updated_at": "2026-09-15 23:51:00"
+      "updated_at": "2026-09-18 13:37:30"
     },
     {
       "id": "TASK_0002",
@@ -34,8 +34,8 @@
       "description": "Marco da compra e transição do imóvel.",
       "priority": 1,
       "sequence": 2,
-      "start_date": "2026-09-19",
-      "end_date": "2026-09-20",
+      "start_date": "2026-10-16",
+      "end_date": "2026-10-21",
       "status": "pending",
       "expense_allocations": [
         {
@@ -47,7 +47,7 @@
           "expected_quantity": 1.0
         }
       ],
-      "icon_key": "notary-services",
+      "icon_key": "property-tax",
       "icon_mode": "auto",
       "date_status": "confirmed",
       "activity_type": "task",
@@ -57,7 +57,7 @@
         "project.purchase_workflow"
       ],
       "created_at": "2026-09-15 23:51:00",
-      "updated_at": "2026-09-16 19:51:33"
+      "updated_at": "2026-09-18 13:37:53"
     },
     {
       "id": "TASK_0003",
@@ -87,8 +87,8 @@
       "description": "Marco da compra e transição do imóvel.",
       "priority": 1,
       "sequence": 3,
-      "start_date": "2026-09-25",
-      "end_date": "2026-09-27",
+      "start_date": "2026-10-16",
+      "end_date": "2026-10-21",
       "status": "pending",
       "expense_allocations": [
         {
@@ -96,9 +96,9 @@
           "expected_quantity": 1.0
         }
       ],
-      "icon_key": "mortgage-contract",
+      "icon_key": "bank-service-fee",
       "icon_mode": "auto",
-      "date_status": "estimated",
+      "date_status": "confirmed",
       "activity_type": "task",
       "parent_id": "TASK_0097",
       "progress": 0,
@@ -106,7 +106,7 @@
         "project.purchase_workflow"
       ],
       "created_at": "2026-09-15 23:51:00",
-      "updated_at": "2026-09-15 23:51:00"
+      "updated_at": "2026-09-18 13:38:05"
     },
     {
       "id": "TASK_0005",
@@ -114,8 +114,8 @@
       "description": "Marco da compra e transição do imóvel.",
       "priority": 1,
       "sequence": 4,
-      "start_date": "2026-09-28",
-      "end_date": "2026-09-30",
+      "start_date": "2026-10-16",
+      "end_date": "2026-10-21",
       "status": "pending",
       "expense_allocations": [
         {
@@ -125,7 +125,7 @@
       ],
       "icon_key": "mortgage-contract",
       "icon_mode": "auto",
-      "date_status": "estimated",
+      "date_status": "confirmed",
       "activity_type": "task",
       "parent_id": "TASK_0097",
       "progress": 0,
@@ -133,7 +133,7 @@
         "project.purchase_workflow"
       ],
       "created_at": "2026-09-15 23:51:00",
-      "updated_at": "2026-09-15 23:51:00"
+      "updated_at": "2026-09-18 13:38:41"
     },
     {
       "id": "TASK_0006",
@@ -141,8 +141,8 @@
       "description": "Marco da compra e transição do imóvel.",
       "priority": 1,
       "sequence": 5,
-      "start_date": "2026-10-01",
-      "end_date": "2026-10-03",
+      "start_date": "2026-10-22",
+      "end_date": "2026-12-22",
       "status": "pending",
       "expense_allocations": [
         {
@@ -150,9 +150,9 @@
           "expected_quantity": 1.0
         }
       ],
-      "icon_key": "mortgage-contract",
+      "icon_key": "mortgage-installment",
       "icon_mode": "auto",
-      "date_status": "estimated",
+      "date_status": "confirmed",
       "activity_type": "task",
       "parent_id": "TASK_0097",
       "progress": 0,
@@ -160,7 +160,7 @@
         "project.purchase_workflow"
       ],
       "created_at": "2026-09-15 23:51:00",
-      "updated_at": "2026-09-15 23:51:00"
+      "updated_at": "2026-09-18 13:40:36"
     },
     {
       "id": "TASK_0007",
@@ -279,7 +279,7 @@
           "expected_quantity": 1.0
         }
       ],
-      "icon_key": "demolition",
+      "icon_key": "debris-dumpster",
       "icon_mode": "auto",
       "date_status": "estimated",
       "activity_type": "task",
@@ -445,7 +445,7 @@
           "expected_quantity": 40.0
         }
       ],
-      "icon_key": "mortgage-contract",
+      "icon_key": "waterproofing-additive",
       "icon_mode": "auto",
       "date_status": "estimated",
       "activity_type": "task",
@@ -476,7 +476,7 @@
           "expected_quantity": 40.0
         }
       ],
-      "icon_key": "porcelain-tiles",
+      "icon_key": "aggregates",
       "icon_mode": "auto",
       "date_status": "estimated",
       "activity_type": "task",
@@ -556,7 +556,7 @@
           "expected_quantity": 24.0
         }
       ],
-      "icon_key": "roof-tiles",
+      "icon_key": "roof-framing",
       "icon_mode": "auto",
       "date_status": "estimated",
       "activity_type": "task",
@@ -678,7 +678,7 @@
           "expected_quantity": 15.0
         }
       ],
-      "icon_key": "mortgage-contract",
+      "icon_key": "clay-bricks",
       "icon_mode": "auto",
       "date_status": "estimated",
       "activity_type": "task",
@@ -897,7 +897,7 @@
           "expected_quantity": 24.0
         }
       ],
-      "icon_key": "electrician-service",
+      "icon_key": "outlet",
       "icon_mode": "auto",
       "date_status": "estimated",
       "activity_type": "task",
@@ -924,7 +924,7 @@
           "expected_quantity": 24.0
         }
       ],
-      "icon_key": "electrician-service",
+      "icon_key": "outlet",
       "icon_mode": "auto",
       "date_status": "estimated",
       "activity_type": "task",
@@ -973,7 +973,7 @@
           "expected_quantity": 3.0
         }
       ],
-      "icon_key": "demolition",
+      "icon_key": "debris-dumpster",
       "icon_mode": "auto",
       "date_status": "estimated",
       "activity_type": "task",
@@ -1000,7 +1000,7 @@
           "expected_quantity": 6.0
         }
       ],
-      "icon_key": "porcelain-tiles",
+      "icon_key": "aggregates",
       "icon_mode": "auto",
       "date_status": "estimated",
       "activity_type": "task",
@@ -1054,7 +1054,7 @@
           "expected_quantity": 54.1134
         }
       ],
-      "icon_key": "roof-tiles",
+      "icon_key": "roof-framing",
       "icon_mode": "auto",
       "date_status": "estimated",
       "activity_type": "task",
@@ -1125,7 +1125,7 @@
           "expected_quantity": 1.0
         }
       ],
-      "icon_key": "plumbing-pipes",
+      "icon_key": "water-tank",
       "icon_mode": "auto",
       "date_status": "estimated",
       "activity_type": "task",
@@ -1152,7 +1152,7 @@
           "expected_quantity": 8.0
         }
       ],
-      "icon_key": "plumbing-pipes",
+      "icon_key": "drains",
       "icon_mode": "auto",
       "date_status": "estimated",
       "activity_type": "task",
@@ -1179,7 +1179,7 @@
           "expected_quantity": 6.0
         }
       ],
-      "icon_key": "masonry-work",
+      "icon_key": "faucet",
       "icon_mode": "auto",
       "date_status": "estimated",
       "activity_type": "task",
@@ -1228,7 +1228,7 @@
           "expected_quantity": 2.0
         }
       ],
-      "icon_key": "plumbing-pipes",
+      "icon_key": "toilet",
       "icon_mode": "auto",
       "date_status": "estimated",
       "activity_type": "task",
@@ -1331,7 +1331,7 @@
           "expected_quantity": 2.0
         }
       ],
-      "icon_key": "window",
+      "icon_key": "bathroom-window",
       "icon_mode": "auto",
       "date_status": "estimated",
       "activity_type": "task",
@@ -1358,7 +1358,7 @@
           "expected_quantity": 1.0
         }
       ],
-      "icon_key": "bathroom-window",
+      "icon_key": "living-room-window",
       "icon_mode": "auto",
       "date_status": "estimated",
       "activity_type": "task",
@@ -1535,7 +1535,7 @@
           "expected_quantity": 115.0
         }
       ],
-      "icon_key": "masonry-work",
+      "icon_key": "porcelain-tiles",
       "icon_mode": "auto",
       "date_status": "estimated",
       "activity_type": "task",
@@ -1588,7 +1588,7 @@
           "expected_quantity": 5.0
         }
       ],
-      "icon_key": "window",
+      "icon_key": "interior-door",
       "icon_mode": "auto",
       "date_status": "estimated",
       "activity_type": "task",
@@ -1646,7 +1646,7 @@
           "expected_quantity": 2.0
         }
       ],
-      "icon_key": "plumbing-pipes",
+      "icon_key": "faucet",
       "icon_mode": "auto",
       "date_status": "estimated",
       "activity_type": "task",
@@ -1766,7 +1766,7 @@
           "expected_quantity": 24.0
         }
       ],
-      "icon_key": "electrician-service",
+      "icon_key": "outlet",
       "icon_mode": "auto",
       "date_status": "estimated",
       "activity_type": "task",
@@ -1937,7 +1937,7 @@
           "expected_quantity": 60.672
         }
       ],
-      "icon_key": "roof-tiles",
+      "icon_key": "mason-service",
       "icon_mode": "auto",
       "date_status": "estimated",
       "activity_type": "task",
@@ -1972,7 +1972,7 @@
           "expected_quantity": 2.0
         }
       ],
-      "icon_key": "window",
+      "icon_key": "interior-door",
       "icon_mode": "auto",
       "date_status": "estimated",
       "activity_type": "task",
@@ -2011,7 +2011,7 @@
           "expected_quantity": 2.0
         }
       ],
-      "icon_key": "plumbing-pipes",
+      "icon_key": "toilet",
       "icon_mode": "auto",
       "date_status": "estimated",
       "activity_type": "task",
@@ -2172,7 +2172,7 @@
           "expected_quantity": 1.0
         }
       ],
-      "icon_key": "roof-tiles",
+      "icon_key": "security-devices",
       "icon_mode": "auto",
       "date_status": "estimated",
       "activity_type": "task",
@@ -2199,7 +2199,7 @@
           "expected_quantity": 2.0
         }
       ],
-      "icon_key": "painter-service",
+      "icon_key": "paint",
       "icon_mode": "auto",
       "date_status": "estimated",
       "activity_type": "task",
@@ -2226,7 +2226,7 @@
           "expected_quantity": 2.0
         }
       ],
-      "icon_key": "painter-service",
+      "icon_key": "paint",
       "icon_mode": "auto",
       "date_status": "estimated",
       "activity_type": "task",
@@ -2253,7 +2253,7 @@
           "expected_quantity": 28.4422
         }
       ],
-      "icon_key": "painter-service",
+      "icon_key": "baseboards",
       "icon_mode": "auto",
       "date_status": "estimated",
       "activity_type": "task",
@@ -2284,7 +2284,7 @@
           "expected_quantity": 3.0
         }
       ],
-      "icon_key": "painter-service",
+      "icon_key": "fasteners",
       "icon_mode": "auto",
       "date_status": "estimated",
       "activity_type": "task",
@@ -2311,7 +2311,7 @@
           "expected_quantity": 3.0
         }
       ],
-      "icon_key": "window",
+      "icon_key": "sealants",
       "icon_mode": "auto",
       "date_status": "estimated",
       "activity_type": "task",
@@ -2342,7 +2342,7 @@
           "expected_quantity": 2.0
         }
       ],
-      "icon_key": "painter-service",
+      "icon_key": "faucet",
       "icon_mode": "auto",
       "date_status": "estimated",
       "activity_type": "task",
@@ -2396,7 +2396,7 @@
           "expected_quantity": 4.0
         }
       ],
-      "icon_key": "painter-service",
+      "icon_key": "fasteners",
       "icon_mode": "auto",
       "date_status": "estimated",
       "activity_type": "task",
@@ -2423,7 +2423,7 @@
           "expected_quantity": 60.672
         }
       ],
-      "icon_key": "cleaning-service",
+      "icon_key": "materials-crate",
       "icon_mode": "auto",
       "date_status": "estimated",
       "activity_type": "task",
@@ -2534,8 +2534,8 @@
       "description": "Compra, regularizações documentais, Caixa e transição do imóvel.",
       "priority": 1,
       "sequence": 1,
-      "start_date": "2026-09-16",
-      "end_date": "2026-10-09",
+      "start_date": "2026-10-07",
+      "end_date": "2026-12-22",
       "status": "pending",
       "expense_allocations": [],
       "icon_key": "mortgage-contract",
@@ -2576,5 +2576,5 @@
       "updated_at": "2026-09-16 19:55:46"
     }
   ],
-  "updated_at": "2026-09-16 22:09:45"
+  "updated_at": "2026-09-18 13:52:50"
 }

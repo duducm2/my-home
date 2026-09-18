@@ -222,28 +222,6 @@
       }
     },
     {
-      "expense_id": "EXP_0011",
-      "id": "QUOTE_001",
-      "source": "manual",
-      "vendor": "Estimativa migrada",
-      "unit_price": 2200.0,
-      "quantity": 1,
-      "unit": "parcela",
-      "shipping_cost": 0.0,
-      "total_price": 2200.0,
-      "product_url": "",
-      "checked_at": "2026-09-16 21:45:30",
-      "notes": "",
-      "metadata": {
-        "currency": "BRL",
-        "source_type": "manual",
-        "source_name": "legacy-expense-migration",
-        "ambiguities": "",
-        "measurement_unit_source": "semantic review 2026-09-16",
-        "measurement_unit_inferred": true
-      }
-    },
-    {
       "expense_id": "EXP_0012",
       "id": "QUOTE_001",
       "source": "manual",
@@ -8501,7 +8479,48 @@
         "source_name": "",
         "ambiguities": ""
       }
+    },
+    {
+      "expense_id": "EXP_0011",
+      "id": "QUOTE_001",
+      "source": "manual",
+      "provider_id": "",
+      "vendor": "Estimativa migrada",
+      "unit_price": 2261.0,
+      "quantity": 1.0,
+      "unit": "parcela",
+      "shipping_cost": 0.0,
+      "total_price": 2261.0,
+      "product_url": "",
+      "checked_at": "2026-09-16",
+      "notes": "",
+      "response_status": "received",
+      "response_channel": "",
+      "received_at": "",
+      "response_date": "",
+      "validity": "",
+      "references": [],
+      "archived": false,
+      "attachments": [],
+      "vendor_snapshot": {},
+      "metadata": {
+        "currency": "BRL",
+        "source_type": "manual",
+        "source_name": "legacy-expense-migration",
+        "ambiguities": "",
+        "measurement_unit_source": "semantic review 2026-09-16",
+        "measurement_unit_inferred": true,
+        "quote_valid_until": "",
+        "source_page": null,
+        "extraction_confidence": null,
+        "brand": "",
+        "model": "",
+        "specifications": "",
+        "package_size": "",
+        "availability": "",
+        "seller_location": ""
+      }
     }
   ],
-  "updated_at": "2026-09-17 23:26:32"
+  "updated_at": "2026-09-18 13:45:58"
 }

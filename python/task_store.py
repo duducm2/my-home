@@ -39,10 +39,24 @@ ICON_RULES = (
     (("rodape", "rodapé"), "baseboards"),
     (("limpeza",), "cleaning-service"),
     (("mudanca", "mudança", "ocupante", "moveis", "móveis"), "moving-service"),
-    (("cartorio", "cartório", "herdeiro", "regularizacoes do imovel"), "notary-services"),
+    (
+        ("cartorio", "cartório", "herdeiro", "regularizacoes do imovel"),
+        "notary-services",
+    ),
     (("financiamento", "caixa", "avaliacao e aprovacao"), "mortgage-contract"),
     (("contrato de compra", "compra e venda"), "down-payment"),
-    (("reboco", "contrapiso", "muro", "reparo", "reforma", "ampliacao", "regularizacao"), "masonry-work"),
+    (
+        (
+            "reboco",
+            "contrapiso",
+            "muro",
+            "reparo",
+            "reforma",
+            "ampliacao",
+            "regularizacao",
+        ),
+        "masonry-work",
+    ),
 )
 
 
@@ -90,7 +104,9 @@ class TaskStore:
                 payload = json.loads(self.path.read_text(encoding="utf-8-sig"))
             except (OSError, json.JSONDecodeError) as exc:
                 raise ValueError(f"tasks.json is invalid: {exc}") from exc
-            if not isinstance(payload, dict) or not isinstance(payload.get("tasks"), list):
+            if not isinstance(payload, dict) or not isinstance(
+                payload.get("tasks"), list
+            ):
                 raise ValueError("tasks.json must contain a tasks array")
             return payload
 
@@ -138,8 +154,12 @@ class TaskStore:
                     "description": "Compra, regularizações documentais, Caixa e transição do imóvel.",
                     "priority": 1,
                     "sequence": 1,
-                    "start_date": str(tasks[0].get("start_date") or date.today().isoformat()),
-                    "end_date": str(tasks[0].get("end_date") or date.today().isoformat()),
+                    "start_date": str(
+                        tasks[0].get("start_date") or date.today().isoformat()
+                    ),
+                    "end_date": str(
+                        tasks[0].get("end_date") or date.today().isoformat()
+                    ),
                     "status": "pending",
                     "expense_id": "",
                     "icon_key": "home-expense",
@@ -220,9 +240,7 @@ class TaskStore:
                 item.pop("expense_id", None)
                 migrated.append(self._normalize(item))
             document["version"] = 3
-            document["tasks"] = self._rollup(
-                self._normalize_sequences(migrated)
-            )
+            document["tasks"] = self._rollup(self._normalize_sequences(migrated))
             self._write(document)
 
     def _expense_ids(self) -> set[str]:
@@ -243,9 +261,7 @@ class TaskStore:
     def _expense_icons(self) -> dict[str, str]:
         if not self.expenses_path.is_file():
             return {}
-        with self.expenses_path.open(
-            "r", encoding="utf-8-sig", newline=""
-        ) as handle:
+        with self.expenses_path.open("r", encoding="utf-8-sig", newline="") as handle:
             return {
                 str(row.get("id") or ""): str(row.get("icon_key") or "")
                 for row in csv.DictReader(handle)
@@ -295,7 +311,8 @@ class TaskStore:
                     if "icon_mode" not in item:
                         item["icon_mode"] = (
                             "manual"
-                            if str(item.get("icon_key") or "") not in {"", "home-expense"}
+                            if str(item.get("icon_key") or "")
+                            not in {"", "home-expense"}
                             else "auto"
                         )
                         changed = True
@@ -306,16 +323,16 @@ class TaskStore:
                             changed = True
             if changed:
                 normalized = [self._normalize(item) for item in tasks]
-                document["tasks"] = self._rollup(
-                    self._normalize_sequences(normalized)
-                )
+                document["tasks"] = self._rollup(self._normalize_sequences(normalized))
                 self._write(document)
 
     def _icon_keys(self) -> set[str]:
         if not self.icon_manifest_path.is_file():
             return set()
         try:
-            manifest = json.loads(self.icon_manifest_path.read_text(encoding="utf-8-sig"))
+            manifest = json.loads(
+                self.icon_manifest_path.read_text(encoding="utf-8-sig")
+            )
         except (OSError, json.JSONDecodeError):
             return set()
         return set((manifest.get("icons") or {}).keys())
@@ -370,8 +387,15 @@ class TaskStore:
         parents = {str(item.get("parent_id") or "") for item in tasks}
         for parent_id in parents:
             siblings = sorted(
-                [item for item in tasks if str(item.get("parent_id") or "") == parent_id],
-                key=self._sort_key,
+                [
+                    item
+                    for item in tasks
+                    if str(item.get("parent_id") or "") == parent_id
+                ],
+                key=lambda item: (
+                    int(item.get("sequence") or 1),
+                    str(item.get("id") or ""),
+                ),
             )
             for sequence, task in enumerate(siblings, start=1):
                 task["sequence"] = sequence
@@ -380,7 +404,9 @@ class TaskStore:
     def _rollup(self, tasks: list[dict[str, Any]]) -> list[dict[str, Any]]:
         for macro in [item for item in tasks if item.get("activity_type") == "macro"]:
             children = [
-                item for item in tasks if str(item.get("parent_id") or "") == macro["id"]
+                item
+                for item in tasks
+                if str(item.get("parent_id") or "") == macro["id"]
             ]
             if not children:
                 macro["progress"] = 0
@@ -417,12 +443,20 @@ class TaskStore:
             ordered.extend(
                 sorted(
                     [item for item in tasks if item.get("parent_id") == macro["id"]],
-                    key=self._sort_key,
+                    key=lambda item: (
+                        int(item.get("sequence") or 1),
+                        int(item.get("priority") or 1),
+                        str(item.get("start_date") or ""),
+                        str(item.get("title") or "").casefold(),
+                        str(item.get("id") or ""),
+                    ),
                 )
             )
         known = {item["id"] for item in ordered}
         ordered.extend(
-            sorted([item for item in tasks if item["id"] not in known], key=self._sort_key)
+            sorted(
+                [item for item in tasks if item["id"] not in known], key=self._sort_key
+            )
         )
         return ordered
 
@@ -455,9 +489,13 @@ class TaskStore:
         previous = existing or {}
         tasks = all_tasks or []
         parent_id = str(payload.get("parent_id") or "").strip()
-        if previous.get("activity_type") == "macro" and activity_type == "task" and any(
-            str(item.get("parent_id") or "") == str(previous.get("id") or "")
-            for item in tasks
+        if (
+            previous.get("activity_type") == "macro"
+            and activity_type == "task"
+            and any(
+                str(item.get("parent_id") or "") == str(previous.get("id") or "")
+                for item in tasks
+            )
         ):
             raise ValueError("macro with child activities cannot become a task")
         if activity_type == "macro":
@@ -489,9 +527,7 @@ class TaskStore:
         if raw_allocations is None:
             legacy_id = str(payload.get("expense_id") or "").strip()
             raw_allocations = (
-                [{"expense_id": legacy_id, "expected_quantity": 1}]
-                if legacy_id
-                else []
+                [{"expense_id": legacy_id, "expected_quantity": 1}] if legacy_id else []
             )
         if not isinstance(raw_allocations, list):
             raise ValueError("expense_allocations must be a list")
@@ -515,9 +551,7 @@ class TaskStore:
                     "expected_quantity must be a finite positive number"
                 ) from exc
             if not math.isfinite(expected_quantity) or expected_quantity <= 0:
-                raise ValueError(
-                    "expected_quantity must be a finite positive number"
-                )
+                raise ValueError("expected_quantity must be a finite positive number")
             seen_expenses.add(expense_id)
             allocations.append(
                 {
@@ -551,7 +585,9 @@ class TaskStore:
             "activity_type": activity_type,
             "parent_id": parent_id,
             "progress": int(previous.get("progress") or 0),
-            "source_refs": list(previous.get("source_refs") or payload.get("source_refs") or []),
+            "source_refs": list(
+                previous.get("source_refs") or payload.get("source_refs") or []
+            ),
             "created_at": str(previous.get("created_at") or stamp),
             "updated_at": stamp,
         }
@@ -611,7 +647,9 @@ class TaskStore:
                     raise ValueError(
                         "macro activity has children; reassign them before deleting it"
                     )
-            tasks = [item for item in document["tasks"] if str(item.get("id")) != task_id]
+            tasks = [
+                item for item in document["tasks"] if str(item.get("id")) != task_id
+            ]
             if len(tasks) == len(document["tasks"]):
                 raise ValueError(f"task not found: {task_id}")
             normalized = [self._normalize(item) for item in tasks]

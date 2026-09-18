@@ -181,7 +181,10 @@
                 </div>
                 <details class="forecast-details">
                   <summary>Principais materiais (takeoff)</summary>
-                  <ol id="dash-forecast-top-materials" class="forecast-top-list"></ol>
+                  <ol
+                    id="dash-forecast-top-materials"
+                    class="forecast-top-list"
+                  ></ol>
                 </details>
                 <p id="dash-forecast-caveat" class="forecast-caveat">
                   Quantidades estimadas pelo takeoff; preços pela mediana das
@@ -447,8 +450,9 @@
             <div>
               <h2 class="section-title">Cronograma completo</h2>
               <p class="section-sub">
-                Expanda macroatividades para ver e editar as atividades
-                detalhadas.
+                Expanda macroatividades para editar. Arraste atividades para
+                reordenar ou soltar em outra macro. Barras: arraste no tempo.
+                Ctrl+C / Ctrl+V copia e cola.
               </p>
             </div>
             <div class="gantt-actions">
@@ -1942,6 +1946,8 @@
         <div class="dialog-actions">
           <button type="button" id="btn-delete-task" class="btn danger hidden">
             Excluir</button
+          ><button type="button" id="btn-duplicate-task" class="btn hidden">
+            Duplicar</button
           ><span class="grow"></span
           ><button type="button" id="btn-cancel-task" class="btn">
             Cancelar</button
@@ -1951,6 +1957,6 @@
     </dialog>
 
     <datalist id="category-suggestions"></datalist>
-    <script src="/app.js?v=20260916-37"></script>
+    <script src="/app.js?v=20260918-gantt-move"></script>
   </body>
 </html>

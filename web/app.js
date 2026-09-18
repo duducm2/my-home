@@ -49,6 +49,8 @@
     showExpenseQuotePills: true,
     systemDocuments: [],
     expandedMacros: new Set(),
+    ganttSelectedId: "",
+    ganttClipboard: [],
   };
   const statusLabels = {
     pending: "Pendente",
@@ -148,6 +150,7 @@
     btnTaskIconAuto: $("btn-task-icon-auto"),
     taskFormError: $("task-form-error"),
     btnDeleteTask: $("btn-delete-task"),
+    btnDuplicateTask: $("btn-duplicate-task"),
     btnCancelTask: $("btn-cancel-task"),
     expenseCategories: $("filter-categories"),
     search: $("filter-search"),
@@ -1509,7 +1512,106 @@
   }
 
   function childTasks(macroId) {
-    return state.tasks.filter((task) => task.parent_id === macroId);
+    return state.tasks
+      .filter((task) => task.parent_id === macroId)
+      .sort(
+        (left, right) =>
+          Number(left.sequence || 0) - Number(right.sequence || 0) ||
+          Number(left.priority || 0) - Number(right.priority || 0) ||
+          String(left.title || "").localeCompare(
+            String(right.title || ""),
+            "pt-BR",
+          ),
+      );
+  }
+
+  function taskSavePayload(task) {
+    return {
+      id: task.id,
+      title: task.title,
+      description: task.description || "",
+      activity_type: task.activity_type,
+      parent_id: task.parent_id || "",
+      priority: Number(task.priority || 1),
+      sequence: Number(task.sequence || 1),
+      start_date: task.start_date,
+      end_date: task.end_date,
+      status: task.status,
+      expense_allocations:
+        task.activity_type === "macro" ? [] : task.expense_allocations || [],
+      icon_key: task.icon_key || "",
+      icon_mode: task.icon_mode || "auto",
+      date_status: task.date_status || "confirmed",
+    };
+  }
+
+  async function reorderGanttTask(draggedId, targetId, placement) {
+    const dragged = state.tasks.find((task) => task.id === draggedId);
+    const target = state.tasks.find((task) => task.id === targetId);
+    if (!dragged || !target || dragged.activity_type !== "task") return false;
+    if (dragged.id === target.id && placement !== "into") return false;
+
+    let parentId = "";
+    let insertIndex = 0;
+    if (placement === "into" || target.activity_type === "macro") {
+      parentId =
+        target.activity_type === "macro" ? target.id : target.parent_id;
+      const siblings = childTasks(parentId).filter(
+        (task) => task.id !== dragged.id,
+      );
+      insertIndex = siblings.length;
+      return applyGanttSiblingOrder(dragged, parentId, siblings, insertIndex);
+    }
+
+    parentId = target.parent_id;
+    if (!parentId) return false;
+    const siblings = childTasks(parentId).filter(
+      (task) => task.id !== dragged.id,
+    );
+    const targetIndex = siblings.findIndex((task) => task.id === target.id);
+    if (targetIndex < 0) return false;
+    insertIndex = placement === "before" ? targetIndex : targetIndex + 1;
+    return applyGanttSiblingOrder(dragged, parentId, siblings, insertIndex);
+  }
+
+  async function applyGanttSiblingOrder(
+    dragged,
+    parentId,
+    siblings,
+    insertIndex,
+  ) {
+    const ordered = [...siblings];
+    ordered.splice(
+      Math.max(0, Math.min(insertIndex, ordered.length)),
+      0,
+      dragged,
+    );
+    const updates = [];
+    ordered.forEach((task, index) => {
+      const sequence = index + 1;
+      const parentChanged =
+        task.id === dragged.id && task.parent_id !== parentId;
+      const sequenceChanged = Number(task.sequence || 0) !== sequence;
+      if (!parentChanged && !sequenceChanged) return;
+      updates.push({
+        ...taskSavePayload(task),
+        parent_id: task.id === dragged.id ? parentId : task.parent_id,
+        sequence,
+      });
+    });
+    if (!updates.length) return false;
+    state.expandedMacros.add(parentId);
+    persistExpandedMacros();
+    for (const payload of updates) {
+      await saveTaskRecord(payload);
+    }
+    selectGanttTask(dragged.id);
+    setStatus(
+      els.appStatus,
+      "ok",
+      "Atividade reposicionada. Clique em “Salvar tudo” para enviar a cópia segura.",
+    );
+    return true;
   }
 
   function matchesGanttFilters(task) {
@@ -1812,8 +1914,10 @@
               : 1;
             const trackStyle =
               bentoRows > 1 ? ` style="--gantt-bento-rows:${bentoRows}"` : "";
-            return `<div class="gantt-track${isMacro ? " macro" : " child"}" data-track-id="${task.id}"${trackStyle}>
-            <button type="button" class="gantt-bar status-${task.status}${isMacro ? " macro" : ""}" ${isMacro ? `data-macro-bar="${task.id}"` : `data-task-bar="${task.id}"`} style="left:${left}px;width:${width}px" title="${escapeAttr(`${task.title} · ${task.start_date} — ${task.end_date}`)}">
+            const trackSelected =
+              state.ganttSelectedId === task.id ? " selected" : "";
+            return `<div class="gantt-track${isMacro ? " macro" : " child"}${trackSelected}" data-track-id="${task.id}"${trackStyle}>
+            <button type="button" class="gantt-bar status-${task.status}${isMacro ? " macro" : ""}${trackSelected}" ${isMacro ? `data-macro-bar="${task.id}"` : `data-task-bar="${task.id}"`} style="left:${left}px;width:${width}px" title="${escapeAttr(`${task.title} · ${task.start_date} — ${task.end_date}`)}">
               ${isMacro ? "" : '<i class="gantt-handle start" data-resize="start"></i>'}<span>${escapeHtml(task.title)}</span>${isMacro ? "" : '<i class="gantt-handle end" data-resize="end"></i>'}
             </button>${ganttExpenseBentoMarkup(task, left, width)}${taskPayments
               .map(
@@ -1853,13 +1957,15 @@
               : "";
           const labelBento =
             task.activity_type === "macro" ? "" : ganttExpenseBentoMarkup(task);
+          const labelSelected =
+            state.ganttSelectedId === task.id ? " selected" : "";
           if (task.activity_type === "macro")
-            return `<div class="gantt-label-row macro">
+            return `<div class="gantt-label-row macro${labelSelected}">
               <button type="button" class="macro-disclosure" data-toggle-macro="${task.id}" aria-label="${state.expandedMacros.has(task.id) ? "Recolher" : "Expandir"} ${escapeAttr(task.title)}">${state.expandedMacros.has(task.id) ? "−" : "+"}</button>
               <button type="button" class="gantt-label-content" data-task-label="${task.id}" title="Editar macroatividade">${content}</button>
             </div>`;
-          return `<div class="gantt-label-row task"${rowStyle}>
-              <button type="button" class="gantt-label-content" draggable="true" data-task-label="${task.id}" title="Arraste para trocar a sequência"><i class="child-indent"></i>${content}</button>
+          return `<div class="gantt-label-row task${labelSelected}"${rowStyle}>
+              <button type="button" class="gantt-label-content" draggable="true" data-task-label="${task.id}" title="Arraste para trocar a sequência · Ctrl+C copia · Ctrl+V cola"><i class="child-indent"></i>${content}</button>
               ${labelBento}
             </div>`;
         })
@@ -1869,6 +1975,23 @@
 
   function bindGanttInteractions(geometry) {
     let draggedLabel = "";
+    let labelDragMoved = false;
+    const clearDropMarkers = () => {
+      els.gantt
+        ?.querySelectorAll(".drop-before, .drop-after, .drop-into")
+        .forEach((element) =>
+          element.classList.remove("drop-before", "drop-after", "drop-into"),
+        );
+    };
+    const dropPlacement = (row, clientY) => {
+      const task = state.tasks.find(
+        (item) => item.id === row.dataset.taskLabel,
+      );
+      if (!task) return "after";
+      if (task.activity_type === "macro") return "into";
+      const rect = row.getBoundingClientRect();
+      return clientY < rect.top + rect.height / 2 ? "before" : "after";
+    };
     els.gantt.querySelectorAll(".gantt-expense-bento").forEach((bento) => {
       bento.addEventListener("pointerdown", (event) => event.stopPropagation());
       bento.addEventListener("mousedown", (event) => event.stopPropagation());
@@ -1883,45 +2006,94 @@
       });
     });
     els.gantt.querySelectorAll("[data-macro-bar]").forEach((bar) => {
-      bar.addEventListener("click", () =>
-        openTaskDialog(
-          state.tasks.find((task) => task.id === bar.dataset.macroBar),
-        ),
-      );
+      bar.addEventListener("click", () => {
+        const task = state.tasks.find(
+          (item) => item.id === bar.dataset.macroBar,
+        );
+        selectGanttTask(task?.id);
+        openTaskDialog(task);
+      });
     });
     els.gantt.querySelectorAll("[data-task-label]").forEach((row) => {
-      row.addEventListener("click", () => {
-        openTaskDialog(
-          state.tasks.find((task) => task.id === row.dataset.taskLabel),
-        );
-      });
-      row.addEventListener("dragstart", () => {
+      const labelRow = row.closest(".gantt-label-row") || row;
+      row.addEventListener("click", (event) => {
+        if (labelDragMoved) {
+          labelDragMoved = false;
+          event.preventDefault();
+          event.stopPropagation();
+          return;
+        }
         const task = state.tasks.find(
           (item) => item.id === row.dataset.taskLabel,
         );
-        if (task?.activity_type !== "task") return;
-        draggedLabel = row.dataset.taskLabel;
-        row.closest(".gantt-label-row")?.classList.add("dragging");
+        selectGanttTask(task?.id);
+        if (event.ctrlKey || event.metaKey) {
+          event.preventDefault();
+          setStatus(
+            els.appStatus,
+            "ok",
+            `Selecionado: ${task?.title || ""}. Ctrl+C copia · Ctrl+V cola · arraste para mover.`,
+          );
+          return;
+        }
+        openTaskDialog(task);
       });
-      row.addEventListener("dragend", () =>
-        row.closest(".gantt-label-row")?.classList.remove("dragging"),
-      );
-      row.addEventListener("dragover", (event) => event.preventDefault());
-      row.addEventListener("drop", async (event) => {
+      if (row.getAttribute("draggable") === "true") {
+        row.addEventListener("dragstart", (event) => {
+          const task = state.tasks.find(
+            (item) => item.id === row.dataset.taskLabel,
+          );
+          if (task?.activity_type !== "task") {
+            event.preventDefault();
+            return;
+          }
+          draggedLabel = row.dataset.taskLabel;
+          labelDragMoved = false;
+          selectGanttTask(task.id);
+          labelRow.classList.add("dragging");
+          event.dataTransfer?.setData("text/plain", draggedLabel);
+          if (event.dataTransfer) event.dataTransfer.effectAllowed = "move";
+        });
+        row.addEventListener("dragend", () => {
+          labelRow.classList.remove("dragging");
+          clearDropMarkers();
+          draggedLabel = "";
+        });
+      }
+      labelRow.addEventListener("dragover", (event) => {
+        if (!draggedLabel) return;
         event.preventDefault();
+        if (event.dataTransfer) event.dataTransfer.dropEffect = "move";
+        labelDragMoved = true;
+        clearDropMarkers();
+        const placement = dropPlacement(row, event.clientY);
+        labelRow.classList.add(
+          placement === "into"
+            ? "drop-into"
+            : placement === "before"
+              ? "drop-before"
+              : "drop-after",
+        );
+      });
+      labelRow.addEventListener("dragleave", (event) => {
+        if (!labelRow.contains(event.relatedTarget)) {
+          labelRow.classList.remove("drop-before", "drop-after", "drop-into");
+        }
+      });
+      labelRow.addEventListener("drop", async (event) => {
+        event.preventDefault();
+        event.stopPropagation();
         const targetId = row.dataset.taskLabel;
-        if (!draggedLabel || draggedLabel === targetId) return;
-        const first = state.tasks.find((task) => task.id === draggedLabel);
-        const second = state.tasks.find((task) => task.id === targetId);
-        if (!first || !second || first.parent_id !== second.parent_id) return;
-        const firstSequence = first.sequence;
-        first.sequence = second.sequence;
-        second.sequence = firstSequence;
-        renderGantt();
+        const placement = dropPlacement(row, event.clientY);
+        const sourceId = draggedLabel;
+        clearDropMarkers();
+        labelRow.classList.remove("dragging");
+        draggedLabel = "";
+        if (!sourceId || (sourceId === targetId && placement !== "into"))
+          return;
+        labelDragMoved = true;
         try {
-          await saveTaskRecord(first);
-          await saveTaskRecord(second);
-          renderMacroTimeline();
+          await reorderGanttTask(sourceId, targetId, placement);
         } catch (error) {
           await loadTasks();
           setStatus(els.appStatus, "err", error.message);
@@ -1936,6 +2108,7 @@
           (item) => item.id === bar.dataset.taskBar,
         );
         if (!task) return;
+        selectGanttTask(task.id);
         const resizeHandle = event.target.closest("[data-resize]");
         const mode = resizeHandle?.dataset.resize || "move";
         const originX = event.clientX;
@@ -1996,6 +2169,7 @@
             return;
           }
           if (!moved) {
+            selectGanttTask(task.id);
             openTaskDialog(task);
             return;
           }
@@ -2047,6 +2221,169 @@
     renderGantt();
     renderMacroTimeline();
     return payload;
+  }
+
+  function snapshotTask(task) {
+    return {
+      id: task.id,
+      title: task.title || "",
+      description: task.description || "",
+      activity_type: task.activity_type || "task",
+      parent_id: task.parent_id || "",
+      priority: Number(task.priority || 1),
+      sequence: Number(task.sequence || 1),
+      start_date: task.start_date || "",
+      end_date: task.end_date || "",
+      status: task.status || "pending",
+      expense_allocations: structuredClone(task.expense_allocations || []),
+      icon_key: task.icon_key || "",
+      icon_mode: task.icon_mode || "auto",
+      date_status: task.date_status || "confirmed",
+    };
+  }
+
+  function cloneTaskPayload(
+    source,
+    { parentId, titleSuffix = " (cópia)" } = {},
+  ) {
+    const isMacro = source.activity_type === "macro";
+    return {
+      id: "",
+      title: `${source.title || "Atividade"}${titleSuffix}`,
+      description: source.description || "",
+      activity_type: isMacro ? "macro" : "task",
+      parent_id: isMacro
+        ? ""
+        : parentId != null
+          ? parentId
+          : source.parent_id || "",
+      priority: Number(source.priority || 1),
+      sequence: Number(source.sequence || 1) + 1,
+      start_date: source.start_date,
+      end_date: source.end_date,
+      status: source.status || "pending",
+      expense_allocations: isMacro
+        ? []
+        : (source.expense_allocations || []).map((allocation) => ({
+            expense_id: allocation.expense_id,
+            expected_quantity: allocation.expected_quantity,
+          })),
+      icon_key: source.icon_key || "",
+      icon_mode: source.icon_mode || "auto",
+      date_status: source.date_status || "confirmed",
+    };
+  }
+
+  function selectGanttTask(taskId) {
+    state.ganttSelectedId = taskId || "";
+    if (!els.gantt) return;
+    els.gantt
+      .querySelectorAll(
+        ".gantt-label-row.selected, .gantt-track.selected, .gantt-bar.selected",
+      )
+      .forEach((element) => element.classList.remove("selected"));
+    if (!taskId) return;
+    const label = els.gantt.querySelector(
+      `[data-task-label="${CSS.escape(taskId)}"]`,
+    );
+    label?.closest(".gantt-label-row")?.classList.add("selected");
+    label?.classList.add("selected");
+    els.gantt
+      .querySelector(`[data-track-id="${CSS.escape(taskId)}"]`)
+      ?.classList.add("selected");
+    els.gantt
+      .querySelector(
+        `[data-task-bar="${CSS.escape(taskId)}"], [data-macro-bar="${CSS.escape(taskId)}"]`,
+      )
+      ?.classList.add("selected");
+  }
+
+  function copyGanttSelection() {
+    const dialogId = els.taskDialog?.open ? els.taskId.value : "";
+    const taskId = dialogId || state.ganttSelectedId;
+    const task = state.tasks.find((item) => item.id === taskId);
+    if (!task) {
+      setStatus(
+        els.appStatus,
+        "err",
+        "Selecione uma atividade no cronograma para copiar.",
+      );
+      return false;
+    }
+    selectGanttTask(task.id);
+    const bundle = {
+      root: snapshotTask(task),
+      children:
+        task.activity_type === "macro"
+          ? childTasks(task.id).map((child) => snapshotTask(child))
+          : [],
+    };
+    state.ganttClipboard = [bundle];
+    const count = 1 + bundle.children.length;
+    setStatus(
+      els.appStatus,
+      "ok",
+      count > 1
+        ? `Copiado: ${task.title} (+${bundle.children.length} atividades). Ctrl+V para colar.`
+        : `Copiado: ${task.title}. Ctrl+V para colar.`,
+    );
+    return true;
+  }
+
+  async function pasteGanttClipboard() {
+    const bundles = state.ganttClipboard || [];
+    if (!bundles.length) {
+      setStatus(
+        els.appStatus,
+        "err",
+        "Nada copiado. Selecione uma atividade e use Ctrl+C.",
+      );
+      return;
+    }
+    const selected = state.tasks.find(
+      (item) => item.id === state.ganttSelectedId,
+    );
+    try {
+      let lastId = "";
+      for (const bundle of bundles) {
+        const root = bundle.root;
+        let parentId = root.parent_id || "";
+        if (root.activity_type === "task") {
+          if (selected?.activity_type === "macro") parentId = selected.id;
+          else if (selected?.activity_type === "task")
+            parentId = selected.parent_id || parentId;
+        }
+        const created = await saveTaskRecord(
+          cloneTaskPayload(root, { parentId }),
+        );
+        lastId = created.task_id || lastId;
+        if (root.activity_type === "macro" && lastId) {
+          state.expandedMacros.add(lastId);
+          persistExpandedMacros();
+          for (const child of bundle.children || []) {
+            await saveTaskRecord(cloneTaskPayload(child, { parentId: lastId }));
+          }
+        }
+      }
+      if (lastId) selectGanttTask(lastId);
+      setStatus(
+        els.appStatus,
+        "ok",
+        "Atividade colada. Clique em “Salvar tudo” para enviar a cópia segura.",
+      );
+    } catch (error) {
+      setStatus(els.appStatus, "err", error.message);
+    }
+  }
+
+  async function duplicateTaskFromDialog() {
+    const id = els.taskId.value;
+    const task = state.tasks.find((item) => item.id === id);
+    if (!task) return;
+    selectGanttTask(task.id);
+    copyGanttSelection();
+    els.taskDialog.close();
+    await pasteGanttClipboard();
   }
 
   function fillTaskOptions(currentId = "") {
@@ -2260,7 +2597,9 @@
       task?.activity_type === "macro" && childTasks(task.id).length > 0;
     els.taskActivityType.disabled = Boolean(hasChildren);
     els.btnDeleteTask.classList.toggle("hidden", !task);
+    els.btnDuplicateTask.classList.toggle("hidden", !task);
     els.taskFormError.classList.add("hidden");
+    if (task?.id) selectGanttTask(task.id);
     els.taskDialog.showModal();
     els.taskTitle.focus();
   }
@@ -4893,6 +5232,27 @@
       const typing = ["INPUT", "TEXTAREA", "SELECT"].includes(
         document.activeElement?.tagName,
       );
+      const ganttVisible = !document
+        .getElementById("view-gantt")
+        ?.classList.contains("hidden");
+      if (
+        ganttVisible &&
+        (event.ctrlKey || event.metaKey) &&
+        !event.altKey &&
+        !event.shiftKey
+      ) {
+        const key = event.key.toLowerCase();
+        if (key === "c" && !typing) {
+          event.preventDefault();
+          copyGanttSelection();
+          return;
+        }
+        if (key === "v" && !typing && !els.taskDialog?.open) {
+          event.preventDefault();
+          pasteGanttClipboard();
+          return;
+        }
+      }
       if (
         sceneEditorOpen &&
         !typing &&
@@ -5545,6 +5905,11 @@
   );
   els.btnCancelTask.addEventListener("click", () => els.taskDialog.close());
   els.btnDeleteTask.addEventListener("click", deleteTask);
+  els.btnDuplicateTask.addEventListener("click", () => {
+    duplicateTaskFromDialog().catch((error) =>
+      setStatus(els.taskFormError, "err", error.message),
+    );
+  });
   els.btnExpandAll.addEventListener("click", () => {
     state.expandedMacros = new Set(macroTasks().map((item) => item.id));
     persistExpandedMacros();
