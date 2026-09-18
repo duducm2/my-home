@@ -43,6 +43,9 @@
     editingContractPayments: [],
     zoom: "week",
     ganttRenderedGeometry: null,
+    ganttViewAnchor: null,
+    ganttIgnoringScroll: false,
+    ganttScrollRestoreToken: 0,
     paymentProjectionScale: "day",
     ganttStatusFilter: "",
     ganttPriorityFilter: 0,
@@ -2564,17 +2567,26 @@
     return `<div class="gantt-expense-bento${placement}" style="${style}" data-bento-task="${escapeAttr(task.id)}">${chips}${totalMarkup}</div>`;
   }
 
-  function captureGanttView() {
+  function rememberGanttScroll() {
+    if (state.ganttIgnoringScroll) return;
     const scroll = $("gantt-scroll");
     const geometry = state.ganttRenderedGeometry;
-    if (!scroll || !geometry?.dayWidth || !geometry.start) return null;
+    if (!scroll || !geometry?.dayWidth || !geometry.start) return;
+    if (scroll.scrollWidth <= scroll.clientWidth + 1) return;
     const centerPx = scroll.scrollLeft + scroll.clientWidth / 2;
     const daysFromStart = centerPx / geometry.dayWidth;
     const wholeDays = Math.floor(daysFromStart);
-    return {
+    state.ganttViewAnchor = {
       anchorDate: addDays(geometry.start, wholeDays),
       fraction: daysFromStart - wholeDays,
     };
+  }
+
+  function captureGanttView() {
+    // Trust the last user/restored anchor. Re-reading DOM mid-restore can
+    // capture scrollLeft=0 (clamped before layout) and lock us at the start.
+    if (!state.ganttIgnoringScroll) rememberGanttScroll();
+    return state.ganttViewAnchor;
   }
 
   function restoreGanttView(geometry, snapshot) {
@@ -2583,14 +2595,32 @@
       start: geometry.start,
       dayWidth: geometry.dayWidth,
     };
-    if (!snapshot?.anchorDate || !geometry.dayWidth) return;
-    const scroll = $("gantt-scroll");
-    if (!scroll) return;
-    const daysFromStart =
-      dayDiff(geometry.start, snapshot.anchorDate) +
-      Number(snapshot.fraction || 0);
-    const centerPx = daysFromStart * geometry.dayWidth;
-    scroll.scrollLeft = Math.max(0, centerPx - scroll.clientWidth / 2);
+    const anchor = snapshot || state.ganttViewAnchor;
+    if (!anchor?.anchorDate || !geometry.dayWidth) return;
+    const token = ++state.ganttScrollRestoreToken;
+    state.ganttIgnoringScroll = true;
+    const apply = () => {
+      if (token !== state.ganttScrollRestoreToken) return;
+      const scroll = $("gantt-scroll");
+      if (!scroll) return;
+      const daysFromStart =
+        dayDiff(geometry.start, anchor.anchorDate) +
+        Number(anchor.fraction || 0);
+      const centerPx = daysFromStart * geometry.dayWidth;
+      // Force layout so scrollWidth is real before assigning scrollLeft.
+      void scroll.scrollWidth;
+      scroll.scrollLeft = Math.max(0, centerPx - scroll.clientWidth / 2);
+    };
+    apply();
+    requestAnimationFrame(() => {
+      apply();
+      requestAnimationFrame(() => {
+        apply();
+        if (token !== state.ganttScrollRestoreToken) return;
+        state.ganttIgnoringScroll = false;
+        rememberGanttScroll();
+      });
+    });
   }
 
   function renderGantt() {
@@ -2763,6 +2793,11 @@
         })
         .join("")}</div>`;
     bindGanttInteractions(geometry);
+    const scroll = $("gantt-scroll");
+    if (scroll && !scroll.dataset.scrollRememberBound) {
+      scroll.dataset.scrollRememberBound = "1";
+      scroll.addEventListener("scroll", rememberGanttScroll, { passive: true });
+    }
     restoreGanttView(geometry, viewSnapshot);
   }
 
@@ -3060,7 +3095,6 @@
             if (next >= task.start_date) task.end_date = next;
           }
           task.date_status = "confirmed";
-          renderGantt();
           try {
             applyTaskSaveSideEffects(await saveTaskRecord(task));
           } catch (error) {
@@ -3090,7 +3124,11 @@
   }
 
   function applyTaskSaveSideEffects(payload) {
-    if (payload?.expense_state) applyExpenseState(payload.expense_state);
+    if (payload?.expense_state) {
+      // applyExpenseState → renderDashboard already re-renders the Gantt.
+      applyExpenseState(payload.expense_state);
+      return;
+    }
     renderGantt();
     renderMacroTimeline();
   }
@@ -7194,11 +7232,15 @@
   els.btnGanttToday.addEventListener("click", () => {
     const scroll = $("gantt-scroll");
     const line = els.gantt.querySelector(".gantt-today");
-    if (scroll && line)
+    if (scroll && line) {
+      state.ganttIgnoringScroll = false;
       scroll.scrollTo({
         left: Math.max(0, parseFloat(line.style.left) - scroll.clientWidth / 2),
         behavior: "smooth",
       });
+      // Smooth scroll settles later; refresh anchor after it finishes.
+      window.setTimeout(() => rememberGanttScroll(), 400);
+    }
   });
   els.showArchivedContracts.addEventListener("change", renderContractCenter);
   els.providerDirectorySearch.addEventListener("input", renderContractCenter);

@@ -61,7 +61,7 @@
     },
     {
       "id": "TASK_0003",
-      "title": "Regularização e preparação",
+      "title": "Regularização para aprovação da CAIXA",
       "description": "Marco da compra e transição do imóvel.",
       "priority": 1,
       "sequence": 6,
@@ -69,7 +69,7 @@
       "end_date": "2027-08-25",
       "status": "pending",
       "expense_allocations": [],
-      "icon_key": "masonry-work",
+      "icon_key": "mortgage-contract",
       "icon_mode": "auto",
       "date_status": "estimated",
       "activity_type": "macro",
@@ -79,7 +79,7 @@
         "project.purchase_workflow"
       ],
       "created_at": "2026-09-15 23:51:00",
-      "updated_at": "2026-09-18 17:28:33"
+      "updated_at": "2026-09-18 17:35:23"
     },
     {
       "id": "TASK_0004",
@@ -182,7 +182,7 @@
         "project.purchase_workflow"
       ],
       "created_at": "2026-09-15 23:51:00",
-      "updated_at": "2026-09-18 17:28:33"
+      "updated_at": "2026-09-18 17:35:00"
     },
     {
       "id": "TASK_0009",
@@ -204,14 +204,14 @@
         "project.purchase_workflow"
       ],
       "created_at": "2026-09-15 23:51:00",
-      "updated_at": "2026-09-18 17:28:33"
+      "updated_at": "2026-09-18 17:35:00"
     },
     {
       "id": "TASK_0010",
       "title": "Mudança",
       "description": "Marco da compra e transição do imóvel.",
       "priority": 1,
-      "sequence": 4,
+      "sequence": 5,
       "start_date": "2026-12-06",
       "end_date": "2026-12-28",
       "status": "pending",
@@ -227,7 +227,7 @@
         "project.work_plan"
       ],
       "created_at": "2026-09-15 23:51:00",
-      "updated_at": "2026-09-18 17:28:33"
+      "updated_at": "2026-09-18 17:35:00"
     },
     {
       "id": "TASK_0011",
@@ -275,7 +275,7 @@
       "priority": 1,
       "sequence": 2,
       "start_date": "2026-10-19",
-      "end_date": "2026-10-21",
+      "end_date": "2026-10-23",
       "status": "pending",
       "expense_allocations": [
         {
@@ -285,7 +285,7 @@
       ],
       "icon_key": "waterproofing-additive",
       "icon_mode": "auto",
-      "date_status": "estimated",
+      "date_status": "confirmed",
       "activity_type": "task",
       "parent_id": "TASK_0003",
       "progress": 0,
@@ -294,7 +294,7 @@
         "project.work_plan"
       ],
       "created_at": "2026-09-15 23:51:00",
-      "updated_at": "2026-09-18 15:25:51"
+      "updated_at": "2026-09-18 17:34:01"
     },
     {
       "id": "TASK_0013",
@@ -2453,7 +2453,7 @@
     },
     {
       "id": "TASK_0097",
-      "title": "Compra e financiamento",
+      "title": "Compra",
       "description": "Compra, regularizações documentais, Caixa e transição do imóvel.",
       "priority": 1,
       "sequence": 3,
@@ -2471,7 +2471,7 @@
         "project.purchase_workflow"
       ],
       "created_at": "2026-09-16 15:19:49",
-      "updated_at": "2026-09-18 17:28:33"
+      "updated_at": "2026-09-18 17:35:15"
     },
     {
       "id": "TASK_0098",
@@ -2500,10 +2500,10 @@
     },
     {
       "id": "TASK_0099",
-      "title": "Parcelas do financiamento",
+      "title": "Financiamento",
       "description": "",
       "priority": 1,
-      "sequence": 5,
+      "sequence": 4,
       "start_date": "2026-10-22",
       "end_date": "2027-02-27",
       "status": "pending",
@@ -2516,7 +2516,7 @@
       "progress": 0,
       "source_refs": [],
       "created_at": "2026-09-18 13:54:33",
-      "updated_at": "2026-09-18 17:28:33"
+      "updated_at": "2026-09-18 17:35:09"
     },
     {
       "id": "TASK_0100",
@@ -2611,7 +2611,7 @@
       "progress": 0,
       "source_refs": [],
       "created_at": "2026-09-18 13:58:18",
-      "updated_at": "2026-09-18 17:28:33"
+      "updated_at": "2026-09-18 17:35:00"
     },
     {
       "id": "TASK_0104",
@@ -2676,7 +2676,7 @@
       "progress": 100,
       "source_refs": [],
       "created_at": "2026-09-18 15:25:38",
-      "updated_at": "2026-09-18 17:28:33"
+      "updated_at": "2026-09-18 17:35:00"
     },
     {
       "id": "TASK_0107",
@@ -2774,5 +2774,5 @@
       "updated_at": "2026-09-18 17:24:29"
     }
   ],
-  "updated_at": "2026-09-18 17:28:33"
+  "updated_at": "2026-09-18 17:35:23"
 }

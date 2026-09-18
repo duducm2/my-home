@@ -244,10 +244,9 @@
 .contract-payment-row {
   display: grid;
   grid-column: 1 / -1;
-  grid-template-columns: minmax(130px, 0.8fr) minmax(110px, 0.7fr) minmax(
-      160px,
-      1fr
-    ) auto;
+  grid-template-columns:
+    minmax(130px, 0.8fr) minmax(110px, 0.7fr) minmax(160px, 1fr)
+    auto;
   align-items: end;
   gap: 6px;
   padding: 7px;
@@ -2096,11 +2095,16 @@ select[multiple] {
   max-height: min(86vh, 900px);
   padding: 16px;
   overflow: hidden;
-  display: flex;
   flex-direction: column;
   gap: 12px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  color: var(--text);
+  background: var(--panel);
 }
 
+/* Never set display on closed <dialog> — it overrides UA display:none and
+   leaves a ghost "Revisão do período" strip at the bottom of the page. */
 .payment-period-dialog[open] {
   display: flex;
 }
@@ -2253,10 +2257,9 @@ select[multiple] {
 
 .expense-payment-row {
   display: grid;
-  grid-template-columns: minmax(126px, 0.8fr) minmax(110px, 0.7fr) minmax(
-      180px,
-      1.4fr
-    ) auto;
+  grid-template-columns:
+    minmax(126px, 0.8fr) minmax(110px, 0.7fr) minmax(180px, 1.4fr)
+    auto;
   align-items: end;
   gap: 6px;
   padding: 7px;
@@ -2384,10 +2387,9 @@ select[multiple] {
 
 .task-allocation-row {
   display: grid;
-  grid-template-columns: minmax(180px, 1.4fr) minmax(90px, 0.5fr) auto minmax(
-      180px,
-      1fr
-    ) auto auto;
+  grid-template-columns:
+    minmax(180px, 1.4fr) minmax(90px, 0.5fr) auto minmax(180px, 1fr)
+    auto auto;
   gap: 7px;
   align-items: end;
 }
