@@ -1186,18 +1186,9 @@
   }
 
   function paymentEvents() {
-    const scheduledContracts = state.contracts.filter(
-      (contract) =>
-        contract.type === "service" &&
-        !contract.archived &&
-        contract.status !== "cancelled" &&
-        (contract.payment_schedule || []).length,
-    );
-    const contractExpenseIds = new Set(
-      scheduledContracts.flatMap((contract) => contract.expense_ids || []),
-    );
-    const expenseEvents = state.expenses
-      .filter((expense) => !contractExpenseIds.has(expense.id))
+    // Canon: payment dates/amounts live on expenses. Contract payment_schedule
+    // is PDF/metadata only and must not drive projection or Gantt markers.
+    return state.expenses
       .flatMap((expense) => {
         const payments = expense.payments || [];
         if (!payments.length) return [];
@@ -1227,22 +1218,7 @@
             amount: roundMoney(amount),
           };
         });
-      });
-    const contractEvents = scheduledContracts.flatMap((contract) => {
-      const provider = state.providers.find(
-        (item) => item.id === contract.provider_id,
-      );
-      return (contract.payment_schedule || []).map((payment) => ({
-        ...payment,
-        contractId: contract.id,
-        expenseIds: contract.expense_ids || [],
-        description: provider?.name || contract.title,
-        category: "Mão de obra",
-        iconKey: "mason-service",
-        amount: Number(payment.amount || 0),
-      }));
-    });
-    return [...expenseEvents, ...contractEvents]
+      })
       .filter((payment) => payment.date && Number.isFinite(payment.amount))
       .sort((left, right) => left.date.localeCompare(right.date));
   }
@@ -1285,7 +1261,7 @@
     }
     if (!days.length) {
       els.paymentProjectionSummary.textContent =
-        "Cadastre pagamentos nas despesas ou contratos.";
+        "Cadastre pagamentos nas despesas.";
       els.paymentProjectionChart.innerHTML =
         '<p class="payment-projection-empty">Nenhum pagamento cadastrado.</p>';
       return;
@@ -1349,7 +1325,7 @@
       name: payment.description,
       totalLabel: formatMoney(payment.amount),
       detail: [
-        payment.contractId ? "Contrato" : payment.category || "Despesa",
+        payment.category || "Despesa",
         scale === "day" ? "" : formatPaymentDate(payment.date),
       ]
         .filter(Boolean)
