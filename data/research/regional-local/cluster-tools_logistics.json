@@ -1,0 +1,350 @@
+{
+  "cluster": "tools_logistics",
+  "checked_at": "2026-09-17",
+  "location_basis": "nova_odessa_cep_13380",
+  "probe_notes": [
+    "Construeva (construeva-construcao.localo.site): LocalBusiness landing (reviews/blog/contact); HTTP 200; no product catalog or R$ SKU pages.",
+    "Ouro Verde (depouroverde.com.br): WooCommerce /loja/ is coming-soon placeholder ('Our store is in the works'); wp-json/wp/v2/product=[] and wc/store/products=[]; 'Ver Estoque' CTA is WhatsApp wa.me/5519974059418; searches for carrinho/ferramenta/calha/prego/parafuso/caçamba/rufo show no priced SKUs.",
+    "Feval (feval.com.br / www.feval.com.br): institutional site only (Início/Sobre/Contato); /loja and /produtos 404; history mentions ferramentas qualitatively; no public SKU prices.",
+    "Casa dos Tijolos / Depósito Brasil: allowed_hosts empty (directory listings only); not vendor e-commerce hosts.",
+    "Tayo/Nikkei (nikkeiaeroporto.com.br): WordPress landing; site search for carrinho/ferramenta/calha/prego/parafuso/caçamba/rufo returns 'Parece que não pudemos encontrar'; no /loja or priced product pages.",
+    "EXP_0022 Caçamba de entulho: expected retail no_match; none of the Tier-A depos publish dumpster rental SKUs online."
+  ],
+  "expenses": [
+    {
+      "expense_id": "EXP_0018",
+      "requested_item": "Ferramentas",
+      "requested_unit": "conjunto",
+      "vendor_results": [
+        {
+          "vendor_id": "construeva_americana",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_public_sku",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null,
+          "notes": "Localo site HTTP 200; no kit/ferramentas product pages with visible price; phone +55 19 3468-6870."
+        },
+        {
+          "vendor_id": "deposito_ouro_verde_campinas",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "woocommerce_empty_no_priced_sku",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null,
+          "notes": "https://depouroverde.com.br/loja/ coming-soon; WC product API empty; ?s=ferramenta no R$; marketing copy mentions ferramentas only."
+        },
+        {
+          "vendor_id": "feval_americana",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_public_sku",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null,
+          "notes": "Institutional site; about text mentions early tools sales historically; no catalog/SKU prices."
+        },
+        {
+          "vendor_id": "casa_dos_tijolos_americana",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_listing_no_vendor_host",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null,
+          "notes": "allowed_hosts empty; Página Amarela directory only."
+        },
+        {
+          "vendor_id": "deposito_brasil_campinas",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_listing_no_vendor_host",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null,
+          "notes": "allowed_hosts empty; ConectaObra listing only."
+        },
+        {
+          "vendor_id": "deposito_tayo_campinas",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_public_sku",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null,
+          "notes": "?s=ferramenta returns no results; no e-commerce SKU pages; WhatsApp cotação only."
+        }
+      ]
+    },
+    {
+      "expense_id": "EXP_0020",
+      "requested_item": "Carrinho de mão",
+      "requested_unit": "unidade",
+      "vendor_results": [
+        {
+          "vendor_id": "construeva_americana",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_public_sku",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null,
+          "notes": "No carrinho de mão product/price page on Localo host."
+        },
+        {
+          "vendor_id": "deposito_ouro_verde_campinas",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "woocommerce_empty_no_priced_sku",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null,
+          "notes": "WC empty; /loja/?s=carrinho&post_type=product no priced SKU; stock CTA is WhatsApp."
+        },
+        {
+          "vendor_id": "feval_americana",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_public_sku",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null,
+          "notes": "No shop routes; ?s=carrinho has no product prices."
+        },
+        {
+          "vendor_id": "casa_dos_tijolos_americana",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_listing_no_vendor_host",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null,
+          "notes": "allowed_hosts empty; directory only."
+        },
+        {
+          "vendor_id": "deposito_brasil_campinas",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_listing_no_vendor_host",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null,
+          "notes": "allowed_hosts empty; directory only."
+        },
+        {
+          "vendor_id": "deposito_tayo_campinas",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_public_sku",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null,
+          "notes": "?s=carrinho → no results on nikkeiaeroporto.com.br."
+        }
+      ]
+    },
+    {
+      "expense_id": "EXP_0022",
+      "requested_item": "Caçamba de entulho",
+      "requested_unit": "caçamba",
+      "vendor_results": [
+        {
+          "vendor_id": "construeva_americana",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_public_sku",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null,
+          "notes": "Retail depo site has no caçamba/entulho rental SKU; typical service item, not stocked retail."
+        },
+        {
+          "vendor_id": "deposito_ouro_verde_campinas",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "woocommerce_empty_no_priced_sku",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null,
+          "notes": "WC empty; ?s=caçamba no priced dumpster rental SKU."
+        },
+        {
+          "vendor_id": "feval_americana",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_public_sku",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null,
+          "notes": "No catalog; caçamba not sold as retail SKU on Feval domain."
+        },
+        {
+          "vendor_id": "casa_dos_tijolos_americana",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_listing_no_vendor_host",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null,
+          "notes": "allowed_hosts empty; directory only."
+        },
+        {
+          "vendor_id": "deposito_brasil_campinas",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_listing_no_vendor_host",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null,
+          "notes": "allowed_hosts empty; directory only."
+        },
+        {
+          "vendor_id": "deposito_tayo_campinas",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_public_sku",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null,
+          "notes": "?s=caçamba no results; dumpster rental not published as retail SKU."
+        }
+      ]
+    },
+    {
+      "expense_id": "EXP_0043",
+      "requested_item": "Calhas e rufos",
+      "requested_unit": "metro linear (m)",
+      "vendor_results": [
+        {
+          "vendor_id": "construeva_americana",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_public_sku",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null,
+          "notes": "No calha/rufo product pages with R$/m on Localo host."
+        },
+        {
+          "vendor_id": "deposito_ouro_verde_campinas",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "woocommerce_empty_no_priced_sku",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null,
+          "notes": "WC empty; ?s=calha and ?s=rufo no priced linear-meter SKUs."
+        },
+        {
+          "vendor_id": "feval_americana",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_public_sku",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null,
+          "notes": "Institutional site; ?s=calha no product prices."
+        },
+        {
+          "vendor_id": "casa_dos_tijolos_americana",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_listing_no_vendor_host",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null,
+          "notes": "allowed_hosts empty; directory only."
+        },
+        {
+          "vendor_id": "deposito_brasil_campinas",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_listing_no_vendor_host",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null,
+          "notes": "allowed_hosts empty; directory only."
+        },
+        {
+          "vendor_id": "deposito_tayo_campinas",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_public_sku",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null,
+          "notes": "?s=calha and ?s=rufo return no results."
+        }
+      ]
+    },
+    {
+      "expense_id": "EXP_0047",
+      "requested_item": "Pregos, parafusos, buchas",
+      "requested_unit": "pacote",
+      "vendor_results": [
+        {
+          "vendor_id": "construeva_americana",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_public_sku",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null,
+          "notes": "No fastener pack product/price pages on Localo host."
+        },
+        {
+          "vendor_id": "deposito_ouro_verde_campinas",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "woocommerce_empty_no_priced_sku",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null,
+          "notes": "WC empty; ?s=prego and ?s=parafuso no priced pack SKUs."
+        },
+        {
+          "vendor_id": "feval_americana",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_public_sku",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null,
+          "notes": "No catalog; no public prego/parafuso/bucha prices."
+        },
+        {
+          "vendor_id": "casa_dos_tijolos_americana",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_listing_no_vendor_host",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null,
+          "notes": "allowed_hosts empty; directory only."
+        },
+        {
+          "vendor_id": "deposito_brasil_campinas",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_listing_no_vendor_host",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null,
+          "notes": "allowed_hosts empty; directory only."
+        },
+        {
+          "vendor_id": "deposito_tayo_campinas",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_public_sku",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null,
+          "notes": "?s=prego and ?s=parafuso return no results."
+        }
+      ]
+    }
+  ]
+}

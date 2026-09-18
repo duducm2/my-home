@@ -1,0 +1,423 @@
+{
+  "cluster": "plumbing",
+  "checked_at": "2026-09-17",
+  "location_basis": "nova_odessa_cep_13380",
+  "probe_notes": [
+    "Construeva (localo.site): marketing/reviews/blog only; mentions hidráulica/louças/PPR-PVC; no R$ SKU pages (HTTP 200).",
+    "Ouro Verde (depouroverde.com.br): WooCommerce /loja/ is placeholder ('store launching soon'); wp-json/wc/store/products and wp/v2/product return []; product searches show no priced SKUs.",
+    "Feval (feval.com.br): sitemap only /, /sobre, /contato; no shop/catalog routes (404 on /loja,/produtos,/catalogo).",
+    "Casa dos Tijolos / Depósito Brasil: allowed_hosts empty (directory listings only); not vendor e-commerce hosts.",
+    "Tayo/Nikkei (nikkeiaeroporto.com.br): WhatsApp cotação landing; lists hidráulicos/louça/metais qualitatively; no priced product pages.",
+    "Tier-B Ceron: fit EXP_0036/EXP_0037 but allowed_hosts empty (Diário Cidade directory); no vendor domain to verify."
+  ],
+  "expenses": [
+    {
+      "expense_id": "EXP_0028",
+      "requested_item": "Vaso",
+      "requested_unit": "unidade",
+      "vendor_results": [
+        {
+          "vendor_id": "construeva_americana",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_public_sku",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null,
+          "notes": "Localo site HTTP 200; blog mentions louças/hidráulica without prices; phone +55 19 3468-6870."
+        },
+        {
+          "vendor_id": "deposito_ouro_verde_campinas",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "woocommerce_empty_no_priced_sku",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null,
+          "notes": "https://depouroverde.com.br/loja/ HTTP 200 placeholder; WC store API products=[] ; search ?s=vaso&post_type=product no R$."
+        },
+        {
+          "vendor_id": "feval_americana",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_public_sku",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null,
+          "notes": "Institutional site only (home/sobre/contato); no product catalog."
+        },
+        {
+          "vendor_id": "casa_dos_tijolos_americana",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_listing_no_vendor_host",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null,
+          "notes": "allowed_hosts empty; Página Amarela directory only."
+        },
+        {
+          "vendor_id": "deposito_brasil_campinas",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_listing_no_vendor_host",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null,
+          "notes": "allowed_hosts empty; ConectaObra listing only."
+        },
+        {
+          "vendor_id": "deposito_tayo_campinas",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_public_sku",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null,
+          "notes": "Landing page lists louça/hidráulicos; WhatsApp cotação only; no SKU prices."
+        }
+      ]
+    },
+    {
+      "expense_id": "EXP_0036",
+      "requested_item": "Torneiras",
+      "requested_unit": "unidade",
+      "vendor_results": [
+        {
+          "vendor_id": "construeva_americana",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_public_sku",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null,
+          "notes": "In fit_for_expenses; Localo site has no torneira product/price pages."
+        },
+        {
+          "vendor_id": "deposito_ouro_verde_campinas",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "woocommerce_empty_no_priced_sku",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null,
+          "notes": "WC empty; ?s=torneira&post_type=product no R$."
+        },
+        {
+          "vendor_id": "feval_americana",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_public_sku",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null,
+          "notes": "In fit_for_expenses; Feval history mentions hidráulica/elétrica but no public SKU prices."
+        },
+        {
+          "vendor_id": "casa_dos_tijolos_americana",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_listing_no_vendor_host",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_brasil_campinas",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_listing_no_vendor_host",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_tayo_campinas",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_public_sku",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null,
+          "notes": "Mentions metais/hidráulicos qualitatively; WhatsApp quote only."
+        },
+        {
+          "vendor_id": "deposito_ceron_nova_odessa",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_listing_no_vendor_host",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null,
+          "notes": "Tier-B fit_for_expenses EXP_0036; allowed_hosts empty; phone (19) 3873-1060 for cotação."
+        }
+      ]
+    },
+    {
+      "expense_id": "EXP_0037",
+      "requested_item": "Sifões e ralos",
+      "requested_unit": "unidade",
+      "vendor_results": [
+        {
+          "vendor_id": "construeva_americana",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_public_sku",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_ouro_verde_campinas",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "woocommerce_empty_no_priced_sku",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null,
+          "notes": "WC empty; ?s=sifao&post_type=product no R$."
+        },
+        {
+          "vendor_id": "feval_americana",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_public_sku",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null
+        },
+        {
+          "vendor_id": "casa_dos_tijolos_americana",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_listing_no_vendor_host",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_brasil_campinas",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_listing_no_vendor_host",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_tayo_campinas",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_public_sku",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_ceron_nova_odessa",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_listing_no_vendor_host",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null,
+          "notes": "Tier-B fit_for_expenses EXP_0037; no vendor e-commerce host; cotação by phone."
+        }
+      ]
+    },
+    {
+      "expense_id": "EXP_0039",
+      "requested_item": "Pias e bancadas",
+      "requested_unit": "conjunto",
+      "vendor_results": [
+        {
+          "vendor_id": "construeva_americana",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_public_sku",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_ouro_verde_campinas",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "woocommerce_empty_no_priced_sku",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null,
+          "notes": "WC empty; ?s=pia&post_type=product no R$."
+        },
+        {
+          "vendor_id": "feval_americana",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_public_sku",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null
+        },
+        {
+          "vendor_id": "casa_dos_tijolos_americana",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_listing_no_vendor_host",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_brasil_campinas",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_listing_no_vendor_host",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_tayo_campinas",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_public_sku",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null
+        }
+      ]
+    },
+    {
+      "expense_id": "EXP_0040",
+      "requested_item": "Box de vidro para o banheiro (R$850)",
+      "requested_unit": "unidade",
+      "vendor_results": [
+        {
+          "vendor_id": "construeva_americana",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_public_sku",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_ouro_verde_campinas",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "woocommerce_empty_no_priced_sku",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null,
+          "notes": "WC empty; ?s=box&post_type=product no R$."
+        },
+        {
+          "vendor_id": "feval_americana",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_public_sku",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null
+        },
+        {
+          "vendor_id": "casa_dos_tijolos_americana",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_listing_no_vendor_host",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_brasil_campinas",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_listing_no_vendor_host",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_tayo_campinas",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_public_sku",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null
+        }
+      ]
+    },
+    {
+      "expense_id": "EXP_0044",
+      "requested_item": "Caixa de água",
+      "requested_unit": "unidade",
+      "vendor_results": [
+        {
+          "vendor_id": "construeva_americana",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_public_sku",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_ouro_verde_campinas",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "woocommerce_empty_no_priced_sku",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null,
+          "notes": "WC empty; ?s=caixa+dagua&post_type=product no R$."
+        },
+        {
+          "vendor_id": "feval_americana",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_public_sku",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null
+        },
+        {
+          "vendor_id": "casa_dos_tijolos_americana",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_listing_no_vendor_host",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_brasil_campinas",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_listing_no_vendor_host",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_tayo_campinas",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_public_sku",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "expenses": 6,
+    "vendor_result_rows": 38,
+    "site_verified": 0,
+    "no_match": 38,
+    "cotacao_needed_true": 38,
+    "tier_b_included": ["deposito_ceron_nova_odessa"]
+  }
+}

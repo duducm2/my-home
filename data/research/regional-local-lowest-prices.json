@@ -1,0 +1,3376 @@
+{
+  "source": "Regional local depos",
+  "source_report": "data/research/regional-vendors-report.json",
+  "location_basis": "nova_odessa_cep_13380",
+  "checked_at": "2026-09-17",
+  "summary": {
+    "total_material_expenses": 35,
+    "verified_matches": 0,
+    "no_match": 35,
+    "vendors_probed": 11
+  },
+  "vendors": [
+    {
+      "id": "construeva_americana",
+      "name": "Construeva Materiais de Construção",
+      "tier": "A",
+      "cities": [
+        "Americana"
+      ],
+      "phone": "+55 19 3468-6870",
+      "url": "https://construeva-construcao.localo.site/"
+    },
+    {
+      "id": "deposito_ouro_verde_campinas",
+      "name": "Depósito Ouro Verde Materiais de Construção",
+      "tier": "A",
+      "cities": [
+        "Campinas"
+      ],
+      "phone": "(19) 97405-9418",
+      "url": "https://depouroverde.com.br/"
+    },
+    {
+      "id": "feval_americana",
+      "name": "Feval Materiais para Construção",
+      "tier": "A",
+      "cities": [
+        "Americana"
+      ],
+      "phone": null,
+      "url": "https://feval.com.br/"
+    },
+    {
+      "id": "casa_dos_tijolos_americana",
+      "name": "Casa dos Tijolos Materiais para Construção",
+      "tier": "A",
+      "cities": [
+        "Americana"
+      ],
+      "phone": "(19) 3468-6321",
+      "url": "https://paginaamarela.com.br/empresa/casa-dos-tijolos-materiais-para-construcao/americana/sp/7807803"
+    },
+    {
+      "id": "deposito_brasil_campinas",
+      "name": "Depósito Brasil Materiais para Construção",
+      "tier": "A",
+      "cities": [
+        "Campinas"
+      ],
+      "phone": null,
+      "url": "https://conectaobra.com/campinas-sp/loja-de-materiais-de-construcao/deposito-brasil-materiais-para-construcao"
+    },
+    {
+      "id": "deposito_tayo_campinas",
+      "name": "Depósito Tayo Materiais de Construção",
+      "tier": "A",
+      "cities": [
+        "Campinas"
+      ],
+      "phone": "(19) 3266-1333",
+      "url": "https://nikkeiaeroporto.com.br/"
+    },
+    {
+      "id": "deposito_alvorada_nova_odessa",
+      "name": "Depósito Alvorada",
+      "tier": "B",
+      "cities": [
+        "Nova Odessa"
+      ],
+      "phone": null,
+      "url": "https://guiapj.com.br/consulta-cnpj/02190183000180"
+    },
+    {
+      "id": "deposito_ceron_nova_odessa",
+      "name": "Depósito de Materiais Ceron",
+      "tier": "B",
+      "cities": [
+        "Nova Odessa"
+      ],
+      "phone": "(19) 3873-1060",
+      "url": "https://www.diariocidade.com/sp/nova-odessa/guia/deposito-de-materiais-ceron-10847485000107/"
+    },
+    {
+      "id": "casa_do_construtor_nova_odessa",
+      "name": "A Casa do Construtor (Comercial Prieto e Tanaka)",
+      "tier": "B",
+      "cities": [
+        "Nova Odessa"
+      ],
+      "phone": null,
+      "url": "https://empresadois.com.br/cnpj/a-casa-do-construtor-05969131000103"
+    },
+    {
+      "id": "pezao_nova_odessa",
+      "name": "Pezão Materiais para Construção",
+      "tier": "B",
+      "cities": [
+        "Nova Odessa"
+      ],
+      "phone": "(19) 3466-6038",
+      "url": "https://teleconsulta.com.br/nova-odessa/materiais-eletricos-venda/pezao-materiais-construcao-nova-odessa-00000000008561/"
+    },
+    {
+      "id": "deposito_alemao_americana",
+      "name": "Depósito do Alemão",
+      "tier": "B",
+      "cities": [
+        "Americana"
+      ],
+      "phone": null,
+      "url": "https://www.listamais.com.br/local/cad_idXZ99Q9Q/deposito-do-alemao-lojas-de-materiais-de-construcao-em-americana-sp"
+    }
+  ],
+  "expenses": [
+    {
+      "expense_id": "EXP_0014",
+      "requested_item": "Impermeabilizante (bianco)",
+      "requested_unit": "balde",
+      "match_status": "no_match",
+      "price_evidence": "cotacao_needed",
+      "winner": null,
+      "verified_vendor_count": 0,
+      "vendor_results": [
+        {
+          "vendor_id": "construeva_americana",
+          "vendor_name": "Construeva Materiais de Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "landing_no_catalog",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_ouro_verde_campinas",
+          "vendor_name": "Depósito Ouro Verde Materiais de Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "empty_woocommerce",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "feval_americana",
+          "vendor_name": "Feval Materiais para Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "landing_no_catalog",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "casa_dos_tijolos_americana",
+          "vendor_name": "Casa dos Tijolos Materiais para Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_only",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_brasil_campinas",
+          "vendor_name": "Depósito Brasil Materiais para Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_only",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_tayo_campinas",
+          "vendor_name": "Depósito Tayo Materiais de Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "landing_whatsapp_only",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        }
+      ],
+      "cotacao_vendor_ids": [
+        "casa_dos_tijolos_americana",
+        "construeva_americana",
+        "deposito_brasil_campinas",
+        "deposito_ouro_verde_campinas",
+        "deposito_tayo_campinas",
+        "feval_americana"
+      ],
+      "no_match_reason": "no_public_sku_on_probed_local_depos"
+    },
+    {
+      "expense_id": "EXP_0015",
+      "requested_item": "Areia grossa, fina e pedrisco",
+      "requested_unit": "metro cúbico (m³)",
+      "match_status": "no_match",
+      "price_evidence": "cotacao_needed",
+      "winner": null,
+      "verified_vendor_count": 0,
+      "vendor_results": [
+        {
+          "vendor_id": "construeva_americana",
+          "vendor_name": "Construeva Materiais de Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "landing_no_catalog",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_ouro_verde_campinas",
+          "vendor_name": "Depósito Ouro Verde Materiais de Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "empty_woocommerce",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "feval_americana",
+          "vendor_name": "Feval Materiais para Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "landing_no_catalog",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "casa_dos_tijolos_americana",
+          "vendor_name": "Casa dos Tijolos Materiais para Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_only",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_brasil_campinas",
+          "vendor_name": "Depósito Brasil Materiais para Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_only",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_tayo_campinas",
+          "vendor_name": "Depósito Tayo Materiais de Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "landing_whatsapp_only",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_alvorada_nova_odessa",
+          "vendor_name": "Depósito Alvorada",
+          "tier": "B",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_only",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_ceron_nova_odessa",
+          "vendor_name": "Depósito de Materiais Ceron",
+          "tier": "B",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_only",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "casa_do_construtor_nova_odessa",
+          "vendor_name": "A Casa do Construtor (Comercial Prieto e Tanaka)",
+          "tier": "B",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_only",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "pezao_nova_odessa",
+          "vendor_name": "Pezão Materiais para Construção",
+          "tier": "B",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_only",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_alemao_americana",
+          "vendor_name": "Depósito do Alemão",
+          "tier": "B",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_only",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        }
+      ],
+      "cotacao_vendor_ids": [
+        "casa_do_construtor_nova_odessa",
+        "casa_dos_tijolos_americana",
+        "construeva_americana",
+        "deposito_alemao_americana",
+        "deposito_alvorada_nova_odessa",
+        "deposito_brasil_campinas",
+        "deposito_ceron_nova_odessa",
+        "deposito_ouro_verde_campinas",
+        "deposito_tayo_campinas",
+        "feval_americana",
+        "pezao_nova_odessa"
+      ],
+      "no_match_reason": "no_public_sku_on_probed_local_depos"
+    },
+    {
+      "expense_id": "EXP_0016",
+      "requested_item": "Cimento",
+      "requested_unit": "saco (50 kg)",
+      "match_status": "no_match",
+      "price_evidence": "cotacao_needed",
+      "winner": null,
+      "verified_vendor_count": 0,
+      "vendor_results": [
+        {
+          "vendor_id": "construeva_americana",
+          "vendor_name": "Construeva Materiais de Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "landing_no_catalog",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_ouro_verde_campinas",
+          "vendor_name": "Depósito Ouro Verde Materiais de Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "empty_woocommerce",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "feval_americana",
+          "vendor_name": "Feval Materiais para Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "landing_no_catalog",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "casa_dos_tijolos_americana",
+          "vendor_name": "Casa dos Tijolos Materiais para Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_only",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_brasil_campinas",
+          "vendor_name": "Depósito Brasil Materiais para Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_only",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_tayo_campinas",
+          "vendor_name": "Depósito Tayo Materiais de Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "landing_whatsapp_only",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_alvorada_nova_odessa",
+          "vendor_name": "Depósito Alvorada",
+          "tier": "B",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_only",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_ceron_nova_odessa",
+          "vendor_name": "Depósito de Materiais Ceron",
+          "tier": "B",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_only",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "casa_do_construtor_nova_odessa",
+          "vendor_name": "A Casa do Construtor (Comercial Prieto e Tanaka)",
+          "tier": "B",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_only",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "pezao_nova_odessa",
+          "vendor_name": "Pezão Materiais para Construção",
+          "tier": "B",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_only",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_alemao_americana",
+          "vendor_name": "Depósito do Alemão",
+          "tier": "B",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_only",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        }
+      ],
+      "cotacao_vendor_ids": [
+        "casa_do_construtor_nova_odessa",
+        "casa_dos_tijolos_americana",
+        "construeva_americana",
+        "deposito_alemao_americana",
+        "deposito_alvorada_nova_odessa",
+        "deposito_brasil_campinas",
+        "deposito_ceron_nova_odessa",
+        "deposito_ouro_verde_campinas",
+        "deposito_tayo_campinas",
+        "feval_americana",
+        "pezao_nova_odessa"
+      ],
+      "no_match_reason": "no_public_sku_on_probed_local_depos"
+    },
+    {
+      "expense_id": "EXP_0017",
+      "requested_item": "Telha",
+      "requested_unit": "unidade",
+      "match_status": "no_match",
+      "price_evidence": "cotacao_needed",
+      "winner": null,
+      "verified_vendor_count": 0,
+      "vendor_results": [
+        {
+          "vendor_id": "construeva_americana",
+          "vendor_name": "Construeva Materiais de Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "landing_no_catalog",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_ouro_verde_campinas",
+          "vendor_name": "Depósito Ouro Verde Materiais de Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "empty_woocommerce",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "feval_americana",
+          "vendor_name": "Feval Materiais para Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "landing_no_catalog",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "casa_dos_tijolos_americana",
+          "vendor_name": "Casa dos Tijolos Materiais para Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_only",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_brasil_campinas",
+          "vendor_name": "Depósito Brasil Materiais para Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_only",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_tayo_campinas",
+          "vendor_name": "Depósito Tayo Materiais de Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "landing_whatsapp_only",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        }
+      ],
+      "cotacao_vendor_ids": [
+        "casa_dos_tijolos_americana",
+        "construeva_americana",
+        "deposito_brasil_campinas",
+        "deposito_ouro_verde_campinas",
+        "deposito_tayo_campinas",
+        "feval_americana"
+      ],
+      "no_match_reason": "no_public_sku_on_probed_local_depos"
+    },
+    {
+      "expense_id": "EXP_0019",
+      "requested_item": "Tijolinho de barro",
+      "requested_unit": "unidade",
+      "match_status": "no_match",
+      "price_evidence": "cotacao_needed",
+      "winner": null,
+      "verified_vendor_count": 0,
+      "vendor_results": [
+        {
+          "vendor_id": "construeva_americana",
+          "vendor_name": "Construeva Materiais de Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "landing_no_catalog",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_ouro_verde_campinas",
+          "vendor_name": "Depósito Ouro Verde Materiais de Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "empty_woocommerce",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "feval_americana",
+          "vendor_name": "Feval Materiais para Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "landing_no_catalog",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "casa_dos_tijolos_americana",
+          "vendor_name": "Casa dos Tijolos Materiais para Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_only",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_brasil_campinas",
+          "vendor_name": "Depósito Brasil Materiais para Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_only",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_tayo_campinas",
+          "vendor_name": "Depósito Tayo Materiais de Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "landing_whatsapp_only",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_alvorada_nova_odessa",
+          "vendor_name": "Depósito Alvorada",
+          "tier": "B",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_only",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_ceron_nova_odessa",
+          "vendor_name": "Depósito de Materiais Ceron",
+          "tier": "B",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_only",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "casa_do_construtor_nova_odessa",
+          "vendor_name": "A Casa do Construtor (Comercial Prieto e Tanaka)",
+          "tier": "B",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_only",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "pezao_nova_odessa",
+          "vendor_name": "Pezão Materiais para Construção",
+          "tier": "B",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_only",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_alemao_americana",
+          "vendor_name": "Depósito do Alemão",
+          "tier": "B",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_only",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        }
+      ],
+      "cotacao_vendor_ids": [
+        "casa_do_construtor_nova_odessa",
+        "casa_dos_tijolos_americana",
+        "construeva_americana",
+        "deposito_alemao_americana",
+        "deposito_alvorada_nova_odessa",
+        "deposito_brasil_campinas",
+        "deposito_ceron_nova_odessa",
+        "deposito_ouro_verde_campinas",
+        "deposito_tayo_campinas",
+        "feval_americana",
+        "pezao_nova_odessa"
+      ],
+      "no_match_reason": "no_public_sku_on_probed_local_depos"
+    },
+    {
+      "expense_id": "EXP_0021",
+      "requested_item": "Arame recuzido",
+      "requested_unit": "quilograma (kg)",
+      "match_status": "no_match",
+      "price_evidence": "cotacao_needed",
+      "winner": null,
+      "verified_vendor_count": 0,
+      "vendor_results": [
+        {
+          "vendor_id": "construeva_americana",
+          "vendor_name": "Construeva Materiais de Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "landing_no_catalog",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_ouro_verde_campinas",
+          "vendor_name": "Depósito Ouro Verde Materiais de Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "empty_woocommerce",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "feval_americana",
+          "vendor_name": "Feval Materiais para Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "landing_no_catalog",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "casa_dos_tijolos_americana",
+          "vendor_name": "Casa dos Tijolos Materiais para Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_only",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_brasil_campinas",
+          "vendor_name": "Depósito Brasil Materiais para Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_only",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_tayo_campinas",
+          "vendor_name": "Depósito Tayo Materiais de Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "landing_whatsapp_only",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        }
+      ],
+      "cotacao_vendor_ids": [
+        "casa_dos_tijolos_americana",
+        "construeva_americana",
+        "deposito_brasil_campinas",
+        "deposito_ouro_verde_campinas",
+        "deposito_tayo_campinas",
+        "feval_americana"
+      ],
+      "no_match_reason": "no_public_sku_on_probed_local_depos"
+    },
+    {
+      "expense_id": "EXP_0042",
+      "requested_item": "Madeiramento ou estrutura metálica",
+      "requested_unit": "metro quadrado (m²)",
+      "match_status": "no_match",
+      "price_evidence": "cotacao_needed",
+      "winner": null,
+      "verified_vendor_count": 0,
+      "vendor_results": [
+        {
+          "vendor_id": "construeva_americana",
+          "vendor_name": "Construeva Materiais de Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "landing_no_catalog",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_ouro_verde_campinas",
+          "vendor_name": "Depósito Ouro Verde Materiais de Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "empty_woocommerce",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "feval_americana",
+          "vendor_name": "Feval Materiais para Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "landing_no_catalog",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "casa_dos_tijolos_americana",
+          "vendor_name": "Casa dos Tijolos Materiais para Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_only",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_brasil_campinas",
+          "vendor_name": "Depósito Brasil Materiais para Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_only",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_tayo_campinas",
+          "vendor_name": "Depósito Tayo Materiais de Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "landing_whatsapp_only",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        }
+      ],
+      "cotacao_vendor_ids": [
+        "casa_dos_tijolos_americana",
+        "construeva_americana",
+        "deposito_brasil_campinas",
+        "deposito_ouro_verde_campinas",
+        "deposito_tayo_campinas",
+        "feval_americana"
+      ],
+      "no_match_reason": "no_public_sku_on_probed_local_depos"
+    },
+    {
+      "expense_id": "EXP_0023",
+      "requested_item": "Porcelanato",
+      "requested_unit": "metro quadrado (m²)",
+      "match_status": "no_match",
+      "price_evidence": "cotacao_needed",
+      "winner": null,
+      "verified_vendor_count": 0,
+      "vendor_results": [
+        {
+          "vendor_id": "construeva_americana",
+          "vendor_name": "Construeva Materiais de Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "blog_mentions_assortment_no_public_sku_price",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_ouro_verde_campinas",
+          "vendor_name": "Depósito Ouro Verde Materiais de Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "woocommerce_shop_empty_no_public_sku",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "feval_americana",
+          "vendor_name": "Feval Materiais para Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "marketing_site_only_no_catalog",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "casa_dos_tijolos_americana",
+          "vendor_name": "Casa dos Tijolos Materiais para Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_listing_only_no_vendor_ecommerce_host",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_brasil_campinas",
+          "vendor_name": "Depósito Brasil Materiais para Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_listing_only_no_vendor_ecommerce_host",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_tayo_campinas",
+          "vendor_name": "Depósito Tayo Materiais de Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "landing_whatsapp_quote_only_no_public_sku",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        }
+      ],
+      "cotacao_vendor_ids": [
+        "casa_dos_tijolos_americana",
+        "construeva_americana",
+        "deposito_brasil_campinas",
+        "deposito_ouro_verde_campinas",
+        "deposito_tayo_campinas",
+        "feval_americana"
+      ],
+      "no_match_reason": "no_public_sku_on_probed_local_depos"
+    },
+    {
+      "expense_id": "EXP_0024",
+      "requested_item": "Rejunte de porcelanato",
+      "requested_unit": "quilograma (kg)",
+      "match_status": "no_match",
+      "price_evidence": "cotacao_needed",
+      "winner": null,
+      "verified_vendor_count": 0,
+      "vendor_results": [
+        {
+          "vendor_id": "construeva_americana",
+          "vendor_name": "Construeva Materiais de Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "blog_mentions_assortment_no_public_sku_price",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_ouro_verde_campinas",
+          "vendor_name": "Depósito Ouro Verde Materiais de Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "woocommerce_shop_empty_no_public_sku",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "feval_americana",
+          "vendor_name": "Feval Materiais para Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "marketing_site_only_no_catalog",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "casa_dos_tijolos_americana",
+          "vendor_name": "Casa dos Tijolos Materiais para Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_listing_only_no_vendor_ecommerce_host",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_brasil_campinas",
+          "vendor_name": "Depósito Brasil Materiais para Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_listing_only_no_vendor_ecommerce_host",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_tayo_campinas",
+          "vendor_name": "Depósito Tayo Materiais de Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "landing_whatsapp_quote_only_no_public_sku",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        }
+      ],
+      "cotacao_vendor_ids": [
+        "casa_dos_tijolos_americana",
+        "construeva_americana",
+        "deposito_brasil_campinas",
+        "deposito_ouro_verde_campinas",
+        "deposito_tayo_campinas",
+        "feval_americana"
+      ],
+      "no_match_reason": "no_public_sku_on_probed_local_depos"
+    },
+    {
+      "expense_id": "EXP_0025",
+      "requested_item": "Argamassa para o porcelanato",
+      "requested_unit": "saco (20 kg)",
+      "match_status": "no_match",
+      "price_evidence": "cotacao_needed",
+      "winner": null,
+      "verified_vendor_count": 0,
+      "vendor_results": [
+        {
+          "vendor_id": "construeva_americana",
+          "vendor_name": "Construeva Materiais de Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "blog_mentions_assortment_no_public_sku_price",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_ouro_verde_campinas",
+          "vendor_name": "Depósito Ouro Verde Materiais de Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "woocommerce_shop_empty_no_public_sku",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "feval_americana",
+          "vendor_name": "Feval Materiais para Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "marketing_site_only_no_catalog",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "casa_dos_tijolos_americana",
+          "vendor_name": "Casa dos Tijolos Materiais para Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_listing_only_no_vendor_ecommerce_host",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_brasil_campinas",
+          "vendor_name": "Depósito Brasil Materiais para Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_listing_only_no_vendor_ecommerce_host",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_tayo_campinas",
+          "vendor_name": "Depósito Tayo Materiais de Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "landing_whatsapp_quote_only_no_public_sku",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        }
+      ],
+      "cotacao_vendor_ids": [
+        "casa_dos_tijolos_americana",
+        "construeva_americana",
+        "deposito_brasil_campinas",
+        "deposito_ouro_verde_campinas",
+        "deposito_tayo_campinas",
+        "feval_americana"
+      ],
+      "no_match_reason": "no_public_sku_on_probed_local_depos"
+    },
+    {
+      "expense_id": "EXP_0041",
+      "requested_item": "Rodapés para acompanhar o porcelanato (R$1500)",
+      "requested_unit": "metro linear (m)",
+      "match_status": "no_match",
+      "price_evidence": "cotacao_needed",
+      "winner": null,
+      "verified_vendor_count": 0,
+      "vendor_results": [
+        {
+          "vendor_id": "construeva_americana",
+          "vendor_name": "Construeva Materiais de Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "blog_mentions_assortment_no_public_sku_price",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_ouro_verde_campinas",
+          "vendor_name": "Depósito Ouro Verde Materiais de Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "woocommerce_shop_empty_no_public_sku",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "feval_americana",
+          "vendor_name": "Feval Materiais para Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "marketing_site_only_no_catalog",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "casa_dos_tijolos_americana",
+          "vendor_name": "Casa dos Tijolos Materiais para Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_listing_only_no_vendor_ecommerce_host",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_brasil_campinas",
+          "vendor_name": "Depósito Brasil Materiais para Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_listing_only_no_vendor_ecommerce_host",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_tayo_campinas",
+          "vendor_name": "Depósito Tayo Materiais de Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "landing_whatsapp_quote_only_no_public_sku",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        }
+      ],
+      "cotacao_vendor_ids": [
+        "casa_dos_tijolos_americana",
+        "construeva_americana",
+        "deposito_brasil_campinas",
+        "deposito_ouro_verde_campinas",
+        "deposito_tayo_campinas",
+        "feval_americana"
+      ],
+      "no_match_reason": "no_public_sku_on_probed_local_depos"
+    },
+    {
+      "expense_id": "EXP_0046",
+      "requested_item": "Tinta",
+      "requested_unit": "lata (18 L)",
+      "match_status": "no_match",
+      "price_evidence": "cotacao_needed",
+      "winner": null,
+      "verified_vendor_count": 0,
+      "vendor_results": [
+        {
+          "vendor_id": "construeva_americana",
+          "vendor_name": "Construeva Materiais de Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_public_sku_price_on_vendor_domain",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_ouro_verde_campinas",
+          "vendor_name": "Depósito Ouro Verde Materiais de Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "woocommerce_shop_empty_no_public_sku",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "feval_americana",
+          "vendor_name": "Feval Materiais para Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "marketing_site_only_no_catalog",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "casa_dos_tijolos_americana",
+          "vendor_name": "Casa dos Tijolos Materiais para Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_listing_only_no_vendor_ecommerce_host",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_brasil_campinas",
+          "vendor_name": "Depósito Brasil Materiais para Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_listing_only_no_vendor_ecommerce_host",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_tayo_campinas",
+          "vendor_name": "Depósito Tayo Materiais de Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "landing_mentions_tintas_no_public_sku_price",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        }
+      ],
+      "cotacao_vendor_ids": [
+        "casa_dos_tijolos_americana",
+        "construeva_americana",
+        "deposito_brasil_campinas",
+        "deposito_ouro_verde_campinas",
+        "deposito_tayo_campinas",
+        "feval_americana"
+      ],
+      "no_match_reason": "no_public_sku_on_probed_local_depos"
+    },
+    {
+      "expense_id": "EXP_0048",
+      "requested_item": "Silicone, espuma expansiva, selante PU",
+      "requested_unit": "kit",
+      "match_status": "no_match",
+      "price_evidence": "cotacao_needed",
+      "winner": null,
+      "verified_vendor_count": 0,
+      "vendor_results": [
+        {
+          "vendor_id": "construeva_americana",
+          "vendor_name": "Construeva Materiais de Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_public_sku_price_on_vendor_domain",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_ouro_verde_campinas",
+          "vendor_name": "Depósito Ouro Verde Materiais de Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "woocommerce_shop_empty_no_public_sku",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "feval_americana",
+          "vendor_name": "Feval Materiais para Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "marketing_site_only_no_catalog",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "casa_dos_tijolos_americana",
+          "vendor_name": "Casa dos Tijolos Materiais para Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_listing_only_no_vendor_ecommerce_host",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_brasil_campinas",
+          "vendor_name": "Depósito Brasil Materiais para Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_listing_only_no_vendor_ecommerce_host",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_tayo_campinas",
+          "vendor_name": "Depósito Tayo Materiais de Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "landing_whatsapp_quote_only_no_public_sku",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        }
+      ],
+      "cotacao_vendor_ids": [
+        "casa_dos_tijolos_americana",
+        "construeva_americana",
+        "deposito_brasil_campinas",
+        "deposito_ouro_verde_campinas",
+        "deposito_tayo_campinas",
+        "feval_americana"
+      ],
+      "no_match_reason": "no_public_sku_on_probed_local_depos"
+    },
+    {
+      "expense_id": "EXP_0049",
+      "requested_item": "Lona para proteção da obra",
+      "requested_unit": "metro quadrado (m²)",
+      "match_status": "no_match",
+      "price_evidence": "cotacao_needed",
+      "winner": null,
+      "verified_vendor_count": 0,
+      "vendor_results": [
+        {
+          "vendor_id": "construeva_americana",
+          "vendor_name": "Construeva Materiais de Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_public_sku_price_on_vendor_domain",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_ouro_verde_campinas",
+          "vendor_name": "Depósito Ouro Verde Materiais de Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "woocommerce_shop_empty_no_public_sku",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "feval_americana",
+          "vendor_name": "Feval Materiais para Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "marketing_site_only_no_catalog",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "casa_dos_tijolos_americana",
+          "vendor_name": "Casa dos Tijolos Materiais para Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_listing_only_no_vendor_ecommerce_host",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_brasil_campinas",
+          "vendor_name": "Depósito Brasil Materiais para Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_listing_only_no_vendor_ecommerce_host",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_tayo_campinas",
+          "vendor_name": "Depósito Tayo Materiais de Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "landing_whatsapp_quote_only_no_public_sku",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        }
+      ],
+      "cotacao_vendor_ids": [
+        "casa_dos_tijolos_americana",
+        "construeva_americana",
+        "deposito_brasil_campinas",
+        "deposito_ouro_verde_campinas",
+        "deposito_tayo_campinas",
+        "feval_americana"
+      ],
+      "no_match_reason": "no_public_sku_on_probed_local_depos"
+    },
+    {
+      "expense_id": "EXP_0026",
+      "requested_item": "Portas internas",
+      "requested_unit": "unidade",
+      "match_status": "no_match",
+      "price_evidence": "cotacao_needed",
+      "winner": null,
+      "verified_vendor_count": 0,
+      "vendor_results": [
+        {
+          "vendor_id": "construeva_americana",
+          "vendor_name": "Construeva Materiais de Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_public_sku",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_ouro_verde_campinas",
+          "vendor_name": "Depósito Ouro Verde Materiais de Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_public_sku",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "feval_americana",
+          "vendor_name": "Feval Materiais para Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_public_sku",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "casa_dos_tijolos_americana",
+          "vendor_name": "Casa dos Tijolos Materiais para Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_vendor_ecommerce_host",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_brasil_campinas",
+          "vendor_name": "Depósito Brasil Materiais para Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_vendor_ecommerce_host",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_tayo_campinas",
+          "vendor_name": "Depósito Tayo Materiais de Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_public_sku",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        }
+      ],
+      "cotacao_vendor_ids": [
+        "casa_dos_tijolos_americana",
+        "construeva_americana",
+        "deposito_brasil_campinas",
+        "deposito_ouro_verde_campinas",
+        "deposito_tayo_campinas",
+        "feval_americana"
+      ],
+      "no_match_reason": "no_public_sku_on_probed_local_depos"
+    },
+    {
+      "expense_id": "EXP_0027",
+      "requested_item": "Porta Balcão (R$2000)",
+      "requested_unit": "unidade",
+      "match_status": "no_match",
+      "price_evidence": "cotacao_needed",
+      "winner": null,
+      "verified_vendor_count": 0,
+      "vendor_results": [
+        {
+          "vendor_id": "construeva_americana",
+          "vendor_name": "Construeva Materiais de Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_public_sku",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_ouro_verde_campinas",
+          "vendor_name": "Depósito Ouro Verde Materiais de Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_public_sku",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "feval_americana",
+          "vendor_name": "Feval Materiais para Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_public_sku",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "casa_dos_tijolos_americana",
+          "vendor_name": "Casa dos Tijolos Materiais para Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_vendor_ecommerce_host",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_brasil_campinas",
+          "vendor_name": "Depósito Brasil Materiais para Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_vendor_ecommerce_host",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_tayo_campinas",
+          "vendor_name": "Depósito Tayo Materiais de Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_public_sku",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        }
+      ],
+      "cotacao_vendor_ids": [
+        "casa_dos_tijolos_americana",
+        "construeva_americana",
+        "deposito_brasil_campinas",
+        "deposito_ouro_verde_campinas",
+        "deposito_tayo_campinas",
+        "feval_americana"
+      ],
+      "no_match_reason": "no_public_sku_on_probed_local_depos"
+    },
+    {
+      "expense_id": "EXP_0029",
+      "requested_item": "Janela (quartos e escritório)",
+      "requested_unit": "unidade",
+      "match_status": "no_match",
+      "price_evidence": "cotacao_needed",
+      "winner": null,
+      "verified_vendor_count": 0,
+      "vendor_results": [
+        {
+          "vendor_id": "construeva_americana",
+          "vendor_name": "Construeva Materiais de Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_public_sku",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_ouro_verde_campinas",
+          "vendor_name": "Depósito Ouro Verde Materiais de Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_public_sku",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "feval_americana",
+          "vendor_name": "Feval Materiais para Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_public_sku",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "casa_dos_tijolos_americana",
+          "vendor_name": "Casa dos Tijolos Materiais para Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_vendor_ecommerce_host",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_brasil_campinas",
+          "vendor_name": "Depósito Brasil Materiais para Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_vendor_ecommerce_host",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_tayo_campinas",
+          "vendor_name": "Depósito Tayo Materiais de Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_public_sku",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        }
+      ],
+      "cotacao_vendor_ids": [
+        "casa_dos_tijolos_americana",
+        "construeva_americana",
+        "deposito_brasil_campinas",
+        "deposito_ouro_verde_campinas",
+        "deposito_tayo_campinas",
+        "feval_americana"
+      ],
+      "no_match_reason": "no_public_sku_on_probed_local_depos"
+    },
+    {
+      "expense_id": "EXP_0030",
+      "requested_item": "Vitrô Sala",
+      "requested_unit": "unidade",
+      "match_status": "no_match",
+      "price_evidence": "cotacao_needed",
+      "winner": null,
+      "verified_vendor_count": 0,
+      "vendor_results": [
+        {
+          "vendor_id": "construeva_americana",
+          "vendor_name": "Construeva Materiais de Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_public_sku",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_ouro_verde_campinas",
+          "vendor_name": "Depósito Ouro Verde Materiais de Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_public_sku",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "feval_americana",
+          "vendor_name": "Feval Materiais para Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_public_sku",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "casa_dos_tijolos_americana",
+          "vendor_name": "Casa dos Tijolos Materiais para Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_vendor_ecommerce_host",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_brasil_campinas",
+          "vendor_name": "Depósito Brasil Materiais para Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_vendor_ecommerce_host",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_tayo_campinas",
+          "vendor_name": "Depósito Tayo Materiais de Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_public_sku",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        }
+      ],
+      "cotacao_vendor_ids": [
+        "casa_dos_tijolos_americana",
+        "construeva_americana",
+        "deposito_brasil_campinas",
+        "deposito_ouro_verde_campinas",
+        "deposito_tayo_campinas",
+        "feval_americana"
+      ],
+      "no_match_reason": "no_public_sku_on_probed_local_depos"
+    },
+    {
+      "expense_id": "EXP_0031",
+      "requested_item": "Vitrôs banheiros",
+      "requested_unit": "unidade",
+      "match_status": "no_match",
+      "price_evidence": "cotacao_needed",
+      "winner": null,
+      "verified_vendor_count": 0,
+      "vendor_results": [
+        {
+          "vendor_id": "construeva_americana",
+          "vendor_name": "Construeva Materiais de Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_public_sku",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_ouro_verde_campinas",
+          "vendor_name": "Depósito Ouro Verde Materiais de Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_public_sku",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "feval_americana",
+          "vendor_name": "Feval Materiais para Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_public_sku",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "casa_dos_tijolos_americana",
+          "vendor_name": "Casa dos Tijolos Materiais para Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_vendor_ecommerce_host",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_brasil_campinas",
+          "vendor_name": "Depósito Brasil Materiais para Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_vendor_ecommerce_host",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_tayo_campinas",
+          "vendor_name": "Depósito Tayo Materiais de Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_public_sku",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        }
+      ],
+      "cotacao_vendor_ids": [
+        "casa_dos_tijolos_americana",
+        "construeva_americana",
+        "deposito_brasil_campinas",
+        "deposito_ouro_verde_campinas",
+        "deposito_tayo_campinas",
+        "feval_americana"
+      ],
+      "no_match_reason": "no_public_sku_on_probed_local_depos"
+    },
+    {
+      "expense_id": "EXP_0028",
+      "requested_item": "Vaso",
+      "requested_unit": "unidade",
+      "match_status": "no_match",
+      "price_evidence": "cotacao_needed",
+      "winner": null,
+      "verified_vendor_count": 0,
+      "vendor_results": [
+        {
+          "vendor_id": "construeva_americana",
+          "vendor_name": "Construeva Materiais de Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_public_sku",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_ouro_verde_campinas",
+          "vendor_name": "Depósito Ouro Verde Materiais de Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "woocommerce_empty_no_priced_sku",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "feval_americana",
+          "vendor_name": "Feval Materiais para Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_public_sku",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "casa_dos_tijolos_americana",
+          "vendor_name": "Casa dos Tijolos Materiais para Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_listing_no_vendor_host",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_brasil_campinas",
+          "vendor_name": "Depósito Brasil Materiais para Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_listing_no_vendor_host",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_tayo_campinas",
+          "vendor_name": "Depósito Tayo Materiais de Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_public_sku",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        }
+      ],
+      "cotacao_vendor_ids": [
+        "casa_dos_tijolos_americana",
+        "construeva_americana",
+        "deposito_brasil_campinas",
+        "deposito_ouro_verde_campinas",
+        "deposito_tayo_campinas",
+        "feval_americana"
+      ],
+      "no_match_reason": "no_public_sku_on_probed_local_depos"
+    },
+    {
+      "expense_id": "EXP_0036",
+      "requested_item": "Torneiras",
+      "requested_unit": "unidade",
+      "match_status": "no_match",
+      "price_evidence": "cotacao_needed",
+      "winner": null,
+      "verified_vendor_count": 0,
+      "vendor_results": [
+        {
+          "vendor_id": "construeva_americana",
+          "vendor_name": "Construeva Materiais de Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_public_sku",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_ouro_verde_campinas",
+          "vendor_name": "Depósito Ouro Verde Materiais de Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "woocommerce_empty_no_priced_sku",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "feval_americana",
+          "vendor_name": "Feval Materiais para Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_public_sku",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "casa_dos_tijolos_americana",
+          "vendor_name": "Casa dos Tijolos Materiais para Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_listing_no_vendor_host",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_brasil_campinas",
+          "vendor_name": "Depósito Brasil Materiais para Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_listing_no_vendor_host",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_tayo_campinas",
+          "vendor_name": "Depósito Tayo Materiais de Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_public_sku",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_ceron_nova_odessa",
+          "vendor_name": "Depósito de Materiais Ceron",
+          "tier": "B",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_listing_no_vendor_host",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        }
+      ],
+      "cotacao_vendor_ids": [
+        "casa_dos_tijolos_americana",
+        "construeva_americana",
+        "deposito_brasil_campinas",
+        "deposito_ceron_nova_odessa",
+        "deposito_ouro_verde_campinas",
+        "deposito_tayo_campinas",
+        "feval_americana"
+      ],
+      "no_match_reason": "no_public_sku_on_probed_local_depos"
+    },
+    {
+      "expense_id": "EXP_0037",
+      "requested_item": "Sifões e ralos",
+      "requested_unit": "unidade",
+      "match_status": "no_match",
+      "price_evidence": "cotacao_needed",
+      "winner": null,
+      "verified_vendor_count": 0,
+      "vendor_results": [
+        {
+          "vendor_id": "construeva_americana",
+          "vendor_name": "Construeva Materiais de Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_public_sku",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_ouro_verde_campinas",
+          "vendor_name": "Depósito Ouro Verde Materiais de Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "woocommerce_empty_no_priced_sku",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "feval_americana",
+          "vendor_name": "Feval Materiais para Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_public_sku",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "casa_dos_tijolos_americana",
+          "vendor_name": "Casa dos Tijolos Materiais para Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_listing_no_vendor_host",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_brasil_campinas",
+          "vendor_name": "Depósito Brasil Materiais para Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_listing_no_vendor_host",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_tayo_campinas",
+          "vendor_name": "Depósito Tayo Materiais de Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_public_sku",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_ceron_nova_odessa",
+          "vendor_name": "Depósito de Materiais Ceron",
+          "tier": "B",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_listing_no_vendor_host",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        }
+      ],
+      "cotacao_vendor_ids": [
+        "casa_dos_tijolos_americana",
+        "construeva_americana",
+        "deposito_brasil_campinas",
+        "deposito_ceron_nova_odessa",
+        "deposito_ouro_verde_campinas",
+        "deposito_tayo_campinas",
+        "feval_americana"
+      ],
+      "no_match_reason": "no_public_sku_on_probed_local_depos"
+    },
+    {
+      "expense_id": "EXP_0039",
+      "requested_item": "Pias e bancadas",
+      "requested_unit": "conjunto",
+      "match_status": "no_match",
+      "price_evidence": "cotacao_needed",
+      "winner": null,
+      "verified_vendor_count": 0,
+      "vendor_results": [
+        {
+          "vendor_id": "construeva_americana",
+          "vendor_name": "Construeva Materiais de Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_public_sku",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_ouro_verde_campinas",
+          "vendor_name": "Depósito Ouro Verde Materiais de Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "woocommerce_empty_no_priced_sku",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "feval_americana",
+          "vendor_name": "Feval Materiais para Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_public_sku",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "casa_dos_tijolos_americana",
+          "vendor_name": "Casa dos Tijolos Materiais para Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_listing_no_vendor_host",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_brasil_campinas",
+          "vendor_name": "Depósito Brasil Materiais para Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_listing_no_vendor_host",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_tayo_campinas",
+          "vendor_name": "Depósito Tayo Materiais de Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_public_sku",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        }
+      ],
+      "cotacao_vendor_ids": [
+        "casa_dos_tijolos_americana",
+        "construeva_americana",
+        "deposito_brasil_campinas",
+        "deposito_ouro_verde_campinas",
+        "deposito_tayo_campinas",
+        "feval_americana"
+      ],
+      "no_match_reason": "no_public_sku_on_probed_local_depos"
+    },
+    {
+      "expense_id": "EXP_0040",
+      "requested_item": "Box de vidro para o banheiro (R$850)",
+      "requested_unit": "unidade",
+      "match_status": "no_match",
+      "price_evidence": "cotacao_needed",
+      "winner": null,
+      "verified_vendor_count": 0,
+      "vendor_results": [
+        {
+          "vendor_id": "construeva_americana",
+          "vendor_name": "Construeva Materiais de Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_public_sku",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_ouro_verde_campinas",
+          "vendor_name": "Depósito Ouro Verde Materiais de Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "woocommerce_empty_no_priced_sku",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "feval_americana",
+          "vendor_name": "Feval Materiais para Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_public_sku",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "casa_dos_tijolos_americana",
+          "vendor_name": "Casa dos Tijolos Materiais para Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_listing_no_vendor_host",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_brasil_campinas",
+          "vendor_name": "Depósito Brasil Materiais para Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_listing_no_vendor_host",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_tayo_campinas",
+          "vendor_name": "Depósito Tayo Materiais de Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_public_sku",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        }
+      ],
+      "cotacao_vendor_ids": [
+        "casa_dos_tijolos_americana",
+        "construeva_americana",
+        "deposito_brasil_campinas",
+        "deposito_ouro_verde_campinas",
+        "deposito_tayo_campinas",
+        "feval_americana"
+      ],
+      "no_match_reason": "no_public_sku_on_probed_local_depos"
+    },
+    {
+      "expense_id": "EXP_0044",
+      "requested_item": "Caixa de água",
+      "requested_unit": "unidade",
+      "match_status": "no_match",
+      "price_evidence": "cotacao_needed",
+      "winner": null,
+      "verified_vendor_count": 0,
+      "vendor_results": [
+        {
+          "vendor_id": "construeva_americana",
+          "vendor_name": "Construeva Materiais de Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_public_sku",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_ouro_verde_campinas",
+          "vendor_name": "Depósito Ouro Verde Materiais de Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "woocommerce_empty_no_priced_sku",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "feval_americana",
+          "vendor_name": "Feval Materiais para Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_public_sku",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "casa_dos_tijolos_americana",
+          "vendor_name": "Casa dos Tijolos Materiais para Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_listing_no_vendor_host",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_brasil_campinas",
+          "vendor_name": "Depósito Brasil Materiais para Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_listing_no_vendor_host",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_tayo_campinas",
+          "vendor_name": "Depósito Tayo Materiais de Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_public_sku",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        }
+      ],
+      "cotacao_vendor_ids": [
+        "casa_dos_tijolos_americana",
+        "construeva_americana",
+        "deposito_brasil_campinas",
+        "deposito_ouro_verde_campinas",
+        "deposito_tayo_campinas",
+        "feval_americana"
+      ],
+      "no_match_reason": "no_public_sku_on_probed_local_depos"
+    },
+    {
+      "expense_id": "EXP_0033",
+      "requested_item": "Quadro de distribuição",
+      "requested_unit": "unidade",
+      "match_status": "no_match",
+      "price_evidence": "cotacao_needed",
+      "winner": null,
+      "verified_vendor_count": 0,
+      "vendor_results": [
+        {
+          "vendor_id": "construeva_americana",
+          "vendor_name": "Construeva Materiais de Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_public_sku",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_ouro_verde_campinas",
+          "vendor_name": "Depósito Ouro Verde Materiais de Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "woocommerce_empty_no_priced_sku",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "feval_americana",
+          "vendor_name": "Feval Materiais para Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_public_sku",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "casa_dos_tijolos_americana",
+          "vendor_name": "Casa dos Tijolos Materiais para Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_listing_no_vendor_host",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_brasil_campinas",
+          "vendor_name": "Depósito Brasil Materiais para Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_listing_no_vendor_host",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_tayo_campinas",
+          "vendor_name": "Depósito Tayo Materiais de Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_public_sku",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "pezao_nova_odessa",
+          "vendor_name": "Pezão Materiais para Construção",
+          "tier": "B",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_listing_no_vendor_host",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        }
+      ],
+      "cotacao_vendor_ids": [
+        "casa_dos_tijolos_americana",
+        "construeva_americana",
+        "deposito_brasil_campinas",
+        "deposito_ouro_verde_campinas",
+        "deposito_tayo_campinas",
+        "feval_americana",
+        "pezao_nova_odessa"
+      ],
+      "no_match_reason": "no_public_sku_on_probed_local_depos"
+    },
+    {
+      "expense_id": "EXP_0034",
+      "requested_item": "Conduítes",
+      "requested_unit": "metro linear (m)",
+      "match_status": "no_match",
+      "price_evidence": "cotacao_needed",
+      "winner": null,
+      "verified_vendor_count": 0,
+      "vendor_results": [
+        {
+          "vendor_id": "construeva_americana",
+          "vendor_name": "Construeva Materiais de Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_public_sku",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_ouro_verde_campinas",
+          "vendor_name": "Depósito Ouro Verde Materiais de Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "woocommerce_empty_no_priced_sku",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "feval_americana",
+          "vendor_name": "Feval Materiais para Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_public_sku",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "casa_dos_tijolos_americana",
+          "vendor_name": "Casa dos Tijolos Materiais para Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_listing_no_vendor_host",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_brasil_campinas",
+          "vendor_name": "Depósito Brasil Materiais para Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_listing_no_vendor_host",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_tayo_campinas",
+          "vendor_name": "Depósito Tayo Materiais de Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_public_sku",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "pezao_nova_odessa",
+          "vendor_name": "Pezão Materiais para Construção",
+          "tier": "B",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_listing_no_vendor_host",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        }
+      ],
+      "cotacao_vendor_ids": [
+        "casa_dos_tijolos_americana",
+        "construeva_americana",
+        "deposito_brasil_campinas",
+        "deposito_ouro_verde_campinas",
+        "deposito_tayo_campinas",
+        "feval_americana",
+        "pezao_nova_odessa"
+      ],
+      "no_match_reason": "no_public_sku_on_probed_local_depos"
+    },
+    {
+      "expense_id": "EXP_0035",
+      "requested_item": "Lâmpadas",
+      "requested_unit": "unidade",
+      "match_status": "no_match",
+      "price_evidence": "cotacao_needed",
+      "winner": null,
+      "verified_vendor_count": 0,
+      "vendor_results": [
+        {
+          "vendor_id": "construeva_americana",
+          "vendor_name": "Construeva Materiais de Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_public_sku",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_ouro_verde_campinas",
+          "vendor_name": "Depósito Ouro Verde Materiais de Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "woocommerce_empty_no_priced_sku",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "feval_americana",
+          "vendor_name": "Feval Materiais para Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_public_sku",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "casa_dos_tijolos_americana",
+          "vendor_name": "Casa dos Tijolos Materiais para Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_listing_no_vendor_host",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_brasil_campinas",
+          "vendor_name": "Depósito Brasil Materiais para Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_listing_no_vendor_host",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_tayo_campinas",
+          "vendor_name": "Depósito Tayo Materiais de Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_public_sku",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        }
+      ],
+      "cotacao_vendor_ids": [
+        "casa_dos_tijolos_americana",
+        "construeva_americana",
+        "deposito_brasil_campinas",
+        "deposito_ouro_verde_campinas",
+        "deposito_tayo_campinas",
+        "feval_americana"
+      ],
+      "no_match_reason": "no_public_sku_on_probed_local_depos"
+    },
+    {
+      "expense_id": "EXP_0038",
+      "requested_item": "Tomadas",
+      "requested_unit": "unidade",
+      "match_status": "no_match",
+      "price_evidence": "cotacao_needed",
+      "winner": null,
+      "verified_vendor_count": 0,
+      "vendor_results": [
+        {
+          "vendor_id": "construeva_americana",
+          "vendor_name": "Construeva Materiais de Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_public_sku",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_ouro_verde_campinas",
+          "vendor_name": "Depósito Ouro Verde Materiais de Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "woocommerce_empty_no_priced_sku",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "feval_americana",
+          "vendor_name": "Feval Materiais para Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_public_sku",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "casa_dos_tijolos_americana",
+          "vendor_name": "Casa dos Tijolos Materiais para Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_listing_no_vendor_host",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_brasil_campinas",
+          "vendor_name": "Depósito Brasil Materiais para Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_listing_no_vendor_host",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_tayo_campinas",
+          "vendor_name": "Depósito Tayo Materiais de Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_public_sku",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "pezao_nova_odessa",
+          "vendor_name": "Pezão Materiais para Construção",
+          "tier": "B",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_listing_no_vendor_host",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        }
+      ],
+      "cotacao_vendor_ids": [
+        "casa_dos_tijolos_americana",
+        "construeva_americana",
+        "deposito_brasil_campinas",
+        "deposito_ouro_verde_campinas",
+        "deposito_tayo_campinas",
+        "feval_americana",
+        "pezao_nova_odessa"
+      ],
+      "no_match_reason": "no_public_sku_on_probed_local_depos"
+    },
+    {
+      "expense_id": "EXP_0045",
+      "requested_item": "Dispositivos de segurança",
+      "requested_unit": "conjunto",
+      "match_status": "no_match",
+      "price_evidence": "cotacao_needed",
+      "winner": null,
+      "verified_vendor_count": 0,
+      "vendor_results": [
+        {
+          "vendor_id": "construeva_americana",
+          "vendor_name": "Construeva Materiais de Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_public_sku",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_ouro_verde_campinas",
+          "vendor_name": "Depósito Ouro Verde Materiais de Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "woocommerce_empty_no_priced_sku",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "feval_americana",
+          "vendor_name": "Feval Materiais para Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_public_sku",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "casa_dos_tijolos_americana",
+          "vendor_name": "Casa dos Tijolos Materiais para Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_listing_no_vendor_host",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_brasil_campinas",
+          "vendor_name": "Depósito Brasil Materiais para Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_listing_no_vendor_host",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_tayo_campinas",
+          "vendor_name": "Depósito Tayo Materiais de Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_public_sku",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        }
+      ],
+      "cotacao_vendor_ids": [
+        "casa_dos_tijolos_americana",
+        "construeva_americana",
+        "deposito_brasil_campinas",
+        "deposito_ouro_verde_campinas",
+        "deposito_tayo_campinas",
+        "feval_americana"
+      ],
+      "no_match_reason": "no_public_sku_on_probed_local_depos"
+    },
+    {
+      "expense_id": "EXP_0018",
+      "requested_item": "Ferramentas",
+      "requested_unit": "conjunto",
+      "match_status": "no_match",
+      "price_evidence": "cotacao_needed",
+      "winner": null,
+      "verified_vendor_count": 0,
+      "vendor_results": [
+        {
+          "vendor_id": "construeva_americana",
+          "vendor_name": "Construeva Materiais de Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_public_sku",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_ouro_verde_campinas",
+          "vendor_name": "Depósito Ouro Verde Materiais de Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "woocommerce_empty_no_priced_sku",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "feval_americana",
+          "vendor_name": "Feval Materiais para Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_public_sku",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "casa_dos_tijolos_americana",
+          "vendor_name": "Casa dos Tijolos Materiais para Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_listing_no_vendor_host",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_brasil_campinas",
+          "vendor_name": "Depósito Brasil Materiais para Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_listing_no_vendor_host",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_tayo_campinas",
+          "vendor_name": "Depósito Tayo Materiais de Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_public_sku",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        }
+      ],
+      "cotacao_vendor_ids": [
+        "casa_dos_tijolos_americana",
+        "construeva_americana",
+        "deposito_brasil_campinas",
+        "deposito_ouro_verde_campinas",
+        "deposito_tayo_campinas",
+        "feval_americana"
+      ],
+      "no_match_reason": "no_public_sku_on_probed_local_depos"
+    },
+    {
+      "expense_id": "EXP_0020",
+      "requested_item": "Carrinho de mão",
+      "requested_unit": "unidade",
+      "match_status": "no_match",
+      "price_evidence": "cotacao_needed",
+      "winner": null,
+      "verified_vendor_count": 0,
+      "vendor_results": [
+        {
+          "vendor_id": "construeva_americana",
+          "vendor_name": "Construeva Materiais de Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_public_sku",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_ouro_verde_campinas",
+          "vendor_name": "Depósito Ouro Verde Materiais de Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "woocommerce_empty_no_priced_sku",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "feval_americana",
+          "vendor_name": "Feval Materiais para Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_public_sku",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "casa_dos_tijolos_americana",
+          "vendor_name": "Casa dos Tijolos Materiais para Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_listing_no_vendor_host",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_brasil_campinas",
+          "vendor_name": "Depósito Brasil Materiais para Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_listing_no_vendor_host",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_tayo_campinas",
+          "vendor_name": "Depósito Tayo Materiais de Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_public_sku",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        }
+      ],
+      "cotacao_vendor_ids": [
+        "casa_dos_tijolos_americana",
+        "construeva_americana",
+        "deposito_brasil_campinas",
+        "deposito_ouro_verde_campinas",
+        "deposito_tayo_campinas",
+        "feval_americana"
+      ],
+      "no_match_reason": "no_public_sku_on_probed_local_depos"
+    },
+    {
+      "expense_id": "EXP_0022",
+      "requested_item": "Caçamba de entulho",
+      "requested_unit": "caçamba",
+      "match_status": "no_match",
+      "price_evidence": "cotacao_needed",
+      "winner": null,
+      "verified_vendor_count": 0,
+      "vendor_results": [
+        {
+          "vendor_id": "construeva_americana",
+          "vendor_name": "Construeva Materiais de Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_public_sku",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_ouro_verde_campinas",
+          "vendor_name": "Depósito Ouro Verde Materiais de Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "woocommerce_empty_no_priced_sku",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "feval_americana",
+          "vendor_name": "Feval Materiais para Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_public_sku",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "casa_dos_tijolos_americana",
+          "vendor_name": "Casa dos Tijolos Materiais para Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_listing_no_vendor_host",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_brasil_campinas",
+          "vendor_name": "Depósito Brasil Materiais para Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_listing_no_vendor_host",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_tayo_campinas",
+          "vendor_name": "Depósito Tayo Materiais de Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_public_sku",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        }
+      ],
+      "cotacao_vendor_ids": [
+        "casa_dos_tijolos_americana",
+        "construeva_americana",
+        "deposito_brasil_campinas",
+        "deposito_ouro_verde_campinas",
+        "deposito_tayo_campinas",
+        "feval_americana"
+      ],
+      "no_match_reason": "no_public_sku_on_probed_local_depos"
+    },
+    {
+      "expense_id": "EXP_0043",
+      "requested_item": "Calhas e rufos",
+      "requested_unit": "metro linear (m)",
+      "match_status": "no_match",
+      "price_evidence": "cotacao_needed",
+      "winner": null,
+      "verified_vendor_count": 0,
+      "vendor_results": [
+        {
+          "vendor_id": "construeva_americana",
+          "vendor_name": "Construeva Materiais de Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_public_sku",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_ouro_verde_campinas",
+          "vendor_name": "Depósito Ouro Verde Materiais de Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "woocommerce_empty_no_priced_sku",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "feval_americana",
+          "vendor_name": "Feval Materiais para Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_public_sku",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "casa_dos_tijolos_americana",
+          "vendor_name": "Casa dos Tijolos Materiais para Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_listing_no_vendor_host",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_brasil_campinas",
+          "vendor_name": "Depósito Brasil Materiais para Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_listing_no_vendor_host",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_tayo_campinas",
+          "vendor_name": "Depósito Tayo Materiais de Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_public_sku",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        }
+      ],
+      "cotacao_vendor_ids": [
+        "casa_dos_tijolos_americana",
+        "construeva_americana",
+        "deposito_brasil_campinas",
+        "deposito_ouro_verde_campinas",
+        "deposito_tayo_campinas",
+        "feval_americana"
+      ],
+      "no_match_reason": "no_public_sku_on_probed_local_depos"
+    },
+    {
+      "expense_id": "EXP_0047",
+      "requested_item": "Pregos, parafusos, buchas",
+      "requested_unit": "pacote",
+      "match_status": "no_match",
+      "price_evidence": "cotacao_needed",
+      "winner": null,
+      "verified_vendor_count": 0,
+      "vendor_results": [
+        {
+          "vendor_id": "construeva_americana",
+          "vendor_name": "Construeva Materiais de Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_public_sku",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_ouro_verde_campinas",
+          "vendor_name": "Depósito Ouro Verde Materiais de Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "woocommerce_empty_no_priced_sku",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "feval_americana",
+          "vendor_name": "Feval Materiais para Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_public_sku",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "casa_dos_tijolos_americana",
+          "vendor_name": "Casa dos Tijolos Materiais para Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_listing_no_vendor_host",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_brasil_campinas",
+          "vendor_name": "Depósito Brasil Materiais para Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_listing_no_vendor_host",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_tayo_campinas",
+          "vendor_name": "Depósito Tayo Materiais de Construção",
+          "tier": "A",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_public_sku",
+          "cotacao_needed": true,
+          "candidate_count": 0,
+          "winner": null
+        }
+      ],
+      "cotacao_vendor_ids": [
+        "casa_dos_tijolos_americana",
+        "construeva_americana",
+        "deposito_brasil_campinas",
+        "deposito_ouro_verde_campinas",
+        "deposito_tayo_campinas",
+        "feval_americana"
+      ],
+      "no_match_reason": "no_public_sku_on_probed_local_depos"
+    }
+  ]
+}

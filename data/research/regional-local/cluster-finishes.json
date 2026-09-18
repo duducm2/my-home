@@ -1,0 +1,729 @@
+{
+  "cluster": "finishes",
+  "checked_at": "2026-09-17",
+  "location_basis": "nova_odessa_cep_13380",
+  "probe_notes": {
+    "construeva_americana": "HTTP 200 on construeva-construcao.localo.site; LocalBusiness landing + blog posts mention porcelanato/rejuntes/argamassas/rodapés but no visible BRL SKU prices.",
+    "deposito_ouro_verde_campinas": "HTTP 200; WooCommerce plugin present and /loja/ exists, but wc/store/products and wp/v2/product return []; no priced product cards.",
+    "feval_americana": "HTTP 200; mywebsitebuilder marketing site; sitemap only /, /sobre, /contato — no catalog/shop routes.",
+    "casa_dos_tijolos_americana": "Directory listing only (paginaamarela); allowed_hosts empty; no vendor e-commerce host.",
+    "deposito_brasil_campinas": "Directory/review listing only (conectaobra); allowed_hosts empty; listing URL 404 at probe time.",
+    "deposito_tayo_campinas": "HTTP 200 on nikkeiaeroporto.com.br landing; assortment text (tintas/argamassa/pisos) + WhatsApp orçamento CTA; /loja /shop /produto 404; search?s=tinta has no priced SKUs.",
+    "tier_b": "No Tier-B vendor lists any finishes expense in fit_for_expenses; omitted."
+  },
+  "expenses": [
+    {
+      "expense_id": "EXP_0023",
+      "requested_item": "Porcelanato",
+      "requested_unit": "metro quadrado (m²)",
+      "vendor_results": [
+        {
+          "vendor_id": "construeva_americana",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "blog_mentions_assortment_no_public_sku_price",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null,
+          "probe_urls": [
+            "https://construeva-construcao.localo.site/",
+            "https://construeva-construcao.localo.site/blog/2691126425057898355-linha-completa-de-porcelanatos-grandes-formatos"
+          ],
+          "cotacao_contact": {
+            "phone": "+55 19 3468-6870",
+            "whatsapp": "https://wa.me/5519993181917"
+          }
+        },
+        {
+          "vendor_id": "deposito_ouro_verde_campinas",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "woocommerce_shop_empty_no_public_sku",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null,
+          "probe_urls": [
+            "https://depouroverde.com.br/",
+            "https://depouroverde.com.br/loja/",
+            "https://depouroverde.com.br/wp-json/wc/store/products"
+          ],
+          "cotacao_contact": {
+            "phone": "(19) 97405-9418"
+          }
+        },
+        {
+          "vendor_id": "feval_americana",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "marketing_site_only_no_catalog",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null,
+          "probe_urls": [
+            "https://feval.com.br/",
+            "https://feval.com.br/sitemap.xml"
+          ],
+          "cotacao_contact": {
+            "whatsapp": "https://api.whatsapp.com/send/?phone=5519999794750"
+          }
+        },
+        {
+          "vendor_id": "casa_dos_tijolos_americana",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_listing_only_no_vendor_ecommerce_host",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null,
+          "probe_urls": [
+            "https://paginaamarela.com.br/empresa/casa-dos-tijolos-materiais-para-construcao/americana/sp/7807803"
+          ],
+          "cotacao_contact": {
+            "phone": "(19) 3468-6321"
+          }
+        },
+        {
+          "vendor_id": "deposito_brasil_campinas",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_listing_only_no_vendor_ecommerce_host",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null,
+          "probe_urls": [
+            "https://conectaobra.com/campinas-sp/loja-de-materiais-de-construcao/deposito-brasil-materiais-para-construcao"
+          ],
+          "cotacao_contact": null
+        },
+        {
+          "vendor_id": "deposito_tayo_campinas",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "landing_whatsapp_quote_only_no_public_sku",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null,
+          "probe_urls": [
+            "https://nikkeiaeroporto.com.br/"
+          ],
+          "cotacao_contact": {
+            "phone": "(19) 3266-1333",
+            "whatsapp": "https://wa.me/5519987586178?text=Ol%C3%A1%2C+quero+um+or%C3%A7amento+de+materiais+de+constru%C3%A7%C3%A3o!"
+          }
+        }
+      ]
+    },
+    {
+      "expense_id": "EXP_0024",
+      "requested_item": "Rejunte de porcelanato",
+      "requested_unit": "quilograma (kg)",
+      "vendor_results": [
+        {
+          "vendor_id": "construeva_americana",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "blog_mentions_assortment_no_public_sku_price",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null,
+          "probe_urls": [
+            "https://construeva-construcao.localo.site/",
+            "https://construeva-construcao.localo.site/blog/78891100472593632-rejuntes-argamassas-rodapes-soleiras-e-loucas"
+          ],
+          "cotacao_contact": {
+            "phone": "+55 19 3468-6870",
+            "whatsapp": "https://wa.me/5519993181917"
+          }
+        },
+        {
+          "vendor_id": "deposito_ouro_verde_campinas",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "woocommerce_shop_empty_no_public_sku",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null,
+          "probe_urls": [
+            "https://depouroverde.com.br/",
+            "https://depouroverde.com.br/loja/",
+            "https://depouroverde.com.br/wp-json/wc/store/products"
+          ],
+          "cotacao_contact": {
+            "phone": "(19) 97405-9418"
+          }
+        },
+        {
+          "vendor_id": "feval_americana",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "marketing_site_only_no_catalog",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null,
+          "probe_urls": [
+            "https://feval.com.br/",
+            "https://feval.com.br/sitemap.xml"
+          ],
+          "cotacao_contact": {
+            "whatsapp": "https://api.whatsapp.com/send/?phone=5519999794750"
+          }
+        },
+        {
+          "vendor_id": "casa_dos_tijolos_americana",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_listing_only_no_vendor_ecommerce_host",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null,
+          "probe_urls": [
+            "https://paginaamarela.com.br/empresa/casa-dos-tijolos-materiais-para-construcao/americana/sp/7807803"
+          ],
+          "cotacao_contact": {
+            "phone": "(19) 3468-6321"
+          }
+        },
+        {
+          "vendor_id": "deposito_brasil_campinas",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_listing_only_no_vendor_ecommerce_host",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null,
+          "probe_urls": [
+            "https://conectaobra.com/campinas-sp/loja-de-materiais-de-construcao/deposito-brasil-materiais-para-construcao"
+          ],
+          "cotacao_contact": null
+        },
+        {
+          "vendor_id": "deposito_tayo_campinas",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "landing_whatsapp_quote_only_no_public_sku",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null,
+          "probe_urls": [
+            "https://nikkeiaeroporto.com.br/"
+          ],
+          "cotacao_contact": {
+            "phone": "(19) 3266-1333",
+            "whatsapp": "https://wa.me/5519987586178?text=Ol%C3%A1%2C+quero+um+or%C3%A7amento+de+materiais+de+constru%C3%A7%C3%A3o!"
+          }
+        }
+      ]
+    },
+    {
+      "expense_id": "EXP_0025",
+      "requested_item": "Argamassa para o porcelanato",
+      "requested_unit": "saco (20 kg)",
+      "vendor_results": [
+        {
+          "vendor_id": "construeva_americana",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "blog_mentions_assortment_no_public_sku_price",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null,
+          "probe_urls": [
+            "https://construeva-construcao.localo.site/",
+            "https://construeva-construcao.localo.site/blog/78891100472593632-rejuntes-argamassas-rodapes-soleiras-e-loucas"
+          ],
+          "cotacao_contact": {
+            "phone": "+55 19 3468-6870",
+            "whatsapp": "https://wa.me/5519993181917"
+          }
+        },
+        {
+          "vendor_id": "deposito_ouro_verde_campinas",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "woocommerce_shop_empty_no_public_sku",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null,
+          "probe_urls": [
+            "https://depouroverde.com.br/",
+            "https://depouroverde.com.br/loja/",
+            "https://depouroverde.com.br/wp-json/wc/store/products"
+          ],
+          "cotacao_contact": {
+            "phone": "(19) 97405-9418"
+          }
+        },
+        {
+          "vendor_id": "feval_americana",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "marketing_site_only_no_catalog",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null,
+          "probe_urls": [
+            "https://feval.com.br/",
+            "https://feval.com.br/sitemap.xml"
+          ],
+          "cotacao_contact": {
+            "whatsapp": "https://api.whatsapp.com/send/?phone=5519999794750"
+          }
+        },
+        {
+          "vendor_id": "casa_dos_tijolos_americana",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_listing_only_no_vendor_ecommerce_host",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null,
+          "probe_urls": [
+            "https://paginaamarela.com.br/empresa/casa-dos-tijolos-materiais-para-construcao/americana/sp/7807803"
+          ],
+          "cotacao_contact": {
+            "phone": "(19) 3468-6321"
+          }
+        },
+        {
+          "vendor_id": "deposito_brasil_campinas",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_listing_only_no_vendor_ecommerce_host",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null,
+          "probe_urls": [
+            "https://conectaobra.com/campinas-sp/loja-de-materiais-de-construcao/deposito-brasil-materiais-para-construcao"
+          ],
+          "cotacao_contact": null
+        },
+        {
+          "vendor_id": "deposito_tayo_campinas",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "landing_whatsapp_quote_only_no_public_sku",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null,
+          "probe_urls": [
+            "https://nikkeiaeroporto.com.br/"
+          ],
+          "cotacao_contact": {
+            "phone": "(19) 3266-1333",
+            "whatsapp": "https://wa.me/5519987586178?text=Ol%C3%A1%2C+quero+um+or%C3%A7amento+de+materiais+de+constru%C3%A7%C3%A3o!"
+          }
+        }
+      ]
+    },
+    {
+      "expense_id": "EXP_0041",
+      "requested_item": "Rodapés para acompanhar o porcelanato (R$1500)",
+      "requested_unit": "metro linear (m)",
+      "vendor_results": [
+        {
+          "vendor_id": "construeva_americana",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "blog_mentions_assortment_no_public_sku_price",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null,
+          "probe_urls": [
+            "https://construeva-construcao.localo.site/",
+            "https://construeva-construcao.localo.site/blog/78891100472593632-rejuntes-argamassas-rodapes-soleiras-e-loucas"
+          ],
+          "cotacao_contact": {
+            "phone": "+55 19 3468-6870",
+            "whatsapp": "https://wa.me/5519993181917"
+          }
+        },
+        {
+          "vendor_id": "deposito_ouro_verde_campinas",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "woocommerce_shop_empty_no_public_sku",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null,
+          "probe_urls": [
+            "https://depouroverde.com.br/",
+            "https://depouroverde.com.br/loja/",
+            "https://depouroverde.com.br/wp-json/wc/store/products"
+          ],
+          "cotacao_contact": {
+            "phone": "(19) 97405-9418"
+          }
+        },
+        {
+          "vendor_id": "feval_americana",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "marketing_site_only_no_catalog",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null,
+          "probe_urls": [
+            "https://feval.com.br/",
+            "https://feval.com.br/sitemap.xml"
+          ],
+          "cotacao_contact": {
+            "whatsapp": "https://api.whatsapp.com/send/?phone=5519999794750"
+          }
+        },
+        {
+          "vendor_id": "casa_dos_tijolos_americana",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_listing_only_no_vendor_ecommerce_host",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null,
+          "probe_urls": [
+            "https://paginaamarela.com.br/empresa/casa-dos-tijolos-materiais-para-construcao/americana/sp/7807803"
+          ],
+          "cotacao_contact": {
+            "phone": "(19) 3468-6321"
+          }
+        },
+        {
+          "vendor_id": "deposito_brasil_campinas",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_listing_only_no_vendor_ecommerce_host",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null,
+          "probe_urls": [
+            "https://conectaobra.com/campinas-sp/loja-de-materiais-de-construcao/deposito-brasil-materiais-para-construcao"
+          ],
+          "cotacao_contact": null
+        },
+        {
+          "vendor_id": "deposito_tayo_campinas",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "landing_whatsapp_quote_only_no_public_sku",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null,
+          "probe_urls": [
+            "https://nikkeiaeroporto.com.br/"
+          ],
+          "cotacao_contact": {
+            "phone": "(19) 3266-1333",
+            "whatsapp": "https://wa.me/5519987586178?text=Ol%C3%A1%2C+quero+um+or%C3%A7amento+de+materiais+de+constru%C3%A7%C3%A3o!"
+          }
+        }
+      ]
+    },
+    {
+      "expense_id": "EXP_0046",
+      "requested_item": "Tinta",
+      "requested_unit": "lata (18 L)",
+      "vendor_results": [
+        {
+          "vendor_id": "construeva_americana",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_public_sku_price_on_vendor_domain",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null,
+          "probe_urls": [
+            "https://construeva-construcao.localo.site/"
+          ],
+          "cotacao_contact": {
+            "phone": "+55 19 3468-6870",
+            "whatsapp": "https://wa.me/5519993181917"
+          }
+        },
+        {
+          "vendor_id": "deposito_ouro_verde_campinas",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "woocommerce_shop_empty_no_public_sku",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null,
+          "probe_urls": [
+            "https://depouroverde.com.br/",
+            "https://depouroverde.com.br/loja/",
+            "https://depouroverde.com.br/wp-json/wc/store/products"
+          ],
+          "cotacao_contact": {
+            "phone": "(19) 97405-9418"
+          }
+        },
+        {
+          "vendor_id": "feval_americana",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "marketing_site_only_no_catalog",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null,
+          "probe_urls": [
+            "https://feval.com.br/",
+            "https://feval.com.br/sitemap.xml"
+          ],
+          "cotacao_contact": {
+            "whatsapp": "https://api.whatsapp.com/send/?phone=5519999794750"
+          }
+        },
+        {
+          "vendor_id": "casa_dos_tijolos_americana",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_listing_only_no_vendor_ecommerce_host",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null,
+          "probe_urls": [
+            "https://paginaamarela.com.br/empresa/casa-dos-tijolos-materiais-para-construcao/americana/sp/7807803"
+          ],
+          "cotacao_contact": {
+            "phone": "(19) 3468-6321"
+          }
+        },
+        {
+          "vendor_id": "deposito_brasil_campinas",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_listing_only_no_vendor_ecommerce_host",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null,
+          "probe_urls": [
+            "https://conectaobra.com/campinas-sp/loja-de-materiais-de-construcao/deposito-brasil-materiais-para-construcao"
+          ],
+          "cotacao_contact": null
+        },
+        {
+          "vendor_id": "deposito_tayo_campinas",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "landing_mentions_tintas_no_public_sku_price",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null,
+          "probe_urls": [
+            "https://nikkeiaeroporto.com.br/",
+            "https://nikkeiaeroporto.com.br/?s=tinta"
+          ],
+          "cotacao_contact": {
+            "phone": "(19) 3266-1333",
+            "whatsapp": "https://wa.me/5519987586178?text=Ol%C3%A1%2C+quero+um+or%C3%A7amento+de+materiais+de+constru%C3%A7%C3%A3o!"
+          }
+        }
+      ]
+    },
+    {
+      "expense_id": "EXP_0048",
+      "requested_item": "Silicone, espuma expansiva, selante PU",
+      "requested_unit": "kit",
+      "vendor_results": [
+        {
+          "vendor_id": "construeva_americana",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_public_sku_price_on_vendor_domain",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null,
+          "probe_urls": [
+            "https://construeva-construcao.localo.site/"
+          ],
+          "cotacao_contact": {
+            "phone": "+55 19 3468-6870",
+            "whatsapp": "https://wa.me/5519993181917"
+          }
+        },
+        {
+          "vendor_id": "deposito_ouro_verde_campinas",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "woocommerce_shop_empty_no_public_sku",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null,
+          "probe_urls": [
+            "https://depouroverde.com.br/",
+            "https://depouroverde.com.br/loja/",
+            "https://depouroverde.com.br/wp-json/wc/store/products"
+          ],
+          "cotacao_contact": {
+            "phone": "(19) 97405-9418"
+          }
+        },
+        {
+          "vendor_id": "feval_americana",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "marketing_site_only_no_catalog",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null,
+          "probe_urls": [
+            "https://feval.com.br/",
+            "https://feval.com.br/sitemap.xml"
+          ],
+          "cotacao_contact": {
+            "whatsapp": "https://api.whatsapp.com/send/?phone=5519999794750"
+          }
+        },
+        {
+          "vendor_id": "casa_dos_tijolos_americana",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_listing_only_no_vendor_ecommerce_host",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null,
+          "probe_urls": [
+            "https://paginaamarela.com.br/empresa/casa-dos-tijolos-materiais-para-construcao/americana/sp/7807803"
+          ],
+          "cotacao_contact": {
+            "phone": "(19) 3468-6321"
+          }
+        },
+        {
+          "vendor_id": "deposito_brasil_campinas",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_listing_only_no_vendor_ecommerce_host",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null,
+          "probe_urls": [
+            "https://conectaobra.com/campinas-sp/loja-de-materiais-de-construcao/deposito-brasil-materiais-para-construcao"
+          ],
+          "cotacao_contact": null
+        },
+        {
+          "vendor_id": "deposito_tayo_campinas",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "landing_whatsapp_quote_only_no_public_sku",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null,
+          "probe_urls": [
+            "https://nikkeiaeroporto.com.br/"
+          ],
+          "cotacao_contact": {
+            "phone": "(19) 3266-1333",
+            "whatsapp": "https://wa.me/5519987586178?text=Ol%C3%A1%2C+quero+um+or%C3%A7amento+de+materiais+de+constru%C3%A7%C3%A3o!"
+          }
+        }
+      ]
+    },
+    {
+      "expense_id": "EXP_0049",
+      "requested_item": "Lona para proteção da obra",
+      "requested_unit": "metro quadrado (m²)",
+      "vendor_results": [
+        {
+          "vendor_id": "construeva_americana",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_public_sku_price_on_vendor_domain",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null,
+          "probe_urls": [
+            "https://construeva-construcao.localo.site/"
+          ],
+          "cotacao_contact": {
+            "phone": "+55 19 3468-6870",
+            "whatsapp": "https://wa.me/5519993181917"
+          }
+        },
+        {
+          "vendor_id": "deposito_ouro_verde_campinas",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "woocommerce_shop_empty_no_public_sku",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null,
+          "probe_urls": [
+            "https://depouroverde.com.br/",
+            "https://depouroverde.com.br/loja/",
+            "https://depouroverde.com.br/wp-json/wc/store/products"
+          ],
+          "cotacao_contact": {
+            "phone": "(19) 97405-9418"
+          }
+        },
+        {
+          "vendor_id": "feval_americana",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "marketing_site_only_no_catalog",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null,
+          "probe_urls": [
+            "https://feval.com.br/",
+            "https://feval.com.br/sitemap.xml"
+          ],
+          "cotacao_contact": {
+            "whatsapp": "https://api.whatsapp.com/send/?phone=5519999794750"
+          }
+        },
+        {
+          "vendor_id": "casa_dos_tijolos_americana",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_listing_only_no_vendor_ecommerce_host",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null,
+          "probe_urls": [
+            "https://paginaamarela.com.br/empresa/casa-dos-tijolos-materiais-para-construcao/americana/sp/7807803"
+          ],
+          "cotacao_contact": {
+            "phone": "(19) 3468-6321"
+          }
+        },
+        {
+          "vendor_id": "deposito_brasil_campinas",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_listing_only_no_vendor_ecommerce_host",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null,
+          "probe_urls": [
+            "https://conectaobra.com/campinas-sp/loja-de-materiais-de-construcao/deposito-brasil-materiais-para-construcao"
+          ],
+          "cotacao_contact": null
+        },
+        {
+          "vendor_id": "deposito_tayo_campinas",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "landing_whatsapp_quote_only_no_public_sku",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null,
+          "probe_urls": [
+            "https://nikkeiaeroporto.com.br/"
+          ],
+          "cotacao_contact": {
+            "phone": "(19) 3266-1333",
+            "whatsapp": "https://wa.me/5519987586178?text=Ol%C3%A1%2C+quero+um+or%C3%A7amento+de+materiais+de+constru%C3%A7%C3%A3o!"
+          }
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "expenses_probed": 7,
+    "tier_a_vendors_per_expense": 6,
+    "verified_winners": 0,
+    "site_verified_candidates": 0,
+    "all_no_match": true,
+    "cotacao_needed_all": true
+  }
+}

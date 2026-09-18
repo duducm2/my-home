@@ -1,0 +1,3524 @@
+{
+  "title": "Regional cross-vendor verified winners",
+  "location_basis": "nova_odessa_cep_13380",
+  "checked_at": "2026-09-17",
+  "method": {
+    "chains": "Reuse *-lowest-prices.json catalogs (no re-scrape).",
+    "local_depos": "Probe results from data/research/regional-local/cluster-*.json.",
+    "ranking": "Lowest normalized_unit_price_brl among verified offers only."
+  },
+  "summary": {
+    "total_material_expenses": 35,
+    "verified_overall_winners": 31,
+    "pending_cotacao_only": 4,
+    "local_site_verified": 0
+  },
+  "expenses": [
+    {
+      "expense_id": "EXP_0014",
+      "requested_item": "Impermeabilizante (bianco)",
+      "requested_unit": "balde",
+      "verified_offer_count": 3,
+      "overall_winner": {
+        "vendor_id": "leroymerlin",
+        "vendor_name": "Leroy Merlin",
+        "vendor_type": "chain",
+        "matched_product": "Aditivo para Chapisco Vedacit Bianco 18kg Branco",
+        "normalized_unit_price_brl": 314.9,
+        "displayed_price_brl": 314.9,
+        "product_url": "https://www.leroymerlin.com.br/aditivo-para-chapisco-vedacit-bianco-18kg-branco_86101561",
+        "checked_at": "2026-09-17",
+        "source_file": "leroymerlin-lowest-prices.json"
+      },
+      "status": "verified",
+      "pending_cotacao": [
+        {
+          "vendor_id": "casa_dos_tijolos_americana",
+          "vendor_name": "Casa dos Tijolos Materiais para Construção",
+          "tier": "A",
+          "phone": "(19) 3468-6321",
+          "url": "https://paginaamarela.com.br/empresa/casa-dos-tijolos-materiais-para-construcao/americana/sp/7807803"
+        },
+        {
+          "vendor_id": "construeva_americana",
+          "vendor_name": "Construeva Materiais de Construção",
+          "tier": "A",
+          "phone": "+55 19 3468-6870",
+          "url": "https://construeva-construcao.localo.site/"
+        },
+        {
+          "vendor_id": "deposito_brasil_campinas",
+          "vendor_name": "Depósito Brasil Materiais para Construção",
+          "tier": "A",
+          "phone": null,
+          "url": "https://conectaobra.com/campinas-sp/loja-de-materiais-de-construcao/deposito-brasil-materiais-para-construcao"
+        },
+        {
+          "vendor_id": "deposito_ouro_verde_campinas",
+          "vendor_name": "Depósito Ouro Verde Materiais de Construção",
+          "tier": "A",
+          "phone": "(19) 97405-9418",
+          "url": "https://depouroverde.com.br/"
+        },
+        {
+          "vendor_id": "deposito_tayo_campinas",
+          "vendor_name": "Depósito Tayo Materiais de Construção",
+          "tier": "A",
+          "phone": "(19) 3266-1333",
+          "url": "https://nikkeiaeroporto.com.br/"
+        },
+        {
+          "vendor_id": "feval_americana",
+          "vendor_name": "Feval Materiais para Construção",
+          "tier": "A",
+          "phone": null,
+          "url": "https://feval.com.br/"
+        }
+      ],
+      "all_verified_offers": [
+        {
+          "vendor_id": "leroymerlin",
+          "vendor_name": "Leroy Merlin",
+          "vendor_type": "chain",
+          "matched_product": "Aditivo para Chapisco Vedacit Bianco 18kg Branco",
+          "normalized_unit_price_brl": 314.9,
+          "displayed_price_brl": 314.9,
+          "product_url": "https://www.leroymerlin.com.br/aditivo-para-chapisco-vedacit-bianco-18kg-branco_86101561",
+          "checked_at": "2026-09-17",
+          "source_file": "leroymerlin-lowest-prices.json"
+        },
+        {
+          "vendor_id": "sodimac",
+          "vendor_name": "Sodimac Brasil",
+          "vendor_type": "chain",
+          "matched_product": "Aditivo para Argamassa e Chapisco PVA Bianco Balde 18 Litros Vedacit",
+          "normalized_unit_price_brl": 314.9,
+          "displayed_price_brl": 314.9,
+          "product_url": "https://www.sodimac.com.br/sodimac-br/product/3803/aditivo-para-argamassa-e-chapisco-pva-bianco-balde-18-litros-vedacit/3803/",
+          "checked_at": "2026-09-17",
+          "source_file": "sodimac-lowest-prices.json"
+        },
+        {
+          "vendor_id": "telhanorte",
+          "vendor_name": "Telhanorte",
+          "vendor_type": "chain",
+          "matched_product": "Aditivo Líquido De Alto Desempenho Bianco 18kg Vedacit",
+          "normalized_unit_price_brl": 319.9,
+          "displayed_price_brl": 319.9,
+          "product_url": "https://www.telhanorte.com.br/bianco-bd-18-kg-263915/p",
+          "checked_at": "2026-09-17",
+          "source_file": "telhanorte-lowest-prices.json"
+        }
+      ],
+      "local_match_status": "no_match",
+      "notes": "Lowest among verified chain catalogs + any site_verified local depo prices."
+    },
+    {
+      "expense_id": "EXP_0015",
+      "requested_item": "Areia grossa, fina e pedrisco",
+      "requested_unit": "metro cúbico (m³)",
+      "verified_offer_count": 0,
+      "overall_winner": null,
+      "status": "pending_cotacao",
+      "pending_cotacao": [
+        {
+          "vendor_id": "casa_dos_tijolos_americana",
+          "vendor_name": "Casa dos Tijolos Materiais para Construção",
+          "tier": "A",
+          "phone": "(19) 3468-6321",
+          "url": "https://paginaamarela.com.br/empresa/casa-dos-tijolos-materiais-para-construcao/americana/sp/7807803"
+        },
+        {
+          "vendor_id": "construeva_americana",
+          "vendor_name": "Construeva Materiais de Construção",
+          "tier": "A",
+          "phone": "+55 19 3468-6870",
+          "url": "https://construeva-construcao.localo.site/"
+        },
+        {
+          "vendor_id": "deposito_brasil_campinas",
+          "vendor_name": "Depósito Brasil Materiais para Construção",
+          "tier": "A",
+          "phone": null,
+          "url": "https://conectaobra.com/campinas-sp/loja-de-materiais-de-construcao/deposito-brasil-materiais-para-construcao"
+        },
+        {
+          "vendor_id": "deposito_ouro_verde_campinas",
+          "vendor_name": "Depósito Ouro Verde Materiais de Construção",
+          "tier": "A",
+          "phone": "(19) 97405-9418",
+          "url": "https://depouroverde.com.br/"
+        },
+        {
+          "vendor_id": "deposito_tayo_campinas",
+          "vendor_name": "Depósito Tayo Materiais de Construção",
+          "tier": "A",
+          "phone": "(19) 3266-1333",
+          "url": "https://nikkeiaeroporto.com.br/"
+        },
+        {
+          "vendor_id": "feval_americana",
+          "vendor_name": "Feval Materiais para Construção",
+          "tier": "A",
+          "phone": null,
+          "url": "https://feval.com.br/"
+        },
+        {
+          "vendor_id": "casa_do_construtor_nova_odessa",
+          "vendor_name": "A Casa do Construtor (Comercial Prieto e Tanaka)",
+          "tier": "B",
+          "phone": null,
+          "url": "https://empresadois.com.br/cnpj/a-casa-do-construtor-05969131000103"
+        },
+        {
+          "vendor_id": "deposito_alvorada_nova_odessa",
+          "vendor_name": "Depósito Alvorada",
+          "tier": "B",
+          "phone": null,
+          "url": "https://guiapj.com.br/consulta-cnpj/02190183000180"
+        },
+        {
+          "vendor_id": "deposito_ceron_nova_odessa",
+          "vendor_name": "Depósito de Materiais Ceron",
+          "tier": "B",
+          "phone": "(19) 3873-1060",
+          "url": "https://www.diariocidade.com/sp/nova-odessa/guia/deposito-de-materiais-ceron-10847485000107/"
+        },
+        {
+          "vendor_id": "deposito_alemao_americana",
+          "vendor_name": "Depósito do Alemão",
+          "tier": "B",
+          "phone": null,
+          "url": "https://www.listamais.com.br/local/cad_idXZ99Q9Q/deposito-do-alemao-lojas-de-materiais-de-construcao-em-americana-sp"
+        },
+        {
+          "vendor_id": "pezao_nova_odessa",
+          "vendor_name": "Pezão Materiais para Construção",
+          "tier": "B",
+          "phone": "(19) 3466-6038",
+          "url": "https://teleconsulta.com.br/nova-odessa/materiais-eletricos-venda/pezao-materiais-construcao-nova-odessa-00000000008561/"
+        }
+      ],
+      "all_verified_offers": [],
+      "local_match_status": "no_match",
+      "notes": "No verified price from chains or local depos; use cotação pack."
+    },
+    {
+      "expense_id": "EXP_0016",
+      "requested_item": "Cimento",
+      "requested_unit": "saco (50 kg)",
+      "verified_offer_count": 4,
+      "overall_winner": {
+        "vendor_id": "333obra",
+        "vendor_name": "333Obra",
+        "vendor_type": "chain",
+        "matched_product": "Cimento CPII 32 Nacional 50kg Multimax",
+        "normalized_unit_price_brl": 29.0,
+        "displayed_price_brl": 29.0,
+        "product_url": "https://www.333obra.com.br/cimento-50kg-cpii-32-nacional.html",
+        "checked_at": "2026-09-17",
+        "source_file": "333obra-lowest-prices.json"
+      },
+      "status": "verified",
+      "pending_cotacao": [
+        {
+          "vendor_id": "casa_dos_tijolos_americana",
+          "vendor_name": "Casa dos Tijolos Materiais para Construção",
+          "tier": "A",
+          "phone": "(19) 3468-6321",
+          "url": "https://paginaamarela.com.br/empresa/casa-dos-tijolos-materiais-para-construcao/americana/sp/7807803"
+        },
+        {
+          "vendor_id": "construeva_americana",
+          "vendor_name": "Construeva Materiais de Construção",
+          "tier": "A",
+          "phone": "+55 19 3468-6870",
+          "url": "https://construeva-construcao.localo.site/"
+        },
+        {
+          "vendor_id": "deposito_brasil_campinas",
+          "vendor_name": "Depósito Brasil Materiais para Construção",
+          "tier": "A",
+          "phone": null,
+          "url": "https://conectaobra.com/campinas-sp/loja-de-materiais-de-construcao/deposito-brasil-materiais-para-construcao"
+        },
+        {
+          "vendor_id": "deposito_ouro_verde_campinas",
+          "vendor_name": "Depósito Ouro Verde Materiais de Construção",
+          "tier": "A",
+          "phone": "(19) 97405-9418",
+          "url": "https://depouroverde.com.br/"
+        },
+        {
+          "vendor_id": "deposito_tayo_campinas",
+          "vendor_name": "Depósito Tayo Materiais de Construção",
+          "tier": "A",
+          "phone": "(19) 3266-1333",
+          "url": "https://nikkeiaeroporto.com.br/"
+        },
+        {
+          "vendor_id": "feval_americana",
+          "vendor_name": "Feval Materiais para Construção",
+          "tier": "A",
+          "phone": null,
+          "url": "https://feval.com.br/"
+        },
+        {
+          "vendor_id": "casa_do_construtor_nova_odessa",
+          "vendor_name": "A Casa do Construtor (Comercial Prieto e Tanaka)",
+          "tier": "B",
+          "phone": null,
+          "url": "https://empresadois.com.br/cnpj/a-casa-do-construtor-05969131000103"
+        },
+        {
+          "vendor_id": "deposito_alvorada_nova_odessa",
+          "vendor_name": "Depósito Alvorada",
+          "tier": "B",
+          "phone": null,
+          "url": "https://guiapj.com.br/consulta-cnpj/02190183000180"
+        },
+        {
+          "vendor_id": "deposito_ceron_nova_odessa",
+          "vendor_name": "Depósito de Materiais Ceron",
+          "tier": "B",
+          "phone": "(19) 3873-1060",
+          "url": "https://www.diariocidade.com/sp/nova-odessa/guia/deposito-de-materiais-ceron-10847485000107/"
+        },
+        {
+          "vendor_id": "deposito_alemao_americana",
+          "vendor_name": "Depósito do Alemão",
+          "tier": "B",
+          "phone": null,
+          "url": "https://www.listamais.com.br/local/cad_idXZ99Q9Q/deposito-do-alemao-lojas-de-materiais-de-construcao-em-americana-sp"
+        },
+        {
+          "vendor_id": "pezao_nova_odessa",
+          "vendor_name": "Pezão Materiais para Construção",
+          "tier": "B",
+          "phone": "(19) 3466-6038",
+          "url": "https://teleconsulta.com.br/nova-odessa/materiais-eletricos-venda/pezao-materiais-construcao-nova-odessa-00000000008561/"
+        }
+      ],
+      "all_verified_offers": [
+        {
+          "vendor_id": "333obra",
+          "vendor_name": "333Obra",
+          "vendor_type": "chain",
+          "matched_product": "Cimento CPII 32 Nacional 50kg Multimax",
+          "normalized_unit_price_brl": 29.0,
+          "displayed_price_brl": 29.0,
+          "product_url": "https://www.333obra.com.br/cimento-50kg-cpii-32-nacional.html",
+          "checked_at": "2026-09-17",
+          "source_file": "333obra-lowest-prices.json"
+        },
+        {
+          "vendor_id": "sodimac",
+          "vendor_name": "Sodimac Brasil",
+          "vendor_type": "chain",
+          "matched_product": "Cimento Cauê CPIIF32 Uso Geral 50kg",
+          "normalized_unit_price_brl": 32.9,
+          "displayed_price_brl": 32.9,
+          "product_url": "https://www.sodimac.com.br/sodimac-br/product/686667/cimento-caue-cpiif32-uso-geral-50kg/686667/",
+          "checked_at": "2026-09-17",
+          "source_file": "sodimac-lowest-prices.json"
+        },
+        {
+          "vendor_id": "leroymerlin",
+          "vendor_name": "Leroy Merlin",
+          "vendor_type": "chain",
+          "matched_product": "Cimento CP III 32 RS 50kg CSN",
+          "normalized_unit_price_brl": 34.9,
+          "displayed_price_brl": 34.9,
+          "product_url": "https://www.leroymerlin.com.br/cimento-cp-iii-32-rs-50kg-csn_92137822",
+          "checked_at": "2026-09-17",
+          "source_file": "leroymerlin-lowest-prices.json"
+        },
+        {
+          "vendor_id": "telhanorte",
+          "vendor_name": "Telhanorte",
+          "vendor_type": "chain",
+          "matched_product": "Cimento Cinza CPII-E 50KG Campeão Nacional",
+          "normalized_unit_price_brl": 34.9,
+          "displayed_price_brl": 34.9,
+          "product_url": "https://www.telhanorte.com.br/cimento-cinza-cp-ii-e-32-rs-campeao-50kg-2437279/p",
+          "checked_at": "2026-09-17",
+          "source_file": "telhanorte-lowest-prices.json"
+        }
+      ],
+      "local_match_status": "no_match",
+      "notes": "Lowest among verified chain catalogs + any site_verified local depo prices."
+    },
+    {
+      "expense_id": "EXP_0017",
+      "requested_item": "Telha",
+      "requested_unit": "unidade",
+      "verified_offer_count": 3,
+      "overall_winner": {
+        "vendor_id": "sodimac",
+        "vendor_name": "Sodimac Brasil",
+        "vendor_type": "chain",
+        "matched_product": "Telha Portuguesa de Cerâmica Resinada 24cmx39cmx40mm Vermelho Resinado",
+        "normalized_unit_price_brl": 1.96,
+        "displayed_price_brl": 1.96,
+        "product_url": "https://www.sodimac.com.br/sodimac-br/product/647894/telha-portuguesa-de-ceramica-resinada-24cmx39cmx40mm-vermelho-resinado/647894/",
+        "checked_at": "2026-09-17",
+        "source_file": "sodimac-lowest-prices.json"
+      },
+      "status": "verified",
+      "pending_cotacao": [
+        {
+          "vendor_id": "casa_dos_tijolos_americana",
+          "vendor_name": "Casa dos Tijolos Materiais para Construção",
+          "tier": "A",
+          "phone": "(19) 3468-6321",
+          "url": "https://paginaamarela.com.br/empresa/casa-dos-tijolos-materiais-para-construcao/americana/sp/7807803"
+        },
+        {
+          "vendor_id": "construeva_americana",
+          "vendor_name": "Construeva Materiais de Construção",
+          "tier": "A",
+          "phone": "+55 19 3468-6870",
+          "url": "https://construeva-construcao.localo.site/"
+        },
+        {
+          "vendor_id": "deposito_brasil_campinas",
+          "vendor_name": "Depósito Brasil Materiais para Construção",
+          "tier": "A",
+          "phone": null,
+          "url": "https://conectaobra.com/campinas-sp/loja-de-materiais-de-construcao/deposito-brasil-materiais-para-construcao"
+        },
+        {
+          "vendor_id": "deposito_ouro_verde_campinas",
+          "vendor_name": "Depósito Ouro Verde Materiais de Construção",
+          "tier": "A",
+          "phone": "(19) 97405-9418",
+          "url": "https://depouroverde.com.br/"
+        },
+        {
+          "vendor_id": "deposito_tayo_campinas",
+          "vendor_name": "Depósito Tayo Materiais de Construção",
+          "tier": "A",
+          "phone": "(19) 3266-1333",
+          "url": "https://nikkeiaeroporto.com.br/"
+        },
+        {
+          "vendor_id": "feval_americana",
+          "vendor_name": "Feval Materiais para Construção",
+          "tier": "A",
+          "phone": null,
+          "url": "https://feval.com.br/"
+        }
+      ],
+      "all_verified_offers": [
+        {
+          "vendor_id": "sodimac",
+          "vendor_name": "Sodimac Brasil",
+          "vendor_type": "chain",
+          "matched_product": "Telha Portuguesa de Cerâmica Resinada 24cmx39cmx40mm Vermelho Resinado",
+          "normalized_unit_price_brl": 1.96,
+          "displayed_price_brl": 1.96,
+          "product_url": "https://www.sodimac.com.br/sodimac-br/product/647894/telha-portuguesa-de-ceramica-resinada-24cmx39cmx40mm-vermelho-resinado/647894/",
+          "checked_at": "2026-09-17",
+          "source_file": "sodimac-lowest-prices.json"
+        },
+        {
+          "vendor_id": "telhanorte",
+          "vendor_name": "Telhanorte",
+          "vendor_type": "chain",
+          "matched_product": "Telha Portuguesa Premium 40x24 Vermelha Resinada Barrobello",
+          "normalized_unit_price_brl": 1.99,
+          "displayed_price_brl": 1.99,
+          "product_url": "https://www.telhanorte.com.br/telha-portuguesa-de-ceramica-39x24cm-10mm-realeza-vermelha-resinada-barrobello-1402951/p",
+          "checked_at": "2026-09-17",
+          "source_file": "telhanorte-lowest-prices.json"
+        },
+        {
+          "vendor_id": "333obra",
+          "vendor_name": "333Obra",
+          "vendor_type": "chain",
+          "matched_product": "Telha Portuguesa Resinada 40.4x24.1cm",
+          "normalized_unit_price_brl": 2.15,
+          "displayed_price_brl": 2.15,
+          "product_url": "https://www.333obra.com.br/telha-portuguesa-resinada-ceramica-40-4cm-x-24-1cm-x-35cm.html",
+          "checked_at": "2026-09-17",
+          "source_file": "333obra-lowest-prices.json"
+        }
+      ],
+      "local_match_status": "no_match",
+      "notes": "Lowest among verified chain catalogs + any site_verified local depo prices."
+    },
+    {
+      "expense_id": "EXP_0019",
+      "requested_item": "Tijolinho de barro",
+      "requested_unit": "unidade",
+      "verified_offer_count": 2,
+      "overall_winner": {
+        "vendor_id": "telhanorte",
+        "vendor_name": "Telhanorte",
+        "vendor_type": "chain",
+        "matched_product": "Tijolo Maciço comum Emic Ensacado com 10 Unidades",
+        "normalized_unit_price_brl": 0.665,
+        "displayed_price_brl": 6.65,
+        "product_url": "https://www.telhanorte.com.br/tijolo-comum-ensacado-10un-emic--2555646/p",
+        "checked_at": "2026-09-17",
+        "source_file": "telhanorte-lowest-prices.json"
+      },
+      "status": "verified",
+      "pending_cotacao": [
+        {
+          "vendor_id": "casa_dos_tijolos_americana",
+          "vendor_name": "Casa dos Tijolos Materiais para Construção",
+          "tier": "A",
+          "phone": "(19) 3468-6321",
+          "url": "https://paginaamarela.com.br/empresa/casa-dos-tijolos-materiais-para-construcao/americana/sp/7807803"
+        },
+        {
+          "vendor_id": "construeva_americana",
+          "vendor_name": "Construeva Materiais de Construção",
+          "tier": "A",
+          "phone": "+55 19 3468-6870",
+          "url": "https://construeva-construcao.localo.site/"
+        },
+        {
+          "vendor_id": "deposito_brasil_campinas",
+          "vendor_name": "Depósito Brasil Materiais para Construção",
+          "tier": "A",
+          "phone": null,
+          "url": "https://conectaobra.com/campinas-sp/loja-de-materiais-de-construcao/deposito-brasil-materiais-para-construcao"
+        },
+        {
+          "vendor_id": "deposito_ouro_verde_campinas",
+          "vendor_name": "Depósito Ouro Verde Materiais de Construção",
+          "tier": "A",
+          "phone": "(19) 97405-9418",
+          "url": "https://depouroverde.com.br/"
+        },
+        {
+          "vendor_id": "deposito_tayo_campinas",
+          "vendor_name": "Depósito Tayo Materiais de Construção",
+          "tier": "A",
+          "phone": "(19) 3266-1333",
+          "url": "https://nikkeiaeroporto.com.br/"
+        },
+        {
+          "vendor_id": "feval_americana",
+          "vendor_name": "Feval Materiais para Construção",
+          "tier": "A",
+          "phone": null,
+          "url": "https://feval.com.br/"
+        },
+        {
+          "vendor_id": "casa_do_construtor_nova_odessa",
+          "vendor_name": "A Casa do Construtor (Comercial Prieto e Tanaka)",
+          "tier": "B",
+          "phone": null,
+          "url": "https://empresadois.com.br/cnpj/a-casa-do-construtor-05969131000103"
+        },
+        {
+          "vendor_id": "deposito_alvorada_nova_odessa",
+          "vendor_name": "Depósito Alvorada",
+          "tier": "B",
+          "phone": null,
+          "url": "https://guiapj.com.br/consulta-cnpj/02190183000180"
+        },
+        {
+          "vendor_id": "deposito_ceron_nova_odessa",
+          "vendor_name": "Depósito de Materiais Ceron",
+          "tier": "B",
+          "phone": "(19) 3873-1060",
+          "url": "https://www.diariocidade.com/sp/nova-odessa/guia/deposito-de-materiais-ceron-10847485000107/"
+        },
+        {
+          "vendor_id": "deposito_alemao_americana",
+          "vendor_name": "Depósito do Alemão",
+          "tier": "B",
+          "phone": null,
+          "url": "https://www.listamais.com.br/local/cad_idXZ99Q9Q/deposito-do-alemao-lojas-de-materiais-de-construcao-em-americana-sp"
+        },
+        {
+          "vendor_id": "pezao_nova_odessa",
+          "vendor_name": "Pezão Materiais para Construção",
+          "tier": "B",
+          "phone": "(19) 3466-6038",
+          "url": "https://teleconsulta.com.br/nova-odessa/materiais-eletricos-venda/pezao-materiais-construcao-nova-odessa-00000000008561/"
+        }
+      ],
+      "all_verified_offers": [
+        {
+          "vendor_id": "telhanorte",
+          "vendor_name": "Telhanorte",
+          "vendor_type": "chain",
+          "matched_product": "Tijolo Maciço comum Emic Ensacado com 10 Unidades",
+          "normalized_unit_price_brl": 0.665,
+          "displayed_price_brl": 6.65,
+          "product_url": "https://www.telhanorte.com.br/tijolo-comum-ensacado-10un-emic--2555646/p",
+          "checked_at": "2026-09-17",
+          "source_file": "telhanorte-lowest-prices.json"
+        },
+        {
+          "vendor_id": "sodimac",
+          "vendor_name": "Sodimac Brasil",
+          "vendor_type": "chain",
+          "matched_product": "Tijolo Comum 10 peças",
+          "normalized_unit_price_brl": 0.89,
+          "displayed_price_brl": 8.9,
+          "product_url": "https://www.sodimac.com.br/sodimac-br/product/33939/tijolo-comum-10-pe%C3%A7as/33939/",
+          "checked_at": "2026-09-17",
+          "source_file": "sodimac-lowest-prices.json"
+        }
+      ],
+      "local_match_status": "no_match",
+      "notes": "Lowest among verified chain catalogs + any site_verified local depo prices."
+    },
+    {
+      "expense_id": "EXP_0021",
+      "requested_item": "Arame recuzido",
+      "requested_unit": "quilograma (kg)",
+      "verified_offer_count": 3,
+      "overall_winner": {
+        "vendor_id": "333obra",
+        "vendor_name": "333Obra",
+        "vendor_type": "chain",
+        "matched_product": "Arame Recozido Nº18 1kg",
+        "normalized_unit_price_brl": 13.6,
+        "displayed_price_brl": 13.6,
+        "product_url": "https://www.333obra.com.br/arame-recozido-n-18.html",
+        "checked_at": "2026-09-17",
+        "source_file": "333obra-lowest-prices.json"
+      },
+      "status": "verified",
+      "pending_cotacao": [
+        {
+          "vendor_id": "casa_dos_tijolos_americana",
+          "vendor_name": "Casa dos Tijolos Materiais para Construção",
+          "tier": "A",
+          "phone": "(19) 3468-6321",
+          "url": "https://paginaamarela.com.br/empresa/casa-dos-tijolos-materiais-para-construcao/americana/sp/7807803"
+        },
+        {
+          "vendor_id": "construeva_americana",
+          "vendor_name": "Construeva Materiais de Construção",
+          "tier": "A",
+          "phone": "+55 19 3468-6870",
+          "url": "https://construeva-construcao.localo.site/"
+        },
+        {
+          "vendor_id": "deposito_brasil_campinas",
+          "vendor_name": "Depósito Brasil Materiais para Construção",
+          "tier": "A",
+          "phone": null,
+          "url": "https://conectaobra.com/campinas-sp/loja-de-materiais-de-construcao/deposito-brasil-materiais-para-construcao"
+        },
+        {
+          "vendor_id": "deposito_ouro_verde_campinas",
+          "vendor_name": "Depósito Ouro Verde Materiais de Construção",
+          "tier": "A",
+          "phone": "(19) 97405-9418",
+          "url": "https://depouroverde.com.br/"
+        },
+        {
+          "vendor_id": "deposito_tayo_campinas",
+          "vendor_name": "Depósito Tayo Materiais de Construção",
+          "tier": "A",
+          "phone": "(19) 3266-1333",
+          "url": "https://nikkeiaeroporto.com.br/"
+        },
+        {
+          "vendor_id": "feval_americana",
+          "vendor_name": "Feval Materiais para Construção",
+          "tier": "A",
+          "phone": null,
+          "url": "https://feval.com.br/"
+        }
+      ],
+      "all_verified_offers": [
+        {
+          "vendor_id": "333obra",
+          "vendor_name": "333Obra",
+          "vendor_type": "chain",
+          "matched_product": "Arame Recozido Nº18 1kg",
+          "normalized_unit_price_brl": 13.6,
+          "displayed_price_brl": 13.6,
+          "product_url": "https://www.333obra.com.br/arame-recozido-n-18.html",
+          "checked_at": "2026-09-17",
+          "source_file": "333obra-lowest-prices.json"
+        },
+        {
+          "vendor_id": "sodimac",
+          "vendor_name": "Sodimac Brasil",
+          "vendor_type": "chain",
+          "matched_product": "Arame Btc Recozido Bwg18 1,24mm Rl 1kg",
+          "normalized_unit_price_brl": 21.9,
+          "displayed_price_brl": 21.9,
+          "product_url": "https://www.sodimac.com.br/sodimac-br/product/1797341/arame-btc-recozido-bwg18-124mm-rl-1kg/1797341/",
+          "checked_at": "2026-09-17",
+          "source_file": "sodimac-lowest-prices.json"
+        },
+        {
+          "vendor_id": "telhanorte",
+          "vendor_name": "Telhanorte",
+          "vendor_type": "chain",
+          "matched_product": "Arame Recozido 1,24mm ArcelorMittal 1kg",
+          "normalized_unit_price_brl": 23.9,
+          "displayed_price_brl": 23.9,
+          "product_url": "https://www.telhanorte.com.br/arame-recozido-1-24mm-rl-1kg-arcelormittal-1554875/p",
+          "checked_at": "2026-09-17",
+          "source_file": "telhanorte-lowest-prices.json"
+        }
+      ],
+      "local_match_status": "no_match",
+      "notes": "Lowest among verified chain catalogs + any site_verified local depo prices."
+    },
+    {
+      "expense_id": "EXP_0042",
+      "requested_item": "Madeiramento ou estrutura metálica",
+      "requested_unit": "metro quadrado (m²)",
+      "verified_offer_count": 0,
+      "overall_winner": null,
+      "status": "pending_cotacao",
+      "pending_cotacao": [
+        {
+          "vendor_id": "casa_dos_tijolos_americana",
+          "vendor_name": "Casa dos Tijolos Materiais para Construção",
+          "tier": "A",
+          "phone": "(19) 3468-6321",
+          "url": "https://paginaamarela.com.br/empresa/casa-dos-tijolos-materiais-para-construcao/americana/sp/7807803"
+        },
+        {
+          "vendor_id": "construeva_americana",
+          "vendor_name": "Construeva Materiais de Construção",
+          "tier": "A",
+          "phone": "+55 19 3468-6870",
+          "url": "https://construeva-construcao.localo.site/"
+        },
+        {
+          "vendor_id": "deposito_brasil_campinas",
+          "vendor_name": "Depósito Brasil Materiais para Construção",
+          "tier": "A",
+          "phone": null,
+          "url": "https://conectaobra.com/campinas-sp/loja-de-materiais-de-construcao/deposito-brasil-materiais-para-construcao"
+        },
+        {
+          "vendor_id": "deposito_ouro_verde_campinas",
+          "vendor_name": "Depósito Ouro Verde Materiais de Construção",
+          "tier": "A",
+          "phone": "(19) 97405-9418",
+          "url": "https://depouroverde.com.br/"
+        },
+        {
+          "vendor_id": "deposito_tayo_campinas",
+          "vendor_name": "Depósito Tayo Materiais de Construção",
+          "tier": "A",
+          "phone": "(19) 3266-1333",
+          "url": "https://nikkeiaeroporto.com.br/"
+        },
+        {
+          "vendor_id": "feval_americana",
+          "vendor_name": "Feval Materiais para Construção",
+          "tier": "A",
+          "phone": null,
+          "url": "https://feval.com.br/"
+        }
+      ],
+      "all_verified_offers": [],
+      "local_match_status": "no_match",
+      "notes": "No verified price from chains or local depos; use cotação pack."
+    },
+    {
+      "expense_id": "EXP_0023",
+      "requested_item": "Porcelanato",
+      "requested_unit": "metro quadrado (m²)",
+      "verified_offer_count": 3,
+      "overall_winner": {
+        "vendor_id": "leroymerlin",
+        "vendor_name": "Leroy Merlin",
+        "vendor_type": "chain",
+        "matched_product": "Porcelanato Interno Esmaltado Acetinado Borda Reta 60x60cm Cortona Cemento Itagres",
+        "normalized_unit_price_brl": 34.6906,
+        "displayed_price_brl": 48.22,
+        "product_url": "https://www.leroymerlin.com.br/porcelanato-interno-esmaltado-acetinado-borda-reta-60x60cm-cortona-cemento-itagres_89566162",
+        "checked_at": "2026-09-17",
+        "source_file": "leroymerlin-lowest-prices.json"
+      },
+      "status": "verified",
+      "pending_cotacao": [
+        {
+          "vendor_id": "casa_dos_tijolos_americana",
+          "vendor_name": "Casa dos Tijolos Materiais para Construção",
+          "tier": "A",
+          "phone": "(19) 3468-6321",
+          "url": "https://paginaamarela.com.br/empresa/casa-dos-tijolos-materiais-para-construcao/americana/sp/7807803"
+        },
+        {
+          "vendor_id": "construeva_americana",
+          "vendor_name": "Construeva Materiais de Construção",
+          "tier": "A",
+          "phone": "+55 19 3468-6870",
+          "url": "https://construeva-construcao.localo.site/"
+        },
+        {
+          "vendor_id": "deposito_brasil_campinas",
+          "vendor_name": "Depósito Brasil Materiais para Construção",
+          "tier": "A",
+          "phone": null,
+          "url": "https://conectaobra.com/campinas-sp/loja-de-materiais-de-construcao/deposito-brasil-materiais-para-construcao"
+        },
+        {
+          "vendor_id": "deposito_ouro_verde_campinas",
+          "vendor_name": "Depósito Ouro Verde Materiais de Construção",
+          "tier": "A",
+          "phone": "(19) 97405-9418",
+          "url": "https://depouroverde.com.br/"
+        },
+        {
+          "vendor_id": "deposito_tayo_campinas",
+          "vendor_name": "Depósito Tayo Materiais de Construção",
+          "tier": "A",
+          "phone": "(19) 3266-1333",
+          "url": "https://nikkeiaeroporto.com.br/"
+        },
+        {
+          "vendor_id": "feval_americana",
+          "vendor_name": "Feval Materiais para Construção",
+          "tier": "A",
+          "phone": null,
+          "url": "https://feval.com.br/"
+        }
+      ],
+      "all_verified_offers": [
+        {
+          "vendor_id": "leroymerlin",
+          "vendor_name": "Leroy Merlin",
+          "vendor_type": "chain",
+          "matched_product": "Porcelanato Interno Esmaltado Acetinado Borda Reta 60x60cm Cortona Cemento Itagres",
+          "normalized_unit_price_brl": 34.6906,
+          "displayed_price_brl": 48.22,
+          "product_url": "https://www.leroymerlin.com.br/porcelanato-interno-esmaltado-acetinado-borda-reta-60x60cm-cortona-cemento-itagres_89566162",
+          "checked_at": "2026-09-17",
+          "source_file": "leroymerlin-lowest-prices.json"
+        },
+        {
+          "vendor_id": "sodimac",
+          "vendor_name": "Sodimac Brasil",
+          "vendor_type": "chain",
+          "matched_product": "Piso Porcelanato Acetinado Retificado Bege Interno 60x60cm Champagne Branco Cetim Incesa Caixa 2,2m²",
+          "normalized_unit_price_brl": 39.9,
+          "displayed_price_brl": 87.78,
+          "product_url": "https://www.sodimac.com.br/sodimac-br/product/898363/piso-porcelanato-acetinado-retificado-bege-interno-60x60cm-champagne-branco-cetim-caixa-2-2m2/898363/",
+          "checked_at": "2026-09-17",
+          "source_file": "sodimac-lowest-prices.json"
+        },
+        {
+          "vendor_id": "telhanorte",
+          "vendor_name": "Telhanorte",
+          "vendor_type": "chain",
+          "matched_product": "Porcelanato Chicago Retificado Acetinado Cinza 61x61cm 2,67m2 Embramaco",
+          "normalized_unit_price_brl": 42.9,
+          "displayed_price_brl": 114.54,
+          "product_url": "https://www.telhanorte.com.br/porcelanato-acetinado-61-8x61-8-chicago-gray-dp61108-cx2-67m-embra-2537362/p",
+          "checked_at": "2026-09-17",
+          "source_file": "telhanorte-lowest-prices.json"
+        }
+      ],
+      "local_match_status": "no_match",
+      "notes": "Lowest among verified chain catalogs + any site_verified local depo prices."
+    },
+    {
+      "expense_id": "EXP_0024",
+      "requested_item": "Rejunte de porcelanato",
+      "requested_unit": "quilograma (kg)",
+      "verified_offer_count": 4,
+      "overall_winner": {
+        "vendor_id": "333obra",
+        "vendor_name": "333Obra",
+        "vendor_type": "chain",
+        "matched_product": "Rejunte Flexível Cerâmica Preto 1Kg - Votomassa - 1 Unidade",
+        "normalized_unit_price_brl": 5.59,
+        "displayed_price_brl": 5.59,
+        "product_url": "https://www.333obra.com.br/p/rejunte-flexivel-votomassa-preto-1-kg.html",
+        "checked_at": "2026-09-17",
+        "source_file": "333obra-lowest-prices.json"
+      },
+      "status": "verified",
+      "pending_cotacao": [
+        {
+          "vendor_id": "casa_dos_tijolos_americana",
+          "vendor_name": "Casa dos Tijolos Materiais para Construção",
+          "tier": "A",
+          "phone": "(19) 3468-6321",
+          "url": "https://paginaamarela.com.br/empresa/casa-dos-tijolos-materiais-para-construcao/americana/sp/7807803"
+        },
+        {
+          "vendor_id": "construeva_americana",
+          "vendor_name": "Construeva Materiais de Construção",
+          "tier": "A",
+          "phone": "+55 19 3468-6870",
+          "url": "https://construeva-construcao.localo.site/"
+        },
+        {
+          "vendor_id": "deposito_brasil_campinas",
+          "vendor_name": "Depósito Brasil Materiais para Construção",
+          "tier": "A",
+          "phone": null,
+          "url": "https://conectaobra.com/campinas-sp/loja-de-materiais-de-construcao/deposito-brasil-materiais-para-construcao"
+        },
+        {
+          "vendor_id": "deposito_ouro_verde_campinas",
+          "vendor_name": "Depósito Ouro Verde Materiais de Construção",
+          "tier": "A",
+          "phone": "(19) 97405-9418",
+          "url": "https://depouroverde.com.br/"
+        },
+        {
+          "vendor_id": "deposito_tayo_campinas",
+          "vendor_name": "Depósito Tayo Materiais de Construção",
+          "tier": "A",
+          "phone": "(19) 3266-1333",
+          "url": "https://nikkeiaeroporto.com.br/"
+        },
+        {
+          "vendor_id": "feval_americana",
+          "vendor_name": "Feval Materiais para Construção",
+          "tier": "A",
+          "phone": null,
+          "url": "https://feval.com.br/"
+        }
+      ],
+      "all_verified_offers": [
+        {
+          "vendor_id": "333obra",
+          "vendor_name": "333Obra",
+          "vendor_type": "chain",
+          "matched_product": "Rejunte Flexível Cerâmica Preto 1Kg - Votomassa - 1 Unidade",
+          "normalized_unit_price_brl": 5.59,
+          "displayed_price_brl": 5.59,
+          "product_url": "https://www.333obra.com.br/p/rejunte-flexivel-votomassa-preto-1-kg.html",
+          "checked_at": "2026-09-17",
+          "source_file": "333obra-lowest-prices.json"
+        },
+        {
+          "vendor_id": "leroymerlin",
+          "vendor_name": "Leroy Merlin",
+          "vendor_type": "chain",
+          "matched_product": "Rejunte Acrílico Camurça 1kg Fortaleza",
+          "normalized_unit_price_brl": 32.81,
+          "displayed_price_brl": 32.81,
+          "product_url": "https://www.leroymerlin.com.br/rejunte-acrilico-camurca-1kg-fortaleza_92380953",
+          "checked_at": "2026-09-17",
+          "source_file": "leroymerlin-lowest-prices.json"
+        },
+        {
+          "vendor_id": "telhanorte",
+          "vendor_name": "Telhanorte",
+          "vendor_type": "chain",
+          "matched_product": "Rejunte Acrílico Branco 1kg PortoKoll",
+          "normalized_unit_price_brl": 35.9,
+          "displayed_price_brl": 35.9,
+          "product_url": "https://www.telhanorte.com.br/rejunte-acrilico-1kg-branco-portokoll-1385224/p",
+          "checked_at": "2026-09-17",
+          "source_file": "telhanorte-lowest-prices.json"
+        },
+        {
+          "vendor_id": "sodimac",
+          "vendor_name": "Sodimac Brasil",
+          "vendor_type": "chain",
+          "matched_product": "Rejunte Acrílico 1kg Branco Quartzolit",
+          "normalized_unit_price_brl": 54.9,
+          "displayed_price_brl": 54.9,
+          "product_url": "https://www.sodimac.com.br/sodimac-br/product/637939002/rejunte-acrilico-1kg-branco/637939002/",
+          "checked_at": "2026-09-17",
+          "source_file": "sodimac-lowest-prices.json"
+        }
+      ],
+      "local_match_status": "no_match",
+      "notes": "Lowest among verified chain catalogs + any site_verified local depo prices."
+    },
+    {
+      "expense_id": "EXP_0025",
+      "requested_item": "Argamassa para o porcelanato",
+      "requested_unit": "saco (20 kg)",
+      "verified_offer_count": 4,
+      "overall_winner": {
+        "vendor_id": "333obra",
+        "vendor_name": "333Obra",
+        "vendor_type": "chain",
+        "matched_product": "Argamassa Colante ACIII Pisokoll 7 em 1 Interno e Externo Cinza 20kg - Pisokoll - 1 Unidade",
+        "normalized_unit_price_brl": 22.9,
+        "displayed_price_brl": 22.9,
+        "product_url": "https://www.333obra.com.br/p/argamassa-ac3-cinza-7-em-1-20-kg-pisokoll.html",
+        "checked_at": "2026-09-17",
+        "source_file": "333obra-lowest-prices.json"
+      },
+      "status": "verified",
+      "pending_cotacao": [
+        {
+          "vendor_id": "casa_dos_tijolos_americana",
+          "vendor_name": "Casa dos Tijolos Materiais para Construção",
+          "tier": "A",
+          "phone": "(19) 3468-6321",
+          "url": "https://paginaamarela.com.br/empresa/casa-dos-tijolos-materiais-para-construcao/americana/sp/7807803"
+        },
+        {
+          "vendor_id": "construeva_americana",
+          "vendor_name": "Construeva Materiais de Construção",
+          "tier": "A",
+          "phone": "+55 19 3468-6870",
+          "url": "https://construeva-construcao.localo.site/"
+        },
+        {
+          "vendor_id": "deposito_brasil_campinas",
+          "vendor_name": "Depósito Brasil Materiais para Construção",
+          "tier": "A",
+          "phone": null,
+          "url": "https://conectaobra.com/campinas-sp/loja-de-materiais-de-construcao/deposito-brasil-materiais-para-construcao"
+        },
+        {
+          "vendor_id": "deposito_ouro_verde_campinas",
+          "vendor_name": "Depósito Ouro Verde Materiais de Construção",
+          "tier": "A",
+          "phone": "(19) 97405-9418",
+          "url": "https://depouroverde.com.br/"
+        },
+        {
+          "vendor_id": "deposito_tayo_campinas",
+          "vendor_name": "Depósito Tayo Materiais de Construção",
+          "tier": "A",
+          "phone": "(19) 3266-1333",
+          "url": "https://nikkeiaeroporto.com.br/"
+        },
+        {
+          "vendor_id": "feval_americana",
+          "vendor_name": "Feval Materiais para Construção",
+          "tier": "A",
+          "phone": null,
+          "url": "https://feval.com.br/"
+        }
+      ],
+      "all_verified_offers": [
+        {
+          "vendor_id": "333obra",
+          "vendor_name": "333Obra",
+          "vendor_type": "chain",
+          "matched_product": "Argamassa Colante ACIII Pisokoll 7 em 1 Interno e Externo Cinza 20kg - Pisokoll - 1 Unidade",
+          "normalized_unit_price_brl": 22.9,
+          "displayed_price_brl": 22.9,
+          "product_url": "https://www.333obra.com.br/p/argamassa-ac3-cinza-7-em-1-20-kg-pisokoll.html",
+          "checked_at": "2026-09-17",
+          "source_file": "333obra-lowest-prices.json"
+        },
+        {
+          "vendor_id": "leroymerlin",
+          "vendor_name": "Leroy Merlin",
+          "vendor_type": "chain",
+          "matched_product": "Argamassa ACIII Interno e Externo 20kg Cinza Axton",
+          "normalized_unit_price_brl": 34.9,
+          "displayed_price_brl": 34.9,
+          "product_url": "https://www.leroymerlin.com.br/argamassa-aciii-interno-e-externo-20kg-cinza-axton_89296172",
+          "checked_at": "2026-09-17",
+          "source_file": "leroymerlin-lowest-prices.json"
+        },
+        {
+          "vendor_id": "telhanorte",
+          "vendor_name": "Telhanorte",
+          "vendor_type": "chain",
+          "matched_product": "Argamassa ACIII Porcelanato Cerâmica Interno Externo Cinza 20kg Royal Gres",
+          "normalized_unit_price_brl": 34.9,
+          "displayed_price_brl": 34.9,
+          "product_url": "https://www.telhanorte.com.br/argamassa-aciii-interexter-plastico-20kg-royal-gres-2495414/p",
+          "checked_at": "2026-09-17",
+          "source_file": "telhanorte-lowest-prices.json"
+        },
+        {
+          "vendor_id": "sodimac",
+          "vendor_name": "Sodimac Brasil",
+          "vendor_type": "chain",
+          "matched_product": "Argamassa Flexível ACIII 20Kg Cinza Quartzolit",
+          "normalized_unit_price_brl": 44.9,
+          "displayed_price_brl": 44.9,
+          "product_url": "https://www.sodimac.com.br/sodimac-br/product/739012/argamassa-flexivel-aciii-20kg-cinza/739012/",
+          "checked_at": "2026-09-17",
+          "source_file": "sodimac-lowest-prices.json"
+        }
+      ],
+      "local_match_status": "no_match",
+      "notes": "Lowest among verified chain catalogs + any site_verified local depo prices."
+    },
+    {
+      "expense_id": "EXP_0041",
+      "requested_item": "Rodapés para acompanhar o porcelanato (R$1500)",
+      "requested_unit": "metro linear (m)",
+      "verified_offer_count": 2,
+      "overall_winner": {
+        "vendor_id": "telhanorte",
+        "vendor_name": "Telhanorte",
+        "vendor_type": "chain",
+        "matched_product": "Rodapé Porcelanato Branco Boleado Acetinado Retificado 14,5x120cm Eliane",
+        "normalized_unit_price_brl": 60.4,
+        "displayed_price_brl": 289.9,
+        "product_url": "https://www.telhanorte.com.br/rodape-branco-boleado-14-5x120-acetinado-caixa-4-pcs-eliane-2391643/p",
+        "checked_at": "2026-09-17",
+        "source_file": "telhanorte-lowest-prices.json"
+      },
+      "status": "verified",
+      "pending_cotacao": [
+        {
+          "vendor_id": "casa_dos_tijolos_americana",
+          "vendor_name": "Casa dos Tijolos Materiais para Construção",
+          "tier": "A",
+          "phone": "(19) 3468-6321",
+          "url": "https://paginaamarela.com.br/empresa/casa-dos-tijolos-materiais-para-construcao/americana/sp/7807803"
+        },
+        {
+          "vendor_id": "construeva_americana",
+          "vendor_name": "Construeva Materiais de Construção",
+          "tier": "A",
+          "phone": "+55 19 3468-6870",
+          "url": "https://construeva-construcao.localo.site/"
+        },
+        {
+          "vendor_id": "deposito_brasil_campinas",
+          "vendor_name": "Depósito Brasil Materiais para Construção",
+          "tier": "A",
+          "phone": null,
+          "url": "https://conectaobra.com/campinas-sp/loja-de-materiais-de-construcao/deposito-brasil-materiais-para-construcao"
+        },
+        {
+          "vendor_id": "deposito_ouro_verde_campinas",
+          "vendor_name": "Depósito Ouro Verde Materiais de Construção",
+          "tier": "A",
+          "phone": "(19) 97405-9418",
+          "url": "https://depouroverde.com.br/"
+        },
+        {
+          "vendor_id": "deposito_tayo_campinas",
+          "vendor_name": "Depósito Tayo Materiais de Construção",
+          "tier": "A",
+          "phone": "(19) 3266-1333",
+          "url": "https://nikkeiaeroporto.com.br/"
+        },
+        {
+          "vendor_id": "feval_americana",
+          "vendor_name": "Feval Materiais para Construção",
+          "tier": "A",
+          "phone": null,
+          "url": "https://feval.com.br/"
+        }
+      ],
+      "all_verified_offers": [
+        {
+          "vendor_id": "telhanorte",
+          "vendor_name": "Telhanorte",
+          "vendor_type": "chain",
+          "matched_product": "Rodapé Porcelanato Branco Boleado Acetinado Retificado 14,5x120cm Eliane",
+          "normalized_unit_price_brl": 60.4,
+          "displayed_price_brl": 289.9,
+          "product_url": "https://www.telhanorte.com.br/rodape-branco-boleado-14-5x120-acetinado-caixa-4-pcs-eliane-2391643/p",
+          "checked_at": "2026-09-17",
+          "source_file": "telhanorte-lowest-prices.json"
+        },
+        {
+          "vendor_id": "sodimac",
+          "vendor_name": "Sodimac Brasil",
+          "vendor_type": "chain",
+          "matched_product": "Rodapé Porcelanato Acetinado Esmaltado Branco 20X120cm Portobello Retificado Michelangelo",
+          "normalized_unit_price_brl": 91.58,
+          "displayed_price_brl": 109.9,
+          "product_url": "https://www.sodimac.com.br/sodimac-br/product/1031133/rodape-porcelanato-acetinado-esmaltado-branco-20x120cm-retificado-michelangelo/1031133/",
+          "checked_at": "2026-09-17",
+          "source_file": "sodimac-lowest-prices.json"
+        }
+      ],
+      "local_match_status": "no_match",
+      "notes": "Lowest among verified chain catalogs + any site_verified local depo prices."
+    },
+    {
+      "expense_id": "EXP_0046",
+      "requested_item": "Tinta",
+      "requested_unit": "lata (18 L)",
+      "verified_offer_count": 3,
+      "overall_winner": {
+        "vendor_id": "sodimac",
+        "vendor_name": "Sodimac Brasil",
+        "vendor_type": "chain",
+        "matched_product": "Tinta Acrílica Econômica Branco 18l Karson",
+        "normalized_unit_price_brl": 99.9,
+        "displayed_price_brl": 99.9,
+        "product_url": "https://www.sodimac.com.br/sodimac-br/product/1806739/tinta-acrilica-economica-branco-18l/1806739/",
+        "checked_at": "2026-09-17",
+        "source_file": "sodimac-lowest-prices.json"
+      },
+      "status": "verified",
+      "pending_cotacao": [
+        {
+          "vendor_id": "casa_dos_tijolos_americana",
+          "vendor_name": "Casa dos Tijolos Materiais para Construção",
+          "tier": "A",
+          "phone": "(19) 3468-6321",
+          "url": "https://paginaamarela.com.br/empresa/casa-dos-tijolos-materiais-para-construcao/americana/sp/7807803"
+        },
+        {
+          "vendor_id": "construeva_americana",
+          "vendor_name": "Construeva Materiais de Construção",
+          "tier": "A",
+          "phone": "+55 19 3468-6870",
+          "url": "https://construeva-construcao.localo.site/"
+        },
+        {
+          "vendor_id": "deposito_brasil_campinas",
+          "vendor_name": "Depósito Brasil Materiais para Construção",
+          "tier": "A",
+          "phone": null,
+          "url": "https://conectaobra.com/campinas-sp/loja-de-materiais-de-construcao/deposito-brasil-materiais-para-construcao"
+        },
+        {
+          "vendor_id": "deposito_ouro_verde_campinas",
+          "vendor_name": "Depósito Ouro Verde Materiais de Construção",
+          "tier": "A",
+          "phone": "(19) 97405-9418",
+          "url": "https://depouroverde.com.br/"
+        },
+        {
+          "vendor_id": "deposito_tayo_campinas",
+          "vendor_name": "Depósito Tayo Materiais de Construção",
+          "tier": "A",
+          "phone": "(19) 3266-1333",
+          "url": "https://nikkeiaeroporto.com.br/"
+        },
+        {
+          "vendor_id": "feval_americana",
+          "vendor_name": "Feval Materiais para Construção",
+          "tier": "A",
+          "phone": null,
+          "url": "https://feval.com.br/"
+        }
+      ],
+      "all_verified_offers": [
+        {
+          "vendor_id": "sodimac",
+          "vendor_name": "Sodimac Brasil",
+          "vendor_type": "chain",
+          "matched_product": "Tinta Acrílica Econômica Branco 18l Karson",
+          "normalized_unit_price_brl": 99.9,
+          "displayed_price_brl": 99.9,
+          "product_url": "https://www.sodimac.com.br/sodimac-br/product/1806739/tinta-acrilica-economica-branco-18l/1806739/",
+          "checked_at": "2026-09-17",
+          "source_file": "sodimac-lowest-prices.json"
+        },
+        {
+          "vendor_id": "telhanorte",
+          "vendor_name": "Telhanorte",
+          "vendor_type": "chain",
+          "matched_product": "Tinta Acrílica Nova Eco Quartzolit Branco Neve Interna 18L",
+          "normalized_unit_price_brl": 149.9,
+          "displayed_price_brl": 149.9,
+          "product_url": "https://www.telhanorte.com.br/tinta-acrilica-nova-eco-p-parede-18l-branco-neve-quartzolit-1826808/p",
+          "checked_at": "2026-09-17",
+          "source_file": "telhanorte-lowest-prices.json"
+        },
+        {
+          "vendor_id": "leroymerlin",
+          "vendor_name": "Leroy Merlin",
+          "vendor_type": "chain",
+          "matched_product": "Tinta Acrílica Fosca para Parede Interna Luxens Econômica Branco 18L",
+          "normalized_unit_price_brl": 199.9,
+          "displayed_price_brl": 199.9,
+          "product_url": "https://www.leroymerlin.com.br/tinta-acrilica-fosca-para-parede-interna-luxens-economica-branco-18l_91917014",
+          "checked_at": "2026-09-17",
+          "source_file": "leroymerlin-lowest-prices.json"
+        }
+      ],
+      "local_match_status": "no_match",
+      "notes": "Lowest among verified chain catalogs + any site_verified local depo prices."
+    },
+    {
+      "expense_id": "EXP_0048",
+      "requested_item": "Silicone, espuma expansiva, selante PU",
+      "requested_unit": "kit",
+      "verified_offer_count": 3,
+      "overall_winner": {
+        "vendor_id": "leroymerlin",
+        "vendor_name": "Leroy Merlin",
+        "vendor_type": "chain",
+        "matched_product": "Kit representativo: Silicone Acético 260g Unipega Preto + Espuma Expansiva Quartzolit 500ml",
+        "normalized_unit_price_brl": 40.12,
+        "displayed_price_brl": 40.12,
+        "product_url": "https://www.leroymerlin.com.br/silicone-acetico-260g-unipega-preto_1572130176",
+        "checked_at": "2026-09-17",
+        "source_file": "leroymerlin-lowest-prices.json"
+      },
+      "status": "verified",
+      "pending_cotacao": [
+        {
+          "vendor_id": "casa_dos_tijolos_americana",
+          "vendor_name": "Casa dos Tijolos Materiais para Construção",
+          "tier": "A",
+          "phone": "(19) 3468-6321",
+          "url": "https://paginaamarela.com.br/empresa/casa-dos-tijolos-materiais-para-construcao/americana/sp/7807803"
+        },
+        {
+          "vendor_id": "construeva_americana",
+          "vendor_name": "Construeva Materiais de Construção",
+          "tier": "A",
+          "phone": "+55 19 3468-6870",
+          "url": "https://construeva-construcao.localo.site/"
+        },
+        {
+          "vendor_id": "deposito_brasil_campinas",
+          "vendor_name": "Depósito Brasil Materiais para Construção",
+          "tier": "A",
+          "phone": null,
+          "url": "https://conectaobra.com/campinas-sp/loja-de-materiais-de-construcao/deposito-brasil-materiais-para-construcao"
+        },
+        {
+          "vendor_id": "deposito_ouro_verde_campinas",
+          "vendor_name": "Depósito Ouro Verde Materiais de Construção",
+          "tier": "A",
+          "phone": "(19) 97405-9418",
+          "url": "https://depouroverde.com.br/"
+        },
+        {
+          "vendor_id": "deposito_tayo_campinas",
+          "vendor_name": "Depósito Tayo Materiais de Construção",
+          "tier": "A",
+          "phone": "(19) 3266-1333",
+          "url": "https://nikkeiaeroporto.com.br/"
+        },
+        {
+          "vendor_id": "feval_americana",
+          "vendor_name": "Feval Materiais para Construção",
+          "tier": "A",
+          "phone": null,
+          "url": "https://feval.com.br/"
+        }
+      ],
+      "all_verified_offers": [
+        {
+          "vendor_id": "leroymerlin",
+          "vendor_name": "Leroy Merlin",
+          "vendor_type": "chain",
+          "matched_product": "Kit representativo: Silicone Acético 260g Unipega Preto + Espuma Expansiva Quartzolit 500ml",
+          "normalized_unit_price_brl": 40.12,
+          "displayed_price_brl": 40.12,
+          "product_url": "https://www.leroymerlin.com.br/silicone-acetico-260g-unipega-preto_1572130176",
+          "checked_at": "2026-09-17",
+          "source_file": "leroymerlin-lowest-prices.json"
+        },
+        {
+          "vendor_id": "sodimac",
+          "vendor_name": "Sodimac Brasil",
+          "vendor_type": "chain",
+          "matched_product": "Kit 3 produtos: Silicone Acético Pro Sil Uso Geral Incolor 250ml Topex + Espuma Expansiva PU 320g/500ml Tekbond + Selante PU 40 Branco 400G",
+          "normalized_unit_price_brl": 83.7,
+          "displayed_price_brl": 83.7,
+          "product_url": "https://www.sodimac.com.br/sodimac-br/product/1091565/silicone-acetico-pro-sil-uso-geral-250ml/1091565/",
+          "checked_at": "2026-09-17",
+          "source_file": "sodimac-lowest-prices.json"
+        },
+        {
+          "vendor_id": "telhanorte",
+          "vendor_name": "Telhanorte",
+          "vendor_type": "chain",
+          "matched_product": "Kit 3 produtos: Silicone Multiuso Acético Incolor 280ml Soudal + Espuma Expansiva PU 500ml/280g Chemicolor + Selante Adesivo PU Uso Geral Branco 270ml/445g Soudal",
+          "normalized_unit_price_brl": 83.7,
+          "displayed_price_brl": 83.7,
+          "product_url": "https://www.telhanorte.com.br/silicone-multiuso-acetico-incolor-280ml-soudal-2493268/p",
+          "checked_at": "2026-09-17",
+          "source_file": "telhanorte-lowest-prices.json"
+        }
+      ],
+      "local_match_status": "no_match",
+      "notes": "Lowest among verified chain catalogs + any site_verified local depo prices."
+    },
+    {
+      "expense_id": "EXP_0049",
+      "requested_item": "Lona para proteção da obra",
+      "requested_unit": "metro quadrado (m²)",
+      "verified_offer_count": 3,
+      "overall_winner": {
+        "vendor_id": "sodimac",
+        "vendor_name": "Sodimac Brasil",
+        "vendor_type": "chain",
+        "matched_product": "Lona Plástica Preto 4x50m Plasitap",
+        "normalized_unit_price_brl": 0.645,
+        "displayed_price_brl": 129.0,
+        "product_url": "https://www.sodimac.com.br/sodimac-br/product/1800435/lona-plastica-preto-4x50m/1800435/",
+        "checked_at": "2026-09-17",
+        "source_file": "sodimac-lowest-prices.json"
+      },
+      "status": "verified",
+      "pending_cotacao": [
+        {
+          "vendor_id": "casa_dos_tijolos_americana",
+          "vendor_name": "Casa dos Tijolos Materiais para Construção",
+          "tier": "A",
+          "phone": "(19) 3468-6321",
+          "url": "https://paginaamarela.com.br/empresa/casa-dos-tijolos-materiais-para-construcao/americana/sp/7807803"
+        },
+        {
+          "vendor_id": "construeva_americana",
+          "vendor_name": "Construeva Materiais de Construção",
+          "tier": "A",
+          "phone": "+55 19 3468-6870",
+          "url": "https://construeva-construcao.localo.site/"
+        },
+        {
+          "vendor_id": "deposito_brasil_campinas",
+          "vendor_name": "Depósito Brasil Materiais para Construção",
+          "tier": "A",
+          "phone": null,
+          "url": "https://conectaobra.com/campinas-sp/loja-de-materiais-de-construcao/deposito-brasil-materiais-para-construcao"
+        },
+        {
+          "vendor_id": "deposito_ouro_verde_campinas",
+          "vendor_name": "Depósito Ouro Verde Materiais de Construção",
+          "tier": "A",
+          "phone": "(19) 97405-9418",
+          "url": "https://depouroverde.com.br/"
+        },
+        {
+          "vendor_id": "deposito_tayo_campinas",
+          "vendor_name": "Depósito Tayo Materiais de Construção",
+          "tier": "A",
+          "phone": "(19) 3266-1333",
+          "url": "https://nikkeiaeroporto.com.br/"
+        },
+        {
+          "vendor_id": "feval_americana",
+          "vendor_name": "Feval Materiais para Construção",
+          "tier": "A",
+          "phone": null,
+          "url": "https://feval.com.br/"
+        }
+      ],
+      "all_verified_offers": [
+        {
+          "vendor_id": "sodimac",
+          "vendor_name": "Sodimac Brasil",
+          "vendor_type": "chain",
+          "matched_product": "Lona Plástica Preto 4x50m Plasitap",
+          "normalized_unit_price_brl": 0.645,
+          "displayed_price_brl": 129.0,
+          "product_url": "https://www.sodimac.com.br/sodimac-br/product/1800435/lona-plastica-preto-4x50m/1800435/",
+          "checked_at": "2026-09-17",
+          "source_file": "sodimac-lowest-prices.json"
+        },
+        {
+          "vendor_id": "leroymerlin",
+          "vendor_name": "Leroy Merlin",
+          "vendor_type": "chain",
+          "matched_product": "Lona Plástica 4x100m Preta Plasitap",
+          "normalized_unit_price_brl": 0.7247,
+          "displayed_price_brl": 289.9,
+          "product_url": "https://www.leroymerlin.com.br/lona-plastica-4x100m-preta-plasitap_92349376",
+          "checked_at": "2026-09-17",
+          "source_file": "leroymerlin-lowest-prices.json"
+        },
+        {
+          "vendor_id": "telhanorte",
+          "vendor_name": "Telhanorte",
+          "vendor_type": "chain",
+          "matched_product": "Lona Plástica Bb 4mx25m Preta Plasitap",
+          "normalized_unit_price_brl": 1.3,
+          "displayed_price_brl": 129.9,
+          "product_url": "https://www.telhanorte.com.br/lona-4x25-plastica-preto-plasitap-2344416/p",
+          "checked_at": "2026-09-17",
+          "source_file": "telhanorte-lowest-prices.json"
+        }
+      ],
+      "local_match_status": "no_match",
+      "notes": "Lowest among verified chain catalogs + any site_verified local depo prices."
+    },
+    {
+      "expense_id": "EXP_0026",
+      "requested_item": "Portas internas",
+      "requested_unit": "unidade",
+      "verified_offer_count": 3,
+      "overall_winner": {
+        "vendor_id": "leroymerlin",
+        "vendor_name": "Leroy Merlin",
+        "vendor_type": "chain",
+        "matched_product": "Folha De Porta Madeira Lisa 210x80cm Espessura 3,5cm Melamínica Mgm Marrom/mogno Mogno",
+        "normalized_unit_price_brl": 307.3,
+        "displayed_price_brl": 307.3,
+        "product_url": "https://www.leroymerlin.com.br/folha-de-porta-madeira-lisa-210x80cm-espessura-3,5cm-melaminica-mgm-marrom-mogno-mogno_1567587108",
+        "checked_at": "2026-09-17",
+        "source_file": "leroymerlin-lowest-prices.json"
+      },
+      "status": "verified",
+      "pending_cotacao": [
+        {
+          "vendor_id": "casa_dos_tijolos_americana",
+          "vendor_name": "Casa dos Tijolos Materiais para Construção",
+          "tier": "A",
+          "phone": "(19) 3468-6321",
+          "url": "https://paginaamarela.com.br/empresa/casa-dos-tijolos-materiais-para-construcao/americana/sp/7807803"
+        },
+        {
+          "vendor_id": "construeva_americana",
+          "vendor_name": "Construeva Materiais de Construção",
+          "tier": "A",
+          "phone": "+55 19 3468-6870",
+          "url": "https://construeva-construcao.localo.site/"
+        },
+        {
+          "vendor_id": "deposito_brasil_campinas",
+          "vendor_name": "Depósito Brasil Materiais para Construção",
+          "tier": "A",
+          "phone": null,
+          "url": "https://conectaobra.com/campinas-sp/loja-de-materiais-de-construcao/deposito-brasil-materiais-para-construcao"
+        },
+        {
+          "vendor_id": "deposito_ouro_verde_campinas",
+          "vendor_name": "Depósito Ouro Verde Materiais de Construção",
+          "tier": "A",
+          "phone": "(19) 97405-9418",
+          "url": "https://depouroverde.com.br/"
+        },
+        {
+          "vendor_id": "deposito_tayo_campinas",
+          "vendor_name": "Depósito Tayo Materiais de Construção",
+          "tier": "A",
+          "phone": "(19) 3266-1333",
+          "url": "https://nikkeiaeroporto.com.br/"
+        },
+        {
+          "vendor_id": "feval_americana",
+          "vendor_name": "Feval Materiais para Construção",
+          "tier": "A",
+          "phone": null,
+          "url": "https://feval.com.br/"
+        }
+      ],
+      "all_verified_offers": [
+        {
+          "vendor_id": "leroymerlin",
+          "vendor_name": "Leroy Merlin",
+          "vendor_type": "chain",
+          "matched_product": "Folha De Porta Madeira Lisa 210x80cm Espessura 3,5cm Melamínica Mgm Marrom/mogno Mogno",
+          "normalized_unit_price_brl": 307.3,
+          "displayed_price_brl": 307.3,
+          "product_url": "https://www.leroymerlin.com.br/folha-de-porta-madeira-lisa-210x80cm-espessura-3,5cm-melaminica-mgm-marrom-mogno-mogno_1567587108",
+          "checked_at": "2026-09-17",
+          "source_file": "leroymerlin-lowest-prices.json"
+        },
+        {
+          "vendor_id": "telhanorte",
+          "vendor_name": "Telhanorte",
+          "vendor_type": "chain",
+          "matched_product": "Kit Porta Açomad Batente 6cm Branco Direita 215X75 Branco Mgm",
+          "normalized_unit_price_brl": 365.42,
+          "displayed_price_brl": 365.42,
+          "product_url": "https://www.telhanorte.com.br/kit-porta-acomad-batente-6cm-branco-direita-215x75-branco-mgm-2556022/p",
+          "checked_at": "2026-09-17",
+          "source_file": "telhanorte-lowest-prices.json"
+        },
+        {
+          "vendor_id": "sodimac",
+          "vendor_name": "Sodimac Brasil",
+          "vendor_type": "chain",
+          "matched_product": "Kit Porta 80x210cm Abertura Esquerda Batente de 75mm em Pintura Uv sem Fechadura Pronta para Instalar",
+          "normalized_unit_price_brl": 634.0,
+          "displayed_price_brl": 634.0,
+          "product_url": "https://www.sodimac.com.br/sodimac-br/product/1694411002/kit-porta-80x210cm-abertura-esquerda-batente-de-75mm-em-pintura-uv-sem-fechadura-pronta-para-instalar/1694411002/",
+          "checked_at": "2026-09-17",
+          "source_file": "sodimac-lowest-prices.json"
+        }
+      ],
+      "local_match_status": "no_match",
+      "notes": "Lowest among verified chain catalogs + any site_verified local depo prices."
+    },
+    {
+      "expense_id": "EXP_0027",
+      "requested_item": "Porta Balcão (R$2000)",
+      "requested_unit": "unidade",
+      "verified_offer_count": 2,
+      "overall_winner": {
+        "vendor_id": "telhanorte",
+        "vendor_name": "Telhanorte",
+        "vendor_type": "chain",
+        "matched_product": "Porta Balcão de Alumínio 3 Folhas Móveis 210x120 cm Vidro Liso Preta Fortsul",
+        "normalized_unit_price_brl": 1903.41,
+        "displayed_price_brl": 1903.41,
+        "product_url": "https://www.telhanorte.com.br/porta-balcao-3-folhas-moveis-210x120-vidro-liso-black-fortsul-esquadrisul-2531933/p",
+        "checked_at": "2026-09-17",
+        "source_file": "telhanorte-lowest-prices.json"
+      },
+      "status": "verified",
+      "pending_cotacao": [
+        {
+          "vendor_id": "casa_dos_tijolos_americana",
+          "vendor_name": "Casa dos Tijolos Materiais para Construção",
+          "tier": "A",
+          "phone": "(19) 3468-6321",
+          "url": "https://paginaamarela.com.br/empresa/casa-dos-tijolos-materiais-para-construcao/americana/sp/7807803"
+        },
+        {
+          "vendor_id": "construeva_americana",
+          "vendor_name": "Construeva Materiais de Construção",
+          "tier": "A",
+          "phone": "+55 19 3468-6870",
+          "url": "https://construeva-construcao.localo.site/"
+        },
+        {
+          "vendor_id": "deposito_brasil_campinas",
+          "vendor_name": "Depósito Brasil Materiais para Construção",
+          "tier": "A",
+          "phone": null,
+          "url": "https://conectaobra.com/campinas-sp/loja-de-materiais-de-construcao/deposito-brasil-materiais-para-construcao"
+        },
+        {
+          "vendor_id": "deposito_ouro_verde_campinas",
+          "vendor_name": "Depósito Ouro Verde Materiais de Construção",
+          "tier": "A",
+          "phone": "(19) 97405-9418",
+          "url": "https://depouroverde.com.br/"
+        },
+        {
+          "vendor_id": "deposito_tayo_campinas",
+          "vendor_name": "Depósito Tayo Materiais de Construção",
+          "tier": "A",
+          "phone": "(19) 3266-1333",
+          "url": "https://nikkeiaeroporto.com.br/"
+        },
+        {
+          "vendor_id": "feval_americana",
+          "vendor_name": "Feval Materiais para Construção",
+          "tier": "A",
+          "phone": null,
+          "url": "https://feval.com.br/"
+        }
+      ],
+      "all_verified_offers": [
+        {
+          "vendor_id": "telhanorte",
+          "vendor_name": "Telhanorte",
+          "vendor_type": "chain",
+          "matched_product": "Porta Balcão de Alumínio 3 Folhas Móveis 210x120 cm Vidro Liso Preta Fortsul",
+          "normalized_unit_price_brl": 1903.41,
+          "displayed_price_brl": 1903.41,
+          "product_url": "https://www.telhanorte.com.br/porta-balcao-3-folhas-moveis-210x120-vidro-liso-black-fortsul-esquadrisul-2531933/p",
+          "checked_at": "2026-09-17",
+          "source_file": "telhanorte-lowest-prices.json"
+        },
+        {
+          "vendor_id": "sodimac",
+          "vendor_name": "Sodimac Brasil",
+          "vendor_type": "chain",
+          "matched_product": "Porta de Correr 3 Folhas Moveis Vidro Liso Branca 210x150",
+          "normalized_unit_price_brl": 2199.0,
+          "displayed_price_brl": 2199.0,
+          "product_url": "https://www.sodimac.com.br/sodimac-br/product/1701989/porta-de-correr-3-folhas-moveis-vidro-liso-branca-210x150/1701989/",
+          "checked_at": "2026-09-17",
+          "source_file": "sodimac-lowest-prices.json"
+        }
+      ],
+      "local_match_status": "no_match",
+      "notes": "Lowest among verified chain catalogs + any site_verified local depo prices."
+    },
+    {
+      "expense_id": "EXP_0029",
+      "requested_item": "Janela (quartos e escritório)",
+      "requested_unit": "unidade",
+      "verified_offer_count": 3,
+      "overall_winner": {
+        "vendor_id": "sodimac",
+        "vendor_name": "Sodimac Brasil",
+        "vendor_type": "chain",
+        "matched_product": "Janela de Correr 4 Folhas sem Grade Alumínio Branco 100x120cm",
+        "normalized_unit_price_brl": 349.0,
+        "displayed_price_brl": 349.0,
+        "product_url": "https://www.sodimac.com.br/sodimac-br/product/1701519/janela-de-correr-4-folhas-sem-grade-aluminio-branco-100x120cm/1701519/",
+        "checked_at": "2026-09-17",
+        "source_file": "sodimac-lowest-prices.json"
+      },
+      "status": "verified",
+      "pending_cotacao": [
+        {
+          "vendor_id": "casa_dos_tijolos_americana",
+          "vendor_name": "Casa dos Tijolos Materiais para Construção",
+          "tier": "A",
+          "phone": "(19) 3468-6321",
+          "url": "https://paginaamarela.com.br/empresa/casa-dos-tijolos-materiais-para-construcao/americana/sp/7807803"
+        },
+        {
+          "vendor_id": "construeva_americana",
+          "vendor_name": "Construeva Materiais de Construção",
+          "tier": "A",
+          "phone": "+55 19 3468-6870",
+          "url": "https://construeva-construcao.localo.site/"
+        },
+        {
+          "vendor_id": "deposito_brasil_campinas",
+          "vendor_name": "Depósito Brasil Materiais para Construção",
+          "tier": "A",
+          "phone": null,
+          "url": "https://conectaobra.com/campinas-sp/loja-de-materiais-de-construcao/deposito-brasil-materiais-para-construcao"
+        },
+        {
+          "vendor_id": "deposito_ouro_verde_campinas",
+          "vendor_name": "Depósito Ouro Verde Materiais de Construção",
+          "tier": "A",
+          "phone": "(19) 97405-9418",
+          "url": "https://depouroverde.com.br/"
+        },
+        {
+          "vendor_id": "deposito_tayo_campinas",
+          "vendor_name": "Depósito Tayo Materiais de Construção",
+          "tier": "A",
+          "phone": "(19) 3266-1333",
+          "url": "https://nikkeiaeroporto.com.br/"
+        },
+        {
+          "vendor_id": "feval_americana",
+          "vendor_name": "Feval Materiais para Construção",
+          "tier": "A",
+          "phone": null,
+          "url": "https://feval.com.br/"
+        }
+      ],
+      "all_verified_offers": [
+        {
+          "vendor_id": "sodimac",
+          "vendor_name": "Sodimac Brasil",
+          "vendor_type": "chain",
+          "matched_product": "Janela de Correr 4 Folhas sem Grade Alumínio Branco 100x120cm",
+          "normalized_unit_price_brl": 349.0,
+          "displayed_price_brl": 349.0,
+          "product_url": "https://www.sodimac.com.br/sodimac-br/product/1701519/janela-de-correr-4-folhas-sem-grade-aluminio-branco-100x120cm/1701519/",
+          "checked_at": "2026-09-17",
+          "source_file": "sodimac-lowest-prices.json"
+        },
+        {
+          "vendor_id": "telhanorte",
+          "vendor_name": "Telhanorte",
+          "vendor_type": "chain",
+          "matched_product": "Janela de Alumínio de Correr 100x120 Branco Ecosul Esquadrisul",
+          "normalized_unit_price_brl": 494.91,
+          "displayed_price_brl": 494.91,
+          "product_url": "https://www.telhanorte.com.br/janela-de-correr-de-aluminio-4-folhas-100x120cm-branca-ecosul-central-esquadrisul-1621335/p",
+          "checked_at": "2026-09-17",
+          "source_file": "telhanorte-lowest-prices.json"
+        },
+        {
+          "vendor_id": "leroymerlin",
+          "vendor_name": "Leroy Merlin",
+          "vendor_type": "chain",
+          "matched_product": "Janela De Correr Alumínio Branco 04 Folhas Classic - 120x120",
+          "normalized_unit_price_brl": 773.39,
+          "displayed_price_brl": 773.39,
+          "product_url": "https://www.leroymerlin.com.br/janela-de-correr-aluminio-branco-04-folhas-classic-120x120_1572871815",
+          "checked_at": "2026-09-17",
+          "source_file": "leroymerlin-lowest-prices.json"
+        }
+      ],
+      "local_match_status": "no_match",
+      "notes": "Lowest among verified chain catalogs + any site_verified local depo prices."
+    },
+    {
+      "expense_id": "EXP_0030",
+      "requested_item": "Vitrô Sala",
+      "requested_unit": "unidade",
+      "verified_offer_count": 3,
+      "overall_winner": {
+        "vendor_id": "leroymerlin",
+        "vendor_name": "Leroy Merlin",
+        "vendor_type": "chain",
+        "matched_product": "Vitro Basculante Alumínio Branco 60 (a) X 60 (l)- Hale",
+        "normalized_unit_price_brl": 172.42,
+        "displayed_price_brl": 172.42,
+        "product_url": "https://www.leroymerlin.com.br/vitro-basculante-aluminio-branco-60--a--x-60--l---hale_1568113887",
+        "checked_at": "2026-09-17",
+        "source_file": "leroymerlin-lowest-prices.json"
+      },
+      "status": "verified",
+      "pending_cotacao": [
+        {
+          "vendor_id": "casa_dos_tijolos_americana",
+          "vendor_name": "Casa dos Tijolos Materiais para Construção",
+          "tier": "A",
+          "phone": "(19) 3468-6321",
+          "url": "https://paginaamarela.com.br/empresa/casa-dos-tijolos-materiais-para-construcao/americana/sp/7807803"
+        },
+        {
+          "vendor_id": "construeva_americana",
+          "vendor_name": "Construeva Materiais de Construção",
+          "tier": "A",
+          "phone": "+55 19 3468-6870",
+          "url": "https://construeva-construcao.localo.site/"
+        },
+        {
+          "vendor_id": "deposito_brasil_campinas",
+          "vendor_name": "Depósito Brasil Materiais para Construção",
+          "tier": "A",
+          "phone": null,
+          "url": "https://conectaobra.com/campinas-sp/loja-de-materiais-de-construcao/deposito-brasil-materiais-para-construcao"
+        },
+        {
+          "vendor_id": "deposito_ouro_verde_campinas",
+          "vendor_name": "Depósito Ouro Verde Materiais de Construção",
+          "tier": "A",
+          "phone": "(19) 97405-9418",
+          "url": "https://depouroverde.com.br/"
+        },
+        {
+          "vendor_id": "deposito_tayo_campinas",
+          "vendor_name": "Depósito Tayo Materiais de Construção",
+          "tier": "A",
+          "phone": "(19) 3266-1333",
+          "url": "https://nikkeiaeroporto.com.br/"
+        },
+        {
+          "vendor_id": "feval_americana",
+          "vendor_name": "Feval Materiais para Construção",
+          "tier": "A",
+          "phone": null,
+          "url": "https://feval.com.br/"
+        }
+      ],
+      "all_verified_offers": [
+        {
+          "vendor_id": "leroymerlin",
+          "vendor_name": "Leroy Merlin",
+          "vendor_type": "chain",
+          "matched_product": "Vitro Basculante Alumínio Branco 60 (a) X 60 (l)- Hale",
+          "normalized_unit_price_brl": 172.42,
+          "displayed_price_brl": 172.42,
+          "product_url": "https://www.leroymerlin.com.br/vitro-basculante-aluminio-branco-60--a--x-60--l---hale_1568113887",
+          "checked_at": "2026-09-17",
+          "source_file": "leroymerlin-lowest-prices.json"
+        },
+        {
+          "vendor_id": "sodimac",
+          "vendor_name": "Sodimac Brasil",
+          "vendor_type": "chain",
+          "matched_product": "Janela de Correr 4 Folhas sem Grade Alumínio Branco 100x120cm",
+          "normalized_unit_price_brl": 349.0,
+          "displayed_price_brl": 349.0,
+          "product_url": "https://www.sodimac.com.br/sodimac-br/product/1701519/janela-de-correr-4-folhas-sem-grade-aluminio-branco-100x120cm/1701519/",
+          "checked_at": "2026-09-17",
+          "source_file": "sodimac-lowest-prices.json"
+        },
+        {
+          "vendor_id": "telhanorte",
+          "vendor_name": "Telhanorte",
+          "vendor_type": "chain",
+          "matched_product": "Janela de Alumínio de Correr 100x120 Branco Ecosul Esquadrisul",
+          "normalized_unit_price_brl": 494.91,
+          "displayed_price_brl": 494.91,
+          "product_url": "https://www.telhanorte.com.br/janela-de-correr-de-aluminio-4-folhas-100x120cm-branca-ecosul-central-esquadrisul-1621335/p",
+          "checked_at": "2026-09-17",
+          "source_file": "telhanorte-lowest-prices.json"
+        }
+      ],
+      "local_match_status": "no_match",
+      "notes": "Lowest among verified chain catalogs + any site_verified local depo prices."
+    },
+    {
+      "expense_id": "EXP_0031",
+      "requested_item": "Vitrôs banheiros",
+      "requested_unit": "unidade",
+      "verified_offer_count": 3,
+      "overall_winner": {
+        "vendor_id": "sodimac",
+        "vendor_name": "Sodimac Brasil",
+        "vendor_type": "chain",
+        "matched_product": "Basculante 60x60 Branco Vidro Mini Boreal",
+        "normalized_unit_price_brl": 139.0,
+        "displayed_price_brl": 139.0,
+        "product_url": "https://www.sodimac.com.br/sodimac-br/product/1701508/basculante-60x60-branco-vidro-mini-boreal/1701508/",
+        "checked_at": "2026-09-17",
+        "source_file": "sodimac-lowest-prices.json"
+      },
+      "status": "verified",
+      "pending_cotacao": [
+        {
+          "vendor_id": "casa_dos_tijolos_americana",
+          "vendor_name": "Casa dos Tijolos Materiais para Construção",
+          "tier": "A",
+          "phone": "(19) 3468-6321",
+          "url": "https://paginaamarela.com.br/empresa/casa-dos-tijolos-materiais-para-construcao/americana/sp/7807803"
+        },
+        {
+          "vendor_id": "construeva_americana",
+          "vendor_name": "Construeva Materiais de Construção",
+          "tier": "A",
+          "phone": "+55 19 3468-6870",
+          "url": "https://construeva-construcao.localo.site/"
+        },
+        {
+          "vendor_id": "deposito_brasil_campinas",
+          "vendor_name": "Depósito Brasil Materiais para Construção",
+          "tier": "A",
+          "phone": null,
+          "url": "https://conectaobra.com/campinas-sp/loja-de-materiais-de-construcao/deposito-brasil-materiais-para-construcao"
+        },
+        {
+          "vendor_id": "deposito_ouro_verde_campinas",
+          "vendor_name": "Depósito Ouro Verde Materiais de Construção",
+          "tier": "A",
+          "phone": "(19) 97405-9418",
+          "url": "https://depouroverde.com.br/"
+        },
+        {
+          "vendor_id": "deposito_tayo_campinas",
+          "vendor_name": "Depósito Tayo Materiais de Construção",
+          "tier": "A",
+          "phone": "(19) 3266-1333",
+          "url": "https://nikkeiaeroporto.com.br/"
+        },
+        {
+          "vendor_id": "feval_americana",
+          "vendor_name": "Feval Materiais para Construção",
+          "tier": "A",
+          "phone": null,
+          "url": "https://feval.com.br/"
+        }
+      ],
+      "all_verified_offers": [
+        {
+          "vendor_id": "sodimac",
+          "vendor_name": "Sodimac Brasil",
+          "vendor_type": "chain",
+          "matched_product": "Basculante 60x60 Branco Vidro Mini Boreal",
+          "normalized_unit_price_brl": 139.0,
+          "displayed_price_brl": 139.0,
+          "product_url": "https://www.sodimac.com.br/sodimac-br/product/1701508/basculante-60x60-branco-vidro-mini-boreal/1701508/",
+          "checked_at": "2026-09-17",
+          "source_file": "sodimac-lowest-prices.json"
+        },
+        {
+          "vendor_id": "telhanorte",
+          "vendor_name": "Telhanorte",
+          "vendor_type": "chain",
+          "matched_product": "Janela Basculante de Alumínio 60x60 Preta Ecosul Esquadrisul",
+          "normalized_unit_price_brl": 145.26,
+          "displayed_price_brl": 145.26,
+          "product_url": "https://www.telhanorte.com.br/janela-basculante-1-sessao-60x60-vidro-mini-boreal-black-ecosul-2465493/p",
+          "checked_at": "2026-09-17",
+          "source_file": "telhanorte-lowest-prices.json"
+        },
+        {
+          "vendor_id": "leroymerlin",
+          "vendor_name": "Leroy Merlin",
+          "vendor_type": "chain",
+          "matched_product": "Vitro Basculante Alumínio Branco 60 (a) X 60 (l)- Hale",
+          "normalized_unit_price_brl": 172.42,
+          "displayed_price_brl": 172.42,
+          "product_url": "https://www.leroymerlin.com.br/vitro-basculante-aluminio-branco-60--a--x-60--l---hale_1568113887",
+          "checked_at": "2026-09-17",
+          "source_file": "leroymerlin-lowest-prices.json"
+        }
+      ],
+      "local_match_status": "no_match",
+      "notes": "Lowest among verified chain catalogs + any site_verified local depo prices."
+    },
+    {
+      "expense_id": "EXP_0028",
+      "requested_item": "Vaso",
+      "requested_unit": "unidade",
+      "verified_offer_count": 4,
+      "overall_winner": {
+        "vendor_id": "sodimac",
+        "vendor_name": "Sodimac Brasil",
+        "vendor_type": "chain",
+        "matched_product": "Kit Vaso Sanitário com Caixa Acoplada Araxa 6L Branco Santa Clara",
+        "normalized_unit_price_brl": 318.0,
+        "displayed_price_brl": 318.0,
+        "product_url": "https://www.sodimac.com.br/sodimac-br/product/1806853C/kit-vaso-sanitario-com-caixa-acoplada-araxa-6l-branco-santa-clara/1806853C/",
+        "checked_at": "2026-09-17",
+        "source_file": "sodimac-lowest-prices.json"
+      },
+      "status": "verified",
+      "pending_cotacao": [
+        {
+          "vendor_id": "casa_dos_tijolos_americana",
+          "vendor_name": "Casa dos Tijolos Materiais para Construção",
+          "tier": "A",
+          "phone": "(19) 3468-6321",
+          "url": "https://paginaamarela.com.br/empresa/casa-dos-tijolos-materiais-para-construcao/americana/sp/7807803"
+        },
+        {
+          "vendor_id": "construeva_americana",
+          "vendor_name": "Construeva Materiais de Construção",
+          "tier": "A",
+          "phone": "+55 19 3468-6870",
+          "url": "https://construeva-construcao.localo.site/"
+        },
+        {
+          "vendor_id": "deposito_brasil_campinas",
+          "vendor_name": "Depósito Brasil Materiais para Construção",
+          "tier": "A",
+          "phone": null,
+          "url": "https://conectaobra.com/campinas-sp/loja-de-materiais-de-construcao/deposito-brasil-materiais-para-construcao"
+        },
+        {
+          "vendor_id": "deposito_ouro_verde_campinas",
+          "vendor_name": "Depósito Ouro Verde Materiais de Construção",
+          "tier": "A",
+          "phone": "(19) 97405-9418",
+          "url": "https://depouroverde.com.br/"
+        },
+        {
+          "vendor_id": "deposito_tayo_campinas",
+          "vendor_name": "Depósito Tayo Materiais de Construção",
+          "tier": "A",
+          "phone": "(19) 3266-1333",
+          "url": "https://nikkeiaeroporto.com.br/"
+        },
+        {
+          "vendor_id": "feval_americana",
+          "vendor_name": "Feval Materiais para Construção",
+          "tier": "A",
+          "phone": null,
+          "url": "https://feval.com.br/"
+        }
+      ],
+      "all_verified_offers": [
+        {
+          "vendor_id": "sodimac",
+          "vendor_name": "Sodimac Brasil",
+          "vendor_type": "chain",
+          "matched_product": "Kit Vaso Sanitário com Caixa Acoplada Araxa 6L Branco Santa Clara",
+          "normalized_unit_price_brl": 318.0,
+          "displayed_price_brl": 318.0,
+          "product_url": "https://www.sodimac.com.br/sodimac-br/product/1806853C/kit-vaso-sanitario-com-caixa-acoplada-araxa-6l-branco-santa-clara/1806853C/",
+          "checked_at": "2026-09-17",
+          "source_file": "sodimac-lowest-prices.json"
+        },
+        {
+          "vendor_id": "telhanorte",
+          "vendor_name": "Telhanorte",
+          "vendor_type": "chain",
+          "matched_product": "Vaso Sanitário com Caixa Acoplada Porto 3/6L Branco Luzarte",
+          "normalized_unit_price_brl": 319.9,
+          "displayed_price_brl": 319.9,
+          "product_url": "https://www.telhanorte.com.br/vaso-sanitario-com-caixa-acoplada-porto-3-6l-branco-luzarte-k2619130-2619148/p",
+          "checked_at": "2026-09-17",
+          "source_file": "telhanorte-lowest-prices.json"
+        },
+        {
+          "vendor_id": "leroymerlin",
+          "vendor_name": "Leroy Merlin",
+          "vendor_type": "chain",
+          "matched_product": "Vaso Sanitário com Caixa Acoplada Branco 3 e 6 litros Eco Plus Celite",
+          "normalized_unit_price_brl": 390.8,
+          "displayed_price_brl": 390.8,
+          "product_url": "https://www.leroymerlin.com.br/vaso-sanitario-com-caixa-acoplada-branco-3-e-6-litros-eco-plus-celite_3601865565",
+          "checked_at": "2026-09-17",
+          "source_file": "leroymerlin-lowest-prices.json"
+        },
+        {
+          "vendor_id": "333obra",
+          "vendor_name": "333Obra",
+          "vendor_type": "chain",
+          "matched_product": "Vaso com Caixa Acoplada Way Branco 6L Lorenzetti",
+          "normalized_unit_price_brl": 399.9,
+          "displayed_price_brl": 399.9,
+          "product_url": "https://www.333obra.com.br/p/vaso-com-caixa-acoplada-way-branco-6l-lorenzetti.html",
+          "checked_at": "2026-09-17",
+          "source_file": "333obra-lowest-prices.json"
+        }
+      ],
+      "local_match_status": "no_match",
+      "notes": "Lowest among verified chain catalogs + any site_verified local depo prices."
+    },
+    {
+      "expense_id": "EXP_0036",
+      "requested_item": "Torneiras",
+      "requested_unit": "unidade",
+      "verified_offer_count": 4,
+      "overall_winner": {
+        "vendor_id": "333obra",
+        "vendor_name": "333Obra",
+        "vendor_type": "chain",
+        "matched_product": "Torneira Lavatório Mesa Cromo Cross 1/2\" - Tigre - Unidade",
+        "normalized_unit_price_brl": 13.6,
+        "displayed_price_brl": 13.6,
+        "product_url": "https://www.333obra.com.br/p/torneira-lavatorio-mesa-cromo-cross-1-2-tigre-unidade.html",
+        "checked_at": "2026-09-17",
+        "source_file": "333obra-lowest-prices.json"
+      },
+      "status": "verified",
+      "pending_cotacao": [
+        {
+          "vendor_id": "casa_dos_tijolos_americana",
+          "vendor_name": "Casa dos Tijolos Materiais para Construção",
+          "tier": "A",
+          "phone": "(19) 3468-6321",
+          "url": "https://paginaamarela.com.br/empresa/casa-dos-tijolos-materiais-para-construcao/americana/sp/7807803"
+        },
+        {
+          "vendor_id": "construeva_americana",
+          "vendor_name": "Construeva Materiais de Construção",
+          "tier": "A",
+          "phone": "+55 19 3468-6870",
+          "url": "https://construeva-construcao.localo.site/"
+        },
+        {
+          "vendor_id": "deposito_brasil_campinas",
+          "vendor_name": "Depósito Brasil Materiais para Construção",
+          "tier": "A",
+          "phone": null,
+          "url": "https://conectaobra.com/campinas-sp/loja-de-materiais-de-construcao/deposito-brasil-materiais-para-construcao"
+        },
+        {
+          "vendor_id": "deposito_ouro_verde_campinas",
+          "vendor_name": "Depósito Ouro Verde Materiais de Construção",
+          "tier": "A",
+          "phone": "(19) 97405-9418",
+          "url": "https://depouroverde.com.br/"
+        },
+        {
+          "vendor_id": "deposito_tayo_campinas",
+          "vendor_name": "Depósito Tayo Materiais de Construção",
+          "tier": "A",
+          "phone": "(19) 3266-1333",
+          "url": "https://nikkeiaeroporto.com.br/"
+        },
+        {
+          "vendor_id": "feval_americana",
+          "vendor_name": "Feval Materiais para Construção",
+          "tier": "A",
+          "phone": null,
+          "url": "https://feval.com.br/"
+        },
+        {
+          "vendor_id": "deposito_ceron_nova_odessa",
+          "vendor_name": "Depósito de Materiais Ceron",
+          "tier": "B",
+          "phone": "(19) 3873-1060",
+          "url": "https://www.diariocidade.com/sp/nova-odessa/guia/deposito-de-materiais-ceron-10847485000107/"
+        }
+      ],
+      "all_verified_offers": [
+        {
+          "vendor_id": "333obra",
+          "vendor_name": "333Obra",
+          "vendor_type": "chain",
+          "matched_product": "Torneira Lavatório Mesa Cromo Cross 1/2\" - Tigre - Unidade",
+          "normalized_unit_price_brl": 13.6,
+          "displayed_price_brl": 13.6,
+          "product_url": "https://www.333obra.com.br/p/torneira-lavatorio-mesa-cromo-cross-1-2-tigre-unidade.html",
+          "checked_at": "2026-09-17",
+          "source_file": "333obra-lowest-prices.json"
+        },
+        {
+          "vendor_id": "leroymerlin",
+          "vendor_name": "Leroy Merlin",
+          "vendor_type": "chain",
+          "matched_product": "Torneira Lavatório Banheiro Pia Bica Móvel Baixa Cromado Mesa 1/4 de Volta",
+          "normalized_unit_price_brl": 29.99,
+          "displayed_price_brl": 29.99,
+          "product_url": "https://www.leroymerlin.com.br/torneira-lavatorio-banheiro-pia-bica-movel-baixa-cromado-mesa-1-4-de-volta_1571419038",
+          "checked_at": "2026-09-17",
+          "source_file": "leroymerlin-lowest-prices.json"
+        },
+        {
+          "vendor_id": "sodimac",
+          "vendor_name": "Sodimac Brasil",
+          "vendor_type": "chain",
+          "matched_product": "Torneira Lavatório Bica Baixa Sevilla Cromado",
+          "normalized_unit_price_brl": 34.9,
+          "displayed_price_brl": 34.9,
+          "product_url": "https://www.sodimac.com.br/sodimac-br/product/780183/torneira-lavatorio-bica-baixa-sevilla-cromado/780183/",
+          "checked_at": "2026-09-17",
+          "source_file": "sodimac-lowest-prices.json"
+        },
+        {
+          "vendor_id": "telhanorte",
+          "vendor_name": "Telhanorte",
+          "vendor_type": "chain",
+          "matched_product": "Torneira Lavatório Mesa Bica Alta Lagune Branca Viqua",
+          "normalized_unit_price_brl": 34.9,
+          "displayed_price_brl": 34.9,
+          "product_url": "https://www.telhanorte.com.br/torneira-lavatorio-mesa-bica-alta-lagune-branca-viqua-2448815/p",
+          "checked_at": "2026-09-17",
+          "source_file": "telhanorte-lowest-prices.json"
+        }
+      ],
+      "local_match_status": "no_match",
+      "notes": "Lowest among verified chain catalogs + any site_verified local depo prices."
+    },
+    {
+      "expense_id": "EXP_0037",
+      "requested_item": "Sifões e ralos",
+      "requested_unit": "unidade",
+      "verified_offer_count": 4,
+      "overall_winner": {
+        "vendor_id": "sodimac",
+        "vendor_name": "Sodimac Brasil",
+        "vendor_type": "chain",
+        "matched_product": "Sifão Sanfonado Extensivel Universal",
+        "normalized_unit_price_brl": 5.9,
+        "displayed_price_brl": 5.9,
+        "product_url": "https://www.sodimac.com.br/sodimac-br/product/1024259/sifao-sanfonado-extensivel-universal/1024259/",
+        "checked_at": "2026-09-17",
+        "source_file": "sodimac-lowest-prices.json"
+      },
+      "status": "verified",
+      "pending_cotacao": [
+        {
+          "vendor_id": "casa_dos_tijolos_americana",
+          "vendor_name": "Casa dos Tijolos Materiais para Construção",
+          "tier": "A",
+          "phone": "(19) 3468-6321",
+          "url": "https://paginaamarela.com.br/empresa/casa-dos-tijolos-materiais-para-construcao/americana/sp/7807803"
+        },
+        {
+          "vendor_id": "construeva_americana",
+          "vendor_name": "Construeva Materiais de Construção",
+          "tier": "A",
+          "phone": "+55 19 3468-6870",
+          "url": "https://construeva-construcao.localo.site/"
+        },
+        {
+          "vendor_id": "deposito_brasil_campinas",
+          "vendor_name": "Depósito Brasil Materiais para Construção",
+          "tier": "A",
+          "phone": null,
+          "url": "https://conectaobra.com/campinas-sp/loja-de-materiais-de-construcao/deposito-brasil-materiais-para-construcao"
+        },
+        {
+          "vendor_id": "deposito_ouro_verde_campinas",
+          "vendor_name": "Depósito Ouro Verde Materiais de Construção",
+          "tier": "A",
+          "phone": "(19) 97405-9418",
+          "url": "https://depouroverde.com.br/"
+        },
+        {
+          "vendor_id": "deposito_tayo_campinas",
+          "vendor_name": "Depósito Tayo Materiais de Construção",
+          "tier": "A",
+          "phone": "(19) 3266-1333",
+          "url": "https://nikkeiaeroporto.com.br/"
+        },
+        {
+          "vendor_id": "feval_americana",
+          "vendor_name": "Feval Materiais para Construção",
+          "tier": "A",
+          "phone": null,
+          "url": "https://feval.com.br/"
+        },
+        {
+          "vendor_id": "deposito_ceron_nova_odessa",
+          "vendor_name": "Depósito de Materiais Ceron",
+          "tier": "B",
+          "phone": "(19) 3873-1060",
+          "url": "https://www.diariocidade.com/sp/nova-odessa/guia/deposito-de-materiais-ceron-10847485000107/"
+        }
+      ],
+      "all_verified_offers": [
+        {
+          "vendor_id": "sodimac",
+          "vendor_name": "Sodimac Brasil",
+          "vendor_type": "chain",
+          "matched_product": "Sifão Sanfonado Extensivel Universal",
+          "normalized_unit_price_brl": 5.9,
+          "displayed_price_brl": 5.9,
+          "product_url": "https://www.sodimac.com.br/sodimac-br/product/1024259/sifao-sanfonado-extensivel-universal/1024259/",
+          "checked_at": "2026-09-17",
+          "source_file": "sodimac-lowest-prices.json"
+        },
+        {
+          "vendor_id": "333obra",
+          "vendor_name": "333Obra",
+          "vendor_type": "chain",
+          "matched_product": "Sifão Sanfonado Multiuso Universal Branco 3332 - krona",
+          "normalized_unit_price_brl": 9.04,
+          "displayed_price_brl": 9.04,
+          "product_url": "https://www.333obra.com.br/p/sif-o-sanfonado-multiuso-universal-branco-3332-krona.html",
+          "checked_at": "2026-09-17",
+          "source_file": "333obra-lowest-prices.json"
+        },
+        {
+          "vendor_id": "telhanorte",
+          "vendor_name": "Telhanorte",
+          "vendor_type": "chain",
+          "matched_product": "Sifão Sanfonado Universal SSUM Astra",
+          "normalized_unit_price_brl": 10.9,
+          "displayed_price_brl": 10.9,
+          "product_url": "https://www.telhanorte.com.br/sifao-sanfonado-663mm-propileno-branco-ssum-astra-1734008/p",
+          "checked_at": "2026-09-17",
+          "source_file": "telhanorte-lowest-prices.json"
+        },
+        {
+          "vendor_id": "leroymerlin",
+          "vendor_name": "Leroy Merlin",
+          "vendor_type": "chain",
+          "matched_product": "Sifão Copo Blukit Tubo De Parede Extensivo Universal Para Lavatório Preto",
+          "normalized_unit_price_brl": 47.51,
+          "displayed_price_brl": 47.51,
+          "product_url": "https://www.leroymerlin.com.br/sifao-copo-blukit-tubo-de-parede-extensivo-universal-para-lavatorio-preto_1570851139",
+          "checked_at": "2026-09-17",
+          "source_file": "leroymerlin-lowest-prices.json"
+        }
+      ],
+      "local_match_status": "no_match",
+      "notes": "Lowest among verified chain catalogs + any site_verified local depo prices."
+    },
+    {
+      "expense_id": "EXP_0039",
+      "requested_item": "Pias e bancadas",
+      "requested_unit": "conjunto",
+      "verified_offer_count": 4,
+      "overall_winner": {
+        "vendor_id": "sodimac",
+        "vendor_name": "Sodimac Brasil",
+        "vendor_type": "chain",
+        "matched_product": "Pia Aço Inox 120x52x11 Forminox",
+        "normalized_unit_price_brl": 199.0,
+        "displayed_price_brl": 199.0,
+        "product_url": "https://www.sodimac.com.br/sodimac-br/product/1804069/pia-aco-inox-120x52x11-forminox/1804069/",
+        "checked_at": "2026-09-17",
+        "source_file": "sodimac-lowest-prices.json"
+      },
+      "status": "verified",
+      "pending_cotacao": [
+        {
+          "vendor_id": "casa_dos_tijolos_americana",
+          "vendor_name": "Casa dos Tijolos Materiais para Construção",
+          "tier": "A",
+          "phone": "(19) 3468-6321",
+          "url": "https://paginaamarela.com.br/empresa/casa-dos-tijolos-materiais-para-construcao/americana/sp/7807803"
+        },
+        {
+          "vendor_id": "construeva_americana",
+          "vendor_name": "Construeva Materiais de Construção",
+          "tier": "A",
+          "phone": "+55 19 3468-6870",
+          "url": "https://construeva-construcao.localo.site/"
+        },
+        {
+          "vendor_id": "deposito_brasil_campinas",
+          "vendor_name": "Depósito Brasil Materiais para Construção",
+          "tier": "A",
+          "phone": null,
+          "url": "https://conectaobra.com/campinas-sp/loja-de-materiais-de-construcao/deposito-brasil-materiais-para-construcao"
+        },
+        {
+          "vendor_id": "deposito_ouro_verde_campinas",
+          "vendor_name": "Depósito Ouro Verde Materiais de Construção",
+          "tier": "A",
+          "phone": "(19) 97405-9418",
+          "url": "https://depouroverde.com.br/"
+        },
+        {
+          "vendor_id": "deposito_tayo_campinas",
+          "vendor_name": "Depósito Tayo Materiais de Construção",
+          "tier": "A",
+          "phone": "(19) 3266-1333",
+          "url": "https://nikkeiaeroporto.com.br/"
+        },
+        {
+          "vendor_id": "feval_americana",
+          "vendor_name": "Feval Materiais para Construção",
+          "tier": "A",
+          "phone": null,
+          "url": "https://feval.com.br/"
+        }
+      ],
+      "all_verified_offers": [
+        {
+          "vendor_id": "sodimac",
+          "vendor_name": "Sodimac Brasil",
+          "vendor_type": "chain",
+          "matched_product": "Pia Aço Inox 120x52x11 Forminox",
+          "normalized_unit_price_brl": 199.0,
+          "displayed_price_brl": 199.0,
+          "product_url": "https://www.sodimac.com.br/sodimac-br/product/1804069/pia-aco-inox-120x52x11-forminox/1804069/",
+          "checked_at": "2026-09-17",
+          "source_file": "sodimac-lowest-prices.json"
+        },
+        {
+          "vendor_id": "telhanorte",
+          "vendor_name": "Telhanorte",
+          "vendor_type": "chain",
+          "matched_product": "Pia de Cozinha em Aço Inox 430 120x52cm com Cuba Simples e Furo para Torneira Fabrinox",
+          "normalized_unit_price_brl": 230.9,
+          "displayed_price_brl": 230.9,
+          "product_url": "https://www.telhanorte.com.br/pia-inox-aco-430-120x52cm-cuba-simples-central-furo-torneira-ps1200-fabrinox-2340593/p",
+          "checked_at": "2026-09-17",
+          "source_file": "telhanorte-lowest-prices.json"
+        },
+        {
+          "vendor_id": "333obra",
+          "vendor_name": "333Obra",
+          "vendor_type": "chain",
+          "matched_product": "Pia de Mármore Sintético Standard Travertino 150cm - Rorato - 1 Unidade",
+          "normalized_unit_price_brl": 247.8,
+          "displayed_price_brl": 247.8,
+          "product_url": "https://www.333obra.com.br/p/pia-de-marmore-sintetico-standart-150cm-travertino-5045-14-rorato.html",
+          "checked_at": "2026-09-17",
+          "source_file": "333obra-lowest-prices.json"
+        },
+        {
+          "vendor_id": "leroymerlin",
+          "vendor_name": "Leroy Merlin",
+          "vendor_type": "chain",
+          "matched_product": "Cuba Pia Cozinha  Gourmet Quadrada 35x35 Inox 304 Escovado Tubrax",
+          "normalized_unit_price_brl": 266.9,
+          "displayed_price_brl": 266.9,
+          "product_url": "https://www.leroymerlin.com.br/cuba-pia-cozinha--gourmet-quadrada-35x35-inox-304-escovado-tubrax_1571161319",
+          "checked_at": "2026-09-17",
+          "source_file": "leroymerlin-lowest-prices.json"
+        }
+      ],
+      "local_match_status": "no_match",
+      "notes": "Lowest among verified chain catalogs + any site_verified local depo prices."
+    },
+    {
+      "expense_id": "EXP_0040",
+      "requested_item": "Box de vidro para o banheiro (R$850)",
+      "requested_unit": "unidade",
+      "verified_offer_count": 2,
+      "overall_winner": {
+        "vendor_id": "sodimac",
+        "vendor_name": "Sodimac Brasil",
+        "vendor_type": "chain",
+        "matched_product": "Box de Banheiro de Vidro Incolor 6 mm Branco 100 cm Speed Temper",
+        "normalized_unit_price_brl": 709.0,
+        "displayed_price_brl": 709.0,
+        "product_url": "https://www.sodimac.com.br/sodimac-br/product/853903/box-de-banheiro-de-vidro-incolor-6-mm-branco-100-cm-speed-temper/853903/",
+        "checked_at": "2026-09-17",
+        "source_file": "sodimac-lowest-prices.json"
+      },
+      "status": "verified",
+      "pending_cotacao": [
+        {
+          "vendor_id": "casa_dos_tijolos_americana",
+          "vendor_name": "Casa dos Tijolos Materiais para Construção",
+          "tier": "A",
+          "phone": "(19) 3468-6321",
+          "url": "https://paginaamarela.com.br/empresa/casa-dos-tijolos-materiais-para-construcao/americana/sp/7807803"
+        },
+        {
+          "vendor_id": "construeva_americana",
+          "vendor_name": "Construeva Materiais de Construção",
+          "tier": "A",
+          "phone": "+55 19 3468-6870",
+          "url": "https://construeva-construcao.localo.site/"
+        },
+        {
+          "vendor_id": "deposito_brasil_campinas",
+          "vendor_name": "Depósito Brasil Materiais para Construção",
+          "tier": "A",
+          "phone": null,
+          "url": "https://conectaobra.com/campinas-sp/loja-de-materiais-de-construcao/deposito-brasil-materiais-para-construcao"
+        },
+        {
+          "vendor_id": "deposito_ouro_verde_campinas",
+          "vendor_name": "Depósito Ouro Verde Materiais de Construção",
+          "tier": "A",
+          "phone": "(19) 97405-9418",
+          "url": "https://depouroverde.com.br/"
+        },
+        {
+          "vendor_id": "deposito_tayo_campinas",
+          "vendor_name": "Depósito Tayo Materiais de Construção",
+          "tier": "A",
+          "phone": "(19) 3266-1333",
+          "url": "https://nikkeiaeroporto.com.br/"
+        },
+        {
+          "vendor_id": "feval_americana",
+          "vendor_name": "Feval Materiais para Construção",
+          "tier": "A",
+          "phone": null,
+          "url": "https://feval.com.br/"
+        }
+      ],
+      "all_verified_offers": [
+        {
+          "vendor_id": "sodimac",
+          "vendor_name": "Sodimac Brasil",
+          "vendor_type": "chain",
+          "matched_product": "Box de Banheiro de Vidro Incolor 6 mm Branco 100 cm Speed Temper",
+          "normalized_unit_price_brl": 709.0,
+          "displayed_price_brl": 709.0,
+          "product_url": "https://www.sodimac.com.br/sodimac-br/product/853903/box-de-banheiro-de-vidro-incolor-6-mm-branco-100-cm-speed-temper/853903/",
+          "checked_at": "2026-09-17",
+          "source_file": "sodimac-lowest-prices.json"
+        },
+        {
+          "vendor_id": "leroymerlin",
+          "vendor_name": "Leroy Merlin",
+          "vendor_type": "chain",
+          "matched_product": "Box De Vidro Para Banheiro 1,90x1,10m 8mm",
+          "normalized_unit_price_brl": 989.0,
+          "displayed_price_brl": 989.0,
+          "product_url": "https://www.leroymerlin.com.br/box-de-vidro-para-banheiro-1,90x1,10m-8mm_1567589156",
+          "checked_at": "2026-09-17",
+          "source_file": "leroymerlin-lowest-prices.json"
+        }
+      ],
+      "local_match_status": "no_match",
+      "notes": "Lowest among verified chain catalogs + any site_verified local depo prices."
+    },
+    {
+      "expense_id": "EXP_0044",
+      "requested_item": "Caixa de água",
+      "requested_unit": "unidade",
+      "verified_offer_count": 4,
+      "overall_winner": {
+        "vendor_id": "leroymerlin",
+        "vendor_name": "Leroy Merlin",
+        "vendor_type": "chain",
+        "matched_product": "Caixa d'Água 500L em Polietileno Azul Sultanques",
+        "normalized_unit_price_brl": 279.9,
+        "displayed_price_brl": 279.9,
+        "product_url": "https://www.leroymerlin.com.br/caixa-dagua-500l-em-polietileno-azul-sultanques_92385230",
+        "checked_at": "2026-09-17",
+        "source_file": "leroymerlin-lowest-prices.json"
+      },
+      "status": "verified",
+      "pending_cotacao": [
+        {
+          "vendor_id": "casa_dos_tijolos_americana",
+          "vendor_name": "Casa dos Tijolos Materiais para Construção",
+          "tier": "A",
+          "phone": "(19) 3468-6321",
+          "url": "https://paginaamarela.com.br/empresa/casa-dos-tijolos-materiais-para-construcao/americana/sp/7807803"
+        },
+        {
+          "vendor_id": "construeva_americana",
+          "vendor_name": "Construeva Materiais de Construção",
+          "tier": "A",
+          "phone": "+55 19 3468-6870",
+          "url": "https://construeva-construcao.localo.site/"
+        },
+        {
+          "vendor_id": "deposito_brasil_campinas",
+          "vendor_name": "Depósito Brasil Materiais para Construção",
+          "tier": "A",
+          "phone": null,
+          "url": "https://conectaobra.com/campinas-sp/loja-de-materiais-de-construcao/deposito-brasil-materiais-para-construcao"
+        },
+        {
+          "vendor_id": "deposito_ouro_verde_campinas",
+          "vendor_name": "Depósito Ouro Verde Materiais de Construção",
+          "tier": "A",
+          "phone": "(19) 97405-9418",
+          "url": "https://depouroverde.com.br/"
+        },
+        {
+          "vendor_id": "deposito_tayo_campinas",
+          "vendor_name": "Depósito Tayo Materiais de Construção",
+          "tier": "A",
+          "phone": "(19) 3266-1333",
+          "url": "https://nikkeiaeroporto.com.br/"
+        },
+        {
+          "vendor_id": "feval_americana",
+          "vendor_name": "Feval Materiais para Construção",
+          "tier": "A",
+          "phone": null,
+          "url": "https://feval.com.br/"
+        }
+      ],
+      "all_verified_offers": [
+        {
+          "vendor_id": "leroymerlin",
+          "vendor_name": "Leroy Merlin",
+          "vendor_type": "chain",
+          "matched_product": "Caixa d'Água 500L em Polietileno Azul Sultanques",
+          "normalized_unit_price_brl": 279.9,
+          "displayed_price_brl": 279.9,
+          "product_url": "https://www.leroymerlin.com.br/caixa-dagua-500l-em-polietileno-azul-sultanques_92385230",
+          "checked_at": "2026-09-17",
+          "source_file": "leroymerlin-lowest-prices.json"
+        },
+        {
+          "vendor_id": "sodimac",
+          "vendor_name": "Sodimac Brasil",
+          "vendor_type": "chain",
+          "matched_product": "Caixa De Água 1.000L Polietileno Tampa Encaixe Azul Fortlev",
+          "normalized_unit_price_brl": 429.9,
+          "displayed_price_brl": 429.9,
+          "product_url": "https://www.sodimac.com.br/sodimac-br/product/7449/caixa-de-agua-1000l-polietileno-tampa-encaixe-azul-fortlev/7449/",
+          "checked_at": "2026-09-17",
+          "source_file": "sodimac-lowest-prices.json"
+        },
+        {
+          "vendor_id": "333obra",
+          "vendor_name": "333Obra",
+          "vendor_type": "chain",
+          "matched_product": "Caixa D'água 1000 Litros em Polietileno Azul - Fortlev - 1 Unidade",
+          "normalized_unit_price_brl": 440.8,
+          "displayed_price_brl": 440.8,
+          "product_url": "https://www.333obra.com.br/p/caixa-d-agua-de-polietileno-fortlev-1000-l.html",
+          "checked_at": "2026-09-17",
+          "source_file": "333obra-lowest-prices.json"
+        },
+        {
+          "vendor_id": "telhanorte",
+          "vendor_name": "Telhanorte",
+          "vendor_type": "chain",
+          "matched_product": "Caixa d'Água 1000 Litros +Green em Polietileno Acqualimp",
+          "normalized_unit_price_brl": 499.9,
+          "displayed_price_brl": 499.9,
+          "product_url": "https://www.telhanorte.com.br/caixa-de-aguagreen-1000-litros-acqualimp-2365006/p",
+          "checked_at": "2026-09-17",
+          "source_file": "telhanorte-lowest-prices.json"
+        }
+      ],
+      "local_match_status": "no_match",
+      "notes": "Lowest among verified chain catalogs + any site_verified local depo prices."
+    },
+    {
+      "expense_id": "EXP_0033",
+      "requested_item": "Quadro de distribuição",
+      "requested_unit": "unidade",
+      "verified_offer_count": 3,
+      "overall_winner": {
+        "vendor_id": "telhanorte",
+        "vendor_name": "Telhanorte",
+        "vendor_type": "chain",
+        "matched_product": "Quadro De Embutir Ouro Box 16 Din Porta Opaca Steck",
+        "normalized_unit_price_brl": 55.9,
+        "displayed_price_brl": 55.9,
+        "product_url": "https://www.telhanorte.com.br/quadro-de-embutir-para-16-disjuntores-din-branco-porta-opaca-ouro-box-steck-1399993/p",
+        "checked_at": "2026-09-17",
+        "source_file": "telhanorte-lowest-prices.json"
+      },
+      "status": "verified",
+      "pending_cotacao": [
+        {
+          "vendor_id": "casa_dos_tijolos_americana",
+          "vendor_name": "Casa dos Tijolos Materiais para Construção",
+          "tier": "A",
+          "phone": "(19) 3468-6321",
+          "url": "https://paginaamarela.com.br/empresa/casa-dos-tijolos-materiais-para-construcao/americana/sp/7807803"
+        },
+        {
+          "vendor_id": "construeva_americana",
+          "vendor_name": "Construeva Materiais de Construção",
+          "tier": "A",
+          "phone": "+55 19 3468-6870",
+          "url": "https://construeva-construcao.localo.site/"
+        },
+        {
+          "vendor_id": "deposito_brasil_campinas",
+          "vendor_name": "Depósito Brasil Materiais para Construção",
+          "tier": "A",
+          "phone": null,
+          "url": "https://conectaobra.com/campinas-sp/loja-de-materiais-de-construcao/deposito-brasil-materiais-para-construcao"
+        },
+        {
+          "vendor_id": "deposito_ouro_verde_campinas",
+          "vendor_name": "Depósito Ouro Verde Materiais de Construção",
+          "tier": "A",
+          "phone": "(19) 97405-9418",
+          "url": "https://depouroverde.com.br/"
+        },
+        {
+          "vendor_id": "deposito_tayo_campinas",
+          "vendor_name": "Depósito Tayo Materiais de Construção",
+          "tier": "A",
+          "phone": "(19) 3266-1333",
+          "url": "https://nikkeiaeroporto.com.br/"
+        },
+        {
+          "vendor_id": "feval_americana",
+          "vendor_name": "Feval Materiais para Construção",
+          "tier": "A",
+          "phone": null,
+          "url": "https://feval.com.br/"
+        },
+        {
+          "vendor_id": "pezao_nova_odessa",
+          "vendor_name": "Pezão Materiais para Construção",
+          "tier": "B",
+          "phone": "(19) 3466-6038",
+          "url": "https://teleconsulta.com.br/nova-odessa/materiais-eletricos-venda/pezao-materiais-construcao-nova-odessa-00000000008561/"
+        }
+      ],
+      "all_verified_offers": [
+        {
+          "vendor_id": "telhanorte",
+          "vendor_name": "Telhanorte",
+          "vendor_type": "chain",
+          "matched_product": "Quadro De Embutir Ouro Box 16 Din Porta Opaca Steck",
+          "normalized_unit_price_brl": 55.9,
+          "displayed_price_brl": 55.9,
+          "product_url": "https://www.telhanorte.com.br/quadro-de-embutir-para-16-disjuntores-din-branco-porta-opaca-ouro-box-steck-1399993/p",
+          "checked_at": "2026-09-17",
+          "source_file": "telhanorte-lowest-prices.json"
+        },
+        {
+          "vendor_id": "sodimac",
+          "vendor_name": "Sodimac Brasil",
+          "vendor_type": "chain",
+          "matched_product": "Quadro Distr. Emb. 18p Din Iec-pb",
+          "normalized_unit_price_brl": 66.9,
+          "displayed_price_brl": 66.9,
+          "product_url": "https://www.sodimac.com.br/sodimac-br/product/1797682/quadro-distr-emb-18p-din-iec-pb/1797682/",
+          "checked_at": "2026-09-17",
+          "source_file": "sodimac-lowest-prices.json"
+        },
+        {
+          "vendor_id": "333obra",
+          "vendor_name": "333Obra",
+          "vendor_type": "chain",
+          "matched_product": "Quadro de Distribuição para Embutir PVC Branco IP40 - Tigre - 1 Unidade",
+          "normalized_unit_price_brl": 103.09,
+          "displayed_price_brl": 103.09,
+          "product_url": "https://www.333obra.com.br/p/quadro-de-distribuicao-para-embutir-tigre-12-16-disjuntores.html",
+          "checked_at": "2026-09-17",
+          "source_file": "333obra-lowest-prices.json"
+        }
+      ],
+      "local_match_status": "no_match",
+      "notes": "Lowest among verified chain catalogs + any site_verified local depo prices."
+    },
+    {
+      "expense_id": "EXP_0034",
+      "requested_item": "Conduítes",
+      "requested_unit": "metro linear (m)",
+      "verified_offer_count": 3,
+      "overall_winner": {
+        "vendor_id": "telhanorte",
+        "vendor_name": "Telhanorte",
+        "vendor_type": "chain",
+        "matched_product": "Corrugado Leve Dn25 3/4\" 50M Tramontina",
+        "normalized_unit_price_brl": 1.398,
+        "displayed_price_brl": 69.9,
+        "product_url": "https://www.telhanorte.com.br/corrugado-leve-dn25-34-50m-tramontina-1672614/p",
+        "checked_at": "2026-09-17",
+        "source_file": "telhanorte-lowest-prices.json"
+      },
+      "status": "verified",
+      "pending_cotacao": [
+        {
+          "vendor_id": "casa_dos_tijolos_americana",
+          "vendor_name": "Casa dos Tijolos Materiais para Construção",
+          "tier": "A",
+          "phone": "(19) 3468-6321",
+          "url": "https://paginaamarela.com.br/empresa/casa-dos-tijolos-materiais-para-construcao/americana/sp/7807803"
+        },
+        {
+          "vendor_id": "construeva_americana",
+          "vendor_name": "Construeva Materiais de Construção",
+          "tier": "A",
+          "phone": "+55 19 3468-6870",
+          "url": "https://construeva-construcao.localo.site/"
+        },
+        {
+          "vendor_id": "deposito_brasil_campinas",
+          "vendor_name": "Depósito Brasil Materiais para Construção",
+          "tier": "A",
+          "phone": null,
+          "url": "https://conectaobra.com/campinas-sp/loja-de-materiais-de-construcao/deposito-brasil-materiais-para-construcao"
+        },
+        {
+          "vendor_id": "deposito_ouro_verde_campinas",
+          "vendor_name": "Depósito Ouro Verde Materiais de Construção",
+          "tier": "A",
+          "phone": "(19) 97405-9418",
+          "url": "https://depouroverde.com.br/"
+        },
+        {
+          "vendor_id": "deposito_tayo_campinas",
+          "vendor_name": "Depósito Tayo Materiais de Construção",
+          "tier": "A",
+          "phone": "(19) 3266-1333",
+          "url": "https://nikkeiaeroporto.com.br/"
+        },
+        {
+          "vendor_id": "feval_americana",
+          "vendor_name": "Feval Materiais para Construção",
+          "tier": "A",
+          "phone": null,
+          "url": "https://feval.com.br/"
+        },
+        {
+          "vendor_id": "pezao_nova_odessa",
+          "vendor_name": "Pezão Materiais para Construção",
+          "tier": "B",
+          "phone": "(19) 3466-6038",
+          "url": "https://teleconsulta.com.br/nova-odessa/materiais-eletricos-venda/pezao-materiais-construcao-nova-odessa-00000000008561/"
+        }
+      ],
+      "all_verified_offers": [
+        {
+          "vendor_id": "telhanorte",
+          "vendor_name": "Telhanorte",
+          "vendor_type": "chain",
+          "matched_product": "Corrugado Leve Dn25 3/4\" 50M Tramontina",
+          "normalized_unit_price_brl": 1.398,
+          "displayed_price_brl": 69.9,
+          "product_url": "https://www.telhanorte.com.br/corrugado-leve-dn25-34-50m-tramontina-1672614/p",
+          "checked_at": "2026-09-17",
+          "source_file": "telhanorte-lowest-prices.json"
+        },
+        {
+          "vendor_id": "sodimac",
+          "vendor_name": "Sodimac Brasil",
+          "vendor_type": "chain",
+          "matched_product": "Eletroduto Corrugado DN25-3/4 50m Tramontina",
+          "normalized_unit_price_brl": 1.4962,
+          "displayed_price_brl": 74.81,
+          "product_url": "https://www.sodimac.com.br/sodimac-br/product/867005/eletroduto-corrugado-dn25-3-4-50m/867005/",
+          "checked_at": "2026-09-17",
+          "source_file": "sodimac-lowest-prices.json"
+        },
+        {
+          "vendor_id": "333obra",
+          "vendor_name": "333Obra",
+          "vendor_type": "chain",
+          "matched_product": "Eletroduto Corrugado 20mm PVC Amarelo 50 metros - Fortlev - 1 Unidade",
+          "normalized_unit_price_brl": 1.798,
+          "displayed_price_brl": 89.9,
+          "product_url": "https://www.333obra.com.br/p/eletroduto-corrugado-amarelo-de-20mm-fortlev-50-metros.html",
+          "checked_at": "2026-09-17",
+          "source_file": "333obra-lowest-prices.json"
+        }
+      ],
+      "local_match_status": "no_match",
+      "notes": "Lowest among verified chain catalogs + any site_verified local depo prices."
+    },
+    {
+      "expense_id": "EXP_0035",
+      "requested_item": "Lâmpadas",
+      "requested_unit": "unidade",
+      "verified_offer_count": 3,
+      "overall_winner": {
+        "vendor_id": "sodimac",
+        "vendor_name": "Sodimac Brasil",
+        "vendor_type": "chain",
+        "matched_product": "Lâmpada Bulbo 9w 3000k",
+        "normalized_unit_price_brl": 2.79,
+        "displayed_price_brl": 2.79,
+        "product_url": "https://www.sodimac.com.br/sodimac-br/product/1828209/lampada-bulbo-9w-3000k/1828209/",
+        "checked_at": "2026-09-17",
+        "source_file": "sodimac-lowest-prices.json"
+      },
+      "status": "verified",
+      "pending_cotacao": [
+        {
+          "vendor_id": "casa_dos_tijolos_americana",
+          "vendor_name": "Casa dos Tijolos Materiais para Construção",
+          "tier": "A",
+          "phone": "(19) 3468-6321",
+          "url": "https://paginaamarela.com.br/empresa/casa-dos-tijolos-materiais-para-construcao/americana/sp/7807803"
+        },
+        {
+          "vendor_id": "construeva_americana",
+          "vendor_name": "Construeva Materiais de Construção",
+          "tier": "A",
+          "phone": "+55 19 3468-6870",
+          "url": "https://construeva-construcao.localo.site/"
+        },
+        {
+          "vendor_id": "deposito_brasil_campinas",
+          "vendor_name": "Depósito Brasil Materiais para Construção",
+          "tier": "A",
+          "phone": null,
+          "url": "https://conectaobra.com/campinas-sp/loja-de-materiais-de-construcao/deposito-brasil-materiais-para-construcao"
+        },
+        {
+          "vendor_id": "deposito_ouro_verde_campinas",
+          "vendor_name": "Depósito Ouro Verde Materiais de Construção",
+          "tier": "A",
+          "phone": "(19) 97405-9418",
+          "url": "https://depouroverde.com.br/"
+        },
+        {
+          "vendor_id": "deposito_tayo_campinas",
+          "vendor_name": "Depósito Tayo Materiais de Construção",
+          "tier": "A",
+          "phone": "(19) 3266-1333",
+          "url": "https://nikkeiaeroporto.com.br/"
+        },
+        {
+          "vendor_id": "feval_americana",
+          "vendor_name": "Feval Materiais para Construção",
+          "tier": "A",
+          "phone": null,
+          "url": "https://feval.com.br/"
+        }
+      ],
+      "all_verified_offers": [
+        {
+          "vendor_id": "sodimac",
+          "vendor_name": "Sodimac Brasil",
+          "vendor_type": "chain",
+          "matched_product": "Lâmpada Bulbo 9w 3000k",
+          "normalized_unit_price_brl": 2.79,
+          "displayed_price_brl": 2.79,
+          "product_url": "https://www.sodimac.com.br/sodimac-br/product/1828209/lampada-bulbo-9w-3000k/1828209/",
+          "checked_at": "2026-09-17",
+          "source_file": "sodimac-lowest-prices.json"
+        },
+        {
+          "vendor_id": "telhanorte",
+          "vendor_name": "Telhanorte",
+          "vendor_type": "chain",
+          "matched_product": "Lampada Led 9W Branca E27 Biv Ldv Bellalux",
+          "normalized_unit_price_brl": 2.87,
+          "displayed_price_brl": 2.87,
+          "product_url": "https://www.telhanorte.com.br/lampada-led-9w-branca-e27-biv-bellalux-2603314/p",
+          "checked_at": "2026-09-17",
+          "source_file": "telhanorte-lowest-prices.json"
+        },
+        {
+          "vendor_id": "333obra",
+          "vendor_name": "333Obra",
+          "vendor_type": "chain",
+          "matched_product": "Lâmpada Bulbo de LED E-27 TKL60 9W 6500K Bivolt - Taschibra - 1 Unidade",
+          "normalized_unit_price_brl": 5.29,
+          "displayed_price_brl": 5.29,
+          "product_url": "https://www.333obra.com.br/p/lampada-de-led-bulbo-9w-bivolt-branca-taschibra.html",
+          "checked_at": "2026-09-17",
+          "source_file": "333obra-lowest-prices.json"
+        }
+      ],
+      "local_match_status": "no_match",
+      "notes": "Lowest among verified chain catalogs + any site_verified local depo prices."
+    },
+    {
+      "expense_id": "EXP_0038",
+      "requested_item": "Tomadas",
+      "requested_unit": "unidade",
+      "verified_offer_count": 3,
+      "overall_winner": {
+        "vendor_id": "sodimac",
+        "vendor_name": "Sodimac Brasil",
+        "vendor_type": "chain",
+        "matched_product": "Conjunto Tomada 4X2 10A Stella Branco",
+        "normalized_unit_price_brl": 4.99,
+        "displayed_price_brl": 4.99,
+        "product_url": "https://www.sodimac.com.br/sodimac-br/product/788220/conjunto-tomada-4x2-10a-stella-branco/788220/",
+        "checked_at": "2026-09-17",
+        "source_file": "sodimac-lowest-prices.json"
+      },
+      "status": "verified",
+      "pending_cotacao": [
+        {
+          "vendor_id": "casa_dos_tijolos_americana",
+          "vendor_name": "Casa dos Tijolos Materiais para Construção",
+          "tier": "A",
+          "phone": "(19) 3468-6321",
+          "url": "https://paginaamarela.com.br/empresa/casa-dos-tijolos-materiais-para-construcao/americana/sp/7807803"
+        },
+        {
+          "vendor_id": "construeva_americana",
+          "vendor_name": "Construeva Materiais de Construção",
+          "tier": "A",
+          "phone": "+55 19 3468-6870",
+          "url": "https://construeva-construcao.localo.site/"
+        },
+        {
+          "vendor_id": "deposito_brasil_campinas",
+          "vendor_name": "Depósito Brasil Materiais para Construção",
+          "tier": "A",
+          "phone": null,
+          "url": "https://conectaobra.com/campinas-sp/loja-de-materiais-de-construcao/deposito-brasil-materiais-para-construcao"
+        },
+        {
+          "vendor_id": "deposito_ouro_verde_campinas",
+          "vendor_name": "Depósito Ouro Verde Materiais de Construção",
+          "tier": "A",
+          "phone": "(19) 97405-9418",
+          "url": "https://depouroverde.com.br/"
+        },
+        {
+          "vendor_id": "deposito_tayo_campinas",
+          "vendor_name": "Depósito Tayo Materiais de Construção",
+          "tier": "A",
+          "phone": "(19) 3266-1333",
+          "url": "https://nikkeiaeroporto.com.br/"
+        },
+        {
+          "vendor_id": "feval_americana",
+          "vendor_name": "Feval Materiais para Construção",
+          "tier": "A",
+          "phone": null,
+          "url": "https://feval.com.br/"
+        },
+        {
+          "vendor_id": "pezao_nova_odessa",
+          "vendor_name": "Pezão Materiais para Construção",
+          "tier": "B",
+          "phone": "(19) 3466-6038",
+          "url": "https://teleconsulta.com.br/nova-odessa/materiais-eletricos-venda/pezao-materiais-construcao-nova-odessa-00000000008561/"
+        }
+      ],
+      "all_verified_offers": [
+        {
+          "vendor_id": "sodimac",
+          "vendor_name": "Sodimac Brasil",
+          "vendor_type": "chain",
+          "matched_product": "Conjunto Tomada 4X2 10A Stella Branco",
+          "normalized_unit_price_brl": 4.99,
+          "displayed_price_brl": 4.99,
+          "product_url": "https://www.sodimac.com.br/sodimac-br/product/788220/conjunto-tomada-4x2-10a-stella-branco/788220/",
+          "checked_at": "2026-09-17",
+          "source_file": "sodimac-lowest-prices.json"
+        },
+        {
+          "vendor_id": "telhanorte",
+          "vendor_name": "Telhanorte",
+          "vendor_type": "chain",
+          "matched_product": "Conjunto 4X2 1 Tomada 10A Branco Rivez Dicompel",
+          "normalized_unit_price_brl": 6.99,
+          "displayed_price_brl": 6.99,
+          "product_url": "https://www.telhanorte.com.br/conjunto-4x2-1-tomada-10a-branco-ritz-dicompel-2536811/p",
+          "checked_at": "2026-09-17",
+          "source_file": "telhanorte-lowest-prices.json"
+        },
+        {
+          "vendor_id": "leroymerlin",
+          "vendor_name": "Leroy Merlin",
+          "vendor_type": "chain",
+          "matched_product": "Conjunto 1 Tomada Energia 10A 4x2 Branco Miluz Schneider",
+          "normalized_unit_price_brl": 32.9,
+          "displayed_price_brl": 32.9,
+          "product_url": "https://www.leroymerlin.com.br/conjunto-1-tomada-energia-10a-4x2-branco-miluz-schneider_89676930",
+          "checked_at": "2026-09-17",
+          "source_file": "leroymerlin-lowest-prices.json"
+        }
+      ],
+      "local_match_status": "no_match",
+      "notes": "Lowest among verified chain catalogs + any site_verified local depo prices."
+    },
+    {
+      "expense_id": "EXP_0045",
+      "requested_item": "Dispositivos de segurança",
+      "requested_unit": "conjunto",
+      "verified_offer_count": 0,
+      "overall_winner": null,
+      "status": "pending_cotacao",
+      "pending_cotacao": [
+        {
+          "vendor_id": "casa_dos_tijolos_americana",
+          "vendor_name": "Casa dos Tijolos Materiais para Construção",
+          "tier": "A",
+          "phone": "(19) 3468-6321",
+          "url": "https://paginaamarela.com.br/empresa/casa-dos-tijolos-materiais-para-construcao/americana/sp/7807803"
+        },
+        {
+          "vendor_id": "construeva_americana",
+          "vendor_name": "Construeva Materiais de Construção",
+          "tier": "A",
+          "phone": "+55 19 3468-6870",
+          "url": "https://construeva-construcao.localo.site/"
+        },
+        {
+          "vendor_id": "deposito_brasil_campinas",
+          "vendor_name": "Depósito Brasil Materiais para Construção",
+          "tier": "A",
+          "phone": null,
+          "url": "https://conectaobra.com/campinas-sp/loja-de-materiais-de-construcao/deposito-brasil-materiais-para-construcao"
+        },
+        {
+          "vendor_id": "deposito_ouro_verde_campinas",
+          "vendor_name": "Depósito Ouro Verde Materiais de Construção",
+          "tier": "A",
+          "phone": "(19) 97405-9418",
+          "url": "https://depouroverde.com.br/"
+        },
+        {
+          "vendor_id": "deposito_tayo_campinas",
+          "vendor_name": "Depósito Tayo Materiais de Construção",
+          "tier": "A",
+          "phone": "(19) 3266-1333",
+          "url": "https://nikkeiaeroporto.com.br/"
+        },
+        {
+          "vendor_id": "feval_americana",
+          "vendor_name": "Feval Materiais para Construção",
+          "tier": "A",
+          "phone": null,
+          "url": "https://feval.com.br/"
+        }
+      ],
+      "all_verified_offers": [],
+      "local_match_status": "no_match",
+      "notes": "No verified price from chains or local depos; use cotação pack."
+    },
+    {
+      "expense_id": "EXP_0018",
+      "requested_item": "Ferramentas",
+      "requested_unit": "conjunto",
+      "verified_offer_count": 4,
+      "overall_winner": {
+        "vendor_id": "sodimac",
+        "vendor_name": "Sodimac Brasil",
+        "vendor_type": "chain",
+        "matched_product": "Jogo de Ferramentas Western 9 Peças",
+        "normalized_unit_price_brl": 19.9,
+        "displayed_price_brl": 19.9,
+        "product_url": "https://www.sodimac.com.br/sodimac-br/product/1804924/jogo-de-ferramentas-western-9-pecas/1804924/",
+        "checked_at": "2026-09-17",
+        "source_file": "sodimac-lowest-prices.json"
+      },
+      "status": "verified",
+      "pending_cotacao": [
+        {
+          "vendor_id": "casa_dos_tijolos_americana",
+          "vendor_name": "Casa dos Tijolos Materiais para Construção",
+          "tier": "A",
+          "phone": "(19) 3468-6321",
+          "url": "https://paginaamarela.com.br/empresa/casa-dos-tijolos-materiais-para-construcao/americana/sp/7807803"
+        },
+        {
+          "vendor_id": "construeva_americana",
+          "vendor_name": "Construeva Materiais de Construção",
+          "tier": "A",
+          "phone": "+55 19 3468-6870",
+          "url": "https://construeva-construcao.localo.site/"
+        },
+        {
+          "vendor_id": "deposito_brasil_campinas",
+          "vendor_name": "Depósito Brasil Materiais para Construção",
+          "tier": "A",
+          "phone": null,
+          "url": "https://conectaobra.com/campinas-sp/loja-de-materiais-de-construcao/deposito-brasil-materiais-para-construcao"
+        },
+        {
+          "vendor_id": "deposito_ouro_verde_campinas",
+          "vendor_name": "Depósito Ouro Verde Materiais de Construção",
+          "tier": "A",
+          "phone": "(19) 97405-9418",
+          "url": "https://depouroverde.com.br/"
+        },
+        {
+          "vendor_id": "deposito_tayo_campinas",
+          "vendor_name": "Depósito Tayo Materiais de Construção",
+          "tier": "A",
+          "phone": "(19) 3266-1333",
+          "url": "https://nikkeiaeroporto.com.br/"
+        },
+        {
+          "vendor_id": "feval_americana",
+          "vendor_name": "Feval Materiais para Construção",
+          "tier": "A",
+          "phone": null,
+          "url": "https://feval.com.br/"
+        }
+      ],
+      "all_verified_offers": [
+        {
+          "vendor_id": "sodimac",
+          "vendor_name": "Sodimac Brasil",
+          "vendor_type": "chain",
+          "matched_product": "Jogo de Ferramentas Western 9 Peças",
+          "normalized_unit_price_brl": 19.9,
+          "displayed_price_brl": 19.9,
+          "product_url": "https://www.sodimac.com.br/sodimac-br/product/1804924/jogo-de-ferramentas-western-9-pecas/1804924/",
+          "checked_at": "2026-09-17",
+          "source_file": "sodimac-lowest-prices.json"
+        },
+        {
+          "vendor_id": "333obra",
+          "vendor_name": "333Obra",
+          "vendor_type": "chain",
+          "matched_product": "Kit de Ferramentas 5 Peças Metal/Plástico - Tramontina - 1 Kit",
+          "normalized_unit_price_brl": 21.25,
+          "displayed_price_brl": 21.25,
+          "product_url": "https://www.333obra.com.br/p/kit-de-ferramentas-5-pecas-43408-500-tramontina.html",
+          "checked_at": "2026-09-17",
+          "source_file": "333obra-lowest-prices.json"
+        },
+        {
+          "vendor_id": "telhanorte",
+          "vendor_name": "Telhanorte",
+          "vendor_type": "chain",
+          "matched_product": "Kit De Ferramentas 4 Peças Com 2 Chaves De Fenda 1 Estilete 1 Mini Arco De Serra 43408304 Tramontina",
+          "normalized_unit_price_brl": 37.9,
+          "displayed_price_brl": 37.9,
+          "product_url": "https://www.telhanorte.com.br/kit-de-ferramentas-4-pecas-com-2-chaves-de-fenda-1-estilete-1-mini-arco-de-serra-43408304-tramontina-287326/p",
+          "checked_at": "2026-09-17",
+          "source_file": "telhanorte-lowest-prices.json"
+        },
+        {
+          "vendor_id": "leroymerlin",
+          "vendor_name": "Leroy Merlin",
+          "vendor_type": "chain",
+          "matched_product": "Maleta Kit Jogo Ferramentas Gerais Utilidades Uso Domestico 9 Peças 8009c",
+          "normalized_unit_price_brl": 66.49,
+          "displayed_price_brl": 66.49,
+          "product_url": "https://www.leroymerlin.com.br/maleta-kit-jogo-ferramentas-gerais-utilidades-uso-domestico-9-pecas-8009c_1570679472",
+          "checked_at": "2026-09-17",
+          "source_file": "leroymerlin-lowest-prices.json"
+        }
+      ],
+      "local_match_status": "no_match",
+      "notes": "Lowest among verified chain catalogs + any site_verified local depo prices."
+    },
+    {
+      "expense_id": "EXP_0020",
+      "requested_item": "Carrinho de mão",
+      "requested_unit": "unidade",
+      "verified_offer_count": 4,
+      "overall_winner": {
+        "vendor_id": "sodimac",
+        "vendor_name": "Sodimac Brasil",
+        "vendor_type": "chain",
+        "matched_product": "Carrinho De Mao Aco Galvanizado 55L",
+        "normalized_unit_price_brl": 149.9,
+        "displayed_price_brl": 149.9,
+        "product_url": "https://www.sodimac.com.br/sodimac-br/product/1041694/carrinho-de-mao-aco-galvanizado-55l/1041694/",
+        "checked_at": "2026-09-17",
+        "source_file": "sodimac-lowest-prices.json"
+      },
+      "status": "verified",
+      "pending_cotacao": [
+        {
+          "vendor_id": "casa_dos_tijolos_americana",
+          "vendor_name": "Casa dos Tijolos Materiais para Construção",
+          "tier": "A",
+          "phone": "(19) 3468-6321",
+          "url": "https://paginaamarela.com.br/empresa/casa-dos-tijolos-materiais-para-construcao/americana/sp/7807803"
+        },
+        {
+          "vendor_id": "construeva_americana",
+          "vendor_name": "Construeva Materiais de Construção",
+          "tier": "A",
+          "phone": "+55 19 3468-6870",
+          "url": "https://construeva-construcao.localo.site/"
+        },
+        {
+          "vendor_id": "deposito_brasil_campinas",
+          "vendor_name": "Depósito Brasil Materiais para Construção",
+          "tier": "A",
+          "phone": null,
+          "url": "https://conectaobra.com/campinas-sp/loja-de-materiais-de-construcao/deposito-brasil-materiais-para-construcao"
+        },
+        {
+          "vendor_id": "deposito_ouro_verde_campinas",
+          "vendor_name": "Depósito Ouro Verde Materiais de Construção",
+          "tier": "A",
+          "phone": "(19) 97405-9418",
+          "url": "https://depouroverde.com.br/"
+        },
+        {
+          "vendor_id": "deposito_tayo_campinas",
+          "vendor_name": "Depósito Tayo Materiais de Construção",
+          "tier": "A",
+          "phone": "(19) 3266-1333",
+          "url": "https://nikkeiaeroporto.com.br/"
+        },
+        {
+          "vendor_id": "feval_americana",
+          "vendor_name": "Feval Materiais para Construção",
+          "tier": "A",
+          "phone": null,
+          "url": "https://feval.com.br/"
+        }
+      ],
+      "all_verified_offers": [
+        {
+          "vendor_id": "sodimac",
+          "vendor_name": "Sodimac Brasil",
+          "vendor_type": "chain",
+          "matched_product": "Carrinho De Mao Aco Galvanizado 55L",
+          "normalized_unit_price_brl": 149.9,
+          "displayed_price_brl": 149.9,
+          "product_url": "https://www.sodimac.com.br/sodimac-br/product/1041694/carrinho-de-mao-aco-galvanizado-55l/1041694/",
+          "checked_at": "2026-09-17",
+          "source_file": "sodimac-lowest-prices.json"
+        },
+        {
+          "vendor_id": "333obra",
+          "vendor_name": "333Obra",
+          "vendor_type": "chain",
+          "matched_product": "Carrinho de Mão Caçamba Redonda",
+          "normalized_unit_price_brl": 169.9,
+          "displayed_price_brl": 169.9,
+          "product_url": "https://www.333obra.com.br/p/carrinho-de-m-o-cacamba-redonda.html",
+          "checked_at": "2026-09-17",
+          "source_file": "333obra-lowest-prices.json"
+        },
+        {
+          "vendor_id": "leroymerlin",
+          "vendor_name": "Leroy Merlin",
+          "vendor_type": "chain",
+          "matched_product": "Carrinho De Mão Em Aço Carbono Pneu E Câmara Chapa 26mm 45l",
+          "normalized_unit_price_brl": 210.48,
+          "displayed_price_brl": 210.48,
+          "product_url": "https://www.leroymerlin.com.br/carrinho-de-mao-em-aco-carbono-pneu-e-camara-chapa-26mm-45l_1571958082",
+          "checked_at": "2026-09-17",
+          "source_file": "leroymerlin-lowest-prices.json"
+        },
+        {
+          "vendor_id": "telhanorte",
+          "vendor_name": "Telhanorte",
+          "vendor_type": "chain",
+          "matched_product": "Carrinho de mão com caçamba metálica rasa 50 litros Tramontina",
+          "normalized_unit_price_brl": 219.9,
+          "displayed_price_brl": 219.9,
+          "product_url": "https://www.telhanorte.com.br/carrinho-de-mao-braco-metalico-cacamba-metalica-redonda-de-azul-pneu-borracha-tramontina-1555111/p",
+          "checked_at": "2026-09-17",
+          "source_file": "telhanorte-lowest-prices.json"
+        }
+      ],
+      "local_match_status": "no_match",
+      "notes": "Lowest among verified chain catalogs + any site_verified local depo prices."
+    },
+    {
+      "expense_id": "EXP_0022",
+      "requested_item": "Caçamba de entulho",
+      "requested_unit": "caçamba",
+      "verified_offer_count": 0,
+      "overall_winner": null,
+      "status": "pending_cotacao",
+      "pending_cotacao": [
+        {
+          "vendor_id": "casa_dos_tijolos_americana",
+          "vendor_name": "Casa dos Tijolos Materiais para Construção",
+          "tier": "A",
+          "phone": "(19) 3468-6321",
+          "url": "https://paginaamarela.com.br/empresa/casa-dos-tijolos-materiais-para-construcao/americana/sp/7807803"
+        },
+        {
+          "vendor_id": "construeva_americana",
+          "vendor_name": "Construeva Materiais de Construção",
+          "tier": "A",
+          "phone": "+55 19 3468-6870",
+          "url": "https://construeva-construcao.localo.site/"
+        },
+        {
+          "vendor_id": "deposito_brasil_campinas",
+          "vendor_name": "Depósito Brasil Materiais para Construção",
+          "tier": "A",
+          "phone": null,
+          "url": "https://conectaobra.com/campinas-sp/loja-de-materiais-de-construcao/deposito-brasil-materiais-para-construcao"
+        },
+        {
+          "vendor_id": "deposito_ouro_verde_campinas",
+          "vendor_name": "Depósito Ouro Verde Materiais de Construção",
+          "tier": "A",
+          "phone": "(19) 97405-9418",
+          "url": "https://depouroverde.com.br/"
+        },
+        {
+          "vendor_id": "deposito_tayo_campinas",
+          "vendor_name": "Depósito Tayo Materiais de Construção",
+          "tier": "A",
+          "phone": "(19) 3266-1333",
+          "url": "https://nikkeiaeroporto.com.br/"
+        },
+        {
+          "vendor_id": "feval_americana",
+          "vendor_name": "Feval Materiais para Construção",
+          "tier": "A",
+          "phone": null,
+          "url": "https://feval.com.br/"
+        }
+      ],
+      "all_verified_offers": [],
+      "local_match_status": "no_match",
+      "notes": "No verified price from chains or local depos; use cotação pack."
+    },
+    {
+      "expense_id": "EXP_0043",
+      "requested_item": "Calhas e rufos",
+      "requested_unit": "metro linear (m)",
+      "verified_offer_count": 3,
+      "overall_winner": {
+        "vendor_id": "leroymerlin",
+        "vendor_name": "Leroy Merlin",
+        "vendor_type": "chain",
+        "matched_product": "Bobina Galvanizada 20cm X 2mts Rufo Calha Pingadeira Algerosa",
+        "normalized_unit_price_brl": 16.77,
+        "displayed_price_brl": 33.54,
+        "product_url": "https://www.leroymerlin.com.br/bobina-galvanizada-20cm-x-2mts-rufo-calha-pingadeira-algerosa_1569336251",
+        "checked_at": "2026-09-17",
+        "source_file": "leroymerlin-lowest-prices.json"
+      },
+      "status": "verified",
+      "pending_cotacao": [
+        {
+          "vendor_id": "casa_dos_tijolos_americana",
+          "vendor_name": "Casa dos Tijolos Materiais para Construção",
+          "tier": "A",
+          "phone": "(19) 3468-6321",
+          "url": "https://paginaamarela.com.br/empresa/casa-dos-tijolos-materiais-para-construcao/americana/sp/7807803"
+        },
+        {
+          "vendor_id": "construeva_americana",
+          "vendor_name": "Construeva Materiais de Construção",
+          "tier": "A",
+          "phone": "+55 19 3468-6870",
+          "url": "https://construeva-construcao.localo.site/"
+        },
+        {
+          "vendor_id": "deposito_brasil_campinas",
+          "vendor_name": "Depósito Brasil Materiais para Construção",
+          "tier": "A",
+          "phone": null,
+          "url": "https://conectaobra.com/campinas-sp/loja-de-materiais-de-construcao/deposito-brasil-materiais-para-construcao"
+        },
+        {
+          "vendor_id": "deposito_ouro_verde_campinas",
+          "vendor_name": "Depósito Ouro Verde Materiais de Construção",
+          "tier": "A",
+          "phone": "(19) 97405-9418",
+          "url": "https://depouroverde.com.br/"
+        },
+        {
+          "vendor_id": "deposito_tayo_campinas",
+          "vendor_name": "Depósito Tayo Materiais de Construção",
+          "tier": "A",
+          "phone": "(19) 3266-1333",
+          "url": "https://nikkeiaeroporto.com.br/"
+        },
+        {
+          "vendor_id": "feval_americana",
+          "vendor_name": "Feval Materiais para Construção",
+          "tier": "A",
+          "phone": null,
+          "url": "https://feval.com.br/"
+        }
+      ],
+      "all_verified_offers": [
+        {
+          "vendor_id": "leroymerlin",
+          "vendor_name": "Leroy Merlin",
+          "vendor_type": "chain",
+          "matched_product": "Bobina Galvanizada 20cm X 2mts Rufo Calha Pingadeira Algerosa",
+          "normalized_unit_price_brl": 16.77,
+          "displayed_price_brl": 33.54,
+          "product_url": "https://www.leroymerlin.com.br/bobina-galvanizada-20cm-x-2mts-rufo-calha-pingadeira-algerosa_1569336251",
+          "checked_at": "2026-09-17",
+          "source_file": "leroymerlin-lowest-prices.json"
+        },
+        {
+          "vendor_id": "sodimac",
+          "vendor_name": "Sodimac Brasil",
+          "vendor_type": "chain",
+          "matched_product": "Rufo Externo Corte20 3m,calhaforte",
+          "normalized_unit_price_brl": 20.63,
+          "displayed_price_brl": 61.9,
+          "product_url": "https://www.sodimac.com.br/sodimac-br/product/590920/rufo-externo-corte20-3mcalhaforte/590920/",
+          "checked_at": "2026-09-17",
+          "source_file": "sodimac-lowest-prices.json"
+        },
+        {
+          "vendor_id": "telhanorte",
+          "vendor_name": "Telhanorte",
+          "vendor_type": "chain",
+          "matched_product": "Rufo Externo 20 2 Metros Galvanizado Calhaforte",
+          "normalized_unit_price_brl": 20.95,
+          "displayed_price_brl": 41.9,
+          "product_url": "https://www.telhanorte.com.br/rufo-externo-20-2-metros-galvanizado-calhaforte-688231/p",
+          "checked_at": "2026-09-17",
+          "source_file": "telhanorte-lowest-prices.json"
+        }
+      ],
+      "local_match_status": "no_match",
+      "notes": "Lowest among verified chain catalogs + any site_verified local depo prices."
+    },
+    {
+      "expense_id": "EXP_0047",
+      "requested_item": "Pregos, parafusos, buchas",
+      "requested_unit": "pacote",
+      "verified_offer_count": 4,
+      "overall_winner": {
+        "vendor_id": "leroymerlin",
+        "vendor_name": "Leroy Merlin",
+        "vendor_type": "chain",
+        "matched_product": "Parafuso Chipboard Cabeça Chata 5x20mm 25 Peças Standers",
+        "normalized_unit_price_brl": 9.99,
+        "displayed_price_brl": 9.99,
+        "product_url": "https://www.leroymerlin.com.br/parafuso-chipboard-cabeca-chata-5x20mm-25-pecas-standers_92061746",
+        "checked_at": "2026-09-17",
+        "source_file": "leroymerlin-lowest-prices.json"
+      },
+      "status": "verified",
+      "pending_cotacao": [
+        {
+          "vendor_id": "casa_dos_tijolos_americana",
+          "vendor_name": "Casa dos Tijolos Materiais para Construção",
+          "tier": "A",
+          "phone": "(19) 3468-6321",
+          "url": "https://paginaamarela.com.br/empresa/casa-dos-tijolos-materiais-para-construcao/americana/sp/7807803"
+        },
+        {
+          "vendor_id": "construeva_americana",
+          "vendor_name": "Construeva Materiais de Construção",
+          "tier": "A",
+          "phone": "+55 19 3468-6870",
+          "url": "https://construeva-construcao.localo.site/"
+        },
+        {
+          "vendor_id": "deposito_brasil_campinas",
+          "vendor_name": "Depósito Brasil Materiais para Construção",
+          "tier": "A",
+          "phone": null,
+          "url": "https://conectaobra.com/campinas-sp/loja-de-materiais-de-construcao/deposito-brasil-materiais-para-construcao"
+        },
+        {
+          "vendor_id": "deposito_ouro_verde_campinas",
+          "vendor_name": "Depósito Ouro Verde Materiais de Construção",
+          "tier": "A",
+          "phone": "(19) 97405-9418",
+          "url": "https://depouroverde.com.br/"
+        },
+        {
+          "vendor_id": "deposito_tayo_campinas",
+          "vendor_name": "Depósito Tayo Materiais de Construção",
+          "tier": "A",
+          "phone": "(19) 3266-1333",
+          "url": "https://nikkeiaeroporto.com.br/"
+        },
+        {
+          "vendor_id": "feval_americana",
+          "vendor_name": "Feval Materiais para Construção",
+          "tier": "A",
+          "phone": null,
+          "url": "https://feval.com.br/"
+        }
+      ],
+      "all_verified_offers": [
+        {
+          "vendor_id": "leroymerlin",
+          "vendor_name": "Leroy Merlin",
+          "vendor_type": "chain",
+          "matched_product": "Parafuso Chipboard Cabeça Chata 5x20mm 25 Peças Standers",
+          "normalized_unit_price_brl": 9.99,
+          "displayed_price_brl": 9.99,
+          "product_url": "https://www.leroymerlin.com.br/parafuso-chipboard-cabeca-chata-5x20mm-25-pecas-standers_92061746",
+          "checked_at": "2026-09-17",
+          "source_file": "leroymerlin-lowest-prices.json"
+        },
+        {
+          "vendor_id": "333obra",
+          "vendor_name": "333Obra",
+          "vendor_type": "chain",
+          "matched_product": "Prego Aço Polido Cabeça 22x48mm - Gerdau - Pacote 1kg",
+          "normalized_unit_price_brl": 14.46,
+          "displayed_price_brl": 14.46,
+          "product_url": "https://www.333obra.com.br/p/prego-aco-polido-cabeca-22x48mm-gerdau-pacote-1kg.html",
+          "checked_at": "2026-09-17",
+          "source_file": "333obra-lowest-prices.json"
+        },
+        {
+          "vendor_id": "telhanorte",
+          "vendor_name": "Telhanorte",
+          "vendor_type": "chain",
+          "matched_product": "Kit Prático com 30 Peças de Buchas, Parafusos e Broca 5mm Bemfixa",
+          "normalized_unit_price_brl": 22.9,
+          "displayed_price_brl": 22.9,
+          "product_url": "https://www.telhanorte.com.br/kit-pratico-de-30-pecas-buchas-parafusos-e-broca-bemfixa-1331396/p",
+          "checked_at": "2026-09-17",
+          "source_file": "telhanorte-lowest-prices.json"
+        },
+        {
+          "vendor_id": "sodimac",
+          "vendor_name": "Sodimac Brasil",
+          "vendor_type": "chain",
+          "matched_product": "Kit Bucha com Parafuso Cabeça Sextavada Rosca Soberba 10 Peças Cinza",
+          "normalized_unit_price_brl": 24.9,
+          "displayed_price_brl": 24.9,
+          "product_url": "https://www.sodimac.com.br/sodimac-br/product/742813/kit-bucha-com-parafuso-cabeca-sextavada-rosca-soberba-10-pecas-cinza/742813/",
+          "checked_at": "2026-09-17",
+          "source_file": "sodimac-lowest-prices.json"
+        }
+      ],
+      "local_match_status": "no_match",
+      "notes": "Lowest among verified chain catalogs + any site_verified local depo prices."
+    }
+  ]
+}

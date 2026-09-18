@@ -1,0 +1,690 @@
+{
+  "title": "Regional construction vendors — price reputation and web sentiment",
+  "location_basis": "nova_odessa_cep_13380",
+  "region": ["Nova Odessa", "Americana", "Campinas metro"],
+  "checked_at": "2026-09-17",
+  "method": {
+    "chains": "Reuse verified unit prices from data/research/*-lowest-prices.json (no new scrape).",
+    "local_depos": "Portuguese web search of directories, review pages, Reclame Aqui snippets, and local guides; qualitative price reputation only unless a cited SKU price exists.",
+    "scoring": "0–100 composite of price_reputation (40), sentiment (25), assortment_fit_for_35_expenses (20), logistics_to_nova_odessa (15).",
+    "caveat": "Local depo prices are almost never published as comparable SKUs online; treat reputation_only rows as cotação candidates, not verified winners."
+  },
+  "chain_baselines": {
+    "catalogs": {
+      "leroymerlin": {
+        "source_file": "leroymerlin-lowest-prices.json",
+        "verified_matches": 23,
+        "no_match": 12,
+        "sample_normalized_brl": {
+          "EXP_0016_cimento": 34.9,
+          "EXP_0014_bianco": 314.9,
+          "EXP_0023_porcelanato_m2": 34.69,
+          "EXP_0046_tinta_18l": 199.9,
+          "EXP_0026_porta_interna": 307.3,
+          "EXP_0028_vaso": 390.8
+        }
+      },
+      "sodimac": {
+        "source_file": "sodimac-lowest-prices.json",
+        "verified_matches": 31,
+        "no_match": 4,
+        "sample_normalized_brl": {
+          "EXP_0016_cimento": 32.9,
+          "EXP_0014_bianco": 314.9,
+          "EXP_0023_porcelanato_m2": 39.9,
+          "EXP_0046_tinta_18l": 99.9,
+          "EXP_0026_porta_interna": 634.0,
+          "EXP_0028_vaso": 318.0
+        }
+      },
+      "telhanorte": {
+        "source_file": "telhanorte-lowest-prices.json",
+        "verified_matches": 30,
+        "no_match": 5,
+        "sample_normalized_brl": {
+          "EXP_0016_cimento": 34.9,
+          "EXP_0014_bianco": 319.9,
+          "EXP_0023_porcelanato_m2": 42.9,
+          "EXP_0046_tinta_18l": 149.9,
+          "EXP_0026_porta_interna": 365.42,
+          "EXP_0028_vaso": 319.9
+        }
+      },
+      "333obra": {
+        "source_file": "333obra-lowest-prices.json",
+        "verified_matches": 16,
+        "no_match": 19,
+        "sample_normalized_brl": {
+          "EXP_0016_cimento": 29.0,
+          "EXP_0028_vaso": 399.9
+        },
+        "note": "Americana storefront used as Nova Odessa proxy in prior sweep; thinnest verified coverage."
+      }
+    },
+    "lowest_price_wins_among_verified": {
+      "sodimac": 13,
+      "leroymerlin": 8,
+      "telhanorte": 5,
+      "333obra": 5,
+      "expenses_with_any_chain_price": 31
+    }
+  },
+  "vendors": [
+    {
+      "id": "construeva_americana",
+      "name": "Construeva Materiais de Construção",
+      "type": "local_depo",
+      "cities": ["Americana"],
+      "address": "Rua Altamiro Carrilho, 32 — Americana/SP 13473-652",
+      "phone": "+55 19 3468-6870",
+      "url": "https://construeva-construcao.localo.site/",
+      "price_reputation": "low",
+      "price_evidence": "reputation_only",
+      "rating_signals": [
+        {
+          "source": "Localo / Google-style review mirror",
+          "score": "4.6",
+          "snippet": "Multiple customers cite 'ótimos preços', 'preço top', 'material é mais baixo', 'preço incrível'.",
+          "url": "https://construeva-construcao.localo.site/reviews"
+        }
+      ],
+      "strengths": [
+        "Strongest public price-positive review volume among Americana local depos found in this pass",
+        "Full-line (alicerce ao acabamento): cimento, ferro, pisos, hidráulica, elétrica",
+        "~25 years local presence; delivery mentioned"
+      ],
+      "weaknesses": [
+        "No machine-verifiable SKU prices online for EXP_* comparison",
+        "One review notes prices 'iguais aos concorrentes' with service as differentiator"
+      ],
+      "best_for": ["structural_basics", "finishes", "general_obra_cotacao"],
+      "fit_for_expenses": [
+        "EXP_0016",
+        "EXP_0019",
+        "EXP_0023",
+        "EXP_0025",
+        "EXP_0036",
+        "EXP_0038"
+      ],
+      "logistics_to_nova_odessa": "high",
+      "citations": [
+        "https://construeva-construcao.localo.site/",
+        "https://construeva-construcao.localo.site/reviews"
+      ],
+      "score": 86
+    },
+    {
+      "id": "sodimac",
+      "name": "Sodimac Brasil",
+      "type": "chain",
+      "cities": ["Campinas"],
+      "url": "https://www.sodimac.com.br/",
+      "price_reputation": "low",
+      "price_evidence": "catalog_verified",
+      "rating_signals": [
+        {
+          "source": "Achei Aqui Campinas local guide",
+          "score": null,
+          "snippet": "Described as competitive especially on acabamentos and ferramentas; mid price band overall.",
+          "url": "https://www.acheiaquicampinas.com.br/post/material-de-constru%C3%A7%C3%A3o-campinas-onde-comprar-mais-barato-e-com-facilidade"
+        }
+      ],
+      "strengths": [
+        "Best verified coverage in project catalogs (31/35)",
+        "Most lowest-price wins across shared EXP_* (13)",
+        "Strong on tinta 18L (R$99.90) and vaso in verified sweep"
+      ],
+      "weaknesses": [
+        "Interior door winner much higher than Leroy Merlin in verified set",
+        "Still no m³ aggregates in catalog"
+      ],
+      "best_for": ["paint", "plumbing_fixtures", "broad_catalog", "tools"],
+      "fit_for_expenses": ["EXP_0046", "EXP_0028", "EXP_0016", "EXP_0018"],
+      "logistics_to_nova_odessa": "mid",
+      "citations": [
+        "data/research/sodimac-lowest-prices.json",
+        "https://www.acheiaquicampinas.com.br/post/material-de-constru%C3%A7%C3%A3o-campinas-onde-comprar-mais-barato-e-com-facilidade"
+      ],
+      "score": 84
+    },
+    {
+      "id": "333obra",
+      "name": "333Obra",
+      "type": "chain",
+      "cities": ["Americana", "Campinas"],
+      "url": "https://www.333obra.com.br/",
+      "price_reputation": "low",
+      "price_evidence": "catalog_verified",
+      "rating_signals": [
+        {
+          "source": "333Obra product page (cimento)",
+          "score": null,
+          "snippet": "Markets 'preço mais barato da região' for cement; sample CSN 50kg from R$34.50 listing / prior Americana Pix sweep R$29.00 winner.",
+          "url": "https://www.333obra.com.br/cimento-cpii-32-csn-50-kg.html"
+        }
+      ],
+      "strengths": [
+        "Lowest verified cement in project catalogs (R$29.00)",
+        "Americana proximity for Nova Odessa pickup/delivery proxy"
+      ],
+      "weaknesses": [
+        "Thinnest verified catalog (16/35)",
+        "Many EXP_* still no_match"
+      ],
+      "best_for": ["cement", "structural_spot_buys"],
+      "fit_for_expenses": ["EXP_0016"],
+      "logistics_to_nova_odessa": "high",
+      "citations": [
+        "data/research/333obra-lowest-prices.json",
+        "https://www.333obra.com.br/cimento-cpii-32-csn-50-kg.html"
+      ],
+      "score": 78
+    },
+    {
+      "id": "deposito_ouro_verde_campinas",
+      "name": "Depósito Ouro Verde Materiais de Construção",
+      "type": "local_depo",
+      "cities": ["Campinas"],
+      "address": "Rua Igaci / Jardim Cristina area — Campinas/SP",
+      "phone": "(19) 97405-9418",
+      "url": "https://depouroverde.com.br/",
+      "price_reputation": "low",
+      "price_evidence": "reputation_only",
+      "rating_signals": [
+        {
+          "source": "Vendor site",
+          "score": null,
+          "snippet": "Positions as distributor of areia/pedra with competitive prices, technical/environmental reports, and fleet delivery across RMC including Sumaré.",
+          "url": "https://depouroverde.com.br/"
+        }
+      ],
+      "strengths": [
+        "Specialist for bulk aggregates — fills chain gap on EXP_0015 (areia/pedrisco m³)",
+        "Claims delivery across Campinas metro / Sumaré corridor toward Nova Odessa"
+      ],
+      "weaknesses": [
+        "Not a full acabamento catalog in public materials",
+        "No citable SKU unit prices in this research pass"
+      ],
+      "best_for": ["aggregates_m3", "cement_bulk", "structural_basics"],
+      "fit_for_expenses": ["EXP_0015", "EXP_0016", "EXP_0019"],
+      "logistics_to_nova_odessa": "mid",
+      "citations": [
+        "https://depouroverde.com.br/",
+        "https://depouroverde.com.br/index.php"
+      ],
+      "score": 77
+    },
+    {
+      "id": "leroymerlin",
+      "name": "Leroy Merlin",
+      "type": "chain",
+      "cities": ["Campinas"],
+      "url": "https://www.leroymerlin.com.br/",
+      "price_reputation": "mid",
+      "price_evidence": "catalog_verified",
+      "rating_signals": [
+        {
+          "source": "Achei Aqui Campinas",
+          "score": null,
+          "snippet": "Competitive on volume and weekend promos; mid band for complete projects.",
+          "url": "https://www.acheiaquicampinas.com.br/post/material-de-constru%C3%A7%C3%A3o-campinas-onde-comprar-mais-barato-e-com-facilidade"
+        },
+        {
+          "source": "Reclame Aqui (brand-level)",
+          "score": "6.9/10 last 6 months (Regular)",
+          "snippet": "High complaint volume nationally; local Campinas Anhanguera mentions appear in complaint list (e.g. measures/delivery).",
+          "url": "https://www.reclameaqui.com.br/empresa/leroy-merlin/lista-reclamacoes/?status=ANSWERED"
+        }
+      ],
+      "strengths": [
+        "Strong verified openings prices (porta interna R$307.30; janelas/vitrôs)",
+        "Wide e-commerce + Campinas stores (Anhanguera / Dom Pedro)"
+      ],
+      "weaknesses": [
+        "Weaker verified coverage than Sodimac/Telhanorte (23/35)",
+        "Brand-level Reclame Aqui reputation only Regular"
+      ],
+      "best_for": ["openings", "finishes_ecommerce", "one_stop"],
+      "fit_for_expenses": ["EXP_0026", "EXP_0029", "EXP_0030", "EXP_0023"],
+      "logistics_to_nova_odessa": "mid",
+      "citations": [
+        "data/research/leroymerlin-lowest-prices.json",
+        "https://www.reclameaqui.com.br/empresa/leroy-merlin/lista-reclamacoes/?status=ANSWERED"
+      ],
+      "score": 74
+    },
+    {
+      "id": "telhanorte",
+      "name": "Telhanorte",
+      "type": "chain",
+      "cities": ["Campinas"],
+      "url": "https://www.telhanorte.com.br/",
+      "price_reputation": "mid",
+      "price_evidence": "catalog_verified",
+      "rating_signals": [
+        {
+          "source": "Achei Aqui Campinas",
+          "score": null,
+          "snippet": "Good cost-benefit on cimento, argamassa, revestimentos; seasonal promos.",
+          "url": "https://www.acheiaquicampinas.com.br/post/material-de-constru%C3%A7%C3%A3o-campinas-onde-comprar-mais-barato-e-com-facilidade"
+        }
+      ],
+      "strengths": [
+        "Solid verified coverage (30/35)",
+        "Balanced mid prices on basics"
+      ],
+      "weaknesses": [
+        "Fewer lowest-price wins (5) vs Sodimac",
+        "Porcelanato verified higher than LM/Sodimac in sample"
+      ],
+      "best_for": ["basics_promos", "grout_mortar", "general_mid"],
+      "fit_for_expenses": ["EXP_0016", "EXP_0024", "EXP_0025"],
+      "logistics_to_nova_odessa": "mid",
+      "citations": [
+        "data/research/telhanorte-lowest-prices.json",
+        "https://www.acheiaquicampinas.com.br/post/material-de-constru%C3%A7%C3%A3o-campinas-onde-comprar-mais-barato-e-com-facilidade"
+      ],
+      "score": 72
+    },
+    {
+      "id": "deposito_brasil_campinas",
+      "name": "Depósito Brasil Materiais para Construção",
+      "type": "local_depo",
+      "cities": ["Campinas"],
+      "address": "Av. Dr. Carlos de Campos, 548 — Vila Industrial, Campinas/SP",
+      "url": "https://conectaobra.com/campinas-sp/loja-de-materiais-de-construcao/deposito-brasil-materiais-para-construcao",
+      "price_reputation": "low",
+      "price_evidence": "reputation_only",
+      "rating_signals": [
+        {
+          "source": "ConectaObra listing reviews",
+          "score": "5.0 snippets",
+          "snippet": "Reviewers repeatedly call prices 'acessíveis', 'justos', 'ótimos' with good variety and delivery/pickup.",
+          "url": "https://conectaobra.com/campinas-sp/loja-de-materiais-de-construcao/deposito-brasil-materiais-para-construcao"
+        }
+      ],
+      "strengths": [
+        "Public review language strongly price-positive",
+        "General construction assortment"
+      ],
+      "weaknesses": [
+        "Farther from Nova Odessa than Americana depos",
+        "No SKU-level verification"
+      ],
+      "best_for": ["structural_basics", "general_cotacao"],
+      "fit_for_expenses": ["EXP_0016", "EXP_0019", "EXP_0025"],
+      "logistics_to_nova_odessa": "low",
+      "citations": [
+        "https://conectaobra.com/campinas-sp/loja-de-materiais-de-construcao/deposito-brasil-materiais-para-construcao"
+      ],
+      "score": 70
+    },
+    {
+      "id": "feval_americana",
+      "name": "Feval Materiais para Construção",
+      "type": "local_depo",
+      "cities": ["Americana"],
+      "address": "Zanaga: Rua Aderaldo Ferreira de Araújo, 168; Nova Carioba: Av. da Música, 438",
+      "url": "https://feval.com.br/sobre",
+      "price_reputation": "low",
+      "price_evidence": "reputation_only",
+      "rating_signals": [
+        {
+          "source": "Vendor site + Apontador",
+          "score": "1 dated Apontador review (2013)",
+          "snippet": "Self-claims 'melhores preços'; Apontador review praises price/service/quality but evidence is thin/outdated.",
+          "url": "https://www.apontador.com.br/local/sp/americana/materiais_de_construcao/G953AAFJ/feval_materiais_para_construcoes.html"
+        }
+      ],
+      "strengths": [
+        "Two Americana locations",
+        "Close to Nova Odessa",
+        "Marketing focus on price"
+      ],
+      "weaknesses": ["Sparse recent public reviews", "No verified SKUs"],
+      "best_for": ["hydraulics_electrical", "general_cotacao"],
+      "fit_for_expenses": ["EXP_0036", "EXP_0038", "EXP_0034"],
+      "logistics_to_nova_odessa": "high",
+      "citations": [
+        "https://feval.com.br/sobre",
+        "https://www.apontador.com.br/local/sp/americana/materiais_de_construcao/G953AAFJ/feval_materiais_para_construcoes.html"
+      ],
+      "score": 68
+    },
+    {
+      "id": "casa_dos_tijolos_americana",
+      "name": "Casa dos Tijolos Materiais para Construção",
+      "type": "local_depo",
+      "cities": ["Americana"],
+      "address": "Av. Europa, 355 — Jardim Lizandra, Americana/SP",
+      "phone": "(19) 3468-6321",
+      "url": "https://paginaamarela.com.br/empresa/casa-dos-tijolos-materiais-para-construcao/americana/sp/7807803",
+      "price_reputation": "unknown",
+      "price_evidence": "reputation_only",
+      "rating_signals": [
+        {
+          "source": "Página Amarela listing",
+          "score": null,
+          "snippet": "Advertises full line including blocos/tijolos, PIX, card, regional delivery; no rich review corpus found.",
+          "url": "https://paginaamarela.com.br/empresa/casa-dos-tijolos-materiais-para-construcao/americana/sp/7807803"
+        }
+      ],
+      "strengths": [
+        "Name/category fit for masonry (EXP_0019)",
+        "Americana delivery"
+      ],
+      "weaknesses": ["No clear web price-sentiment corpus"],
+      "best_for": ["bricks_blocks", "structural_basics"],
+      "fit_for_expenses": ["EXP_0019", "EXP_0016"],
+      "logistics_to_nova_odessa": "high",
+      "citations": [
+        "https://paginaamarela.com.br/empresa/casa-dos-tijolos-materiais-para-construcao/americana/sp/7807803"
+      ],
+      "score": 62
+    },
+    {
+      "id": "deposito_tayo_campinas",
+      "name": "Depósito Tayo Materiais de Construção",
+      "type": "local_depo",
+      "cities": ["Campinas"],
+      "address": "Av. Itamarati, 566 — Jardim Aeroporto / Ouro Verde area, Campinas/SP",
+      "phone": "(19) 3266-1333",
+      "url": "https://nikkeiaeroporto.com.br/",
+      "price_reputation": "mid",
+      "price_evidence": "reputation_only",
+      "rating_signals": [
+        {
+          "source": "Landing page (Nikkei Aeroporto / Tayo)",
+          "score": null,
+          "snippet": "Pushes WhatsApp quotes, 24h delivery Grande Campinas, professional discounts, 12x card — convenience more than proven lowest price.",
+          "url": "https://nikkeiaeroporto.com.br/"
+        }
+      ],
+      "strengths": [
+        "Fast delivery pitch",
+        "Basics assortment (cimento, areia, ferro, tintas)"
+      ],
+      "weaknesses": [
+        "Marketing-heavy; little independent review evidence in this pass"
+      ],
+      "best_for": ["urgent_delivery", "structural_basics"],
+      "fit_for_expenses": ["EXP_0015", "EXP_0016", "EXP_0046"],
+      "logistics_to_nova_odessa": "mid",
+      "citations": ["https://nikkeiaeroporto.com.br/"],
+      "score": 60
+    },
+    {
+      "id": "deposito_alvorada_nova_odessa",
+      "name": "Depósito Alvorada",
+      "type": "local_depo",
+      "cities": ["Nova Odessa"],
+      "address": "Rua Tamboril, 435 — Jd Alvorada, Nova Odessa/SP 13380-001",
+      "url": "https://guiapj.com.br/consulta-cnpj/02190183000180",
+      "price_reputation": "unknown",
+      "price_evidence": "reputation_only",
+      "rating_signals": [
+        {
+          "source": "CNPJ / GuiaPJ",
+          "score": "Sem nota",
+          "snippet": "Active ME since 1997 selling construction materials; no public star rating yet.",
+          "url": "https://guiapj.com.br/consulta-cnpj/02190183000180"
+        }
+      ],
+      "strengths": ["In-city Nova Odessa — minimal freight for small runs"],
+      "weaknesses": ["No web price or review corpus"],
+      "best_for": ["local_pickup", "small_topups"],
+      "fit_for_expenses": [],
+      "logistics_to_nova_odessa": "high",
+      "citations": [
+        "https://indicecnpj.com.br/empresa/deposito-alvorada-nova-odessa-ltda-02190183000180",
+        "https://guiapj.com.br/consulta-cnpj/02190183000180"
+      ],
+      "score": 55
+    },
+    {
+      "id": "deposito_ceron_nova_odessa",
+      "name": "Depósito de Materiais Ceron",
+      "type": "local_depo",
+      "cities": ["Nova Odessa"],
+      "address": "Rua dos Coqueiros, 9 — Jd Basilicata, Nova Odessa/SP",
+      "phone": "(19) 3873-1060",
+      "url": "https://www.diariocidade.com/sp/nova-odessa/guia/deposito-de-materiais-ceron-10847485000107/",
+      "price_reputation": "unknown",
+      "price_evidence": "reputation_only",
+      "rating_signals": [
+        {
+          "source": "Diário Cidade directory",
+          "score": null,
+          "snippet": "Listed as general construction materials + hydraulics secondary; phone/email published; no review thread found.",
+          "url": "https://www.diariocidade.com/sp/nova-odessa/guia/deposito-de-materiais-ceron-10847485000107/"
+        }
+      ],
+      "strengths": ["Local pickup", "Hydraulics secondary CNAE"],
+      "weaknesses": ["No sentiment/price web evidence"],
+      "best_for": ["local_pickup", "plumbing_basics"],
+      "fit_for_expenses": ["EXP_0036", "EXP_0037"],
+      "logistics_to_nova_odessa": "high",
+      "citations": [
+        "https://www.diariocidade.com/sp/nova-odessa/guia/deposito-de-materiais-ceron-10847485000107/"
+      ],
+      "score": 54
+    },
+    {
+      "id": "casa_do_construtor_nova_odessa",
+      "name": "A Casa do Construtor (Comercial Prieto e Tanaka)",
+      "type": "local_depo",
+      "cities": ["Nova Odessa"],
+      "address": "Av. João Pessoa, 1250 — Bosque dos Cedros, Nova Odessa/SP",
+      "url": "https://empresadois.com.br/cnpj/a-casa-do-construtor-05969131000103",
+      "price_reputation": "unknown",
+      "price_evidence": "reputation_only",
+      "rating_signals": [
+        {
+          "source": "CNPJ registry mirror",
+          "score": null,
+          "snippet": "Active EPP general construction retail since 2003; no review/price commentary located.",
+          "url": "https://empresadois.com.br/cnpj/a-casa-do-construtor-05969131000103"
+        }
+      ],
+      "strengths": ["Local general-line depo"],
+      "weaknesses": ["No public price/sentiment signal"],
+      "best_for": ["local_pickup"],
+      "fit_for_expenses": [],
+      "logistics_to_nova_odessa": "high",
+      "citations": [
+        "https://empresadois.com.br/cnpj/a-casa-do-construtor-05969131000103"
+      ],
+      "score": 52
+    },
+    {
+      "id": "pezao_nova_odessa",
+      "name": "Pezão Materiais para Construção",
+      "type": "local_depo",
+      "cities": ["Nova Odessa"],
+      "address": "Rua Goiânia, 640 — Jd São Jorge, Nova Odessa/SP",
+      "phone": "(19) 3466-6038",
+      "url": "https://teleconsulta.com.br/nova-odessa/materiais-eletricos-venda/pezao-materiais-construcao-nova-odessa-00000000008561/",
+      "price_reputation": "unknown",
+      "price_evidence": "reputation_only",
+      "rating_signals": [
+        {
+          "source": "Directory listings",
+          "score": "Nenhum comentário",
+          "snippet": "Listed with phones; Lista Mais shows no comments.",
+          "url": "https://www.listamais.com.br/endereco/X05797-1647/rua-goiania-em-nova-odessa-sp"
+        }
+      ],
+      "strengths": ["In-city", "Also tagged for electrical materials sales"],
+      "weaknesses": ["Empty public review trail"],
+      "best_for": ["local_pickup", "electrical_spot"],
+      "fit_for_expenses": ["EXP_0038"],
+      "logistics_to_nova_odessa": "high",
+      "citations": [
+        "https://teleconsulta.com.br/nova-odessa/materiais-eletricos-venda/pezao-materiais-construcao-nova-odessa-00000000008561/"
+      ],
+      "score": 50
+    },
+    {
+      "id": "deposito_alemao_americana",
+      "name": "Depósito do Alemão",
+      "type": "local_depo",
+      "cities": ["Americana"],
+      "address": "Av. Carmine Feola, 1180 — Americana/SP",
+      "phone": "(19) 3461-7017",
+      "url": "https://www.listamais.com.br/local/cad_idXZ99Q9Q/deposito-do-alemao-lojas-de-materiais-de-construcao-em-americana-sp",
+      "price_reputation": "unknown",
+      "price_evidence": "reputation_only",
+      "rating_signals": [
+        {
+          "source": "Lista Mais",
+          "score": "Nenhum comentário",
+          "snippet": "Directory entry only; no user comments on listing.",
+          "url": "https://www.listamais.com.br/local/cad_idXZ99Q9Q/deposito-do-alemao-lojas-de-materiais-de-construcao-em-americana-sp"
+        }
+      ],
+      "strengths": ["Americana proximity"],
+      "weaknesses": ["No web sentiment or price evidence"],
+      "best_for": ["cotacao_only"],
+      "fit_for_expenses": [],
+      "logistics_to_nova_odessa": "high",
+      "citations": [
+        "https://www.listamais.com.br/local/cad_idXZ99Q9Q/deposito-do-alemao-lojas-de-materiais-de-construcao-em-americana-sp"
+      ],
+      "score": 48
+    }
+  ],
+  "ranking": [
+    {
+      "rank": 1,
+      "vendor_id": "construeva_americana",
+      "score": 86,
+      "rationale": "Best local web evidence that customers associate the store with low/fair prices plus full-line assortment and Americana logistics for Nova Odessa."
+    },
+    {
+      "rank": 2,
+      "vendor_id": "sodimac",
+      "score": 84,
+      "rationale": "Strongest verified SKU coverage and most lowest-price wins in project catalogs; use for comparable e-commerce/checkout buys."
+    },
+    {
+      "rank": 3,
+      "vendor_id": "333obra",
+      "score": 78,
+      "rationale": "Aggressive cement pricing and Americana footprint; weaker breadth — spot-buy structural staples after cotação."
+    },
+    {
+      "rank": 4,
+      "vendor_id": "deposito_ouro_verde_campinas",
+      "score": 77,
+      "rationale": "Primary candidate for m³ areia/pedrisco where all chains returned no_match; price claim is reputation-only."
+    },
+    {
+      "rank": 5,
+      "vendor_id": "leroymerlin",
+      "score": 74,
+      "rationale": "Best verified openings prices; mid overall price band and Regular Reclame Aqui brand score."
+    },
+    {
+      "rank": 6,
+      "vendor_id": "telhanorte",
+      "score": 72,
+      "rationale": "Reliable mid-tier catalog with promo strength on basics; fewer absolute lows than Sodimac."
+    },
+    {
+      "rank": 7,
+      "vendor_id": "deposito_brasil_campinas",
+      "score": 70,
+      "rationale": "Consistent 'preço acessível' review language; logistics less convenient than Americana."
+    },
+    {
+      "rank": 8,
+      "vendor_id": "feval_americana",
+      "score": 68,
+      "rationale": "Close dual-store Americana option marketing best prices; thin independent reviews."
+    },
+    {
+      "rank": 9,
+      "vendor_id": "casa_dos_tijolos_americana",
+      "score": 62,
+      "rationale": "Useful masonry-focused cotação target; insufficient public price sentiment."
+    },
+    {
+      "rank": 10,
+      "vendor_id": "deposito_tayo_campinas",
+      "score": 60,
+      "rationale": "Delivery-speed play for basics; not proven cheapest."
+    },
+    {
+      "rank": 11,
+      "vendor_id": "deposito_alvorada_nova_odessa",
+      "score": 55,
+      "rationale": "In-town convenience only until a quoted price sheet exists."
+    },
+    {
+      "rank": 12,
+      "vendor_id": "deposito_ceron_nova_odessa",
+      "score": 54,
+      "rationale": "Local hydraulics-capable depo; no web price proof."
+    },
+    {
+      "rank": 13,
+      "vendor_id": "casa_do_construtor_nova_odessa",
+      "score": 52,
+      "rationale": "Registry-confirmed local retailer without public sentiment."
+    },
+    {
+      "rank": 14,
+      "vendor_id": "pezao_nova_odessa",
+      "score": 50,
+      "rationale": "Local electrical/construction listing; empty reviews."
+    },
+    {
+      "rank": 15,
+      "vendor_id": "deposito_alemao_americana",
+      "score": 48,
+      "rationale": "Directory-only; include for WhatsApp cotação sweep, not ranked for price."
+    }
+  ],
+  "gaps": [
+    {
+      "topic": "Areia/pedrisco m³ (EXP_0015)",
+      "chains": "All four chains no_match (bagged only).",
+      "local_edge": "Depósito Ouro Verde (and similar aggregate distributors) are the practical cotação path."
+    },
+    {
+      "topic": "Cimento 50kg (EXP_0016)",
+      "chains": "333Obra R$29 verified lowest; Sodimac R$32.90; LM/Telhanorte R$34.90.",
+      "local_edge": "Local depos may beat chains on bulk/pro pricing — require WhatsApp quote before preferring chains."
+    },
+    {
+      "topic": "Openings (portas/janelas)",
+      "chains": "Leroy Merlin verified strongest on interior door unit price among chains.",
+      "local_edge": "Construeva reviews mention variety/acabamentos but no comparable SKU proof; keep LM as verified baseline."
+    },
+    {
+      "topic": "Tinta 18L (EXP_0046)",
+      "chains": "Sodimac R$99.90 far below LM R$199.90 / Telhanorte R$149.90 in verified set.",
+      "local_edge": "Unknown until local quote; do not assume depo wins without quote."
+    },
+    {
+      "topic": "Nova Odessa in-city depos",
+      "chains": "n/a",
+      "local_edge": "Alvorada, Ceron, Casa do Construtor, Pezão exist but web evidence is registry/directory-thin — treat as pickup/top-up, not proven lowest price."
+    }
+  ],
+  "recommended_buying_split_for_agents": [
+    {
+      "step": 1,
+      "action": "WhatsApp/phone cotação packet to Construeva, Feval, Casa dos Tijolos, Depósito Ouro Verde (aggregates), plus in-town Alvorada/Ceron for freight-sensitive top-ups."
+    },
+    {
+      "step": 2,
+      "action": "Compare returned quotes against Sodimac/333Obra/LM/Telhanorte winners in *-lowest-prices.json for same EXP_* units."
+    },
+    {
+      "step": 3,
+      "action": "Prefer local depo only when quote ≤ chain normalized_unit_price_brl for comparable spec; else keep chain winner."
+    }
+  ]
+}

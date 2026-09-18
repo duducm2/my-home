@@ -1,0 +1,183 @@
+{
+  "source": "Regional local depos (Nova Odessa / Americana / Campinas)",
+  "source_report": "data/research/regional-vendors-report.json",
+  "location_basis": "nova_odessa_cep_13380",
+  "checked_at": "2026-09-17",
+  "chain_baselines": {
+    "leroymerlin": "data/research/leroymerlin-lowest-prices.json",
+    "sodimac": "data/research/sodimac-lowest-prices.json",
+    "telhanorte": "data/research/telhanorte-lowest-prices.json",
+    "333obra": "data/research/333obra-lowest-prices.json",
+    "note": "Reuse existing catalogs; no full chain re-scrape in this pass."
+  },
+  "vendors": [
+    {
+      "id": "construeva_americana",
+      "name": "Construeva Materiais de Construção",
+      "tier": "A",
+      "cities": ["Americana"],
+      "phone": "+55 19 3468-6870",
+      "url": "https://construeva-construcao.localo.site/",
+      "allowed_hosts": ["construeva-construcao.localo.site"],
+      "fit_for_expenses": [
+        "EXP_0016",
+        "EXP_0019",
+        "EXP_0023",
+        "EXP_0025",
+        "EXP_0036",
+        "EXP_0038"
+      ]
+    },
+    {
+      "id": "deposito_ouro_verde_campinas",
+      "name": "Depósito Ouro Verde Materiais de Construção",
+      "tier": "A",
+      "cities": ["Campinas"],
+      "phone": "(19) 97405-9418",
+      "url": "https://depouroverde.com.br/",
+      "allowed_hosts": ["depouroverde.com.br", "www.depouroverde.com.br"],
+      "fit_for_expenses": ["EXP_0015", "EXP_0016", "EXP_0019"]
+    },
+    {
+      "id": "feval_americana",
+      "name": "Feval Materiais para Construção",
+      "tier": "A",
+      "cities": ["Americana"],
+      "phone": null,
+      "url": "https://feval.com.br/",
+      "allowed_hosts": ["feval.com.br", "www.feval.com.br"],
+      "fit_for_expenses": ["EXP_0036", "EXP_0038", "EXP_0034"]
+    },
+    {
+      "id": "casa_dos_tijolos_americana",
+      "name": "Casa dos Tijolos Materiais para Construção",
+      "tier": "A",
+      "cities": ["Americana"],
+      "phone": "(19) 3468-6321",
+      "url": "https://paginaamarela.com.br/empresa/casa-dos-tijolos-materiais-para-construcao/americana/sp/7807803",
+      "allowed_hosts": [],
+      "fit_for_expenses": ["EXP_0019", "EXP_0016"],
+      "note": "Directory listing only; no vendor e-commerce host."
+    },
+    {
+      "id": "deposito_brasil_campinas",
+      "name": "Depósito Brasil Materiais para Construção",
+      "tier": "A",
+      "cities": ["Campinas"],
+      "phone": null,
+      "url": "https://conectaobra.com/campinas-sp/loja-de-materiais-de-construcao/deposito-brasil-materiais-para-construcao",
+      "allowed_hosts": [],
+      "fit_for_expenses": ["EXP_0016", "EXP_0019", "EXP_0025"],
+      "note": "Directory/review listing; no vendor e-commerce host."
+    },
+    {
+      "id": "deposito_tayo_campinas",
+      "name": "Depósito Tayo Materiais de Construção",
+      "tier": "A",
+      "cities": ["Campinas"],
+      "phone": "(19) 3266-1333",
+      "url": "https://nikkeiaeroporto.com.br/",
+      "allowed_hosts": ["nikkeiaeroporto.com.br", "www.nikkeiaeroporto.com.br"],
+      "fit_for_expenses": ["EXP_0015", "EXP_0016", "EXP_0046"]
+    },
+    {
+      "id": "deposito_alvorada_nova_odessa",
+      "name": "Depósito Alvorada",
+      "tier": "B",
+      "cities": ["Nova Odessa"],
+      "phone": null,
+      "url": "https://guiapj.com.br/consulta-cnpj/02190183000180",
+      "allowed_hosts": [],
+      "fit_for_expenses": []
+    },
+    {
+      "id": "deposito_ceron_nova_odessa",
+      "name": "Depósito de Materiais Ceron",
+      "tier": "B",
+      "cities": ["Nova Odessa"],
+      "phone": "(19) 3873-1060",
+      "url": "https://www.diariocidade.com/sp/nova-odessa/guia/deposito-de-materiais-ceron-10847485000107/",
+      "allowed_hosts": [],
+      "fit_for_expenses": ["EXP_0036", "EXP_0037"]
+    },
+    {
+      "id": "casa_do_construtor_nova_odessa",
+      "name": "A Casa do Construtor (Comercial Prieto e Tanaka)",
+      "tier": "B",
+      "cities": ["Nova Odessa"],
+      "phone": null,
+      "url": "https://empresadois.com.br/cnpj/a-casa-do-construtor-05969131000103",
+      "allowed_hosts": [],
+      "fit_for_expenses": []
+    },
+    {
+      "id": "pezao_nova_odessa",
+      "name": "Pezão Materiais para Construção",
+      "tier": "B",
+      "cities": ["Nova Odessa"],
+      "phone": "(19) 3466-6038",
+      "url": "https://teleconsulta.com.br/nova-odessa/materiais-eletricos-venda/pezao-materiais-construcao-nova-odessa-00000000008561/",
+      "allowed_hosts": [],
+      "fit_for_expenses": ["EXP_0033", "EXP_0034", "EXP_0038"]
+    },
+    {
+      "id": "deposito_alemao_americana",
+      "name": "Depósito do Alemão",
+      "tier": "B",
+      "cities": ["Americana"],
+      "phone": null,
+      "url": "https://www.listamais.com.br/local/cad_idXZ99Q9Q/deposito-do-alemao-lojas-de-materiais-de-construcao-em-americana-sp",
+      "allowed_hosts": [],
+      "fit_for_expenses": []
+    }
+  ],
+  "clusters": {
+    "structural": [
+      "EXP_0014",
+      "EXP_0015",
+      "EXP_0016",
+      "EXP_0017",
+      "EXP_0019",
+      "EXP_0021",
+      "EXP_0042"
+    ],
+    "finishes": [
+      "EXP_0023",
+      "EXP_0024",
+      "EXP_0025",
+      "EXP_0041",
+      "EXP_0046",
+      "EXP_0048",
+      "EXP_0049"
+    ],
+    "openings": ["EXP_0026", "EXP_0027", "EXP_0029", "EXP_0030", "EXP_0031"],
+    "plumbing": [
+      "EXP_0028",
+      "EXP_0036",
+      "EXP_0037",
+      "EXP_0039",
+      "EXP_0040",
+      "EXP_0044"
+    ],
+    "electrical": ["EXP_0033", "EXP_0034", "EXP_0035", "EXP_0038", "EXP_0045"],
+    "tools_logistics": [
+      "EXP_0018",
+      "EXP_0020",
+      "EXP_0022",
+      "EXP_0043",
+      "EXP_0047"
+    ]
+  },
+  "priority_gaps": ["EXP_0015"],
+  "rules": {
+    "freight": "null unless explicitly quoted for CEP 13380-000 (Nova Odessa/SP)",
+    "price_evidence": ["site_verified", "reputation_only", "cotacao_needed"],
+    "direct_url": "vendor own product/price page only; not Google Maps, directory mirrors, or third-party listings",
+    "no_match": "required when no comparable product with visible price on vendor domain",
+    "no_invented_prices": true,
+    "tier_a_effort": "full cluster probe + cotacao line for every EXP in cluster",
+    "tier_b_effort": "thin probe; cotacao lines for fit_for_expenses, structural basics, and priority_gaps",
+    "location_basis": "nova_odessa_cep_13380",
+    "import": "only site_verified winners with HTTP 200 on allowed vendor host"
+  }
+}

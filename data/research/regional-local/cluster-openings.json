@@ -1,0 +1,352 @@
+{
+  "cluster": "openings",
+  "checked_at": "2026-09-17",
+  "location_basis": "nova_odessa_cep_13380",
+  "expenses": [
+    {
+      "expense_id": "EXP_0026",
+      "requested_item": "Portas internas",
+      "requested_unit": "unidade",
+      "vendor_results": [
+        {
+          "vendor_id": "construeva_americana",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_public_sku",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null,
+          "probe_notes": "Localo marketing/contact page (HTTP 200). No product catalog, shop routes, or visible BRL prices for portas internas on allowed host construeva-construcao.localo.site."
+        },
+        {
+          "vendor_id": "deposito_ouro_verde_campinas",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_public_sku",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null,
+          "probe_notes": "Homepage and /loja (coming-soon) HTTP 200; WooCommerce Store API products search for porta returned []. Site search ?s=porta shows no product cards and no R$ prices on depouroverde.com.br."
+        },
+        {
+          "vendor_id": "feval_americana",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_public_sku",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null,
+          "probe_notes": "Marketing site only (/, /sobre, /contato in sitemap). No /loja|/produtos|product-category paths; no R$ prices for portas on feval.com.br."
+        },
+        {
+          "vendor_id": "casa_dos_tijolos_americana",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_vendor_ecommerce_host",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null,
+          "probe_notes": "scope allowed_hosts empty; Páginas Amarelas directory listing only (HTTP 200, no SKU/price). Not a vendor product domain."
+        },
+        {
+          "vendor_id": "deposito_brasil_campinas",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_vendor_ecommerce_host",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null,
+          "probe_notes": "scope allowed_hosts empty; ConectaObra directory URL returned HTTP 404. No vendor e-commerce host to verify portas internas prices."
+        },
+        {
+          "vendor_id": "deposito_tayo_campinas",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_public_sku",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null,
+          "probe_notes": "Nikkei Aeroporto landing page (HTTP 200) with WhatsApp cotação CTA only. No shop/product pages or visible BRL prices for portas on nikkeiaeroporto.com.br."
+        }
+      ]
+    },
+    {
+      "expense_id": "EXP_0027",
+      "requested_item": "Porta Balcão (R$2000)",
+      "requested_unit": "unidade",
+      "vendor_results": [
+        {
+          "vendor_id": "construeva_americana",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_public_sku",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null,
+          "probe_notes": "Localo contact page only; no porta-balcão / porta de correr product page with visible price on construeva-construcao.localo.site."
+        },
+        {
+          "vendor_id": "deposito_ouro_verde_campinas",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_public_sku",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null,
+          "probe_notes": "/loja is placeholder ('Great things are on the horizon'); WC products API empty; no porta balcão SKU with R$ on depouroverde.com.br."
+        },
+        {
+          "vendor_id": "feval_americana",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_public_sku",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null,
+          "probe_notes": "No e-commerce catalog on feval.com.br; sitemap limited to home/sobre/contato; cotação via WhatsApp implied."
+        },
+        {
+          "vendor_id": "casa_dos_tijolos_americana",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_vendor_ecommerce_host",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null,
+          "probe_notes": "Directory listing only; no allowed vendor host for porta-balcão price verification."
+        },
+        {
+          "vendor_id": "deposito_brasil_campinas",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_vendor_ecommerce_host",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null,
+          "probe_notes": "Directory listing dead (HTTP 404); no vendor domain PDP for porta balcão."
+        },
+        {
+          "vendor_id": "deposito_tayo_campinas",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_public_sku",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null,
+          "probe_notes": "Landing/LP only on nikkeiaeroporto.com.br; no openings SKUs or prices; WhatsApp quote CTA."
+        }
+      ]
+    },
+    {
+      "expense_id": "EXP_0029",
+      "requested_item": "Janela (quartos e escritório)",
+      "requested_unit": "unidade",
+      "vendor_results": [
+        {
+          "vendor_id": "construeva_americana",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_public_sku",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null,
+          "probe_notes": "No janela product/price on Localo site; marketing page only."
+        },
+        {
+          "vendor_id": "deposito_ouro_verde_campinas",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_public_sku",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null,
+          "probe_notes": "Search ?s=janela returns no priced product cards; WC store products empty; /loja not selling."
+        },
+        {
+          "vendor_id": "feval_americana",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_public_sku",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null,
+          "probe_notes": "No public janela SKU or R$ on feval.com.br; contact/marketing pages only."
+        },
+        {
+          "vendor_id": "casa_dos_tijolos_americana",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_vendor_ecommerce_host",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null,
+          "probe_notes": "Directory-only listing; no vendor e-commerce host."
+        },
+        {
+          "vendor_id": "deposito_brasil_campinas",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_vendor_ecommerce_host",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null,
+          "probe_notes": "No vendor domain; directory URL 404."
+        },
+        {
+          "vendor_id": "deposito_tayo_campinas",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_public_sku",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null,
+          "probe_notes": "LP/WhatsApp only; no janela PDP with price on nikkeiaeroporto.com.br."
+        }
+      ]
+    },
+    {
+      "expense_id": "EXP_0030",
+      "requested_item": "Vitrô Sala",
+      "requested_unit": "unidade",
+      "vendor_results": [
+        {
+          "vendor_id": "construeva_americana",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_public_sku",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null,
+          "probe_notes": "No vitrô/janela sala SKU or price on Localo marketing site."
+        },
+        {
+          "vendor_id": "deposito_ouro_verde_campinas",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_public_sku",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null,
+          "probe_notes": "No vitrô product with visible BRL; empty WC catalog; search yields no product cards."
+        },
+        {
+          "vendor_id": "feval_americana",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_public_sku",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null,
+          "probe_notes": "No public vitrô listing/price on feval.com.br."
+        },
+        {
+          "vendor_id": "casa_dos_tijolos_americana",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_vendor_ecommerce_host",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null,
+          "probe_notes": "Directory only; cotação required."
+        },
+        {
+          "vendor_id": "deposito_brasil_campinas",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_vendor_ecommerce_host",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null,
+          "probe_notes": "No vendor e-commerce host; directory 404."
+        },
+        {
+          "vendor_id": "deposito_tayo_campinas",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_public_sku",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null,
+          "probe_notes": "No vitrô SKU/price on nikkeiaeroporto.com.br landing page."
+        }
+      ]
+    },
+    {
+      "expense_id": "EXP_0031",
+      "requested_item": "Vitrôs banheiros",
+      "requested_unit": "unidade",
+      "vendor_results": [
+        {
+          "vendor_id": "construeva_americana",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_public_sku",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null,
+          "probe_notes": "No basculante/vitrô banheiro product or price on Localo site."
+        },
+        {
+          "vendor_id": "deposito_ouro_verde_campinas",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_public_sku",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null,
+          "probe_notes": "Search/API for basculante/vitro returned no priced products on depouroverde.com.br."
+        },
+        {
+          "vendor_id": "feval_americana",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_public_sku",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null,
+          "probe_notes": "No bathroom vitrô/basculante SKU with R$ on feval.com.br."
+        },
+        {
+          "vendor_id": "casa_dos_tijolos_americana",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_vendor_ecommerce_host",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null,
+          "probe_notes": "Directory listing only; no allowed vendor host."
+        },
+        {
+          "vendor_id": "deposito_brasil_campinas",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_vendor_ecommerce_host",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null,
+          "probe_notes": "No vendor e-commerce host; directory URL 404."
+        },
+        {
+          "vendor_id": "deposito_tayo_campinas",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "no_public_sku",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null,
+          "probe_notes": "Landing page + WhatsApp only; no bathroom vitrô price on nikkeiaeroporto.com.br."
+        }
+      ]
+    }
+  ],
+  "tier_b_included": [],
+  "tier_b_skipped_reason": "No Tier-B vendor lists any openings expense (EXP_0026/0027/0029/0030/0031) in fit_for_expenses.",
+  "summary": {
+    "expenses": 5,
+    "tier_a_vendors_per_expense": 6,
+    "vendor_result_rows": 30,
+    "site_verified": 0,
+    "no_match": 30,
+    "cotacao_needed": 30
+  }
+}

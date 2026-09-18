@@ -1,0 +1,569 @@
+{
+  "cluster": "structural",
+  "checked_at": "2026-09-17",
+  "location_basis": "nova_odessa_cep_13380",
+  "expenses": [
+    {
+      "expense_id": "EXP_0014",
+      "requested_item": "Impermeabilizante (bianco)",
+      "requested_unit": "balde",
+      "vendor_results": [
+        {
+          "vendor_id": "construeva_americana",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "landing_no_catalog",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_ouro_verde_campinas",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "empty_woocommerce",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null
+        },
+        {
+          "vendor_id": "feval_americana",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "landing_no_catalog",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null
+        },
+        {
+          "vendor_id": "casa_dos_tijolos_americana",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_only",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_brasil_campinas",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_only",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_tayo_campinas",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "landing_whatsapp_only",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null
+        }
+      ]
+    },
+    {
+      "expense_id": "EXP_0015",
+      "requested_item": "Areia grossa, fina e pedrisco",
+      "requested_unit": "metro cúbico (m³)",
+      "vendor_results": [
+        {
+          "vendor_id": "construeva_americana",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "landing_no_catalog",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_ouro_verde_campinas",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "empty_woocommerce",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null
+        },
+        {
+          "vendor_id": "feval_americana",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "landing_no_catalog",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null
+        },
+        {
+          "vendor_id": "casa_dos_tijolos_americana",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_only",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_brasil_campinas",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_only",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_tayo_campinas",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "landing_whatsapp_only",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_alvorada_nova_odessa",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_only",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_ceron_nova_odessa",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_only",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null
+        },
+        {
+          "vendor_id": "casa_do_construtor_nova_odessa",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_only",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null
+        },
+        {
+          "vendor_id": "pezao_nova_odessa",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_only",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_alemao_americana",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_only",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null
+        }
+      ]
+    },
+    {
+      "expense_id": "EXP_0016",
+      "requested_item": "Cimento",
+      "requested_unit": "saco (50 kg)",
+      "vendor_results": [
+        {
+          "vendor_id": "construeva_americana",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "landing_no_catalog",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_ouro_verde_campinas",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "empty_woocommerce",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null
+        },
+        {
+          "vendor_id": "feval_americana",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "landing_no_catalog",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null
+        },
+        {
+          "vendor_id": "casa_dos_tijolos_americana",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_only",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_brasil_campinas",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_only",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_tayo_campinas",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "landing_whatsapp_only",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_alvorada_nova_odessa",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_only",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_ceron_nova_odessa",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_only",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null
+        },
+        {
+          "vendor_id": "casa_do_construtor_nova_odessa",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_only",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null
+        },
+        {
+          "vendor_id": "pezao_nova_odessa",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_only",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_alemao_americana",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_only",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null
+        }
+      ]
+    },
+    {
+      "expense_id": "EXP_0017",
+      "requested_item": "Telha",
+      "requested_unit": "unidade",
+      "vendor_results": [
+        {
+          "vendor_id": "construeva_americana",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "landing_no_catalog",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_ouro_verde_campinas",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "empty_woocommerce",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null
+        },
+        {
+          "vendor_id": "feval_americana",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "landing_no_catalog",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null
+        },
+        {
+          "vendor_id": "casa_dos_tijolos_americana",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_only",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_brasil_campinas",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_only",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_tayo_campinas",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "landing_whatsapp_only",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null
+        }
+      ]
+    },
+    {
+      "expense_id": "EXP_0019",
+      "requested_item": "Tijolinho de barro",
+      "requested_unit": "unidade",
+      "vendor_results": [
+        {
+          "vendor_id": "construeva_americana",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "landing_no_catalog",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_ouro_verde_campinas",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "empty_woocommerce",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null
+        },
+        {
+          "vendor_id": "feval_americana",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "landing_no_catalog",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null
+        },
+        {
+          "vendor_id": "casa_dos_tijolos_americana",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_only",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_brasil_campinas",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_only",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_tayo_campinas",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "landing_whatsapp_only",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_alvorada_nova_odessa",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_only",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_ceron_nova_odessa",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_only",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null
+        },
+        {
+          "vendor_id": "casa_do_construtor_nova_odessa",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_only",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null
+        },
+        {
+          "vendor_id": "pezao_nova_odessa",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_only",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_alemao_americana",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_only",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null
+        }
+      ]
+    },
+    {
+      "expense_id": "EXP_0021",
+      "requested_item": "Arame recuzido",
+      "requested_unit": "quilograma (kg)",
+      "vendor_results": [
+        {
+          "vendor_id": "construeva_americana",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "landing_no_catalog",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_ouro_verde_campinas",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "empty_woocommerce",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null
+        },
+        {
+          "vendor_id": "feval_americana",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "landing_no_catalog",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null
+        },
+        {
+          "vendor_id": "casa_dos_tijolos_americana",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_only",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_brasil_campinas",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_only",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_tayo_campinas",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "landing_whatsapp_only",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null
+        }
+      ]
+    },
+    {
+      "expense_id": "EXP_0042",
+      "requested_item": "Madeiramento ou estrutura metálica",
+      "requested_unit": "metro quadrado (m²)",
+      "vendor_results": [
+        {
+          "vendor_id": "construeva_americana",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "landing_no_catalog",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_ouro_verde_campinas",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "empty_woocommerce",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null
+        },
+        {
+          "vendor_id": "feval_americana",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "landing_no_catalog",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null
+        },
+        {
+          "vendor_id": "casa_dos_tijolos_americana",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_only",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_brasil_campinas",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "directory_only",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null
+        },
+        {
+          "vendor_id": "deposito_tayo_campinas",
+          "match_status": "no_match",
+          "price_evidence": "cotacao_needed",
+          "no_match_reason": "landing_whatsapp_only",
+          "cotacao_needed": true,
+          "candidates": [],
+          "winner": null
+        }
+      ]
+    }
+  ]
+}
