@@ -435,7 +435,10 @@ class TaskStore:
     def _ordered(self, tasks: list[dict[str, Any]]) -> list[dict[str, Any]]:
         macros = sorted(
             [item for item in tasks if item.get("activity_type") == "macro"],
-            key=self._sort_key,
+            key=lambda item: (
+                int(item.get("sequence") or 1),
+                str(item.get("id") or ""),
+            ),
         )
         ordered: list[dict[str, Any]] = []
         for macro in macros:
@@ -628,6 +631,69 @@ class TaskStore:
             document["tasks"] = self._rollup(self._normalize_sequences(normalized))
             self._write(document)
             return {"ok": True, "task_id": task_id, **self.state()}
+
+    def reorder(
+        self, parent_id: str, ordered_ids: list[str], moved_id: str = ""
+    ) -> dict[str, Any]:
+        """Atomically set sibling order under parent_id ("" for macros)."""
+        parent_id = str(parent_id or "").strip()
+        ordered_ids = [str(item).strip() for item in ordered_ids if str(item).strip()]
+        if not ordered_ids:
+            raise ValueError("ordered_ids is required")
+        if len(ordered_ids) != len(set(ordered_ids)):
+            raise ValueError("ordered_ids must be unique")
+        with self._lock:
+            document = self._read()
+            tasks = [dict(item) for item in document["tasks"]]
+            by_id = {str(item.get("id") or ""): item for item in tasks}
+            if parent_id:
+                parent = by_id.get(parent_id)
+                if parent is None or str(parent.get("activity_type") or "") != "macro":
+                    raise ValueError("parent_id must reference an existing macro activity")
+            for task_id in ordered_ids:
+                task = by_id.get(task_id)
+                if task is None:
+                    raise ValueError(f"task not found: {task_id}")
+                activity = str(task.get("activity_type") or "task")
+                if parent_id:
+                    if activity != "task":
+                        raise ValueError("only detailed activities can nest under a macro")
+                    task["parent_id"] = parent_id
+                else:
+                    if activity != "macro":
+                        raise ValueError("top-level reorder only accepts macro activities")
+                    task["parent_id"] = ""
+            # Assign dense sequences in the requested order.
+            for sequence, task_id in enumerate(ordered_ids, start=1):
+                by_id[task_id]["sequence"] = sequence
+            # Keep any siblings omitted from the list after the ordered ones.
+            remaining = [
+                item
+                for item in tasks
+                if str(item.get("parent_id") or "") == parent_id
+                and str(item.get("id") or "") not in set(ordered_ids)
+            ]
+            remaining.sort(
+                key=lambda item: (
+                    int(item.get("sequence") or 1),
+                    str(item.get("id") or ""),
+                )
+            )
+            next_sequence = len(ordered_ids) + 1
+            for item in remaining:
+                item["sequence"] = next_sequence
+                next_sequence += 1
+            stamp = now_stamp()
+            for task_id in ordered_ids:
+                by_id[task_id]["updated_at"] = stamp
+            normalized = [self._normalize(item) for item in tasks]
+            document["tasks"] = self._rollup(self._normalize_sequences(normalized))
+            self._write(document)
+            return {
+                "ok": True,
+                "task_id": str(moved_id or ordered_ids[0]),
+                **self.state(),
+            }
 
     def delete(self, task_id: str) -> dict[str, Any]:
         task_id = str(task_id or "").strip()

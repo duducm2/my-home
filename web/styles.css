@@ -2206,6 +2206,15 @@ th { font-size: 10px; }
   font-weight: 700;
 }
 
+.global-save-btn kbd {
+  margin-left: 8px;
+  padding-left: 8px;
+  border-left: 1px solid rgba(255, 255, 255, 0.35);
+  font: 10px/1 var(--font);
+  font-weight: 500;
+  opacity: 0.85;
+}
+
 .global-save-btn:disabled {
   cursor: wait;
   opacity: .65;
@@ -4310,6 +4319,14 @@ body.model3d-active {
 
 .expense-row {
   cursor: pointer;
+}
+
+.expense-row-target,
+.expense-row-target:hover,
+.expense-row-target:focus-visible {
+  outline: 2px solid var(--gold, #f1c40f);
+  outline-offset: -2px;
+  background: #f1c40f18;
 }
 
 .expense-row td {

@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="color-scheme" content="dark" />
     <title>my-home</title>
-    <link rel="stylesheet" href="/styles.css?v=20260916-37" />
-    <link rel="stylesheet" href="/tasks.css?v=20260916-36" />
+    <link rel="stylesheet" href="/styles.css?v=20260918-expense-jump" />
+    <link rel="stylesheet" href="/tasks.css?v=20260918-expense-jump" />
     <script type="importmap">
       { "imports": { "three": "/vendor/three/three.module.js" } }
     </script>
@@ -62,8 +62,9 @@
               type="button"
               id="btn-push"
               class="btn primary global-save-btn"
+              title="Ctrl+Enter"
             >
-              Salvar tudo
+              Salvar tudo <kbd>Ctrl+Enter</kbd>
             </button>
             <span id="push-status" class="global-save-help"
               >Local + cópia segura</span
@@ -450,8 +451,8 @@
             <div>
               <h2 class="section-title">Cronograma completo</h2>
               <p class="section-sub">
-                Expanda macroatividades para editar. Arraste atividades para
-                reordenar ou soltar em outra macro. Barras: arraste no tempo.
+                Arraste macros e microatividades na lista para reordenar; solte
+                uma micro em outra macro para mover. Barras: arraste no tempo.
                 Ctrl+C / Ctrl+V copia e cola.
               </p>
             </div>
@@ -461,6 +462,14 @@
               </button>
               <button type="button" id="btn-collapse-all" class="btn">
                 Recolher tudo
+              </button>
+              <button
+                type="button"
+                id="btn-print-gantt"
+                class="btn"
+                title="Abre a impressão com o cronograma expandido (salve como PDF)"
+              >
+                Exportar PDF
               </button>
               <fieldset id="gantt-zoom" class="gantt-segmented">
                 <legend>Escala</legend>
@@ -1869,10 +1878,9 @@
               <option value="task">Atividade detalhada</option>
               <option value="macro">Macroatividade</option>
             </select></label
-          ><label id="task-parent-label"
-            >Macroatividade
-            <select id="task-parent"></select
-          ></label>
+          >
+          <input type="hidden" id="task-parent" />
+          <input type="hidden" id="task-sequence" value="1" />
           <label
             >Prioridade
             <input
@@ -1882,9 +1890,6 @@
               min="1"
               required
               value="1" /></label
-          ><label
-            >Sequência
-            <input id="task-sequence" type="number" min="1" required /></label
           ><label
             >Início
             <input
@@ -1909,6 +1914,10 @@
             </select></label
           >
         </div>
+        <p class="task-position-hint">
+          Posição no cronograma: arraste a atividade na lista (macros e
+          microatividades).
+        </p>
         <section id="task-allocation-editor" class="task-allocation-editor">
           <div class="expense-payment-head">
             <div>
@@ -1957,6 +1966,6 @@
     </dialog>
 
     <datalist id="category-suggestions"></datalist>
-    <script src="/app.js?v=20260918-gantt-move"></script>
+    <script src="/app.js?v=20260918-expense-jump"></script>
   </body>
 </html>

@@ -122,6 +122,7 @@
     btnNewTask: $("btn-new-task"),
     btnExpandAll: $("btn-expand-all"),
     btnCollapseAll: $("btn-collapse-all"),
+    btnPrintGantt: $("btn-print-gantt"),
     generalNotes: $("general-notes"),
     generalNotesStatus: $("general-notes-status"),
     taskDialog: $("task-dialog"),
@@ -133,7 +134,6 @@
     taskDescription: $("task-description"),
     taskActivityType: $("task-activity-type"),
     taskParent: $("task-parent"),
-    taskParentLabel: $("task-parent-label"),
     taskPriority: $("task-priority"),
     taskSequence: $("task-sequence"),
     taskStart: $("task-start"),
@@ -1508,7 +1508,16 @@
   }
 
   function macroTasks() {
-    return state.tasks.filter((task) => task.activity_type === "macro");
+    return state.tasks
+      .filter((task) => task.activity_type === "macro")
+      .sort(
+        (left, right) =>
+          Number(left.sequence || 0) - Number(right.sequence || 0) ||
+          String(left.title || "").localeCompare(
+            String(right.title || ""),
+            "pt-BR",
+          ),
+      );
   }
 
   function childTasks(macroId) {
@@ -1548,8 +1557,26 @@
   async function reorderGanttTask(draggedId, targetId, placement) {
     const dragged = state.tasks.find((task) => task.id === draggedId);
     const target = state.tasks.find((task) => task.id === targetId);
-    if (!dragged || !target || dragged.activity_type !== "task") return false;
+    if (!dragged || !target) return false;
     if (dragged.id === target.id && placement !== "into") return false;
+
+    if (dragged.activity_type === "macro") {
+      const macroTarget =
+        target.activity_type === "macro"
+          ? target
+          : state.tasks.find((task) => task.id === target.parent_id);
+      if (!macroTarget || macroTarget.id === dragged.id) return false;
+      const siblings = macroTasks().filter((task) => task.id !== dragged.id);
+      const targetIndex = siblings.findIndex(
+        (task) => task.id === macroTarget.id,
+      );
+      if (targetIndex < 0) return false;
+      const insertIndex =
+        placement === "before" ? targetIndex : targetIndex + 1;
+      return applyGanttSiblingOrder(dragged, "", siblings, insertIndex);
+    }
+
+    if (dragged.activity_type !== "task") return false;
 
     let parentId = "";
     let insertIndex = 0;
@@ -1586,25 +1613,24 @@
       0,
       dragged,
     );
-    const updates = [];
-    ordered.forEach((task, index) => {
-      const sequence = index + 1;
-      const parentChanged =
-        task.id === dragged.id && task.parent_id !== parentId;
-      const sequenceChanged = Number(task.sequence || 0) !== sequence;
-      if (!parentChanged && !sequenceChanged) return;
-      updates.push({
-        ...taskSavePayload(task),
-        parent_id: task.id === dragged.id ? parentId : task.parent_id,
-        sequence,
-      });
-    });
-    if (!updates.length) return false;
-    state.expandedMacros.add(parentId);
-    persistExpandedMacros();
-    for (const payload of updates) {
-      await saveTaskRecord(payload);
+    const orderedIds = ordered.map((task) => task.id);
+    if (parentId) {
+      state.expandedMacros.add(parentId);
+      persistExpandedMacros();
     }
+    const payload = await request("/api/tasks/reorder", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        parent_id: parentId || "",
+        ordered_ids: orderedIds,
+        moved_id: dragged.id,
+      }),
+    });
+    state.tasks = payload.tasks || state.tasks;
+    if (payload.expense_state) applyExpenseState(payload.expense_state);
+    renderGantt();
+    renderMacroTimeline();
     selectGanttTask(dragged.id);
     setStatus(
       els.appStatus,
@@ -1612,6 +1638,49 @@
       "Atividade reposicionada. Clique em “Salvar tudo” para enviar a cópia segura.",
     );
     return true;
+  }
+
+  function ganttGroupIds(taskId) {
+    const task = state.tasks.find((item) => item.id === taskId);
+    if (!task) return [];
+    if (task.activity_type === "macro") {
+      return [task.id, ...childTasks(task.id).map((child) => child.id)];
+    }
+    return [task.id];
+  }
+
+  function setGanttGroupHover(taskId, on) {
+    if (!els.gantt) return;
+    els.gantt
+      .querySelectorAll(".gantt-group-hover")
+      .forEach((element) => element.classList.remove("gantt-group-hover"));
+    if (!on || !taskId) return;
+    for (const id of ganttGroupIds(taskId)) {
+      els.gantt
+        .querySelector(`[data-task-label="${CSS.escape(id)}"]`)
+        ?.closest(".gantt-label-row")
+        ?.classList.add("gantt-group-hover");
+      els.gantt
+        .querySelector(`[data-track-id="${CSS.escape(id)}"]`)
+        ?.classList.add("gantt-group-hover");
+    }
+  }
+
+  function setGanttGroupDragging(taskId, on) {
+    if (!els.gantt) return;
+    els.gantt
+      .querySelectorAll(".gantt-group-dragging")
+      .forEach((element) => element.classList.remove("gantt-group-dragging"));
+    if (!on || !taskId) return;
+    for (const id of ganttGroupIds(taskId)) {
+      els.gantt
+        .querySelector(`[data-task-label="${CSS.escape(id)}"]`)
+        ?.closest(".gantt-label-row")
+        ?.classList.add("gantt-group-dragging");
+      els.gantt
+        .querySelector(`[data-track-id="${CSS.escape(id)}"]`)
+        ?.classList.add("gantt-group-dragging");
+    }
   }
 
   function matchesGanttFilters(task) {
@@ -1642,6 +1711,77 @@
       "my-home:gantt-expanded",
       JSON.stringify([...state.expandedMacros]),
     );
+  }
+
+  async function printGanttPdf() {
+    if (!els.gantt || !els.btnPrintGantt) return;
+    const previousExpanded = new Set(state.expandedMacros);
+    const previousStatusFilter = state.ganttStatusFilter;
+    const previousPriorityFilter = state.ganttPriorityFilter;
+    const previousTitle = document.title;
+    const houseName =
+      String(
+        state.house?.display_name || els.houseNameInput?.value || "",
+      ).trim() || "my-home";
+    const printedAt = new Date().toLocaleDateString("pt-BR");
+
+    document.querySelectorAll("dialog[open]").forEach((dialog) => {
+      try {
+        dialog.close();
+      } catch (_) {
+        /* ignore */
+      }
+    });
+
+    state.expandedMacros = new Set(macroTasks().map((item) => item.id));
+    state.ganttStatusFilter = "";
+    state.ganttPriorityFilter = 0;
+    showView("gantt");
+    renderGantt();
+    document.body.classList.add("printing-gantt");
+    document.title = `${houseName} · Cronograma · ${printedAt}`;
+    const ganttTitle = document.querySelector("#view-gantt .section-title");
+    if (ganttTitle) {
+      ganttTitle.dataset.printMeta = `${houseName} · ${printedAt}`;
+    }
+    els.btnPrintGantt.disabled = true;
+    setStatus(
+      els.appStatus,
+      "",
+      "Preparando cronograma expandido para PDF… Escolha “Salvar como PDF” na impressão.",
+    );
+
+    await new Promise((resolve) =>
+      requestAnimationFrame(() => requestAnimationFrame(resolve)),
+    );
+
+    let restored = false;
+    const restore = () => {
+      if (restored) return;
+      restored = true;
+      document.body.classList.remove("printing-gantt");
+      document.title = previousTitle;
+      const ganttTitle = document.querySelector("#view-gantt .section-title");
+      if (ganttTitle) delete ganttTitle.dataset.printMeta;
+      state.expandedMacros = previousExpanded;
+      state.ganttStatusFilter = previousStatusFilter;
+      state.ganttPriorityFilter = previousPriorityFilter;
+      renderGantt();
+      els.btnPrintGantt.disabled = false;
+      window.removeEventListener("afterprint", restore);
+      setStatus(
+        els.appStatus,
+        "ok",
+        "Pronto. O cronograma voltou ao estado anterior.",
+      );
+    };
+
+    window.addEventListener("afterprint", restore);
+    try {
+      window.print();
+    } finally {
+      window.setTimeout(restore, 300);
+    }
   }
 
   function renderMacroTimeline() {
@@ -1787,7 +1927,7 @@
           `qtd ${qtyLabel} ${expense.unit || "un"}`,
           cost == null ? "sem cotação" : formatMoney(cost),
         ];
-        return `<span class="expense-hover-target gantt-expense-chip" tabindex="0" data-hover-name="${escapeAttr(expense.description)}" data-hover-amount="${escapeAttr(amountParts.join(" · "))}" aria-label="${escapeAttr(`${expense.description}: qtd ${qtyLabel} ${expense.unit || "un"}`)}">${iconMarkup(expense.icon_key, expense.description)}<em class="gantt-expense-qty">${escapeHtml(qtyLabel)}</em></span>`;
+        return `<button type="button" class="expense-hover-target gantt-expense-chip" data-open-expense="${escapeAttr(expense.id)}" data-hover-name="${escapeAttr(expense.description)}" data-hover-amount="${escapeAttr(amountParts.join(" · "))}" aria-label="${escapeAttr(`${expense.description}: qtd ${qtyLabel} ${expense.unit || "un"} · abrir despesa`)}" title="Abrir despesa">${iconMarkup(expense.icon_key, expense.description)}<em class="gantt-expense-qty">${escapeHtml(qtyLabel)}</em></button>`;
       })
       .join("");
     const activityTotal = rows.reduce(
@@ -1962,10 +2102,10 @@
           if (task.activity_type === "macro")
             return `<div class="gantt-label-row macro${labelSelected}">
               <button type="button" class="macro-disclosure" data-toggle-macro="${task.id}" aria-label="${state.expandedMacros.has(task.id) ? "Recolher" : "Expandir"} ${escapeAttr(task.title)}">${state.expandedMacros.has(task.id) ? "−" : "+"}</button>
-              <button type="button" class="gantt-label-content" data-task-label="${task.id}" title="Editar macroatividade">${content}</button>
+              <button type="button" class="gantt-label-content" draggable="true" data-task-label="${task.id}" title="Arraste para reordenar macros · clique para editar">${content}</button>
             </div>`;
           return `<div class="gantt-label-row task${labelSelected}"${rowStyle}>
-              <button type="button" class="gantt-label-content" draggable="true" data-task-label="${task.id}" title="Arraste para trocar a sequência · Ctrl+C copia · Ctrl+V cola"><i class="child-indent"></i>${content}</button>
+              <button type="button" class="gantt-label-content" draggable="true" data-task-label="${task.id}" title="Arraste para reordenar ou soltar em outra macro · Ctrl+C/V copia/cola"><i class="child-indent"></i>${content}</button>
               ${labelBento}
             </div>`;
         })
@@ -1983,21 +2123,94 @@
           element.classList.remove("drop-before", "drop-after", "drop-into"),
         );
     };
+    const resolveMacroTarget = (task) => {
+      if (!task) return null;
+      if (task.activity_type === "macro") return task;
+      return state.tasks.find((item) => item.id === task.parent_id) || null;
+    };
+    const groupLabelRows = (macroId) =>
+      ganttGroupIds(macroId)
+        .map((id) =>
+          els.gantt
+            .querySelector(`[data-task-label="${CSS.escape(id)}"]`)
+            ?.closest(".gantt-label-row"),
+        )
+        .filter(Boolean);
     const dropPlacement = (row, clientY) => {
+      const dragged = state.tasks.find((item) => item.id === draggedLabel);
       const task = state.tasks.find(
         (item) => item.id === row.dataset.taskLabel,
       );
-      if (!task) return "after";
-      if (task.activity_type === "macro") return "into";
-      const rect = row.getBoundingClientRect();
-      return clientY < rect.top + rect.height / 2 ? "before" : "after";
+      if (!task) return { targetId: "", placement: "after" };
+      if (dragged?.activity_type === "macro") {
+        const macroTarget = resolveMacroTarget(task);
+        if (!macroTarget || macroTarget.id === dragged.id) {
+          return { targetId: "", placement: "after" };
+        }
+        const rows = groupLabelRows(macroTarget.id);
+        const top = rows[0]?.getBoundingClientRect().top ?? 0;
+        const bottom =
+          rows[rows.length - 1]?.getBoundingClientRect().bottom ?? top;
+        const placement =
+          clientY < top + (bottom - top) / 2 ? "before" : "after";
+        return { targetId: macroTarget.id, placement };
+      }
+      if (task.activity_type === "macro") {
+        return { targetId: task.id, placement: "into" };
+      }
+      const rect = (
+        row.closest(".gantt-label-row") || row
+      ).getBoundingClientRect();
+      return {
+        targetId: task.id,
+        placement: clientY < rect.top + rect.height / 2 ? "before" : "after",
+      };
+    };
+    const markDropTarget = (targetId, placement) => {
+      clearDropMarkers();
+      if (!targetId) return;
+      const target = state.tasks.find((item) => item.id === targetId);
+      if (!target) return;
+      if (target.activity_type === "macro") {
+        const rows = groupLabelRows(targetId);
+        if (placement === "into") {
+          rows.forEach((element) => element.classList.add("drop-into"));
+          return;
+        }
+        if (placement === "before" && rows[0])
+          rows[0].classList.add("drop-before");
+        if (placement === "after" && rows.length)
+          rows[rows.length - 1].classList.add("drop-after");
+        return;
+      }
+      const labelRow = els.gantt
+        .querySelector(`[data-task-label="${CSS.escape(targetId)}"]`)
+        ?.closest(".gantt-label-row");
+      labelRow?.classList.add(
+        placement === "before" ? "drop-before" : "drop-after",
+      );
     };
     els.gantt.querySelectorAll(".gantt-expense-bento").forEach((bento) => {
       bento.addEventListener("pointerdown", (event) => event.stopPropagation());
       bento.addEventListener("mousedown", (event) => event.stopPropagation());
+      bento.addEventListener("click", (event) => {
+        const chip = event.target.closest("[data-open-expense]");
+        if (!chip?.dataset.openExpense) return;
+        event.preventDefault();
+        event.stopPropagation();
+        goToExpense(chip.dataset.openExpense);
+      });
     });
     els.gantt.querySelectorAll("[data-toggle-macro]").forEach((toggle) => {
-      toggle.addEventListener("click", () => {
+      toggle.addEventListener("pointerdown", (event) => {
+        event.stopPropagation();
+      });
+      toggle.addEventListener("mousedown", (event) => {
+        event.stopPropagation();
+      });
+      toggle.addEventListener("click", (event) => {
+        event.preventDefault();
+        event.stopPropagation();
         const id = toggle.dataset.toggleMacro;
         if (state.expandedMacros.has(id)) state.expandedMacros.delete(id);
         else state.expandedMacros.add(id);
@@ -2016,6 +2229,21 @@
     });
     els.gantt.querySelectorAll("[data-task-label]").forEach((row) => {
       const labelRow = row.closest(".gantt-label-row") || row;
+      labelRow.addEventListener("mouseenter", () => {
+        if (draggedLabel) return;
+        const task = state.tasks.find(
+          (item) => item.id === row.dataset.taskLabel,
+        );
+        const hoverId =
+          task?.activity_type === "macro"
+            ? task.id
+            : task?.parent_id || task?.id;
+        setGanttGroupHover(hoverId, true);
+      });
+      labelRow.addEventListener("mouseleave", (event) => {
+        if (labelRow.contains(event.relatedTarget)) return;
+        setGanttGroupHover("", false);
+      });
       row.addEventListener("click", (event) => {
         if (labelDragMoved) {
           labelDragMoved = false;
@@ -2043,19 +2271,20 @@
           const task = state.tasks.find(
             (item) => item.id === row.dataset.taskLabel,
           );
-          if (task?.activity_type !== "task") {
+          if (!task) {
             event.preventDefault();
             return;
           }
           draggedLabel = row.dataset.taskLabel;
           labelDragMoved = false;
           selectGanttTask(task.id);
-          labelRow.classList.add("dragging");
+          setGanttGroupHover("", false);
+          setGanttGroupDragging(task.id, true);
           event.dataTransfer?.setData("text/plain", draggedLabel);
           if (event.dataTransfer) event.dataTransfer.effectAllowed = "move";
         });
         row.addEventListener("dragend", () => {
-          labelRow.classList.remove("dragging");
+          setGanttGroupDragging("", false);
           clearDropMarkers();
           draggedLabel = "";
         });
@@ -2065,32 +2294,19 @@
         event.preventDefault();
         if (event.dataTransfer) event.dataTransfer.dropEffect = "move";
         labelDragMoved = true;
-        clearDropMarkers();
-        const placement = dropPlacement(row, event.clientY);
-        labelRow.classList.add(
-          placement === "into"
-            ? "drop-into"
-            : placement === "before"
-              ? "drop-before"
-              : "drop-after",
-        );
-      });
-      labelRow.addEventListener("dragleave", (event) => {
-        if (!labelRow.contains(event.relatedTarget)) {
-          labelRow.classList.remove("drop-before", "drop-after", "drop-into");
-        }
+        const { targetId, placement } = dropPlacement(row, event.clientY);
+        markDropTarget(targetId, placement);
       });
       labelRow.addEventListener("drop", async (event) => {
         event.preventDefault();
         event.stopPropagation();
-        const targetId = row.dataset.taskLabel;
-        const placement = dropPlacement(row, event.clientY);
+        const { targetId, placement } = dropPlacement(row, event.clientY);
         const sourceId = draggedLabel;
         clearDropMarkers();
-        labelRow.classList.remove("dragging");
+        setGanttGroupDragging("", false);
         draggedLabel = "";
-        if (!sourceId || (sourceId === targetId && placement !== "into"))
-          return;
+        if (!sourceId || !targetId) return;
+        if (sourceId === targetId && placement !== "into") return;
         labelDragMoved = true;
         try {
           await reorderGanttTask(sourceId, targetId, placement);
@@ -2386,14 +2602,78 @@
     await pasteGanttClipboard();
   }
 
-  function fillTaskOptions(currentId = "") {
-    els.taskParent.innerHTML = macroTasks()
-      .filter((item) => item.id !== currentId)
-      .map(
-        (item) =>
-          `<option value="${escapeAttr(item.id)}">${escapeHtml(item.title)}</option>`,
-      )
-      .join("");
+  function fillTaskOptions() {
+    // Parent/sequence are assigned by Gantt drag; keep macros available for defaults.
+  }
+
+  function defaultTaskParentId() {
+    const selected = state.tasks.find(
+      (task) => task.id === state.ganttSelectedId,
+    );
+    if (selected?.activity_type === "macro") return selected.id;
+    if (selected?.activity_type === "task" && selected.parent_id)
+      return selected.parent_id;
+    return macroTasks()[0]?.id || "";
+  }
+
+  function syncTaskHierarchyFields() {
+    const isMacro = els.taskActivityType.value === "macro";
+    document.querySelectorAll(".task-rollup-field").forEach((field) => {
+      field.disabled = isMacro;
+    });
+    els.taskAllocationEditor.classList.toggle("hidden", isMacro);
+    els.taskDateBadge.textContent = isMacro
+      ? "Datas, prioridade e status calculados pelas atividades"
+      : "Datas confirmadas";
+    if (isMacro) {
+      els.taskParent.value = "";
+    } else if (!els.taskParent.value) {
+      els.taskParent.value = defaultTaskParentId();
+    }
+    if (!els.taskId.value) {
+      const siblings = isMacro
+        ? macroTasks()
+        : childTasks(els.taskParent.value);
+      els.taskSequence.value =
+        Math.max(0, ...siblings.map((item) => Number(item.sequence) || 0)) + 1;
+    }
+  }
+
+  function openTaskDialog(task = null) {
+    fillTaskOptions();
+    const tomorrow = addDays(iso(new Date()), 1);
+    els.taskDialogTitle.textContent = task
+      ? "Editar atividade"
+      : "Nova atividade";
+    els.taskId.value = task?.id || "";
+    els.taskTitle.value = task?.title || "";
+    els.taskDescription.value = task?.description || "";
+    els.taskActivityType.value = task?.activity_type || "task";
+    els.taskParent.value = task?.parent_id || defaultTaskParentId();
+    els.taskPriority.value = task?.priority || 1;
+    els.taskSequence.value = task?.sequence || 1;
+    els.taskStart.value = task?.start_date || tomorrow;
+    els.taskEnd.value = task?.end_date || addDays(tomorrow, 2);
+    els.taskStatus.value = task?.status || "pending";
+    state.editingTaskAllocations = structuredClone(
+      task?.expense_allocations || [],
+    );
+    renderTaskAllocations();
+    renderTaskIconPicker(task?.icon_key || "", task?.icon_mode || "auto");
+    els.taskDateBadge.textContent =
+      task?.date_status === "estimated"
+        ? "Datas estimadas"
+        : "Datas confirmadas";
+    syncTaskHierarchyFields();
+    const hasChildren =
+      task?.activity_type === "macro" && childTasks(task.id).length > 0;
+    els.taskActivityType.disabled = Boolean(hasChildren);
+    els.btnDeleteTask.classList.toggle("hidden", !task);
+    els.btnDuplicateTask.classList.toggle("hidden", !task);
+    els.taskFormError.classList.add("hidden");
+    if (task?.id) selectGanttTask(task.id);
+    els.taskDialog.showModal();
+    els.taskTitle.focus();
   }
 
   function allocationCost(expense, quantity, scenarioName) {
@@ -2444,6 +2724,7 @@
           <label>Quantidade<input data-allocation-field="expected_quantity" type="number" min="0.0001" step="any" value="${Number(allocation.expected_quantity || 1)}" required></label>
           <span class="task-allocation-unit">${escapeHtml(expense?.unit || "—")}</span>
           <span class="task-allocation-scenarios">${planned == null ? "Sem cotação" : `Plan. ${formatMoney(planned)} · mín. ${formatMoney(minimum)} · máx. ${formatMoney(maximum)}`}</span>
+          <button type="button" class="btn" data-open-expense="${escapeAttr(expense?.id || "")}" ${expense ? "" : "disabled"} title="Abrir na visão de despesas">Abrir</button>
           <button type="button" class="btn danger" data-delete-allocation="${index}" aria-label="Remover despesa">×</button>
         </div>`;
       })
@@ -2546,82 +2827,33 @@
     els.btnTaskIconAuto.classList.toggle("active", iconMode === "auto");
   }
 
-  function syncTaskHierarchyFields() {
-    const isMacro = els.taskActivityType.value === "macro";
-    els.taskParentLabel.classList.toggle("hidden", isMacro);
-    els.taskParent.required = !isMacro;
-    document.querySelectorAll(".task-rollup-field").forEach((field) => {
-      field.disabled = isMacro;
-    });
-    els.taskAllocationEditor.classList.toggle("hidden", isMacro);
-    els.taskDateBadge.textContent = isMacro
-      ? "Datas, prioridade e status calculados pelas atividades"
-      : "Datas confirmadas";
-    if (!els.taskId.value) {
-      const siblings = isMacro
-        ? macroTasks()
-        : childTasks(els.taskParent.value);
-      els.taskSequence.value =
-        Math.max(0, ...siblings.map((item) => item.sequence)) + 1;
-    }
-  }
-
-  function openTaskDialog(task = null) {
-    fillTaskOptions(task?.id || "");
-    const tomorrow = addDays(iso(new Date()), 1);
-    els.taskDialogTitle.textContent = task
-      ? "Editar atividade"
-      : "Nova atividade";
-    els.taskId.value = task?.id || "";
-    els.taskTitle.value = task?.title || "";
-    els.taskDescription.value = task?.description || "";
-    els.taskActivityType.value = task?.activity_type || "task";
-    els.taskParent.value =
-      task?.parent_id || els.taskParent.options[0]?.value || "";
-    els.taskPriority.value = task?.priority || 1;
-    els.taskSequence.value = task?.sequence || 1;
-    els.taskStart.value = task?.start_date || tomorrow;
-    els.taskEnd.value = task?.end_date || addDays(tomorrow, 2);
-    els.taskStatus.value = task?.status || "pending";
-    state.editingTaskAllocations = structuredClone(
-      task?.expense_allocations || [],
-    );
-    renderTaskAllocations();
-    renderTaskIconPicker(task?.icon_key || "", task?.icon_mode || "auto");
-    els.taskDateBadge.textContent =
-      task?.date_status === "estimated"
-        ? "Datas estimadas"
-        : "Datas confirmadas";
-    syncTaskHierarchyFields();
-    const hasChildren =
-      task?.activity_type === "macro" && childTasks(task.id).length > 0;
-    els.taskActivityType.disabled = Boolean(hasChildren);
-    els.btnDeleteTask.classList.toggle("hidden", !task);
-    els.btnDuplicateTask.classList.toggle("hidden", !task);
-    els.taskFormError.classList.add("hidden");
-    if (task?.id) selectGanttTask(task.id);
-    els.taskDialog.showModal();
-    els.taskTitle.focus();
-  }
-
   async function submitTask(event) {
     event.preventDefault();
+    const isMacro = els.taskActivityType.value === "macro";
+    if (!isMacro && !els.taskParent.value) {
+      els.taskParent.value = defaultTaskParentId();
+    }
+    if (!isMacro && !els.taskParent.value) {
+      setStatus(
+        els.taskFormError,
+        "err",
+        "Crie ou selecione uma macroatividade no cronograma antes de adicionar uma atividade detalhada.",
+      );
+      return;
+    }
+    syncTaskHierarchyFields();
     const payload = {
       id: els.taskId.value,
       title: els.taskTitle.value.trim(),
       description: els.taskDescription.value.trim(),
       activity_type: els.taskActivityType.value,
-      parent_id:
-        els.taskActivityType.value === "macro" ? "" : els.taskParent.value,
+      parent_id: isMacro ? "" : els.taskParent.value,
       priority: Number(els.taskPriority.value),
-      sequence: Number(els.taskSequence.value),
+      sequence: Number(els.taskSequence.value || 1),
       start_date: els.taskStart.value,
       end_date: els.taskEnd.value,
       status: els.taskStatus.value,
-      expense_allocations:
-        els.taskActivityType.value === "macro"
-          ? []
-          : state.editingTaskAllocations,
+      expense_allocations: isMacro ? [] : state.editingTaskAllocations,
       icon_key: els.taskIcon.value,
       icon_mode: els.taskIconMode.value,
       date_status: "confirmed",
@@ -2881,6 +3113,67 @@
         </article>`;
       })
       .join("");
+  }
+
+  function goToExpense(expenseId) {
+    const expense = state.expenses.find((item) => item.id === expenseId);
+    if (!expense) {
+      setStatus(els.appStatus, "err", "Despesa não encontrada.");
+      return;
+    }
+    hideDashboardTooltip();
+    if (els.taskDialog?.open) els.taskDialog.close();
+
+    let filtersChanged = false;
+    if (
+      state.expenseCategoryFilters.size &&
+      !state.expenseCategoryFilters.has(expense.category)
+    ) {
+      state.expenseCategoryFilters.clear();
+      filtersChanged = true;
+    }
+    const term = els.search.value.trim().toLowerCase();
+    if (term) {
+      const hay =
+        `${expense.category} ${expense.description} ${expense.vendor || ""}`.toLowerCase();
+      if (!hay.includes(term)) {
+        els.search.value = "";
+        filtersChanged = true;
+      }
+    }
+    if (
+      state.expenseVendorFilter &&
+      !expenseHasVendorQuote(expense, state.expenseVendorFilter)
+    ) {
+      state.expenseVendorFilter = "";
+      filtersChanged = true;
+    }
+    if (filtersChanged) {
+      renderFilters();
+      renderQuotationVendorFilters();
+    }
+    renderExpenseTable();
+    showView("expenses");
+
+    requestAnimationFrame(() => {
+      const row = els.rows.querySelector(
+        `tr[data-open-quotations="${CSS.escape(expense.id)}"]`,
+      );
+      if (row) {
+        els.rows
+          .querySelectorAll(".expense-row-target")
+          .forEach((element) => element.classList.remove("expense-row-target"));
+        row.classList.add("expense-row-target");
+        row.scrollIntoView({ block: "center", behavior: "smooth" });
+        window.setTimeout(
+          () => row.classList.remove("expense-row-target"),
+          2600,
+        );
+      }
+      openQuotationManager(expense, {
+        focusVendor: state.expenseVendorFilter,
+      });
+    });
   }
 
   function openExpenseDialog(item = null) {
@@ -5216,6 +5509,16 @@
   document.addEventListener(
     "keydown",
     (event) => {
+      if (
+        (event.ctrlKey || event.metaKey) &&
+        !event.altKey &&
+        !event.shiftKey &&
+        event.key === "Enter"
+      ) {
+        event.preventDefault();
+        if (!els.btnPush.disabled) pushToRemote();
+        return;
+      }
       if (event.key === "Escape" && els.model3dHelpDialog.open) {
         event.preventDefault();
         els.model3dHelpDialog.close();
@@ -5864,10 +6167,6 @@
   els.btnNewTask.addEventListener("click", () => openTaskDialog());
   els.taskForm.addEventListener("submit", submitTask);
   els.taskActivityType.addEventListener("change", syncTaskHierarchyFields);
-  els.taskParent.addEventListener("change", () => {
-    syncTaskHierarchyFields();
-    if (els.taskIconMode.value === "auto") renderTaskIconPicker("", "auto");
-  });
   [els.taskTitle, els.taskDescription].forEach((field) => {
     field.addEventListener("change", () => {
       if (els.taskIconMode.value === "auto") renderTaskIconPicker("", "auto");
@@ -5888,6 +6187,12 @@
     if (els.taskIconMode.value === "auto") renderTaskIconPicker("", "auto");
   });
   els.taskAllocationList.addEventListener("click", (event) => {
+    const openExpense = event.target.closest("[data-open-expense]");
+    if (openExpense?.dataset.openExpense) {
+      event.preventDefault();
+      goToExpense(openExpense.dataset.openExpense);
+      return;
+    }
     const button = event.target.closest("[data-delete-allocation]");
     if (!button) return;
     state.editingTaskAllocations.splice(
@@ -5919,6 +6224,13 @@
     state.expandedMacros.clear();
     persistExpandedMacros();
     renderGantt();
+  });
+  els.btnPrintGantt?.addEventListener("click", () => {
+    printGanttPdf().catch((error) => {
+      document.body.classList.remove("printing-gantt");
+      els.btnPrintGantt.disabled = false;
+      setStatus(els.appStatus, "err", error.message);
+    });
   });
   els.taskSummary.addEventListener("click", (event) => {
     const button = event.target.closest("[data-gantt-status]");

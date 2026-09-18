@@ -510,6 +510,18 @@ class ExpenseHandler(BaseHTTPRequestHandler):
                     result["expense_id"], contract_ids
                 )
                 self._json(200, result)
+            elif path == "/api/tasks/reorder":
+                parent_id = str(payload.get("parent_id") or "")
+                ordered_ids = payload.get("ordered_ids")
+                if not isinstance(ordered_ids, list):
+                    raise ValueError("ordered_ids must be a list")
+                result = get_tasks(self.data_dir).reorder(
+                    parent_id,
+                    ordered_ids,
+                    str(payload.get("moved_id") or ""),
+                )
+                result["expense_state"] = get_store(self.data_dir).state()
+                self._json(200, result)
             elif path == "/api/tasks":
                 result = get_tasks(self.data_dir).upsert(payload)
                 result["expense_state"] = get_store(self.data_dir).state()
