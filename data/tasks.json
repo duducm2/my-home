@@ -189,9 +189,9 @@
       "title": "Saída da ocupante",
       "description": "Marco da compra e transição do imóvel.",
       "priority": 1,
-      "sequence": 6,
-      "start_date": "2026-10-07",
-      "end_date": "2026-10-09",
+      "sequence": 1,
+      "start_date": "2026-10-28",
+      "end_date": "2027-03-05",
       "status": "pending",
       "expense_allocations": [
         {
@@ -205,7 +205,7 @@
       ],
       "icon_key": "moving-service",
       "icon_mode": "auto",
-      "date_status": "estimated",
+      "date_status": "confirmed",
       "activity_type": "task",
       "parent_id": "TASK_0010",
       "progress": 0,
@@ -213,7 +213,7 @@
         "project.purchase_workflow"
       ],
       "created_at": "2026-09-15 23:51:00",
-      "updated_at": "2026-09-18 15:55:00"
+      "updated_at": "2026-09-18 17:05:02"
     },
     {
       "id": "TASK_0009",
@@ -243,7 +243,7 @@
       "description": "Marco da compra e transição do imóvel.",
       "priority": 1,
       "sequence": 5,
-      "start_date": "2026-10-07",
+      "start_date": "2026-10-28",
       "end_date": "2027-08-07",
       "status": "pending",
       "expense_allocations": [],
@@ -2421,7 +2421,7 @@
       "title": "Limpeza pós-obra",
       "description": "Mudança. Casa estruturalmente pronta",
       "priority": 3,
-      "sequence": 1,
+      "sequence": 2,
       "start_date": "2027-07-14",
       "end_date": "2027-07-18",
       "status": "pending",
@@ -2441,14 +2441,14 @@
         "project.work_plan"
       ],
       "created_at": "2026-09-15 23:51:00",
-      "updated_at": "2026-09-18 15:55:00"
+      "updated_at": "2026-09-18 17:05:02"
     },
     {
       "id": "TASK_0077",
       "title": "Instalação de móveis",
       "description": "Mudança. Casa estruturalmente pronta",
       "priority": 3,
-      "sequence": 2,
+      "sequence": 3,
       "start_date": "2027-07-19",
       "end_date": "2027-07-23",
       "status": "pending",
@@ -2468,14 +2468,14 @@
         "project.work_plan"
       ],
       "created_at": "2026-09-15 23:51:00",
-      "updated_at": "2026-09-18 15:55:00"
+      "updated_at": "2026-09-18 17:05:02"
     },
     {
       "id": "TASK_0078",
       "title": "Eletrodomésticos",
       "description": "Mudança. Casa estruturalmente pronta",
       "priority": 3,
-      "sequence": 3,
+      "sequence": 4,
       "start_date": "2027-07-24",
       "end_date": "2027-07-28",
       "status": "pending",
@@ -2490,14 +2490,14 @@
         "project.work_plan"
       ],
       "created_at": "2026-09-15 23:51:00",
-      "updated_at": "2026-09-18 15:55:00"
+      "updated_at": "2026-09-18 17:05:02"
     },
     {
       "id": "TASK_0079",
       "title": "Organização dos ambientes",
       "description": "Mudança. Casa estruturalmente pronta",
       "priority": 3,
-      "sequence": 4,
+      "sequence": 5,
       "start_date": "2027-07-29",
       "end_date": "2027-08-02",
       "status": "pending",
@@ -2512,14 +2512,14 @@
         "project.work_plan"
       ],
       "created_at": "2026-09-15 23:51:00",
-      "updated_at": "2026-09-18 15:55:00"
+      "updated_at": "2026-09-18 17:05:02"
     },
     {
       "id": "TASK_0080",
       "title": "Ajustes finais",
       "description": "Mudança. Casa estruturalmente pronta",
       "priority": 3,
-      "sequence": 5,
+      "sequence": 6,
       "start_date": "2027-08-03",
       "end_date": "2027-08-07",
       "status": "pending",
@@ -2534,7 +2534,7 @@
         "project.work_plan"
       ],
       "created_at": "2026-09-15 23:51:00",
-      "updated_at": "2026-09-18 15:55:00"
+      "updated_at": "2026-09-18 17:05:02"
     },
     {
       "id": "TASK_0097",
@@ -2789,5 +2789,5 @@
       "updated_at": "2026-09-18 15:53:16"
     }
   ],
-  "updated_at": "2026-09-18 16:47:12"
+  "updated_at": "2026-09-18 17:05:02"
 }
