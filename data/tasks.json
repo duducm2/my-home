@@ -277,6 +277,10 @@
         {
           "expense_id": "EXP_0020",
           "expected_quantity": 1.0
+        },
+        {
+          "expense_id": "EXP_0018",
+          "expected_quantity": 1.0
         }
       ],
       "icon_key": "debris-dumpster",
@@ -289,7 +293,7 @@
         "project.work_plan"
       ],
       "created_at": "2026-09-15 23:51:00",
-      "updated_at": "2026-09-18 14:52:36"
+      "updated_at": "2026-09-18 14:58:21"
     },
     {
       "id": "TASK_0012",
@@ -2711,5 +2715,5 @@
       "updated_at": "2026-09-18 14:51:22"
     }
   ],
-  "updated_at": "2026-09-18 14:52:36"
+  "updated_at": "2026-09-18 14:58:21"
 }

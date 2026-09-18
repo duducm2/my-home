@@ -53,7 +53,8 @@
       "title": "Contrato 01 — Regularização e preparação do imóvel",
       "provider_id": "PROVIDER_GELSON",
       "expense_ids": [
-        "EXP_0013"
+        "EXP_0013",
+        "EXP_0051"
       ],
       "status": "draft",
       "amount": 7500.0,
@@ -255,7 +256,7 @@
         }
       },
       "created_at": "2026-09-16 14:01:46",
-      "updated_at": "2026-09-16 14:01:46",
+      "updated_at": "2026-09-18 15:03:50",
       "payment_schedule": [
         {
           "id": "PAY_001",
@@ -511,5 +512,5 @@
       "payment_frequency": "monthly"
     }
   ],
-  "updated_at": "2026-09-18 13:52:50"
+  "updated_at": "2026-09-18 15:03:50"
 }
