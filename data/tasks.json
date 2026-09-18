@@ -3,7 +3,7 @@
   "tasks": [
     {
       "id": "TASK_0001",
-      "title": "Contrato de compra e venda com a imobiliária",
+      "title": "Entrada FGTS",
       "description": "Marco da compra e transição do imóvel.",
       "priority": 1,
       "sequence": 1,
@@ -26,14 +26,14 @@
         "project.purchase_workflow"
       ],
       "created_at": "2026-09-15 23:51:00",
-      "updated_at": "2026-09-18 14:47:03"
+      "updated_at": "2026-09-18 15:52:32"
     },
     {
       "id": "TASK_0002",
       "title": "Regularizações do imóvel e dos herdeiros",
       "description": "Marco da compra e transição do imóvel.",
       "priority": 1,
-      "sequence": 2,
+      "sequence": 3,
       "start_date": "2026-10-16",
       "end_date": "2026-10-21",
       "status": "pending",
@@ -57,7 +57,7 @@
         "project.purchase_workflow"
       ],
       "created_at": "2026-09-15 23:51:00",
-      "updated_at": "2026-09-18 14:47:03"
+      "updated_at": "2026-09-18 15:52:24"
     },
     {
       "id": "TASK_0003",
@@ -86,7 +86,7 @@
       "title": "Acionamento da Caixa",
       "description": "Marco da compra e transição do imóvel.",
       "priority": 1,
-      "sequence": 3,
+      "sequence": 4,
       "start_date": "2026-10-16",
       "end_date": "2026-10-21",
       "status": "pending",
@@ -106,14 +106,14 @@
         "project.purchase_workflow"
       ],
       "created_at": "2026-09-15 23:51:00",
-      "updated_at": "2026-09-18 14:47:03"
+      "updated_at": "2026-09-18 15:52:24"
     },
     {
       "id": "TASK_0005",
       "title": "Alienação fiduciária",
       "description": "Marco da compra e transição do imóvel.",
       "priority": 1,
-      "sequence": 4,
+      "sequence": 5,
       "start_date": "2026-10-16",
       "end_date": "2026-10-21",
       "status": "pending",
@@ -133,7 +133,7 @@
         "project.purchase_workflow"
       ],
       "created_at": "2026-09-15 23:51:00",
-      "updated_at": "2026-09-18 15:27:09"
+      "updated_at": "2026-09-18 15:52:24"
     },
     {
       "id": "TASK_0006",
@@ -189,7 +189,7 @@
       "title": "Saída da ocupante",
       "description": "Marco da compra e transição do imóvel.",
       "priority": 1,
-      "sequence": 5,
+      "sequence": 6,
       "start_date": "2026-10-07",
       "end_date": "2026-10-09",
       "status": "pending",
@@ -213,7 +213,7 @@
         "project.purchase_workflow"
       ],
       "created_at": "2026-09-15 23:51:00",
-      "updated_at": "2026-09-18 14:47:03"
+      "updated_at": "2026-09-18 15:52:24"
     },
     {
       "id": "TASK_0009",
@@ -2563,7 +2563,7 @@
       "title": "Regularização da matrícula por parte dos herdeiros",
       "description": "",
       "priority": 1,
-      "sequence": 6,
+      "sequence": 7,
       "start_date": "2026-09-16",
       "end_date": "2026-10-16",
       "status": "pending",
@@ -2581,7 +2581,7 @@
       "progress": 0,
       "source_refs": [],
       "created_at": "2026-09-16 19:53:17",
-      "updated_at": "2026-09-18 14:47:03"
+      "updated_at": "2026-09-18 15:52:24"
     },
     {
       "id": "TASK_0099",
@@ -2762,7 +2762,32 @@
       "source_refs": [],
       "created_at": "2026-09-18 15:25:38",
       "updated_at": "2026-09-18 15:26:08"
+    },
+    {
+      "id": "TASK_0107",
+      "title": "Contrato de compra e venda com a imobiliária (cópia)",
+      "description": "Marco da compra e transição do imóvel.",
+      "priority": 1,
+      "sequence": 2,
+      "start_date": "2026-10-15",
+      "end_date": "2026-10-21",
+      "status": "pending",
+      "expense_allocations": [
+        {
+          "expense_id": "EXP_0001",
+          "expected_quantity": 1.0
+        }
+      ],
+      "icon_key": "down-payment",
+      "icon_mode": "auto",
+      "date_status": "confirmed",
+      "activity_type": "task",
+      "parent_id": "TASK_0097",
+      "progress": 0,
+      "source_refs": [],
+      "created_at": "2026-09-18 15:52:22",
+      "updated_at": "2026-09-18 15:52:24"
     }
   ],
-  "updated_at": "2026-09-18 15:27:09"
+  "updated_at": "2026-09-18 15:52:32"
 }
