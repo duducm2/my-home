@@ -2765,7 +2765,7 @@
     },
     {
       "id": "TASK_0107",
-      "title": "Contrato de compra e venda com a imobiliária (cópia)",
+      "title": "Entrada Recursos livres",
       "description": "Marco da compra e transição do imóvel.",
       "priority": 1,
       "sequence": 2,
@@ -2774,11 +2774,11 @@
       "status": "pending",
       "expense_allocations": [
         {
-          "expense_id": "EXP_0001",
+          "expense_id": "EXP_0053",
           "expected_quantity": 1.0
         }
       ],
-      "icon_key": "down-payment",
+      "icon_key": "home-expense",
       "icon_mode": "auto",
       "date_status": "confirmed",
       "activity_type": "task",
@@ -2786,8 +2786,8 @@
       "progress": 0,
       "source_refs": [],
       "created_at": "2026-09-18 15:52:22",
-      "updated_at": "2026-09-18 15:52:24"
+      "updated_at": "2026-09-18 15:53:16"
     }
   ],
-  "updated_at": "2026-09-18 15:52:32"
+  "updated_at": "2026-09-18 15:53:16"
 }

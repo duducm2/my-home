@@ -639,7 +639,7 @@
               <tr>
                 <th>Categoria</th>
                 <th>Descrição</th>
-                <th class="num">Preço por unidade</th>
+                <th class="num">Cotações</th>
                 <th class="num">Mediana (cotações)</th>
                 <th class="actions">Ações</th>
               </tr>
@@ -1983,12 +1983,14 @@
           ><span class="grow"></span
           ><button type="button" id="btn-cancel-task" class="btn">
             Cancelar</button
-          ><button type="submit" class="btn primary">Salvar atividade</button>
+          ><button type="submit" class="btn primary" title="Shift+Enter">
+            Salvar atividade <kbd>Shift+Enter</kbd>
+          </button>
         </div>
       </form>
     </dialog>
 
     <datalist id="category-suggestions"></datalist>
-    <script src="/app.js?v=20260918-quote-total-fix"></script>
+    <script src="/app.js?v=20260918-ctrl-enter-dialog"></script>
   </body>
 </html>

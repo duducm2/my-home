@@ -15,6 +15,7 @@ from persistence import atomic_write, atomic_write_text
 
 MAX_PDF_BYTES = 25 * 1024 * 1024
 
+
 def _stamp() -> str:
     return datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
@@ -73,9 +74,7 @@ class QuotationStore:
     ) -> None:
         self.replace_many({expense_id: quotations})
 
-    def replace_many(
-        self, replacements: dict[str, list[dict[str, Any]]]
-    ) -> None:
+    def replace_many(self, replacements: dict[str, list[dict[str, Any]]]) -> None:
         with self._lock:
             current = [
                 item
@@ -84,8 +83,7 @@ class QuotationStore:
             ]
             for expense_id, quotations in replacements.items():
                 current.extend(
-                    {"expense_id": expense_id, **dict(item)}
-                    for item in quotations
+                    {"expense_id": expense_id, **dict(item)} for item in quotations
                 )
             self._write(current)
 
@@ -151,9 +149,7 @@ class QuotationStore:
             attachment = {
                 "id": document_id,
                 "original_filename": Path(original_filename or "quotation.pdf").name,
-                "repository_path": target.relative_to(
-                    self.data_dir.parent
-                ).as_posix(),
+                "repository_path": target.relative_to(self.data_dir.parent).as_posix(),
                 "mime_type": "application/pdf",
                 "size_bytes": len(data),
                 "pages": len(re.findall(rb"/Type\s*/Page\b", data)) or None,
@@ -196,4 +192,3 @@ class QuotationStore:
         if self.documents_dir not in target.parents or not target.is_file():
             raise ValueError("quotation document file not found")
         return target
-

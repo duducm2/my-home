@@ -3920,13 +3920,8 @@ body.model3d-active {
   align-items: center;
   justify-content: flex-start;
   gap: 4px 8px;
-  min-width: 12rem;
+  min-width: 14rem;
   white-space: normal !important;
-}
-
-.expense-price-cell .unit-price-cell {
-  justify-items: start;
-  gap: 0;
 }
 
 .expense-row-bento .quote-price-pill {
@@ -4401,10 +4396,6 @@ body.model3d-active {
   margin: 2px 0 4px;
 }
 
-#view-expenses.hide-quote-pills .expense-row-bento {
-  display: none;
-}
-
 #view-expenses .table-wrap {
   padding: 1px;
   overflow: visible;
@@ -4445,19 +4436,8 @@ body.model3d-active {
 }
 
 #view-expenses .expense-row td.expense-price-cell {
-  width: min(36vw, 22rem);
+  width: min(42vw, 28rem);
   font-size: 11px;
-}
-
-#view-expenses .expense-row .unit-price-cell strong {
-  font-size: 12px;
-  line-height: 1.15;
-}
-
-#view-expenses .expense-row .unit-price-suffix,
-#view-expenses .expense-row .unit-price-vendor {
-  font-size: 9px;
-  line-height: 1.1;
 }
 
 #view-expenses .expense-row .btn {

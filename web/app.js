@@ -834,22 +834,6 @@
     });
   }
 
-  function unitPriceCell(item) {
-    const minimumId = item.scenario?.minimum_quotation_id;
-    const cheapest = (item.quotations || []).find(
-      (quote) => quote.id === minimumId,
-    );
-    if (!cheapest || cheapest.unit_price == null) {
-      return item.scenario?.unpriced
-        ? '<span class="badge">Sem cotação</span>'
-        : "—";
-    }
-    const vendor = cheapest.vendor
-      ? `<small class="unit-price-vendor">${escapeHtml(cheapest.vendor)}</small>`
-      : "";
-    return `<span class="unit-price-cell"><strong>${formatMoney(cheapest.unit_price)}</strong><span class="unit-price-suffix">/ ${escapeHtml(item.unit || cheapest.unit || "un")}</span>${vendor}</span>`;
-  }
-
   function medianUnitPrice(item) {
     const prices = (item.quotations || [])
       .filter((quote) => !quote.archived)
@@ -872,11 +856,39 @@
     return `<span class="unit-price-cell"><strong>${formatMoney(median)}</strong><span class="unit-price-suffix">/ ${escapeHtml(item.unit || "un")}</span></span>`;
   }
 
-  function expenseQuotationsBento(item) {
-    if (!state.showExpenseQuotePills) return "";
-    const quotes = visibleQuotationsForExpense(item);
-    if (!quotes.length) return "";
-    return `<div class="quotation-bento expense-row-bento" data-expense-bento="${escapeAttr(item.id)}">${renderQuotePricePills(item, quotes)}</div>`;
+  function sortQuotationsForList(expense, quotes) {
+    const selectedId = expense.selected_quotation_id;
+    const cheapestId = expense.scenario?.minimum_quotation_id;
+    return [...quotes].sort((left, right) => {
+      if (left.id === selectedId && right.id !== selectedId) return -1;
+      if (right.id === selectedId && left.id !== selectedId) return 1;
+      if (left.id === cheapestId && right.id !== cheapestId) return -1;
+      if (right.id === cheapestId && left.id !== cheapestId) return 1;
+      const leftPrice = Number(left.unit_price);
+      const rightPrice = Number(right.unit_price);
+      if (leftPrice !== rightPrice) return leftPrice - rightPrice;
+      return String(left.vendor || "").localeCompare(
+        String(right.vendor || ""),
+        "pt-BR",
+      );
+    });
+  }
+
+  function expenseQuotationsCell(item) {
+    const quotes = sortQuotationsForList(
+      item,
+      visibleQuotationsForExpense(item),
+    );
+    if (!quotes.length) {
+      return '<span class="badge">Sem cotação</span>';
+    }
+    const shown = state.showExpenseQuotePills
+      ? quotes
+      : [
+          quotes.find((quote) => quote.id === item.selected_quotation_id) ||
+            quotes[0],
+        ];
+    return `<div class="quotation-bento expense-row-bento" data-expense-bento="${escapeAttr(item.id)}">${renderQuotePricePills(item, shown)}</div>`;
   }
 
   function applyExpenseQuotePillsVisibility() {
@@ -925,7 +937,7 @@
         ) => `<tr class="expense-row" data-open-quotations="${escapeAttr(item.id)}" tabindex="0" aria-label="Gerenciar cotações de ${escapeAttr(item.description)}">
       <td>${escapeHtml(item.category)}</td>
       <td>${itemLabel(item.description, item.icon_key)}</td>
-      <td class="num expense-price-cell">${unitPriceCell(item)}${expenseQuotationsBento(item)}</td>
+      <td class="num expense-price-cell expense-quotes-cell">${expenseQuotationsCell(item)}</td>
       <td class="num">${medianUnitPriceCell(item)}</td>
       <td class="actions"><button class="btn" data-edit-expense="${item.id}">Editar</button><button class="btn danger" data-delete-expense="${item.id}">Excluir</button></td>
     </tr>`,
@@ -3853,9 +3865,10 @@
                 )
                 .join("")}</div>`
             : "";
+        const vendorLabel = String(quote.vendor || "").trim();
         return `<button type="button" class="quote-price-pill${isSelected ? " selected" : ""}${isCheapest ? " cheapest" : ""}${evidence.length ? "" : " no-evidence"}" data-quote-pill="${escapeAttr(quote.id)}" data-evidence-count="${evidence.length}" ${evidence.length === 1 ? `data-evidence-url="${escapeAttr(evidence[0].url)}"` : ""} title="${escapeAttr(tip)}">
           <strong>${formatMoney(quote.unit_price)}</strong>
-          <span>${escapeHtml(quote.vendor || "Sem fornecedor")}</span>
+          ${vendorLabel ? `<span>${escapeHtml(vendorLabel)}</span>` : `<span class="unit-price-suffix">/ ${escapeHtml(quote.unit || expense.unit || "un")}</span>`}
           ${isCheapest ? '<em class="pill-flag">menor</em>' : ""}
           ${isSelected ? '<em class="pill-flag selected">escolhida</em>' : ""}
           ${menu}
@@ -3991,8 +4004,9 @@
           .filter(Boolean)
           .join(" · ");
         const documents = quote.attachments || [];
+        const vendorLabel = String(quote.vendor || "").trim();
         return `<article class="quotation-card ${isSelected ? "selected" : ""} ${quote.archived ? "archived" : ""}">
-          <header><div><strong>${escapeHtml(quote.vendor)}</strong><span class="quote-badges"><span class="badge">${quote.source === "ai" ? "Importada" : "Manual"}</span><span class="badge">${escapeHtml(quote.response_status || "recebida")}</span>${isSelected ? '<span class="badge selected">Escolhida</span>' : ""}${quote.archived ? '<span class="badge">Arquivada</span>' : ""}</span></div><strong class="quotation-total">${formatMoney(offerTotal)}</strong></header>
+          <header><div>${vendorLabel ? `<strong>${escapeHtml(vendorLabel)}</strong>` : ""}<span class="quote-badges"><span class="badge">${quote.source === "ai" ? "Importada" : "Manual"}</span><span class="badge">${escapeHtml(quote.response_status || "recebida")}</span>${isSelected ? '<span class="badge selected">Escolhida</span>' : ""}${quote.archived ? '<span class="badge">Arquivada</span>' : ""}</span></div><strong class="quotation-total">${formatMoney(offerTotal)}</strong></header>
           <dl><div><dt>Unitário</dt><dd>${formatMoney(quote.unit_price)} × ${quote.quantity} ${escapeHtml(quote.unit || "")}</dd></div><div><dt>Frete</dt><dd>${formatMoney(quote.shipping_cost)}</dd></div><div><dt>Recebida</dt><dd>${escapeHtml(formatDateTime(quote.received_at || quote.checked_at))}</dd></div><div><dt>Canal</dt><dd>${escapeHtml(quote.response_channel || "—")}</dd></div></dl>
           ${specification ? `<p><strong>Especificação:</strong> ${escapeHtml(specification)}</p>` : ""}
           ${evidence ? `<p><strong>Fonte:</strong> ${escapeHtml(evidence)}</p>` : ""}
@@ -4161,9 +4175,11 @@
     }
   }
 
-  async function selectQuotation(quotationId) {
+  async function selectQuotation(quotationId, expenseId = null) {
+    const targetExpenseId = expenseId || state.quotationExpenseId;
+    if (!targetExpenseId) throw new Error("expense not selected");
     const result = await request(
-      `/api/expenses/${encodeURIComponent(state.quotationExpenseId)}/quotations/${encodeURIComponent(quotationId)}/select`,
+      `/api/expenses/${encodeURIComponent(targetExpenseId)}/quotations/${encodeURIComponent(quotationId)}/select`,
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -4171,7 +4187,7 @@
       },
     );
     applyExpenseState(result.state);
-    renderQuotationManager();
+    if (state.quotationExpenseId === targetExpenseId) renderQuotationManager();
   }
 
   async function deleteQuotation(quotationId) {
@@ -5709,6 +5725,8 @@
         event.key === "Enter"
       ) {
         event.preventDefault();
+        event.stopPropagation();
+        event.stopImmediatePropagation();
         if (!els.btnPush.disabled) pushToRemote();
         return;
       }
@@ -5994,6 +6012,21 @@
     if (target && !target.contains(event.relatedTarget)) hideDashboardTooltip();
   });
   els.btnNew.addEventListener("click", () => openExpenseDialog());
+  els.form.addEventListener(
+    "keydown",
+    (event) => {
+      if (
+        (event.ctrlKey || event.metaKey) &&
+        !event.altKey &&
+        !event.shiftKey &&
+        event.key === "Enter"
+      ) {
+        event.preventDefault();
+        event.stopPropagation();
+      }
+    },
+    true,
+  );
   els.form.addEventListener("submit", submitExpense);
   els.btnCancel.addEventListener("click", () => els.dialog.close());
   els.expenseDocumentUpload.addEventListener("change", () => {
@@ -6040,12 +6073,31 @@
     if (button) renderIconPicker(button.dataset.iconKey);
   });
   els.rows.addEventListener("click", async (event) => {
-    if (
-      handleQuotePillClick(event, {
-        statusElement: els.appStatus,
-      })
-    )
+    const listPill = event.target.closest(
+      "[data-expense-bento] [data-quote-pill]",
+    );
+    if (listPill) {
+      event.preventDefault();
+      event.stopPropagation();
+      const evidenceItem = event.target.closest(
+        ".quote-evidence-item[data-evidence-url]",
+      );
+      if (evidenceItem?.dataset.evidenceUrl) {
+        openQuotationEvidence(evidenceItem.dataset.evidenceUrl);
+        closeQuotationEvidenceMenus();
+        return;
+      }
+      const expenseId = listPill.closest("[data-expense-bento]")?.dataset
+        .expenseBento;
+      const quotationId = listPill.dataset.quotePill;
+      if (!expenseId || !quotationId) return;
+      try {
+        await selectQuotation(quotationId, expenseId);
+      } catch (error) {
+        setStatus(els.appStatus, "err", error.message);
+      }
       return;
+    }
     const quotations = event.target.closest("[data-open-expense-quotations]");
     const edit = event.target.closest("[data-edit-expense]");
     const remove = event.target.closest("[data-delete-expense]");
@@ -6400,6 +6452,28 @@
     notesSaveTimer = setTimeout(saveNotes, 700);
   });
   els.btnNewTask.addEventListener("click", () => openTaskDialog());
+  els.taskForm.addEventListener(
+    "keydown",
+    (event) => {
+      if (event.key !== "Enter" || event.altKey) return;
+      if (event.shiftKey && !event.ctrlKey && !event.metaKey) {
+        event.preventDefault();
+        event.stopPropagation();
+        event.stopImmediatePropagation();
+        if (typeof els.taskForm.requestSubmit === "function") {
+          els.taskForm.requestSubmit();
+        } else {
+          submitTask(event);
+        }
+        return;
+      }
+      if ((event.ctrlKey || event.metaKey) && !event.shiftKey) {
+        event.preventDefault();
+        event.stopPropagation();
+      }
+    },
+    true,
+  );
   els.taskForm.addEventListener("submit", submitTask);
   els.taskActivityType.addEventListener("change", syncTaskHierarchyFields);
   [els.taskTitle, els.taskDescription].forEach((field) => {

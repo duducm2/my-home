@@ -141,13 +141,16 @@ class ExpenseStore:
         linked_dates, timeline_start, timeline_end = self._task_payment_context()
         migrated = []
         existing_external = {
-            str(item.get("expense_id") or "")
-            for item in self.quotation_store.all()
+            str(item.get("expense_id") or "") for item in self.quotation_store.all()
         }
         for index, row in enumerate(rows):
             item = {key: row.get(key, "") for key in HEADERS}
-            item["record_type"] = item["record_type"] or ("material" if item["category"] == "Material" else "service")
-            item["icon_key"] = item["icon_key"] or self._default_icon_key(item["category"])
+            item["record_type"] = item["record_type"] or (
+                "material" if item["category"] == "Material" else "service"
+            )
+            item["icon_key"] = item["icon_key"] or self._default_icon_key(
+                item["category"]
+            )
             quantity = _optional_float(
                 row.get("default_expected_quantity", row.get("quantity"))
             )
@@ -191,26 +194,37 @@ class ExpenseStore:
             legacy_value = _parse_value(row.get("value"))
             if not quotations and legacy_value > 0:
                 unit_price = _optional_float(row.get("unit_price"))
-                unit_price = unit_price if unit_price is not None else legacy_value / (quantity or 1)
-                quotations = [{
-                    "id": "QUOTE_001",
-                    "source": "manual",
-                    "vendor": str(row.get("vendor") or "Estimativa migrada").strip(),
-                    "unit_price": round(unit_price, 2),
-                    "quantity": quantity or 1,
-                    "unit": item["unit"],
-                    "shipping_cost": max(0.0, round(legacy_value - unit_price * (quantity or 1), 2)),
-                    "total_price": legacy_value,
-                    "product_url": str(row.get("product_url") or "").strip(),
-                    "checked_at": str(row.get("price_checked_at") or "").strip() or now_stamp(),
-                    "notes": str(row.get("price_notes") or "").strip(),
-                    "metadata": {
-                        "currency": "BRL",
-                        "source_type": "manual",
-                        "source_name": "legacy-expense-migration",
-                        "ambiguities": "",
-                    },
-                }]
+                unit_price = (
+                    unit_price
+                    if unit_price is not None
+                    else legacy_value / (quantity or 1)
+                )
+                vendor = str(row.get("vendor") or "").strip()
+                quotations = [
+                    {
+                        "id": "QUOTE_001",
+                        "source": "manual",
+                        "vendor": vendor,
+                        "unit_price": round(unit_price, 2),
+                        "quantity": quantity or 1,
+                        "unit": item["unit"],
+                        "shipping_cost": max(
+                            0.0, round(legacy_value - unit_price * (quantity or 1), 2)
+                        ),
+                        "total_price": legacy_value,
+                        "product_url": str(row.get("product_url") or "").strip(),
+                        "checked_at": str(row.get("price_checked_at") or "").strip()
+                        or now_stamp(),
+                        "notes": str(row.get("price_notes") or "").strip(),
+                        "response_status": "received",
+                        "metadata": {
+                            "currency": "BRL",
+                            "source_type": "manual",
+                            "source_name": "manual",
+                            "ambiguities": "",
+                        },
+                    }
+                ]
             if quotations and str(row.get("id") or "") not in existing_external:
                 self.quotation_store.replace_for_expense(
                     str(row.get("id") or ""), quotations
@@ -219,7 +233,8 @@ class ExpenseStore:
             selected = str(row.get("selected_quotation_id") or "")
             item["selected_quotation_id"] = selected if selected in quote_ids else ""
             item["baseline_quotation_id"] = str(
-                row.get("baseline_quotation_id") or item["selected_quotation_id"]
+                row.get("baseline_quotation_id")
+                or item["selected_quotation_id"]
                 or (quotations[0].get("id") if quotations else "")
             )
             if not item["payments_json"]:
@@ -242,7 +257,9 @@ class ExpenseStore:
         if not self.icon_manifest_path.is_file():
             return {"defaults": {}, "icons": {}, "expense_associations": {}}
         try:
-            payload = json.loads(self.icon_manifest_path.read_text(encoding="utf-8-sig"))
+            payload = json.loads(
+                self.icon_manifest_path.read_text(encoding="utf-8-sig")
+            )
         except (OSError, json.JSONDecodeError):
             return {"defaults": {}, "icons": {}, "expense_associations": {}}
         return payload if isinstance(payload, dict) else {}
@@ -256,7 +273,11 @@ class ExpenseStore:
         except (OSError, json.JSONDecodeError):
             return []
         records = payload.get(key) if isinstance(payload, dict) else []
-        return [item for item in records if isinstance(item, dict)] if isinstance(records, list) else []
+        return (
+            [item for item in records if isinstance(item, dict)]
+            if isinstance(records, list)
+            else []
+        )
 
     def _default_icon_key(self, category: str) -> str:
         defaults = self._icon_manifest().get("defaults") or {}
@@ -337,10 +358,14 @@ class ExpenseStore:
         currency = str(metadata.get("currency") or "BRL").strip().upper()
         if currency != "BRL":
             raise ValueError("quotation currency must be BRL")
-        source_type = str(
-            metadata.get("source_type")
-            or ("manual" if default_source == "manual" else "text")
-        ).strip().lower()
+        source_type = (
+            str(
+                metadata.get("source_type")
+                or ("manual" if default_source == "manual" else "text")
+            )
+            .strip()
+            .lower()
+        )
         if source_type not in {"text", "pdf", "manual"}:
             raise ValueError("quotation source_type must be text, pdf, or manual")
         valid_until = str(metadata.get("quote_valid_until") or "").strip()
@@ -374,13 +399,15 @@ class ExpenseStore:
                     "quotation extraction_confidence must be between 0 and 1"
                 )
         result = dict(metadata)
-        result.update({
-            "currency": currency,
-            "source_type": source_type,
-            "quote_valid_until": valid_until,
-            "source_page": source_page,
-            "extraction_confidence": confidence,
-        })
+        result.update(
+            {
+                "currency": currency,
+                "source_type": source_type,
+                "quote_valid_until": valid_until,
+                "source_page": source_page,
+                "extraction_confidence": confidence,
+            }
+        )
         limits = {
             "brand": 160,
             "model": 160,
@@ -421,9 +448,7 @@ class ExpenseStore:
             )
         if quantity is None:
             quantity = 1.0
-        shipping = self._quotation_number(
-            payload.get("shipping_cost"), "shipping_cost"
-        )
+        shipping = self._quotation_number(payload.get("shipping_cost"), "shipping_cost")
         shipping = 0.0 if shipping is None else shipping
         total = self._quotation_number(payload.get("total_price"), "total_price")
         if total is None:
@@ -434,12 +459,8 @@ class ExpenseStore:
             if parsed.scheme not in {"http", "https"} or not parsed.netloc:
                 raise ValueError("product_url must be a valid HTTP(S) URL")
         vendor = str(payload.get("vendor") or "").strip()
-        if not vendor:
-            raise ValueError("vendor is required")
         checked_at = str(
-            payload.get("checked_at")
-            or payload.get("price_checked_at")
-            or now_stamp()
+            payload.get("checked_at") or payload.get("price_checked_at") or now_stamp()
         ).strip()[:40]
         try:
             date.fromisoformat(checked_at[:10])
@@ -447,7 +468,12 @@ class ExpenseStore:
             raise ValueError("quotation checked_at must begin with YYYY-MM-DD") from exc
         response_status = str(payload.get("response_status") or "received").strip()
         if response_status not in {
-            "draft", "requested", "received", "declined", "expired", "accepted"
+            "draft",
+            "requested",
+            "received",
+            "declined",
+            "expired",
+            "accepted",
         }:
             raise ValueError("invalid quotation response_status")
         received_at = str(
@@ -473,16 +499,22 @@ class ExpenseStore:
             "received_at": received_at,
             "response_date": received_at,
             "validity": str(payload.get("validity") or "").strip()[:500],
-            "references": list(payload.get("references") or [])
-            if isinstance(payload.get("references"), list)
-            else [],
+            "references": (
+                list(payload.get("references") or [])
+                if isinstance(payload.get("references"), list)
+                else []
+            ),
             "archived": bool(payload.get("archived", False)),
-            "attachments": list(payload.get("attachments") or [])
-            if isinstance(payload.get("attachments"), list)
-            else [],
-            "vendor_snapshot": dict(payload.get("vendor_snapshot") or {})
-            if isinstance(payload.get("vendor_snapshot"), dict)
-            else {},
+            "attachments": (
+                list(payload.get("attachments") or [])
+                if isinstance(payload.get("attachments"), list)
+                else []
+            ),
+            "vendor_snapshot": (
+                dict(payload.get("vendor_snapshot") or {})
+                if isinstance(payload.get("vendor_snapshot"), dict)
+                else {}
+            ),
             "metadata": self._quotation_metadata(
                 payload, default_source=default_source
             ),
@@ -493,9 +525,10 @@ class ExpenseStore:
         quotations: list[dict[str, Any]] = []
         ids: set[str] = set()
         for index, item in enumerate(payload, start=1):
-            quotation_id = str(
-                item.get("id") if isinstance(item, dict) else ""
-            ).strip() or f"QUOTE_{index:03d}"
+            quotation_id = (
+                str(item.get("id") if isinstance(item, dict) else "").strip()
+                or f"QUOTE_{index:03d}"
+            )
             quotation = self._validate_quotation(
                 item, row, quotation_id, default_source="manual"
             )
@@ -508,9 +541,7 @@ class ExpenseStore:
     def _store_quotations(
         self, row: dict[str, str], quotations: list[dict[str, Any]]
     ) -> None:
-        self.quotation_store.replace_for_expense(
-            str(row.get("id") or ""), quotations
-        )
+        self.quotation_store.replace_for_expense(str(row.get("id") or ""), quotations)
 
     @staticmethod
     def _next_quotation_id(quotations: list[dict[str, Any]]) -> str:
@@ -529,7 +560,9 @@ class ExpenseStore:
         if task_path.is_file():
             try:
                 document = json.loads(task_path.read_text(encoding="utf-8-sig"))
-                raw_tasks = document.get("tasks", []) if isinstance(document, dict) else []
+                raw_tasks = (
+                    document.get("tasks", []) if isinstance(document, dict) else []
+                )
                 tasks = [item for item in raw_tasks if isinstance(item, dict)]
             except (OSError, json.JSONDecodeError):
                 tasks = []
@@ -675,9 +708,7 @@ class ExpenseStore:
                             "task_id": str(task.get("id") or ""),
                             "task_title": str(task.get("title") or ""),
                             "date": str(task.get("start_date") or ""),
-                            "date_status": str(
-                                task.get("date_status") or "estimated"
-                            ),
+                            "date_status": str(task.get("date_status") or "estimated"),
                             "expected_quantity": quantity,
                         }
                     )
@@ -714,9 +745,7 @@ class ExpenseStore:
         quotations: list[dict[str, Any]],
         allocations: list[dict[str, Any]],
     ) -> dict[str, Any]:
-        default_quantity = _parse_value(
-            row.get("default_expected_quantity") or 1
-        )
+        default_quantity = _parse_value(row.get("default_expected_quantity") or 1)
         quantity = (
             sum(float(item["expected_quantity"]) for item in allocations)
             if allocations
@@ -747,25 +776,15 @@ class ExpenseStore:
             "expected_quantity": round(quantity, 4),
             "quantity_source": "allocations" if allocations else "expense_default",
             "planned": (
-                self._quotation_cost(planned_quote, quantity)
-                if planned_quote
-                else None
+                self._quotation_cost(planned_quote, quantity) if planned_quote else None
             ),
-            "minimum": (
-                self._quotation_cost(ranked[0], quantity) if ranked else None
-            ),
-            "maximum": (
-                self._quotation_cost(ranked[-1], quantity) if ranked else None
-            ),
+            "minimum": (self._quotation_cost(ranked[0], quantity) if ranked else None),
+            "maximum": (self._quotation_cost(ranked[-1], quantity) if ranked else None),
             "planned_quotation_id": (
                 str(planned_quote.get("id") or "") if planned_quote else ""
             ),
-            "minimum_quotation_id": (
-                str(ranked[0].get("id") or "") if ranked else ""
-            ),
-            "maximum_quotation_id": (
-                str(ranked[-1].get("id") or "") if ranked else ""
-            ),
+            "minimum_quotation_id": (str(ranked[0].get("id") or "") if ranked else ""),
+            "maximum_quotation_id": (str(ranked[-1].get("id") or "") if ranked else ""),
             "unpriced": planned_quote is None,
         }
 
@@ -833,7 +852,8 @@ class ExpenseStore:
             "record_type": record_type,
             "category": row.get("category", ""),
             "description": row.get("description", ""),
-            "icon_key": row.get("icon_key") or self._default_icon_key(row.get("category", "")),
+            "icon_key": row.get("icon_key")
+            or self._default_icon_key(row.get("category", "")),
             "value": planned,
             "payments": self._projected_payments(
                 row, scenario, quotations, allocations
@@ -914,7 +934,9 @@ class ExpenseStore:
             "forecast_all": round(forecast_materials + forecast_services, 2),
             "forecast_materials": round(forecast_materials, 2),
             "forecast_services": round(forecast_services, 2),
-            "by_category": {key: round(value, 2) for key, value in sorted(by_category.items())},
+            "by_category": {
+                key: round(value, 2) for key, value in sorted(by_category.items())
+            },
             "scenarios": {
                 "planned": round(total, 2),
                 "minimum": round(minimum, 2),
@@ -944,7 +966,9 @@ class ExpenseStore:
             "ok": True,
             "expenses": expenses,
             "totals": self._totals(expenses),
-            "materials": [item for item in expenses if item["record_type"] == "material"],
+            "materials": [
+                item for item in expenses if item["record_type"] == "material"
+            ],
             "budget_forecast": self._load_budget_forecast(),
             "icon_catalog": {
                 "defaults": manifest.get("defaults", {}),
@@ -953,7 +977,9 @@ class ExpenseStore:
         }
 
     @staticmethod
-    def _apply_price_fields(row: dict[str, str], payload: dict[str, Any], stamp: str) -> None:
+    def _apply_price_fields(
+        row: dict[str, str], payload: dict[str, Any], stamp: str
+    ) -> None:
         if "quantity" in payload and str(payload.get("quantity") or "") != "":
             row["quantity"] = f"{_parse_value(payload['quantity']):g}"
         if "unit" in payload:
@@ -990,9 +1016,10 @@ class ExpenseStore:
         quotations: list[dict[str, Any]] = []
         ids: set[str] = set()
         for index, item in enumerate(raw, start=1):
-            quotation_id = str(
-                item.get("id") if isinstance(item, dict) else ""
-            ).strip() or f"QUOTE_{index:03d}"
+            quotation_id = (
+                str(item.get("id") if isinstance(item, dict) else "").strip()
+                or f"QUOTE_{index:03d}"
+            )
             if quotation_id in ids:
                 raise ValueError(f"duplicate quotation id: {quotation_id}")
             ids.add(quotation_id)
@@ -1044,13 +1071,22 @@ class ExpenseStore:
             raise ValueError(
                 "default_expected_quantity must be a finite positive number"
             )
-        record_type = str(payload.get("record_type") or ("material" if category == "Material" else "service")).strip()
+        record_type = str(
+            payload.get("record_type")
+            or ("material" if category == "Material" else "service")
+        ).strip()
         if record_type not in {"material", "service"}:
             raise ValueError("record_type must be material or service")
         provider_id = str(payload.get("provider_id") or "").strip()
         raw_contract_ids = payload.get("contract_ids")
         contract_ids = (
-            list(dict.fromkeys(str(value).strip() for value in raw_contract_ids if str(value).strip()))
+            list(
+                dict.fromkeys(
+                    str(value).strip()
+                    for value in raw_contract_ids
+                    if str(value).strip()
+                )
+            )
             if isinstance(raw_contract_ids, list)
             else []
         )
@@ -1102,9 +1138,7 @@ class ExpenseStore:
                             "updated_at": stamp,
                         }
                     )
-                    self._apply_payment_payload(
-                        row, payload, row_index, len(rows)
-                    )
+                    self._apply_payment_payload(row, payload, row_index, len(rows))
                     self._apply_quotation_payload(row, payload)
                     break
             else:
@@ -1131,21 +1165,15 @@ class ExpenseStore:
                     "updated_at": stamp,
                 }
             )
-            self._apply_payment_payload(
-                row, payload, len(rows), len(rows) + 1
-            )
+            self._apply_payment_payload(row, payload, len(rows), len(rows) + 1)
             self._apply_quotation_payload(row, payload)
             rows.append(row)
         self._write_rows(rows)
         return {"ok": True, "expense_id": expense_id, "state": self.state()}
 
     @staticmethod
-    def _expense_row(
-        rows: list[dict[str, str]], expense_id: str
-    ) -> dict[str, str]:
-        target = next(
-            (row for row in rows if row.get("id") == expense_id), None
-        )
+    def _expense_row(rows: list[dict[str, str]], expense_id: str) -> dict[str, str]:
+        target = next((row for row in rows if row.get("id") == expense_id), None)
         if target is None:
             raise ValueError(f"expense not found: {expense_id}")
         return target
@@ -1178,9 +1206,7 @@ class ExpenseStore:
                 if quotation_id:
                     raise ValueError(f"quotation not found: {quotation_id}")
                 quotation_id = self._next_quotation_id(quotations)
-                quotation = self._validate_quotation(
-                    payload, row, quotation_id
-                )
+                quotation = self._validate_quotation(payload, row, quotation_id)
                 quotations.append(quotation)
             else:
                 merged = {**current, **payload}
@@ -1201,9 +1227,8 @@ class ExpenseStore:
                 row["baseline_quotation_id"] = quotation_id
             with coordinated_write([self.quotation_store.path, self.csv_path]):
                 self._store_quotations(row, quotations)
-                if (
-                    row.get("selected_quotation_id") == quotation_id
-                    or bool(payload.get("selected"))
+                if row.get("selected_quotation_id") == quotation_id or bool(
+                    payload.get("selected")
                 ):
                     self._project_quotation(row, quotation)
                     self._sync_payment_total(row)
@@ -1215,9 +1240,7 @@ class ExpenseStore:
             "state": self.state(),
         }
 
-    def select_quotation(
-        self, expense_id: str, quotation_id: str
-    ) -> dict[str, Any]:
+    def select_quotation(self, expense_id: str, quotation_id: str) -> dict[str, Any]:
         expense_id = str(expense_id or "").strip()
         quotation_id = str(quotation_id or "").strip()
         with self._lock:
@@ -1229,21 +1252,18 @@ class ExpenseStore:
             )
             if quotation is None:
                 raise ValueError(f"quotation not found: {quotation_id}")
-            if quotation.get("archived") or quotation.get(
-                "response_status"
-            ) not in {"received", "accepted"}:
-                raise ValueError(
-                    "only active received quotations can be selected"
-                )
+            if quotation.get("archived") or quotation.get("response_status") not in {
+                "received",
+                "accepted",
+            }:
+                raise ValueError("only active received quotations can be selected")
             self._project_quotation(row, quotation)
             self._sync_payment_total(row)
             row["updated_at"] = now_stamp()
             self._write_rows(rows)
         return {**self.quotation_state(expense_id), "state": self.state()}
 
-    def delete_quotation(
-        self, expense_id: str, quotation_id: str
-    ) -> dict[str, Any]:
+    def delete_quotation(self, expense_id: str, quotation_id: str) -> dict[str, Any]:
         expense_id = str(expense_id or "").strip()
         quotation_id = str(quotation_id or "").strip()
         with self._lock:
@@ -1359,18 +1379,14 @@ class ExpenseStore:
                     and not target.get("baseline_quotation_id")
                     and quotations
                 ):
-                    target["baseline_quotation_id"] = str(
-                        quotations[0].get("id") or ""
-                    )
+                    target["baseline_quotation_id"] = str(quotations[0].get("id") or "")
                 if expense_id in selected:
                     self._project_quotation(target, selected[expense_id])
                     self._sync_payment_total(target)
                 target["updated_at"] = stamp
             updated_ids = list(prepared)
             if updated_ids:
-                with coordinated_write(
-                    [self.quotation_store.path, self.csv_path]
-                ):
+                with coordinated_write([self.quotation_store.path, self.csv_path]):
                     self.quotation_store.replace_many(prepared)
                     self._write_rows(rows)
         return {
