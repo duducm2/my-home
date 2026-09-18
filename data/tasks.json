@@ -10,7 +10,12 @@
       "start_date": "2026-09-16",
       "end_date": "2026-09-18",
       "status": "pending",
-      "expense_allocations": [],
+      "expense_allocations": [
+        {
+          "expense_id": "EXP_0001",
+          "expected_quantity": 1.0
+        }
+      ],
       "icon_key": "down-payment",
       "icon_mode": "auto",
       "date_status": "estimated",
@@ -32,7 +37,16 @@
       "start_date": "2026-09-19",
       "end_date": "2026-09-20",
       "status": "pending",
-      "expense_allocations": [],
+      "expense_allocations": [
+        {
+          "expense_id": "EXP_0002",
+          "expected_quantity": 1.0
+        },
+        {
+          "expense_id": "EXP_0003",
+          "expected_quantity": 1.0
+        }
+      ],
       "icon_key": "notary-services",
       "icon_mode": "auto",
       "date_status": "confirmed",
@@ -76,7 +90,12 @@
       "start_date": "2026-09-25",
       "end_date": "2026-09-27",
       "status": "pending",
-      "expense_allocations": [],
+      "expense_allocations": [
+        {
+          "expense_id": "EXP_0008",
+          "expected_quantity": 1.0
+        }
+      ],
       "icon_key": "mortgage-contract",
       "icon_mode": "auto",
       "date_status": "estimated",
@@ -98,7 +117,12 @@
       "start_date": "2026-09-28",
       "end_date": "2026-09-30",
       "status": "pending",
-      "expense_allocations": [],
+      "expense_allocations": [
+        {
+          "expense_id": "EXP_0004",
+          "expected_quantity": 1.0
+        }
+      ],
       "icon_key": "mortgage-contract",
       "icon_mode": "auto",
       "date_status": "estimated",
@@ -120,7 +144,12 @@
       "start_date": "2026-10-01",
       "end_date": "2026-10-03",
       "status": "pending",
-      "expense_allocations": [],
+      "expense_allocations": [
+        {
+          "expense_id": "EXP_0011",
+          "expected_quantity": 1.0
+        }
+      ],
       "icon_key": "mortgage-contract",
       "icon_mode": "auto",
       "date_status": "estimated",
@@ -164,7 +193,16 @@
       "start_date": "2026-10-07",
       "end_date": "2026-10-09",
       "status": "pending",
-      "expense_allocations": [],
+      "expense_allocations": [
+        {
+          "expense_id": "EXP_0005",
+          "expected_quantity": 1.0
+        },
+        {
+          "expense_id": "EXP_0009",
+          "expected_quantity": 1.0
+        }
+      ],
       "icon_key": "moving-service",
       "icon_mode": "auto",
       "date_status": "estimated",
@@ -231,7 +269,16 @@
       "start_date": "2026-10-16",
       "end_date": "2026-10-18",
       "status": "pending",
-      "expense_allocations": [],
+      "expense_allocations": [
+        {
+          "expense_id": "EXP_0022",
+          "expected_quantity": 3.0
+        },
+        {
+          "expense_id": "EXP_0020",
+          "expected_quantity": 1.0
+        }
+      ],
       "icon_key": "demolition",
       "icon_mode": "auto",
       "date_status": "estimated",
@@ -253,7 +300,12 @@
       "start_date": "2026-10-19",
       "end_date": "2026-10-21",
       "status": "pending",
-      "expense_allocations": [],
+      "expense_allocations": [
+        {
+          "expense_id": "EXP_0014",
+          "expected_quantity": 2.0
+        }
+      ],
       "icon_key": "waterproofing-additive",
       "icon_mode": "auto",
       "date_status": "estimated",
@@ -298,7 +350,12 @@
       "start_date": "2026-10-25",
       "end_date": "2026-10-27",
       "status": "pending",
-      "expense_allocations": [],
+      "expense_allocations": [
+        {
+          "expense_id": "EXP_0014",
+          "expected_quantity": 2.0
+        }
+      ],
       "icon_key": "waterproofing-additive",
       "icon_mode": "auto",
       "date_status": "estimated",
@@ -320,7 +377,12 @@
       "start_date": "2026-10-28",
       "end_date": "2026-10-30",
       "status": "pending",
-      "expense_allocations": [],
+      "expense_allocations": [
+        {
+          "expense_id": "EXP_0014",
+          "expected_quantity": 2.0
+        }
+      ],
       "icon_key": "waterproofing-additive",
       "icon_mode": "auto",
       "date_status": "estimated",
@@ -342,7 +404,12 @@
       "start_date": "2026-10-31",
       "end_date": "2026-11-02",
       "status": "pending",
-      "expense_allocations": [],
+      "expense_allocations": [
+        {
+          "expense_id": "EXP_0024",
+          "expected_quantity": 138.0
+        }
+      ],
       "icon_key": "grout",
       "icon_mode": "auto",
       "date_status": "estimated",
@@ -364,7 +431,20 @@
       "start_date": "2026-11-03",
       "end_date": "2026-11-05",
       "status": "pending",
-      "expense_allocations": [],
+      "expense_allocations": [
+        {
+          "expense_id": "EXP_0014",
+          "expected_quantity": 2.0
+        },
+        {
+          "expense_id": "EXP_0015",
+          "expected_quantity": 6.0
+        },
+        {
+          "expense_id": "EXP_0016",
+          "expected_quantity": 40.0
+        }
+      ],
       "icon_key": "mortgage-contract",
       "icon_mode": "auto",
       "date_status": "estimated",
@@ -386,7 +466,16 @@
       "start_date": "2026-11-06",
       "end_date": "2026-11-08",
       "status": "pending",
-      "expense_allocations": [],
+      "expense_allocations": [
+        {
+          "expense_id": "EXP_0015",
+          "expected_quantity": 6.0
+        },
+        {
+          "expense_id": "EXP_0016",
+          "expected_quantity": 40.0
+        }
+      ],
       "icon_key": "porcelain-tiles",
       "icon_mode": "auto",
       "date_status": "estimated",
@@ -430,7 +519,12 @@
       "start_date": "2026-11-12",
       "end_date": "2026-11-14",
       "status": "pending",
-      "expense_allocations": [],
+      "expense_allocations": [
+        {
+          "expense_id": "EXP_0017",
+          "expected_quantity": 935.08
+        }
+      ],
       "icon_key": "roof-tiles",
       "icon_mode": "auto",
       "date_status": "estimated",
@@ -452,7 +546,16 @@
       "start_date": "2026-11-15",
       "end_date": "2026-11-17",
       "status": "pending",
-      "expense_allocations": [],
+      "expense_allocations": [
+        {
+          "expense_id": "EXP_0042",
+          "expected_quantity": 54.1134
+        },
+        {
+          "expense_id": "EXP_0043",
+          "expected_quantity": 24.0
+        }
+      ],
       "icon_key": "roof-tiles",
       "icon_mode": "auto",
       "date_status": "estimated",
@@ -565,7 +668,16 @@
       "start_date": "2026-11-30",
       "end_date": "2026-12-02",
       "status": "pending",
-      "expense_allocations": [],
+      "expense_allocations": [
+        {
+          "expense_id": "EXP_0019",
+          "expected_quantity": 800.0
+        },
+        {
+          "expense_id": "EXP_0021",
+          "expected_quantity": 15.0
+        }
+      ],
       "icon_key": "mortgage-contract",
       "icon_mode": "auto",
       "date_status": "estimated",
@@ -588,7 +700,12 @@
       "start_date": "2026-12-03",
       "end_date": "2026-12-05",
       "status": "pending",
-      "expense_allocations": [],
+      "expense_allocations": [
+        {
+          "expense_id": "EXP_0032",
+          "expected_quantity": 1.0
+        }
+      ],
       "icon_key": "electrician-service",
       "icon_mode": "auto",
       "date_status": "estimated",
@@ -632,7 +749,12 @@
       "start_date": "2026-12-09",
       "end_date": "2026-12-11",
       "status": "pending",
-      "expense_allocations": [],
+      "expense_allocations": [
+        {
+          "expense_id": "EXP_0033",
+          "expected_quantity": 1.0
+        }
+      ],
       "icon_key": "breaker-panel",
       "icon_mode": "auto",
       "date_status": "estimated",
@@ -742,7 +864,12 @@
       "start_date": "2026-12-24",
       "end_date": "2026-12-26",
       "status": "pending",
-      "expense_allocations": [],
+      "expense_allocations": [
+        {
+          "expense_id": "EXP_0034",
+          "expected_quantity": 126.4
+        }
+      ],
       "icon_key": "conduit",
       "icon_mode": "auto",
       "date_status": "estimated",
@@ -764,7 +891,12 @@
       "start_date": "2026-12-27",
       "end_date": "2026-12-29",
       "status": "pending",
-      "expense_allocations": [],
+      "expense_allocations": [
+        {
+          "expense_id": "EXP_0038",
+          "expected_quantity": 24.0
+        }
+      ],
       "icon_key": "electrician-service",
       "icon_mode": "auto",
       "date_status": "estimated",
@@ -786,7 +918,12 @@
       "start_date": "2026-12-30",
       "end_date": "2027-01-01",
       "status": "pending",
-      "expense_allocations": [],
+      "expense_allocations": [
+        {
+          "expense_id": "EXP_0038",
+          "expected_quantity": 24.0
+        }
+      ],
       "icon_key": "electrician-service",
       "icon_mode": "auto",
       "date_status": "estimated",
@@ -830,7 +967,12 @@
       "start_date": "2027-08-08",
       "end_date": "2027-08-10",
       "status": "pending",
-      "expense_allocations": [],
+      "expense_allocations": [
+        {
+          "expense_id": "EXP_0022",
+          "expected_quantity": 3.0
+        }
+      ],
       "icon_key": "demolition",
       "icon_mode": "auto",
       "date_status": "estimated",
@@ -852,7 +994,12 @@
       "start_date": "2027-08-11",
       "end_date": "2027-08-13",
       "status": "pending",
-      "expense_allocations": [],
+      "expense_allocations": [
+        {
+          "expense_id": "EXP_0015",
+          "expected_quantity": 6.0
+        }
+      ],
       "icon_key": "porcelain-tiles",
       "icon_mode": "auto",
       "date_status": "estimated",
@@ -874,7 +1021,12 @@
       "start_date": "2027-08-14",
       "end_date": "2027-08-16",
       "status": "pending",
-      "expense_allocations": [],
+      "expense_allocations": [
+        {
+          "expense_id": "EXP_0017",
+          "expected_quantity": 935.08
+        }
+      ],
       "icon_key": "roof-tiles",
       "icon_mode": "auto",
       "date_status": "estimated",
@@ -896,7 +1048,12 @@
       "start_date": "2027-08-17",
       "end_date": "2027-08-19",
       "status": "pending",
-      "expense_allocations": [],
+      "expense_allocations": [
+        {
+          "expense_id": "EXP_0042",
+          "expected_quantity": 54.1134
+        }
+      ],
       "icon_key": "roof-tiles",
       "icon_mode": "auto",
       "date_status": "estimated",
@@ -962,7 +1119,12 @@
       "start_date": "2027-01-05",
       "end_date": "2027-01-09",
       "status": "pending",
-      "expense_allocations": [],
+      "expense_allocations": [
+        {
+          "expense_id": "EXP_0044",
+          "expected_quantity": 1.0
+        }
+      ],
       "icon_key": "plumbing-pipes",
       "icon_mode": "auto",
       "date_status": "estimated",
@@ -984,7 +1146,12 @@
       "start_date": "2027-01-10",
       "end_date": "2027-01-14",
       "status": "pending",
-      "expense_allocations": [],
+      "expense_allocations": [
+        {
+          "expense_id": "EXP_0037",
+          "expected_quantity": 8.0
+        }
+      ],
       "icon_key": "plumbing-pipes",
       "icon_mode": "auto",
       "date_status": "estimated",
@@ -1006,7 +1173,12 @@
       "start_date": "2027-01-15",
       "end_date": "2027-01-19",
       "status": "pending",
-      "expense_allocations": [],
+      "expense_allocations": [
+        {
+          "expense_id": "EXP_0036",
+          "expected_quantity": 6.0
+        }
+      ],
       "icon_key": "masonry-work",
       "icon_mode": "auto",
       "date_status": "estimated",
@@ -1050,7 +1222,12 @@
       "start_date": "2027-01-25",
       "end_date": "2027-01-29",
       "status": "pending",
-      "expense_allocations": [],
+      "expense_allocations": [
+        {
+          "expense_id": "EXP_0028",
+          "expected_quantity": 2.0
+        }
+      ],
       "icon_key": "plumbing-pipes",
       "icon_mode": "auto",
       "date_status": "estimated",
@@ -1072,7 +1249,12 @@
       "start_date": "2027-01-30",
       "end_date": "2027-02-03",
       "status": "pending",
-      "expense_allocations": [],
+      "expense_allocations": [
+        {
+          "expense_id": "EXP_0037",
+          "expected_quantity": 8.0
+        }
+      ],
       "icon_key": "drains",
       "icon_mode": "auto",
       "date_status": "estimated",
@@ -1116,7 +1298,12 @@
       "start_date": "2027-02-09",
       "end_date": "2027-02-13",
       "status": "pending",
-      "expense_allocations": [],
+      "expense_allocations": [
+        {
+          "expense_id": "EXP_0014",
+          "expected_quantity": 2.0
+        }
+      ],
       "icon_key": "waterproofing-additive",
       "icon_mode": "auto",
       "date_status": "estimated",
@@ -1138,7 +1325,12 @@
       "start_date": "2027-02-14",
       "end_date": "2027-02-18",
       "status": "pending",
-      "expense_allocations": [],
+      "expense_allocations": [
+        {
+          "expense_id": "EXP_0031",
+          "expected_quantity": 2.0
+        }
+      ],
       "icon_key": "window",
       "icon_mode": "auto",
       "date_status": "estimated",
@@ -1160,7 +1352,12 @@
       "start_date": "2027-02-19",
       "end_date": "2027-02-23",
       "status": "pending",
-      "expense_allocations": [],
+      "expense_allocations": [
+        {
+          "expense_id": "EXP_0030",
+          "expected_quantity": 1.0
+        }
+      ],
       "icon_key": "bathroom-window",
       "icon_mode": "auto",
       "date_status": "estimated",
@@ -1270,7 +1467,12 @@
       "start_date": "2027-03-16",
       "end_date": "2027-03-20",
       "status": "pending",
-      "expense_allocations": [],
+      "expense_allocations": [
+        {
+          "expense_id": "EXP_0014",
+          "expected_quantity": 2.0
+        }
+      ],
       "icon_key": "waterproofing-additive",
       "icon_mode": "auto",
       "date_status": "estimated",
@@ -1292,7 +1494,20 @@
       "start_date": "2027-03-21",
       "end_date": "2027-03-25",
       "status": "pending",
-      "expense_allocations": [],
+      "expense_allocations": [
+        {
+          "expense_id": "EXP_0023",
+          "expected_quantity": 115.0
+        },
+        {
+          "expense_id": "EXP_0024",
+          "expected_quantity": 138.0
+        },
+        {
+          "expense_id": "EXP_0025",
+          "expected_quantity": 40.25
+        }
+      ],
       "icon_key": "porcelain-tiles",
       "icon_mode": "auto",
       "date_status": "estimated",
@@ -1314,7 +1529,12 @@
       "start_date": "2027-03-26",
       "end_date": "2027-03-30",
       "status": "pending",
-      "expense_allocations": [],
+      "expense_allocations": [
+        {
+          "expense_id": "EXP_0023",
+          "expected_quantity": 115.0
+        }
+      ],
       "icon_key": "masonry-work",
       "icon_mode": "auto",
       "date_status": "estimated",
@@ -1358,7 +1578,16 @@
       "start_date": "2027-04-05",
       "end_date": "2027-04-09",
       "status": "pending",
-      "expense_allocations": [],
+      "expense_allocations": [
+        {
+          "expense_id": "EXP_0026",
+          "expected_quantity": 6.0
+        },
+        {
+          "expense_id": "EXP_0029",
+          "expected_quantity": 5.0
+        }
+      ],
       "icon_key": "window",
       "icon_mode": "auto",
       "date_status": "estimated",
@@ -1380,7 +1609,12 @@
       "start_date": "2027-04-10",
       "end_date": "2027-04-14",
       "status": "pending",
-      "expense_allocations": [],
+      "expense_allocations": [
+        {
+          "expense_id": "EXP_0027",
+          "expected_quantity": 1.0
+        }
+      ],
       "icon_key": "sliding-door",
       "icon_mode": "auto",
       "date_status": "estimated",
@@ -1402,7 +1636,16 @@
       "start_date": "2027-04-15",
       "end_date": "2027-04-19",
       "status": "pending",
-      "expense_allocations": [],
+      "expense_allocations": [
+        {
+          "expense_id": "EXP_0036",
+          "expected_quantity": 6.0
+        },
+        {
+          "expense_id": "EXP_0039",
+          "expected_quantity": 2.0
+        }
+      ],
       "icon_key": "plumbing-pipes",
       "icon_mode": "auto",
       "date_status": "estimated",
@@ -1490,7 +1733,12 @@
       "start_date": "2027-05-05",
       "end_date": "2027-05-09",
       "status": "pending",
-      "expense_allocations": [],
+      "expense_allocations": [
+        {
+          "expense_id": "EXP_0037",
+          "expected_quantity": 8.0
+        }
+      ],
       "icon_key": "drains",
       "icon_mode": "auto",
       "date_status": "estimated",
@@ -1512,7 +1760,12 @@
       "start_date": "2027-05-10",
       "end_date": "2027-05-14",
       "status": "pending",
-      "expense_allocations": [],
+      "expense_allocations": [
+        {
+          "expense_id": "EXP_0038",
+          "expected_quantity": 24.0
+        }
+      ],
       "icon_key": "electrician-service",
       "icon_mode": "auto",
       "date_status": "estimated",
@@ -1556,7 +1809,16 @@
       "start_date": "2027-05-20",
       "end_date": "2027-05-24",
       "status": "pending",
-      "expense_allocations": [],
+      "expense_allocations": [
+        {
+          "expense_id": "EXP_0032",
+          "expected_quantity": 1.0
+        },
+        {
+          "expense_id": "EXP_0035",
+          "expected_quantity": 12.0
+        }
+      ],
       "icon_key": "electrician-service",
       "icon_mode": "auto",
       "date_status": "estimated",
@@ -1622,7 +1884,24 @@
       "start_date": "2027-08-26",
       "end_date": "2027-08-30",
       "status": "pending",
-      "expense_allocations": [],
+      "expense_allocations": [
+        {
+          "expense_id": "EXP_0023",
+          "expected_quantity": 115.0
+        },
+        {
+          "expense_id": "EXP_0024",
+          "expected_quantity": 138.0
+        },
+        {
+          "expense_id": "EXP_0025",
+          "expected_quantity": 40.25
+        },
+        {
+          "expense_id": "EXP_0041",
+          "expected_quantity": 28.4422
+        }
+      ],
       "icon_key": "porcelain-tiles",
       "icon_mode": "auto",
       "date_status": "estimated",
@@ -1644,7 +1923,20 @@
       "start_date": "2027-08-31",
       "end_date": "2027-09-04",
       "status": "pending",
-      "expense_allocations": [],
+      "expense_allocations": [
+        {
+          "expense_id": "EXP_0013",
+          "expected_quantity": 1.0
+        },
+        {
+          "expense_id": "EXP_0019",
+          "expected_quantity": 800.0
+        },
+        {
+          "expense_id": "EXP_0049",
+          "expected_quantity": 60.672
+        }
+      ],
       "icon_key": "roof-tiles",
       "icon_mode": "auto",
       "date_status": "estimated",
@@ -1666,7 +1958,20 @@
       "start_date": "2027-09-05",
       "end_date": "2027-09-09",
       "status": "pending",
-      "expense_allocations": [],
+      "expense_allocations": [
+        {
+          "expense_id": "EXP_0026",
+          "expected_quantity": 6.0
+        },
+        {
+          "expense_id": "EXP_0039",
+          "expected_quantity": 2.0
+        },
+        {
+          "expense_id": "EXP_0040",
+          "expected_quantity": 2.0
+        }
+      ],
       "icon_key": "window",
       "icon_mode": "auto",
       "date_status": "estimated",
@@ -1688,7 +1993,24 @@
       "start_date": "2027-09-10",
       "end_date": "2027-09-14",
       "status": "pending",
-      "expense_allocations": [],
+      "expense_allocations": [
+        {
+          "expense_id": "EXP_0028",
+          "expected_quantity": 2.0
+        },
+        {
+          "expense_id": "EXP_0039",
+          "expected_quantity": 2.0
+        },
+        {
+          "expense_id": "EXP_0040",
+          "expected_quantity": 2.0
+        },
+        {
+          "expense_id": "EXP_0031",
+          "expected_quantity": 2.0
+        }
+      ],
       "icon_key": "plumbing-pipes",
       "icon_mode": "auto",
       "date_status": "estimated",
@@ -1710,7 +2032,12 @@
       "start_date": "2027-09-15",
       "end_date": "2027-09-19",
       "status": "pending",
-      "expense_allocations": [],
+      "expense_allocations": [
+        {
+          "expense_id": "EXP_0027",
+          "expected_quantity": 1.0
+        }
+      ],
       "icon_key": "sliding-door",
       "icon_mode": "auto",
       "date_status": "estimated",
@@ -1732,7 +2059,12 @@
       "start_date": "2027-09-20",
       "end_date": "2027-09-24",
       "status": "pending",
-      "expense_allocations": [],
+      "expense_allocations": [
+        {
+          "expense_id": "EXP_0029",
+          "expected_quantity": 5.0
+        }
+      ],
       "icon_key": "window",
       "icon_mode": "auto",
       "date_status": "estimated",
@@ -1754,7 +2086,12 @@
       "start_date": "2027-09-25",
       "end_date": "2027-09-29",
       "status": "pending",
-      "expense_allocations": [],
+      "expense_allocations": [
+        {
+          "expense_id": "EXP_0026",
+          "expected_quantity": 6.0
+        }
+      ],
       "icon_key": "interior-door",
       "icon_mode": "auto",
       "date_status": "estimated",
@@ -1798,7 +2135,16 @@
       "start_date": "2027-10-05",
       "end_date": "2027-10-09",
       "status": "pending",
-      "expense_allocations": [],
+      "expense_allocations": [
+        {
+          "expense_id": "EXP_0034",
+          "expected_quantity": 126.4
+        },
+        {
+          "expense_id": "EXP_0038",
+          "expected_quantity": 24.0
+        }
+      ],
       "icon_key": "conduit",
       "icon_mode": "auto",
       "date_status": "estimated",
@@ -1820,7 +2166,12 @@
       "start_date": "2027-10-10",
       "end_date": "2027-10-14",
       "status": "pending",
-      "expense_allocations": [],
+      "expense_allocations": [
+        {
+          "expense_id": "EXP_0045",
+          "expected_quantity": 1.0
+        }
+      ],
       "icon_key": "roof-tiles",
       "icon_mode": "auto",
       "date_status": "estimated",
@@ -1842,7 +2193,12 @@
       "start_date": "2027-06-04",
       "end_date": "2027-06-08",
       "status": "pending",
-      "expense_allocations": [],
+      "expense_allocations": [
+        {
+          "expense_id": "EXP_0046",
+          "expected_quantity": 2.0
+        }
+      ],
       "icon_key": "painter-service",
       "icon_mode": "auto",
       "date_status": "estimated",
@@ -1864,7 +2220,12 @@
       "start_date": "2027-06-09",
       "end_date": "2027-06-13",
       "status": "pending",
-      "expense_allocations": [],
+      "expense_allocations": [
+        {
+          "expense_id": "EXP_0046",
+          "expected_quantity": 2.0
+        }
+      ],
       "icon_key": "painter-service",
       "icon_mode": "auto",
       "date_status": "estimated",
@@ -1886,7 +2247,12 @@
       "start_date": "2027-06-14",
       "end_date": "2027-06-18",
       "status": "pending",
-      "expense_allocations": [],
+      "expense_allocations": [
+        {
+          "expense_id": "EXP_0041",
+          "expected_quantity": 28.4422
+        }
+      ],
       "icon_key": "painter-service",
       "icon_mode": "auto",
       "date_status": "estimated",
@@ -1908,7 +2274,16 @@
       "start_date": "2027-06-19",
       "end_date": "2027-06-23",
       "status": "pending",
-      "expense_allocations": [],
+      "expense_allocations": [
+        {
+          "expense_id": "EXP_0047",
+          "expected_quantity": 4.0
+        },
+        {
+          "expense_id": "EXP_0048",
+          "expected_quantity": 3.0
+        }
+      ],
       "icon_key": "painter-service",
       "icon_mode": "auto",
       "date_status": "estimated",
@@ -1930,7 +2305,12 @@
       "start_date": "2027-06-24",
       "end_date": "2027-06-28",
       "status": "pending",
-      "expense_allocations": [],
+      "expense_allocations": [
+        {
+          "expense_id": "EXP_0048",
+          "expected_quantity": 3.0
+        }
+      ],
       "icon_key": "window",
       "icon_mode": "auto",
       "date_status": "estimated",
@@ -1952,7 +2332,16 @@
       "start_date": "2027-06-29",
       "end_date": "2027-07-03",
       "status": "pending",
-      "expense_allocations": [],
+      "expense_allocations": [
+        {
+          "expense_id": "EXP_0036",
+          "expected_quantity": 6.0
+        },
+        {
+          "expense_id": "EXP_0028",
+          "expected_quantity": 2.0
+        }
+      ],
       "icon_key": "painter-service",
       "icon_mode": "auto",
       "date_status": "estimated",
@@ -1974,7 +2363,12 @@
       "start_date": "2027-07-04",
       "end_date": "2027-07-08",
       "status": "pending",
-      "expense_allocations": [],
+      "expense_allocations": [
+        {
+          "expense_id": "EXP_0035",
+          "expected_quantity": 12.0
+        }
+      ],
       "icon_key": "light-bulbs",
       "icon_mode": "auto",
       "date_status": "estimated",
@@ -1996,7 +2390,12 @@
       "start_date": "2027-07-09",
       "end_date": "2027-07-13",
       "status": "pending",
-      "expense_allocations": [],
+      "expense_allocations": [
+        {
+          "expense_id": "EXP_0047",
+          "expected_quantity": 4.0
+        }
+      ],
       "icon_key": "painter-service",
       "icon_mode": "auto",
       "date_status": "estimated",
@@ -2018,7 +2417,12 @@
       "start_date": "2027-07-14",
       "end_date": "2027-07-18",
       "status": "pending",
-      "expense_allocations": [],
+      "expense_allocations": [
+        {
+          "expense_id": "EXP_0049",
+          "expected_quantity": 60.672
+        }
+      ],
       "icon_key": "cleaning-service",
       "icon_mode": "auto",
       "date_status": "estimated",
@@ -2040,7 +2444,12 @@
       "start_date": "2027-07-19",
       "end_date": "2027-07-23",
       "status": "pending",
-      "expense_allocations": [],
+      "expense_allocations": [
+        {
+          "expense_id": "EXP_0005",
+          "expected_quantity": 1.0
+        }
+      ],
       "icon_key": "moving-service",
       "icon_mode": "auto",
       "date_status": "estimated",
@@ -2150,7 +2559,12 @@
       "start_date": "2026-09-16",
       "end_date": "2026-10-16",
       "status": "pending",
-      "expense_allocations": [],
+      "expense_allocations": [
+        {
+          "expense_id": "EXP_0003",
+          "expected_quantity": 1.0
+        }
+      ],
       "icon_key": "home-rent",
       "icon_mode": "manual",
       "date_status": "confirmed",

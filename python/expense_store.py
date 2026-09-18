@@ -691,6 +691,23 @@ class ExpenseStore:
             2,
         )
 
+    @staticmethod
+    def _median_unit_price(quotations: list[dict[str, Any]]) -> float | None:
+        prices = [
+            float(quote["unit_price"])
+            for quote in quotations
+            if not quote.get("archived")
+            and quote.get("unit_price") is not None
+            and math.isfinite(float(quote.get("unit_price") or 0))
+        ]
+        if not prices:
+            return None
+        ordered = sorted(prices)
+        mid = len(ordered) // 2
+        if len(ordered) % 2:
+            return round(ordered[mid], 4)
+        return round((ordered[mid - 1] + ordered[mid]) / 2, 4)
+
     def _scenario(
         self,
         row: dict[str, str],
@@ -845,17 +862,31 @@ class ExpenseStore:
                 ]
             )
         )
+        record_type = row.get("record_type") or (
+            "material" if row.get("category") == "Material" else "service"
+        )
+        median_unit_price = self._median_unit_price(quotations)
+        quantity = scenario["expected_quantity"]
+        planned = float(scenario["planned"] or 0.0)
+        if record_type == "material":
+            forecast_total = (
+                round(float(median_unit_price) * float(quantity or 0), 2)
+                if median_unit_price is not None
+                else round(planned, 2)
+            )
+        else:
+            forecast_total = round(planned, 2)
         return {
             "id": row.get("id", ""),
-            "record_type": row.get("record_type") or ("material" if row.get("category") == "Material" else "service"),
+            "record_type": record_type,
             "category": row.get("category", ""),
             "description": row.get("description", ""),
             "icon_key": row.get("icon_key") or self._default_icon_key(row.get("category", "")),
-            "value": scenario["planned"] or 0.0,
+            "value": planned,
             "payments": self._projected_payments(
                 row, scenario, quotations, allocations
             ),
-            "quantity": scenario["expected_quantity"],
+            "quantity": quantity,
             "default_expected_quantity": _parse_value(
                 row.get("default_expected_quantity") or 1
             ),
@@ -863,6 +894,8 @@ class ExpenseStore:
             "unit_price": (
                 float(planned_quote["unit_price"]) if planned_quote else None
             ),
+            "median_unit_price": median_unit_price,
+            "forecast_total": forecast_total,
             "vendor": str((planned_quote or {}).get("vendor") or ""),
             "product_url": str((planned_quote or {}).get("product_url") or ""),
             "price_checked_at": str((planned_quote or {}).get("checked_at") or ""),
@@ -899,6 +932,7 @@ class ExpenseStore:
         by_category: dict[str, float] = {}
         by_category_scenarios: dict[str, dict[str, float]] = {}
         materials = services = total = minimum = maximum = 0.0
+        forecast_materials = forecast_services = 0.0
         unpriced = 0
         for expense in expenses:
             value = float(expense["value"])
@@ -914,14 +948,20 @@ class ExpenseStore:
             scenarios["planned"] += value
             scenarios["minimum"] += float(expense["scenario"]["minimum"] or 0)
             scenarios["maximum"] += float(expense["scenario"]["maximum"] or 0)
+            forecast_value = float(expense.get("forecast_total") or 0)
             if expense.get("record_type") == "material":
                 materials += value
+                forecast_materials += forecast_value
             else:
                 services += value
+                forecast_services += forecast_value
         return {
             "all": round(total, 2),
             "materials": round(materials, 2),
             "services": round(services, 2),
+            "forecast_all": round(forecast_materials + forecast_services, 2),
+            "forecast_materials": round(forecast_materials, 2),
+            "forecast_services": round(forecast_services, 2),
             "by_category": {key: round(value, 2) for key, value in sorted(by_category.items())},
             "scenarios": {
                 "planned": round(total, 2),
@@ -935,6 +975,16 @@ class ExpenseStore:
             },
         }
 
+    def _load_budget_forecast(self) -> dict[str, Any] | None:
+        path = self.data_dir / "budget-forecast.json"
+        if not path.is_file():
+            return None
+        try:
+            payload = json.loads(path.read_text(encoding="utf-8-sig"))
+        except (OSError, json.JSONDecodeError):
+            return None
+        return payload if isinstance(payload, dict) else None
+
     def state(self) -> dict[str, Any]:
         expenses = self.list_expenses()
         manifest = self._icon_manifest()
@@ -943,6 +993,7 @@ class ExpenseStore:
             "expenses": expenses,
             "totals": self._totals(expenses),
             "materials": [item for item in expenses if item["record_type"] == "material"],
+            "budget_forecast": self._load_budget_forecast(),
             "icon_catalog": {
                 "defaults": manifest.get("defaults", {}),
                 "icons": manifest.get("icons", {}),

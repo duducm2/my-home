@@ -18,6 +18,7 @@
       by_priority: {},
     },
     materials: [],
+    budgetForecast: null,
     iconCatalog: { defaults: {}, icons: {} },
     house: null,
     project: null,
@@ -74,6 +75,11 @@
     dashTotalMinimum: $("dash-total-minimum"),
     dashTotalMaximum: $("dash-total-maximum"),
     dashUnpricedCount: $("dash-unpriced-count"),
+    dashForecastAll: $("dash-forecast-all"),
+    dashForecastMaterials: $("dash-forecast-materials"),
+    dashForecastServices: $("dash-forecast-services"),
+    dashForecastTopMaterials: $("dash-forecast-top-materials"),
+    dashForecastCaveat: $("dash-forecast-caveat"),
     fundsTotal: $("funds-total"),
     fundsFgtsValue: $("funds-fgts-value"),
     fundsFlexibleValue: $("funds-flexible-value"),
@@ -1244,6 +1250,44 @@
       state.totals.scenarios?.maximum || 0,
     );
     els.dashUnpricedCount.textContent = `${state.totals.scenarios?.unpriced_count || 0} sem cotação`;
+    const forecastAll = Number(state.totals.forecast_all || 0);
+    const forecastMaterials = Number(state.totals.forecast_materials || 0);
+    const forecastServices = Number(state.totals.forecast_services || 0);
+    els.dashForecastAll.textContent = formatMoney(forecastAll);
+    els.dashForecastMaterials.textContent = formatMoney(forecastMaterials);
+    els.dashForecastServices.textContent = formatMoney(forecastServices);
+    const forecastLines =
+      state.budgetForecast?.lines ||
+      state.expenses.filter((item) => item.record_type === "material");
+    const topMaterials = [...forecastLines]
+      .filter(
+        (line) =>
+          (line.record_type === "material" ||
+            line.cost_class === "variable_material") &&
+          Number(line.forecast_total) > 0,
+      )
+      .sort(
+        (left, right) =>
+          Number(right.forecast_total || 0) - Number(left.forecast_total || 0),
+      )
+      .slice(0, 8);
+    els.dashForecastTopMaterials.innerHTML = topMaterials.length
+      ? topMaterials
+          .map((line) => {
+            const name = line.description || line.expense_id || "";
+            const qty = Number(
+              line.quantity ?? line.default_expected_quantity ?? 0,
+            );
+            const qtyLabel =
+              Number.isFinite(qty) && qty > 0 ? ` · qtd ${qty}` : "";
+            return `<li><span>${escapeHtml(name)}${escapeHtml(qtyLabel)}</span><strong>${formatMoney(line.forecast_total)}</strong></li>`;
+          })
+          .join("")
+      : "<li><span>Sem linhas de takeoff ainda</span><strong>—</strong></li>";
+    if (els.dashForecastCaveat) {
+      els.dashForecastCaveat.textContent =
+        "Quantidades estimadas pelo takeoff; preços pela mediana das cotações atuais.";
+    }
     const funding = (state.project || {}).funding || {};
     const sources = funding.sources || [];
     const fgtsSource = sources.find((item) => item.id === "fgts");
@@ -1328,10 +1372,15 @@
       `${coverage.toFixed(1).replace(".", ",")}% do orçamento coberto`,
     );
     const gap = projectedCovered - Number(state.totals.all || 0);
+    const forecastGap = projectedCovered - forecastAll;
     els.overallGap.textContent = `${formatMoney(fundsTotal)} atuais + ${formatMoney(projectedSavings)} projetados · ${
       gap >= 0
         ? `margem de ${formatMoney(gap)}`
         : `lacuna de ${formatMoney(Math.abs(gap))}`
+    } · vs projetado (mediana): ${
+      forecastGap >= 0
+        ? `margem ${formatMoney(forecastGap)}`
+        : `lacuna ${formatMoney(Math.abs(forecastGap))}`
     }`;
     const categories = dashboardCategoryDefinitions.map((group) => ({
       ...group,
@@ -1600,6 +1649,65 @@
       .join("");
   }
 
+  function formatCompactQuantity(value) {
+    const quantity = Number(value);
+    if (!Number.isFinite(quantity) || quantity <= 0) return "1";
+    if (Number.isInteger(quantity)) return String(quantity);
+    return quantity
+      .toFixed(4)
+      .replace(/\.?0+$/, "")
+      .replace(".", ",");
+  }
+
+  function ganttAllocationRows(task) {
+    return (task.expense_allocations || [])
+      .map((allocation) => {
+        const expense = state.expenses.find(
+          (item) => item.id === allocation.expense_id,
+        );
+        if (!expense) return null;
+        const quantity = Number(allocation.expected_quantity || 1);
+        return { allocation, expense, quantity };
+      })
+      .filter(Boolean);
+  }
+
+  function ganttExpenseBentoMarkup(task, barLeftPx = null, barWidthPx = null) {
+    if (task.activity_type === "macro") return "";
+    const rows = ganttAllocationRows(task);
+    if (!rows.length) return "";
+    const bentoRows = Math.max(1, Math.ceil(rows.length / 5));
+    const chips = rows
+      .map(({ expense, quantity }) => {
+        const qtyLabel = formatCompactQuantity(quantity);
+        const cost = allocationCost(expense, quantity, "planned");
+        const amountParts = [
+          `qtd ${qtyLabel} ${expense.unit || "un"}`,
+          cost == null ? "sem cotação" : formatMoney(cost),
+        ];
+        return `<span class="expense-hover-target gantt-expense-chip" tabindex="0" data-hover-name="${escapeAttr(expense.description)}" data-hover-amount="${escapeAttr(amountParts.join(" · "))}" aria-label="${escapeAttr(`${expense.description}: qtd ${qtyLabel} ${expense.unit || "un"}`)}">${iconMarkup(expense.icon_key, expense.description)}<em class="gantt-expense-qty">${escapeHtml(qtyLabel)}</em></span>`;
+      })
+      .join("");
+    const activityTotal = rows.reduce(
+      (sum, { expense, quantity }) =>
+        sum + Number(allocationCost(expense, quantity, "planned") || 0),
+      0,
+    );
+    const totalMarkup = activityTotal
+      ? `<strong class="gantt-expense-total">${formatMoney(activityTotal)}</strong>`
+      : `<strong class="gantt-expense-total muted">sem cotação</strong>`;
+    const onTimeline =
+      barLeftPx != null &&
+      barWidthPx != null &&
+      Number.isFinite(barLeftPx) &&
+      Number.isFinite(barWidthPx);
+    const style = onTimeline
+      ? `left:${barLeftPx + barWidthPx + 6}px;--gantt-bento-rows:${bentoRows}`
+      : `--gantt-bento-rows:${bentoRows}`;
+    const placement = onTimeline ? " timeline" : " label";
+    return `<div class="gantt-expense-bento${placement}" style="${style}" data-bento-task="${escapeAttr(task.id)}">${chips}${totalMarkup}</div>`;
+  }
+
   function renderGantt() {
     if (!els.gantt) return;
     const allDetails = state.tasks.filter(
@@ -1688,10 +1796,18 @@
                       ),
                     ),
                 );
-            return `<div class="gantt-track${isMacro ? " macro" : " child"}" data-track-id="${task.id}">
+            const allocationCount = isMacro
+              ? 0
+              : ganttAllocationRows(task).length;
+            const bentoRows = allocationCount
+              ? Math.max(1, Math.ceil(allocationCount / 5))
+              : 1;
+            const trackStyle =
+              bentoRows > 1 ? ` style="--gantt-bento-rows:${bentoRows}"` : "";
+            return `<div class="gantt-track${isMacro ? " macro" : " child"}" data-track-id="${task.id}"${trackStyle}>
             <button type="button" class="gantt-bar status-${task.status}${isMacro ? " macro" : ""}" ${isMacro ? `data-macro-bar="${task.id}"` : `data-task-bar="${task.id}"`} style="left:${left}px;width:${width}px" title="${escapeAttr(`${task.title} · ${task.start_date} — ${task.end_date}`)}">
               ${isMacro ? "" : '<i class="gantt-handle start" data-resize="start"></i>'}<span>${escapeHtml(task.title)}</span>${isMacro ? "" : '<i class="gantt-handle end" data-resize="end"></i>'}
-            </button>${taskPayments
+            </button>${ganttExpenseBentoMarkup(task, left, width)}${taskPayments
               .map(
                 (payment) =>
                   `<i class="gantt-task-payment${payment.date_status === "estimated" ? " estimated" : ""}" style="left:${dayDiff(geometry.start, payment.date) * geometry.dayWidth}px" title="${escapeAttr(`${formatPaymentDate(payment.date)} · ${payment.description} · ${formatMoney(payment.amount)}`)}"></i>`,
@@ -1702,42 +1818,16 @@
       </div></div>
       <div class="gantt-labels">${tasks
         .map((task) => {
-          const taskExpenses = (task.expense_allocations || [])
-            .map((allocation) => {
-              const expense = state.expenses.find(
-                (item) => item.id === allocation.expense_id,
-              );
-              const cost = allocationCost(
-                expense,
-                allocation.expected_quantity,
-                "planned",
-              );
-              return expense
-                ? `${allocation.expected_quantity} ${expense.unit} ${expense.description}${cost == null ? " (sem cotação)" : ` ${formatMoney(cost)}`}`
-                : "";
-            })
-            .filter(Boolean);
-          const activityTotal = (task.expense_allocations || []).reduce(
-            (sum, allocation) => {
-              const expense = state.expenses.find(
-                (item) => item.id === allocation.expense_id,
-              );
-              return (
-                sum +
-                Number(
-                  allocationCost(
-                    expense,
-                    allocation.expected_quantity,
-                    "planned",
-                  ) || 0,
-                )
-              );
-            },
+          const allocationRows = ganttAllocationRows(task);
+          const activityTotal = allocationRows.reduce(
+            (sum, { expense, quantity }) =>
+              sum + Number(allocationCost(expense, quantity, "planned") || 0),
             0,
           );
-          const expenseDetail = taskExpenses.length
-            ? ` · ${escapeHtml(taskExpenses.join(" + "))}${activityTotal ? ` · total ${formatMoney(activityTotal)}` : ""}`
-            : "";
+          const expenseDetail =
+            task.activity_type !== "macro" && allocationRows.length
+              ? ` · ${allocationRows.length} ${allocationRows.length === 1 ? "despesa" : "despesas"}${activityTotal ? ` · total ${formatMoney(activityTotal)}` : ""}`
+              : "";
           const macroChildren = childTasks(task.id);
           const filteredChildren = macroChildren.filter(matchesGanttFilters);
           const macroCount =
@@ -1746,12 +1836,24 @@
               : `${macroChildren.length} atividades`;
           const detail = `${task.activity_type === "macro" ? `${macroCount} · ${task.progress || 0}%` : `P${task.priority} · #${task.sequence}`} · ${escapeHtml(statusLabels[task.status])}${task.date_status === "estimated" ? " · estimada" : ""}${expenseDetail}`;
           const content = `${iconMarkup(task.icon_key, task.title)}<span><strong>${escapeHtml(task.title)}</strong><small>${detail}</small></span>`;
+          const bentoRows = allocationRows.length
+            ? Math.max(1, Math.ceil(allocationRows.length / 5))
+            : 1;
+          const rowStyle =
+            task.activity_type !== "macro" && bentoRows > 1
+              ? ` style="--gantt-bento-rows:${bentoRows}"`
+              : "";
+          const labelBento =
+            task.activity_type === "macro" ? "" : ganttExpenseBentoMarkup(task);
           if (task.activity_type === "macro")
             return `<div class="gantt-label-row macro">
               <button type="button" class="macro-disclosure" data-toggle-macro="${task.id}" aria-label="${state.expandedMacros.has(task.id) ? "Recolher" : "Expandir"} ${escapeAttr(task.title)}">${state.expandedMacros.has(task.id) ? "−" : "+"}</button>
               <button type="button" class="gantt-label-content" data-task-label="${task.id}" title="Editar macroatividade">${content}</button>
             </div>`;
-          return `<button type="button" class="gantt-label-row task" draggable="true" data-task-label="${task.id}" title="Arraste para trocar a sequência"><i class="child-indent"></i>${content}</button>`;
+          return `<div class="gantt-label-row task"${rowStyle}>
+              <button type="button" class="gantt-label-content" draggable="true" data-task-label="${task.id}" title="Arraste para trocar a sequência"><i class="child-indent"></i>${content}</button>
+              ${labelBento}
+            </div>`;
         })
         .join("")}</div>`;
     bindGanttInteractions(geometry);
@@ -1759,6 +1861,10 @@
 
   function bindGanttInteractions(geometry) {
     let draggedLabel = "";
+    els.gantt.querySelectorAll(".gantt-expense-bento").forEach((bento) => {
+      bento.addEventListener("pointerdown", (event) => event.stopPropagation());
+      bento.addEventListener("mousedown", (event) => event.stopPropagation());
+    });
     els.gantt.querySelectorAll("[data-toggle-macro]").forEach((toggle) => {
       toggle.addEventListener("click", () => {
         const id = toggle.dataset.toggleMacro;
@@ -1787,9 +1893,11 @@
         );
         if (task?.activity_type !== "task") return;
         draggedLabel = row.dataset.taskLabel;
-        row.classList.add("dragging");
+        row.closest(".gantt-label-row")?.classList.add("dragging");
       });
-      row.addEventListener("dragend", () => row.classList.remove("dragging"));
+      row.addEventListener("dragend", () =>
+        row.closest(".gantt-label-row")?.classList.remove("dragging"),
+      );
       row.addEventListener("dragover", (event) => event.preventDefault());
       row.addEventListener("drop", async (event) => {
         event.preventDefault();
@@ -1851,6 +1959,15 @@
           } else {
             bar.style.width = `${originalWidth + delta}px`;
           }
+          const bento = bar.parentElement?.querySelector(
+            ".gantt-expense-bento",
+          );
+          if (bento) {
+            const nextLeft = Number.parseFloat(bar.style.left) || 0;
+            const nextWidth =
+              Number.parseFloat(bar.style.width) || geometry.dayWidth;
+            bento.style.left = `${nextLeft + nextWidth + 6}px`;
+          }
         };
 
         const finishDrag = async (upEvent, cancelled = false) => {
@@ -1862,6 +1979,12 @@
           if (cancelled) {
             bar.style.left = `${originalLeft}px`;
             bar.style.width = `${originalWidth}px`;
+            const bento = bar.parentElement?.querySelector(
+              ".gantt-expense-bento",
+            );
+            if (bento) {
+              bento.style.left = `${originalLeft + originalWidth + 6}px`;
+            }
             return;
           }
           if (!moved) {
@@ -3508,6 +3631,7 @@
     state.expenses = payload.expenses || [];
     state.totals = payload.totals || state.totals;
     state.materials = payload.materials || [];
+    state.budgetForecast = payload.budget_forecast || null;
     state.iconCatalog = payload.icon_catalog || state.iconCatalog;
     renderFilters();
     renderQuotationVendorFilters();
@@ -4941,6 +5065,28 @@
     showDashboardTooltip(target, rect.right, rect.top);
   });
   els.dashMaterials.addEventListener("focusout", hideDashboardTooltip);
+  els.gantt.addEventListener("mouseover", (event) => {
+    const target = event.target.closest(".expense-hover-target");
+    if (target) showDashboardTooltip(target, event.clientX, event.clientY);
+  });
+  els.gantt.addEventListener("mousemove", (event) => {
+    if (event.target.closest(".expense-hover-target"))
+      positionDashboardTooltip(event.clientX, event.clientY);
+  });
+  els.gantt.addEventListener("mouseout", (event) => {
+    const target = event.target.closest(".expense-hover-target");
+    if (target && !target.contains(event.relatedTarget)) hideDashboardTooltip();
+  });
+  els.gantt.addEventListener("focusin", (event) => {
+    const target = event.target.closest(".expense-hover-target");
+    if (!target) return;
+    const rect = target.getBoundingClientRect();
+    showDashboardTooltip(target, rect.right, rect.top);
+  });
+  els.gantt.addEventListener("focusout", (event) => {
+    const target = event.target.closest(".expense-hover-target");
+    if (target && !target.contains(event.relatedTarget)) hideDashboardTooltip();
+  });
   els.btnNew.addEventListener("click", () => openExpenseDialog());
   els.form.addEventListener("submit", submitExpense);
   els.btnCancel.addEventListener("click", () => els.dialog.close());

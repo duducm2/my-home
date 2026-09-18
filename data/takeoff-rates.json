@@ -1,0 +1,236 @@
+{
+  "version": 1,
+  "checked_at": "2026-09-18",
+  "location_basis": "nova_odessa_cep_13380",
+  "assumptions": [
+    "Interior useful floor area from house.json (50.56 m²) drives floor finishes.",
+    "Wall area is estimated from room floor footprints × wall height 2.7 m using perimeter proxies, minus openings.",
+    "Porcelain waste factor 10%; paint assumes ~12 m²/L theoretical coverage with 2 coats → ~6 m²/L effective.",
+    "Structural bulk (cimento/areia/tijolo) uses low-confidence heuristics for a light retrofit, not a full structural BOM.",
+    "Services and one-time fees are excluded from takeoff (qty remains 1).",
+    "Gantt text hints: ~115 m² porcelanato scope and 5 janelas inform overrides where noted."
+  ],
+  "measurements": {
+    "wall_height_m": 2.7,
+    "porcelain_waste_factor": 1.1,
+    "gantt_porcelain_scope_m2": 115.0,
+    "paint_effective_m2_per_liter": 6.0,
+    "paint_can_liters": 18.0,
+    "grout_kg_per_m2": 1.2,
+    "mortar_bags_per_m2": 0.35,
+    "baseboard_factor_of_perimeter": 1.0,
+    "cement_bags_heuristic": 40,
+    "sand_m3_heuristic": 6.0,
+    "brick_units_heuristic": 800,
+    "wire_kg_heuristic": 15,
+    "conduit_m_per_m2_floor": 2.5,
+    "outlets_per_room": 4,
+    "lamps_per_room": 2,
+    "fastener_packs": 4,
+    "sealant_kits": 3,
+    "tarp_coverage_factor": 1.2,
+    "roof_tile_per_m2": 16,
+    "gutter_m_heuristic": 24,
+    "roof_framing_uses_building_footprint": true
+  },
+  "materials": {
+    "EXP_0014": {
+      "method": "fixed_units",
+      "quantity": 2,
+      "confidence": "estimated",
+      "formula_notes": "Two Bianco 18 L buckets for chapisco/reboco touch-ups across wet areas and repairs."
+    },
+    "EXP_0015": {
+      "method": "fixed_units",
+      "quantity": 6.0,
+      "confidence": "estimated",
+      "formula_notes": "Bulk sand/pedrisco heuristic for floor bed + small masonry repairs (low confidence)."
+    },
+    "EXP_0016": {
+      "method": "fixed_units",
+      "quantity": 40,
+      "confidence": "estimated",
+      "formula_notes": "Cement bags heuristic for bedding, repairs, and small structural fixes (low confidence)."
+    },
+    "EXP_0017": {
+      "method": "roof_tiles",
+      "confidence": "estimated",
+      "formula_notes": "Building footprint area × tiles/m² × 1.08 waste."
+    },
+    "EXP_0018": {
+      "method": "fixed_units",
+      "quantity": 1,
+      "confidence": "measured",
+      "formula_notes": "One toolbox/kit for the obra."
+    },
+    "EXP_0019": {
+      "method": "fixed_units",
+      "quantity": 800,
+      "confidence": "estimated",
+      "formula_notes": "Clay brick units for local masonry repairs / window swaps (heuristic)."
+    },
+    "EXP_0020": {
+      "method": "fixed_units",
+      "quantity": 1,
+      "confidence": "measured",
+      "formula_notes": "One wheelbarrow."
+    },
+    "EXP_0021": {
+      "method": "fixed_units",
+      "quantity": 15,
+      "confidence": "estimated",
+      "formula_notes": "Binding wire kg heuristic for masonry."
+    },
+    "EXP_0022": {
+      "method": "fixed_units",
+      "quantity": 3,
+      "confidence": "estimated",
+      "formula_notes": "Debris dumpsters for demolition/floor swap phases."
+    },
+    "EXP_0023": {
+      "method": "porcelain_floor",
+      "confidence": "estimated",
+      "formula_notes": "Prefer Gantt scope 115 m² when present; else interior_useful_area_m2 × waste 1.10."
+    },
+    "EXP_0024": {
+      "method": "grout_from_floor",
+      "confidence": "estimated",
+      "formula_notes": "Porcelain area × ~1.2 kg/m²."
+    },
+    "EXP_0025": {
+      "method": "mortar_from_floor",
+      "confidence": "estimated",
+      "formula_notes": "Porcelain area × ~0.35 bags (20 kg) per m²."
+    },
+    "EXP_0026": {
+      "method": "interior_doors",
+      "confidence": "estimated",
+      "formula_notes": "Count interior rooms needing doors (exclude corredor); default 5."
+    },
+    "EXP_0027": {
+      "method": "fixed_units",
+      "quantity": 1,
+      "confidence": "measured",
+      "formula_notes": "One balcony/sliding door at sala rear opening."
+    },
+    "EXP_0028": {
+      "method": "fixed_units",
+      "quantity": 2,
+      "confidence": "estimated",
+      "formula_notes": "WC + suíte toilets."
+    },
+    "EXP_0029": {
+      "method": "fixed_units",
+      "quantity": 5,
+      "confidence": "estimated",
+      "formula_notes": "Gantt hint: troca de 5 janelas (quartos/escritório)."
+    },
+    "EXP_0030": {
+      "method": "fixed_units",
+      "quantity": 1,
+      "confidence": "measured",
+      "formula_notes": "One living-room vitrô/opening package."
+    },
+    "EXP_0031": {
+      "method": "fixed_units",
+      "quantity": 2,
+      "confidence": "estimated",
+      "formula_notes": "Bathroom windows: WC + suíte."
+    },
+    "EXP_0033": {
+      "method": "fixed_units",
+      "quantity": 1,
+      "confidence": "measured",
+      "formula_notes": "One breaker panel."
+    },
+    "EXP_0034": {
+      "method": "conduit_from_floor",
+      "confidence": "estimated",
+      "formula_notes": "Floor area × 2.5 m conduit per m²."
+    },
+    "EXP_0035": {
+      "method": "lamps_from_rooms",
+      "confidence": "estimated",
+      "formula_notes": "~2 lamps per interior room."
+    },
+    "EXP_0036": {
+      "method": "fixed_units",
+      "quantity": 6,
+      "confidence": "estimated",
+      "formula_notes": "Kitchen/bath/service faucets package estimate."
+    },
+    "EXP_0037": {
+      "method": "fixed_units",
+      "quantity": 8,
+      "confidence": "estimated",
+      "formula_notes": "Drains/traps for wet areas."
+    },
+    "EXP_0038": {
+      "method": "outlets_from_rooms",
+      "confidence": "estimated",
+      "formula_notes": "~4 outlets per interior room."
+    },
+    "EXP_0039": {
+      "method": "fixed_units",
+      "quantity": 2,
+      "confidence": "estimated",
+      "formula_notes": "Kitchen + bath sink/counter packages."
+    },
+    "EXP_0040": {
+      "method": "fixed_units",
+      "quantity": 2,
+      "confidence": "estimated",
+      "formula_notes": "Shower enclosures for WC and suíte (or one bath + one suite)."
+    },
+    "EXP_0041": {
+      "method": "baseboard_from_floor",
+      "confidence": "estimated",
+      "formula_notes": "Approximate perimeter from floor area as 4×sqrt(area)."
+    },
+    "EXP_0042": {
+      "method": "roof_framing_area",
+      "confidence": "estimated",
+      "formula_notes": "Building footprint width×depth from model_3d."
+    },
+    "EXP_0043": {
+      "method": "fixed_units",
+      "quantity": 24,
+      "confidence": "estimated",
+      "formula_notes": "Gutters/flashings linear meters around roof edge (heuristic)."
+    },
+    "EXP_0044": {
+      "method": "fixed_units",
+      "quantity": 1,
+      "confidence": "measured",
+      "formula_notes": "One 1000 L water tank (Habite-se note)."
+    },
+    "EXP_0045": {
+      "method": "fixed_units",
+      "quantity": 1,
+      "confidence": "estimated",
+      "formula_notes": "One security-devices kit."
+    },
+    "EXP_0046": {
+      "method": "paint_cans",
+      "confidence": "estimated",
+      "formula_notes": "Estimated wall area / (18 L × 6 m²/L effective)."
+    },
+    "EXP_0047": {
+      "method": "fixed_units",
+      "quantity": 4,
+      "confidence": "estimated",
+      "formula_notes": "Fastener assortments for frames and finishes."
+    },
+    "EXP_0048": {
+      "method": "fixed_units",
+      "quantity": 3,
+      "confidence": "estimated",
+      "formula_notes": "Sealant kits for openings and wet areas."
+    },
+    "EXP_0049": {
+      "method": "tarp_from_floor",
+      "confidence": "estimated",
+      "formula_notes": "Interior floor × 1.2 coverage for protection sheets."
+    }
+  }
+}

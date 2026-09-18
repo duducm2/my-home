@@ -949,6 +949,84 @@ dialog {
   font-variant-numeric: tabular-nums;
 }
 
+.forecast-summary {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid color-mix(in srgb, var(--line) 80%, transparent);
+}
+
+.forecast-summary-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  color: var(--muted);
+  font-size: 11px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.forecast-summary-head strong {
+  color: var(--text);
+  font-size: clamp(18px, 1.6vw, 22px);
+  font-variant-numeric: tabular-nums;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.forecast-breakdown {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 14px;
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.forecast-breakdown strong {
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+}
+
+.forecast-details {
+  margin-top: 10px;
+}
+
+.forecast-details summary {
+  cursor: pointer;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.forecast-top-list {
+  display: grid;
+  gap: 6px;
+  margin: 8px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.forecast-top-list li {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.forecast-top-list strong {
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.forecast-caveat {
+  margin: 10px 0 0;
+  color: var(--muted);
+  font-size: 10px;
+  line-height: 1.35;
+}
+
 .metric-pair {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));

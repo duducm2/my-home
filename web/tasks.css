@@ -1,6 +1,6 @@
 :root {
   --task-row-height: 54px;
-  --gantt-label-width: 310px;
+  --gantt-label-width: 380px;
 }
 
 .contract-center {
@@ -915,6 +915,108 @@ select[multiple] { min-height: 110px; }
 .gantt-bar.status-completed {
   background: #23643f;
   border-color: #2ecc71aa;
+}
+
+.gantt-track.child,
+.gantt-label-row.task {
+  height: calc(
+    var(--task-row-height) + (var(--gantt-bento-rows, 1) - 1) * 24px
+  );
+}
+
+.gantt-expense-bento {
+  position: absolute;
+  top: 50%;
+  z-index: 3;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3px;
+  align-items: center;
+  max-width: 168px;
+  transform: translateY(-50%);
+  pointer-events: auto;
+}
+
+.gantt-expense-bento.label {
+  position: relative;
+  top: auto;
+  right: auto;
+  flex: 0 1 auto;
+  max-width: 48%;
+  margin-left: auto;
+  transform: none;
+}
+
+.gantt-label-row.task {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding-right: 6px;
+  cursor: default;
+}
+
+.gantt-label-row.task .gantt-label-content {
+  min-width: 0;
+  flex: 1 1 auto;
+  cursor: grab;
+}
+
+.gantt-expense-total {
+  margin-left: 2px;
+  color: var(--gold, #f1c40f);
+  font-size: 9px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.gantt-expense-total.muted {
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.gantt-expense-chip {
+  position: relative;
+  display: grid;
+  width: 22px;
+  height: 22px;
+  flex: 0 0 22px;
+  place-items: center;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: var(--card, #252528);
+  outline: none;
+}
+
+.gantt-expense-chip .item-icon {
+  width: 18px;
+  height: 18px;
+}
+
+.gantt-expense-chip .item-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.gantt-expense-qty {
+  position: absolute;
+  right: -4px;
+  bottom: -4px;
+  z-index: 1;
+  min-width: 12px;
+  padding: 0 3px;
+  border: 1px solid #0008;
+  border-radius: 999px;
+  background: #121214;
+  color: #fff;
+  font-size: 8px;
+  font-style: normal;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.35;
+  text-align: center;
+  pointer-events: none;
 }
 
 .gantt-handle {
