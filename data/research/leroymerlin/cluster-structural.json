@@ -1,0 +1,172 @@
+{
+  "cluster": "structural",
+  "checked_at": "2026-09-17",
+  "location_basis": "nova_odessa_cep_13380",
+  "expenses": [
+    {
+      "expense_id": "EXP_0014",
+      "requested_item": "Impermeabilizante (bianco)",
+      "requested_unit": "balde",
+      "match_status": "verified",
+      "candidates": [
+        {
+          "matched_product": "Aditivo para Chapisco Vedacit Bianco 18kg Branco",
+          "sku": "86101561",
+          "seller": "Leroy Merlin",
+          "specifications": {
+            "brand": "Vedacit"
+          },
+          "package_size": "1",
+          "displayed_price_brl": 314.9,
+          "normalized_unit_price_brl": 314.9,
+          "unit": "balde",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.leroymerlin.com.br/aditivo-para-chapisco-vedacit-bianco-18kg-branco_86101561",
+          "final_url": "https://www.leroymerlin.com.br/aditivo-para-chapisco-vedacit-bianco-18kg-branco_86101561",
+          "http_status": 200,
+          "verification_method": "Leroy Merlin api/v3/products/86101561 HTTP 200 with X-Region=campinas (Nova Odessa CEP 13380 proxy); pricing visible; URL https://www.leroymerlin.com.br/aditivo-para-chapisco-vedacit-bianco-18kg-branco_86101561.",
+          "caveats": [
+            "Freight not calculated for CEP 13380-000; freight_brl left null."
+          ]
+        }
+      ],
+      "winner": {
+        "matched_product": "Aditivo para Chapisco Vedacit Bianco 18kg Branco",
+        "sku": "86101561",
+        "seller": "Leroy Merlin",
+        "specifications": {
+          "brand": "Vedacit"
+        },
+        "package_size": "1",
+        "displayed_price_brl": 314.9,
+        "normalized_unit_price_brl": 314.9,
+        "unit": "balde",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.leroymerlin.com.br/aditivo-para-chapisco-vedacit-bianco-18kg-branco_86101561",
+        "final_url": "https://www.leroymerlin.com.br/aditivo-para-chapisco-vedacit-bianco-18kg-branco_86101561",
+        "http_status": 200,
+        "verification_method": "Leroy Merlin api/v3/products/86101561 HTTP 200 with X-Region=campinas (Nova Odessa CEP 13380 proxy); pricing visible; URL https://www.leroymerlin.com.br/aditivo-para-chapisco-vedacit-bianco-18kg-branco_86101561.",
+        "caveats": [
+          "Freight not calculated for CEP 13380-000; freight_brl left null."
+        ]
+      },
+      "no_match_reason": ""
+    },
+    {
+      "expense_id": "EXP_0015",
+      "requested_item": "Areia grossa, fina e pedrisco",
+      "requested_unit": "metro cúbico (m³)",
+      "match_status": "no_match",
+      "candidates": [],
+      "winner": null,
+      "no_match_reason": "Only bagged aggregates found; no m³-priced bulk areia/pedrisco on Leroy Merlin."
+    },
+    {
+      "expense_id": "EXP_0016",
+      "requested_item": "Cimento",
+      "requested_unit": "saco (50 kg)",
+      "match_status": "verified",
+      "candidates": [
+        {
+          "matched_product": "Cimento CP III 32 RS 50kg CSN",
+          "sku": "92137822",
+          "seller": "Leroy Merlin",
+          "specifications": {
+            "brand": "CSN"
+          },
+          "package_size": "1",
+          "displayed_price_brl": 34.9,
+          "normalized_unit_price_brl": 34.9,
+          "unit": "saco (50 kg)",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "limited",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.leroymerlin.com.br/cimento-cp-iii-32-rs-50kg-csn_92137822",
+          "final_url": "https://www.leroymerlin.com.br/cimento-cp-iii-32-rs-50kg-csn_92137822",
+          "http_status": 200,
+          "verification_method": "Leroy Merlin api/v3/products/92137822 HTTP 200 with X-Region=campinas (Nova Odessa CEP 13380 proxy); pricing visible; URL https://www.leroymerlin.com.br/cimento-cp-iii-32-rs-50kg-csn_92137822.",
+          "caveats": [
+            "Freight not calculated for CEP 13380-000; freight_brl left null.",
+            "isAvailableOnEcommerce=false at check time; price still visible on API."
+          ]
+        }
+      ],
+      "winner": {
+        "matched_product": "Cimento CP III 32 RS 50kg CSN",
+        "sku": "92137822",
+        "seller": "Leroy Merlin",
+        "specifications": {
+          "brand": "CSN"
+        },
+        "package_size": "1",
+        "displayed_price_brl": 34.9,
+        "normalized_unit_price_brl": 34.9,
+        "unit": "saco (50 kg)",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "limited",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.leroymerlin.com.br/cimento-cp-iii-32-rs-50kg-csn_92137822",
+        "final_url": "https://www.leroymerlin.com.br/cimento-cp-iii-32-rs-50kg-csn_92137822",
+        "http_status": 200,
+        "verification_method": "Leroy Merlin api/v3/products/92137822 HTTP 200 with X-Region=campinas (Nova Odessa CEP 13380 proxy); pricing visible; URL https://www.leroymerlin.com.br/cimento-cp-iii-32-rs-50kg-csn_92137822.",
+        "caveats": [
+          "Freight not calculated for CEP 13380-000; freight_brl left null.",
+          "isAvailableOnEcommerce=false at check time; price still visible on API."
+        ]
+      },
+      "no_match_reason": ""
+    },
+    {
+      "expense_id": "EXP_0017",
+      "requested_item": "Telha",
+      "requested_unit": "unidade",
+      "match_status": "no_match",
+      "candidates": [],
+      "winner": null,
+      "no_match_reason": "No comparable product with visible price verified via api/v3/products."
+    },
+    {
+      "expense_id": "EXP_0019",
+      "requested_item": "Tijolinho de barro",
+      "requested_unit": "unidade",
+      "match_status": "no_match",
+      "candidates": [],
+      "winner": null,
+      "no_match_reason": "No comparable product with visible price verified via api/v3/products."
+    },
+    {
+      "expense_id": "EXP_0021",
+      "requested_item": "Arame recozido",
+      "requested_unit": "quilograma (kg)",
+      "match_status": "no_match",
+      "candidates": [],
+      "winner": null,
+      "no_match_reason": "No comparable product with visible price verified via api/v3/products."
+    },
+    {
+      "expense_id": "EXP_0042",
+      "requested_item": "Madeiramento ou estrutura metálica",
+      "requested_unit": "metro quadrado (m²)",
+      "match_status": "no_match",
+      "candidates": [],
+      "winner": null,
+      "no_match_reason": "No clear m²-priced madeiramento/estrutura metálica package verified."
+    }
+  ]
+}

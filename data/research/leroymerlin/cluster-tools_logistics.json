@@ -1,0 +1,705 @@
+{
+  "cluster": "tools_logistics",
+  "checked_at": "2026-09-17",
+  "location_basis": "nova_odessa_cep_13380",
+  "expenses": [
+    {
+      "expense_id": "EXP_0018",
+      "requested_item": "Ferramentas",
+      "requested_unit": "conjunto",
+      "match_status": "verified",
+      "candidates": [
+        {
+          "matched_product": "Maleta Kit Jogo Ferramentas Gerais Utilidades Uso Domestico 9 Peças 8009c",
+          "sku": "1570679472",
+          "seller": "Leroy Merlin",
+          "specifications": {
+            "brand": "Exbom"
+          },
+          "package_size": "1",
+          "displayed_price_brl": 66.49,
+          "normalized_unit_price_brl": 66.49,
+          "unit": "conjunto",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.leroymerlin.com.br/maleta-kit-jogo-ferramentas-gerais-utilidades-uso-domestico-9-pecas-8009c_1570679472",
+          "final_url": "https://www.leroymerlin.com.br/maleta-kit-jogo-ferramentas-gerais-utilidades-uso-domestico-9-pecas-8009c_1570679472",
+          "http_status": 200,
+          "verification_method": "Leroy Merlin api/v3/products/1570679472 HTTP 200 with X-Region=campinas (Nova Odessa CEP 13380 proxy); pricing visible; URL https://www.leroymerlin.com.br/maleta-kit-jogo-ferramentas-gerais-utilidades-uso-domestico-9-pecas-8009c_1570679472.",
+          "caveats": [
+            "Freight not calculated for CEP 13380-000; freight_brl left null."
+          ]
+        },
+        {
+          "matched_product": "Jogo de Ferramentas Profissional 200 Peças Titanium",
+          "sku": "90944672",
+          "seller": "Leroy Merlin",
+          "specifications": {
+            "brand": "Titanium"
+          },
+          "package_size": "1",
+          "displayed_price_brl": 79.99,
+          "normalized_unit_price_brl": 79.99,
+          "unit": "conjunto",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.leroymerlin.com.br/jogo-de-ferramentas-profissional-200-pecas-titanium_90944672",
+          "final_url": "https://www.leroymerlin.com.br/jogo-de-ferramentas-profissional-200-pecas-titanium_90944672",
+          "http_status": 200,
+          "verification_method": "Leroy Merlin api/v3/products/90944672 HTTP 200 with X-Region=campinas (Nova Odessa CEP 13380 proxy); pricing visible; URL https://www.leroymerlin.com.br/jogo-de-ferramentas-profissional-200-pecas-titanium_90944672.",
+          "caveats": [
+            "Freight not calculated for CEP 13380-000; freight_brl left null."
+          ]
+        },
+        {
+          "matched_product": "Jogo de Ferramentas 29 Peças Dexter",
+          "sku": "92465933",
+          "seller": "Leroy Merlin",
+          "specifications": {
+            "brand": "Dexter"
+          },
+          "package_size": "1",
+          "displayed_price_brl": 99.9,
+          "normalized_unit_price_brl": 99.9,
+          "unit": "conjunto",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.leroymerlin.com.br/jogo-de-ferramentas-29-pecas-dexter_92465933",
+          "final_url": "https://www.leroymerlin.com.br/jogo-de-ferramentas-29-pecas-dexter_92465933",
+          "http_status": 200,
+          "verification_method": "Leroy Merlin api/v3/products/92465933 HTTP 200 with X-Region=campinas (Nova Odessa CEP 13380 proxy); pricing visible; URL https://www.leroymerlin.com.br/jogo-de-ferramentas-29-pecas-dexter_92465933.",
+          "caveats": [
+            "Freight not calculated for CEP 13380-000; freight_brl left null."
+          ]
+        },
+        {
+          "matched_product": "Maleta Kit Jogo Ferramentas Gerais Utilidades Uso Domestico 13 Peças 8013c",
+          "sku": "1570679471",
+          "seller": "Leroy Merlin",
+          "specifications": {
+            "brand": "Exbom"
+          },
+          "package_size": "1",
+          "displayed_price_brl": 104.49,
+          "normalized_unit_price_brl": 104.49,
+          "unit": "conjunto",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.leroymerlin.com.br/maleta-kit-jogo-ferramentas-gerais-utilidades-uso-domestico-13-pecas-8013c_1570679471",
+          "final_url": "https://www.leroymerlin.com.br/maleta-kit-jogo-ferramentas-gerais-utilidades-uso-domestico-13-pecas-8013c_1570679471",
+          "http_status": 200,
+          "verification_method": "Leroy Merlin api/v3/products/1570679471 HTTP 200 with X-Region=campinas (Nova Odessa CEP 13380 proxy); pricing visible; URL https://www.leroymerlin.com.br/maleta-kit-jogo-ferramentas-gerais-utilidades-uso-domestico-13-pecas-8013c_1570679471.",
+          "caveats": [
+            "Freight not calculated for CEP 13380-000; freight_brl left null."
+          ]
+        },
+        {
+          "matched_product": "Jogo De Ferramenta Com Maleta 200 Peças - Preta",
+          "sku": "1572737131",
+          "seller": "Leroy Merlin",
+          "specifications": {
+            "brand": "Startools Ferramentas"
+          },
+          "package_size": "1",
+          "displayed_price_brl": 129.47,
+          "normalized_unit_price_brl": 129.47,
+          "unit": "conjunto",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.leroymerlin.com.br/jogo-de-ferramenta-com-maleta-200-pecas-preta_1572737131",
+          "final_url": "https://www.leroymerlin.com.br/jogo-de-ferramenta-com-maleta-200-pecas-preta_1572737131",
+          "http_status": 200,
+          "verification_method": "Leroy Merlin api/v3/products/1572737131 HTTP 200 with X-Region=campinas (Nova Odessa CEP 13380 proxy); pricing visible; URL https://www.leroymerlin.com.br/jogo-de-ferramenta-com-maleta-200-pecas-preta_1572737131.",
+          "caveats": [
+            "Freight not calculated for CEP 13380-000; freight_brl left null."
+          ]
+        },
+        {
+          "matched_product": "Kit de Ferramentas Sparta Aço Carbono com Maleta 129 Peças",
+          "sku": "89954333",
+          "seller": "Leroy Merlin",
+          "specifications": {
+            "brand": "Sparta"
+          },
+          "package_size": "1",
+          "displayed_price_brl": 149.9,
+          "normalized_unit_price_brl": 149.9,
+          "unit": "conjunto",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.leroymerlin.com.br/kit-de-ferramentas-sparta-aco-carbono-com-maleta-129-pecas_89954333",
+          "final_url": "https://www.leroymerlin.com.br/kit-de-ferramentas-sparta-aco-carbono-com-maleta-129-pecas_89954333",
+          "http_status": 200,
+          "verification_method": "Leroy Merlin api/v3/products/89954333 HTTP 200 with X-Region=campinas (Nova Odessa CEP 13380 proxy); pricing visible; URL https://www.leroymerlin.com.br/kit-de-ferramentas-sparta-aco-carbono-com-maleta-129-pecas_89954333.",
+          "caveats": [
+            "Freight not calculated for CEP 13380-000; freight_brl left null."
+          ]
+        }
+      ],
+      "winner": {
+        "matched_product": "Maleta Kit Jogo Ferramentas Gerais Utilidades Uso Domestico 9 Peças 8009c",
+        "sku": "1570679472",
+        "seller": "Leroy Merlin",
+        "specifications": {
+          "brand": "Exbom"
+        },
+        "package_size": "1",
+        "displayed_price_brl": 66.49,
+        "normalized_unit_price_brl": 66.49,
+        "unit": "conjunto",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.leroymerlin.com.br/maleta-kit-jogo-ferramentas-gerais-utilidades-uso-domestico-9-pecas-8009c_1570679472",
+        "final_url": "https://www.leroymerlin.com.br/maleta-kit-jogo-ferramentas-gerais-utilidades-uso-domestico-9-pecas-8009c_1570679472",
+        "http_status": 200,
+        "verification_method": "Leroy Merlin api/v3/products/1570679472 HTTP 200 with X-Region=campinas (Nova Odessa CEP 13380 proxy); pricing visible; URL https://www.leroymerlin.com.br/maleta-kit-jogo-ferramentas-gerais-utilidades-uso-domestico-9-pecas-8009c_1570679472.",
+        "caveats": [
+          "Freight not calculated for CEP 13380-000; freight_brl left null."
+        ]
+      },
+      "no_match_reason": ""
+    },
+    {
+      "expense_id": "EXP_0020",
+      "requested_item": "Carrinho de mão",
+      "requested_unit": "unidade",
+      "match_status": "verified",
+      "candidates": [
+        {
+          "matched_product": "Carrinho De Mão Em Aço Carbono Pneu E Câmara Chapa 26mm 45l",
+          "sku": "1571958082",
+          "seller": "Leroy Merlin",
+          "specifications": {
+            "brand": "Minasul"
+          },
+          "package_size": "1",
+          "displayed_price_brl": 210.48,
+          "normalized_unit_price_brl": 210.48,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.leroymerlin.com.br/carrinho-de-mao-em-aco-carbono-pneu-e-camara-chapa-26mm-45l_1571958082",
+          "final_url": "https://www.leroymerlin.com.br/carrinho-de-mao-em-aco-carbono-pneu-e-camara-chapa-26mm-45l_1571958082",
+          "http_status": 200,
+          "verification_method": "Leroy Merlin api/v3/products/1571958082 HTTP 200 with X-Region=campinas (Nova Odessa CEP 13380 proxy); pricing visible; URL https://www.leroymerlin.com.br/carrinho-de-mao-em-aco-carbono-pneu-e-camara-chapa-26mm-45l_1571958082.",
+          "caveats": [
+            "Freight not calculated for CEP 13380-000; freight_brl left null."
+          ]
+        },
+        {
+          "matched_product": "Carrinho De Mão Em Aço Carbono Pneu Maciço Chapa 26mm 45l",
+          "sku": "1571958083",
+          "seller": "Leroy Merlin",
+          "specifications": {
+            "brand": "Minasul"
+          },
+          "package_size": "1",
+          "displayed_price_brl": 218.83,
+          "normalized_unit_price_brl": 218.83,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.leroymerlin.com.br/carrinho-de-mao-em-aco-carbono-pneu-macico-chapa-26mm-45l_1571958083",
+          "final_url": "https://www.leroymerlin.com.br/carrinho-de-mao-em-aco-carbono-pneu-macico-chapa-26mm-45l_1571958083",
+          "http_status": 200,
+          "verification_method": "Leroy Merlin api/v3/products/1571958083 HTTP 200 with X-Region=campinas (Nova Odessa CEP 13380 proxy); pricing visible; URL https://www.leroymerlin.com.br/carrinho-de-mao-em-aco-carbono-pneu-macico-chapa-26mm-45l_1571958083.",
+          "caveats": [
+            "Freight not calculated for CEP 13380-000; freight_brl left null."
+          ]
+        },
+        {
+          "matched_product": "Carrinho De Mão Em Aço Carbono Pneu Maciço Chapa 26mm 60l",
+          "sku": "1571958081",
+          "seller": "Leroy Merlin",
+          "specifications": {
+            "brand": "Minasul"
+          },
+          "package_size": "1",
+          "displayed_price_brl": 228.59,
+          "normalized_unit_price_brl": 228.59,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.leroymerlin.com.br/carrinho-de-mao-em-aco-carbono-pneu-macico-chapa-26mm-60l_1571958081",
+          "final_url": "https://www.leroymerlin.com.br/carrinho-de-mao-em-aco-carbono-pneu-macico-chapa-26mm-60l_1571958081",
+          "http_status": 200,
+          "verification_method": "Leroy Merlin api/v3/products/1571958081 HTTP 200 with X-Region=campinas (Nova Odessa CEP 13380 proxy); pricing visible; URL https://www.leroymerlin.com.br/carrinho-de-mao-em-aco-carbono-pneu-macico-chapa-26mm-60l_1571958081.",
+          "caveats": [
+            "Freight not calculated for CEP 13380-000; freight_brl left null."
+          ]
+        }
+      ],
+      "winner": {
+        "matched_product": "Carrinho De Mão Em Aço Carbono Pneu E Câmara Chapa 26mm 45l",
+        "sku": "1571958082",
+        "seller": "Leroy Merlin",
+        "specifications": {
+          "brand": "Minasul"
+        },
+        "package_size": "1",
+        "displayed_price_brl": 210.48,
+        "normalized_unit_price_brl": 210.48,
+        "unit": "unidade",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.leroymerlin.com.br/carrinho-de-mao-em-aco-carbono-pneu-e-camara-chapa-26mm-45l_1571958082",
+        "final_url": "https://www.leroymerlin.com.br/carrinho-de-mao-em-aco-carbono-pneu-e-camara-chapa-26mm-45l_1571958082",
+        "http_status": 200,
+        "verification_method": "Leroy Merlin api/v3/products/1571958082 HTTP 200 with X-Region=campinas (Nova Odessa CEP 13380 proxy); pricing visible; URL https://www.leroymerlin.com.br/carrinho-de-mao-em-aco-carbono-pneu-e-camara-chapa-26mm-45l_1571958082.",
+        "caveats": [
+          "Freight not calculated for CEP 13380-000; freight_brl left null."
+        ]
+      },
+      "no_match_reason": ""
+    },
+    {
+      "expense_id": "EXP_0022",
+      "requested_item": "Caçamba de entulho",
+      "requested_unit": "caçamba",
+      "match_status": "no_match",
+      "candidates": [],
+      "winner": null,
+      "no_match_reason": "Caçamba de entulho is rental/service, not a retail SKU."
+    },
+    {
+      "expense_id": "EXP_0043",
+      "requested_item": "Calhas e rufos",
+      "requested_unit": "metro linear (m)",
+      "match_status": "verified",
+      "candidates": [
+        {
+          "matched_product": "Bobina Galvanizada 20cm X 2mts Rufo Calha Pingadeira Algerosa",
+          "sku": "1569336251",
+          "seller": "Leroy Merlin",
+          "specifications": {
+            "brand": "Cadimetal"
+          },
+          "package_size": "2 m",
+          "displayed_price_brl": 33.54,
+          "normalized_unit_price_brl": 16.77,
+          "unit": "metro linear (m)",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.leroymerlin.com.br/bobina-galvanizada-20cm-x-2mts-rufo-calha-pingadeira-algerosa_1569336251",
+          "final_url": "https://www.leroymerlin.com.br/bobina-galvanizada-20cm-x-2mts-rufo-calha-pingadeira-algerosa_1569336251",
+          "http_status": 200,
+          "verification_method": "Leroy Merlin api/v3/products/1569336251 HTTP 200 with X-Region=campinas (Nova Odessa CEP 13380 proxy); pricing visible; URL https://www.leroymerlin.com.br/bobina-galvanizada-20cm-x-2mts-rufo-calha-pingadeira-algerosa_1569336251.",
+          "caveats": [
+            "Normalized from 2 m length.",
+            "Freight not calculated for CEP 13380-000; freight_brl left null."
+          ]
+        },
+        {
+          "matched_product": "Bobina Galvanizada 20cm X 3mts Rufo Calha Pingadeira Algerosa",
+          "sku": "1569336197",
+          "seller": "Leroy Merlin",
+          "specifications": {
+            "brand": "Cadimetal"
+          },
+          "package_size": "1",
+          "displayed_price_brl": 50.32,
+          "normalized_unit_price_brl": 50.32,
+          "unit": "metro linear (m)",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.leroymerlin.com.br/bobina-galvanizada-20cm-x-3mts-rufo-calha-pingadeira-algerosa_1569336197",
+          "final_url": "https://www.leroymerlin.com.br/bobina-galvanizada-20cm-x-3mts-rufo-calha-pingadeira-algerosa_1569336197",
+          "http_status": 200,
+          "verification_method": "Leroy Merlin api/v3/products/1569336197 HTTP 200 with X-Region=campinas (Nova Odessa CEP 13380 proxy); pricing visible; URL https://www.leroymerlin.com.br/bobina-galvanizada-20cm-x-3mts-rufo-calha-pingadeira-algerosa_1569336197.",
+          "caveats": [
+            "Freight not calculated for CEP 13380-000; freight_brl left null."
+          ]
+        },
+        {
+          "matched_product": "Rufo Calha Galvanizada 90cm X 2m Em Rolos Bobina Para Pingadeira Ou Algerosa",
+          "sku": "1572259796",
+          "seller": "Leroy Merlin",
+          "specifications": {
+            "brand": "Cadimetal"
+          },
+          "package_size": "2 m",
+          "displayed_price_brl": 145.16,
+          "normalized_unit_price_brl": 72.58,
+          "unit": "metro linear (m)",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.leroymerlin.com.br/rufo-calha-galvanizada-90cm-x-2m-em-rolos-bobina-para-pingadeira-ou-algerosa_1572259796",
+          "final_url": "https://www.leroymerlin.com.br/rufo-calha-galvanizada-90cm-x-2m-em-rolos-bobina-para-pingadeira-ou-algerosa_1572259796",
+          "http_status": 200,
+          "verification_method": "Leroy Merlin api/v3/products/1572259796 HTTP 200 with X-Region=campinas (Nova Odessa CEP 13380 proxy); pricing visible; URL https://www.leroymerlin.com.br/rufo-calha-galvanizada-90cm-x-2m-em-rolos-bobina-para-pingadeira-ou-algerosa_1572259796.",
+          "caveats": [
+            "Normalized from 2 m length.",
+            "Freight not calculated for CEP 13380-000; freight_brl left null."
+          ]
+        },
+        {
+          "matched_product": "Chapa Aluminio Bobina Para Calhas E Rufos 1m X 4mts X 0,4mm",
+          "sku": "1569336196",
+          "seller": "Leroy Merlin",
+          "specifications": {
+            "brand": "Cadimetal"
+          },
+          "package_size": "1",
+          "displayed_price_brl": 355.27,
+          "normalized_unit_price_brl": 355.27,
+          "unit": "metro linear (m)",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.leroymerlin.com.br/chapa-aluminio-bobina-para-calhas-e-rufos-1m-x-4mts-x-0,4mm_1569336196",
+          "final_url": "https://www.leroymerlin.com.br/chapa-aluminio-bobina-para-calhas-e-rufos-1m-x-4mts-x-0,4mm_1569336196",
+          "http_status": 200,
+          "verification_method": "Leroy Merlin api/v3/products/1569336196 HTTP 200 with X-Region=campinas (Nova Odessa CEP 13380 proxy); pricing visible; URL https://www.leroymerlin.com.br/chapa-aluminio-bobina-para-calhas-e-rufos-1m-x-4mts-x-0,4mm_1569336196.",
+          "caveats": [
+            "Freight not calculated for CEP 13380-000; freight_brl left null."
+          ]
+        }
+      ],
+      "winner": {
+        "matched_product": "Bobina Galvanizada 20cm X 2mts Rufo Calha Pingadeira Algerosa",
+        "sku": "1569336251",
+        "seller": "Leroy Merlin",
+        "specifications": {
+          "brand": "Cadimetal"
+        },
+        "package_size": "2 m",
+        "displayed_price_brl": 33.54,
+        "normalized_unit_price_brl": 16.77,
+        "unit": "metro linear (m)",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.leroymerlin.com.br/bobina-galvanizada-20cm-x-2mts-rufo-calha-pingadeira-algerosa_1569336251",
+        "final_url": "https://www.leroymerlin.com.br/bobina-galvanizada-20cm-x-2mts-rufo-calha-pingadeira-algerosa_1569336251",
+        "http_status": 200,
+        "verification_method": "Leroy Merlin api/v3/products/1569336251 HTTP 200 with X-Region=campinas (Nova Odessa CEP 13380 proxy); pricing visible; URL https://www.leroymerlin.com.br/bobina-galvanizada-20cm-x-2mts-rufo-calha-pingadeira-algerosa_1569336251.",
+        "caveats": [
+          "Normalized from 2 m length.",
+          "Freight not calculated for CEP 13380-000; freight_brl left null."
+        ]
+      },
+      "no_match_reason": ""
+    },
+    {
+      "expense_id": "EXP_0047",
+      "requested_item": "Pregos, parafusos, buchas",
+      "requested_unit": "pacote",
+      "match_status": "verified",
+      "candidates": [
+        {
+          "matched_product": "Parafuso Chipboard Cabeça Chata 5x20mm 25 Peças Standers",
+          "sku": "92061746",
+          "seller": "Leroy Merlin",
+          "specifications": {
+            "brand": "Standers"
+          },
+          "package_size": "1",
+          "displayed_price_brl": 9.99,
+          "normalized_unit_price_brl": 9.99,
+          "unit": "pacote",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.leroymerlin.com.br/parafuso-chipboard-cabeca-chata-5x20mm-25-pecas-standers_92061746",
+          "final_url": "https://www.leroymerlin.com.br/parafuso-chipboard-cabeca-chata-5x20mm-25-pecas-standers_92061746",
+          "http_status": 200,
+          "verification_method": "api/v3/products/92061746 HTTP 200 X-Region=campinas; https://www.leroymerlin.com.br/parafuso-chipboard-cabeca-chata-5x20mm-25-pecas-standers_92061746",
+          "caveats": [
+            "Freight not calculated for CEP 13380-000; freight_brl left null."
+          ]
+        },
+        {
+          "matched_product": "Parafuso Chipboard Cabeça Chata 4x12mm 40 Peças Standers",
+          "sku": "92061501",
+          "seller": "Leroy Merlin",
+          "specifications": {
+            "brand": "Standers"
+          },
+          "package_size": "1",
+          "displayed_price_brl": 10.9,
+          "normalized_unit_price_brl": 10.9,
+          "unit": "pacote",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.leroymerlin.com.br/parafuso-chipboard-cabeca-chata-4x12mm-40-pecas-standers_92061501",
+          "final_url": "https://www.leroymerlin.com.br/parafuso-chipboard-cabeca-chata-4x12mm-40-pecas-standers_92061501",
+          "http_status": 200,
+          "verification_method": "api/v3/products/92061501 HTTP 200 X-Region=campinas; https://www.leroymerlin.com.br/parafuso-chipboard-cabeca-chata-4x12mm-40-pecas-standers_92061501",
+          "caveats": [
+            "Freight not calculated for CEP 13380-000; freight_brl left null."
+          ]
+        },
+        {
+          "matched_product": "Parafuso Chipboard Cabeça Chata para Madeira 5x30mm com 20 peças Standers",
+          "sku": "92117865",
+          "seller": "Leroy Merlin",
+          "specifications": {
+            "brand": "Standers"
+          },
+          "package_size": "1",
+          "displayed_price_brl": 10.9,
+          "normalized_unit_price_brl": 10.9,
+          "unit": "pacote",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.leroymerlin.com.br/parafuso-chipboard-cabeca-chata-para-madeira-5x30mm-com-20-pecas-standers_92117865",
+          "final_url": "https://www.leroymerlin.com.br/parafuso-chipboard-cabeca-chata-para-madeira-5x30mm-com-20-pecas-standers_92117865",
+          "http_status": 200,
+          "verification_method": "api/v3/products/92117865 HTTP 200 X-Region=campinas; https://www.leroymerlin.com.br/parafuso-chipboard-cabeca-chata-para-madeira-5x30mm-com-20-pecas-standers_92117865",
+          "caveats": [
+            "Freight not calculated for CEP 13380-000; freight_brl left null."
+          ]
+        },
+        {
+          "matched_product": "Parafuso Chipboard Cabeça Chata 4x40mm 20 Peças Standers",
+          "sku": "92061592",
+          "seller": "Leroy Merlin",
+          "specifications": {
+            "brand": "Standers"
+          },
+          "package_size": "1",
+          "displayed_price_brl": 10.9,
+          "normalized_unit_price_brl": 10.9,
+          "unit": "pacote",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.leroymerlin.com.br/parafuso-chipboard-cabeca-chata-4x40mm-20-pecas-standers_92061592",
+          "final_url": "https://www.leroymerlin.com.br/parafuso-chipboard-cabeca-chata-4x40mm-20-pecas-standers_92061592",
+          "http_status": 200,
+          "verification_method": "api/v3/products/92061592 HTTP 200 X-Region=campinas; https://www.leroymerlin.com.br/parafuso-chipboard-cabeca-chata-4x40mm-20-pecas-standers_92061592",
+          "caveats": [
+            "Freight not calculated for CEP 13380-000; freight_brl left null."
+          ]
+        },
+        {
+          "matched_product": "Parafuso Cabeça Panela Philips 5x80mm  6 Peças Standers",
+          "sku": "92061102",
+          "seller": "Leroy Merlin",
+          "specifications": {
+            "brand": "Standers"
+          },
+          "package_size": "1",
+          "displayed_price_brl": 11.9,
+          "normalized_unit_price_brl": 11.9,
+          "unit": "pacote",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.leroymerlin.com.br/parafuso-cabeca-panela-philips-5x80mm--6-pecas-standers_92061102",
+          "final_url": "https://www.leroymerlin.com.br/parafuso-cabeca-panela-philips-5x80mm--6-pecas-standers_92061102",
+          "http_status": 200,
+          "verification_method": "api/v3/products/92061102 HTTP 200 X-Region=campinas; https://www.leroymerlin.com.br/parafuso-cabeca-panela-philips-5x80mm--6-pecas-standers_92061102",
+          "caveats": [
+            "Freight not calculated for CEP 13380-000; freight_brl left null."
+          ]
+        },
+        {
+          "matched_product": "Parafuso de Gancho 4x30mm Aço Preto 6 unidades Standers",
+          "sku": "91994014",
+          "seller": "Leroy Merlin",
+          "specifications": {
+            "brand": "Standers"
+          },
+          "package_size": "1",
+          "displayed_price_brl": 11.9,
+          "normalized_unit_price_brl": 11.9,
+          "unit": "pacote",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.leroymerlin.com.br/parafuso-de-gancho-4x30mm-aco-preto-6-unidades-standers_91994014",
+          "final_url": "https://www.leroymerlin.com.br/parafuso-de-gancho-4x30mm-aco-preto-6-unidades-standers_91994014",
+          "http_status": 200,
+          "verification_method": "api/v3/products/91994014 HTTP 200 X-Region=campinas; https://www.leroymerlin.com.br/parafuso-de-gancho-4x30mm-aco-preto-6-unidades-standers_91994014",
+          "caveats": [
+            "Freight not calculated for CEP 13380-000; freight_brl left null."
+          ]
+        },
+        {
+          "matched_product": "Parafuso Cabeça Chata Philips 4x20mm  20 Peças Standers",
+          "sku": "92060871",
+          "seller": "Leroy Merlin",
+          "specifications": {
+            "brand": "Standers"
+          },
+          "package_size": "1",
+          "displayed_price_brl": 12.99,
+          "normalized_unit_price_brl": 12.99,
+          "unit": "pacote",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.leroymerlin.com.br/parafuso-cabeca-chata-philips-4x20mm--20-pecas-standers_92060871",
+          "final_url": "https://www.leroymerlin.com.br/parafuso-cabeca-chata-philips-4x20mm--20-pecas-standers_92060871",
+          "http_status": 200,
+          "verification_method": "api/v3/products/92060871 HTTP 200 X-Region=campinas; https://www.leroymerlin.com.br/parafuso-cabeca-chata-philips-4x20mm--20-pecas-standers_92060871",
+          "caveats": [
+            "Freight not calculated for CEP 13380-000; freight_brl left null."
+          ]
+        },
+        {
+          "matched_product": "Parafuso de Aço Chipboard para Madeira 3x16mm 40 Peças",
+          "sku": "92321600",
+          "seller": "Leroy Merlin",
+          "specifications": {
+            "brand": "Standers"
+          },
+          "package_size": "1",
+          "displayed_price_brl": 15.99,
+          "normalized_unit_price_brl": 15.99,
+          "unit": "pacote",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.leroymerlin.com.br/parafuso-de-aco-chipboard-para-madeira-3x16mm-40-pecas_92321600",
+          "final_url": "https://www.leroymerlin.com.br/parafuso-de-aco-chipboard-para-madeira-3x16mm-40-pecas_92321600",
+          "http_status": 200,
+          "verification_method": "api/v3/products/92321600 HTTP 200 X-Region=campinas; https://www.leroymerlin.com.br/parafuso-de-aco-chipboard-para-madeira-3x16mm-40-pecas_92321600",
+          "caveats": [
+            "Freight not calculated for CEP 13380-000; freight_brl left null."
+          ]
+        },
+        {
+          "matched_product": "Parafuso Chipboard Phillips Stein 3.0x14 Caixa 1.000 Pçs",
+          "sku": "1570271818",
+          "seller": "Leroy Merlin",
+          "specifications": {
+            "brand": "Stein"
+          },
+          "package_size": "1",
+          "displayed_price_brl": 22.86,
+          "normalized_unit_price_brl": 22.86,
+          "unit": "pacote",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.leroymerlin.com.br/parafuso-chipboard-phillips-stein-3-0x14-caixa-1-000-pcs_1570271818",
+          "final_url": "https://www.leroymerlin.com.br/parafuso-chipboard-phillips-stein-3-0x14-caixa-1-000-pcs_1570271818",
+          "http_status": 200,
+          "verification_method": "api/v3/products/1570271818 HTTP 200 X-Region=campinas; https://www.leroymerlin.com.br/parafuso-chipboard-phillips-stein-3-0x14-caixa-1-000-pcs_1570271818",
+          "caveats": [
+            "Freight not calculated for CEP 13380-000; freight_brl left null."
+          ]
+        }
+      ],
+      "winner": {
+        "matched_product": "Parafuso Chipboard Cabeça Chata 5x20mm 25 Peças Standers",
+        "sku": "92061746",
+        "seller": "Leroy Merlin",
+        "specifications": {
+          "brand": "Standers"
+        },
+        "package_size": "1",
+        "displayed_price_brl": 9.99,
+        "normalized_unit_price_brl": 9.99,
+        "unit": "pacote",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.leroymerlin.com.br/parafuso-chipboard-cabeca-chata-5x20mm-25-pecas-standers_92061746",
+        "final_url": "https://www.leroymerlin.com.br/parafuso-chipboard-cabeca-chata-5x20mm-25-pecas-standers_92061746",
+        "http_status": 200,
+        "verification_method": "api/v3/products/92061746 HTTP 200 X-Region=campinas; https://www.leroymerlin.com.br/parafuso-chipboard-cabeca-chata-5x20mm-25-pecas-standers_92061746",
+        "caveats": [
+          "Freight not calculated for CEP 13380-000; freight_brl left null."
+        ]
+      },
+      "no_match_reason": ""
+    }
+  ]
+}

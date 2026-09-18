@@ -1,0 +1,303 @@
+{
+  "cluster": "openings",
+  "checked_at": "2026-09-17",
+  "location_basis": "nova_odessa_cep_13380",
+  "expenses": [
+    {
+      "expense_id": "EXP_0026",
+      "requested_item": "Portas internas",
+      "requested_unit": "unidade",
+      "match_status": "verified",
+      "candidates": [
+        {
+          "matched_product": "Folha De Porta Madeira Lisa 210x80cm Espessura 3,5cm Melamínica Mgm Marrom/mogno Mogno",
+          "sku": "1567587108",
+          "seller": "Leroy Merlin",
+          "specifications": {
+            "brand": "Mgm"
+          },
+          "package_size": "1",
+          "displayed_price_brl": 307.3,
+          "normalized_unit_price_brl": 307.3,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.leroymerlin.com.br/folha-de-porta-madeira-lisa-210x80cm-espessura-3,5cm-melaminica-mgm-marrom-mogno-mogno_1567587108",
+          "final_url": "https://www.leroymerlin.com.br/folha-de-porta-madeira-lisa-210x80cm-espessura-3,5cm-melaminica-mgm-marrom-mogno-mogno_1567587108",
+          "http_status": 200,
+          "verification_method": "Leroy Merlin api/v3/products/1567587108 HTTP 200 with X-Region=campinas (Nova Odessa CEP 13380 proxy); pricing visible; URL https://www.leroymerlin.com.br/folha-de-porta-madeira-lisa-210x80cm-espessura-3,5cm-melaminica-mgm-marrom-mogno-mogno_1567587108.",
+          "caveats": [
+            "Freight not calculated for CEP 13380-000; freight_brl left null."
+          ]
+        },
+        {
+          "matched_product": "Folha de Porta Madeira de Giro ou Correr Branco 210x80cm Sarrafeada Vivace UV Lisa Artens",
+          "sku": "92026116",
+          "seller": "Leroy Merlin",
+          "specifications": {
+            "brand": "Artens"
+          },
+          "package_size": "1",
+          "displayed_price_brl": 329.9,
+          "normalized_unit_price_brl": 329.9,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.leroymerlin.com.br/folha-de-porta-madeira-de-giro-ou-correr-branco-210x80cm-sarrafeada-vivace-uv-lisa-artens_92026116",
+          "final_url": "https://www.leroymerlin.com.br/folha-de-porta-madeira-de-giro-ou-correr-branco-210x80cm-sarrafeada-vivace-uv-lisa-artens_92026116",
+          "http_status": 200,
+          "verification_method": "Leroy Merlin api/v3/products/92026116 HTTP 200 with X-Region=campinas (Nova Odessa CEP 13380 proxy); pricing visible; URL https://www.leroymerlin.com.br/folha-de-porta-madeira-de-giro-ou-correr-branco-210x80cm-sarrafeada-vivace-uv-lisa-artens_92026116.",
+          "caveats": [
+            "Freight not calculated for CEP 13380-000; freight_brl left null."
+          ]
+        }
+      ],
+      "winner": {
+        "matched_product": "Folha De Porta Madeira Lisa 210x80cm Espessura 3,5cm Melamínica Mgm Marrom/mogno Mogno",
+        "sku": "1567587108",
+        "seller": "Leroy Merlin",
+        "specifications": {
+          "brand": "Mgm"
+        },
+        "package_size": "1",
+        "displayed_price_brl": 307.3,
+        "normalized_unit_price_brl": 307.3,
+        "unit": "unidade",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.leroymerlin.com.br/folha-de-porta-madeira-lisa-210x80cm-espessura-3,5cm-melaminica-mgm-marrom-mogno-mogno_1567587108",
+        "final_url": "https://www.leroymerlin.com.br/folha-de-porta-madeira-lisa-210x80cm-espessura-3,5cm-melaminica-mgm-marrom-mogno-mogno_1567587108",
+        "http_status": 200,
+        "verification_method": "Leroy Merlin api/v3/products/1567587108 HTTP 200 with X-Region=campinas (Nova Odessa CEP 13380 proxy); pricing visible; URL https://www.leroymerlin.com.br/folha-de-porta-madeira-lisa-210x80cm-espessura-3,5cm-melaminica-mgm-marrom-mogno-mogno_1567587108.",
+        "caveats": [
+          "Freight not calculated for CEP 13380-000; freight_brl left null."
+        ]
+      },
+      "no_match_reason": ""
+    },
+    {
+      "expense_id": "EXP_0027",
+      "requested_item": "Porta Balcão (R$2000)",
+      "requested_unit": "unidade",
+      "match_status": "no_match",
+      "candidates": [],
+      "winner": null,
+      "no_match_reason": "No comparable product with visible price verified via api/v3/products."
+    },
+    {
+      "expense_id": "EXP_0029",
+      "requested_item": "Janela (quartos e escritório)",
+      "requested_unit": "unidade",
+      "match_status": "verified",
+      "candidates": [
+        {
+          "matched_product": "Janela De Correr Alumínio Branco 04 Folhas Classic - 120x120",
+          "sku": "1572871815",
+          "seller": "Leroy Merlin",
+          "specifications": {
+            "brand": "Mercosul Portas e Janelas"
+          },
+          "package_size": "1",
+          "displayed_price_brl": 773.39,
+          "normalized_unit_price_brl": 773.39,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.leroymerlin.com.br/janela-de-correr-aluminio-branco-04-folhas-classic-120x120_1572871815",
+          "final_url": "https://www.leroymerlin.com.br/janela-de-correr-aluminio-branco-04-folhas-classic-120x120_1572871815",
+          "http_status": 200,
+          "verification_method": "Leroy Merlin api/v3/products/1572871815 HTTP 200 with X-Region=campinas (Nova Odessa CEP 13380 proxy); pricing visible; URL https://www.leroymerlin.com.br/janela-de-correr-aluminio-branco-04-folhas-classic-120x120_1572871815.",
+          "caveats": [
+            "Freight not calculated for CEP 13380-000; freight_brl left null."
+          ]
+        },
+        {
+          "matched_product": "Janela De Aluminio De Correr 100x120cm 4 Folhas Com Grade Soft Preto Mgm Preto",
+          "sku": "1572483594",
+          "seller": "Leroy Merlin",
+          "specifications": {
+            "brand": "Mgm"
+          },
+          "package_size": "1",
+          "displayed_price_brl": 779.9,
+          "normalized_unit_price_brl": 779.9,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.leroymerlin.com.br/janela-de-aluminio-de-correr-100x120cm-4-folhas-com-grade-soft-preto-mgm-preto_1572483594",
+          "final_url": "https://www.leroymerlin.com.br/janela-de-aluminio-de-correr-100x120cm-4-folhas-com-grade-soft-preto-mgm-preto_1572483594",
+          "http_status": 200,
+          "verification_method": "Leroy Merlin api/v3/products/1572483594 HTTP 200 with X-Region=campinas (Nova Odessa CEP 13380 proxy); pricing visible; URL https://www.leroymerlin.com.br/janela-de-aluminio-de-correr-100x120cm-4-folhas-com-grade-soft-preto-mgm-preto_1572483594.",
+          "caveats": [
+            "Freight not calculated for CEP 13380-000; freight_brl left null."
+          ]
+        }
+      ],
+      "winner": {
+        "matched_product": "Janela De Correr Alumínio Branco 04 Folhas Classic - 120x120",
+        "sku": "1572871815",
+        "seller": "Leroy Merlin",
+        "specifications": {
+          "brand": "Mercosul Portas e Janelas"
+        },
+        "package_size": "1",
+        "displayed_price_brl": 773.39,
+        "normalized_unit_price_brl": 773.39,
+        "unit": "unidade",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.leroymerlin.com.br/janela-de-correr-aluminio-branco-04-folhas-classic-120x120_1572871815",
+        "final_url": "https://www.leroymerlin.com.br/janela-de-correr-aluminio-branco-04-folhas-classic-120x120_1572871815",
+        "http_status": 200,
+        "verification_method": "Leroy Merlin api/v3/products/1572871815 HTTP 200 with X-Region=campinas (Nova Odessa CEP 13380 proxy); pricing visible; URL https://www.leroymerlin.com.br/janela-de-correr-aluminio-branco-04-folhas-classic-120x120_1572871815.",
+        "caveats": [
+          "Freight not calculated for CEP 13380-000; freight_brl left null."
+        ]
+      },
+      "no_match_reason": ""
+    },
+    {
+      "expense_id": "EXP_0030",
+      "requested_item": "Vitrô Sala",
+      "requested_unit": "unidade",
+      "match_status": "verified",
+      "candidates": [
+        {
+          "matched_product": "Vitro Basculante Alumínio Branco 60 (a) X 60 (l)- Hale",
+          "sku": "1568113887",
+          "seller": "Leroy Merlin",
+          "specifications": {
+            "brand": "Hale"
+          },
+          "package_size": "1",
+          "displayed_price_brl": 172.42,
+          "normalized_unit_price_brl": 172.42,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.leroymerlin.com.br/vitro-basculante-aluminio-branco-60--a--x-60--l---hale_1568113887",
+          "final_url": "https://www.leroymerlin.com.br/vitro-basculante-aluminio-branco-60--a--x-60--l---hale_1568113887",
+          "http_status": 200,
+          "verification_method": "Leroy Merlin api/v3/products/1568113887 HTTP 200 with X-Region=campinas (Nova Odessa CEP 13380 proxy); pricing visible; URL https://www.leroymerlin.com.br/vitro-basculante-aluminio-branco-60--a--x-60--l---hale_1568113887.",
+          "caveats": [
+            "Freight not calculated for CEP 13380-000; freight_brl left null."
+          ]
+        }
+      ],
+      "winner": {
+        "matched_product": "Vitro Basculante Alumínio Branco 60 (a) X 60 (l)- Hale",
+        "sku": "1568113887",
+        "seller": "Leroy Merlin",
+        "specifications": {
+          "brand": "Hale"
+        },
+        "package_size": "1",
+        "displayed_price_brl": 172.42,
+        "normalized_unit_price_brl": 172.42,
+        "unit": "unidade",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.leroymerlin.com.br/vitro-basculante-aluminio-branco-60--a--x-60--l---hale_1568113887",
+        "final_url": "https://www.leroymerlin.com.br/vitro-basculante-aluminio-branco-60--a--x-60--l---hale_1568113887",
+        "http_status": 200,
+        "verification_method": "Leroy Merlin api/v3/products/1568113887 HTTP 200 with X-Region=campinas (Nova Odessa CEP 13380 proxy); pricing visible; URL https://www.leroymerlin.com.br/vitro-basculante-aluminio-branco-60--a--x-60--l---hale_1568113887.",
+        "caveats": [
+          "Freight not calculated for CEP 13380-000; freight_brl left null."
+        ]
+      },
+      "no_match_reason": ""
+    },
+    {
+      "expense_id": "EXP_0031",
+      "requested_item": "Vitrôs banheiros",
+      "requested_unit": "unidade",
+      "match_status": "verified",
+      "candidates": [
+        {
+          "matched_product": "Vitro Basculante Alumínio Branco 60 (a) X 60 (l)- Hale",
+          "sku": "1568113887",
+          "seller": "Leroy Merlin",
+          "specifications": {
+            "brand": "Hale"
+          },
+          "package_size": "1",
+          "displayed_price_brl": 172.42,
+          "normalized_unit_price_brl": 172.42,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.leroymerlin.com.br/vitro-basculante-aluminio-branco-60--a--x-60--l---hale_1568113887",
+          "final_url": "https://www.leroymerlin.com.br/vitro-basculante-aluminio-branco-60--a--x-60--l---hale_1568113887",
+          "http_status": 200,
+          "verification_method": "api/v3/products/1568113887 HTTP 200 X-Region=campinas; https://www.leroymerlin.com.br/vitro-basculante-aluminio-branco-60--a--x-60--l---hale_1568113887",
+          "caveats": [
+            "Freight not calculated for CEP 13380-000; freight_brl left null."
+          ]
+        }
+      ],
+      "winner": {
+        "matched_product": "Vitro Basculante Alumínio Branco 60 (a) X 60 (l)- Hale",
+        "sku": "1568113887",
+        "seller": "Leroy Merlin",
+        "specifications": {
+          "brand": "Hale"
+        },
+        "package_size": "1",
+        "displayed_price_brl": 172.42,
+        "normalized_unit_price_brl": 172.42,
+        "unit": "unidade",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.leroymerlin.com.br/vitro-basculante-aluminio-branco-60--a--x-60--l---hale_1568113887",
+        "final_url": "https://www.leroymerlin.com.br/vitro-basculante-aluminio-branco-60--a--x-60--l---hale_1568113887",
+        "http_status": 200,
+        "verification_method": "api/v3/products/1568113887 HTTP 200 X-Region=campinas; https://www.leroymerlin.com.br/vitro-basculante-aluminio-branco-60--a--x-60--l---hale_1568113887",
+        "caveats": [
+          "Only ~60x60 basculante verified; used as bathroom vitrô proxy.",
+          "Freight not calculated for CEP 13380-000; freight_brl left null."
+        ]
+      },
+      "no_match_reason": ""
+    }
+  ]
+}

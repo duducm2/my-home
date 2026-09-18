@@ -1,0 +1,49 @@
+{
+  "source": "Leroy Merlin",
+  "target_url": "https://www.leroymerlin.com.br/",
+  "location_basis": "nova_odessa_cep_13380",
+  "clusters": {
+    "structural": [
+      "EXP_0014",
+      "EXP_0015",
+      "EXP_0016",
+      "EXP_0017",
+      "EXP_0019",
+      "EXP_0021",
+      "EXP_0042"
+    ],
+    "finishes": [
+      "EXP_0023",
+      "EXP_0024",
+      "EXP_0025",
+      "EXP_0041",
+      "EXP_0046",
+      "EXP_0048",
+      "EXP_0049"
+    ],
+    "openings": ["EXP_0026", "EXP_0027", "EXP_0029", "EXP_0030", "EXP_0031"],
+    "plumbing": [
+      "EXP_0028",
+      "EXP_0036",
+      "EXP_0037",
+      "EXP_0039",
+      "EXP_0040",
+      "EXP_0044"
+    ],
+    "electrical": ["EXP_0033", "EXP_0034", "EXP_0035", "EXP_0038", "EXP_0045"],
+    "tools_logistics": [
+      "EXP_0018",
+      "EXP_0020",
+      "EXP_0022",
+      "EXP_0043",
+      "EXP_0047"
+    ]
+  },
+  "rules": {
+    "freight": "null unless explicitly calculated for CEP 13380-000 (Nova Odessa/SP)",
+    "bulk_tiers": "record separately; rank only tiers applicable to expected quantity",
+    "direct_url": "must be an individual https://www.leroymerlin.com.br/<slug>_<productId> product page",
+    "no_match": "required when no comparable product with visible price is verified",
+    "location_basis": "nova_odessa_cep_13380"
+  }
+}

@@ -1,0 +1,102 @@
+{
+  "cluster": "electrical",
+  "checked_at": "2026-09-17",
+  "location_basis": "nova_odessa_cep_13380",
+  "expenses": [
+    {
+      "expense_id": "EXP_0033",
+      "requested_item": "Quadro de distribuição",
+      "requested_unit": "unidade",
+      "match_status": "no_match",
+      "candidates": [],
+      "winner": null,
+      "no_match_reason": "No comparable product with visible price verified via api/v3/products."
+    },
+    {
+      "expense_id": "EXP_0034",
+      "requested_item": "Conduítes",
+      "requested_unit": "metro linear (m)",
+      "match_status": "no_match",
+      "candidates": [],
+      "winner": null,
+      "no_match_reason": "No comparable product with visible price verified via api/v3/products."
+    },
+    {
+      "expense_id": "EXP_0035",
+      "requested_item": "Lâmpadas",
+      "requested_unit": "unidade",
+      "match_status": "no_match",
+      "candidates": [],
+      "winner": null,
+      "no_match_reason": "No comparable product with visible price verified via api/v3/products."
+    },
+    {
+      "expense_id": "EXP_0038",
+      "requested_item": "Tomadas",
+      "requested_unit": "unidade",
+      "match_status": "verified",
+      "candidates": [
+        {
+          "matched_product": "Conjunto 1 Tomada Energia 10A 4x2 Branco Miluz Schneider",
+          "sku": "89676930",
+          "seller": "Leroy Merlin",
+          "specifications": {
+            "brand": "Schneider"
+          },
+          "package_size": "1",
+          "displayed_price_brl": 32.9,
+          "normalized_unit_price_brl": 32.9,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.leroymerlin.com.br/conjunto-1-tomada-energia-10a-4x2-branco-miluz-schneider_89676930",
+          "final_url": "https://www.leroymerlin.com.br/conjunto-1-tomada-energia-10a-4x2-branco-miluz-schneider_89676930",
+          "http_status": 200,
+          "verification_method": "Leroy Merlin api/v3/products/89676930 HTTP 200 with X-Region=campinas (Nova Odessa CEP 13380 proxy); pricing visible; URL https://www.leroymerlin.com.br/conjunto-1-tomada-energia-10a-4x2-branco-miluz-schneider_89676930.",
+          "caveats": [
+            "Freight not calculated for CEP 13380-000; freight_brl left null."
+          ]
+        }
+      ],
+      "winner": {
+        "matched_product": "Conjunto 1 Tomada Energia 10A 4x2 Branco Miluz Schneider",
+        "sku": "89676930",
+        "seller": "Leroy Merlin",
+        "specifications": {
+          "brand": "Schneider"
+        },
+        "package_size": "1",
+        "displayed_price_brl": 32.9,
+        "normalized_unit_price_brl": 32.9,
+        "unit": "unidade",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.leroymerlin.com.br/conjunto-1-tomada-energia-10a-4x2-branco-miluz-schneider_89676930",
+        "final_url": "https://www.leroymerlin.com.br/conjunto-1-tomada-energia-10a-4x2-branco-miluz-schneider_89676930",
+        "http_status": 200,
+        "verification_method": "Leroy Merlin api/v3/products/89676930 HTTP 200 with X-Region=campinas (Nova Odessa CEP 13380 proxy); pricing visible; URL https://www.leroymerlin.com.br/conjunto-1-tomada-energia-10a-4x2-branco-miluz-schneider_89676930.",
+        "caveats": [
+          "Freight not calculated for CEP 13380-000; freight_brl left null."
+        ]
+      },
+      "no_match_reason": ""
+    },
+    {
+      "expense_id": "EXP_0045",
+      "requested_item": "Dispositivos de segurança",
+      "requested_unit": "conjunto",
+      "match_status": "no_match",
+      "candidates": [],
+      "winner": null,
+      "no_match_reason": "No Leroy Merlin camera/alarm kit offer with verified unit price."
+    }
+  ]
+}

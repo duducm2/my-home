@@ -1,0 +1,899 @@
+{
+  "source": "Leroy Merlin",
+  "source_url": "https://www.leroymerlin.com.br/",
+  "location_basis": "nova_odessa_cep_13380",
+  "checked_at": "2026-09-17",
+  "summary": {
+    "total_material_expenses": 35,
+    "verified_matches": 23,
+    "no_match": 12
+  },
+  "expenses": [
+    {
+      "expense_id": "EXP_0014",
+      "requested_item": "Impermeabilizante (bianco)",
+      "requested_unit": "balde",
+      "match_status": "verified",
+      "winner": {
+        "matched_product": "Aditivo para Chapisco Vedacit Bianco 18kg Branco",
+        "sku": "86101561",
+        "seller": "Leroy Merlin",
+        "specifications": {
+          "brand": "Vedacit"
+        },
+        "package_size": "1",
+        "displayed_price_brl": 314.9,
+        "normalized_unit_price_brl": 314.9,
+        "unit": "balde",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.leroymerlin.com.br/aditivo-para-chapisco-vedacit-bianco-18kg-branco_86101561",
+        "final_url": "https://www.leroymerlin.com.br/aditivo-para-chapisco-vedacit-bianco-18kg-branco_86101561",
+        "http_status": 200,
+        "verification_method": "Leroy Merlin api/v3/products/86101561 HTTP 200 with X-Region=campinas (Nova Odessa CEP 13380 proxy); pricing visible; URL https://www.leroymerlin.com.br/aditivo-para-chapisco-vedacit-bianco-18kg-branco_86101561.",
+        "caveats": [
+          "Freight not calculated for CEP 13380-000; freight_brl left null."
+        ]
+      },
+      "candidate_count": 1,
+      "no_match_reason": ""
+    },
+    {
+      "expense_id": "EXP_0015",
+      "requested_item": "Areia grossa, fina e pedrisco",
+      "requested_unit": "metro cúbico (m³)",
+      "match_status": "no_match",
+      "winner": null,
+      "candidate_count": 0,
+      "no_match_reason": "Only bagged aggregates found; no m³-priced bulk areia/pedrisco on Leroy Merlin."
+    },
+    {
+      "expense_id": "EXP_0016",
+      "requested_item": "Cimento",
+      "requested_unit": "saco (50 kg)",
+      "match_status": "verified",
+      "winner": {
+        "matched_product": "Cimento CP III 32 RS 50kg CSN",
+        "sku": "92137822",
+        "seller": "Leroy Merlin",
+        "specifications": {
+          "brand": "CSN"
+        },
+        "package_size": "1",
+        "displayed_price_brl": 34.9,
+        "normalized_unit_price_brl": 34.9,
+        "unit": "saco (50 kg)",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "limited",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.leroymerlin.com.br/cimento-cp-iii-32-rs-50kg-csn_92137822",
+        "final_url": "https://www.leroymerlin.com.br/cimento-cp-iii-32-rs-50kg-csn_92137822",
+        "http_status": 200,
+        "verification_method": "Leroy Merlin api/v3/products/92137822 HTTP 200 with X-Region=campinas (Nova Odessa CEP 13380 proxy); pricing visible; URL https://www.leroymerlin.com.br/cimento-cp-iii-32-rs-50kg-csn_92137822.",
+        "caveats": [
+          "Freight not calculated for CEP 13380-000; freight_brl left null.",
+          "isAvailableOnEcommerce=false at check time; price still visible on API."
+        ]
+      },
+      "candidate_count": 1,
+      "no_match_reason": ""
+    },
+    {
+      "expense_id": "EXP_0017",
+      "requested_item": "Telha",
+      "requested_unit": "unidade",
+      "match_status": "no_match",
+      "winner": null,
+      "candidate_count": 0,
+      "no_match_reason": "No comparable product with visible price verified via api/v3/products."
+    },
+    {
+      "expense_id": "EXP_0019",
+      "requested_item": "Tijolinho de barro",
+      "requested_unit": "unidade",
+      "match_status": "no_match",
+      "winner": null,
+      "candidate_count": 0,
+      "no_match_reason": "No comparable product with visible price verified via api/v3/products."
+    },
+    {
+      "expense_id": "EXP_0021",
+      "requested_item": "Arame recuzido",
+      "requested_unit": "quilograma (kg)",
+      "match_status": "no_match",
+      "winner": null,
+      "candidate_count": 0,
+      "no_match_reason": "No comparable product with visible price verified via api/v3/products."
+    },
+    {
+      "expense_id": "EXP_0042",
+      "requested_item": "Madeiramento ou estrutura metálica",
+      "requested_unit": "metro quadrado (m²)",
+      "match_status": "no_match",
+      "winner": null,
+      "candidate_count": 0,
+      "no_match_reason": "No clear m²-priced madeiramento/estrutura metálica package verified."
+    },
+    {
+      "expense_id": "EXP_0023",
+      "requested_item": "Porcelanato",
+      "requested_unit": "metro quadrado (m²)",
+      "match_status": "verified",
+      "winner": {
+        "matched_product": "Porcelanato Interno Esmaltado Acetinado Borda Reta 60x60cm Cortona Cemento Itagres",
+        "sku": "89566162",
+        "seller": "Leroy Merlin",
+        "specifications": {
+          "brand": "Itagres"
+        },
+        "package_size": "1.39 m²",
+        "displayed_price_brl": 48.22,
+        "normalized_unit_price_brl": 34.6906,
+        "unit": "metro quadrado (m²)",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "limited",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.leroymerlin.com.br/porcelanato-interno-esmaltado-acetinado-borda-reta-60x60cm-cortona-cemento-itagres_89566162",
+        "final_url": "https://www.leroymerlin.com.br/porcelanato-interno-esmaltado-acetinado-borda-reta-60x60cm-cortona-cemento-itagres_89566162",
+        "http_status": 200,
+        "verification_method": "Leroy Merlin api/v3/products/89566162 HTTP 200 with X-Region=campinas (Nova Odessa CEP 13380 proxy); pricing visible; URL https://www.leroymerlin.com.br/porcelanato-interno-esmaltado-acetinado-borda-reta-60x60cm-cortona-cemento-itagres_89566162.",
+        "caveats": [
+          "Normalized from pack 1.39 m² at R$48.22.",
+          "Freight not calculated for CEP 13380-000; freight_brl left null.",
+          "isAvailableOnEcommerce=false at check time; price still visible on API."
+        ]
+      },
+      "candidate_count": 19,
+      "no_match_reason": ""
+    },
+    {
+      "expense_id": "EXP_0024",
+      "requested_item": "Rejunte de porcelanato",
+      "requested_unit": "quilograma (kg)",
+      "match_status": "verified",
+      "winner": {
+        "matched_product": "Rejunte Acrílico Camurça 1kg Fortaleza",
+        "sku": "92380953",
+        "seller": "Leroy Merlin",
+        "specifications": {
+          "brand": "Fortaleza"
+        },
+        "package_size": "1",
+        "displayed_price_brl": 32.81,
+        "normalized_unit_price_brl": 32.81,
+        "unit": "quilograma (kg)",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "limited",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.leroymerlin.com.br/rejunte-acrilico-camurca-1kg-fortaleza_92380953",
+        "final_url": "https://www.leroymerlin.com.br/rejunte-acrilico-camurca-1kg-fortaleza_92380953",
+        "http_status": 200,
+        "verification_method": "Leroy Merlin api/v3/products/92380953 HTTP 200 with X-Region=campinas (Nova Odessa CEP 13380 proxy); pricing visible; URL https://www.leroymerlin.com.br/rejunte-acrilico-camurca-1kg-fortaleza_92380953.",
+        "caveats": [
+          "Freight not calculated for CEP 13380-000; freight_brl left null.",
+          "isAvailableOnEcommerce=false at check time; price still visible on API."
+        ]
+      },
+      "candidate_count": 6,
+      "no_match_reason": ""
+    },
+    {
+      "expense_id": "EXP_0025",
+      "requested_item": "Argamassa para o porcelanato",
+      "requested_unit": "saco (20 kg)",
+      "match_status": "verified",
+      "winner": {
+        "matched_product": "Argamassa ACIII Interno e Externo 20kg Cinza Axton",
+        "sku": "89296172",
+        "seller": "Leroy Merlin",
+        "specifications": {
+          "brand": "Axton"
+        },
+        "package_size": "1",
+        "displayed_price_brl": 34.9,
+        "normalized_unit_price_brl": 34.9,
+        "unit": "saco (20 kg)",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.leroymerlin.com.br/argamassa-aciii-interno-e-externo-20kg-cinza-axton_89296172",
+        "final_url": "https://www.leroymerlin.com.br/argamassa-aciii-interno-e-externo-20kg-cinza-axton_89296172",
+        "http_status": 200,
+        "verification_method": "Leroy Merlin api/v3/products/89296172 HTTP 200 with X-Region=campinas (Nova Odessa CEP 13380 proxy); pricing visible; URL https://www.leroymerlin.com.br/argamassa-aciii-interno-e-externo-20kg-cinza-axton_89296172.",
+        "caveats": [
+          "Freight not calculated for CEP 13380-000; freight_brl left null."
+        ]
+      },
+      "candidate_count": 12,
+      "no_match_reason": ""
+    },
+    {
+      "expense_id": "EXP_0041",
+      "requested_item": "Rodapés para acompanhar o porcelanato (R$1500)",
+      "requested_unit": "metro linear (m)",
+      "match_status": "no_match",
+      "winner": null,
+      "candidate_count": 0,
+      "no_match_reason": "No comparable product with visible price verified via api/v3/products."
+    },
+    {
+      "expense_id": "EXP_0046",
+      "requested_item": "Tinta",
+      "requested_unit": "lata (18 L)",
+      "match_status": "verified",
+      "winner": {
+        "matched_product": "Tinta Acrílica Fosca para Parede Interna Luxens Econômica Branco 18L",
+        "sku": "91917014",
+        "seller": "Leroy Merlin",
+        "specifications": {
+          "brand": "Luxens"
+        },
+        "package_size": "1",
+        "displayed_price_brl": 199.9,
+        "normalized_unit_price_brl": 199.9,
+        "unit": "lata (18 L)",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.leroymerlin.com.br/tinta-acrilica-fosca-para-parede-interna-luxens-economica-branco-18l_91917014",
+        "final_url": "https://www.leroymerlin.com.br/tinta-acrilica-fosca-para-parede-interna-luxens-economica-branco-18l_91917014",
+        "http_status": 200,
+        "verification_method": "Leroy Merlin api/v3/products/91917014 HTTP 200 with X-Region=campinas (Nova Odessa CEP 13380 proxy); pricing visible; URL https://www.leroymerlin.com.br/tinta-acrilica-fosca-para-parede-interna-luxens-economica-branco-18l_91917014.",
+        "caveats": [
+          "Freight not calculated for CEP 13380-000; freight_brl left null."
+        ]
+      },
+      "candidate_count": 13,
+      "no_match_reason": ""
+    },
+    {
+      "expense_id": "EXP_0048",
+      "requested_item": "Silicone, espuma expansiva, selante PU",
+      "requested_unit": "kit",
+      "match_status": "verified",
+      "winner": {
+        "matched_product": "Kit representativo: Silicone Acético 260g Unipega Preto + Espuma Expansiva Quartzolit 500ml",
+        "sku": "1572130176",
+        "seller": "Leroy Merlin",
+        "specifications": {
+          "components": [
+            {
+              "name": "Silicone Acético 260g Unipega Preto",
+              "price": 16.91,
+              "url": "https://www.leroymerlin.com.br/silicone-acetico-260g-unipega-preto_1572130176"
+            },
+            {
+              "name": "Espuma Expansiva Quartzolit 500ml",
+              "price": 23.21,
+              "url": "https://www.leroymerlin.com.br/espuma-expansiva-quartzolit-500ml_1571024549"
+            }
+          ]
+        },
+        "package_size": "2 itens (silicone + espuma; PU nao verificado)",
+        "displayed_price_brl": 40.12,
+        "normalized_unit_price_brl": 40.12,
+        "unit": "kit",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.leroymerlin.com.br/silicone-acetico-260g-unipega-preto_1572130176",
+        "final_url": "https://www.leroymerlin.com.br/silicone-acetico-260g-unipega-preto_1572130176",
+        "http_status": 200,
+        "verification_method": "Sum silicone+espuma api prices R$40.12",
+        "caveats": [
+          "Representative kit; selante PU not verified.",
+          "Freight not calculated for CEP 13380-000; freight_brl left null."
+        ]
+      },
+      "candidate_count": 2,
+      "no_match_reason": ""
+    },
+    {
+      "expense_id": "EXP_0049",
+      "requested_item": "Lona para proteção da obra",
+      "requested_unit": "metro quadrado (m²)",
+      "match_status": "verified",
+      "winner": {
+        "matched_product": "Lona Plástica 4x100m Preta Plasitap",
+        "sku": "92349376",
+        "seller": "Leroy Merlin",
+        "specifications": {
+          "brand": "Plasitap"
+        },
+        "package_size": "400 m²",
+        "displayed_price_brl": 289.9,
+        "normalized_unit_price_brl": 0.7247,
+        "unit": "metro quadrado (m²)",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.leroymerlin.com.br/lona-plastica-4x100m-preta-plasitap_92349376",
+        "final_url": "https://www.leroymerlin.com.br/lona-plastica-4x100m-preta-plasitap_92349376",
+        "http_status": 200,
+        "verification_method": "Leroy Merlin api/v3/products/92349376 HTTP 200 with X-Region=campinas (Nova Odessa CEP 13380 proxy); pricing visible; URL https://www.leroymerlin.com.br/lona-plastica-4x100m-preta-plasitap_92349376.",
+        "caveats": [
+          "Normalized from 4x100 m sheet.",
+          "Freight not calculated for CEP 13380-000; freight_brl left null."
+        ]
+      },
+      "candidate_count": 10,
+      "no_match_reason": ""
+    },
+    {
+      "expense_id": "EXP_0026",
+      "requested_item": "Portas internas",
+      "requested_unit": "unidade",
+      "match_status": "verified",
+      "winner": {
+        "matched_product": "Folha De Porta Madeira Lisa 210x80cm Espessura 3,5cm Melamínica Mgm Marrom/mogno Mogno",
+        "sku": "1567587108",
+        "seller": "Leroy Merlin",
+        "specifications": {
+          "brand": "Mgm"
+        },
+        "package_size": "1",
+        "displayed_price_brl": 307.3,
+        "normalized_unit_price_brl": 307.3,
+        "unit": "unidade",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.leroymerlin.com.br/folha-de-porta-madeira-lisa-210x80cm-espessura-3,5cm-melaminica-mgm-marrom-mogno-mogno_1567587108",
+        "final_url": "https://www.leroymerlin.com.br/folha-de-porta-madeira-lisa-210x80cm-espessura-3,5cm-melaminica-mgm-marrom-mogno-mogno_1567587108",
+        "http_status": 200,
+        "verification_method": "Leroy Merlin api/v3/products/1567587108 HTTP 200 with X-Region=campinas (Nova Odessa CEP 13380 proxy); pricing visible; URL https://www.leroymerlin.com.br/folha-de-porta-madeira-lisa-210x80cm-espessura-3,5cm-melaminica-mgm-marrom-mogno-mogno_1567587108.",
+        "caveats": [
+          "Freight not calculated for CEP 13380-000; freight_brl left null."
+        ]
+      },
+      "candidate_count": 2,
+      "no_match_reason": ""
+    },
+    {
+      "expense_id": "EXP_0027",
+      "requested_item": "Porta Balcão (R$2000)",
+      "requested_unit": "unidade",
+      "match_status": "no_match",
+      "winner": null,
+      "candidate_count": 0,
+      "no_match_reason": "No comparable product with visible price verified via api/v3/products."
+    },
+    {
+      "expense_id": "EXP_0029",
+      "requested_item": "Janela (quartos e escritório)",
+      "requested_unit": "unidade",
+      "match_status": "verified",
+      "winner": {
+        "matched_product": "Janela De Correr Alumínio Branco 04 Folhas Classic - 120x120",
+        "sku": "1572871815",
+        "seller": "Leroy Merlin",
+        "specifications": {
+          "brand": "Mercosul Portas e Janelas"
+        },
+        "package_size": "1",
+        "displayed_price_brl": 773.39,
+        "normalized_unit_price_brl": 773.39,
+        "unit": "unidade",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.leroymerlin.com.br/janela-de-correr-aluminio-branco-04-folhas-classic-120x120_1572871815",
+        "final_url": "https://www.leroymerlin.com.br/janela-de-correr-aluminio-branco-04-folhas-classic-120x120_1572871815",
+        "http_status": 200,
+        "verification_method": "Leroy Merlin api/v3/products/1572871815 HTTP 200 with X-Region=campinas (Nova Odessa CEP 13380 proxy); pricing visible; URL https://www.leroymerlin.com.br/janela-de-correr-aluminio-branco-04-folhas-classic-120x120_1572871815.",
+        "caveats": [
+          "Freight not calculated for CEP 13380-000; freight_brl left null."
+        ]
+      },
+      "candidate_count": 2,
+      "no_match_reason": ""
+    },
+    {
+      "expense_id": "EXP_0030",
+      "requested_item": "Vitrô Sala",
+      "requested_unit": "unidade",
+      "match_status": "verified",
+      "winner": {
+        "matched_product": "Vitro Basculante Alumínio Branco 60 (a) X 60 (l)- Hale",
+        "sku": "1568113887",
+        "seller": "Leroy Merlin",
+        "specifications": {
+          "brand": "Hale"
+        },
+        "package_size": "1",
+        "displayed_price_brl": 172.42,
+        "normalized_unit_price_brl": 172.42,
+        "unit": "unidade",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.leroymerlin.com.br/vitro-basculante-aluminio-branco-60--a--x-60--l---hale_1568113887",
+        "final_url": "https://www.leroymerlin.com.br/vitro-basculante-aluminio-branco-60--a--x-60--l---hale_1568113887",
+        "http_status": 200,
+        "verification_method": "Leroy Merlin api/v3/products/1568113887 HTTP 200 with X-Region=campinas (Nova Odessa CEP 13380 proxy); pricing visible; URL https://www.leroymerlin.com.br/vitro-basculante-aluminio-branco-60--a--x-60--l---hale_1568113887.",
+        "caveats": [
+          "Freight not calculated for CEP 13380-000; freight_brl left null."
+        ]
+      },
+      "candidate_count": 1,
+      "no_match_reason": ""
+    },
+    {
+      "expense_id": "EXP_0031",
+      "requested_item": "Vitrôs banheiros",
+      "requested_unit": "unidade",
+      "match_status": "verified",
+      "winner": {
+        "matched_product": "Vitro Basculante Alumínio Branco 60 (a) X 60 (l)- Hale",
+        "sku": "1568113887",
+        "seller": "Leroy Merlin",
+        "specifications": {
+          "brand": "Hale"
+        },
+        "package_size": "1",
+        "displayed_price_brl": 172.42,
+        "normalized_unit_price_brl": 172.42,
+        "unit": "unidade",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.leroymerlin.com.br/vitro-basculante-aluminio-branco-60--a--x-60--l---hale_1568113887",
+        "final_url": "https://www.leroymerlin.com.br/vitro-basculante-aluminio-branco-60--a--x-60--l---hale_1568113887",
+        "http_status": 200,
+        "verification_method": "api/v3/products/1568113887 HTTP 200 X-Region=campinas; https://www.leroymerlin.com.br/vitro-basculante-aluminio-branco-60--a--x-60--l---hale_1568113887",
+        "caveats": [
+          "Only ~60x60 basculante verified; used as bathroom vitrô proxy.",
+          "Freight not calculated for CEP 13380-000; freight_brl left null."
+        ]
+      },
+      "candidate_count": 1,
+      "no_match_reason": ""
+    },
+    {
+      "expense_id": "EXP_0028",
+      "requested_item": "Vaso",
+      "requested_unit": "unidade",
+      "match_status": "verified",
+      "winner": {
+        "matched_product": "Vaso Sanitário com Caixa Acoplada Branco 3 e 6 litros Eco Plus Celite",
+        "sku": "3601865565",
+        "seller": "Leroy Merlin",
+        "specifications": {
+          "brand": "Celite"
+        },
+        "package_size": "1",
+        "displayed_price_brl": 390.8,
+        "normalized_unit_price_brl": 390.8,
+        "unit": "unidade",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.leroymerlin.com.br/vaso-sanitario-com-caixa-acoplada-branco-3-e-6-litros-eco-plus-celite_3601865565",
+        "final_url": "https://www.leroymerlin.com.br/vaso-sanitario-com-caixa-acoplada-branco-3-e-6-litros-eco-plus-celite_3601865565",
+        "http_status": 200,
+        "verification_method": "Leroy Merlin api/v3/products/3601865565 HTTP 200 with X-Region=campinas (Nova Odessa CEP 13380 proxy); pricing visible; URL https://www.leroymerlin.com.br/vaso-sanitario-com-caixa-acoplada-branco-3-e-6-litros-eco-plus-celite_3601865565.",
+        "caveats": [
+          "Freight not calculated for CEP 13380-000; freight_brl left null."
+        ]
+      },
+      "candidate_count": 2,
+      "no_match_reason": ""
+    },
+    {
+      "expense_id": "EXP_0036",
+      "requested_item": "Torneiras",
+      "requested_unit": "unidade",
+      "match_status": "verified",
+      "winner": {
+        "matched_product": "Torneira Lavatório Banheiro Pia Bica Móvel Baixa Cromado Mesa 1/4 de Volta",
+        "sku": "1571419038",
+        "seller": "Leroy Merlin",
+        "specifications": {
+          "brand": "Shophidraulica"
+        },
+        "package_size": "1",
+        "displayed_price_brl": 29.99,
+        "normalized_unit_price_brl": 29.99,
+        "unit": "unidade",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.leroymerlin.com.br/torneira-lavatorio-banheiro-pia-bica-movel-baixa-cromado-mesa-1-4-de-volta_1571419038",
+        "final_url": "https://www.leroymerlin.com.br/torneira-lavatorio-banheiro-pia-bica-movel-baixa-cromado-mesa-1-4-de-volta_1571419038",
+        "http_status": 200,
+        "verification_method": "Leroy Merlin api/v3/products/1571419038 HTTP 200 with X-Region=campinas (Nova Odessa CEP 13380 proxy); pricing visible; URL https://www.leroymerlin.com.br/torneira-lavatorio-banheiro-pia-bica-movel-baixa-cromado-mesa-1-4-de-volta_1571419038.",
+        "caveats": [
+          "Freight not calculated for CEP 13380-000; freight_brl left null."
+        ]
+      },
+      "candidate_count": 3,
+      "no_match_reason": ""
+    },
+    {
+      "expense_id": "EXP_0037",
+      "requested_item": "Sifões e ralos",
+      "requested_unit": "unidade",
+      "match_status": "verified",
+      "winner": {
+        "matched_product": "Sifão Copo Blukit Tubo De Parede Extensivo Universal Para Lavatório Preto",
+        "sku": "1570851139",
+        "seller": "Leroy Merlin",
+        "specifications": {
+          "brand": "Blukit"
+        },
+        "package_size": "1",
+        "displayed_price_brl": 47.51,
+        "normalized_unit_price_brl": 47.51,
+        "unit": "unidade",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.leroymerlin.com.br/sifao-copo-blukit-tubo-de-parede-extensivo-universal-para-lavatorio-preto_1570851139",
+        "final_url": "https://www.leroymerlin.com.br/sifao-copo-blukit-tubo-de-parede-extensivo-universal-para-lavatorio-preto_1570851139",
+        "http_status": 200,
+        "verification_method": "api/v3/products/1570851139 HTTP 200 X-Region=campinas; https://www.leroymerlin.com.br/sifao-copo-blukit-tubo-de-parede-extensivo-universal-para-lavatorio-preto_1570851139",
+        "caveats": [
+          "Freight not calculated for CEP 13380-000; freight_brl left null."
+        ]
+      },
+      "candidate_count": 1,
+      "no_match_reason": ""
+    },
+    {
+      "expense_id": "EXP_0039",
+      "requested_item": "Pias e bancadas",
+      "requested_unit": "conjunto",
+      "match_status": "verified",
+      "winner": {
+        "matched_product": "Cuba Pia Cozinha  Gourmet Quadrada 35x35 Inox 304 Escovado Tubrax",
+        "sku": "1571161319",
+        "seller": "Leroy Merlin",
+        "specifications": {
+          "brand": "Tubrax"
+        },
+        "package_size": "1",
+        "displayed_price_brl": 266.9,
+        "normalized_unit_price_brl": 266.9,
+        "unit": "conjunto",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.leroymerlin.com.br/cuba-pia-cozinha--gourmet-quadrada-35x35-inox-304-escovado-tubrax_1571161319",
+        "final_url": "https://www.leroymerlin.com.br/cuba-pia-cozinha--gourmet-quadrada-35x35-inox-304-escovado-tubrax_1571161319",
+        "http_status": 200,
+        "verification_method": "api/v3/products/1571161319 HTTP 200 X-Region=campinas; https://www.leroymerlin.com.br/cuba-pia-cozinha--gourmet-quadrada-35x35-inox-304-escovado-tubrax_1571161319",
+        "caveats": [
+          "Freight not calculated for CEP 13380-000; freight_brl left null."
+        ]
+      },
+      "candidate_count": 2,
+      "no_match_reason": ""
+    },
+    {
+      "expense_id": "EXP_0040",
+      "requested_item": "Box de vidro para o banheiro (R$850)",
+      "requested_unit": "unidade",
+      "match_status": "verified",
+      "winner": {
+        "matched_product": "Box De Vidro Para Banheiro 1,90x1,10m 8mm",
+        "sku": "1567589156",
+        "seller": "Leroy Merlin",
+        "specifications": {
+          "brand": "WoodGlass"
+        },
+        "package_size": "1",
+        "displayed_price_brl": 989.0,
+        "normalized_unit_price_brl": 989.0,
+        "unit": "unidade",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.leroymerlin.com.br/box-de-vidro-para-banheiro-1,90x1,10m-8mm_1567589156",
+        "final_url": "https://www.leroymerlin.com.br/box-de-vidro-para-banheiro-1,90x1,10m-8mm_1567589156",
+        "http_status": 200,
+        "verification_method": "Leroy Merlin api/v3/products/1567589156 HTTP 200 with X-Region=campinas (Nova Odessa CEP 13380 proxy); pricing visible; URL https://www.leroymerlin.com.br/box-de-vidro-para-banheiro-1,90x1,10m-8mm_1567589156.",
+        "caveats": [
+          "Freight not calculated for CEP 13380-000; freight_brl left null."
+        ]
+      },
+      "candidate_count": 2,
+      "no_match_reason": ""
+    },
+    {
+      "expense_id": "EXP_0044",
+      "requested_item": "Caixa de água",
+      "requested_unit": "unidade",
+      "match_status": "verified",
+      "winner": {
+        "matched_product": "Caixa d'Água 500L em Polietileno Azul Sultanques",
+        "sku": "92385230",
+        "seller": "Leroy Merlin",
+        "specifications": {
+          "brand": "Sultanques"
+        },
+        "package_size": "1",
+        "displayed_price_brl": 279.9,
+        "normalized_unit_price_brl": 279.9,
+        "unit": "unidade",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.leroymerlin.com.br/caixa-dagua-500l-em-polietileno-azul-sultanques_92385230",
+        "final_url": "https://www.leroymerlin.com.br/caixa-dagua-500l-em-polietileno-azul-sultanques_92385230",
+        "http_status": 200,
+        "verification_method": "Leroy Merlin api/v3/products/92385230 HTTP 200 with X-Region=campinas (Nova Odessa CEP 13380 proxy); pricing visible; URL https://www.leroymerlin.com.br/caixa-dagua-500l-em-polietileno-azul-sultanques_92385230.",
+        "caveats": [
+          "Freight not calculated for CEP 13380-000; freight_brl left null."
+        ]
+      },
+      "candidate_count": 4,
+      "no_match_reason": ""
+    },
+    {
+      "expense_id": "EXP_0033",
+      "requested_item": "Quadro de distribuição",
+      "requested_unit": "unidade",
+      "match_status": "no_match",
+      "winner": null,
+      "candidate_count": 0,
+      "no_match_reason": "No comparable product with visible price verified via api/v3/products."
+    },
+    {
+      "expense_id": "EXP_0034",
+      "requested_item": "Conduítes",
+      "requested_unit": "metro linear (m)",
+      "match_status": "no_match",
+      "winner": null,
+      "candidate_count": 0,
+      "no_match_reason": "No comparable product with visible price verified via api/v3/products."
+    },
+    {
+      "expense_id": "EXP_0035",
+      "requested_item": "Lâmpadas",
+      "requested_unit": "unidade",
+      "match_status": "no_match",
+      "winner": null,
+      "candidate_count": 0,
+      "no_match_reason": "No comparable product with visible price verified via api/v3/products."
+    },
+    {
+      "expense_id": "EXP_0038",
+      "requested_item": "Tomadas",
+      "requested_unit": "unidade",
+      "match_status": "verified",
+      "winner": {
+        "matched_product": "Conjunto 1 Tomada Energia 10A 4x2 Branco Miluz Schneider",
+        "sku": "89676930",
+        "seller": "Leroy Merlin",
+        "specifications": {
+          "brand": "Schneider"
+        },
+        "package_size": "1",
+        "displayed_price_brl": 32.9,
+        "normalized_unit_price_brl": 32.9,
+        "unit": "unidade",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.leroymerlin.com.br/conjunto-1-tomada-energia-10a-4x2-branco-miluz-schneider_89676930",
+        "final_url": "https://www.leroymerlin.com.br/conjunto-1-tomada-energia-10a-4x2-branco-miluz-schneider_89676930",
+        "http_status": 200,
+        "verification_method": "Leroy Merlin api/v3/products/89676930 HTTP 200 with X-Region=campinas (Nova Odessa CEP 13380 proxy); pricing visible; URL https://www.leroymerlin.com.br/conjunto-1-tomada-energia-10a-4x2-branco-miluz-schneider_89676930.",
+        "caveats": [
+          "Freight not calculated for CEP 13380-000; freight_brl left null."
+        ]
+      },
+      "candidate_count": 1,
+      "no_match_reason": ""
+    },
+    {
+      "expense_id": "EXP_0045",
+      "requested_item": "Dispositivos de segurança",
+      "requested_unit": "conjunto",
+      "match_status": "no_match",
+      "winner": null,
+      "candidate_count": 0,
+      "no_match_reason": "No Leroy Merlin camera/alarm kit offer with verified unit price."
+    },
+    {
+      "expense_id": "EXP_0018",
+      "requested_item": "Ferramentas",
+      "requested_unit": "conjunto",
+      "match_status": "verified",
+      "winner": {
+        "matched_product": "Maleta Kit Jogo Ferramentas Gerais Utilidades Uso Domestico 9 Peças 8009c",
+        "sku": "1570679472",
+        "seller": "Leroy Merlin",
+        "specifications": {
+          "brand": "Exbom"
+        },
+        "package_size": "1",
+        "displayed_price_brl": 66.49,
+        "normalized_unit_price_brl": 66.49,
+        "unit": "conjunto",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.leroymerlin.com.br/maleta-kit-jogo-ferramentas-gerais-utilidades-uso-domestico-9-pecas-8009c_1570679472",
+        "final_url": "https://www.leroymerlin.com.br/maleta-kit-jogo-ferramentas-gerais-utilidades-uso-domestico-9-pecas-8009c_1570679472",
+        "http_status": 200,
+        "verification_method": "Leroy Merlin api/v3/products/1570679472 HTTP 200 with X-Region=campinas (Nova Odessa CEP 13380 proxy); pricing visible; URL https://www.leroymerlin.com.br/maleta-kit-jogo-ferramentas-gerais-utilidades-uso-domestico-9-pecas-8009c_1570679472.",
+        "caveats": [
+          "Freight not calculated for CEP 13380-000; freight_brl left null."
+        ]
+      },
+      "candidate_count": 6,
+      "no_match_reason": ""
+    },
+    {
+      "expense_id": "EXP_0020",
+      "requested_item": "Carrinho de mão",
+      "requested_unit": "unidade",
+      "match_status": "verified",
+      "winner": {
+        "matched_product": "Carrinho De Mão Em Aço Carbono Pneu E Câmara Chapa 26mm 45l",
+        "sku": "1571958082",
+        "seller": "Leroy Merlin",
+        "specifications": {
+          "brand": "Minasul"
+        },
+        "package_size": "1",
+        "displayed_price_brl": 210.48,
+        "normalized_unit_price_brl": 210.48,
+        "unit": "unidade",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.leroymerlin.com.br/carrinho-de-mao-em-aco-carbono-pneu-e-camara-chapa-26mm-45l_1571958082",
+        "final_url": "https://www.leroymerlin.com.br/carrinho-de-mao-em-aco-carbono-pneu-e-camara-chapa-26mm-45l_1571958082",
+        "http_status": 200,
+        "verification_method": "Leroy Merlin api/v3/products/1571958082 HTTP 200 with X-Region=campinas (Nova Odessa CEP 13380 proxy); pricing visible; URL https://www.leroymerlin.com.br/carrinho-de-mao-em-aco-carbono-pneu-e-camara-chapa-26mm-45l_1571958082.",
+        "caveats": [
+          "Freight not calculated for CEP 13380-000; freight_brl left null."
+        ]
+      },
+      "candidate_count": 3,
+      "no_match_reason": ""
+    },
+    {
+      "expense_id": "EXP_0022",
+      "requested_item": "Caçamba de entulho",
+      "requested_unit": "caçamba",
+      "match_status": "no_match",
+      "winner": null,
+      "candidate_count": 0,
+      "no_match_reason": "Caçamba de entulho is rental/service, not a retail SKU."
+    },
+    {
+      "expense_id": "EXP_0043",
+      "requested_item": "Calhas e rufos",
+      "requested_unit": "metro linear (m)",
+      "match_status": "verified",
+      "winner": {
+        "matched_product": "Bobina Galvanizada 20cm X 2mts Rufo Calha Pingadeira Algerosa",
+        "sku": "1569336251",
+        "seller": "Leroy Merlin",
+        "specifications": {
+          "brand": "Cadimetal"
+        },
+        "package_size": "2 m",
+        "displayed_price_brl": 33.54,
+        "normalized_unit_price_brl": 16.77,
+        "unit": "metro linear (m)",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.leroymerlin.com.br/bobina-galvanizada-20cm-x-2mts-rufo-calha-pingadeira-algerosa_1569336251",
+        "final_url": "https://www.leroymerlin.com.br/bobina-galvanizada-20cm-x-2mts-rufo-calha-pingadeira-algerosa_1569336251",
+        "http_status": 200,
+        "verification_method": "Leroy Merlin api/v3/products/1569336251 HTTP 200 with X-Region=campinas (Nova Odessa CEP 13380 proxy); pricing visible; URL https://www.leroymerlin.com.br/bobina-galvanizada-20cm-x-2mts-rufo-calha-pingadeira-algerosa_1569336251.",
+        "caveats": [
+          "Normalized from 2 m length.",
+          "Freight not calculated for CEP 13380-000; freight_brl left null."
+        ]
+      },
+      "candidate_count": 4,
+      "no_match_reason": ""
+    },
+    {
+      "expense_id": "EXP_0047",
+      "requested_item": "Pregos, parafusos, buchas",
+      "requested_unit": "pacote",
+      "match_status": "verified",
+      "winner": {
+        "matched_product": "Parafuso Chipboard Cabeça Chata 5x20mm 25 Peças Standers",
+        "sku": "92061746",
+        "seller": "Leroy Merlin",
+        "specifications": {
+          "brand": "Standers"
+        },
+        "package_size": "1",
+        "displayed_price_brl": 9.99,
+        "normalized_unit_price_brl": 9.99,
+        "unit": "pacote",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.leroymerlin.com.br/parafuso-chipboard-cabeca-chata-5x20mm-25-pecas-standers_92061746",
+        "final_url": "https://www.leroymerlin.com.br/parafuso-chipboard-cabeca-chata-5x20mm-25-pecas-standers_92061746",
+        "http_status": 200,
+        "verification_method": "api/v3/products/92061746 HTTP 200 X-Region=campinas; https://www.leroymerlin.com.br/parafuso-chipboard-cabeca-chata-5x20mm-25-pecas-standers_92061746",
+        "caveats": [
+          "Freight not calculated for CEP 13380-000; freight_brl left null."
+        ]
+      },
+      "candidate_count": 9,
+      "no_match_reason": ""
+    }
+  ]
+}

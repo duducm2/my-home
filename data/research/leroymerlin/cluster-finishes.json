@@ -1,0 +1,1835 @@
+{
+  "cluster": "finishes",
+  "checked_at": "2026-09-17",
+  "location_basis": "nova_odessa_cep_13380",
+  "expenses": [
+    {
+      "expense_id": "EXP_0023",
+      "requested_item": "Porcelanato",
+      "requested_unit": "metro quadrado (m²)",
+      "match_status": "verified",
+      "candidates": [
+        {
+          "matched_product": "Porcelanato Interno Esmaltado Acetinado Borda Reta 60x60cm Cortona Cemento Itagres",
+          "sku": "89566162",
+          "seller": "Leroy Merlin",
+          "specifications": {
+            "brand": "Itagres"
+          },
+          "package_size": "1.39 m²",
+          "displayed_price_brl": 48.22,
+          "normalized_unit_price_brl": 34.6906,
+          "unit": "metro quadrado (m²)",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "limited",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.leroymerlin.com.br/porcelanato-interno-esmaltado-acetinado-borda-reta-60x60cm-cortona-cemento-itagres_89566162",
+          "final_url": "https://www.leroymerlin.com.br/porcelanato-interno-esmaltado-acetinado-borda-reta-60x60cm-cortona-cemento-itagres_89566162",
+          "http_status": 200,
+          "verification_method": "Leroy Merlin api/v3/products/89566162 HTTP 200 with X-Region=campinas (Nova Odessa CEP 13380 proxy); pricing visible; URL https://www.leroymerlin.com.br/porcelanato-interno-esmaltado-acetinado-borda-reta-60x60cm-cortona-cemento-itagres_89566162.",
+          "caveats": [
+            "Normalized from pack 1.39 m² at R$48.22.",
+            "Freight not calculated for CEP 13380-000; freight_brl left null.",
+            "isAvailableOnEcommerce=false at check time; price still visible on API."
+          ]
+        },
+        {
+          "matched_product": "Porcelanato Cimentício Acetinado Interno Borda Reta 60x60cm Cimento Toronto",
+          "sku": "92277892",
+          "seller": "Leroy Merlin",
+          "specifications": {
+            "brand": "Toronto"
+          },
+          "package_size": "2.2 m²",
+          "displayed_price_brl": 103.2,
+          "normalized_unit_price_brl": 46.9091,
+          "unit": "metro quadrado (m²)",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.leroymerlin.com.br/porcelanato-cimenticio-acetinado-interno-borda-reta-60x60cm-cimento-toronto_92277892",
+          "final_url": "https://www.leroymerlin.com.br/porcelanato-cimenticio-acetinado-interno-borda-reta-60x60cm-cimento-toronto_92277892",
+          "http_status": 200,
+          "verification_method": "Leroy Merlin api/v3/products/92277892 HTTP 200 with X-Region=campinas (Nova Odessa CEP 13380 proxy); pricing visible; URL https://www.leroymerlin.com.br/porcelanato-cimenticio-acetinado-interno-borda-reta-60x60cm-cimento-toronto_92277892.",
+          "caveats": [
+            "Normalized from pack 2.2 m² at R$103.2.",
+            "Freight not calculated for CEP 13380-000; freight_brl left null."
+          ]
+        },
+        {
+          "matched_product": "Porcelanato Cimentício Acetinado Interno Borda Reta 60x60cm Paviment Gray Incesa",
+          "sku": "91844543",
+          "seller": "Leroy Merlin",
+          "specifications": {
+            "brand": "Incesa"
+          },
+          "package_size": "2.2 m²",
+          "displayed_price_brl": 109.78,
+          "normalized_unit_price_brl": 49.9,
+          "unit": "metro quadrado (m²)",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.leroymerlin.com.br/porcelanato-cimenticio-acetinado-interno-borda-reta-60x60cm-paviment-gray-incesa_91844543",
+          "final_url": "https://www.leroymerlin.com.br/porcelanato-cimenticio-acetinado-interno-borda-reta-60x60cm-paviment-gray-incesa_91844543",
+          "http_status": 200,
+          "verification_method": "Leroy Merlin api/v3/products/91844543 HTTP 200 with X-Region=campinas (Nova Odessa CEP 13380 proxy); pricing visible; URL https://www.leroymerlin.com.br/porcelanato-cimenticio-acetinado-interno-borda-reta-60x60cm-paviment-gray-incesa_91844543.",
+          "caveats": [
+            "Normalized from pack 2.2 m² at R$109.78.",
+            "Freight not calculated for CEP 13380-000; freight_brl left null."
+          ]
+        },
+        {
+          "matched_product": "Porcelanato Cimentício Acetinado Interno Borda Reta 60x60cm Paviment Bege Incesa",
+          "sku": "92103893",
+          "seller": "Leroy Merlin",
+          "specifications": {
+            "brand": "Incesa"
+          },
+          "package_size": "2.2 m²",
+          "displayed_price_brl": 115.61,
+          "normalized_unit_price_brl": 52.55,
+          "unit": "metro quadrado (m²)",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.leroymerlin.com.br/porcelanato-cimenticio-acetinado-interno-borda-reta-60x60cm-paviment-bege-incesa_92103893",
+          "final_url": "https://www.leroymerlin.com.br/porcelanato-cimenticio-acetinado-interno-borda-reta-60x60cm-paviment-bege-incesa_92103893",
+          "http_status": 200,
+          "verification_method": "Leroy Merlin api/v3/products/92103893 HTTP 200 with X-Region=campinas (Nova Odessa CEP 13380 proxy); pricing visible; URL https://www.leroymerlin.com.br/porcelanato-cimenticio-acetinado-interno-borda-reta-60x60cm-paviment-bege-incesa_92103893.",
+          "caveats": [
+            "Normalized from pack 2.2 m² at R$115.61.",
+            "Freight not calculated for CEP 13380-000; freight_brl left null."
+          ]
+        },
+        {
+          "matched_product": "Porcelanato Cimentício Acetinado Interno Borda Reta 61x61cm Beton Gray Artens",
+          "sku": "92098860",
+          "seller": "Leroy Merlin",
+          "specifications": {
+            "brand": "Artens"
+          },
+          "package_size": "1.87 m²",
+          "displayed_price_brl": 100.03,
+          "normalized_unit_price_brl": 53.492,
+          "unit": "metro quadrado (m²)",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.leroymerlin.com.br/porcelanato-cimenticio-acetinado-interno-borda-reta-61x61cm-beton-gray-artens_92098860",
+          "final_url": "https://www.leroymerlin.com.br/porcelanato-cimenticio-acetinado-interno-borda-reta-61x61cm-beton-gray-artens_92098860",
+          "http_status": 200,
+          "verification_method": "Leroy Merlin api/v3/products/92098860 HTTP 200 with X-Region=campinas (Nova Odessa CEP 13380 proxy); pricing visible; URL https://www.leroymerlin.com.br/porcelanato-cimenticio-acetinado-interno-borda-reta-61x61cm-beton-gray-artens_92098860.",
+          "caveats": [
+            "Normalized from pack 1.87 m² at R$100.03.",
+            "Freight not calculated for CEP 13380-000; freight_brl left null."
+          ]
+        },
+        {
+          "matched_product": "Porcelanato Externo Natural Acetinado Borda Reta 60x60cm Gotham Pier Portobello",
+          "sku": "89540710",
+          "seller": "Leroy Merlin",
+          "specifications": {
+            "brand": "Portobello"
+          },
+          "package_size": "1.43 m²",
+          "displayed_price_brl": 87.24,
+          "normalized_unit_price_brl": 61.007,
+          "unit": "metro quadrado (m²)",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "limited",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.leroymerlin.com.br/porcelanato-externo-natural-acetinado-borda-reta-60x60cm-gotham-pier-portobello_89540710",
+          "final_url": "https://www.leroymerlin.com.br/porcelanato-externo-natural-acetinado-borda-reta-60x60cm-gotham-pier-portobello_89540710",
+          "http_status": 200,
+          "verification_method": "Leroy Merlin api/v3/products/89540710 HTTP 200 with X-Region=campinas (Nova Odessa CEP 13380 proxy); pricing visible; URL https://www.leroymerlin.com.br/porcelanato-externo-natural-acetinado-borda-reta-60x60cm-gotham-pier-portobello_89540710.",
+          "caveats": [
+            "Normalized from pack 1.43 m² at R$87.24.",
+            "Freight not calculated for CEP 13380-000; freight_brl left null.",
+            "isAvailableOnEcommerce=false at check time; price still visible on API."
+          ]
+        },
+        {
+          "matched_product": "Porcelanato Cimentício Acetinado Interno Borda Arredondada 60x60cm Blend Plus White Eliane",
+          "sku": "92270633",
+          "seller": "Leroy Merlin",
+          "specifications": {
+            "brand": "Eliane"
+          },
+          "package_size": "1.8 m²",
+          "displayed_price_brl": 113.2,
+          "normalized_unit_price_brl": 62.8889,
+          "unit": "metro quadrado (m²)",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.leroymerlin.com.br/porcelanato-cimenticio-acetinado-interno-borda-arredondada-60x60cm-blend-plus-white-eliane_92270633",
+          "final_url": "https://www.leroymerlin.com.br/porcelanato-cimenticio-acetinado-interno-borda-arredondada-60x60cm-blend-plus-white-eliane_92270633",
+          "http_status": 200,
+          "verification_method": "Leroy Merlin api/v3/products/92270633 HTTP 200 with X-Region=campinas (Nova Odessa CEP 13380 proxy); pricing visible; URL https://www.leroymerlin.com.br/porcelanato-cimenticio-acetinado-interno-borda-arredondada-60x60cm-blend-plus-white-eliane_92270633.",
+          "caveats": [
+            "Normalized from pack 1.8 m² at R$113.2.",
+            "Freight not calculated for CEP 13380-000; freight_brl left null."
+          ]
+        },
+        {
+          "matched_product": "Porcelanato Marmorizado Acetinado 60x60cm Interno Borda Arredondada Crema Natural Portobello",
+          "sku": "87935162",
+          "seller": "Leroy Merlin",
+          "specifications": {
+            "brand": "Portobello"
+          },
+          "package_size": "1.46 m²",
+          "displayed_price_brl": 95.94,
+          "normalized_unit_price_brl": 65.7123,
+          "unit": "metro quadrado (m²)",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "limited",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.leroymerlin.com.br/porcelanato-marmorizado-acetinado-60x60cm-interno-borda-arredondada-crema-natural-portobello_87935162",
+          "final_url": "https://www.leroymerlin.com.br/porcelanato-marmorizado-acetinado-60x60cm-interno-borda-arredondada-crema-natural-portobello_87935162",
+          "http_status": 200,
+          "verification_method": "Leroy Merlin api/v3/products/87935162 HTTP 200 with X-Region=campinas (Nova Odessa CEP 13380 proxy); pricing visible; URL https://www.leroymerlin.com.br/porcelanato-marmorizado-acetinado-60x60cm-interno-borda-arredondada-crema-natural-portobello_87935162.",
+          "caveats": [
+            "Normalized from pack 1.46 m² at R$95.94.",
+            "Freight not calculated for CEP 13380-000; freight_brl left null.",
+            "isAvailableOnEcommerce=false at check time; price still visible on API."
+          ]
+        },
+        {
+          "matched_product": "Porcelanato Cimentício Acetinado Interno Borda Arredondada 60x60cm Blend Plus Gray Eliane",
+          "sku": "92270612",
+          "seller": "Leroy Merlin",
+          "specifications": {
+            "brand": "Eliane"
+          },
+          "package_size": "1.8 m²",
+          "displayed_price_brl": 125.05,
+          "normalized_unit_price_brl": 69.4722,
+          "unit": "metro quadrado (m²)",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.leroymerlin.com.br/porcelanato-cimenticio-acetinado-interno-borda-arredondada-60x60cm-blend-plus-gray-eliane_92270612",
+          "final_url": "https://www.leroymerlin.com.br/porcelanato-cimenticio-acetinado-interno-borda-arredondada-60x60cm-blend-plus-gray-eliane_92270612",
+          "http_status": 200,
+          "verification_method": "Leroy Merlin api/v3/products/92270612 HTTP 200 with X-Region=campinas (Nova Odessa CEP 13380 proxy); pricing visible; URL https://www.leroymerlin.com.br/porcelanato-cimenticio-acetinado-interno-borda-arredondada-60x60cm-blend-plus-gray-eliane_92270612.",
+          "caveats": [
+            "Normalized from pack 1.8 m² at R$125.05.",
+            "Freight not calculated for CEP 13380-000; freight_brl left null."
+          ]
+        },
+        {
+          "matched_product": "Porcelanato Cimentício Acetinado Externo Borda Arredondada 60x60cm Blend Plus Gray Eliane",
+          "sku": "92270626",
+          "seller": "Leroy Merlin",
+          "specifications": {
+            "brand": "Eliane"
+          },
+          "package_size": "1.8 m²",
+          "displayed_price_brl": 125.05,
+          "normalized_unit_price_brl": 69.4722,
+          "unit": "metro quadrado (m²)",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.leroymerlin.com.br/porcelanato-cimenticio-acetinado-externo-borda-arredondada-60x60cm-blend-plus-gray-eliane_92270626",
+          "final_url": "https://www.leroymerlin.com.br/porcelanato-cimenticio-acetinado-externo-borda-arredondada-60x60cm-blend-plus-gray-eliane_92270626",
+          "http_status": 200,
+          "verification_method": "Leroy Merlin api/v3/products/92270626 HTTP 200 with X-Region=campinas (Nova Odessa CEP 13380 proxy); pricing visible; URL https://www.leroymerlin.com.br/porcelanato-cimenticio-acetinado-externo-borda-arredondada-60x60cm-blend-plus-gray-eliane_92270626.",
+          "caveats": [
+            "Normalized from pack 1.8 m² at R$125.05.",
+            "Freight not calculated for CEP 13380-000; freight_brl left null."
+          ]
+        },
+        {
+          "matched_product": "Porcelanato Cimentício Acetinado Interno Borda Reta 60x60cm Urban Off White Elizabeth",
+          "sku": "92390606",
+          "seller": "Leroy Merlin",
+          "specifications": {
+            "brand": "Elizabeth"
+          },
+          "package_size": "1.8 m²",
+          "displayed_price_brl": 135.2,
+          "normalized_unit_price_brl": 75.1111,
+          "unit": "metro quadrado (m²)",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.leroymerlin.com.br/porcelanato-cimenticio-acetinado-interno-borda-reta-60x60cm-urban-off-white-elizabeth_92390606",
+          "final_url": "https://www.leroymerlin.com.br/porcelanato-cimenticio-acetinado-interno-borda-reta-60x60cm-urban-off-white-elizabeth_92390606",
+          "http_status": 200,
+          "verification_method": "Leroy Merlin api/v3/products/92390606 HTTP 200 with X-Region=campinas (Nova Odessa CEP 13380 proxy); pricing visible; URL https://www.leroymerlin.com.br/porcelanato-cimenticio-acetinado-interno-borda-reta-60x60cm-urban-off-white-elizabeth_92390606.",
+          "caveats": [
+            "Normalized from pack 1.8 m² at R$135.2.",
+            "Freight not calculated for CEP 13380-000; freight_brl left null."
+          ]
+        },
+        {
+          "matched_product": "Porcelanato Cimentício Acetinado Externo Borda Arredondada 60x60cm Munari Cimento Eliane",
+          "sku": "90983683",
+          "seller": "Leroy Merlin",
+          "specifications": {
+            "brand": "Eliane"
+          },
+          "package_size": "1.8 m²",
+          "displayed_price_brl": 135.2,
+          "normalized_unit_price_brl": 75.1111,
+          "unit": "metro quadrado (m²)",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.leroymerlin.com.br/porcelanato-cimenticio-acetinado-externo-borda-arredondada-60x60cm-munari-cimento-eliane_90983683",
+          "final_url": "https://www.leroymerlin.com.br/porcelanato-cimenticio-acetinado-externo-borda-arredondada-60x60cm-munari-cimento-eliane_90983683",
+          "http_status": 200,
+          "verification_method": "Leroy Merlin api/v3/products/90983683 HTTP 200 with X-Region=campinas (Nova Odessa CEP 13380 proxy); pricing visible; URL https://www.leroymerlin.com.br/porcelanato-cimenticio-acetinado-externo-borda-arredondada-60x60cm-munari-cimento-eliane_90983683.",
+          "caveats": [
+            "Normalized from pack 1.8 m² at R$135.2.",
+            "Freight not calculated for CEP 13380-000; freight_brl left null."
+          ]
+        },
+        {
+          "matched_product": "Porcelanato Marmorizado Polido Borda Reta Interno 60x60cm Grise Cinza Artens",
+          "sku": "92298192",
+          "seller": "Leroy Merlin",
+          "specifications": {
+            "brand": "Artens"
+          },
+          "package_size": "1.8 m²",
+          "displayed_price_brl": 135.2,
+          "normalized_unit_price_brl": 75.1111,
+          "unit": "metro quadrado (m²)",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "limited",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.leroymerlin.com.br/porcelanato-marmorizado-polido-borda-reta-interno-60x60cm-grise-cinza-artens_92298192",
+          "final_url": "https://www.leroymerlin.com.br/porcelanato-marmorizado-polido-borda-reta-interno-60x60cm-grise-cinza-artens_92298192",
+          "http_status": 200,
+          "verification_method": "Leroy Merlin api/v3/products/92298192 HTTP 200 with X-Region=campinas (Nova Odessa CEP 13380 proxy); pricing visible; URL https://www.leroymerlin.com.br/porcelanato-marmorizado-polido-borda-reta-interno-60x60cm-grise-cinza-artens_92298192.",
+          "caveats": [
+            "Normalized from pack 1.8 m² at R$135.2.",
+            "Freight not calculated for CEP 13380-000; freight_brl left null.",
+            "isAvailableOnEcommerce=false at check time; price still visible on API."
+          ]
+        },
+        {
+          "matched_product": "Porcelanato Cimentício Acetinado Interno Borda Reta 60x60cm Dolmen Cinza Eliane",
+          "sku": "92334984",
+          "seller": "Leroy Merlin",
+          "specifications": {
+            "brand": "Eliane"
+          },
+          "package_size": "1.8 m²",
+          "displayed_price_brl": 177.5,
+          "normalized_unit_price_brl": 98.6111,
+          "unit": "metro quadrado (m²)",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.leroymerlin.com.br/porcelanato-cimenticio-acetinado-interno-borda-reta-60x60cm-dolmen-cinza-eliane_92334984",
+          "final_url": "https://www.leroymerlin.com.br/porcelanato-cimenticio-acetinado-interno-borda-reta-60x60cm-dolmen-cinza-eliane_92334984",
+          "http_status": 200,
+          "verification_method": "Leroy Merlin api/v3/products/92334984 HTTP 200 with X-Region=campinas (Nova Odessa CEP 13380 proxy); pricing visible; URL https://www.leroymerlin.com.br/porcelanato-cimenticio-acetinado-interno-borda-reta-60x60cm-dolmen-cinza-eliane_92334984.",
+          "caveats": [
+            "Normalized from pack 1.8 m² at R$177.5.",
+            "Freight not calculated for CEP 13380-000; freight_brl left null."
+          ]
+        },
+        {
+          "matched_product": "Porcelanato Cimentício Acetinado Interno Borda Reta 60x60cm Munari Branco Eliane",
+          "sku": "92334991",
+          "seller": "Leroy Merlin",
+          "specifications": {
+            "brand": "Eliane"
+          },
+          "package_size": "1.8 m²",
+          "displayed_price_brl": 177.5,
+          "normalized_unit_price_brl": 98.6111,
+          "unit": "metro quadrado (m²)",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.leroymerlin.com.br/porcelanato-cimenticio-acetinado-interno-borda-reta-60x60cm-munari-branco-eliane_92334991",
+          "final_url": "https://www.leroymerlin.com.br/porcelanato-cimenticio-acetinado-interno-borda-reta-60x60cm-munari-branco-eliane_92334991",
+          "http_status": 200,
+          "verification_method": "Leroy Merlin api/v3/products/92334991 HTTP 200 with X-Region=campinas (Nova Odessa CEP 13380 proxy); pricing visible; URL https://www.leroymerlin.com.br/porcelanato-cimenticio-acetinado-interno-borda-reta-60x60cm-munari-branco-eliane_92334991.",
+          "caveats": [
+            "Normalized from pack 1.8 m² at R$177.5.",
+            "Freight not calculated for CEP 13380-000; freight_brl left null."
+          ]
+        },
+        {
+          "matched_product": "Porcelanato Cimentício Acetinado Interno Borda Arredondada 60x60cm Caliza Frost Eliane",
+          "sku": "92089326",
+          "seller": "Leroy Merlin",
+          "specifications": {
+            "brand": "Eliane"
+          },
+          "package_size": "1.8 m²",
+          "displayed_price_brl": 177.5,
+          "normalized_unit_price_brl": 98.6111,
+          "unit": "metro quadrado (m²)",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "limited",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.leroymerlin.com.br/porcelanato-cimenticio-acetinado-interno-borda-arredondada-60x60cm-caliza-frost-eliane_92089326",
+          "final_url": "https://www.leroymerlin.com.br/porcelanato-cimenticio-acetinado-interno-borda-arredondada-60x60cm-caliza-frost-eliane_92089326",
+          "http_status": 200,
+          "verification_method": "Leroy Merlin api/v3/products/92089326 HTTP 200 with X-Region=campinas (Nova Odessa CEP 13380 proxy); pricing visible; URL https://www.leroymerlin.com.br/porcelanato-cimenticio-acetinado-interno-borda-arredondada-60x60cm-caliza-frost-eliane_92089326.",
+          "caveats": [
+            "Normalized from pack 1.8 m² at R$177.5.",
+            "Freight not calculated for CEP 13380-000; freight_brl left null.",
+            "isAvailableOnEcommerce=false at check time; price still visible on API."
+          ]
+        },
+        {
+          "matched_product": "Porcelanato Monocolor Branco Natural Interno Borda Arredondada 60X60cm Cetim Bianco Portobello",
+          "sku": "89373326",
+          "seller": "Leroy Merlin",
+          "specifications": {
+            "brand": "Portobello"
+          },
+          "package_size": "1.46 m²",
+          "displayed_price_brl": 150.83,
+          "normalized_unit_price_brl": 103.3082,
+          "unit": "metro quadrado (m²)",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "limited",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.leroymerlin.com.br/porcelanato-monocolor-branco-natural-interno-borda-arredondada-60x60cm-cetim-bianco-portobello_89373326",
+          "final_url": "https://www.leroymerlin.com.br/porcelanato-monocolor-branco-natural-interno-borda-arredondada-60x60cm-cetim-bianco-portobello_89373326",
+          "http_status": 200,
+          "verification_method": "Leroy Merlin api/v3/products/89373326 HTTP 200 with X-Region=campinas (Nova Odessa CEP 13380 proxy); pricing visible; URL https://www.leroymerlin.com.br/porcelanato-monocolor-branco-natural-interno-borda-arredondada-60x60cm-cetim-bianco-portobello_89373326.",
+          "caveats": [
+            "Normalized from pack 1.46 m² at R$150.83.",
+            "Freight not calculated for CEP 13380-000; freight_brl left null.",
+            "isAvailableOnEcommerce=false at check time; price still visible on API."
+          ]
+        },
+        {
+          "matched_product": "Porcelanato Cimentício Natural Interno Borda Arredondada 60X60cm Cimento Cinza Portobello",
+          "sku": "87890516",
+          "seller": "Leroy Merlin",
+          "specifications": {
+            "brand": "Portobello"
+          },
+          "package_size": "1.46 m²",
+          "displayed_price_brl": 189.26,
+          "normalized_unit_price_brl": 129.6301,
+          "unit": "metro quadrado (m²)",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.leroymerlin.com.br/porcelanato-cimenticio-natural-interno-borda-arredondada-60x60cm-cimento-cinza-portobello_87890516",
+          "final_url": "https://www.leroymerlin.com.br/porcelanato-cimenticio-natural-interno-borda-arredondada-60x60cm-cimento-cinza-portobello_87890516",
+          "http_status": 200,
+          "verification_method": "Leroy Merlin api/v3/products/87890516 HTTP 200 with X-Region=campinas (Nova Odessa CEP 13380 proxy); pricing visible; URL https://www.leroymerlin.com.br/porcelanato-cimenticio-natural-interno-borda-arredondada-60x60cm-cimento-cinza-portobello_87890516.",
+          "caveats": [
+            "Normalized from pack 1.46 m² at R$189.26.",
+            "Freight not calculated for CEP 13380-000; freight_brl left null."
+          ]
+        },
+        {
+          "matched_product": "Porcelanato Monocolor Cinza Acetinado Interno Borda Reta 60x60cm Matéria Titânio Eliane",
+          "sku": "92492064",
+          "seller": "Leroy Merlin",
+          "specifications": {
+            "brand": "Eliane"
+          },
+          "package_size": "1.8 m²",
+          "displayed_price_brl": 270.56,
+          "normalized_unit_price_brl": 150.3111,
+          "unit": "metro quadrado (m²)",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.leroymerlin.com.br/porcelanato-monocolor-cinza-acetinado-interno-borda-reta-60x60cm-materia-titanio-eliane_92492064",
+          "final_url": "https://www.leroymerlin.com.br/porcelanato-monocolor-cinza-acetinado-interno-borda-reta-60x60cm-materia-titanio-eliane_92492064",
+          "http_status": 200,
+          "verification_method": "Leroy Merlin api/v3/products/92492064 HTTP 200 with X-Region=campinas (Nova Odessa CEP 13380 proxy); pricing visible; URL https://www.leroymerlin.com.br/porcelanato-monocolor-cinza-acetinado-interno-borda-reta-60x60cm-materia-titanio-eliane_92492064.",
+          "caveats": [
+            "Normalized from pack 1.8 m² at R$270.56.",
+            "Freight not calculated for CEP 13380-000; freight_brl left null."
+          ]
+        }
+      ],
+      "winner": {
+        "matched_product": "Porcelanato Interno Esmaltado Acetinado Borda Reta 60x60cm Cortona Cemento Itagres",
+        "sku": "89566162",
+        "seller": "Leroy Merlin",
+        "specifications": {
+          "brand": "Itagres"
+        },
+        "package_size": "1.39 m²",
+        "displayed_price_brl": 48.22,
+        "normalized_unit_price_brl": 34.6906,
+        "unit": "metro quadrado (m²)",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "limited",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.leroymerlin.com.br/porcelanato-interno-esmaltado-acetinado-borda-reta-60x60cm-cortona-cemento-itagres_89566162",
+        "final_url": "https://www.leroymerlin.com.br/porcelanato-interno-esmaltado-acetinado-borda-reta-60x60cm-cortona-cemento-itagres_89566162",
+        "http_status": 200,
+        "verification_method": "Leroy Merlin api/v3/products/89566162 HTTP 200 with X-Region=campinas (Nova Odessa CEP 13380 proxy); pricing visible; URL https://www.leroymerlin.com.br/porcelanato-interno-esmaltado-acetinado-borda-reta-60x60cm-cortona-cemento-itagres_89566162.",
+        "caveats": [
+          "Normalized from pack 1.39 m² at R$48.22.",
+          "Freight not calculated for CEP 13380-000; freight_brl left null.",
+          "isAvailableOnEcommerce=false at check time; price still visible on API."
+        ]
+      },
+      "no_match_reason": ""
+    },
+    {
+      "expense_id": "EXP_0024",
+      "requested_item": "Rejunte de porcelanato",
+      "requested_unit": "quilograma (kg)",
+      "match_status": "verified",
+      "candidates": [
+        {
+          "matched_product": "Rejunte Acrílico Camurça 1kg Fortaleza",
+          "sku": "92380953",
+          "seller": "Leroy Merlin",
+          "specifications": {
+            "brand": "Fortaleza"
+          },
+          "package_size": "1",
+          "displayed_price_brl": 32.81,
+          "normalized_unit_price_brl": 32.81,
+          "unit": "quilograma (kg)",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "limited",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.leroymerlin.com.br/rejunte-acrilico-camurca-1kg-fortaleza_92380953",
+          "final_url": "https://www.leroymerlin.com.br/rejunte-acrilico-camurca-1kg-fortaleza_92380953",
+          "http_status": 200,
+          "verification_method": "Leroy Merlin api/v3/products/92380953 HTTP 200 with X-Region=campinas (Nova Odessa CEP 13380 proxy); pricing visible; URL https://www.leroymerlin.com.br/rejunte-acrilico-camurca-1kg-fortaleza_92380953.",
+          "caveats": [
+            "Freight not calculated for CEP 13380-000; freight_brl left null.",
+            "isAvailableOnEcommerce=false at check time; price still visible on API."
+          ]
+        },
+        {
+          "matched_product": "Rejunte Acrílico Areia 1kg Axton",
+          "sku": "92108611",
+          "seller": "Leroy Merlin",
+          "specifications": {
+            "brand": "Axton"
+          },
+          "package_size": "1",
+          "displayed_price_brl": 33.75,
+          "normalized_unit_price_brl": 33.75,
+          "unit": "quilograma (kg)",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.leroymerlin.com.br/rejunte-acrilico-areia-1kg-axton_92108611",
+          "final_url": "https://www.leroymerlin.com.br/rejunte-acrilico-areia-1kg-axton_92108611",
+          "http_status": 200,
+          "verification_method": "Leroy Merlin api/v3/products/92108611 HTTP 200 with X-Region=campinas (Nova Odessa CEP 13380 proxy); pricing visible; URL https://www.leroymerlin.com.br/rejunte-acrilico-areia-1kg-axton_92108611.",
+          "caveats": [
+            "Freight not calculated for CEP 13380-000; freight_brl left null."
+          ]
+        },
+        {
+          "matched_product": "Rejunte Acrílico Branco 1 Kg Quartzolit",
+          "sku": "91931840",
+          "seller": "Leroy Merlin",
+          "specifications": {
+            "brand": "Quartzolit"
+          },
+          "package_size": "1",
+          "displayed_price_brl": 34.89,
+          "normalized_unit_price_brl": 34.89,
+          "unit": "quilograma (kg)",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "limited",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.leroymerlin.com.br/rejunte-acrilico-branco-1-kg-quartzolit_91931840",
+          "final_url": "https://www.leroymerlin.com.br/rejunte-acrilico-branco-1-kg-quartzolit_91931840",
+          "http_status": 200,
+          "verification_method": "Leroy Merlin api/v3/products/91931840 HTTP 200 with X-Region=campinas (Nova Odessa CEP 13380 proxy); pricing visible; URL https://www.leroymerlin.com.br/rejunte-acrilico-branco-1-kg-quartzolit_91931840.",
+          "caveats": [
+            "Freight not calculated for CEP 13380-000; freight_brl left null.",
+            "isAvailableOnEcommerce=false at check time; price still visible on API."
+          ]
+        },
+        {
+          "matched_product": "Rejunte Acrílico Cinza Platina 1kg Axton",
+          "sku": "92108380",
+          "seller": "Leroy Merlin",
+          "specifications": {
+            "brand": "Axton"
+          },
+          "package_size": "1",
+          "displayed_price_brl": 44.9,
+          "normalized_unit_price_brl": 44.9,
+          "unit": "quilograma (kg)",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.leroymerlin.com.br/rejunte-acrilico-cinza-platina-1kg-axton_92108380",
+          "final_url": "https://www.leroymerlin.com.br/rejunte-acrilico-cinza-platina-1kg-axton_92108380",
+          "http_status": 200,
+          "verification_method": "Leroy Merlin api/v3/products/92108380 HTTP 200 with X-Region=campinas (Nova Odessa CEP 13380 proxy); pricing visible; URL https://www.leroymerlin.com.br/rejunte-acrilico-cinza-platina-1kg-axton_92108380.",
+          "caveats": [
+            "Freight not calculated for CEP 13380-000; freight_brl left null."
+          ]
+        },
+        {
+          "matched_product": "Rejunte Acrílico Corda 1 Kg Quartzolit",
+          "sku": "91931875",
+          "seller": "Leroy Merlin",
+          "specifications": {
+            "brand": "Quartzolit"
+          },
+          "package_size": "1",
+          "displayed_price_brl": 52.55,
+          "normalized_unit_price_brl": 52.55,
+          "unit": "quilograma (kg)",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "limited",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.leroymerlin.com.br/rejunte-acrilico-corda-1-kg-quartzolit_91931875",
+          "final_url": "https://www.leroymerlin.com.br/rejunte-acrilico-corda-1-kg-quartzolit_91931875",
+          "http_status": 200,
+          "verification_method": "Leroy Merlin api/v3/products/91931875 HTTP 200 with X-Region=campinas (Nova Odessa CEP 13380 proxy); pricing visible; URL https://www.leroymerlin.com.br/rejunte-acrilico-corda-1-kg-quartzolit_91931875.",
+          "caveats": [
+            "Freight not calculated for CEP 13380-000; freight_brl left null.",
+            "isAvailableOnEcommerce=false at check time; price still visible on API."
+          ]
+        },
+        {
+          "matched_product": "Rejunte Acrílico Marfim 1kg Portobello",
+          "sku": "92367394",
+          "seller": "Leroy Merlin",
+          "specifications": {
+            "brand": "Portobello"
+          },
+          "package_size": "1",
+          "displayed_price_brl": 54.43,
+          "normalized_unit_price_brl": 54.43,
+          "unit": "quilograma (kg)",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "limited",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.leroymerlin.com.br/rejunte-acrilico-marfim-1kg-portobello_92367394",
+          "final_url": "https://www.leroymerlin.com.br/rejunte-acrilico-marfim-1kg-portobello_92367394",
+          "http_status": 200,
+          "verification_method": "Leroy Merlin api/v3/products/92367394 HTTP 200 with X-Region=campinas (Nova Odessa CEP 13380 proxy); pricing visible; URL https://www.leroymerlin.com.br/rejunte-acrilico-marfim-1kg-portobello_92367394.",
+          "caveats": [
+            "Freight not calculated for CEP 13380-000; freight_brl left null.",
+            "isAvailableOnEcommerce=false at check time; price still visible on API."
+          ]
+        }
+      ],
+      "winner": {
+        "matched_product": "Rejunte Acrílico Camurça 1kg Fortaleza",
+        "sku": "92380953",
+        "seller": "Leroy Merlin",
+        "specifications": {
+          "brand": "Fortaleza"
+        },
+        "package_size": "1",
+        "displayed_price_brl": 32.81,
+        "normalized_unit_price_brl": 32.81,
+        "unit": "quilograma (kg)",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "limited",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.leroymerlin.com.br/rejunte-acrilico-camurca-1kg-fortaleza_92380953",
+        "final_url": "https://www.leroymerlin.com.br/rejunte-acrilico-camurca-1kg-fortaleza_92380953",
+        "http_status": 200,
+        "verification_method": "Leroy Merlin api/v3/products/92380953 HTTP 200 with X-Region=campinas (Nova Odessa CEP 13380 proxy); pricing visible; URL https://www.leroymerlin.com.br/rejunte-acrilico-camurca-1kg-fortaleza_92380953.",
+        "caveats": [
+          "Freight not calculated for CEP 13380-000; freight_brl left null.",
+          "isAvailableOnEcommerce=false at check time; price still visible on API."
+        ]
+      },
+      "no_match_reason": ""
+    },
+    {
+      "expense_id": "EXP_0025",
+      "requested_item": "Argamassa para o porcelanato",
+      "requested_unit": "saco (20 kg)",
+      "match_status": "verified",
+      "candidates": [
+        {
+          "matched_product": "Argamassa ACIII Interno e Externo 20kg Cinza Axton",
+          "sku": "89296172",
+          "seller": "Leroy Merlin",
+          "specifications": {
+            "brand": "Axton"
+          },
+          "package_size": "1",
+          "displayed_price_brl": 34.9,
+          "normalized_unit_price_brl": 34.9,
+          "unit": "saco (20 kg)",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.leroymerlin.com.br/argamassa-aciii-interno-e-externo-20kg-cinza-axton_89296172",
+          "final_url": "https://www.leroymerlin.com.br/argamassa-aciii-interno-e-externo-20kg-cinza-axton_89296172",
+          "http_status": 200,
+          "verification_method": "Leroy Merlin api/v3/products/89296172 HTTP 200 with X-Region=campinas (Nova Odessa CEP 13380 proxy); pricing visible; URL https://www.leroymerlin.com.br/argamassa-aciii-interno-e-externo-20kg-cinza-axton_89296172.",
+          "caveats": [
+            "Freight not calculated for CEP 13380-000; freight_brl left null."
+          ]
+        },
+        {
+          "matched_product": "Argamassa ACIII Interno e Externo 20kg Cinza Votomassa Votorantim",
+          "sku": "87125962",
+          "seller": "Leroy Merlin",
+          "specifications": {
+            "brand": "Votorantim"
+          },
+          "package_size": "1",
+          "displayed_price_brl": 34.9,
+          "normalized_unit_price_brl": 34.9,
+          "unit": "saco (20 kg)",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.leroymerlin.com.br/argamassa-aciii-interno-e-externo-20kg-cinza-votomassa-votorantim_87125962",
+          "final_url": "https://www.leroymerlin.com.br/argamassa-aciii-interno-e-externo-20kg-cinza-votomassa-votorantim_87125962",
+          "http_status": 200,
+          "verification_method": "Leroy Merlin api/v3/products/87125962 HTTP 200 with X-Region=campinas (Nova Odessa CEP 13380 proxy); pricing visible; URL https://www.leroymerlin.com.br/argamassa-aciii-interno-e-externo-20kg-cinza-votomassa-votorantim_87125962.",
+          "caveats": [
+            "Freight not calculated for CEP 13380-000; freight_brl left null."
+          ]
+        },
+        {
+          "matched_product": "Argamassa ACIII Interno e Externo 20kg Cinza Argalit",
+          "sku": "90609092",
+          "seller": "Leroy Merlin",
+          "specifications": {
+            "brand": "Argalit"
+          },
+          "package_size": "1",
+          "displayed_price_brl": 35.63,
+          "normalized_unit_price_brl": 35.63,
+          "unit": "saco (20 kg)",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "limited",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.leroymerlin.com.br/argamassa-aciii-interno-e-externo-20kg-cinza-argalit_90609092",
+          "final_url": "https://www.leroymerlin.com.br/argamassa-aciii-interno-e-externo-20kg-cinza-argalit_90609092",
+          "http_status": 200,
+          "verification_method": "Leroy Merlin api/v3/products/90609092 HTTP 200 with X-Region=campinas (Nova Odessa CEP 13380 proxy); pricing visible; URL https://www.leroymerlin.com.br/argamassa-aciii-interno-e-externo-20kg-cinza-argalit_90609092.",
+          "caveats": [
+            "Freight not calculated for CEP 13380-000; freight_brl left null.",
+            "isAvailableOnEcommerce=false at check time; price still visible on API."
+          ]
+        },
+        {
+          "matched_product": "Argamassa ACIII Interno e Externo 20kg Cinza Precon",
+          "sku": "86857680",
+          "seller": "Leroy Merlin",
+          "specifications": {
+            "brand": "Precon"
+          },
+          "package_size": "1",
+          "displayed_price_brl": 35.63,
+          "normalized_unit_price_brl": 35.63,
+          "unit": "saco (20 kg)",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "limited",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.leroymerlin.com.br/argamassa-aciii-interno-e-externo-20kg-cinza-precon_86857680",
+          "final_url": "https://www.leroymerlin.com.br/argamassa-aciii-interno-e-externo-20kg-cinza-precon_86857680",
+          "http_status": 200,
+          "verification_method": "Leroy Merlin api/v3/products/86857680 HTTP 200 with X-Region=campinas (Nova Odessa CEP 13380 proxy); pricing visible; URL https://www.leroymerlin.com.br/argamassa-aciii-interno-e-externo-20kg-cinza-precon_86857680.",
+          "caveats": [
+            "Freight not calculated for CEP 13380-000; freight_brl left null.",
+            "isAvailableOnEcommerce=false at check time; price still visible on API."
+          ]
+        },
+        {
+          "matched_product": "Argamassa ACIII Interno e Externo 20kg Cinza Flexível Fortaleza",
+          "sku": "90220144",
+          "seller": "Leroy Merlin",
+          "specifications": {
+            "brand": "Fortaleza"
+          },
+          "package_size": "1",
+          "displayed_price_brl": 35.9,
+          "normalized_unit_price_brl": 35.9,
+          "unit": "saco (20 kg)",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.leroymerlin.com.br/argamassa-aciii-interno-e-externo-20kg-cinza-flexivel-fortaleza_90220144",
+          "final_url": "https://www.leroymerlin.com.br/argamassa-aciii-interno-e-externo-20kg-cinza-flexivel-fortaleza_90220144",
+          "http_status": 200,
+          "verification_method": "Leroy Merlin api/v3/products/90220144 HTTP 200 with X-Region=campinas (Nova Odessa CEP 13380 proxy); pricing visible; URL https://www.leroymerlin.com.br/argamassa-aciii-interno-e-externo-20kg-cinza-flexivel-fortaleza_90220144.",
+          "caveats": [
+            "Freight not calculated for CEP 13380-000; freight_brl left null."
+          ]
+        },
+        {
+          "matched_product": "Argamassa ACIII Interno e Externo 20kg Cinza Cimentcola Flexível Quartzolit",
+          "sku": "89684140",
+          "seller": "Leroy Merlin",
+          "specifications": {
+            "brand": "Quartzolit"
+          },
+          "package_size": "1",
+          "displayed_price_brl": 44.9,
+          "normalized_unit_price_brl": 44.9,
+          "unit": "saco (20 kg)",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.leroymerlin.com.br/argamassa-aciii-interno-e-externo-20kg-cinza-cimentcola-flexivel-quartzolit_89684140",
+          "final_url": "https://www.leroymerlin.com.br/argamassa-aciii-interno-e-externo-20kg-cinza-cimentcola-flexivel-quartzolit_89684140",
+          "http_status": 200,
+          "verification_method": "Leroy Merlin api/v3/products/89684140 HTTP 200 with X-Region=campinas (Nova Odessa CEP 13380 proxy); pricing visible; URL https://www.leroymerlin.com.br/argamassa-aciii-interno-e-externo-20kg-cinza-cimentcola-flexivel-quartzolit_89684140.",
+          "caveats": [
+            "Freight not calculated for CEP 13380-000; freight_brl left null."
+          ]
+        },
+        {
+          "matched_product": "Argamassa ACIII Interno e Externo 20kg Branco Votomassa Votorantim",
+          "sku": "87912153",
+          "seller": "Leroy Merlin",
+          "specifications": {
+            "brand": "Votorantim"
+          },
+          "package_size": "1",
+          "displayed_price_brl": 46.9,
+          "normalized_unit_price_brl": 46.9,
+          "unit": "saco (20 kg)",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.leroymerlin.com.br/argamassa-aciii-interno-e-externo-20kg-branco-votomassa-votorantim_87912153",
+          "final_url": "https://www.leroymerlin.com.br/argamassa-aciii-interno-e-externo-20kg-branco-votomassa-votorantim_87912153",
+          "http_status": 200,
+          "verification_method": "Leroy Merlin api/v3/products/87912153 HTTP 200 with X-Region=campinas (Nova Odessa CEP 13380 proxy); pricing visible; URL https://www.leroymerlin.com.br/argamassa-aciii-interno-e-externo-20kg-branco-votomassa-votorantim_87912153.",
+          "caveats": [
+            "Freight not calculated for CEP 13380-000; freight_brl left null."
+          ]
+        },
+        {
+          "matched_product": "Argamassa ACIII Interno e Externo 20kg Cinza CimentCola Flexível Quartzolit",
+          "sku": "85526182",
+          "seller": "Leroy Merlin",
+          "specifications": {
+            "brand": "Quartzolit"
+          },
+          "package_size": "1",
+          "displayed_price_brl": 49.9,
+          "normalized_unit_price_brl": 49.9,
+          "unit": "saco (20 kg)",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "limited",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.leroymerlin.com.br/argamassa-aciii-interno-e-externo-20kg-cinza-cimentcola-flexivel-quartzolit_85526182",
+          "final_url": "https://www.leroymerlin.com.br/argamassa-aciii-interno-e-externo-20kg-cinza-cimentcola-flexivel-quartzolit_85526182",
+          "http_status": 200,
+          "verification_method": "Leroy Merlin api/v3/products/85526182 HTTP 200 with X-Region=campinas (Nova Odessa CEP 13380 proxy); pricing visible; URL https://www.leroymerlin.com.br/argamassa-aciii-interno-e-externo-20kg-cinza-cimentcola-flexivel-quartzolit_85526182.",
+          "caveats": [
+            "Freight not calculated for CEP 13380-000; freight_brl left null.",
+            "isAvailableOnEcommerce=false at check time; price still visible on API."
+          ]
+        },
+        {
+          "matched_product": "Argamassa ACIII Interno e Externo 20kg Branco CimentCola Quartzolit",
+          "sku": "90985930",
+          "seller": "Leroy Merlin",
+          "specifications": {
+            "brand": "Quartzolit"
+          },
+          "package_size": "1",
+          "displayed_price_brl": 59.9,
+          "normalized_unit_price_brl": 59.9,
+          "unit": "saco (20 kg)",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.leroymerlin.com.br/argamassa-aciii-interno-e-externo-20kg-branco-cimentcola-quartzolit_90985930",
+          "final_url": "https://www.leroymerlin.com.br/argamassa-aciii-interno-e-externo-20kg-branco-cimentcola-quartzolit_90985930",
+          "http_status": 200,
+          "verification_method": "Leroy Merlin api/v3/products/90985930 HTTP 200 with X-Region=campinas (Nova Odessa CEP 13380 proxy); pricing visible; URL https://www.leroymerlin.com.br/argamassa-aciii-interno-e-externo-20kg-branco-cimentcola-quartzolit_90985930.",
+          "caveats": [
+            "Freight not calculated for CEP 13380-000; freight_brl left null."
+          ]
+        },
+        {
+          "matched_product": "Argamassa ACIII Interno e Externo 20kg ultra Flexível M29 HP Cinza MC Bauchemie",
+          "sku": "92394743",
+          "seller": "Leroy Merlin",
+          "specifications": {
+            "brand": "Mc Bauchemie"
+          },
+          "package_size": "1",
+          "displayed_price_brl": 132.9,
+          "normalized_unit_price_brl": 132.9,
+          "unit": "saco (20 kg)",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.leroymerlin.com.br/argamassa-aciii-interno-e-externo-20kg-ultra-flexivel-m29-hp-cinza-mc-bauchemie_92394743",
+          "final_url": "https://www.leroymerlin.com.br/argamassa-aciii-interno-e-externo-20kg-ultra-flexivel-m29-hp-cinza-mc-bauchemie_92394743",
+          "http_status": 200,
+          "verification_method": "Leroy Merlin api/v3/products/92394743 HTTP 200 with X-Region=campinas (Nova Odessa CEP 13380 proxy); pricing visible; URL https://www.leroymerlin.com.br/argamassa-aciii-interno-e-externo-20kg-ultra-flexivel-m29-hp-cinza-mc-bauchemie_92394743.",
+          "caveats": [
+            "Freight not calculated for CEP 13380-000; freight_brl left null."
+          ]
+        },
+        {
+          "matched_product": "Argamassa ACIII-D Interno e Externo 20kg Ultra Flexível M12 HP Branca MC Bauchemie",
+          "sku": "92394736",
+          "seller": "Leroy Merlin",
+          "specifications": {
+            "brand": "Mc Bauchemie"
+          },
+          "package_size": "1",
+          "displayed_price_brl": 139.9,
+          "normalized_unit_price_brl": 139.9,
+          "unit": "saco (20 kg)",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.leroymerlin.com.br/argamassa-aciii-d-interno-e-externo-20kg-ultra-flexivel-m12-hp-branca-mc-bauchemie_92394736",
+          "final_url": "https://www.leroymerlin.com.br/argamassa-aciii-d-interno-e-externo-20kg-ultra-flexivel-m12-hp-branca-mc-bauchemie_92394736",
+          "http_status": 200,
+          "verification_method": "Leroy Merlin api/v3/products/92394736 HTTP 200 with X-Region=campinas (Nova Odessa CEP 13380 proxy); pricing visible; URL https://www.leroymerlin.com.br/argamassa-aciii-d-interno-e-externo-20kg-ultra-flexivel-m12-hp-branca-mc-bauchemie_92394736.",
+          "caveats": [
+            "Freight not calculated for CEP 13380-000; freight_brl left null."
+          ]
+        },
+        {
+          "matched_product": "Argamassa ACIII Interno e Externo 20kg ultra Flexível M29 HP Branco MC Bauchemie",
+          "sku": "92394750",
+          "seller": "Leroy Merlin",
+          "specifications": {
+            "brand": "Mc Bauchemie"
+          },
+          "package_size": "1",
+          "displayed_price_brl": 159.9,
+          "normalized_unit_price_brl": 159.9,
+          "unit": "saco (20 kg)",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.leroymerlin.com.br/argamassa-aciii-interno-e-externo-20kg-ultra-flexivel-m29-hp-branco-mc-bauchemie_92394750",
+          "final_url": "https://www.leroymerlin.com.br/argamassa-aciii-interno-e-externo-20kg-ultra-flexivel-m29-hp-branco-mc-bauchemie_92394750",
+          "http_status": 200,
+          "verification_method": "Leroy Merlin api/v3/products/92394750 HTTP 200 with X-Region=campinas (Nova Odessa CEP 13380 proxy); pricing visible; URL https://www.leroymerlin.com.br/argamassa-aciii-interno-e-externo-20kg-ultra-flexivel-m29-hp-branco-mc-bauchemie_92394750.",
+          "caveats": [
+            "Freight not calculated for CEP 13380-000; freight_brl left null."
+          ]
+        }
+      ],
+      "winner": {
+        "matched_product": "Argamassa ACIII Interno e Externo 20kg Cinza Axton",
+        "sku": "89296172",
+        "seller": "Leroy Merlin",
+        "specifications": {
+          "brand": "Axton"
+        },
+        "package_size": "1",
+        "displayed_price_brl": 34.9,
+        "normalized_unit_price_brl": 34.9,
+        "unit": "saco (20 kg)",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.leroymerlin.com.br/argamassa-aciii-interno-e-externo-20kg-cinza-axton_89296172",
+        "final_url": "https://www.leroymerlin.com.br/argamassa-aciii-interno-e-externo-20kg-cinza-axton_89296172",
+        "http_status": 200,
+        "verification_method": "Leroy Merlin api/v3/products/89296172 HTTP 200 with X-Region=campinas (Nova Odessa CEP 13380 proxy); pricing visible; URL https://www.leroymerlin.com.br/argamassa-aciii-interno-e-externo-20kg-cinza-axton_89296172.",
+        "caveats": [
+          "Freight not calculated for CEP 13380-000; freight_brl left null."
+        ]
+      },
+      "no_match_reason": ""
+    },
+    {
+      "expense_id": "EXP_0041",
+      "requested_item": "Rodapés para acompanhar o porcelanato (R$1500)",
+      "requested_unit": "metro linear (m)",
+      "match_status": "no_match",
+      "candidates": [],
+      "winner": null,
+      "no_match_reason": "No comparable product with visible price verified via api/v3/products."
+    },
+    {
+      "expense_id": "EXP_0046",
+      "requested_item": "Tinta",
+      "requested_unit": "lata (18 L)",
+      "match_status": "verified",
+      "candidates": [
+        {
+          "matched_product": "Tinta Acrílica Fosca para Parede Interna Luxens Econômica Branco 18L",
+          "sku": "91917014",
+          "seller": "Leroy Merlin",
+          "specifications": {
+            "brand": "Luxens"
+          },
+          "package_size": "1",
+          "displayed_price_brl": 199.9,
+          "normalized_unit_price_brl": 199.9,
+          "unit": "lata (18 L)",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.leroymerlin.com.br/tinta-acrilica-fosca-para-parede-interna-luxens-economica-branco-18l_91917014",
+          "final_url": "https://www.leroymerlin.com.br/tinta-acrilica-fosca-para-parede-interna-luxens-economica-branco-18l_91917014",
+          "http_status": 200,
+          "verification_method": "Leroy Merlin api/v3/products/91917014 HTTP 200 with X-Region=campinas (Nova Odessa CEP 13380 proxy); pricing visible; URL https://www.leroymerlin.com.br/tinta-acrilica-fosca-para-parede-interna-luxens-economica-branco-18l_91917014.",
+          "caveats": [
+            "Freight not calculated for CEP 13380-000; freight_brl left null."
+          ]
+        },
+        {
+          "matched_product": "Tinta Acrí Peg&pinte 18 Litros  Branco Gelo",
+          "sku": "1570686744",
+          "seller": "Leroy Merlin",
+          "specifications": {
+            "brand": "Coral"
+          },
+          "package_size": "1",
+          "displayed_price_brl": 233.7,
+          "normalized_unit_price_brl": 233.7,
+          "unit": "lata (18 L)",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.leroymerlin.com.br/tinta-acri-pegepinte-18-litros--branco-gelo_1570686744",
+          "final_url": "https://www.leroymerlin.com.br/tinta-acri-pegepinte-18-litros--branco-gelo_1570686744",
+          "http_status": 200,
+          "verification_method": "Leroy Merlin api/v3/products/1570686744 HTTP 200 with X-Region=campinas (Nova Odessa CEP 13380 proxy); pricing visible; URL https://www.leroymerlin.com.br/tinta-acri-pegepinte-18-litros--branco-gelo_1570686744.",
+          "caveats": [
+            "Freight not calculated for CEP 13380-000; freight_brl left null."
+          ]
+        },
+        {
+          "matched_product": "Tinta Acrílica para Piso Fosca Premium Branca 18 Luxens",
+          "sku": "92136492",
+          "seller": "Leroy Merlin",
+          "specifications": {
+            "brand": "Luxens"
+          },
+          "package_size": "1",
+          "displayed_price_brl": 249.9,
+          "normalized_unit_price_brl": 249.9,
+          "unit": "lata (18 L)",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.leroymerlin.com.br/tinta-acrilica-para-piso-fosca-premium-branca-18-luxens_92136492",
+          "final_url": "https://www.leroymerlin.com.br/tinta-acrilica-para-piso-fosca-premium-branca-18-luxens_92136492",
+          "http_status": 200,
+          "verification_method": "Leroy Merlin api/v3/products/92136492 HTTP 200 with X-Region=campinas (Nova Odessa CEP 13380 proxy); pricing visible; URL https://www.leroymerlin.com.br/tinta-acrilica-para-piso-fosca-premium-branca-18-luxens_92136492.",
+          "caveats": [
+            "Freight not calculated for CEP 13380-000; freight_brl left null."
+          ]
+        },
+        {
+          "matched_product": "Tinta Acrílica para Piso Premium Fosco Branco 18L Hydronorth",
+          "sku": "91939484",
+          "seller": "Leroy Merlin",
+          "specifications": {
+            "brand": "Hydronorth"
+          },
+          "package_size": "1",
+          "displayed_price_brl": 299.9,
+          "normalized_unit_price_brl": 299.9,
+          "unit": "lata (18 L)",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.leroymerlin.com.br/tinta-acrilica-para-piso-premium-fosco-branco-18l-hydronorth_91939484",
+          "final_url": "https://www.leroymerlin.com.br/tinta-acrilica-para-piso-premium-fosco-branco-18l-hydronorth_91939484",
+          "http_status": 200,
+          "verification_method": "Leroy Merlin api/v3/products/91939484 HTTP 200 with X-Region=campinas (Nova Odessa CEP 13380 proxy); pricing visible; URL https://www.leroymerlin.com.br/tinta-acrilica-para-piso-premium-fosco-branco-18l-hydronorth_91939484.",
+          "caveats": [
+            "Freight not calculated for CEP 13380-000; freight_brl left null."
+          ]
+        },
+        {
+          "matched_product": "Tinta Acrílica Fosca Pronta para Uso Standard Interior Branca 18 L Luxens",
+          "sku": "91917105",
+          "seller": "Leroy Merlin",
+          "specifications": {
+            "brand": "Luxens"
+          },
+          "package_size": "1",
+          "displayed_price_brl": 309.9,
+          "normalized_unit_price_brl": 309.9,
+          "unit": "lata (18 L)",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "limited",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.leroymerlin.com.br/tinta-acrilica-fosca-pronta-para-uso-standard-interior-branca-18-l-luxens_91917105",
+          "final_url": "https://www.leroymerlin.com.br/tinta-acrilica-fosca-pronta-para-uso-standard-interior-branca-18-l-luxens_91917105",
+          "http_status": 200,
+          "verification_method": "Leroy Merlin api/v3/products/91917105 HTTP 200 with X-Region=campinas (Nova Odessa CEP 13380 proxy); pricing visible; URL https://www.leroymerlin.com.br/tinta-acrilica-fosca-pronta-para-uso-standard-interior-branca-18-l-luxens_91917105.",
+          "caveats": [
+            "Freight not calculated for CEP 13380-000; freight_brl left null.",
+            "isAvailableOnEcommerce=false at check time; price still visible on API."
+          ]
+        },
+        {
+          "matched_product": "Tinta Acrílica Standard Fosco Rende Muito+ Qualyvinil 18.l - Branco",
+          "sku": "1572396533",
+          "seller": "Leroy Merlin",
+          "specifications": {
+            "brand": "Qualyvinil"
+          },
+          "package_size": "1",
+          "displayed_price_brl": 362.46,
+          "normalized_unit_price_brl": 362.46,
+          "unit": "lata (18 L)",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.leroymerlin.com.br/tinta-acrilica-standard-fosco-rende-muito--qualyvinil-18-l-branco_1572396533",
+          "final_url": "https://www.leroymerlin.com.br/tinta-acrilica-standard-fosco-rende-muito--qualyvinil-18-l-branco_1572396533",
+          "http_status": 200,
+          "verification_method": "Leroy Merlin api/v3/products/1572396533 HTTP 200 with X-Region=campinas (Nova Odessa CEP 13380 proxy); pricing visible; URL https://www.leroymerlin.com.br/tinta-acrilica-standard-fosco-rende-muito--qualyvinil-18-l-branco_1572396533.",
+          "caveats": [
+            "Freight not calculated for CEP 13380-000; freight_brl left null."
+          ]
+        },
+        {
+          "matched_product": "Tinta Acrílica Pisos Branco 18 L Suvinil",
+          "sku": "90707596",
+          "seller": "Leroy Merlin",
+          "specifications": {
+            "brand": "Suvinil"
+          },
+          "package_size": "1",
+          "displayed_price_brl": 369.9,
+          "normalized_unit_price_brl": 369.9,
+          "unit": "lata (18 L)",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.leroymerlin.com.br/tinta-acrilica-pisos-branco-18-l-suvinil_90707596",
+          "final_url": "https://www.leroymerlin.com.br/tinta-acrilica-pisos-branco-18-l-suvinil_90707596",
+          "http_status": 200,
+          "verification_method": "Leroy Merlin api/v3/products/90707596 HTTP 200 with X-Region=campinas (Nova Odessa CEP 13380 proxy); pricing visible; URL https://www.leroymerlin.com.br/tinta-acrilica-pisos-branco-18-l-suvinil_90707596.",
+          "caveats": [
+            "Freight not calculated for CEP 13380-000; freight_brl left null."
+          ]
+        },
+        {
+          "matched_product": "Tinta Acrílica Fosca para Parede Interna Pronto para Uso Luxens Premium Branco 18L",
+          "sku": "91917560",
+          "seller": "Leroy Merlin",
+          "specifications": {
+            "brand": "Luxens"
+          },
+          "package_size": "1",
+          "displayed_price_brl": 399.9,
+          "normalized_unit_price_brl": 399.9,
+          "unit": "lata (18 L)",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.leroymerlin.com.br/tinta-acrilica-fosca-para-parede-interna-pronto-para-uso-luxens-premium-branco-18l_91917560",
+          "final_url": "https://www.leroymerlin.com.br/tinta-acrilica-fosca-para-parede-interna-pronto-para-uso-luxens-premium-branco-18l_91917560",
+          "http_status": 200,
+          "verification_method": "Leroy Merlin api/v3/products/91917560 HTTP 200 with X-Region=campinas (Nova Odessa CEP 13380 proxy); pricing visible; URL https://www.leroymerlin.com.br/tinta-acrilica-fosca-para-parede-interna-pronto-para-uso-luxens-premium-branco-18l_91917560.",
+          "caveats": [
+            "Freight not calculated for CEP 13380-000; freight_brl left null."
+          ]
+        },
+        {
+          "matched_product": "Tinta Acrílica Fosca para Parede Interna Pronto para Uso Coral Acrílico Premium Interior Branco 18L",
+          "sku": "91934703",
+          "seller": "Leroy Merlin",
+          "specifications": {
+            "brand": "Coral"
+          },
+          "package_size": "1",
+          "displayed_price_brl": 449.9,
+          "normalized_unit_price_brl": 449.9,
+          "unit": "lata (18 L)",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.leroymerlin.com.br/tinta-acrilica-fosca-para-parede-interna-pronto-para-uso-coral-acrilico-premium-interior-branco-18l_91934703",
+          "final_url": "https://www.leroymerlin.com.br/tinta-acrilica-fosca-para-parede-interna-pronto-para-uso-coral-acrilico-premium-interior-branco-18l_91934703",
+          "http_status": 200,
+          "verification_method": "Leroy Merlin api/v3/products/91934703 HTTP 200 with X-Region=campinas (Nova Odessa CEP 13380 proxy); pricing visible; URL https://www.leroymerlin.com.br/tinta-acrilica-fosca-para-parede-interna-pronto-para-uso-coral-acrilico-premium-interior-branco-18l_91934703.",
+          "caveats": [
+            "Freight not calculated for CEP 13380-000; freight_brl left null."
+          ]
+        },
+        {
+          "matched_product": "Tinta Acrílica Fosca Pronta para Uso Premium Exterior Branca 18 L Luxens",
+          "sku": "91918134",
+          "seller": "Leroy Merlin",
+          "specifications": {
+            "brand": "Luxens"
+          },
+          "package_size": "1",
+          "displayed_price_brl": 559.9,
+          "normalized_unit_price_brl": 559.9,
+          "unit": "lata (18 L)",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.leroymerlin.com.br/tinta-acrilica-fosca-pronta-para-uso-premium-exterior-branca-18-l-luxens_91918134",
+          "final_url": "https://www.leroymerlin.com.br/tinta-acrilica-fosca-pronta-para-uso-premium-exterior-branca-18-l-luxens_91918134",
+          "http_status": 200,
+          "verification_method": "Leroy Merlin api/v3/products/91918134 HTTP 200 with X-Region=campinas (Nova Odessa CEP 13380 proxy); pricing visible; URL https://www.leroymerlin.com.br/tinta-acrilica-fosca-pronta-para-uso-premium-exterior-branca-18-l-luxens_91918134.",
+          "caveats": [
+            "Freight not calculated for CEP 13380-000; freight_brl left null."
+          ]
+        },
+        {
+          "matched_product": "Tinta Acrílica Fosca para Parede Interna e Externa Lavável Suvinil Toque Premium Papel Picado 18L",
+          "sku": "92334816",
+          "seller": "Leroy Merlin",
+          "specifications": {
+            "brand": "Suvinil"
+          },
+          "package_size": "1",
+          "displayed_price_brl": 629.9,
+          "normalized_unit_price_brl": 629.9,
+          "unit": "lata (18 L)",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.leroymerlin.com.br/tinta-acrilica-fosca-para-parede-interna-e-externa-lavavel-suvinil-toque-premium-papel-picado-18l_92334816",
+          "final_url": "https://www.leroymerlin.com.br/tinta-acrilica-fosca-para-parede-interna-e-externa-lavavel-suvinil-toque-premium-papel-picado-18l_92334816",
+          "http_status": 200,
+          "verification_method": "Leroy Merlin api/v3/products/92334816 HTTP 200 with X-Region=campinas (Nova Odessa CEP 13380 proxy); pricing visible; URL https://www.leroymerlin.com.br/tinta-acrilica-fosca-para-parede-interna-e-externa-lavavel-suvinil-toque-premium-papel-picado-18l_92334816.",
+          "caveats": [
+            "Freight not calculated for CEP 13380-000; freight_brl left null."
+          ]
+        },
+        {
+          "matched_product": "Tinta Acrílica Semi Brilho Premium Decora Branco 18L Coral",
+          "sku": "89669636",
+          "seller": "Leroy Merlin",
+          "specifications": {
+            "brand": "Coral"
+          },
+          "package_size": "1",
+          "displayed_price_brl": 731.97,
+          "normalized_unit_price_brl": 731.97,
+          "unit": "lata (18 L)",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.leroymerlin.com.br/tinta-acrilica-semi-brilho-premium-decora-branco-18l-coral_89669636",
+          "final_url": "https://www.leroymerlin.com.br/tinta-acrilica-semi-brilho-premium-decora-branco-18l-coral_89669636",
+          "http_status": 200,
+          "verification_method": "Leroy Merlin api/v3/products/89669636 HTTP 200 with X-Region=campinas (Nova Odessa CEP 13380 proxy); pricing visible; URL https://www.leroymerlin.com.br/tinta-acrilica-semi-brilho-premium-decora-branco-18l-coral_89669636.",
+          "caveats": [
+            "Freight not calculated for CEP 13380-000; freight_brl left null."
+          ]
+        },
+        {
+          "matched_product": "Tinta Acrílica Semibrilho para Parede Interna e Externa Lavável Suvinil Toque Premium Branco Neve 18L",
+          "sku": "92259160",
+          "seller": "Leroy Merlin",
+          "specifications": {
+            "brand": "Suvinil"
+          },
+          "package_size": "1",
+          "displayed_price_brl": 864.9,
+          "normalized_unit_price_brl": 864.9,
+          "unit": "lata (18 L)",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.leroymerlin.com.br/tinta-acrilica-semibrilho-para-parede-interna-e-externa-lavavel-suvinil-toque-premium-branco-neve-18l_92259160",
+          "final_url": "https://www.leroymerlin.com.br/tinta-acrilica-semibrilho-para-parede-interna-e-externa-lavavel-suvinil-toque-premium-branco-neve-18l_92259160",
+          "http_status": 200,
+          "verification_method": "Leroy Merlin api/v3/products/92259160 HTTP 200 with X-Region=campinas (Nova Odessa CEP 13380 proxy); pricing visible; URL https://www.leroymerlin.com.br/tinta-acrilica-semibrilho-para-parede-interna-e-externa-lavavel-suvinil-toque-premium-branco-neve-18l_92259160.",
+          "caveats": [
+            "Freight not calculated for CEP 13380-000; freight_brl left null."
+          ]
+        }
+      ],
+      "winner": {
+        "matched_product": "Tinta Acrílica Fosca para Parede Interna Luxens Econômica Branco 18L",
+        "sku": "91917014",
+        "seller": "Leroy Merlin",
+        "specifications": {
+          "brand": "Luxens"
+        },
+        "package_size": "1",
+        "displayed_price_brl": 199.9,
+        "normalized_unit_price_brl": 199.9,
+        "unit": "lata (18 L)",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.leroymerlin.com.br/tinta-acrilica-fosca-para-parede-interna-luxens-economica-branco-18l_91917014",
+        "final_url": "https://www.leroymerlin.com.br/tinta-acrilica-fosca-para-parede-interna-luxens-economica-branco-18l_91917014",
+        "http_status": 200,
+        "verification_method": "Leroy Merlin api/v3/products/91917014 HTTP 200 with X-Region=campinas (Nova Odessa CEP 13380 proxy); pricing visible; URL https://www.leroymerlin.com.br/tinta-acrilica-fosca-para-parede-interna-luxens-economica-branco-18l_91917014.",
+        "caveats": [
+          "Freight not calculated for CEP 13380-000; freight_brl left null."
+        ]
+      },
+      "no_match_reason": ""
+    },
+    {
+      "expense_id": "EXP_0048",
+      "requested_item": "Silicone, espuma expansiva, selante PU",
+      "requested_unit": "kit",
+      "match_status": "verified",
+      "candidates": [
+        {
+          "matched_product": "Silicone Acético 260g Unipega Preto",
+          "sku": "1572130176",
+          "seller": "Leroy Merlin",
+          "specifications": {
+            "brand": "Unipega"
+          },
+          "package_size": "1",
+          "displayed_price_brl": 16.91,
+          "normalized_unit_price_brl": 16.91,
+          "unit": "kit",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.leroymerlin.com.br/silicone-acetico-260g-unipega-preto_1572130176",
+          "final_url": "https://www.leroymerlin.com.br/silicone-acetico-260g-unipega-preto_1572130176",
+          "http_status": 200,
+          "verification_method": "api/v3/products/1572130176 HTTP 200 X-Region=campinas",
+          "caveats": [
+            "Freight not calculated for CEP 13380-000; freight_brl left null."
+          ]
+        },
+        {
+          "matched_product": "Espuma Expansiva Quartzolit 500ml",
+          "sku": "1571024549",
+          "seller": "Leroy Merlin",
+          "specifications": {
+            "brand": "Weber Quartzolit"
+          },
+          "package_size": "1",
+          "displayed_price_brl": 23.21,
+          "normalized_unit_price_brl": 23.21,
+          "unit": "kit",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.leroymerlin.com.br/espuma-expansiva-quartzolit-500ml_1571024549",
+          "final_url": "https://www.leroymerlin.com.br/espuma-expansiva-quartzolit-500ml_1571024549",
+          "http_status": 200,
+          "verification_method": "api/v3/products/1571024549 HTTP 200 X-Region=campinas",
+          "caveats": [
+            "Freight not calculated for CEP 13380-000; freight_brl left null."
+          ]
+        }
+      ],
+      "winner": {
+        "matched_product": "Kit representativo: Silicone Acético 260g Unipega Preto + Espuma Expansiva Quartzolit 500ml",
+        "sku": "1572130176",
+        "seller": "Leroy Merlin",
+        "specifications": {
+          "components": [
+            {
+              "name": "Silicone Acético 260g Unipega Preto",
+              "price": 16.91,
+              "url": "https://www.leroymerlin.com.br/silicone-acetico-260g-unipega-preto_1572130176"
+            },
+            {
+              "name": "Espuma Expansiva Quartzolit 500ml",
+              "price": 23.21,
+              "url": "https://www.leroymerlin.com.br/espuma-expansiva-quartzolit-500ml_1571024549"
+            }
+          ]
+        },
+        "package_size": "2 itens (silicone + espuma; PU nao verificado)",
+        "displayed_price_brl": 40.12,
+        "normalized_unit_price_brl": 40.12,
+        "unit": "kit",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.leroymerlin.com.br/silicone-acetico-260g-unipega-preto_1572130176",
+        "final_url": "https://www.leroymerlin.com.br/silicone-acetico-260g-unipega-preto_1572130176",
+        "http_status": 200,
+        "verification_method": "Sum silicone+espuma api prices R$40.12",
+        "caveats": [
+          "Representative kit; selante PU not verified.",
+          "Freight not calculated for CEP 13380-000; freight_brl left null."
+        ]
+      },
+      "no_match_reason": ""
+    },
+    {
+      "expense_id": "EXP_0049",
+      "requested_item": "Lona para proteção da obra",
+      "requested_unit": "metro quadrado (m²)",
+      "match_status": "verified",
+      "candidates": [
+        {
+          "matched_product": "Lona Plástica 4x100m Preta Plasitap",
+          "sku": "92349376",
+          "seller": "Leroy Merlin",
+          "specifications": {
+            "brand": "Plasitap"
+          },
+          "package_size": "400 m²",
+          "displayed_price_brl": 289.9,
+          "normalized_unit_price_brl": 0.7247,
+          "unit": "metro quadrado (m²)",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.leroymerlin.com.br/lona-plastica-4x100m-preta-plasitap_92349376",
+          "final_url": "https://www.leroymerlin.com.br/lona-plastica-4x100m-preta-plasitap_92349376",
+          "http_status": 200,
+          "verification_method": "Leroy Merlin api/v3/products/92349376 HTTP 200 with X-Region=campinas (Nova Odessa CEP 13380 proxy); pricing visible; URL https://www.leroymerlin.com.br/lona-plastica-4x100m-preta-plasitap_92349376.",
+          "caveats": [
+            "Normalized from 4x100 m sheet.",
+            "Freight not calculated for CEP 13380-000; freight_brl left null."
+          ]
+        },
+        {
+          "matched_product": "Bobina de Lona Plástica 4x10m Preta Plasitap",
+          "sku": "92450225",
+          "seller": "Leroy Merlin",
+          "specifications": {
+            "brand": "Plasitap"
+          },
+          "package_size": "40 m²",
+          "displayed_price_brl": 29.9,
+          "normalized_unit_price_brl": 0.7475,
+          "unit": "metro quadrado (m²)",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.leroymerlin.com.br/bobina-de-lona-plastica-4x10m-preta-plasitap_92450225",
+          "final_url": "https://www.leroymerlin.com.br/bobina-de-lona-plastica-4x10m-preta-plasitap_92450225",
+          "http_status": 200,
+          "verification_method": "Leroy Merlin api/v3/products/92450225 HTTP 200 with X-Region=campinas (Nova Odessa CEP 13380 proxy); pricing visible; URL https://www.leroymerlin.com.br/bobina-de-lona-plastica-4x10m-preta-plasitap_92450225.",
+          "caveats": [
+            "Normalized from 4x10 m sheet.",
+            "Freight not calculated for CEP 13380-000; freight_brl left null."
+          ]
+        },
+        {
+          "matched_product": "Lona Plástica 4x50m Preta BRF Lonas",
+          "sku": "88036865",
+          "seller": "Leroy Merlin",
+          "specifications": {
+            "brand": "BRF Lonas"
+          },
+          "package_size": "200 m²",
+          "displayed_price_brl": 149.9,
+          "normalized_unit_price_brl": 0.7495,
+          "unit": "metro quadrado (m²)",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.leroymerlin.com.br/lona-plastica-4x50m-preta-brf-lonas_88036865",
+          "final_url": "https://www.leroymerlin.com.br/lona-plastica-4x50m-preta-brf-lonas_88036865",
+          "http_status": 200,
+          "verification_method": "Leroy Merlin api/v3/products/88036865 HTTP 200 with X-Region=campinas (Nova Odessa CEP 13380 proxy); pricing visible; URL https://www.leroymerlin.com.br/lona-plastica-4x50m-preta-brf-lonas_88036865.",
+          "caveats": [
+            "Normalized from 4x50 m sheet.",
+            "Freight not calculated for CEP 13380-000; freight_brl left null."
+          ]
+        },
+        {
+          "matched_product": "Lona Plástica Preta 2x10m Brasil Bag",
+          "sku": "88514125",
+          "seller": "Leroy Merlin",
+          "specifications": {
+            "brand": "Brasil Bag"
+          },
+          "package_size": "20 m²",
+          "displayed_price_brl": 22.9,
+          "normalized_unit_price_brl": 1.145,
+          "unit": "metro quadrado (m²)",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "limited",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.leroymerlin.com.br/lona-plastica-preta-2x10m-brasil-bag_88514125",
+          "final_url": "https://www.leroymerlin.com.br/lona-plastica-preta-2x10m-brasil-bag_88514125",
+          "http_status": 200,
+          "verification_method": "Leroy Merlin api/v3/products/88514125 HTTP 200 with X-Region=campinas (Nova Odessa CEP 13380 proxy); pricing visible; URL https://www.leroymerlin.com.br/lona-plastica-preta-2x10m-brasil-bag_88514125.",
+          "caveats": [
+            "Normalized from 2x10 m sheet.",
+            "Freight not calculated for CEP 13380-000; freight_brl left null.",
+            "isAvailableOnEcommerce=false at check time; price still visible on API."
+          ]
+        },
+        {
+          "matched_product": "Lona Preta Plástica 4x50 Metros 15kg - Agroplastic, Tamanho: 150 Micras",
+          "sku": "1569931951",
+          "seller": "Leroy Merlin",
+          "specifications": {
+            "brand": "Agroplastic"
+          },
+          "package_size": "200 m²",
+          "displayed_price_brl": 267.19,
+          "normalized_unit_price_brl": 1.3359,
+          "unit": "metro quadrado (m²)",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.leroymerlin.com.br/lona-preta-plastica-4x50-metros-15kg-agroplastic-tamanho-150-micras_1569931951",
+          "final_url": "https://www.leroymerlin.com.br/lona-preta-plastica-4x50-metros-15kg-agroplastic-tamanho-150-micras_1569931951",
+          "http_status": 200,
+          "verification_method": "Leroy Merlin api/v3/products/1569931951 HTTP 200 with X-Region=campinas (Nova Odessa CEP 13380 proxy); pricing visible; URL https://www.leroymerlin.com.br/lona-preta-plastica-4x50-metros-15kg-agroplastic-tamanho-150-micras_1569931951.",
+          "caveats": [
+            "Normalized from 4x50 m sheet.",
+            "Freight not calculated for CEP 13380-000; freight_brl left null."
+          ]
+        },
+        {
+          "matched_product": "Lona Plástica Preta 4x5m Brasil Bag",
+          "sku": "88514160",
+          "seller": "Leroy Merlin",
+          "specifications": {
+            "brand": "Brasil Bag"
+          },
+          "package_size": "20 m²",
+          "displayed_price_brl": 31.9,
+          "normalized_unit_price_brl": 1.595,
+          "unit": "metro quadrado (m²)",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "limited",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.leroymerlin.com.br/lona-plastica-preta-4x5m-brasil-bag_88514160",
+          "final_url": "https://www.leroymerlin.com.br/lona-plastica-preta-4x5m-brasil-bag_88514160",
+          "http_status": 200,
+          "verification_method": "Leroy Merlin api/v3/products/88514160 HTTP 200 with X-Region=campinas (Nova Odessa CEP 13380 proxy); pricing visible; URL https://www.leroymerlin.com.br/lona-plastica-preta-4x5m-brasil-bag_88514160.",
+          "caveats": [
+            "Normalized from 4x5 m sheet.",
+            "Freight not calculated for CEP 13380-000; freight_brl left null.",
+            "isAvailableOnEcommerce=false at check time; price still visible on API."
+          ]
+        },
+        {
+          "matched_product": "Lona Plástica 2x50m Preta Plasitap",
+          "sku": "89186713",
+          "seller": "Leroy Merlin",
+          "specifications": {
+            "brand": "Plasitap"
+          },
+          "package_size": "100 m²",
+          "displayed_price_brl": 164.9,
+          "normalized_unit_price_brl": 1.649,
+          "unit": "metro quadrado (m²)",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "limited",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.leroymerlin.com.br/lona-plastica-2x50m-preta-plasitap_89186713",
+          "final_url": "https://www.leroymerlin.com.br/lona-plastica-2x50m-preta-plasitap_89186713",
+          "http_status": 200,
+          "verification_method": "Leroy Merlin api/v3/products/89186713 HTTP 200 with X-Region=campinas (Nova Odessa CEP 13380 proxy); pricing visible; URL https://www.leroymerlin.com.br/lona-plastica-2x50m-preta-plasitap_89186713.",
+          "caveats": [
+            "Normalized from 2x50 m sheet.",
+            "Freight not calculated for CEP 13380-000; freight_brl left null.",
+            "isAvailableOnEcommerce=false at check time; price still visible on API."
+          ]
+        },
+        {
+          "matched_product": "Lona Plástica Preta 4x15m 0,03mm Brasil Bag",
+          "sku": "90910561",
+          "seller": "Leroy Merlin",
+          "specifications": {
+            "brand": "Brasil Bag"
+          },
+          "package_size": "60 m²",
+          "displayed_price_brl": 104.9,
+          "normalized_unit_price_brl": 1.7483,
+          "unit": "metro quadrado (m²)",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "limited",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.leroymerlin.com.br/lona-plastica-preta-4x15m-0,03mm-brasil-bag_90910561",
+          "final_url": "https://www.leroymerlin.com.br/lona-plastica-preta-4x15m-0,03mm-brasil-bag_90910561",
+          "http_status": 200,
+          "verification_method": "Leroy Merlin api/v3/products/90910561 HTTP 200 with X-Region=campinas (Nova Odessa CEP 13380 proxy); pricing visible; URL https://www.leroymerlin.com.br/lona-plastica-preta-4x15m-0,03mm-brasil-bag_90910561.",
+          "caveats": [
+            "Normalized from 4x15 m sheet.",
+            "Freight not calculated for CEP 13380-000; freight_brl left null.",
+            "isAvailableOnEcommerce=false at check time; price still visible on API."
+          ]
+        },
+        {
+          "matched_product": "Lona Plástica Preta 2x15m 0,03mm Brasil Bag",
+          "sku": "90910540",
+          "seller": "Leroy Merlin",
+          "specifications": {
+            "brand": "Brasil Bag"
+          },
+          "package_size": "30 m²",
+          "displayed_price_brl": 52.9,
+          "normalized_unit_price_brl": 1.7633,
+          "unit": "metro quadrado (m²)",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "limited",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.leroymerlin.com.br/lona-plastica-preta-2x15m-0,03mm-brasil-bag_90910540",
+          "final_url": "https://www.leroymerlin.com.br/lona-plastica-preta-2x15m-0,03mm-brasil-bag_90910540",
+          "http_status": 200,
+          "verification_method": "Leroy Merlin api/v3/products/90910540 HTTP 200 with X-Region=campinas (Nova Odessa CEP 13380 proxy); pricing visible; URL https://www.leroymerlin.com.br/lona-plastica-preta-2x15m-0,03mm-brasil-bag_90910540.",
+          "caveats": [
+            "Normalized from 2x15 m sheet.",
+            "Freight not calculated for CEP 13380-000; freight_brl left null.",
+            "isAvailableOnEcommerce=false at check time; price still visible on API."
+          ]
+        },
+        {
+          "matched_product": "Lona Plástica Preta 2x5m Brasil Bag",
+          "sku": "88514104",
+          "seller": "Leroy Merlin",
+          "specifications": {
+            "brand": "Brasil Bag"
+          },
+          "package_size": "10 m²",
+          "displayed_price_brl": 17.9,
+          "normalized_unit_price_brl": 1.79,
+          "unit": "metro quadrado (m²)",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "limited",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.leroymerlin.com.br/lona-plastica-preta-2x5m-brasil-bag_88514104",
+          "final_url": "https://www.leroymerlin.com.br/lona-plastica-preta-2x5m-brasil-bag_88514104",
+          "http_status": 200,
+          "verification_method": "Leroy Merlin api/v3/products/88514104 HTTP 200 with X-Region=campinas (Nova Odessa CEP 13380 proxy); pricing visible; URL https://www.leroymerlin.com.br/lona-plastica-preta-2x5m-brasil-bag_88514104.",
+          "caveats": [
+            "Normalized from 2x5 m sheet.",
+            "Freight not calculated for CEP 13380-000; freight_brl left null.",
+            "isAvailableOnEcommerce=false at check time; price still visible on API."
+          ]
+        }
+      ],
+      "winner": {
+        "matched_product": "Lona Plástica 4x100m Preta Plasitap",
+        "sku": "92349376",
+        "seller": "Leroy Merlin",
+        "specifications": {
+          "brand": "Plasitap"
+        },
+        "package_size": "400 m²",
+        "displayed_price_brl": 289.9,
+        "normalized_unit_price_brl": 0.7247,
+        "unit": "metro quadrado (m²)",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.leroymerlin.com.br/lona-plastica-4x100m-preta-plasitap_92349376",
+        "final_url": "https://www.leroymerlin.com.br/lona-plastica-4x100m-preta-plasitap_92349376",
+        "http_status": 200,
+        "verification_method": "Leroy Merlin api/v3/products/92349376 HTTP 200 with X-Region=campinas (Nova Odessa CEP 13380 proxy); pricing visible; URL https://www.leroymerlin.com.br/lona-plastica-4x100m-preta-plasitap_92349376.",
+        "caveats": [
+          "Normalized from 4x100 m sheet.",
+          "Freight not calculated for CEP 13380-000; freight_brl left null."
+        ]
+      },
+      "no_match_reason": ""
+    }
+  ]
+}

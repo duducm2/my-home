@@ -1,0 +1,561 @@
+{
+  "cluster": "plumbing",
+  "checked_at": "2026-09-17",
+  "location_basis": "nova_odessa_cep_13380",
+  "expenses": [
+    {
+      "expense_id": "EXP_0028",
+      "requested_item": "Vaso",
+      "requested_unit": "unidade",
+      "match_status": "verified",
+      "candidates": [
+        {
+          "matched_product": "Vaso Sanitário com Caixa Acoplada Branco 3 e 6 litros Eco Plus Celite",
+          "sku": "3601865565",
+          "seller": "Leroy Merlin",
+          "specifications": {
+            "brand": "Celite"
+          },
+          "package_size": "1",
+          "displayed_price_brl": 390.8,
+          "normalized_unit_price_brl": 390.8,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.leroymerlin.com.br/vaso-sanitario-com-caixa-acoplada-branco-3-e-6-litros-eco-plus-celite_3601865565",
+          "final_url": "https://www.leroymerlin.com.br/vaso-sanitario-com-caixa-acoplada-branco-3-e-6-litros-eco-plus-celite_3601865565",
+          "http_status": 200,
+          "verification_method": "Leroy Merlin api/v3/products/3601865565 HTTP 200 with X-Region=campinas (Nova Odessa CEP 13380 proxy); pricing visible; URL https://www.leroymerlin.com.br/vaso-sanitario-com-caixa-acoplada-branco-3-e-6-litros-eco-plus-celite_3601865565.",
+          "caveats": [
+            "Freight not calculated for CEP 13380-000; freight_brl left null."
+          ]
+        },
+        {
+          "matched_product": "Vaso Sanitário Caixa Acoplada Basic - Smart Norte",
+          "sku": "1571666681",
+          "seller": "Leroy Merlin",
+          "specifications": {
+            "brand": "Smart Norte"
+          },
+          "package_size": "1",
+          "displayed_price_brl": 477.3,
+          "normalized_unit_price_brl": 477.3,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.leroymerlin.com.br/vaso-sanitario-caixa-acoplada-basic-smart-norte_1571666681",
+          "final_url": "https://www.leroymerlin.com.br/vaso-sanitario-caixa-acoplada-basic-smart-norte_1571666681",
+          "http_status": 200,
+          "verification_method": "Leroy Merlin api/v3/products/1571666681 HTTP 200 with X-Region=campinas (Nova Odessa CEP 13380 proxy); pricing visible; URL https://www.leroymerlin.com.br/vaso-sanitario-caixa-acoplada-basic-smart-norte_1571666681.",
+          "caveats": [
+            "Freight not calculated for CEP 13380-000; freight_brl left null."
+          ]
+        }
+      ],
+      "winner": {
+        "matched_product": "Vaso Sanitário com Caixa Acoplada Branco 3 e 6 litros Eco Plus Celite",
+        "sku": "3601865565",
+        "seller": "Leroy Merlin",
+        "specifications": {
+          "brand": "Celite"
+        },
+        "package_size": "1",
+        "displayed_price_brl": 390.8,
+        "normalized_unit_price_brl": 390.8,
+        "unit": "unidade",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.leroymerlin.com.br/vaso-sanitario-com-caixa-acoplada-branco-3-e-6-litros-eco-plus-celite_3601865565",
+        "final_url": "https://www.leroymerlin.com.br/vaso-sanitario-com-caixa-acoplada-branco-3-e-6-litros-eco-plus-celite_3601865565",
+        "http_status": 200,
+        "verification_method": "Leroy Merlin api/v3/products/3601865565 HTTP 200 with X-Region=campinas (Nova Odessa CEP 13380 proxy); pricing visible; URL https://www.leroymerlin.com.br/vaso-sanitario-com-caixa-acoplada-branco-3-e-6-litros-eco-plus-celite_3601865565.",
+        "caveats": [
+          "Freight not calculated for CEP 13380-000; freight_brl left null."
+        ]
+      },
+      "no_match_reason": ""
+    },
+    {
+      "expense_id": "EXP_0036",
+      "requested_item": "Torneiras",
+      "requested_unit": "unidade",
+      "match_status": "verified",
+      "candidates": [
+        {
+          "matched_product": "Torneira Lavatório Banheiro Pia Bica Móvel Baixa Cromado Mesa 1/4 de Volta",
+          "sku": "1571419038",
+          "seller": "Leroy Merlin",
+          "specifications": {
+            "brand": "Shophidraulica"
+          },
+          "package_size": "1",
+          "displayed_price_brl": 29.99,
+          "normalized_unit_price_brl": 29.99,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.leroymerlin.com.br/torneira-lavatorio-banheiro-pia-bica-movel-baixa-cromado-mesa-1-4-de-volta_1571419038",
+          "final_url": "https://www.leroymerlin.com.br/torneira-lavatorio-banheiro-pia-bica-movel-baixa-cromado-mesa-1-4-de-volta_1571419038",
+          "http_status": 200,
+          "verification_method": "Leroy Merlin api/v3/products/1571419038 HTTP 200 with X-Region=campinas (Nova Odessa CEP 13380 proxy); pricing visible; URL https://www.leroymerlin.com.br/torneira-lavatorio-banheiro-pia-bica-movel-baixa-cromado-mesa-1-4-de-volta_1571419038.",
+          "caveats": [
+            "Freight not calculated for CEP 13380-000; freight_brl left null."
+          ]
+        },
+        {
+          "matched_product": "Torneira Lavatório Banheiro Bica Móvel 1/4 volta Cromada",
+          "sku": "1567193253",
+          "seller": "Leroy Merlin",
+          "specifications": {
+            "brand": "Tfc"
+          },
+          "package_size": "1",
+          "displayed_price_brl": 64.9,
+          "normalized_unit_price_brl": 64.9,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.leroymerlin.com.br/torneira-lavatorio-banheiro-bica-movel-1-4-volta-cromada_1567193253",
+          "final_url": "https://www.leroymerlin.com.br/torneira-lavatorio-banheiro-bica-movel-1-4-volta-cromada_1567193253",
+          "http_status": 200,
+          "verification_method": "Leroy Merlin api/v3/products/1567193253 HTTP 200 with X-Region=campinas (Nova Odessa CEP 13380 proxy); pricing visible; URL https://www.leroymerlin.com.br/torneira-lavatorio-banheiro-bica-movel-1-4-volta-cromada_1567193253.",
+          "caveats": [
+            "Freight not calculated for CEP 13380-000; freight_brl left null."
+          ]
+        },
+        {
+          "matched_product": "Torneira Lavatório De Mesa Bica Alta 1195 F61 Preta Lorenzetti",
+          "sku": "1567401065",
+          "seller": "Leroy Merlin",
+          "specifications": {
+            "brand": "Lorenzetti"
+          },
+          "package_size": "1",
+          "displayed_price_brl": 65.63,
+          "normalized_unit_price_brl": 65.63,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.leroymerlin.com.br/torneira-lavatorio-de-mesa-bica-alta-1195-f61-preta-lorenzetti_1567401065",
+          "final_url": "https://www.leroymerlin.com.br/torneira-lavatorio-de-mesa-bica-alta-1195-f61-preta-lorenzetti_1567401065",
+          "http_status": 200,
+          "verification_method": "Leroy Merlin api/v3/products/1567401065 HTTP 200 with X-Region=campinas (Nova Odessa CEP 13380 proxy); pricing visible; URL https://www.leroymerlin.com.br/torneira-lavatorio-de-mesa-bica-alta-1195-f61-preta-lorenzetti_1567401065.",
+          "caveats": [
+            "Freight not calculated for CEP 13380-000; freight_brl left null."
+          ]
+        }
+      ],
+      "winner": {
+        "matched_product": "Torneira Lavatório Banheiro Pia Bica Móvel Baixa Cromado Mesa 1/4 de Volta",
+        "sku": "1571419038",
+        "seller": "Leroy Merlin",
+        "specifications": {
+          "brand": "Shophidraulica"
+        },
+        "package_size": "1",
+        "displayed_price_brl": 29.99,
+        "normalized_unit_price_brl": 29.99,
+        "unit": "unidade",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.leroymerlin.com.br/torneira-lavatorio-banheiro-pia-bica-movel-baixa-cromado-mesa-1-4-de-volta_1571419038",
+        "final_url": "https://www.leroymerlin.com.br/torneira-lavatorio-banheiro-pia-bica-movel-baixa-cromado-mesa-1-4-de-volta_1571419038",
+        "http_status": 200,
+        "verification_method": "Leroy Merlin api/v3/products/1571419038 HTTP 200 with X-Region=campinas (Nova Odessa CEP 13380 proxy); pricing visible; URL https://www.leroymerlin.com.br/torneira-lavatorio-banheiro-pia-bica-movel-baixa-cromado-mesa-1-4-de-volta_1571419038.",
+        "caveats": [
+          "Freight not calculated for CEP 13380-000; freight_brl left null."
+        ]
+      },
+      "no_match_reason": ""
+    },
+    {
+      "expense_id": "EXP_0037",
+      "requested_item": "Sifões e ralos",
+      "requested_unit": "unidade",
+      "match_status": "verified",
+      "candidates": [
+        {
+          "matched_product": "Sifão Copo Blukit Tubo De Parede Extensivo Universal Para Lavatório Preto",
+          "sku": "1570851139",
+          "seller": "Leroy Merlin",
+          "specifications": {
+            "brand": "Blukit"
+          },
+          "package_size": "1",
+          "displayed_price_brl": 47.51,
+          "normalized_unit_price_brl": 47.51,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.leroymerlin.com.br/sifao-copo-blukit-tubo-de-parede-extensivo-universal-para-lavatorio-preto_1570851139",
+          "final_url": "https://www.leroymerlin.com.br/sifao-copo-blukit-tubo-de-parede-extensivo-universal-para-lavatorio-preto_1570851139",
+          "http_status": 200,
+          "verification_method": "api/v3/products/1570851139 HTTP 200 X-Region=campinas; https://www.leroymerlin.com.br/sifao-copo-blukit-tubo-de-parede-extensivo-universal-para-lavatorio-preto_1570851139",
+          "caveats": [
+            "Freight not calculated for CEP 13380-000; freight_brl left null."
+          ]
+        }
+      ],
+      "winner": {
+        "matched_product": "Sifão Copo Blukit Tubo De Parede Extensivo Universal Para Lavatório Preto",
+        "sku": "1570851139",
+        "seller": "Leroy Merlin",
+        "specifications": {
+          "brand": "Blukit"
+        },
+        "package_size": "1",
+        "displayed_price_brl": 47.51,
+        "normalized_unit_price_brl": 47.51,
+        "unit": "unidade",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.leroymerlin.com.br/sifao-copo-blukit-tubo-de-parede-extensivo-universal-para-lavatorio-preto_1570851139",
+        "final_url": "https://www.leroymerlin.com.br/sifao-copo-blukit-tubo-de-parede-extensivo-universal-para-lavatorio-preto_1570851139",
+        "http_status": 200,
+        "verification_method": "api/v3/products/1570851139 HTTP 200 X-Region=campinas; https://www.leroymerlin.com.br/sifao-copo-blukit-tubo-de-parede-extensivo-universal-para-lavatorio-preto_1570851139",
+        "caveats": [
+          "Freight not calculated for CEP 13380-000; freight_brl left null."
+        ]
+      },
+      "no_match_reason": ""
+    },
+    {
+      "expense_id": "EXP_0039",
+      "requested_item": "Pias e bancadas",
+      "requested_unit": "conjunto",
+      "match_status": "verified",
+      "candidates": [
+        {
+          "matched_product": "Cuba Pia Cozinha  Gourmet Quadrada 35x35 Inox 304 Escovado Tubrax",
+          "sku": "1571161319",
+          "seller": "Leroy Merlin",
+          "specifications": {
+            "brand": "Tubrax"
+          },
+          "package_size": "1",
+          "displayed_price_brl": 266.9,
+          "normalized_unit_price_brl": 266.9,
+          "unit": "conjunto",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.leroymerlin.com.br/cuba-pia-cozinha--gourmet-quadrada-35x35-inox-304-escovado-tubrax_1571161319",
+          "final_url": "https://www.leroymerlin.com.br/cuba-pia-cozinha--gourmet-quadrada-35x35-inox-304-escovado-tubrax_1571161319",
+          "http_status": 200,
+          "verification_method": "api/v3/products/1571161319 HTTP 200 X-Region=campinas; https://www.leroymerlin.com.br/cuba-pia-cozinha--gourmet-quadrada-35x35-inox-304-escovado-tubrax_1571161319",
+          "caveats": [
+            "Freight not calculated for CEP 13380-000; freight_brl left null."
+          ]
+        },
+        {
+          "matched_product": "Cuba Quadrada Inox 304 Cozinha Pia Embutir Sobrepor Gourmet 50x40 Premium Com Válvula",
+          "sku": "1567392026",
+          "seller": "Leroy Merlin",
+          "specifications": {
+            "brand": "Ecubas"
+          },
+          "package_size": "1",
+          "displayed_price_brl": 669.9,
+          "normalized_unit_price_brl": 669.9,
+          "unit": "conjunto",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.leroymerlin.com.br/cuba-quadrada-inox-304-cozinha-pia-embutir-sobrepor-gourmet-50x40-premium-com-valvula_1567392026",
+          "final_url": "https://www.leroymerlin.com.br/cuba-quadrada-inox-304-cozinha-pia-embutir-sobrepor-gourmet-50x40-premium-com-valvula_1567392026",
+          "http_status": 200,
+          "verification_method": "api/v3/products/1567392026 HTTP 200 X-Region=campinas; https://www.leroymerlin.com.br/cuba-quadrada-inox-304-cozinha-pia-embutir-sobrepor-gourmet-50x40-premium-com-valvula_1567392026",
+          "caveats": [
+            "Freight not calculated for CEP 13380-000; freight_brl left null."
+          ]
+        }
+      ],
+      "winner": {
+        "matched_product": "Cuba Pia Cozinha  Gourmet Quadrada 35x35 Inox 304 Escovado Tubrax",
+        "sku": "1571161319",
+        "seller": "Leroy Merlin",
+        "specifications": {
+          "brand": "Tubrax"
+        },
+        "package_size": "1",
+        "displayed_price_brl": 266.9,
+        "normalized_unit_price_brl": 266.9,
+        "unit": "conjunto",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.leroymerlin.com.br/cuba-pia-cozinha--gourmet-quadrada-35x35-inox-304-escovado-tubrax_1571161319",
+        "final_url": "https://www.leroymerlin.com.br/cuba-pia-cozinha--gourmet-quadrada-35x35-inox-304-escovado-tubrax_1571161319",
+        "http_status": 200,
+        "verification_method": "api/v3/products/1571161319 HTTP 200 X-Region=campinas; https://www.leroymerlin.com.br/cuba-pia-cozinha--gourmet-quadrada-35x35-inox-304-escovado-tubrax_1571161319",
+        "caveats": [
+          "Freight not calculated for CEP 13380-000; freight_brl left null."
+        ]
+      },
+      "no_match_reason": ""
+    },
+    {
+      "expense_id": "EXP_0040",
+      "requested_item": "Box de vidro para o banheiro (R$850)",
+      "requested_unit": "unidade",
+      "match_status": "verified",
+      "candidates": [
+        {
+          "matched_product": "Box De Vidro Para Banheiro 1,90x1,10m 8mm",
+          "sku": "1567589156",
+          "seller": "Leroy Merlin",
+          "specifications": {
+            "brand": "WoodGlass"
+          },
+          "package_size": "1",
+          "displayed_price_brl": 989.0,
+          "normalized_unit_price_brl": 989.0,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.leroymerlin.com.br/box-de-vidro-para-banheiro-1,90x1,10m-8mm_1567589156",
+          "final_url": "https://www.leroymerlin.com.br/box-de-vidro-para-banheiro-1,90x1,10m-8mm_1567589156",
+          "http_status": 200,
+          "verification_method": "Leroy Merlin api/v3/products/1567589156 HTTP 200 with X-Region=campinas (Nova Odessa CEP 13380 proxy); pricing visible; URL https://www.leroymerlin.com.br/box-de-vidro-para-banheiro-1,90x1,10m-8mm_1567589156.",
+          "caveats": [
+            "Freight not calculated for CEP 13380-000; freight_brl left null."
+          ]
+        },
+        {
+          "matched_product": "Box para Banheiro 90x185cm Vidro Incolor Frontal de Abrir 2 Folhas Branco Basic Speed Temper",
+          "sku": "89268921",
+          "seller": "Leroy Merlin",
+          "specifications": {
+            "brand": "Speed Temper"
+          },
+          "package_size": "1",
+          "displayed_price_brl": 1049.0,
+          "normalized_unit_price_brl": 1049.0,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.leroymerlin.com.br/box-para-banheiro-90x185cm-vidro-incolor-frontal-de-abrir-2-folhas-branco-basic-speed-temper_89268921",
+          "final_url": "https://www.leroymerlin.com.br/box-para-banheiro-90x185cm-vidro-incolor-frontal-de-abrir-2-folhas-branco-basic-speed-temper_89268921",
+          "http_status": 200,
+          "verification_method": "Leroy Merlin api/v3/products/89268921 HTTP 200 with X-Region=campinas (Nova Odessa CEP 13380 proxy); pricing visible; URL https://www.leroymerlin.com.br/box-para-banheiro-90x185cm-vidro-incolor-frontal-de-abrir-2-folhas-branco-basic-speed-temper_89268921.",
+          "caveats": [
+            "Freight not calculated for CEP 13380-000; freight_brl left null."
+          ]
+        }
+      ],
+      "winner": {
+        "matched_product": "Box De Vidro Para Banheiro 1,90x1,10m 8mm",
+        "sku": "1567589156",
+        "seller": "Leroy Merlin",
+        "specifications": {
+          "brand": "WoodGlass"
+        },
+        "package_size": "1",
+        "displayed_price_brl": 989.0,
+        "normalized_unit_price_brl": 989.0,
+        "unit": "unidade",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.leroymerlin.com.br/box-de-vidro-para-banheiro-1,90x1,10m-8mm_1567589156",
+        "final_url": "https://www.leroymerlin.com.br/box-de-vidro-para-banheiro-1,90x1,10m-8mm_1567589156",
+        "http_status": 200,
+        "verification_method": "Leroy Merlin api/v3/products/1567589156 HTTP 200 with X-Region=campinas (Nova Odessa CEP 13380 proxy); pricing visible; URL https://www.leroymerlin.com.br/box-de-vidro-para-banheiro-1,90x1,10m-8mm_1567589156.",
+        "caveats": [
+          "Freight not calculated for CEP 13380-000; freight_brl left null."
+        ]
+      },
+      "no_match_reason": ""
+    },
+    {
+      "expense_id": "EXP_0044",
+      "requested_item": "Caixa de água",
+      "requested_unit": "unidade",
+      "match_status": "verified",
+      "candidates": [
+        {
+          "matched_product": "Caixa d'Água 500L em Polietileno Azul Sultanques",
+          "sku": "92385230",
+          "seller": "Leroy Merlin",
+          "specifications": {
+            "brand": "Sultanques"
+          },
+          "package_size": "1",
+          "displayed_price_brl": 279.9,
+          "normalized_unit_price_brl": 279.9,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.leroymerlin.com.br/caixa-dagua-500l-em-polietileno-azul-sultanques_92385230",
+          "final_url": "https://www.leroymerlin.com.br/caixa-dagua-500l-em-polietileno-azul-sultanques_92385230",
+          "http_status": 200,
+          "verification_method": "Leroy Merlin api/v3/products/92385230 HTTP 200 with X-Region=campinas (Nova Odessa CEP 13380 proxy); pricing visible; URL https://www.leroymerlin.com.br/caixa-dagua-500l-em-polietileno-azul-sultanques_92385230.",
+          "caveats": [
+            "Freight not calculated for CEP 13380-000; freight_brl left null."
+          ]
+        },
+        {
+          "matched_product": "Caixa d'Água 500L em Polietileno Fortlev",
+          "sku": "89866623",
+          "seller": "Leroy Merlin",
+          "specifications": {
+            "brand": "Fortlev"
+          },
+          "package_size": "1",
+          "displayed_price_brl": 289.9,
+          "normalized_unit_price_brl": 289.9,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.leroymerlin.com.br/caixa-dagua-500l-em-polietileno-fortlev_89866623",
+          "final_url": "https://www.leroymerlin.com.br/caixa-dagua-500l-em-polietileno-fortlev_89866623",
+          "http_status": 200,
+          "verification_method": "Leroy Merlin api/v3/products/89866623 HTTP 200 with X-Region=campinas (Nova Odessa CEP 13380 proxy); pricing visible; URL https://www.leroymerlin.com.br/caixa-dagua-500l-em-polietileno-fortlev_89866623.",
+          "caveats": [
+            "Freight not calculated for CEP 13380-000; freight_brl left null."
+          ]
+        },
+        {
+          "matched_product": "Vaso Sanitário com Caixa Acoplada Branco 3 e 6 litros Eco Plus Celite",
+          "sku": "3601865565",
+          "seller": "Leroy Merlin",
+          "specifications": {
+            "brand": "Celite"
+          },
+          "package_size": "1",
+          "displayed_price_brl": 390.8,
+          "normalized_unit_price_brl": 390.8,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.leroymerlin.com.br/vaso-sanitario-com-caixa-acoplada-branco-3-e-6-litros-eco-plus-celite_3601865565",
+          "final_url": "https://www.leroymerlin.com.br/vaso-sanitario-com-caixa-acoplada-branco-3-e-6-litros-eco-plus-celite_3601865565",
+          "http_status": 200,
+          "verification_method": "Leroy Merlin api/v3/products/3601865565 HTTP 200 with X-Region=campinas (Nova Odessa CEP 13380 proxy); pricing visible; URL https://www.leroymerlin.com.br/vaso-sanitario-com-caixa-acoplada-branco-3-e-6-litros-eco-plus-celite_3601865565.",
+          "caveats": [
+            "Freight not calculated for CEP 13380-000; freight_brl left null."
+          ]
+        },
+        {
+          "matched_product": "Caixa d'Água 500L em Polietileno Água Limpa Acqualimp",
+          "sku": "86524410",
+          "seller": "Leroy Merlin",
+          "specifications": {
+            "brand": "Acqualimp"
+          },
+          "package_size": "1",
+          "displayed_price_brl": 664.9,
+          "normalized_unit_price_brl": 664.9,
+          "unit": "unidade",
+          "minimum_quantity": 1,
+          "bulk_tiers": [],
+          "freight_brl": null,
+          "availability": "in_stock",
+          "location_basis": "nova_odessa_cep_13380",
+          "checked_at": "2026-09-17",
+          "product_url": "https://www.leroymerlin.com.br/caixa-dagua-500l-em-polietileno-agua-limpa-acqualimp_86524410",
+          "final_url": "https://www.leroymerlin.com.br/caixa-dagua-500l-em-polietileno-agua-limpa-acqualimp_86524410",
+          "http_status": 200,
+          "verification_method": "Leroy Merlin api/v3/products/86524410 HTTP 200 with X-Region=campinas (Nova Odessa CEP 13380 proxy); pricing visible; URL https://www.leroymerlin.com.br/caixa-dagua-500l-em-polietileno-agua-limpa-acqualimp_86524410.",
+          "caveats": [
+            "Freight not calculated for CEP 13380-000; freight_brl left null."
+          ]
+        }
+      ],
+      "winner": {
+        "matched_product": "Caixa d'Água 500L em Polietileno Azul Sultanques",
+        "sku": "92385230",
+        "seller": "Leroy Merlin",
+        "specifications": {
+          "brand": "Sultanques"
+        },
+        "package_size": "1",
+        "displayed_price_brl": 279.9,
+        "normalized_unit_price_brl": 279.9,
+        "unit": "unidade",
+        "minimum_quantity": 1,
+        "bulk_tiers": [],
+        "freight_brl": null,
+        "availability": "in_stock",
+        "location_basis": "nova_odessa_cep_13380",
+        "checked_at": "2026-09-17",
+        "product_url": "https://www.leroymerlin.com.br/caixa-dagua-500l-em-polietileno-azul-sultanques_92385230",
+        "final_url": "https://www.leroymerlin.com.br/caixa-dagua-500l-em-polietileno-azul-sultanques_92385230",
+        "http_status": 200,
+        "verification_method": "Leroy Merlin api/v3/products/92385230 HTTP 200 with X-Region=campinas (Nova Odessa CEP 13380 proxy); pricing visible; URL https://www.leroymerlin.com.br/caixa-dagua-500l-em-polietileno-azul-sultanques_92385230.",
+        "caveats": [
+          "Freight not calculated for CEP 13380-000; freight_brl left null."
+        ]
+      },
+      "no_match_reason": ""
+    }
+  ]
+}
