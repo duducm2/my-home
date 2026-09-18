@@ -6,7 +6,7 @@
     <meta name="color-scheme" content="dark" />
     <title>my-home</title>
     <link rel="stylesheet" href="/styles.css?v=20260918-dashboard-refresh" />
-    <link rel="stylesheet" href="/tasks.css?v=20260918-manual-payments" />
+    <link rel="stylesheet" href="/tasks.css?v=20260918-payment-period-modal" />
     <script type="importmap">
       { "imports": { "three": "/vendor/three/three.module.js" } }
     </script>
@@ -302,7 +302,8 @@
                 </h3>
                 <p class="section-sub">
                   Acumulado dos pagamentos cadastrados nas despesas ao longo das
-                  datas.
+                  datas. Clique em um ponto para revisar as atividades do
+                  período.
                 </p>
               </div>
               <div class="payment-projection-controls">
@@ -1950,6 +1951,28 @@
       </form>
     </dialog>
 
+    <dialog id="payment-period-dialog" class="payment-period-dialog">
+      <div class="dialog-title-row">
+        <div>
+          <h2 id="payment-period-title">Revisão do período</h2>
+          <p id="payment-period-summary" class="section-sub"></p>
+        </div>
+        <button
+          type="button"
+          id="btn-close-payment-period"
+          class="btn"
+          aria-label="Fechar"
+        >
+          Fechar
+        </button>
+      </div>
+      <div
+        id="payment-period-body"
+        class="payment-period-body"
+        aria-live="polite"
+      ></div>
+    </dialog>
+
     <dialog id="task-dialog">
       <form id="task-form" method="dialog">
         <div class="dialog-title-row">
@@ -2058,6 +2081,6 @@
     </dialog>
 
     <datalist id="category-suggestions"></datalist>
-    <script src="/app.js?v=20260918-gantt-payday-sync"></script>
+    <script src="/app.js?v=20260918-payment-period-modal"></script>
   </body>
 </html>

@@ -112,6 +112,11 @@
     paymentProjectionChart: $("payment-projection-chart"),
     paymentProjectionSummary: $("payment-projection-summary"),
     paymentProjectionScale: $("payment-projection-scale"),
+    paymentPeriodDialog: $("payment-period-dialog"),
+    paymentPeriodTitle: $("payment-period-title"),
+    paymentPeriodSummary: $("payment-period-summary"),
+    paymentPeriodBody: $("payment-period-body"),
+    btnClosePaymentPeriod: $("btn-close-payment-period"),
     monthlySavingsGrid: $("monthly-savings-grid"),
     cashflowMethod: $("cashflow-method"),
     macroTimeline: $("macro-timeline"),
@@ -1393,8 +1398,8 @@
           ? "payment-amount-label payment-cumulative-total"
           : "payment-amount-label";
         const periodLabel = scaleLabels[scale] || "Dia";
-        const aria = `${paymentBucketLabel(item.date, scale)}: ${periodLabel.toLowerCase()} ${formatMoney(item.amount)}, acumulado ${formatMoney(item.cumulative)}`;
-        return `<g class="payment-day-group${item.estimated ? " estimated" : ""}"><line x1="${x}" y1="${margin.top}" x2="${x}" y2="${margin.top + plotHeight}" class="payment-day-line"></line><g class="expense-hover-target payment-day-hover" tabindex="0" data-hover-payment-date="${escapeAttr(item.date)}" aria-label="${escapeAttr(aria)}"><circle cx="${x}" cy="${y}" r="14" class="payment-day-hit"></circle><circle cx="${x}" cy="${y}" r="${isLast ? 7 : 6}" class="payment-day-point${isLast ? " payment-cumulative-point" : ""}"></circle><text x="${x}" y="${Math.max(18, y - 13)}" text-anchor="middle" class="${labelClass}">${escapeHtml(formatMoney(item.cumulative))}</text></g><text x="${x}" y="${height - 18}" text-anchor="middle" class="cashflow-axis-label">${escapeHtml(paymentBucketLabel(item.date, scale))}</text></g>`;
+        const aria = `${paymentBucketLabel(item.date, scale)}: ${periodLabel.toLowerCase()} ${formatMoney(item.amount)}, acumulado ${formatMoney(item.cumulative)}. Clique para revisar atividades.`;
+        return `<g class="payment-day-group${item.estimated ? " estimated" : ""}"><line x1="${x}" y1="${margin.top}" x2="${x}" y2="${margin.top + plotHeight}" class="payment-day-line"></line><g class="expense-hover-target payment-day-hover" tabindex="0" role="button" data-hover-payment-date="${escapeAttr(item.date)}" data-open-payment-period="${escapeAttr(item.date)}" aria-label="${escapeAttr(aria)}"><circle cx="${x}" cy="${y}" r="14" class="payment-day-hit"></circle><circle cx="${x}" cy="${y}" r="${isLast ? 7 : 6}" class="payment-day-point${isLast ? " payment-cumulative-point" : ""}"></circle><text x="${x}" y="${Math.max(18, y - 13)}" text-anchor="middle" class="${labelClass}">${escapeHtml(formatMoney(item.cumulative))}</text></g><text x="${x}" y="${height - 18}" text-anchor="middle" class="cashflow-axis-label">${escapeHtml(paymentBucketLabel(item.date, scale))}</text></g>`;
       })
       .join("")}</svg>`;
   }
@@ -1425,6 +1430,174 @@
       )
       .join("")}</ul>`;
     return { html };
+  }
+
+  function paymentBucketRange(
+    bucketDate,
+    scale = state.paymentProjectionScale,
+  ) {
+    if (scale === "month") {
+      const start = `${String(bucketDate).slice(0, 7)}-01`;
+      const endDate = parseDate(start);
+      endDate.setMonth(endDate.getMonth() + 1);
+      endDate.setDate(endDate.getDate() - 1);
+      return { start, end: iso(endDate) };
+    }
+    if (scale === "week") {
+      return { start: bucketDate, end: addDays(bucketDate, 6) };
+    }
+    return { start: bucketDate, end: bucketDate };
+  }
+
+  function expenseById(expenseId) {
+    return state.expenses.find((item) => item.id === expenseId);
+  }
+
+  function tasksOverlappingRange(start, end) {
+    return state.tasks
+      .filter((task) => {
+        if (task.activity_type === "macro") return false;
+        if (!task.start_date || !task.end_date) return false;
+        return task.start_date <= end && task.end_date >= start;
+      })
+      .sort(
+        (left, right) =>
+          String(left.start_date).localeCompare(String(right.start_date)) ||
+          Number(left.sequence || 0) - Number(right.sequence || 0) ||
+          String(left.title || "").localeCompare(
+            String(right.title || ""),
+            "pt-BR",
+          ),
+      );
+  }
+
+  function paymentPeriodReviewModel(day) {
+    if (!day) return null;
+    const scale = state.paymentProjectionScale || "day";
+    const range = paymentBucketRange(day.date, scale);
+    const scaleLabels = { day: "Dia", week: "Semana", month: "Mês" };
+    const periodTitle =
+      scale === "day"
+        ? formatPaymentDate(day.date)
+        : paymentBucketLabel(day.date, scale);
+    const paymentsByExpense = new Map();
+    for (const payment of day.payments || []) {
+      const expenseId = payment.expenseId || payment.expenseIds?.[0] || "";
+      if (!expenseId) continue;
+      if (!paymentsByExpense.has(expenseId))
+        paymentsByExpense.set(expenseId, []);
+      paymentsByExpense.get(expenseId).push(payment);
+    }
+    const activities = tasksOverlappingRange(range.start, range.end).map(
+      (task) => {
+        const parent = state.tasks.find((item) => item.id === task.parent_id);
+        const expenses = (task.expense_allocations || [])
+          .map((allocation) => {
+            const expense = expenseById(allocation.expense_id);
+            if (!expense) return null;
+            const periodPayments = paymentsByExpense.get(expense.id) || [];
+            const periodAmount = periodPayments.reduce(
+              (sum, payment) => sum + Number(payment.amount || 0),
+              0,
+            );
+            return {
+              id: expense.id,
+              description: expense.description,
+              category: expense.category,
+              iconKey: expense.icon_key,
+              quantity: allocation.expected_quantity,
+              unit: expense.unit,
+              value: Number(expense.value || 0),
+              periodAmount,
+              periodPayments,
+              paidInPeriod: periodPayments.length > 0,
+            };
+          })
+          .filter(Boolean);
+        return {
+          id: task.id,
+          title: task.title,
+          description: task.description,
+          status: task.status,
+          start_date: task.start_date,
+          end_date: task.end_date,
+          parentTitle: parent?.title || "",
+          expenses,
+          hasPeriodPayment: expenses.some((item) => item.paidInPeriod),
+        };
+      },
+    );
+    const linkedExpenseIds = new Set(
+      activities.flatMap((activity) =>
+        activity.expenses.map((expense) => expense.id),
+      ),
+    );
+    const orphanPayments = (day.payments || []).filter((payment) => {
+      const expenseId = payment.expenseId || payment.expenseIds?.[0] || "";
+      return expenseId && !linkedExpenseIds.has(expenseId);
+    });
+    return {
+      periodTitle,
+      periodLabel: scaleLabels[scale] || "Dia",
+      range,
+      day,
+      activities,
+      orphanPayments,
+    };
+  }
+
+  function openPaymentPeriodDialog(bucketDate) {
+    if (!els.paymentPeriodDialog || !els.paymentPeriodBody) return;
+    const day = state.paymentProjectionByDate?.get(bucketDate);
+    const model = paymentPeriodReviewModel(day);
+    if (!model) return;
+    hideDashboardTooltip();
+    els.paymentPeriodTitle.textContent = `Revisão · ${model.periodTitle}`;
+    els.paymentPeriodSummary.textContent = `${model.periodLabel} ${formatMoney(model.day.amount)} · acumulado ${formatMoney(model.day.cumulative)} · ${formatPaymentDate(model.range.start)}${model.range.start === model.range.end ? "" : ` – ${formatPaymentDate(model.range.end)}`}`;
+    const activityHtml = model.activities.length
+      ? model.activities
+          .map((activity) => {
+            const expenseHtml = activity.expenses.length
+              ? `<ul class="payment-period-expense-list">${activity.expenses
+                  .map((expense) => {
+                    const amountLabel = expense.paidInPeriod
+                      ? formatMoney(expense.periodAmount)
+                      : formatMoney(expense.value);
+                    const detail = [
+                      expense.category || "Despesa",
+                      expense.paidInPeriod
+                        ? "pagamento neste período"
+                        : "vinculada (sem pagamento neste período)",
+                      expense.quantity
+                        ? `qtd ${formatCompactQuantity(expense.quantity)} ${expense.unit || ""}`.trim()
+                        : "",
+                    ]
+                      .filter(Boolean)
+                      .join(" · ");
+                    return `<li>${iconMarkup(expense.iconKey, expense.description)}<b>${escapeHtml(expense.description)}</b><em>${escapeHtml(amountLabel)}</em><small>${escapeHtml(detail)}</small></li>`;
+                  })
+                  .join("")}</ul>`
+              : `<p class="payment-period-empty">Nenhuma despesa vinculada a esta atividade.</p>`;
+            return `<article class="payment-period-activity${activity.hasPeriodPayment ? " has-payment" : ""}"><div class="payment-period-activity-head"><strong>${escapeHtml(activity.title)}</strong><small>${escapeHtml(statusLabels[activity.status] || activity.status)} · ${escapeHtml(formatPaymentDate(activity.start_date))} – ${escapeHtml(formatPaymentDate(activity.end_date))}${activity.parentTitle ? ` · ${activity.parentTitle}` : ""}</small></div>${expenseHtml}</article>`;
+          })
+          .join("")
+      : `<p class="payment-period-empty">Nenhuma atividade do cronograma neste período.</p>`;
+    const orphanHtml = model.orphanPayments.length
+      ? `<section class="payment-period-section"><h3>Pagamentos sem atividade no período</h3><ul class="payment-period-expense-list">${model.orphanPayments
+          .map((payment) => {
+            const expense = expenseById(
+              payment.expenseId || payment.expenseIds?.[0] || "",
+            );
+            return `<li>${iconMarkup(payment.iconKey || expense?.icon_key, payment.description)}<b>${escapeHtml(payment.description)}</b><em>${escapeHtml(formatMoney(payment.amount))}</em><small>${escapeHtml([payment.category || expense?.category || "Despesa", formatPaymentDate(payment.date)].filter(Boolean).join(" · "))}</small></li>`;
+          })
+          .join("")}</ul></section>`
+      : "";
+    els.paymentPeriodBody.innerHTML = `<section class="payment-period-section"><h3>Atividades do cronograma</h3>${activityHtml}</section>${orphanHtml}`;
+    els.paymentPeriodDialog.showModal();
+  }
+
+  function closePaymentPeriodDialog() {
+    if (els.paymentPeriodDialog?.open) els.paymentPeriodDialog.close();
   }
 
   function dashboardExpenseGroup(item) {
@@ -6330,7 +6503,31 @@
       if (target && !target.contains(event.relatedTarget))
         hideDashboardTooltip();
     });
+    els.paymentProjectionChart.addEventListener("click", (event) => {
+      const target = event.target.closest("[data-open-payment-period]");
+      if (!target) return;
+      event.preventDefault();
+      openPaymentPeriodDialog(target.dataset.openPaymentPeriod);
+    });
+    els.paymentProjectionChart.addEventListener("keydown", (event) => {
+      if (event.key !== "Enter" && event.key !== " ") return;
+      const target = event.target.closest("[data-open-payment-period]");
+      if (!target) return;
+      event.preventDefault();
+      openPaymentPeriodDialog(target.dataset.openPaymentPeriod);
+    });
   }
+  els.btnClosePaymentPeriod?.addEventListener(
+    "click",
+    closePaymentPeriodDialog,
+  );
+  els.paymentPeriodDialog?.addEventListener("cancel", (event) => {
+    event.preventDefault();
+    closePaymentPeriodDialog();
+  });
+  els.paymentPeriodDialog?.addEventListener("click", (event) => {
+    if (event.target === els.paymentPeriodDialog) closePaymentPeriodDialog();
+  });
   els.btnNew.addEventListener("click", () => openExpenseDialog());
   els.form.addEventListener(
     "keydown",

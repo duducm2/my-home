@@ -39,7 +39,9 @@
   color: var(--muted);
 }
 
-.contract-summary strong { color: var(--text); }
+.contract-summary strong {
+  color: var(--text);
+}
 
 .contract-grid,
 .provider-grid {
@@ -57,7 +59,9 @@
 }
 
 .contract-card.archived,
-.provider-card.archived { opacity: .58; }
+.provider-card.archived {
+  opacity: 0.58;
+}
 
 .contract-card-head,
 .provider-card {
@@ -82,7 +86,10 @@
   font-size: 12px;
 }
 
-.provider-card > div { display: grid; gap: 4px; }
+.provider-card > div {
+  display: grid;
+  gap: 4px;
+}
 
 .provider-card .provider-identity {
   display: flex;
@@ -118,9 +125,18 @@
 
 .contract-status.status-signed,
 .contract-status.status-active,
-.contract-status.status-completed { border-color: #2ecc7166; color: #77e6a6; }
-.contract-status.status-draft { border-color: #f1c40f66; color: var(--gold); }
-.contract-status.status-cancelled { border-color: #e74c3c66; color: #ff8f83; }
+.contract-status.status-completed {
+  border-color: #2ecc7166;
+  color: #77e6a6;
+}
+.contract-status.status-draft {
+  border-color: #f1c40f66;
+  color: var(--gold);
+}
+.contract-status.status-cancelled {
+  border-color: #e74c3c66;
+  color: #ff8f83;
+}
 
 .contract-meta {
   display: flex;
@@ -131,9 +147,17 @@
   font-size: 12px;
 }
 
-.contract-signature { color: #77e6a6 !important; }
-.contract-card-actions { margin: 12px 0; }
-.contract-versions { display: grid; gap: 7px; margin-top: 8px; }
+.contract-signature {
+  color: #77e6a6 !important;
+}
+.contract-card-actions {
+  margin: 12px 0;
+}
+.contract-versions {
+  display: grid;
+  gap: 7px;
+  margin-top: 8px;
+}
 .contract-versions a {
   display: flex;
   align-items: center;
@@ -147,9 +171,9 @@
   flex: 0 0 24px;
   object-fit: contain;
   padding: 2px;
-  border: 1px solid rgba(241, 196, 15, .2);
+  border: 1px solid rgba(241, 196, 15, 0.2);
   border-radius: 6px;
-  background: rgba(241, 196, 15, .06);
+  background: rgba(241, 196, 15, 0.06);
 }
 .contract-document-title {
   display: flex;
@@ -157,7 +181,9 @@
   gap: 10px;
   min-width: 0;
 }
-.contract-document-title > div { min-width: 0; }
+.contract-document-title > div {
+  min-width: 0;
+}
 .contract-payment-resume {
   color: #e67e22 !important;
   font-variant-numeric: tabular-nums;
@@ -174,7 +200,7 @@
 
 .contract-payment-plan-head {
   display: grid;
-  grid-template-columns: minmax(160px, .8fr) minmax(220px, 1.4fr) auto;
+  grid-template-columns: minmax(160px, 0.8fr) minmax(220px, 1.4fr) auto;
   align-items: end;
   gap: 10px;
 }
@@ -218,7 +244,10 @@
 .contract-payment-row {
   display: grid;
   grid-column: 1 / -1;
-  grid-template-columns: minmax(130px, .8fr) minmax(110px, .7fr) minmax(160px, 1fr) auto;
+  grid-template-columns: minmax(130px, 0.8fr) minmax(110px, 0.7fr) minmax(
+      160px,
+      1fr
+    ) auto;
   align-items: end;
   gap: 6px;
   padding: 7px;
@@ -227,17 +256,28 @@
   background: #1e1e21;
 }
 
-select[multiple] { min-height: 110px; }
+select[multiple] {
+  min-height: 110px;
+}
 
 @media (max-width: 680px) {
   .contract-center .section-heading-row,
-  .contract-card-head { align-items: stretch; flex-direction: column; }
+  .contract-card-head {
+    align-items: stretch;
+    flex-direction: column;
+  }
   .contract-grid,
-  .provider-grid { grid-template-columns: 1fr; }
+  .provider-grid {
+    grid-template-columns: 1fr;
+  }
   .contract-payment-plan-head,
-  .contract-payment-row { grid-template-columns: 1fr; }
+  .contract-payment-row {
+    grid-template-columns: 1fr;
+  }
   .contract-payment-plan-head .btn,
-  .contract-payment-row .btn { justify-self: end; }
+  .contract-payment-row .btn {
+    justify-self: end;
+  }
 }
 
 .task-section {
@@ -255,7 +295,7 @@ select[multiple] { min-height: 110px; }
 
 .dashboard-planning-row {
   display: grid;
-  grid-template-columns: minmax(0, 1.75fr) minmax(300px, .75fr);
+  grid-template-columns: minmax(0, 1.75fr) minmax(300px, 0.75fr);
   gap: 10px;
   align-items: stretch;
   margin: 6px 0 10px;
@@ -366,7 +406,7 @@ select[multiple] { min-height: 110px; }
 }
 
 .quick-task-row.done {
-  opacity: .62;
+  opacity: 0.62;
 }
 
 .quick-task-row.done .quick-task-title {
@@ -472,9 +512,15 @@ select[multiple] { min-height: 110px; }
   background: #806916;
 }
 
-.macro-timeline-track i.status-in_progress { background: #3498db; }
-.macro-timeline-track i.status-blocked { background: #e74c3c; }
-.macro-timeline-track i.status-completed { background: #2ecc71; }
+.macro-timeline-track i.status-in_progress {
+  background: #3498db;
+}
+.macro-timeline-track i.status-blocked {
+  background: #e74c3c;
+}
+.macro-timeline-track i.status-completed {
+  background: #2ecc71;
+}
 
 .section-heading-row,
 .dialog-title-row,
@@ -1508,7 +1554,7 @@ select[multiple] { min-height: 110px; }
   height: 34px;
   object-fit: cover;
   object-position: center 42%;
-  border: 1px solid rgba(241, 196, 15, .32);
+  border: 1px solid rgba(241, 196, 15, 0.32);
   border-radius: 7px;
 }
 
@@ -1702,7 +1748,10 @@ select[multiple] { min-height: 110px; }
   padding: 7px 9px;
   pointer-events: none;
   color: var(--text);
-  font: 13px/1.35 "Segoe UI", system-ui, sans-serif;
+  font:
+    13px/1.35 "Segoe UI",
+    system-ui,
+    sans-serif;
   background: #111114f5;
   border: 1px solid #f1c40f66;
   border-radius: 5px;
@@ -2042,11 +2091,132 @@ select[multiple] { min-height: 110px; }
   fill: #cda7df;
 }
 
-.payment-projection-empty {
+.payment-period-dialog {
+  width: min(720px, calc(100vw - 24px));
+  max-height: min(86vh, 900px);
+  padding: 16px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.payment-period-dialog[open] {
+  display: flex;
+}
+
+.payment-period-dialog .dialog-title-row {
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.payment-period-dialog .dialog-title-row > div {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+}
+
+.payment-period-dialog .dialog-title-row h2,
+.payment-period-dialog .dialog-title-row .section-sub {
   margin: 0;
-  padding: 70px 12px;
+}
+
+.payment-period-body {
+  display: grid;
+  gap: 14px;
+  overflow: auto;
+  min-height: 0;
+  padding-right: 2px;
+}
+
+.payment-period-section {
+  display: grid;
+  gap: 8px;
+}
+
+.payment-period-section > h3 {
+  margin: 0;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.payment-period-activity {
+  display: grid;
+  gap: 8px;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: #161618;
+}
+
+.payment-period-activity-head {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 10px;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.payment-period-activity-head strong {
+  font-size: 14px;
+}
+
+.payment-period-activity-head small {
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.payment-period-expense-list {
+  display: grid;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.payment-period-expense-list li {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 8px;
+  align-items: center;
+  padding: 6px 8px;
+  border: 1px solid #ffffff0d;
+  border-radius: 6px;
+  background: #1b1b1e;
+}
+
+.payment-period-expense-list li b {
+  font-size: 12px;
+}
+
+.payment-period-expense-list li em {
+  color: var(--gold);
+  font-style: normal;
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.payment-period-expense-list li small {
+  grid-column: 2 / -1;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.payment-period-empty {
+  margin: 0;
+  padding: 18px 12px;
   color: var(--muted);
   text-align: center;
+  border: 1px dashed var(--line);
+  border-radius: var(--radius);
+}
+
+.payment-day-hover {
+  cursor: pointer;
 }
 
 .expense-payment-editor {
@@ -2083,7 +2253,10 @@ select[multiple] { min-height: 110px; }
 
 .expense-payment-row {
   display: grid;
-  grid-template-columns: minmax(126px, .8fr) minmax(110px, .7fr) minmax(180px, 1.4fr) auto;
+  grid-template-columns: minmax(126px, 0.8fr) minmax(110px, 0.7fr) minmax(
+      180px,
+      1.4fr
+    ) auto;
   align-items: end;
   gap: 6px;
   padding: 7px;
@@ -2211,7 +2384,10 @@ select[multiple] { min-height: 110px; }
 
 .task-allocation-row {
   display: grid;
-  grid-template-columns: minmax(180px, 1.4fr) minmax(90px, .5fr) auto minmax(180px, 1fr) auto auto;
+  grid-template-columns: minmax(180px, 1.4fr) minmax(90px, 0.5fr) auto minmax(
+      180px,
+      1fr
+    ) auto auto;
   gap: 7px;
   align-items: end;
 }
