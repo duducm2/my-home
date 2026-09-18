@@ -75,7 +75,12 @@
     dashTotalMaximum: $("dash-total-maximum"),
     dashUnpricedCount: $("dash-unpriced-count"),
     fundsTotal: $("funds-total"),
-    fundsDetail: $("funds-detail"),
+    fundsFgtsValue: $("funds-fgts-value"),
+    fundsFlexibleValue: $("funds-flexible-value"),
+    fundsProjectedValue: $("funds-projected-value"),
+    flexibleFundsBalance: $("flexible-funds-balance"),
+    flexibleFundsOpening: $("flexible-funds-opening"),
+    flexibleFundsStatus: $("flexible-funds-status"),
     fundingPie: $("funding-pie"),
     overallCoverage: $("overall-coverage"),
     coverageDonut: $("coverage-donut"),
@@ -359,6 +364,23 @@
   });
   const QUOTATIONS_PER_PAGE = 12;
   const formatMoney = (value) => money.format(Number(value || 0));
+  const parseMoneyInput = (value) => {
+    const raw = String(value || "")
+      .trim()
+      .replace(/[^\d,.-]/g, "");
+    if (!raw) return NaN;
+    if (raw.includes(",") && raw.includes(".")) {
+      return Number(raw.replace(/\./g, "").replace(",", "."));
+    }
+    if (raw.includes(",")) return Number(raw.replace(",", "."));
+    return Number(raw);
+  };
+  const fundingSourceValue = (source) => {
+    if (!source) return 0;
+    const balance = Number(source.balance);
+    if (Number.isFinite(balance)) return balance;
+    return Number(source.amount || 0);
+  };
   const escapeHtml = (value) =>
     String(value ?? "").replace(
       /[&<>"']/g,
@@ -1114,6 +1136,12 @@
     els.dashUnpricedCount.textContent = `${state.totals.scenarios?.unpriced_count || 0} sem cotação`;
     const funding = (state.project || {}).funding || {};
     const sources = funding.sources || [];
+    const fgtsSource = sources.find((item) => item.id === "fgts");
+    const flexibleSource = sources.find((item) => item.id === "flexible_funds");
+    // Pie/coverage use planned opening amounts only — live saldo is tracking-only.
+    const fgtsValue = Number(fgtsSource?.amount || 0);
+    const flexiblePlanned = Number(flexibleSource?.amount || 0);
+    const flexibleTracked = fundingSourceValue(flexibleSource);
     const fundsTotal = sources.reduce(
       (sum, item) => sum + Number(item.amount || 0),
       0,
@@ -1129,15 +1157,13 @@
     const fundingSlices = [
       {
         id: "fgts",
-        label: sources.find((item) => item.id === "fgts")?.label || "FGTS",
-        value: Number(sources.find((item) => item.id === "fgts")?.amount || 0),
+        label: fgtsSource?.label || "FGTS",
+        value: fgtsValue,
       },
       {
         id: "flexible",
-        label: "Recursos livres",
-        value: sources
-          .filter((item) => item.id !== "fgts")
-          .reduce((sum, item) => sum + Number(item.amount || 0), 0),
+        label: flexibleSource?.label || "Recursos livres",
+        value: flexiblePlanned,
       },
       {
         id: "projected",
@@ -1157,12 +1183,20 @@
       })
       .join(", ");
     els.fundsTotal.textContent = formatMoney(projectedFundsTotal);
-    els.fundsDetail.innerHTML = fundingSlices
-      .map(
-        (slice) =>
-          `<div><i class="funding-swatch ${slice.id}" aria-hidden="true"></i><span>${escapeHtml(slice.label)}</span><strong>${formatMoney(slice.value)}</strong></div>`,
-      )
-      .join("");
+    els.fundsFgtsValue.textContent = formatMoney(fgtsValue);
+    els.fundsFlexibleValue.textContent = formatMoney(flexiblePlanned);
+    els.fundsProjectedValue.textContent = formatMoney(projectedSavings);
+    if (persistedFlexibleFunds == null)
+      persistedFlexibleFunds = flexibleTracked;
+    if (
+      document.activeElement !== els.flexibleFundsBalance &&
+      !els.flexibleFundsBalance.dataset.dirty
+    ) {
+      els.flexibleFundsBalance.value = formatMoney(flexibleTracked).replace(
+        /^R\$\s?/,
+        "",
+      );
+    }
     els.fundingPie.style.background = `conic-gradient(${pieStops})`;
     els.fundingPie.setAttribute(
       "aria-label",
@@ -3904,6 +3938,80 @@
     }
   }
 
+  let flexibleFundsSaveTimer = 0;
+  let persistedFlexibleFunds = null;
+
+  function currentFlexibleFundsBalance() {
+    const source = ((state.project || {}).funding?.sources || []).find(
+      (item) => item.id === "flexible_funds",
+    );
+    return fundingSourceValue(source);
+  }
+
+  async function saveFlexibleFundsBalance({ silent = false } = {}) {
+    const parsed = parseMoneyInput(els.flexibleFundsBalance.value);
+    if (!Number.isFinite(parsed) || parsed < 0) {
+      els.flexibleFundsStatus.textContent = "Informe um valor válido.";
+      els.flexibleFundsStatus.classList.add("is-error");
+      return;
+    }
+    const rounded = Math.round(parsed * 100) / 100;
+    if (
+      persistedFlexibleFunds != null &&
+      Math.abs(rounded - persistedFlexibleFunds) < 0.001
+    ) {
+      delete els.flexibleFundsBalance.dataset.dirty;
+      els.flexibleFundsBalance.value = formatMoney(rounded).replace(
+        /^R\$\s?/,
+        "",
+      );
+      els.flexibleFundsStatus.textContent = "";
+      els.flexibleFundsStatus.classList.remove("is-error");
+      return;
+    }
+    if (!silent) {
+      els.flexibleFundsStatus.textContent = "Salvando…";
+      els.flexibleFundsStatus.classList.remove("is-error");
+    }
+    try {
+      const result = await request("/api/project/funding/balance", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          source_id: "flexible_funds",
+          balance: rounded,
+        }),
+      });
+      if (result.project) state.project = result.project;
+      persistedFlexibleFunds = rounded;
+      delete els.flexibleFundsBalance.dataset.dirty;
+      els.flexibleFundsBalance.value = formatMoney(rounded).replace(
+        /^R\$\s?/,
+        "",
+      );
+      els.flexibleFundsStatus.textContent = "Salvo.";
+      els.flexibleFundsStatus.classList.remove("is-error");
+      renderDashboard();
+      window.setTimeout(() => {
+        if (els.flexibleFundsStatus.textContent === "Salvo.")
+          els.flexibleFundsStatus.textContent = "";
+      }, 1600);
+    } catch (error) {
+      els.flexibleFundsStatus.textContent = error.message;
+      els.flexibleFundsStatus.classList.add("is-error");
+    }
+  }
+
+  function queueFlexibleFundsSave() {
+    els.flexibleFundsBalance.dataset.dirty = "1";
+    els.flexibleFundsStatus.textContent = "Salvando…";
+    els.flexibleFundsStatus.classList.remove("is-error");
+    window.clearTimeout(flexibleFundsSaveTimer);
+    flexibleFundsSaveTimer = window.setTimeout(() => {
+      saveFlexibleFundsBalance({ silent: true });
+    }, 450);
+  }
+
   function renderSceneAssetPalette(catalog) {
     if (Array.isArray(catalog)) sceneAssetCatalog = catalog;
     const query = String(els.assetPaletteSearch.value || "")
@@ -4500,6 +4608,26 @@
       document.title = persistedHouseName;
       els.houseNameStatus.textContent = "";
       els.houseNameInput.blur();
+    }
+  });
+  els.flexibleFundsBalance.addEventListener("input", queueFlexibleFundsSave);
+  els.flexibleFundsBalance.addEventListener("blur", () => {
+    window.clearTimeout(flexibleFundsSaveTimer);
+    saveFlexibleFundsBalance();
+  });
+  els.flexibleFundsBalance.addEventListener("keydown", (event) => {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      els.flexibleFundsBalance.blur();
+    } else if (event.key === "Escape") {
+      event.preventDefault();
+      delete els.flexibleFundsBalance.dataset.dirty;
+      els.flexibleFundsBalance.value = formatMoney(
+        currentFlexibleFundsBalance(),
+      ).replace(/^R\$\s?/, "");
+      els.flexibleFundsStatus.textContent = "";
+      els.flexibleFundsStatus.classList.remove("is-error");
+      els.flexibleFundsBalance.blur();
     }
   });
   document.addEventListener(

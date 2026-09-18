@@ -181,7 +181,48 @@
                     <strong id="funds-total">R$ 0,00</strong><span>total</span>
                   </div>
                 </div>
-                <div id="funds-detail" class="funding-legend"></div>
+                <div class="funding-legend">
+                  <div id="funds-row-fgts" class="funding-legend-row">
+                    <i class="funding-swatch fgts" aria-hidden="true"></i>
+                    <span>FGTS</span>
+                    <strong id="funds-fgts-value">R$ 0,00</strong>
+                  </div>
+                  <div id="funds-row-flexible" class="funding-legend-row">
+                    <i class="funding-swatch flexible" aria-hidden="true"></i>
+                    <span>Recursos livres</span>
+                    <strong id="funds-flexible-value">R$ 0,00</strong>
+                  </div>
+                  <div class="funding-legend-row funding-balance-tracker">
+                    <span
+                      class="funding-balance-spacer"
+                      aria-hidden="true"
+                    ></span>
+                    <label for="flexible-funds-balance">Saldo atual</label>
+                    <input
+                      id="flexible-funds-balance"
+                      class="funding-balance-input"
+                      type="text"
+                      inputmode="decimal"
+                      autocomplete="off"
+                      aria-describedby="flexible-funds-opening flexible-funds-status"
+                    />
+                    <small
+                      id="flexible-funds-opening"
+                      class="funding-balance-hint"
+                      >Só acompanhamento — não altera totais nem gráficos</small
+                    >
+                    <small
+                      id="flexible-funds-status"
+                      class="funding-balance-status"
+                      aria-live="polite"
+                    ></small>
+                  </div>
+                  <div id="funds-row-projected" class="funding-legend-row">
+                    <i class="funding-swatch projected" aria-hidden="true"></i>
+                    <span>Economia projetada</span>
+                    <strong id="funds-projected-value">R$ 0,00</strong>
+                  </div>
+                </div>
               </div>
             </article>
             <article class="panel bento-card bento-coverage">

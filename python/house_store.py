@@ -2,13 +2,14 @@
 
 from __future__ import annotations
 
-import json
-import os
-import re
-import threading
 from datetime import datetime
 from pathlib import Path
 from typing import Any
+import math
+import os
+import re
+import threading
+import json
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -118,6 +119,53 @@ class HouseStore:
         house["blueprint"] = blueprint
         with self._lock:
             self._write(house)
+        return self.load()
+
+    def save_funding_source_balance(
+        self, source_id: Any, balance: Any
+    ) -> dict[str, Any]:
+        source_id = str(source_id or "").strip()
+        if not re.fullmatch(r"[A-Za-z0-9_-]{1,64}", source_id):
+            raise ValueError("invalid funding source id")
+        try:
+            amount = float(balance)
+        except (TypeError, ValueError) as exc:
+            raise ValueError("balance must be numeric") from exc
+        if not math.isfinite(amount) or amount < 0:
+            raise ValueError("balance must be a finite nonnegative number")
+        amount = round(amount, 2)
+        with self._lock:
+            if not self.project_path.is_file():
+                raise ValueError("project.json missing")
+            project = json.loads(self.project_path.read_text(encoding="utf-8-sig"))
+            funding = dict(project.get("funding") or {})
+            sources = list(funding.get("sources") or [])
+            updated = False
+            for index, source in enumerate(sources):
+                if not isinstance(source, dict):
+                    continue
+                if str(source.get("id") or "") != source_id:
+                    continue
+                row = dict(source)
+                if "amount" not in row or row.get("amount") in {None, ""}:
+                    row["amount"] = amount
+                row["balance"] = amount
+                sources[index] = row
+                updated = True
+                break
+            if not updated:
+                raise ValueError(f"funding source not found: {source_id}")
+            funding["sources"] = sources
+            funding["as_of"] = datetime.now().strftime("%Y-%m-%d")
+            funding["balance_updated_at"] = now_stamp()
+            project["funding"] = funding
+            temporary = self.project_path.with_suffix(".json.tmp")
+            temporary.write_text(
+                json.dumps(project, ensure_ascii=False, indent=2) + "\n",
+                encoding="utf-8",
+                newline="\n",
+            )
+            os.replace(temporary, self.project_path)
         return self.load()
 
     def save_name(self, name: Any) -> dict[str, Any]:

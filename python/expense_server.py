@@ -539,6 +539,12 @@ class ExpenseHandler(BaseHTTPRequestHandler):
                 self._json(200, get_house(self.data_dir).save(house_payload))
             elif path == "/api/house/name":
                 self._json(200, get_house(self.data_dir).save_name(payload.get("name")))
+            elif path == "/api/project/funding/balance":
+                result = get_house(self.data_dir).save_funding_source_balance(
+                    payload.get("source_id"),
+                    payload.get("balance"),
+                )
+                self._json(200, result)
             elif path == "/api/house/model3d-layout":
                 self._json(200, get_house(self.data_dir).save_model3d_layout(payload))
             elif path == "/api/prompts/quotation-ingestion":
