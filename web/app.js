@@ -42,6 +42,7 @@
     editingTaskAllocations: [],
     editingContractPayments: [],
     zoom: "week",
+    ganttRenderedGeometry: null,
     paymentProjectionScale: "day",
     ganttStatusFilter: "",
     ganttPriorityFilter: 0,
@@ -1329,8 +1330,88 @@
       .sort((left, right) => left.date.localeCompare(right.date));
   }
 
-  function roundMoney(value) {
-    return Math.round((Number(value) || 0) * 100) / 100;
+  /** Dashboard budget = final cumulative of Gantt-linked payday events. */
+  function ganttSpendModel() {
+    const events = paymentEvents();
+    const expenseById = new Map(
+      (state.expenses || []).map((expense) => [expense.id, expense]),
+    );
+    const spendByExpense = new Map();
+    for (const payment of events) {
+      const expenseId = payment.expenseId;
+      if (!expenseId) continue;
+      spendByExpense.set(
+        expenseId,
+        (spendByExpense.get(expenseId) || 0) + Number(payment.amount || 0),
+      );
+    }
+    let all = 0;
+    let minimum = 0;
+    let maximum = 0;
+    let materials = 0;
+    let services = 0;
+    let unpricedCount = 0;
+    const lines = [];
+    for (const [expenseId, spend] of spendByExpense) {
+      const expense = expenseById.get(expenseId);
+      const amount = roundMoney(spend);
+      all += amount;
+      const planned = Number(expense?.scenario?.planned || expense?.value || 0);
+      const minSc = Number(expense?.scenario?.minimum);
+      const maxSc = Number(expense?.scenario?.maximum);
+      if (expense?.scenario?.unpriced) unpricedCount += 1;
+      if (
+        planned > 0 &&
+        Number.isFinite(minSc) &&
+        Number.isFinite(maxSc) &&
+        planned !== 0
+      ) {
+        minimum += amount * (minSc / planned);
+        maximum += amount * (maxSc / planned);
+      } else {
+        minimum += amount;
+        maximum += amount;
+      }
+      const isMaterial =
+        expense?.record_type === "material" ||
+        expense?.cost_class === "variable_material";
+      if (isMaterial) materials += amount;
+      else services += amount;
+      lines.push({
+        expense_id: expenseId,
+        description: expense?.description || "",
+        record_type: expense?.record_type,
+        cost_class: expense?.cost_class,
+        category: expense?.category,
+        icon_key: expense?.icon_key,
+        quantity: expense?.quantity,
+        forecast_total: amount,
+        value: amount,
+        scenario: {
+          planned: amount,
+          minimum: roundMoney(
+            planned > 0 && Number.isFinite(minSc)
+              ? amount * (minSc / planned)
+              : amount,
+          ),
+          maximum: roundMoney(
+            planned > 0 && Number.isFinite(maxSc)
+              ? amount * (maxSc / planned)
+              : amount,
+          ),
+          unpriced: Boolean(expense?.scenario?.unpriced),
+        },
+      });
+    }
+    return {
+      all: roundMoney(all),
+      minimum: roundMoney(minimum),
+      maximum: roundMoney(maximum),
+      unpriced_count: unpricedCount,
+      materials: roundMoney(materials),
+      services: roundMoney(services),
+      lines,
+    };
   }
 
   function renderPaymentProjection() {
@@ -1607,13 +1688,23 @@
     return "services";
   }
 
-  function renderDashboardExpenseCategories() {
+  function renderDashboardExpenseCategories(spendModel) {
+    const model = spendModel || ganttSpendModel();
+    const expenseById = new Map(
+      (state.expenses || []).map((expense) => [expense.id, expense]),
+    );
     const grouped = Object.fromEntries(
       dashboardCategoryDefinitions.map((group) => [group.id, []]),
     );
-    state.expenses.forEach((item) => {
-      grouped[dashboardExpenseGroup(item)].push(item);
-    });
+    for (const line of model.lines) {
+      const expense = expenseById.get(line.expense_id) || line;
+      const groupId = dashboardExpenseGroup(expense);
+      grouped[groupId].push({
+        ...expense,
+        value: line.value,
+        scenario: line.scenario,
+      });
+    }
     els.dashMaterials.innerHTML = dashboardCategoryDefinitions
       .map((group) => {
         const items = grouped[group.id];
@@ -1754,24 +1845,15 @@
   }
 
   function renderDashboard() {
-    els.dashTotalAll.textContent = formatMoney(state.totals.all);
-    els.dashTotalMinimum.textContent = formatMoney(
-      state.totals.scenarios?.minimum || 0,
-    );
-    els.dashTotalMaximum.textContent = formatMoney(
-      state.totals.scenarios?.maximum || 0,
-    );
-    els.dashUnpricedCount.textContent = `${state.totals.scenarios?.unpriced_count || 0} sem cotação`;
-    const forecastAll = Number(state.totals.forecast_all || 0);
-    const forecastMaterials = Number(state.totals.forecast_materials || 0);
-    const forecastServices = Number(state.totals.forecast_services || 0);
-    els.dashForecastAll.textContent = formatMoney(forecastAll);
-    els.dashForecastMaterials.textContent = formatMoney(forecastMaterials);
-    els.dashForecastServices.textContent = formatMoney(forecastServices);
-    const forecastLines =
-      state.budgetForecast?.lines ||
-      state.expenses.filter((item) => item.record_type === "material");
-    const topMaterials = [...forecastLines]
+    const spend = ganttSpendModel();
+    els.dashTotalAll.textContent = formatMoney(spend.all);
+    els.dashTotalMinimum.textContent = formatMoney(spend.minimum);
+    els.dashTotalMaximum.textContent = formatMoney(spend.maximum);
+    els.dashUnpricedCount.textContent = `${spend.unpriced_count} sem cotação`;
+    els.dashForecastAll.textContent = formatMoney(spend.all);
+    els.dashForecastMaterials.textContent = formatMoney(spend.materials);
+    els.dashForecastServices.textContent = formatMoney(spend.services);
+    const topMaterials = [...spend.lines]
       .filter(
         (line) =>
           (line.record_type === "material" ||
@@ -1787,18 +1869,13 @@
       ? topMaterials
           .map((line) => {
             const name = line.description || line.expense_id || "";
-            const qty = Number(
-              line.quantity ?? line.default_expected_quantity ?? 0,
-            );
-            const qtyLabel =
-              Number.isFinite(qty) && qty > 0 ? ` · qtd ${qty}` : "";
-            return `<li><span>${escapeHtml(name)}${escapeHtml(qtyLabel)}</span><strong>${formatMoney(line.forecast_total)}</strong></li>`;
+            return `<li><span>${escapeHtml(name)}</span><strong>${formatMoney(line.forecast_total)}</strong></li>`;
           })
           .join("")
-      : "<li><span>Sem linhas de takeoff ainda</span><strong>—</strong></li>";
+      : "<li><span>Nenhuma despesa vinculada ao cronograma</span><strong>—</strong></li>";
     if (els.dashForecastCaveat) {
       els.dashForecastCaveat.textContent =
-        "Quantidades estimadas pelo takeoff; preços pela mediana das cotações atuais.";
+        "Acumulado final dos pagamentos das despesas vinculadas às atividades do Gantt.";
     }
     const funding = (state.project || {}).funding || {};
     const sources = funding.sources || [];
@@ -1871,9 +1948,8 @@
         .join(" · "),
     );
     const projectedCovered = fundsTotal + projectedSavings;
-    const coverage = state.totals.all
-      ? (projectedCovered / state.totals.all) * 100
-      : 0;
+    const budgetTotal = spend.all;
+    const coverage = budgetTotal ? (projectedCovered / budgetTotal) * 100 : 0;
     els.overallCoverage.textContent = `${coverage.toFixed(1).replace(".", ",")}%`;
     els.coverageDonut.style.setProperty(
       "--coverage-angle",
@@ -1883,22 +1959,27 @@
       "aria-label",
       `${coverage.toFixed(1).replace(".", ",")}% do orçamento coberto`,
     );
-    const gap = projectedCovered - Number(state.totals.all || 0);
-    const forecastGap = projectedCovered - forecastAll;
+    const gap = projectedCovered - budgetTotal;
     els.overallGap.textContent = `${formatMoney(fundsTotal)} atuais + ${formatMoney(projectedSavings)} projetados · ${
       gap >= 0
         ? `margem de ${formatMoney(gap)}`
         : `lacuna de ${formatMoney(Math.abs(gap))}`
-    } · vs projetado (mediana): ${
-      forecastGap >= 0
-        ? `margem ${formatMoney(forecastGap)}`
-        : `lacuna ${formatMoney(Math.abs(forecastGap))}`
-    }`;
+    } · vs cronograma: ${formatMoney(budgetTotal)}`;
+    const categorySpend = Object.fromEntries(
+      dashboardCategoryDefinitions.map((group) => [group.id, 0]),
+    );
+    const expenseById = new Map(
+      (state.expenses || []).map((expense) => [expense.id, expense]),
+    );
+    for (const line of spend.lines) {
+      const expense = expenseById.get(line.expense_id) || line;
+      const groupId = dashboardExpenseGroup(expense);
+      categorySpend[groupId] =
+        (categorySpend[groupId] || 0) + Number(line.value || 0);
+    }
     const categories = dashboardCategoryDefinitions.map((group) => ({
       ...group,
-      value: state.expenses
-        .filter((item) => dashboardExpenseGroup(item) === group.id)
-        .reduce((sum, item) => sum + Number(item.value || 0), 0),
+      value: categorySpend[group.id] || 0,
     }));
     const maximum = Math.max(1, ...categories.map((item) => item.value));
     els.categoryChart.innerHTML = categories
@@ -1916,7 +1997,7 @@
     </article>`,
       )
       .join("");
-    renderDashboardExpenseCategories();
+    renderDashboardExpenseCategories(spend);
     renderPaymentProjection();
     renderGantt();
     renderMacroTimeline();
@@ -2483,8 +2564,38 @@
     return `<div class="gantt-expense-bento${placement}" style="${style}" data-bento-task="${escapeAttr(task.id)}">${chips}${totalMarkup}</div>`;
   }
 
+  function captureGanttView() {
+    const scroll = $("gantt-scroll");
+    const geometry = state.ganttRenderedGeometry;
+    if (!scroll || !geometry?.dayWidth || !geometry.start) return null;
+    const centerPx = scroll.scrollLeft + scroll.clientWidth / 2;
+    const daysFromStart = centerPx / geometry.dayWidth;
+    const wholeDays = Math.floor(daysFromStart);
+    return {
+      anchorDate: addDays(geometry.start, wholeDays),
+      fraction: daysFromStart - wholeDays,
+    };
+  }
+
+  function restoreGanttView(geometry, snapshot) {
+    if (!geometry) return;
+    state.ganttRenderedGeometry = {
+      start: geometry.start,
+      dayWidth: geometry.dayWidth,
+    };
+    if (!snapshot?.anchorDate || !geometry.dayWidth) return;
+    const scroll = $("gantt-scroll");
+    if (!scroll) return;
+    const daysFromStart =
+      dayDiff(geometry.start, snapshot.anchorDate) +
+      Number(snapshot.fraction || 0);
+    const centerPx = daysFromStart * geometry.dayWidth;
+    scroll.scrollLeft = Math.max(0, centerPx - scroll.clientWidth / 2);
+  }
+
   function renderGantt() {
     if (!els.gantt) return;
+    const viewSnapshot = captureGanttView();
     const allDetails = state.tasks.filter(
       (task) => task.activity_type === "task",
     );
@@ -2513,6 +2624,7 @@
       )
       .join("");
     if (!tasks.length) {
+      state.ganttRenderedGeometry = null;
       els.gantt.innerHTML = `<div class="gantt-empty">${
         state.ganttStatusFilter ||
         state.ganttPriorityFilter ||
@@ -2651,6 +2763,7 @@
         })
         .join("")}</div>`;
     bindGanttInteractions(geometry);
+    restoreGanttView(geometry, viewSnapshot);
   }
 
   function bindGanttInteractions(geometry) {

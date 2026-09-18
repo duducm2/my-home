@@ -178,9 +178,12 @@
                 >
                 <span id="dash-unpriced-count">0 sem cotação</span>
               </div>
-              <div class="forecast-summary" aria-label="Projeção por mediana">
+              <div
+                class="forecast-summary"
+                aria-label="Detalhe do orçamento no cronograma"
+              >
                 <div class="forecast-summary-head">
-                  <span>Projetado (mediana)</span>
+                  <span>No cronograma</span>
                   <strong id="dash-forecast-all">R$ 0,00</strong>
                 </div>
                 <div class="forecast-breakdown">
@@ -194,15 +197,15 @@
                   >
                 </div>
                 <details class="forecast-details">
-                  <summary>Principais materiais (takeoff)</summary>
+                  <summary>Principais materiais no cronograma</summary>
                   <ol
                     id="dash-forecast-top-materials"
                     class="forecast-top-list"
                   ></ol>
                 </details>
                 <p id="dash-forecast-caveat" class="forecast-caveat">
-                  Quantidades estimadas pelo takeoff; preços pela mediana das
-                  cotações atuais.
+                  Acumulado final dos pagamentos das despesas vinculadas às
+                  atividades do Gantt.
                 </p>
               </div>
             </article>
@@ -2081,6 +2084,6 @@
     </dialog>
 
     <datalist id="category-suggestions"></datalist>
-    <script src="/app.js?v=20260918-gantt-only-payday"></script>
+    <script src="/app.js?v=20260918-gantt-scroll"></script>
   </body>
 </html>
