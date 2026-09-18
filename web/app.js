@@ -255,6 +255,7 @@
     blueprintViewport: $("blueprint-viewport"),
     blueprintZoomLabel: $("blueprint-zoom-label"),
     btnExportBlueprint: $("btn-export-blueprint"),
+    houseDocuments: $("house-documents"),
     houseLot: $("house-lot"),
     houseExterior: $("house-exterior"),
     houseRooms: $("house-rooms"),
@@ -4307,6 +4308,24 @@
     resetBlueprintView();
     const lot = house.lot_dimensions_meters || {};
     els.houseLot.innerHTML = `<div><span class="summary-label">Largura</span><strong>${lot.width ?? "—"} m</strong></div><div><span class="summary-label">Comprimento</span><strong>${lot.length ?? "—"} m</strong></div><div><span class="summary-label">Área</span><strong>${lot.area_m2 ?? "—"} m²</strong></div>`;
+    const documents = payload.documents || house.documents || [];
+    els.houseDocuments.innerHTML = documents.length
+      ? documents
+          .map(
+            (document) => `
+      <article class="house-document-card">
+        <a class="house-document-thumb" href="${escapeAttr(document.url)}" target="_blank" rel="noopener">
+          <img src="${escapeAttr(document.url)}" alt="${escapeAttr(document.title || "Documento da casa")}" loading="lazy" />
+        </a>
+        <div class="house-document-body">
+          <h3>${escapeHtml(document.title || document.id)}</h3>
+          <p>${escapeHtml(document.description || "")}</p>
+          <a class="btn" href="${escapeAttr(document.url)}" target="_blank" rel="noopener">Abrir</a>
+        </div>
+      </article>`,
+          )
+          .join("")
+      : `<p class="muted">Nenhum documento histórico anexado ainda.</p>`;
     els.houseExterior.innerHTML = (house.exterior_spaces || [])
       .map(
         (space) =>

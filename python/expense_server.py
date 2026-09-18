@@ -175,7 +175,11 @@ class ExpenseHandler(BaseHTTPRequestHandler):
         if not path.is_file():
             self._json(404, {"ok": False, "error": "not found"})
             return
-        guessed = content_type or mimetypes.guess_type(path.name)[0] or "application/octet-stream"
+        guessed = (
+            content_type
+            or mimetypes.guess_type(path.name)[0]
+            or "application/octet-stream"
+        )
         if guessed.startswith(("text/", "application/javascript", "application/json")):
             guessed += "; charset=utf-8"
         self._bytes(200, path.read_bytes(), guessed)
@@ -253,13 +257,13 @@ class ExpenseHandler(BaseHTTPRequestHandler):
             if len(parts) == 4:
                 self._json(200, get_store(self.data_dir).quotation_state(parts[2]))
                 return
-        if path.startswith("/api/expenses/") and "/quotations/" in path and "/documents/" in path:
+        if (
+            path.startswith("/api/expenses/")
+            and "/quotations/" in path
+            and "/documents/" in path
+        ):
             parts = [part for part in path.split("/") if part]
-            if (
-                len(parts) == 7
-                and parts[3] == "quotations"
-                and parts[5] == "documents"
-            ):
+            if len(parts) == 7 and parts[3] == "quotations" and parts[5] == "documents":
                 document_id = "" if parts[6] == "current" else parts[6]
                 try:
                     target = get_store(self.data_dir).quotation_store.document_path(
@@ -314,15 +318,17 @@ class ExpenseHandler(BaseHTTPRequestHandler):
             return
         if path == "/api/quotation-planning":
             expenses = get_store(self.data_dir).list_expenses()
-            self._json(
-                200, get_quotation_planning(self.data_dir).state(expenses)
-            )
+            self._json(200, get_quotation_planning(self.data_dir).state(expenses))
             return
         if path == "/api/contracts":
             self._json(200, get_contracts(self.data_dir).state())
             return
         if path == "/api/cashflow":
-            payload = json.loads((self.data_dir / "cashflow-projection.json").read_text(encoding="utf-8-sig"))
+            payload = json.loads(
+                (self.data_dir / "cashflow-projection.json").read_text(
+                    encoding="utf-8-sig"
+                )
+            )
             self._json(200, payload)
             return
         if path == "/api/media/capabilities":
@@ -333,6 +339,23 @@ class ExpenseHandler(BaseHTTPRequestHandler):
             return
         if path == "/api/house/blueprint.jpg":
             self._serve_file(self.data_dir / "blueprint.jpg", "image/jpeg")
+            return
+        if path.startswith("/api/house/documents/"):
+            document_id = path[len("/api/house/documents/") :].strip("/")
+            try:
+                target = get_house(self.data_dir).document_path(document_id)
+            except ValueError as exc:
+                self._json(404, {"ok": False, "error": str(exc)})
+                return
+            suffix = target.suffix.lower()
+            content_type = {
+                ".jpg": "image/jpeg",
+                ".jpeg": "image/jpeg",
+                ".png": "image/png",
+                ".webp": "image/webp",
+                ".pdf": "application/pdf",
+            }.get(suffix, "application/octet-stream")
+            self._serve_file(target, content_type)
             return
         people = {
             "/api/project/people/eduardo.jpg": "eduardo.jpg",
@@ -346,10 +369,16 @@ class ExpenseHandler(BaseHTTPRequestHandler):
             return
         if path.startswith("/api/contracts/") and "/documents/" in path:
             parts = [part for part in path.split("/") if part]
-            if len(parts) == 5 and parts[:2] == ["api", "contracts"] and parts[3] == "documents":
+            if (
+                len(parts) == 5
+                and parts[:2] == ["api", "contracts"]
+                and parts[3] == "documents"
+            ):
                 document_id = "" if parts[4] == "current" else parts[4]
                 try:
-                    target = get_contracts(self.data_dir).document_path(parts[2], document_id)
+                    target = get_contracts(self.data_dir).document_path(
+                        parts[2], document_id
+                    )
                 except ValueError as exc:
                     self._json(404, {"ok": False, "error": str(exc)})
                     return
@@ -396,7 +425,10 @@ class ExpenseHandler(BaseHTTPRequestHandler):
                     raise ValueError("PDF must contain data and be at most 25 MB")
                 data = self.rfile.read(length)
                 filename = unquote(self.headers.get("X-Filename", "contract.pdf"))
-                self._json(200, get_contracts(self.data_dir).add_document(parts[2], data, filename))
+                self._json(
+                    200,
+                    get_contracts(self.data_dir).add_document(parts[2], data, filename),
+                )
                 return
             if path.startswith("/api/expenses/") and path.endswith("/documents"):
                 parts = [part for part in path.split("/") if part]
@@ -409,9 +441,7 @@ class ExpenseHandler(BaseHTTPRequestHandler):
                     if length <= 0 or length > MAX_QUOTATION_PDF_BYTES:
                         raise ValueError("PDF must contain data and be at most 25 MB")
                     data = self.rfile.read(length)
-                    filename = unquote(
-                        self.headers.get("X-Filename", "quotation.pdf")
-                    )
+                    filename = unquote(self.headers.get("X-Filename", "quotation.pdf"))
                     document = get_store(self.data_dir).quotation_store.add_document(
                         parts[2], parts[4], data, filename
                     )
@@ -422,9 +452,9 @@ class ExpenseHandler(BaseHTTPRequestHandler):
                             "expense_id": parts[2],
                             "quotation_id": parts[4],
                             "document": document,
-                            "quotation_state": get_store(
-                                self.data_dir
-                            ).quotation_state(parts[2]),
+                            "quotation_state": get_store(self.data_dir).quotation_state(
+                                parts[2]
+                            ),
                             "state": get_store(self.data_dir).state(),
                         },
                     )
@@ -501,14 +531,20 @@ class ExpenseHandler(BaseHTTPRequestHandler):
             elif path == "/api/push":
                 self._json(200, push_expenses(ROOT_DIR))
             elif path == "/api/house":
-                house_payload = payload.get("house") if isinstance(payload.get("house"), dict) else payload
+                house_payload = (
+                    payload.get("house")
+                    if isinstance(payload.get("house"), dict)
+                    else payload
+                )
                 self._json(200, get_house(self.data_dir).save(house_payload))
             elif path == "/api/house/name":
                 self._json(200, get_house(self.data_dir).save_name(payload.get("name")))
             elif path == "/api/house/model3d-layout":
                 self._json(200, get_house(self.data_dir).save_model3d_layout(payload))
             elif path == "/api/prompts/quotation-ingestion":
-                ids = payload.get("ids") if isinstance(payload.get("ids"), list) else None
+                ids = (
+                    payload.get("ids") if isinstance(payload.get("ids"), list) else None
+                )
                 self._json(
                     200,
                     build_quotation_ingestion_prompt(
@@ -518,7 +554,9 @@ class ExpenseHandler(BaseHTTPRequestHandler):
                     ),
                 )
             elif path == "/api/prompts/price-discovery":
-                ids = payload.get("ids") if isinstance(payload.get("ids"), list) else None
+                ids = (
+                    payload.get("ids") if isinstance(payload.get("ids"), list) else None
+                )
                 self._json(
                     200,
                     build_price_discovery_prompt(
@@ -537,9 +575,11 @@ class ExpenseHandler(BaseHTTPRequestHandler):
                             payload.get("correction_instructions") or ""
                         ),
                         expense_context=str(payload.get("expense_context") or ""),
-                        source_document_ids=payload.get("source_document_ids")
-                        if isinstance(payload.get("source_document_ids"), list)
-                        else [],
+                        source_document_ids=(
+                            payload.get("source_document_ids")
+                            if isinstance(payload.get("source_document_ids"), list)
+                            else []
+                        ),
                     ),
                 )
             elif path == "/api/import/commit":
@@ -557,12 +597,12 @@ class ExpenseHandler(BaseHTTPRequestHandler):
                         rows,
                         pack_text=str(payload.get("pack_text") or ""),
                         pack_id=str(payload.get("pack_id") or "price"),
-                        expense_context=str(
-                            payload.get("expense_context") or ""
+                        expense_context=str(payload.get("expense_context") or ""),
+                        source_document_ids=(
+                            payload.get("source_document_ids")
+                            if isinstance(payload.get("source_document_ids"), list)
+                            else []
                         ),
-                        source_document_ids=payload.get("source_document_ids")
-                        if isinstance(payload.get("source_document_ids"), list)
-                        else [],
                         preview_digest=str(payload.get("preview_digest") or ""),
                     ),
                 )
@@ -577,7 +617,9 @@ class ExpenseHandler(BaseHTTPRequestHandler):
         except GitError as exc:
             self._json(500, {"ok": False, "error": str(exc)})
         except Exception as exc:
-            self._json(500, {"ok": False, "error": str(exc), "trace": traceback.format_exc()})
+            self._json(
+                500, {"ok": False, "error": str(exc), "trace": traceback.format_exc()}
+            )
 
     def do_DELETE(self) -> None:
         path = unquote(urlparse(self.path).path)
@@ -617,15 +659,27 @@ class ExpenseHandler(BaseHTTPRequestHandler):
                     ),
                 )
             elif path.startswith("/api/contracts/"):
-                self._json(200, get_contracts(self.data_dir).archive(path[len("/api/contracts/") :]))
+                self._json(
+                    200,
+                    get_contracts(self.data_dir).archive(
+                        path[len("/api/contracts/") :]
+                    ),
+                )
             elif path.startswith("/api/providers/"):
-                self._json(200, get_providers(self.data_dir).archive(path[len("/api/providers/") :]))
+                self._json(
+                    200,
+                    get_providers(self.data_dir).archive(
+                        path[len("/api/providers/") :]
+                    ),
+                )
             else:
                 self._json(404, {"ok": False, "error": "not found"})
         except ValueError as exc:
             self._json(400, {"ok": False, "error": str(exc)})
         except Exception as exc:
-            self._json(500, {"ok": False, "error": str(exc), "trace": traceback.format_exc()})
+            self._json(
+                500, {"ok": False, "error": str(exc), "trace": traceback.format_exc()}
+            )
 
 
 def make_handler(data_dir: Path):
