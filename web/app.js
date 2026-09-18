@@ -673,6 +673,28 @@
     return `<span class="unit-price-cell"><strong>${formatMoney(cheapest.unit_price)}</strong><span class="unit-price-suffix">/ ${escapeHtml(item.unit || cheapest.unit || "un")}</span>${vendor}</span>`;
   }
 
+  function medianUnitPrice(item) {
+    const prices = (item.quotations || [])
+      .filter((quote) => !quote.archived)
+      .map((quote) => Number(quote.unit_price))
+      .filter((price) => Number.isFinite(price));
+    if (!prices.length) return null;
+    prices.sort((left, right) => left - right);
+    const mid = Math.floor(prices.length / 2);
+    if (prices.length % 2 === 1) return prices[mid];
+    return (prices[mid - 1] + prices[mid]) / 2;
+  }
+
+  function medianUnitPriceCell(item) {
+    const median = medianUnitPrice(item);
+    if (median == null) {
+      return item.scenario?.unpriced
+        ? '<span class="badge">Sem cotação</span>'
+        : "—";
+    }
+    return `<span class="unit-price-cell"><strong>${formatMoney(median)}</strong><span class="unit-price-suffix">/ ${escapeHtml(item.unit || "un")}</span></span>`;
+  }
+
   function expenseQuotationsBento(item) {
     if (!state.showExpenseQuotePills) return "";
     const quotes = visibleQuotationsForExpense(item);
@@ -727,6 +749,7 @@
       <td>${escapeHtml(item.category)}</td>
       <td>${itemLabel(item.description, item.icon_key)}</td>
       <td class="num expense-price-cell">${unitPriceCell(item)}${expenseQuotationsBento(item)}</td>
+      <td class="num">${medianUnitPriceCell(item)}</td>
       <td class="actions"><button class="btn" data-edit-expense="${item.id}">Editar</button><button class="btn danger" data-delete-expense="${item.id}">Excluir</button></td>
     </tr>`,
       )
