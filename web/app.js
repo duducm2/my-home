@@ -562,6 +562,93 @@
     );
   }
 
+  function normalizeVendorKey(name) {
+    return String(name || "")
+      .trim()
+      .toLocaleLowerCase("pt-BR");
+  }
+
+  function vendorSyntheticId(name) {
+    const slug = String(name || "")
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, "_")
+      .replace(/^_+|_+$/g, "")
+      .slice(0, 64);
+    return `vendor_${slug || "unknown"}`.slice(0, 80);
+  }
+
+  function findProviderByName(name) {
+    const key = normalizeVendorKey(name);
+    if (!key) return null;
+    return (
+      state.providers.find(
+        (provider) =>
+          !provider.archived && normalizeVendorKey(provider.name) === key,
+      ) || null
+    );
+  }
+
+  function expenseHasAvailableQuotes(item) {
+    return (item.quotations || []).some(
+      (quote) => !quote.archived && Number.isFinite(Number(quote.unit_price)),
+    );
+  }
+
+  function quotationLinkCandidates(campaign) {
+    const linked = new Set(
+      (campaign?.providers || []).map(
+        (link) => link.provider_id || link.id || "",
+      ),
+    );
+    const options = [];
+    for (const provider of state.providers) {
+      if (provider.archived || linked.has(provider.id)) continue;
+      options.push({
+        id: provider.id,
+        name: provider.name,
+        label: provider.name,
+        kind: "directory",
+      });
+    }
+    for (const vendor of allQuotationVendors()) {
+      if (findProviderByName(vendor)) continue;
+      const id = vendorSyntheticId(vendor);
+      if (linked.has(id)) continue;
+      options.push({
+        id,
+        name: vendor,
+        label: `${vendor} (cotações)`,
+        kind: "quotation",
+      });
+    }
+    options.sort((left, right) =>
+      left.label.localeCompare(right.label, "pt-BR"),
+    );
+    return options;
+  }
+
+  function resolveCampaignProvider(link) {
+    const providerId = link.provider_id || link.id;
+    const directory = state.providers.find((item) => item.id === providerId);
+    if (directory) {
+      return {
+        id: directory.id,
+        name: directory.name,
+        summary: providerContactSummary(directory),
+        kind: "directory",
+      };
+    }
+    const name = link.vendor_name || link.name || providerId;
+    return {
+      id: providerId,
+      name,
+      summary: "Fornecedor das cotações existentes",
+      kind: "quotation",
+    };
+  }
+
   function renderQuotationVendorFilters() {
     const vendors = allQuotationVendors();
     const selected = state.expenseVendorFilter;
@@ -2584,14 +2671,25 @@
     ];
     els.quotationScopeList.innerHTML = categories
       .map((category) => {
-        const expenses = state.expenses.filter(
-          (item) =>
-            item.category === category &&
-            (!search ||
-              `${item.category} ${item.description}`
-                .toLocaleLowerCase("pt-BR")
-                .includes(search)),
-        );
+        const expenses = state.expenses
+          .filter(
+            (item) =>
+              item.category === category &&
+              (!search ||
+                `${item.category} ${item.description}`
+                  .toLocaleLowerCase("pt-BR")
+                  .includes(search)),
+          )
+          .sort((left, right) => {
+            const quotedDelta =
+              Number(expenseHasAvailableQuotes(right)) -
+              Number(expenseHasAvailableQuotes(left));
+            if (quotedDelta) return quotedDelta;
+            return String(left.description || "").localeCompare(
+              String(right.description || ""),
+              "pt-BR",
+            );
+          });
         if (!expenses.length && search) return "";
         const allCategoryExpenses = state.expenses.filter(
           (item) => item.category === category,
@@ -2605,10 +2703,10 @@
         return `<section class="quotation-scope-category">
           <label><input type="checkbox" data-quotation-category="${escapeAttr(category)}" ${categoryChecked ? "checked" : ""}>${escapeHtml(category)}</label>
           <div class="quotation-scope-expenses">${expenses
-            .map(
-              (item) =>
-                `<label class="quotation-scope-expense"><input type="checkbox" data-quotation-expense="${escapeAttr(item.id)}" ${selectedExpenses.has(item.id) ? "checked" : ""}>${escapeHtml(item.description)}</label>`,
-            )
+            .map((item) => {
+              const quoted = expenseHasAvailableQuotes(item);
+              return `<label class="quotation-scope-expense${quoted ? " has-quotes" : ""}"><input type="checkbox" data-quotation-expense="${escapeAttr(item.id)}" ${selectedExpenses.has(item.id) ? "checked" : ""}><span>${escapeHtml(item.description)}${quoted ? ' <small class="quoted-hint">já cotado</small>' : ""}</span></label>`;
+            })
             .join("")}</div>
         </section>`;
       })
@@ -2659,28 +2757,19 @@
     els.quotationOutreachMessage.value = campaign.outreach_message;
     els.quotationProviderSelect.innerHTML =
       '<option value="">Selecione...</option>' +
-      state.providers
-        .filter(
-          (provider) =>
-            !provider.archived &&
-            !(campaign.providers || []).some(
-              (link) => (link.provider_id || link.id) === provider.id,
-            ),
-        )
+      quotationLinkCandidates(campaign)
         .map(
-          (provider) =>
-            `<option value="${escapeAttr(provider.id)}">${escapeHtml(provider.name)}</option>`,
+          (option) =>
+            `<option value="${escapeAttr(option.id)}" data-kind="${escapeAttr(option.kind)}" data-name="${escapeAttr(option.name)}">${escapeHtml(option.label)}</option>`,
         )
         .join("");
     els.quotationLinkedProviders.innerHTML =
       (campaign.providers || [])
         .map((link) => {
-          const provider = state.providers.find(
-            (item) => item.id === (link.provider_id || link.id),
-          );
-          if (!provider) return "";
+          const provider = resolveCampaignProvider(link);
+          if (!provider?.id) return "";
           return `<article class="quotation-linked-provider" data-linked-provider="${escapeAttr(provider.id)}">
-            <div><strong>${escapeHtml(provider.name)}</strong><small>${escapeHtml(providerContactSummary(provider))}</small></div>
+            <div><strong>${escapeHtml(provider.name)}</strong><small>${escapeHtml(provider.summary)}</small></div>
             <label>Status<select data-outreach-field="status">
               ${[
                 ["not_contacted", "Não contatado"],
@@ -5031,17 +5120,30 @@
     if (!providerId) return;
     const campaign = currentQuotationCampaign(true);
     if (
-      !campaign.providers.some(
+      campaign.providers.some(
         (link) => (link.provider_id || link.id) === providerId,
       )
     )
-      campaign.providers.push({
-        provider_id: providerId,
-        status: "not_contacted",
-        notes: "",
-        created_at: new Date().toISOString(),
-        updated_at: new Date().toISOString(),
-      });
+      return;
+    const selected = els.quotationProviderSelect.selectedOptions[0];
+    const candidate =
+      quotationLinkCandidates(campaign).find(
+        (option) => option.id === providerId,
+      ) || null;
+    const vendorName =
+      candidate?.name ||
+      selected?.dataset?.name ||
+      selected?.textContent?.replace(/\s*\(cotações\)\s*$/, "").trim() ||
+      providerId;
+    campaign.providers.push({
+      provider_id: providerId,
+      vendor_name: vendorName,
+      source: candidate?.kind || selected?.dataset?.kind || "directory",
+      status: "not_contacted",
+      notes: "",
+      created_at: new Date().toISOString(),
+      updated_at: new Date().toISOString(),
+    });
     renderQuotationPlanning();
   });
   els.btnNewQuotationProvider.addEventListener("click", () =>

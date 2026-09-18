@@ -3640,6 +3640,19 @@ body.model3d-active {
   font-size: 11px;
 }
 
+.quotation-scope-expense.has-quotes {
+  color: var(--text);
+}
+
+.quotation-scope-expense .quoted-hint {
+  margin-left: 4px;
+  color: #2ecc71;
+  font-size: 9px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
 .quotation-scope-list input,
 .quotation-linked-provider input,
 .quotation-response-toolbar input[type="checkbox"] {
