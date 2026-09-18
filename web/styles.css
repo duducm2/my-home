@@ -4181,6 +4181,70 @@ body.model3d-active {
   grid-column: 2;
 }
 
+.expense-quick-find {
+  position: fixed;
+  top: 56px;
+  left: 50%;
+  z-index: 60;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+  align-items: center;
+  width: min(460px, calc(100vw - 32px));
+  padding: 10px 12px;
+  transform: translateX(-50%);
+  background: #141417f5;
+  border: 1px solid #f1c40f88;
+  border-radius: var(--radius);
+  box-shadow: 0 14px 40px #000a;
+}
+
+.expense-quick-find.hidden {
+  display: none;
+}
+
+.expense-quick-find-label {
+  flex: 0 0 100%;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.expense-quick-find input {
+  flex: 1 1 auto;
+  min-width: 0;
+  min-height: 36px;
+  padding: 6px 10px;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  background: var(--input);
+  color: var(--text);
+  font: inherit;
+}
+
+.expense-quick-find input:focus {
+  outline: 2px solid #f1c40f66;
+  outline-offset: 1px;
+  border-color: var(--gold);
+}
+
+.expense-quick-find-hint {
+  flex: 0 0 auto;
+  color: var(--muted);
+  font-size: 10px;
+  white-space: nowrap;
+}
+
+.expense-quick-find-hint kbd {
+  margin: 0 2px;
+  padding: 1px 4px;
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  font: 10px/1.2 var(--font);
+}
+
 .expense-filter-sidebar {
   position: sticky;
   top: 8px;

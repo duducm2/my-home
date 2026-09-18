@@ -600,8 +600,8 @@ class ExpenseStore:
     def _validate_payments(
         payload: Any, value: float | None = None
     ) -> list[dict[str, Any]]:
-        if not isinstance(payload, list) or not payload or len(payload) > 36:
-            raise ValueError("payments must contain between 1 and 36 items")
+        if not isinstance(payload, list) or len(payload) > 36:
+            raise ValueError("payments must contain at most 36 items")
         result: list[dict[str, Any]] = []
         ids: set[str] = set()
         for index, raw in enumerate(payload, start=1):
@@ -776,58 +776,10 @@ class ExpenseStore:
         quotations: list[dict[str, Any]],
         allocations: list[dict[str, Any]],
     ) -> list[dict[str, Any]]:
-        persisted = self._parse_payments(row)
-        confirmed = [
-            payment
-            for payment in persisted
-            if payment.get("date_status") == "confirmed"
-        ]
-        if confirmed:
-            return confirmed
-        quote = next(
-            (
-                item
-                for item in quotations
-                if item["id"] == scenario["planned_quotation_id"]
-            ),
-            None,
-        )
-        if quote and allocations:
-            ordered = sorted(
-                allocations, key=lambda item: (item.get("date") or "", item["task_id"])
-            )
-            payments = []
-            for index, allocation in enumerate(ordered, start=1):
-                amount = float(quote["unit_price"]) * float(
-                    allocation["expected_quantity"]
-                )
-                if index == 1:
-                    amount += float(quote.get("shipping_cost") or 0)
-                payments.append(
-                    {
-                        "id": f"ALLOC_{allocation['task_id']}",
-                        "date": allocation["date"],
-                        "amount": round(amount, 2),
-                        "date_status": allocation["date_status"],
-                        "source": "activity_allocation",
-                        "task_id": allocation["task_id"],
-                        "notes": allocation["task_title"],
-                    }
-                )
-            return payments
-        if scenario["planned"] is not None:
-            payment_date = (
-                str(persisted[0].get("date") or "") if persisted else date.today().isoformat()
-            )
-            return [{
-                "id": "PAY_PROJECTED",
-                "date": payment_date,
-                "amount": scenario["planned"],
-                "date_status": "estimated",
-                "source": "expense_default",
-                "notes": "",
-            }]
-        return []
+        # Only manually recorded payments. Projection vs paid is handled by the
+        # user outside the app — never invent payments from activities/quotes.
+        del scenario, quotations, allocations
+        return self._parse_payments(row)
 
     def _normalize(
         self,
@@ -1064,25 +1016,13 @@ class ExpenseStore:
         row_index: int,
         total_rows: int,
     ) -> None:
+        del row_index, total_rows
         if "payments" in payload:
             payments = self._validate_payments(payload.get("payments"))
             row["payments_json"] = self._serialize_payments(payments)
             return
-        if str(row.get("payments_json") or "").strip():
-            return
-        linked_dates, timeline_start, timeline_end = self._task_payment_context()
-        row["payments_json"] = self._serialize_payments(
-            [
-                self._default_payment(
-                    row,
-                    linked_dates,
-                    timeline_start,
-                    timeline_end,
-                    row_index,
-                    max(1, total_rows),
-                )
-            ]
-        )
+        if not str(row.get("payments_json") or "").strip():
+            row["payments_json"] = "[]"
 
     def upsert_expense(self, payload: dict[str, Any]) -> dict[str, Any]:
         category = str(payload.get("category") or "").strip()

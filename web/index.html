@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="color-scheme" content="dark" />
     <title>my-home</title>
-    <link rel="stylesheet" href="/styles.css?v=20260918-expense-jump" />
-    <link rel="stylesheet" href="/tasks.css?v=20260918-expense-jump" />
+    <link rel="stylesheet" href="/styles.css?v=20260918-quick-find-float" />
+    <link rel="stylesheet" href="/tasks.css?v=20260918-manual-payments" />
     <script type="importmap">
       { "imports": { "three": "/vendor/three/three.module.js" } }
     </script>
@@ -285,11 +285,10 @@
             <div class="panel-head">
               <div>
                 <h3 id="payment-projection-title">
-                  Projeção de gastos por data de pagamento
+                  Gastos por data de pagamento
                 </h3>
                 <p class="section-sub">
-                  Valores confirmados e previsões derivadas das quantidades do
-                  cronograma.
+                  Soma dos pagamentos cadastrados nas despesas e nos contratos.
                 </p>
               </div>
               <span id="payment-projection-summary" class="panel-kicker"></span>
@@ -437,13 +436,37 @@
             aria-label="Notas gerais"
           ></textarea>
         </section>
-        <div
-          id="dashboard-hover-tooltip"
-          class="dashboard-hover-tooltip"
-          role="tooltip"
-          aria-hidden="true"
-        ></div>
       </section>
+
+      <div
+        id="dashboard-hover-tooltip"
+        class="dashboard-hover-tooltip"
+        role="tooltip"
+        aria-hidden="true"
+      ></div>
+
+      <div
+        id="expense-quick-find"
+        class="expense-quick-find hidden"
+        hidden
+        role="search"
+      >
+        <label class="expense-quick-find-label" for="expense-quick-filter"
+          >Filtrar por nome</label
+        >
+        <input
+          id="expense-quick-filter"
+          type="search"
+          placeholder="Digite letras do nome da despesa…"
+          autocomplete="off"
+          spellcheck="false"
+          aria-keyshortcuts="Shift+F"
+        />
+        <span class="expense-quick-find-hint"
+          ><kbd>Enter</kbd> abre a 1ª · <kbd>Esc</kbd> limpa ·
+          <kbd>Shift+F</kbd></span
+        >
+      </div>
 
       <section id="view-gantt" class="view hidden">
         <section class="task-section gantt-page">
@@ -1185,10 +1208,10 @@
         <section class="expense-payment-editor">
           <div class="expense-payment-head">
             <div>
-              <strong>Pagamentos confirmados</strong>
+              <strong>Pagamentos</strong>
               <small
-                >Quando informados, substituem as projeções geradas pelas
-                atividades.</small
+                >Datas e valores que você cadastrar manualmente para esta
+                despesa.</small
               >
             </div>
             <button type="button" id="btn-add-payment" class="btn">
@@ -1966,6 +1989,6 @@
     </dialog>
 
     <datalist id="category-suggestions"></datalist>
-    <script src="/app.js?v=20260918-expense-jump"></script>
+    <script src="/app.js?v=20260918-quick-find-enter"></script>
   </body>
 </html>

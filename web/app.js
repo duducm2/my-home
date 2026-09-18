@@ -45,6 +45,7 @@
     ganttPriorityFilter: 0,
     lastAutoOutreachMessage: "",
     expenseCategoryFilters: new Set(),
+    expenseQuickFilter: "",
     expenseVendorFilter: "",
     showExpenseQuotePills: true,
     systemDocuments: [],
@@ -154,6 +155,8 @@
     btnCancelTask: $("btn-cancel-task"),
     expenseCategories: $("filter-categories"),
     search: $("filter-search"),
+    expenseQuickFind: $("expense-quick-find"),
+    expenseQuickFilter: $("expense-quick-filter"),
     quotationVendorFilterSidebar: $("filter-quotation-vendor"),
     supplierQuotationView: $("supplier-quotation-view"),
     supplierQuotationTitle: $("supplier-quotation-title"),
@@ -734,8 +737,84 @@
       .join("");
   }
 
+  function normalizeFilterText(value) {
+    return String(value || "")
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .toLowerCase();
+  }
+
+  function isExpenseQuickFindOpen() {
+    return Boolean(
+      els.expenseQuickFind &&
+      !els.expenseQuickFind.classList.contains("hidden"),
+    );
+  }
+
+  function resetExpenseQuickFilter() {
+    state.expenseQuickFilter = "";
+    if (els.expenseQuickFilter) els.expenseQuickFilter.value = "";
+    if (els.expenseQuickFind) {
+      els.expenseQuickFind.classList.add("hidden");
+      els.expenseQuickFind.hidden = true;
+    }
+  }
+
+  function openExpenseQuickFind() {
+    if (!els.expenseQuickFind || !els.expenseQuickFilter) return;
+    const wasOnExpenses = !els.viewExpenses.classList.contains("hidden");
+    if (!wasOnExpenses) showView("expenses");
+    els.expenseQuickFind.classList.remove("hidden");
+    els.expenseQuickFind.hidden = false;
+    els.expenseQuickFilter.focus();
+    els.expenseQuickFilter.select();
+  }
+
+  function closeExpenseQuickFind({ clear = true } = {}) {
+    if (clear) {
+      state.expenseQuickFilter = "";
+      if (els.expenseQuickFilter) els.expenseQuickFilter.value = "";
+      renderExpenseTable();
+    }
+    if (els.expenseQuickFind) {
+      els.expenseQuickFind.classList.add("hidden");
+      els.expenseQuickFind.hidden = true;
+    }
+  }
+
+  function selectFirstFilteredExpense() {
+    const first = filteredExpenses()[0];
+    if (!first) {
+      setStatus(els.appStatus, "err", "Nenhuma despesa corresponde ao filtro.");
+      return false;
+    }
+    closeExpenseQuickFind({ clear: false });
+    renderExpenseTable();
+    requestAnimationFrame(() => {
+      const row = els.rows.querySelector(
+        `tr[data-open-quotations="${CSS.escape(first.id)}"]`,
+      );
+      if (row) {
+        els.rows
+          .querySelectorAll(".expense-row-target")
+          .forEach((element) => element.classList.remove("expense-row-target"));
+        row.classList.add("expense-row-target");
+        row.scrollIntoView({ block: "center", behavior: "smooth" });
+        window.setTimeout(
+          () => row.classList.remove("expense-row-target"),
+          2600,
+        );
+      }
+      openQuotationManager(first, {
+        focusVendor: state.expenseVendorFilter,
+      });
+    });
+    return true;
+  }
+
   function filteredExpenses() {
     const term = els.search.value.trim().toLowerCase();
+    const quick = normalizeFilterText(state.expenseQuickFilter);
     const vendor = state.expenseVendorFilter.trim();
     return state.expenses.filter((item) => {
       if (
@@ -744,6 +823,8 @@
       )
         return false;
       if (!expenseHasVendorQuote(item, vendor)) return false;
+      if (quick && !normalizeFilterText(item.description).includes(quick))
+        return false;
       return (
         !term ||
         `${item.category} ${item.description} ${item.vendor || ""} ${vendor}`
@@ -1114,9 +1195,9 @@
     const days = [...grouped.values()];
     if (!days.length) {
       els.paymentProjectionSummary.textContent =
-        "Cadastre datas nas despesas para criar a projeção.";
+        "Cadastre pagamentos nas despesas ou contratos.";
       els.paymentProjectionChart.innerHTML =
-        '<p class="payment-projection-empty">Nenhum pagamento programado.</p>';
+        '<p class="payment-projection-empty">Nenhum pagamento cadastrado.</p>';
       return;
     }
     const width = Math.max(1000, days.length * 88);
@@ -1146,19 +1227,16 @@
         ? margin.left + (dayDiff(firstDate, today) / span) * plotWidth
         : null;
     const total = days.reduce((sum, item) => sum + item.amount, 0);
-    const estimatedCount = paymentEvents().filter(
-      (item) => item.date_status === "estimated",
-    ).length;
-    els.paymentProjectionSummary.textContent = `${days.length} dias · ${formatMoney(total)} · ${estimatedCount} datas presumidas`;
-    els.paymentProjectionChart.innerHTML = `<svg viewBox="0 0 ${width} ${height}" style="min-width:${width}px" role="img" aria-label="Projeção de despesas por dia de pagamento">${grid}${todayX === null ? "" : `<line x1="${todayX}" y1="${margin.top}" x2="${todayX}" y2="${margin.top + plotHeight}" class="payment-today-line"></line><path d="M ${todayX - 7} ${margin.top + plotHeight + 9} L ${todayX + 7} ${margin.top + plotHeight + 9} L ${todayX} ${margin.top + plotHeight - 3} Z" class="payment-today-marker"><title>Hoje · ${formatPaymentDate(today)}</title></path>`}<polyline points="${polyline}" class="payment-projection-line"></polyline>${points
+    els.paymentProjectionSummary.textContent = `${days.length} dias · ${formatMoney(total)}`;
+    els.paymentProjectionChart.innerHTML = `<svg viewBox="0 0 ${width} ${height}" style="min-width:${width}px" role="img" aria-label="Gastos por data de pagamento">${grid}${todayX === null ? "" : `<line x1="${todayX}" y1="${margin.top}" x2="${todayX}" y2="${margin.top + plotHeight}" class="payment-today-line"></line><path d="M ${todayX - 7} ${margin.top + plotHeight + 9} L ${todayX + 7} ${margin.top + plotHeight + 9} L ${todayX} ${margin.top + plotHeight - 3} Z" class="payment-today-marker"><title>Hoje · ${formatPaymentDate(today)}</title></path>`}<polyline points="${polyline}" class="payment-projection-line"></polyline>${points
       .map(({ x, y, item }) => {
         const details = item.payments
           .map(
             (payment) =>
-              `${payment.description}: ${formatMoney(payment.amount)}${payment.date_status === "estimated" ? " (presumido)" : ""}`,
+              `${payment.description}: ${formatMoney(payment.amount)}`,
           )
           .join(" · ");
-        return `<g class="${item.estimated ? "estimated" : "confirmed"}"><line x1="${x}" y1="${margin.top}" x2="${x}" y2="${margin.top + plotHeight}" class="payment-day-line"></line><circle cx="${x}" cy="${y}" r="6" class="payment-day-point"></circle><text x="${x}" y="${Math.max(18, y - 13)}" text-anchor="middle" class="payment-amount-label">${escapeHtml(formatMoney(item.amount))}</text><title>${escapeHtml(`${formatPaymentDate(item.date)} · ${formatMoney(item.amount)} · ${details}`)}</title><text x="${x}" y="${height - 18}" text-anchor="middle" class="cashflow-axis-label">${formatPaymentDate(item.date).slice(0, 5)}</text></g>`;
+        return `<g><line x1="${x}" y1="${margin.top}" x2="${x}" y2="${margin.top + plotHeight}" class="payment-day-line"></line><circle cx="${x}" cy="${y}" r="6" class="payment-day-point"></circle><text x="${x}" y="${Math.max(18, y - 13)}" text-anchor="middle" class="payment-amount-label">${escapeHtml(formatMoney(item.amount))}</text><title>${escapeHtml(`${formatPaymentDate(item.date)} · ${formatMoney(item.amount)} · ${details}`)}</title><text x="${x}" y="${height - 18}" text-anchor="middle" class="cashflow-axis-label">${formatPaymentDate(item.date).slice(0, 5)}</text></g>`;
       })
       .join("")}</svg>`;
   }
@@ -1217,26 +1295,92 @@
       .join("");
   }
 
-  function positionDashboardTooltip(x, y) {
+  function ganttTaskExpenseTooltip(task) {
+    const rows = ganttAllocationRows(task);
+    if (!rows.length) return null;
+    const lines = rows.map(({ expense, quantity }) => {
+      const spend = allocationSpend(expense, quantity);
+      const qtyLabel = formatCompactQuantity(quantity);
+      const unit = expense.unit || "un";
+      const totalLabel = spend ? formatMoney(spend.total) : "sem cotação";
+      return {
+        name: expense.description,
+        totalLabel,
+        detail: spend
+          ? `${qtyLabel} ${unit} × ${formatMoney(spend.unitPrice)}/${unit}`
+          : `qtd ${qtyLabel} ${unit}`,
+        total: Number(spend?.total || 0),
+      };
+    });
+    const activityTotal = lines.reduce((sum, line) => sum + line.total, 0);
+    const html = `<strong>${escapeHtml(task.title)}</strong><span>Total ${escapeHtml(formatMoney(activityTotal))}</span><ul class="gantt-expense-tooltip-list">${lines
+      .map(
+        (line) =>
+          `<li><b>${escapeHtml(line.name)}</b><em>${escapeHtml(line.totalLabel)}</em><small>${escapeHtml(line.detail)}</small></li>`,
+      )
+      .join("")}</ul>`;
+    return {
+      name: task.title,
+      amount: `Total ${formatMoney(activityTotal)}`,
+      detail: lines
+        .map((line) => `${line.name}: ${line.totalLabel}`)
+        .join(" · "),
+      html,
+    };
+  }
+
+  function ensureHoverTooltipHost() {
     const tooltip = els.dashboardHoverTooltip;
-    const left = Math.max(
-      8,
-      Math.min(x + 12, window.innerWidth - tooltip.offsetWidth - 8),
-    );
-    const preferredTop = y + 14;
-    const top =
-      preferredTop + tooltip.offsetHeight < window.innerHeight
-        ? preferredTop
-        : Math.max(8, y - tooltip.offsetHeight - 12);
-    tooltip.style.left = `${left}px`;
-    tooltip.style.top = `${top}px`;
+    if (!tooltip) return null;
+    // Keep outside body: body uses CSS zoom, which breaks position:fixed math.
+    if (tooltip.parentElement !== document.documentElement) {
+      document.documentElement.appendChild(tooltip);
+    }
+    return tooltip;
+  }
+
+  function positionDashboardTooltip(x, y, anchorEl = null) {
+    const tooltip = ensureHoverTooltipHost();
+    if (!tooltip) return;
+    const width = tooltip.offsetWidth || 160;
+    const height = tooltip.offsetHeight || 48;
+    const rect = anchorEl?.getBoundingClientRect?.();
+    let left = rect ? rect.right + 10 : x + 12;
+    let top = rect ? rect.top + rect.height / 2 - height / 2 : y + 14;
+    if (left + width > window.innerWidth - 8) {
+      left = Math.max(8, (rect ? rect.left : x) - width - 10);
+    }
+    if (top + height > window.innerHeight - 8) {
+      top = Math.max(8, window.innerHeight - height - 8);
+    }
+    if (top < 8) top = 8;
+    if (left < 8) left = 8;
+    // Tooltip lives on <html> (unzoomed). client coords / getBoundingClientRect
+    // are already viewport pixels under body { zoom }.
+    tooltip.style.left = `${Math.round(left)}px`;
+    tooltip.style.top = `${Math.round(top)}px`;
   }
 
   function showDashboardTooltip(target, x, y) {
-    els.dashboardHoverTooltip.innerHTML = `<strong>${escapeHtml(target.dataset.hoverName || "")}</strong><span>${escapeHtml(target.dataset.hoverAmount || "")}</span>`;
-    els.dashboardHoverTooltip.classList.add("visible");
-    els.dashboardHoverTooltip.setAttribute("aria-hidden", "false");
-    positionDashboardTooltip(x, y);
+    const tooltip = ensureHoverTooltipHost();
+    if (!tooltip || !target) return;
+    const taskExpenseId = target.dataset.hoverTaskExpenses;
+    if (taskExpenseId) {
+      const task = state.tasks.find((item) => item.id === taskExpenseId);
+      const tip = task ? ganttTaskExpenseTooltip(task) : null;
+      if (tip) {
+        tooltip.innerHTML = tip.html;
+        tooltip.classList.add("visible");
+        tooltip.setAttribute("aria-hidden", "false");
+        positionDashboardTooltip(x, y, target);
+        return;
+      }
+    }
+    const detail = target.dataset.hoverDetail || "";
+    tooltip.innerHTML = `<strong>${escapeHtml(target.dataset.hoverName || "")}</strong><span>${escapeHtml(target.dataset.hoverAmount || "")}</span>${detail ? `<small>${escapeHtml(detail)}</small>` : ""}`;
+    tooltip.classList.add("visible");
+    tooltip.setAttribute("aria-hidden", "false");
+    positionDashboardTooltip(x, y, target);
   }
 
   function hideDashboardTooltip() {
@@ -1922,19 +2066,24 @@
     const chips = rows
       .map(({ expense, quantity }) => {
         const qtyLabel = formatCompactQuantity(quantity);
-        const cost = allocationCost(expense, quantity, "planned");
-        const amountParts = [
-          `qtd ${qtyLabel} ${expense.unit || "un"}`,
-          cost == null ? "sem cotação" : formatMoney(cost),
-        ];
-        return `<button type="button" class="expense-hover-target gantt-expense-chip" data-open-expense="${escapeAttr(expense.id)}" data-hover-name="${escapeAttr(expense.description)}" data-hover-amount="${escapeAttr(amountParts.join(" · "))}" aria-label="${escapeAttr(`${expense.description}: qtd ${qtyLabel} ${expense.unit || "un"} · abrir despesa`)}" title="Abrir despesa">${iconMarkup(expense.icon_key, expense.description)}<em class="gantt-expense-qty">${escapeHtml(qtyLabel)}</em></button>`;
+        const unit = expense.unit || "un";
+        const spend = allocationSpend(expense, quantity);
+        const hoverAmount = spend
+          ? `Total ${formatMoney(spend.total)}`
+          : "Sem cotação";
+        const hoverDetail = spend
+          ? `${qtyLabel} ${unit} × ${formatMoney(spend.unitPrice)}/${unit}${spend.shipping ? ` + frete ${formatMoney(spend.shipping)}` : ""}`
+          : `qtd ${qtyLabel} ${unit}`;
+        const aria = spend
+          ? `${expense.description}: total ${formatMoney(spend.total)} (${qtyLabel} ${unit} × ${formatMoney(spend.unitPrice)})`
+          : `${expense.description}: qtd ${qtyLabel} ${unit} · sem cotação`;
+        return `<button type="button" class="expense-hover-target gantt-expense-chip" data-open-expense="${escapeAttr(expense.id)}" data-hover-name="${escapeAttr(expense.description)}" data-hover-amount="${escapeAttr(hoverAmount)}" data-hover-detail="${escapeAttr(hoverDetail)}" aria-label="${escapeAttr(`${aria} · abrir despesa`)}">${iconMarkup(expense.icon_key, expense.description)}<em class="gantt-expense-qty">${escapeHtml(qtyLabel)}</em></button>`;
       })
       .join("");
-    const activityTotal = rows.reduce(
-      (sum, { expense, quantity }) =>
-        sum + Number(allocationCost(expense, quantity, "planned") || 0),
-      0,
-    );
+    const activityTotal = rows.reduce((sum, { expense, quantity }) => {
+      const spend = allocationSpend(expense, quantity);
+      return sum + Number(spend?.total || 0);
+    }, 0);
     const totalMarkup = activityTotal
       ? `<strong class="gantt-expense-total">${formatMoney(activityTotal)}</strong>`
       : `<strong class="gantt-expense-total muted">sem cotação</strong>`;
@@ -2056,8 +2205,13 @@
               bentoRows > 1 ? ` style="--gantt-bento-rows:${bentoRows}"` : "";
             const trackSelected =
               state.ganttSelectedId === task.id ? " selected" : "";
+            const barHover = !isMacro && ganttTaskExpenseTooltip(task);
+            const barClass = `gantt-bar status-${task.status}${isMacro ? " macro" : ""}${trackSelected}${barHover ? " expense-hover-target" : ""}`;
+            const barHoverAttr = barHover
+              ? ` data-hover-task-expenses="${escapeAttr(task.id)}"`
+              : "";
             return `<div class="gantt-track${isMacro ? " macro" : " child"}${trackSelected}" data-track-id="${task.id}"${trackStyle}>
-            <button type="button" class="gantt-bar status-${task.status}${isMacro ? " macro" : ""}${trackSelected}" ${isMacro ? `data-macro-bar="${task.id}"` : `data-task-bar="${task.id}"`} style="left:${left}px;width:${width}px" title="${escapeAttr(`${task.title} · ${task.start_date} — ${task.end_date}`)}">
+            <button type="button" class="${barClass}"${barHoverAttr} ${isMacro ? `data-macro-bar="${task.id}"` : `data-task-bar="${task.id}"`} style="left:${left}px;width:${width}px">
               ${isMacro ? "" : '<i class="gantt-handle start" data-resize="start"></i>'}<span>${escapeHtml(task.title)}</span>${isMacro ? "" : '<i class="gantt-handle end" data-resize="end"></i>'}
             </button>${ganttExpenseBentoMarkup(task, left, width)}${taskPayments
               .map(
@@ -2073,7 +2227,7 @@
           const allocationRows = ganttAllocationRows(task);
           const activityTotal = allocationRows.reduce(
             (sum, { expense, quantity }) =>
-              sum + Number(allocationCost(expense, quantity, "planned") || 0),
+              sum + Number(allocationSpend(expense, quantity)?.total || 0),
             0,
           );
           const expenseDetail =
@@ -2688,6 +2842,37 @@
     );
   }
 
+  function allocationSpend(expense, quantity) {
+    const qty = Number(quantity || 0);
+    for (const scenarioName of ["planned", "minimum", "maximum"]) {
+      const quoteId = expense?.scenario?.[`${scenarioName}_quotation_id`];
+      const quote = (expense?.quotations || []).find(
+        (item) => item.id === quoteId,
+      );
+      if (!quote || quote.unit_price == null) continue;
+      const unitPrice = Number(quote.unit_price || 0);
+      const shipping = Number(quote.shipping_cost || 0);
+      return {
+        total: roundMoney(qty * unitPrice + shipping),
+        unitPrice,
+        shipping,
+        quantity: qty,
+        source: scenarioName,
+      };
+    }
+    const median = Number(expense?.median_unit_price);
+    if (Number.isFinite(median)) {
+      return {
+        total: roundMoney(qty * median),
+        unitPrice: median,
+        shipping: 0,
+        quantity: qty,
+        source: "median",
+      };
+    }
+    return null;
+  }
+
   function roundMoney(value) {
     return Math.round((Number(value) || 0) * 100) / 100;
   }
@@ -3190,7 +3375,10 @@
     renderIconPicker(item?.icon_key || "");
     state.editingPayments = structuredClone(
       (item?.payments || []).filter(
-        (payment) => payment.date_status === "confirmed",
+        (payment) =>
+          !String(payment.id || "").startsWith("ALLOC_") &&
+          payment.source !== "activity_allocation" &&
+          payment.source !== "expense_default",
       ),
     );
     renderExpensePayments();
@@ -3209,8 +3397,8 @@
     );
     els.expensePaymentTotal.classList.remove("mismatch");
     els.expensePaymentTotal.textContent = state.editingPayments.length
-      ? `Pagamentos confirmados: ${formatMoney(total)}`
-      : "Sem pagamentos confirmados; a projeção seguirá as atividades.";
+      ? `Total: ${formatMoney(total)}`
+      : "Nenhum pagamento cadastrado.";
   }
 
   function renderExpensePayments() {
@@ -3221,7 +3409,6 @@
         ) => `<div class="expense-payment-row" data-payment-id="${escapeAttr(payment.id)}">
           <label>Data<input type="date" data-payment-field="date" value="${escapeAttr(payment.date || "")}" required></label>
           <label>Valor<input type="number" data-payment-field="amount" min="0" step="0.01" value="${Number(payment.amount || 0).toFixed(2)}" required></label>
-          <label>Precisão<select data-payment-field="date_status"><option value="estimated" ${payment.date_status === "estimated" ? "selected" : ""}>Presumida</option><option value="confirmed" ${payment.date_status === "confirmed" ? "selected" : ""}>Confirmada</option></select></label>
           <label class="payment-note">Observação<input data-payment-field="notes" maxlength="500" value="${escapeAttr(payment.notes || "")}" placeholder="Parcela, entrada..."></label>
           <button type="button" class="btn danger" data-delete-payment="${escapeAttr(payment.id)}" aria-label="Excluir pagamento">×</button>
         </div>`,
@@ -3239,11 +3426,6 @@
     const field = target.dataset.paymentField;
     payment[field] =
       field === "amount" ? Number(target.value || 0) : target.value;
-    if (field === "date") {
-      payment.date_status = "confirmed";
-      row.querySelector('[data-payment-field="date_status"]').value =
-        "confirmed";
-    }
     renderExpensePaymentTotal();
   }
 
@@ -4235,9 +4417,7 @@
       unit: els.fieldUnit.value.trim(),
       provider_id: els.fieldProvider.value,
       contract_id: els.fieldContract.value,
-      ...(state.editingPayments.length
-        ? { payments: state.editingPayments }
-        : {}),
+      payments: state.editingPayments,
     };
     try {
       const result = await request("/api/expenses", {
@@ -5347,6 +5527,7 @@
     if (!validViews.has(name)) name = "dashboard";
     const isModel3D = name === "model3d";
     const wasModel3D = document.body.classList.contains("model3d-active");
+    const wasOnExpenses = !els.viewExpenses.classList.contains("hidden");
     document
       .querySelectorAll(".view")
       .forEach((view) =>
@@ -5362,6 +5543,12 @@
     hero.inert = isModel3D;
     hero.setAttribute("aria-hidden", String(isModel3D));
     history.replaceState(null, "", `#${name}`);
+    if (name === "expenses" && !wasOnExpenses) {
+      resetExpenseQuickFilter();
+      renderExpenseTable();
+    } else if (name !== "expenses" && wasOnExpenses) {
+      resetExpenseQuickFilter();
+    }
     if (isModel3D) {
       renderHouse3D();
       requestAnimationFrame(() =>
@@ -5519,9 +5706,37 @@
         if (!els.btnPush.disabled) pushToRemote();
         return;
       }
+      if (
+        event.key === "Escape" &&
+        isExpenseQuickFindOpen() &&
+        !els.dialog?.open &&
+        !els.quotationDialog?.open
+      ) {
+        event.preventDefault();
+        closeExpenseQuickFind({ clear: true });
+        return;
+      }
       if (event.key === "Escape" && els.model3dHelpDialog.open) {
         event.preventDefault();
         els.model3dHelpDialog.close();
+        return;
+      }
+      const typing = ["INPUT", "TEXTAREA", "SELECT"].includes(
+        document.activeElement?.tagName,
+      );
+      if (
+        event.shiftKey &&
+        !event.ctrlKey &&
+        !event.metaKey &&
+        !event.altKey &&
+        event.key.toLowerCase() === "f" &&
+        !els.dialog?.open &&
+        !els.quotationDialog?.open &&
+        !els.taskDialog?.open &&
+        (!typing || document.activeElement === els.expenseQuickFilter)
+      ) {
+        event.preventDefault();
+        openExpenseQuickFind();
         return;
       }
       if (
@@ -5532,9 +5747,6 @@
         showView("dashboard");
         return;
       }
-      const typing = ["INPUT", "TEXTAREA", "SELECT"].includes(
-        document.activeElement?.tagName,
-      );
       const ganttVisible = !document
         .getElementById("view-gantt")
         ?.classList.contains("hidden");
@@ -5698,6 +5910,23 @@
     renderExpenseTable();
   });
   els.search.addEventListener("input", renderExpenseTable);
+  els.expenseQuickFilter?.addEventListener("input", () => {
+    state.expenseQuickFilter = els.expenseQuickFilter.value;
+    renderExpenseTable();
+  });
+  els.expenseQuickFilter?.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      event.preventDefault();
+      event.stopPropagation();
+      closeExpenseQuickFind({ clear: true });
+      return;
+    }
+    if (event.key === "Enter") {
+      event.preventDefault();
+      event.stopPropagation();
+      selectFirstFilteredExpense();
+    }
+  });
   els.toggleExpenseQuotePills?.addEventListener("change", () => {
     setShowExpenseQuotePills(els.toggleExpenseQuotePills.checked);
   });
@@ -5722,8 +5951,8 @@
     if (target) showDashboardTooltip(target, event.clientX, event.clientY);
   });
   els.dashMaterials.addEventListener("mousemove", (event) => {
-    if (event.target.closest(".expense-hover-target"))
-      positionDashboardTooltip(event.clientX, event.clientY);
+    const target = event.target.closest(".expense-hover-target");
+    if (target) positionDashboardTooltip(event.clientX, event.clientY, target);
   });
   els.dashMaterials.addEventListener("mouseout", (event) => {
     const target = event.target.closest(".expense-hover-target");
@@ -5741,8 +5970,8 @@
     if (target) showDashboardTooltip(target, event.clientX, event.clientY);
   });
   els.gantt.addEventListener("mousemove", (event) => {
-    if (event.target.closest(".expense-hover-target"))
-      positionDashboardTooltip(event.clientX, event.clientY);
+    const target = event.target.closest(".expense-hover-target");
+    if (target) positionDashboardTooltip(event.clientX, event.clientY, target);
   });
   els.gantt.addEventListener("mouseout", (event) => {
     const target = event.target.closest(".expense-hover-target");
