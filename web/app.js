@@ -42,6 +42,7 @@
     editingTaskAllocations: [],
     editingContractPayments: [],
     zoom: "week",
+    paymentProjectionScale: "day",
     ganttStatusFilter: "",
     ganttPriorityFilter: 0,
     lastAutoOutreachMessage: "",
@@ -108,6 +109,7 @@
     houseSavingsPlanSummary: $("house-savings-plan-summary"),
     paymentProjectionChart: $("payment-projection-chart"),
     paymentProjectionSummary: $("payment-projection-summary"),
+    paymentProjectionScale: $("payment-projection-scale"),
     monthlySavingsGrid: $("monthly-savings-grid"),
     cashflowMethod: $("cashflow-method"),
     macroTimeline: $("macro-timeline"),
@@ -1145,6 +1147,44 @@
     renderDashboard();
   }
 
+  function expenseChosenQuotationTotal(expense) {
+    const selectedId = String(expense?.selected_quotation_id || "");
+    const selected = (expense?.quotations || []).find(
+      (quote) => quote.id === selectedId && !quote.archived,
+    );
+    if (selected) return quotationOfferTotal(selected);
+    const value = Number(expense?.value);
+    if (Number.isFinite(value) && value > 0) return value;
+    const forecast = Number(expense?.forecast_total);
+    return Number.isFinite(forecast) && forecast > 0 ? forecast : 0;
+  }
+
+  function paymentBucketKey(dateValue, scale = state.paymentProjectionScale) {
+    if (!dateValue) return "";
+    if (scale === "month") return `${String(dateValue).slice(0, 7)}-01`;
+    if (scale === "week") {
+      const date = parseDate(dateValue);
+      const day = date.getDay();
+      const mondayOffset = day === 0 ? -6 : 1 - day;
+      date.setDate(date.getDate() + mondayOffset);
+      return iso(date);
+    }
+    return dateValue;
+  }
+
+  function paymentBucketLabel(
+    bucketDate,
+    scale = state.paymentProjectionScale,
+  ) {
+    if (scale === "month")
+      return cashflowMonthLabel(String(bucketDate).slice(0, 7));
+    if (scale === "week") {
+      const end = addDays(bucketDate, 6);
+      return `${formatPaymentDate(bucketDate).slice(0, 5)}–${formatPaymentDate(end).slice(0, 5)}`;
+    }
+    return formatPaymentDate(bucketDate).slice(0, 5);
+  }
+
   function paymentEvents() {
     const scheduledContracts = state.contracts.filter(
       (contract) =>
@@ -1158,18 +1198,36 @@
     );
     const expenseEvents = state.expenses
       .filter((expense) => !contractExpenseIds.has(expense.id))
-      .flatMap((expense) =>
-        (expense.payments || []).map((payment) => ({
-          ...payment,
-          expenseId: expense.id,
-          expenseIds: [expense.id],
-          taskId: payment.task_id || "",
-          description: expense.description,
-          category: expense.category,
-          iconKey: expense.icon_key,
-          amount: Number(payment.amount || 0),
-        })),
-      );
+      .flatMap((expense) => {
+        const payments = expense.payments || [];
+        if (!payments.length) return [];
+        const chosenTotal = expenseChosenQuotationTotal(expense);
+        const explicitSum = payments.reduce((sum, payment) => {
+          const amount = Number(payment.amount || 0);
+          return sum + (Number.isFinite(amount) && amount > 0 ? amount : 0);
+        }, 0);
+        const zeroCount = payments.filter((payment) => {
+          const amount = Number(payment.amount || 0);
+          return !Number.isFinite(amount) || amount <= 0;
+        }).length;
+        const remainder = Math.max(0, chosenTotal - explicitSum);
+        const fallbackEach = zeroCount ? remainder / zeroCount : 0;
+        return payments.map((payment) => {
+          const recorded = Number(payment.amount || 0);
+          const amount =
+            Number.isFinite(recorded) && recorded > 0 ? recorded : fallbackEach;
+          return {
+            ...payment,
+            expenseId: expense.id,
+            expenseIds: [expense.id],
+            taskId: payment.task_id || "",
+            description: expense.description,
+            category: expense.category,
+            iconKey: expense.icon_key,
+            amount: roundMoney(amount),
+          };
+        });
+      });
     const contractEvents = scheduledContracts.flatMap((contract) => {
       const provider = state.providers.find(
         (item) => item.id === contract.provider_id,
@@ -1189,21 +1247,35 @@
       .sort((left, right) => left.date.localeCompare(right.date));
   }
 
+  function roundMoney(value) {
+    return Math.round((Number(value) || 0) * 100) / 100;
+  }
+
   function renderPaymentProjection() {
     if (!els.paymentProjectionChart) return;
+    const scale = state.paymentProjectionScale || "day";
+    if (els.paymentProjectionScale) {
+      const input = els.paymentProjectionScale.querySelector(
+        `input[name="payment-projection-scale"][value="${scale}"]`,
+      );
+      if (input) input.checked = true;
+    }
+    const scaleLabels = { day: "Dia", week: "Semana", month: "Mês" };
     const grouped = new Map();
     for (const payment of paymentEvents()) {
-      if (!grouped.has(payment.date))
-        grouped.set(payment.date, {
-          date: payment.date,
+      const key = paymentBucketKey(payment.date, scale);
+      if (!key) continue;
+      if (!grouped.has(key))
+        grouped.set(key, {
+          date: key,
           amount: 0,
           payments: [],
           estimated: false,
         });
-      const day = grouped.get(payment.date);
-      day.amount += payment.amount;
-      day.payments.push(payment);
-      day.estimated ||= payment.date_status === "estimated";
+      const bucket = grouped.get(key);
+      bucket.amount += payment.amount;
+      bucket.payments.push(payment);
+      bucket.estimated ||= payment.date_status === "estimated";
     }
     const days = [...grouped.values()];
     let running = 0;
@@ -1218,7 +1290,8 @@
         '<p class="payment-projection-empty">Nenhum pagamento cadastrado.</p>';
       return;
     }
-    const width = Math.max(1000, days.length * 88);
+    const pointGap = { day: 88, week: 110, month: 120 }[scale] || 88;
+    const width = Math.max(1000, days.length * pointGap);
     const height = 320;
     const margin = { left: 72, right: 34, top: 52, bottom: 48 };
     const plotWidth = width - margin.left - margin.right;
@@ -1241,11 +1314,14 @@
       .join("");
     const polyline = points.map(({ x, y }) => `${x},${y}`).join(" ");
     const today = iso(new Date());
+    const todayBucket = paymentBucketKey(today, scale);
     const todayX =
-      today >= firstDate && today <= lastDate
-        ? margin.left + (dayDiff(firstDate, today) / span) * plotWidth
+      todayBucket >= firstDate && todayBucket <= lastDate
+        ? margin.left + (dayDiff(firstDate, todayBucket) / span) * plotWidth
         : null;
-    els.paymentProjectionSummary.textContent = `${days.length} dias · acumulado ${formatMoney(total)}`;
+    const periodWord =
+      scale === "month" ? "meses" : scale === "week" ? "semanas" : "dias";
+    els.paymentProjectionSummary.textContent = `${days.length} ${periodWord} · acumulado ${formatMoney(total)}`;
     state.paymentProjectionByDate = new Map(days.map((day) => [day.date, day]));
     els.paymentProjectionChart.innerHTML = `<svg viewBox="0 0 ${width} ${height}" style="min-width:${width}px" role="img" aria-label="Gastos acumulados por data de pagamento">${grid}${todayX === null ? "" : `<line x1="${todayX}" y1="${margin.top}" x2="${todayX}" y2="${margin.top + plotHeight}" class="payment-today-line"></line><path d="M ${todayX - 7} ${margin.top + plotHeight + 9} L ${todayX + 7} ${margin.top + plotHeight + 9} L ${todayX} ${margin.top + plotHeight - 3} Z" class="payment-today-marker"><title>Hoje · ${formatPaymentDate(today)}</title></path>`}<polyline points="${polyline}" class="payment-projection-line"></polyline>${points
       .map(({ x, y, item }, index) => {
@@ -1253,20 +1329,33 @@
         const labelClass = isLast
           ? "payment-amount-label payment-cumulative-total"
           : "payment-amount-label";
-        const aria = `${formatPaymentDate(item.date)}: dia ${formatMoney(item.amount)}, acumulado ${formatMoney(item.cumulative)}`;
-        return `<g class="payment-day-group${item.estimated ? " estimated" : ""}"><line x1="${x}" y1="${margin.top}" x2="${x}" y2="${margin.top + plotHeight}" class="payment-day-line"></line><g class="expense-hover-target payment-day-hover" tabindex="0" data-hover-payment-date="${escapeAttr(item.date)}" aria-label="${escapeAttr(aria)}"><circle cx="${x}" cy="${y}" r="14" class="payment-day-hit"></circle><circle cx="${x}" cy="${y}" r="${isLast ? 7 : 6}" class="payment-day-point${isLast ? " payment-cumulative-point" : ""}"></circle><text x="${x}" y="${Math.max(18, y - 13)}" text-anchor="middle" class="${labelClass}">${escapeHtml(formatMoney(item.cumulative))}</text></g><text x="${x}" y="${height - 18}" text-anchor="middle" class="cashflow-axis-label">${formatPaymentDate(item.date).slice(0, 5)}</text></g>`;
+        const periodLabel = scaleLabels[scale] || "Dia";
+        const aria = `${paymentBucketLabel(item.date, scale)}: ${periodLabel.toLowerCase()} ${formatMoney(item.amount)}, acumulado ${formatMoney(item.cumulative)}`;
+        return `<g class="payment-day-group${item.estimated ? " estimated" : ""}"><line x1="${x}" y1="${margin.top}" x2="${x}" y2="${margin.top + plotHeight}" class="payment-day-line"></line><g class="expense-hover-target payment-day-hover" tabindex="0" data-hover-payment-date="${escapeAttr(item.date)}" aria-label="${escapeAttr(aria)}"><circle cx="${x}" cy="${y}" r="14" class="payment-day-hit"></circle><circle cx="${x}" cy="${y}" r="${isLast ? 7 : 6}" class="payment-day-point${isLast ? " payment-cumulative-point" : ""}"></circle><text x="${x}" y="${Math.max(18, y - 13)}" text-anchor="middle" class="${labelClass}">${escapeHtml(formatMoney(item.cumulative))}</text></g><text x="${x}" y="${height - 18}" text-anchor="middle" class="cashflow-axis-label">${escapeHtml(paymentBucketLabel(item.date, scale))}</text></g>`;
       })
       .join("")}</svg>`;
   }
 
   function paymentDayTooltip(day) {
     if (!day?.payments?.length) return null;
+    const scale = state.paymentProjectionScale || "day";
+    const scaleLabels = { day: "Dia", week: "Semana", month: "Mês" };
+    const periodLabel = scaleLabels[scale] || "Dia";
+    const title =
+      scale === "day"
+        ? formatPaymentDate(day.date)
+        : paymentBucketLabel(day.date, scale);
     const lines = day.payments.map((payment) => ({
       name: payment.description,
       totalLabel: formatMoney(payment.amount),
-      detail: payment.contractId ? "Contrato" : payment.category || "Despesa",
+      detail: [
+        payment.contractId ? "Contrato" : payment.category || "Despesa",
+        scale === "day" ? "" : formatPaymentDate(payment.date),
+      ]
+        .filter(Boolean)
+        .join(" · "),
     }));
-    const html = `<strong>${escapeHtml(formatPaymentDate(day.date))}</strong><span>Dia ${escapeHtml(formatMoney(day.amount))} · acumulado ${escapeHtml(formatMoney(day.cumulative))}</span><ul class="gantt-expense-tooltip-list">${lines
+    const html = `<strong>${escapeHtml(title)}</strong><span>${escapeHtml(periodLabel)} ${escapeHtml(formatMoney(day.amount))} · acumulado ${escapeHtml(formatMoney(day.cumulative))}</span><ul class="gantt-expense-tooltip-list">${lines
       .map(
         (line) =>
           `<li><b>${escapeHtml(line.name)}</b><em>${escapeHtml(line.totalLabel)}</em><small>${escapeHtml(line.detail)}</small></li>`,
@@ -6624,6 +6713,13 @@
       els.ganttZoom.querySelector('input[name="gantt-zoom"]:checked')?.value ||
       "week";
     renderGantt();
+  });
+  els.paymentProjectionScale?.addEventListener("change", () => {
+    state.paymentProjectionScale =
+      els.paymentProjectionScale.querySelector(
+        'input[name="payment-projection-scale"]:checked',
+      )?.value || "day";
+    renderPaymentProjection();
   });
   els.btnGanttToday.addEventListener("click", () => {
     const scroll = $("gantt-scroll");

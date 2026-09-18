@@ -292,7 +292,37 @@
                   contratos ao longo das datas.
                 </p>
               </div>
-              <span id="payment-projection-summary" class="panel-kicker"></span>
+              <div class="payment-projection-controls">
+                <fieldset id="payment-projection-scale" class="gantt-segmented">
+                  <legend>Escala</legend>
+                  <label
+                    ><input
+                      type="radio"
+                      name="payment-projection-scale"
+                      value="day"
+                      checked
+                    /><span>Dia</span></label
+                  >
+                  <label
+                    ><input
+                      type="radio"
+                      name="payment-projection-scale"
+                      value="week"
+                    /><span>Semana</span></label
+                  >
+                  <label
+                    ><input
+                      type="radio"
+                      name="payment-projection-scale"
+                      value="month"
+                    /><span>Mês</span></label
+                  >
+                </fieldset>
+                <span
+                  id="payment-projection-summary"
+                  class="panel-kicker"
+                ></span>
+              </div>
             </div>
             <div
               id="payment-projection-chart"
