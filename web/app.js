@@ -1787,15 +1787,23 @@
             const isMacro = task.activity_type === "macro";
             const taskPayments = isMacro
               ? []
-              : paymentEvents().filter(
-                  (payment) =>
-                    payment.taskId === task.id ||
-                    (task.expense_allocations || []).some((allocation) =>
+              : paymentEvents().filter((payment) => {
+                  // Only explicit task-linked payments. Matching by shared
+                  // expense_id floods rows with off-bar markers after allocations.
+                  if (payment.taskId && payment.taskId === task.id) return true;
+                  if (payment.taskId) return false;
+                  const linkedByExpense = (task.expense_allocations || []).some(
+                    (allocation) =>
                       (payment.expenseIds || []).includes(
                         allocation.expense_id,
                       ),
-                    ),
-                );
+                  );
+                  if (!linkedByExpense) return false;
+                  return (
+                    payment.date >= task.start_date &&
+                    payment.date <= task.end_date
+                  );
+                });
             const allocationCount = isMacro
               ? 0
               : ganttAllocationRows(task).length;
