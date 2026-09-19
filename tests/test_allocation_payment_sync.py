@@ -179,7 +179,7 @@ class AllocationPaymentSyncTests(unittest.TestCase):
         self.assertEqual(expense["payments"][0]["date"], "2026-10-01")
         self.assertEqual(expense["payments"][0]["source"], "task_start")
 
-    def test_multi_task_allocation_uses_earliest_start(self) -> None:
+    def test_multi_task_allocation_creates_payment_per_task(self) -> None:
         self.tasks.upsert(
             self.payload(
                 title="Primeira",
@@ -198,7 +198,13 @@ class AllocationPaymentSyncTests(unittest.TestCase):
         )
         state = self.expenses.sync_all_allocation_payments()
         expense = next(item for item in state["expenses"] if item["id"] == "EXP_OLD")
-        self.assertEqual(expense["payments"][0]["date"], "2026-09-17")
+        dates = sorted(payment["date"] for payment in expense["payments"])
+        self.assertEqual(dates, ["2026-09-17", "2026-10-01"])
+        self.assertEqual(len(expense["payments"]), 2)
+        self.assertTrue(
+            all(payment["source"] == "task_start" for payment in expense["payments"])
+        )
+        self.assertTrue(all(payment.get("task_id") for payment in expense["payments"]))
 
     def test_validate_payments_coerces_confirmed_input(self) -> None:
         result = self.expenses.upsert_expense(
@@ -241,7 +247,12 @@ class AllocationPaymentSyncTests(unittest.TestCase):
         before = self.expenses.gantt_payday_quality_gate()
         self.assertFalse(before["ok"])
         self.assertTrue(
-            any(item["code"] == "date_mismatch" for item in before["violations"])
+            any(
+                item["code"]
+                in {"date_mismatch", "missing_occurrence_payment", "missing_payment"}
+                for item in before["violations"]
+            ),
+            before["violations"],
         )
         state = self.expenses.sync_all_allocation_payments()
         gate = state["quality_gates"]["gantt_payday"]

@@ -556,6 +556,39 @@ class ExpenseStore:
     def _task_payment_context(
         self,
     ) -> tuple[dict[str, str], date, date]:
+        occurrences = self._task_payment_occurrences()
+        linked = {
+            expense_id: items[0]["start_date"]
+            for expense_id, items in occurrences.items()
+            if items
+        }
+        task_path = self.data_dir / "tasks.json"
+        valid_dates: list[date] = []
+        if task_path.is_file():
+            try:
+                document = json.loads(task_path.read_text(encoding="utf-8-sig"))
+                raw_tasks = (
+                    document.get("tasks", []) if isinstance(document, dict) else []
+                )
+                for task in raw_tasks:
+                    if not isinstance(task, dict):
+                        continue
+                    try:
+                        valid_dates.append(
+                            date.fromisoformat(str(task.get("start_date") or ""))
+                        )
+                    except ValueError:
+                        continue
+            except (OSError, json.JSONDecodeError):
+                pass
+        start = min(valid_dates, default=date.today())
+        end = max(valid_dates, default=start + timedelta(days=365))
+        if end <= start:
+            end = start + timedelta(days=365)
+        return linked, start, end
+
+    def _task_payment_occurrences(self) -> dict[str, list[dict[str, str]]]:
+        """Map expense_id -> Gantt allocation paydays (one per non-macro task)."""
         task_path = self.data_dir / "tasks.json"
         tasks: list[dict[str, Any]] = []
         if task_path.is_file():
@@ -567,15 +600,18 @@ class ExpenseStore:
                 tasks = [item for item in raw_tasks if isinstance(item, dict)]
             except (OSError, json.JSONDecodeError):
                 tasks = []
-        valid_dates = []
-        linked: dict[str, str] = {}
+        linked: dict[str, list[dict[str, str]]] = {}
         for task in tasks:
+            if task.get("activity_type") == "macro":
+                continue
             try:
-                task_date = date.fromisoformat(str(task.get("start_date") or ""))
+                start_iso = date.fromisoformat(
+                    str(task.get("start_date") or "")
+                ).isoformat()
             except ValueError:
                 continue
-            valid_dates.append(task_date)
-            if task.get("activity_type") == "macro":
+            task_id = str(task.get("id") or "").strip()
+            if not task_id:
                 continue
             expense_ids: list[str] = []
             allocations = task.get("expense_allocations")
@@ -589,15 +625,14 @@ class ExpenseStore:
             legacy_id = str(task.get("expense_id") or "").strip()
             if legacy_id:
                 expense_ids.append(legacy_id)
-            start_iso = task_date.isoformat()
             for expense_id in expense_ids:
-                if expense_id not in linked or start_iso < linked[expense_id]:
-                    linked[expense_id] = start_iso
-        start = min(valid_dates, default=date.today())
-        end = max(valid_dates, default=start + timedelta(days=365))
-        if end <= start:
-            end = start + timedelta(days=365)
-        return linked, start, end
+                bucket = linked.setdefault(expense_id, [])
+                if any(item["task_id"] == task_id for item in bucket):
+                    continue
+                bucket.append({"task_id": task_id, "start_date": start_iso})
+        for expense_id, items in linked.items():
+            items.sort(key=lambda item: (item["start_date"], item["task_id"]))
+        return linked
 
     @staticmethod
     def _default_payment(
@@ -671,6 +706,7 @@ class ExpenseStore:
             raw_source = str(raw.get("source") or "presumed").strip()[:40]
             if raw_source in {"", "manual", "confirmed"}:
                 raw_source = "presumed"
+            task_id = str(raw.get("task_id") or "").strip()[:64]
             result.append(
                 {
                     "id": payment_id,
@@ -679,6 +715,7 @@ class ExpenseStore:
                     "date_status": "estimated",
                     "source": raw_source,
                     "notes": str(raw.get("notes") or "").strip()[:500],
+                    "task_id": task_id,
                 }
             )
         result.sort(key=lambda item: (item["date"], item["id"]))
@@ -1442,44 +1479,92 @@ class ExpenseStore:
         }
 
     def sync_all_allocation_payments(self) -> dict[str, Any]:
-        """Snap allocated expense payments to each expense's earliest task start."""
-        linked, _, _ = self._task_payment_context()
+        """Create/snap one payday payment per Gantt task that allocates the expense."""
+        occurrences = self._task_payment_occurrences()
         with self._lock:
             rows = self._read_rows()
             by_id = {str(row.get("id") or ""): row for row in rows}
             changed = False
-            for expense_id, start_date in linked.items():
+            for expense_id, occs in occurrences.items():
                 row = by_id.get(expense_id)
-                if not row:
+                if not row or not occs:
                     continue
-                payments = self._parse_payments(row)
-                if not payments:
-                    payments = [
-                        {
-                            "id": "PAY_001",
+                existing = self._parse_payments(row)
+                by_task = {
+                    str(payment.get("task_id") or "").strip(): payment
+                    for payment in existing
+                    if str(payment.get("task_id") or "").strip()
+                }
+                unused = [
+                    payment
+                    for payment in existing
+                    if not str(payment.get("task_id") or "").strip()
+                ]
+                total = self._payment_amount_for_row(row)
+                count = len(occs)
+                base = round(total / count, 2) if count else 0.0
+                amounts = [base] * count
+                if count:
+                    amounts[-1] = round(total - base * (count - 1), 2)
+                used_ids: set[str] = set()
+                next_index = 1
+                payments: list[dict[str, Any]] = []
+                for index, occ in enumerate(occs):
+                    task_id = occ["task_id"]
+                    start_date = occ["start_date"]
+                    payment = by_task.get(task_id)
+                    if payment is None and unused:
+                        payment = unused.pop(0)
+                    if payment is None:
+                        while f"PAY_{next_index:03d}" in used_ids or any(
+                            item.get("id") == f"PAY_{next_index:03d}"
+                            for item in payments
+                        ):
+                            next_index += 1
+                        payment_id = f"PAY_{next_index:03d}"
+                        next_index += 1
+                        payment = {
+                            "id": payment_id,
                             "date": start_date,
-                            "amount": self._payment_amount_for_row(row),
+                            "amount": amounts[index],
                             "date_status": "estimated",
                             "source": "task_start",
                             "notes": "",
+                            "task_id": task_id,
                         }
-                    ]
-                    row_changed = True
-                else:
-                    row_changed = False
-                    for payment in payments:
-                        if (
-                            payment.get("date") != start_date
-                            or payment.get("source") != "task_start"
-                            or payment.get("date_status") != "estimated"
-                        ):
-                            row_changed = True
+                    else:
+                        payment = dict(payment)
                         payment["date"] = start_date
-                        payment["source"] = "task_start"
+                        payment["amount"] = amounts[index]
                         payment["date_status"] = "estimated"
-                    payments.sort(key=lambda item: (item["date"], item["id"]))
-                if row_changed:
-                    row["payments_json"] = self._serialize_payments(payments)
+                        payment["source"] = "task_start"
+                        payment["task_id"] = task_id
+                        if "notes" not in payment:
+                            payment["notes"] = ""
+                    used_ids.add(str(payment.get("id") or ""))
+                    payments.append(payment)
+                payments.sort(key=lambda item: (item["date"], item["id"]))
+                prepared = []
+                for payment in payments:
+                    prepared.append(
+                        {
+                            "id": payment["id"],
+                            "date": payment["date"],
+                            "amount": payment["amount"],
+                            "date_status": "estimated",
+                            "source": "task_start",
+                            "notes": str(payment.get("notes") or ""),
+                            "task_id": str(payment.get("task_id") or ""),
+                        }
+                    )
+                validated = self._validate_payments(prepared)
+                prepared_by_id = {item["id"]: item for item in prepared}
+                for payment in validated:
+                    source = prepared_by_id.get(payment["id"]) or {}
+                    payment["task_id"] = str(source.get("task_id") or "")
+                serialized = self._serialize_payments(validated)
+                if serialized != row.get("payments_json"):
+                    row["payments_json"] = serialized
                     row["updated_at"] = now_stamp()
                     changed = True
             if changed:
@@ -1487,42 +1572,85 @@ class ExpenseStore:
         return self.state()
 
     def gantt_payday_quality_gate(self) -> dict[str, Any]:
-        """Quality gate: payday payments for Gantt-allocated expenses match task starts.
+        """Quality gate: payday has one task_start payment per Gantt allocation.
 
         Invariants:
         - every non-macro allocation points at an existing expense
-        - every allocated expense has at least one payment
-        - every payment on an allocated expense uses the earliest allocated
-          activity start_date, source=task_start, date_status=estimated
+        - each allocating task has a matching payment on that task start_date
+        - those payments use source=task_start and date_status=estimated
         """
-        linked, _, _ = self._task_payment_context()
+        occurrences = self._task_payment_occurrences()
         expenses = {item["id"]: item for item in self.list_expenses()}
         violations: list[dict[str, Any]] = []
+        allocated_count = sum(len(items) for items in occurrences.values())
 
-        for expense_id, start_date in sorted(linked.items()):
+        for expense_id, occs in sorted(occurrences.items()):
             expense = expenses.get(expense_id)
             if not expense:
                 violations.append(
                     {
                         "code": "missing_expense",
                         "expense_id": expense_id,
-                        "expected_date": start_date,
                         "message": f"{expense_id} is allocated on the Gantt but missing from expenses",
                     }
                 )
                 continue
-            payments = expense.get("payments") or []
+            payments = list(expense.get("payments") or [])
             if not payments:
                 violations.append(
                     {
                         "code": "missing_payment",
                         "expense_id": expense_id,
-                        "expected_date": start_date,
                         "message": f"{expense_id} is on the Gantt but has no payday payment",
                     }
                 )
                 continue
-            for payment in payments:
+            remaining = [dict(payment) for payment in payments]
+            for occ in occs:
+                task_id = occ["task_id"]
+                start_date = occ["start_date"]
+                match_index = next(
+                    (
+                        index
+                        for index, payment in enumerate(remaining)
+                        if str(payment.get("task_id") or "") == task_id
+                    ),
+                    None,
+                )
+                if match_index is None:
+                    match_index = next(
+                        (
+                            index
+                            for index, payment in enumerate(remaining)
+                            if str(payment.get("date") or "") == start_date
+                            and not str(payment.get("task_id") or "")
+                        ),
+                        None,
+                    )
+                if match_index is None:
+                    match_index = next(
+                        (
+                            index
+                            for index, payment in enumerate(remaining)
+                            if str(payment.get("date") or "") == start_date
+                        ),
+                        None,
+                    )
+                if match_index is None:
+                    violations.append(
+                        {
+                            "code": "missing_occurrence_payment",
+                            "expense_id": expense_id,
+                            "task_id": task_id,
+                            "expected_date": start_date,
+                            "message": (
+                                f"{expense_id} missing payday for task {task_id} "
+                                f"on {start_date}"
+                            ),
+                        }
+                    )
+                    continue
+                payment = remaining.pop(match_index)
                 payment_date = str(payment.get("date") or "")
                 source = str(payment.get("source") or "")
                 date_status = str(payment.get("date_status") or "")
@@ -1531,12 +1659,13 @@ class ExpenseStore:
                         {
                             "code": "date_mismatch",
                             "expense_id": expense_id,
+                            "task_id": task_id,
                             "payment_id": payment.get("id"),
                             "payment_date": payment_date,
                             "expected_date": start_date,
                             "message": (
-                                f"{expense_id} payday {payment_date} != "
-                                f"earliest Gantt start {start_date}"
+                                f"{expense_id}/{task_id} payday {payment_date} != "
+                                f"Gantt start {start_date}"
                             ),
                         }
                     )
@@ -1545,12 +1674,13 @@ class ExpenseStore:
                         {
                             "code": "source_mismatch",
                             "expense_id": expense_id,
+                            "task_id": task_id,
                             "payment_id": payment.get("id"),
                             "source": source,
                             "expected_source": "task_start",
                             "message": (
-                                f"{expense_id} payment source is {source!r}, "
-                                "expected 'task_start'"
+                                f"{expense_id}/{task_id} payment source is "
+                                f"{source!r}, expected 'task_start'"
                             ),
                         }
                     )
@@ -1559,11 +1689,12 @@ class ExpenseStore:
                         {
                             "code": "status_mismatch",
                             "expense_id": expense_id,
+                            "task_id": task_id,
                             "payment_id": payment.get("id"),
                             "date_status": date_status,
                             "expected_date_status": "estimated",
                             "message": (
-                                f"{expense_id} payment date_status is "
+                                f"{expense_id}/{task_id} payment date_status is "
                                 f"{date_status!r}, expected 'estimated'"
                             ),
                         }
@@ -1572,12 +1703,12 @@ class ExpenseStore:
         return {
             "id": "gantt_payday",
             "ok": not violations,
-            "allocated_count": len(linked),
+            "allocated_count": allocated_count,
             "violation_count": len(violations),
             "violations": violations,
             "rule": (
-                "Pay Day expenses must be Gantt-allocated and dated to the "
-                "earliest linked activity start_date"
+                "Pay Day must include one task_start payment per Gantt activity "
+                "that allocates the expense, dated to that activity start_date"
             ),
         }
 

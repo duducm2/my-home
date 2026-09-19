@@ -534,7 +534,7 @@
     },
     {
       "id": "TASK_0102",
-      "title": "Parcelas do Financiamento - 3 (cópia)",
+      "title": "Parcelas do Financiamento - 4",
       "description": "Marco da compra e transição do imóvel.",
       "priority": 1,
       "sequence": 4,
@@ -555,7 +555,7 @@
       "progress": 0,
       "source_refs": [],
       "created_at": "2026-09-18 13:56:57",
-      "updated_at": "2026-09-18 13:57:30"
+      "updated_at": "2026-09-18 22:38:53"
     },
     {
       "id": "TASK_0103",
@@ -763,5 +763,5 @@
       "updated_at": "2026-09-18 17:56:17"
     }
   ],
-  "updated_at": "2026-09-18 18:07:18"
+  "updated_at": "2026-09-18 22:38:53"
 }

@@ -2328,6 +2328,7 @@
     const previousStatusFilter = state.ganttStatusFilter;
     const previousPriorityFilter = state.ganttPriorityFilter;
     const previousQuickFilter = state.ganttQuickFilter;
+    const previousZoom = state.zoom;
     const previousTitle = document.title;
     const houseName =
       String(
@@ -2347,7 +2348,14 @@
     state.ganttStatusFilter = "";
     state.ganttPriorityFilter = 0;
     state.ganttQuickFilter = "";
+    state.zoom = "week";
     if (els.ganttQuickFilter) els.ganttQuickFilter.value = "";
+    if (els.ganttZoom) {
+      const weekInput = els.ganttZoom.querySelector(
+        'input[name="gantt-zoom"][value="week"]',
+      );
+      if (weekInput) weekInput.checked = true;
+    }
     closeGanttQuickFind({ clear: false });
     showView("gantt");
     renderGantt();
@@ -2368,6 +2376,26 @@
       requestAnimationFrame(() => requestAnimationFrame(resolve)),
     );
 
+    const syncPrintRowHeights = () => {
+      const labels = [...els.gantt.querySelectorAll(".gantt-label-row")];
+      const tracks = [...els.gantt.querySelectorAll(".gantt-track")];
+      const count = Math.min(labels.length, tracks.length);
+      for (let index = 0; index < count; index += 1) {
+        labels[index].style.height = "";
+        tracks[index].style.height = "";
+      }
+      for (let index = 0; index < count; index += 1) {
+        const height = Math.max(
+          labels[index].offsetHeight,
+          tracks[index].offsetHeight,
+          44,
+        );
+        labels[index].style.height = `${height}px`;
+        tracks[index].style.height = `${height}px`;
+      }
+    };
+    syncPrintRowHeights();
+
     let restored = false;
     const restore = () => {
       if (restored) return;
@@ -2380,8 +2408,15 @@
       state.ganttStatusFilter = previousStatusFilter;
       state.ganttPriorityFilter = previousPriorityFilter;
       state.ganttQuickFilter = previousQuickFilter;
+      state.zoom = previousZoom;
       if (els.ganttQuickFilter)
         els.ganttQuickFilter.value = previousQuickFilter;
+      if (els.ganttZoom) {
+        const zoomInput = els.ganttZoom.querySelector(
+          `input[name="gantt-zoom"][value="${previousZoom}"]`,
+        );
+        if (zoomInput) zoomInput.checked = true;
+      }
       renderGantt();
       els.btnPrintGantt.disabled = false;
       window.removeEventListener("afterprint", restore);
@@ -5033,77 +5068,113 @@
         violations: [],
       };
     }
-    const expectedByExpense = new Map();
+    const expected = [];
     for (const task of tasks) {
       if (task.activity_type === "macro") continue;
       const startDate = String(task.start_date || "").trim();
-      if (!startDate) continue;
+      const taskId = String(task.id || "").trim();
+      if (!startDate || !taskId) continue;
       for (const allocation of task.expense_allocations || []) {
         const expenseId = String(allocation.expense_id || "").trim();
         if (!expenseId) continue;
-        const previous = expectedByExpense.get(expenseId);
-        if (!previous || startDate < previous) {
-          expectedByExpense.set(expenseId, startDate);
-        }
+        expected.push({
+          expense_id: expenseId,
+          task_id: taskId,
+          expected_date: startDate,
+        });
       }
     }
     const expenseById = new Map(
       expenses.map((expense) => [expense.id, expense]),
     );
     const violations = [];
-    for (const [expenseId, expectedDate] of expectedByExpense) {
-      const expense = expenseById.get(expenseId);
-      if (!expense) {
+    const remainingByExpense = new Map();
+    for (const occ of expected) {
+      if (!remainingByExpense.has(occ.expense_id)) {
+        const expense = expenseById.get(occ.expense_id);
+        if (!expense) {
+          violations.push({
+            code: "missing_expense",
+            expense_id: occ.expense_id,
+            message: `${occ.expense_id} alocada no Gantt mas ausente nas despesas`,
+          });
+          remainingByExpense.set(occ.expense_id, null);
+          continue;
+        }
+        remainingByExpense.set(
+          occ.expense_id,
+          [...(expense.payments || [])].map((payment) => ({ ...payment })),
+        );
+      }
+      const remaining = remainingByExpense.get(occ.expense_id);
+      if (!remaining) continue;
+      if (!remaining.length) {
         violations.push({
-          code: "missing_expense",
-          expense_id: expenseId,
-          expected_date: expectedDate,
-          message: `${expenseId} alocada no Gantt mas ausente nas despesas`,
+          code: "missing_occurrence_payment",
+          expense_id: occ.expense_id,
+          task_id: occ.task_id,
+          expected_date: occ.expected_date,
+          message: `${occ.expense_id} sem pagamento para ${occ.task_id} em ${occ.expected_date}`,
         });
         continue;
       }
-      const payments = expense.payments || [];
-      if (!payments.length) {
+      let matchIndex = remaining.findIndex(
+        (payment) => String(payment.task_id || "") === occ.task_id,
+      );
+      if (matchIndex < 0) {
+        matchIndex = remaining.findIndex(
+          (payment) => payment.date === occ.expected_date && !payment.task_id,
+        );
+      }
+      if (matchIndex < 0) {
+        matchIndex = remaining.findIndex(
+          (payment) => payment.date === occ.expected_date,
+        );
+      }
+      if (matchIndex < 0) {
         violations.push({
-          code: "missing_payment",
-          expense_id: expenseId,
-          expected_date: expectedDate,
-          message: `${expenseId} no Gantt sem pagamento no Pay Day`,
+          code: "missing_occurrence_payment",
+          expense_id: occ.expense_id,
+          task_id: occ.task_id,
+          expected_date: occ.expected_date,
+          message: `${occ.expense_id} sem pagamento para ${occ.task_id} em ${occ.expected_date}`,
         });
         continue;
       }
-      for (const payment of payments) {
-        if (payment.date !== expectedDate) {
-          violations.push({
-            code: "date_mismatch",
-            expense_id: expenseId,
-            payment_date: payment.date,
-            expected_date: expectedDate,
-            message: `${expenseId} Pay Day ${payment.date} ≠ início Gantt ${expectedDate}`,
-          });
-        }
-        if (payment.source !== "task_start") {
-          violations.push({
-            code: "source_mismatch",
-            expense_id: expenseId,
-            source: payment.source,
-            message: `${expenseId} source=${payment.source} (esperado task_start)`,
-          });
-        }
-        if (payment.date_status !== "estimated") {
-          violations.push({
-            code: "status_mismatch",
-            expense_id: expenseId,
-            date_status: payment.date_status,
-            message: `${expenseId} date_status=${payment.date_status} (esperado estimated)`,
-          });
-        }
+      const payment = remaining.splice(matchIndex, 1)[0];
+      if (payment.date !== occ.expected_date) {
+        violations.push({
+          code: "date_mismatch",
+          expense_id: occ.expense_id,
+          task_id: occ.task_id,
+          payment_date: payment.date,
+          expected_date: occ.expected_date,
+          message: `${occ.expense_id}/${occ.task_id} Pay Day ${payment.date} ≠ início Gantt ${occ.expected_date}`,
+        });
+      }
+      if (payment.source !== "task_start") {
+        violations.push({
+          code: "source_mismatch",
+          expense_id: occ.expense_id,
+          task_id: occ.task_id,
+          source: payment.source,
+          message: `${occ.expense_id}/${occ.task_id} source=${payment.source} (esperado task_start)`,
+        });
+      }
+      if (payment.date_status !== "estimated") {
+        violations.push({
+          code: "status_mismatch",
+          expense_id: occ.expense_id,
+          task_id: occ.task_id,
+          date_status: payment.date_status,
+          message: `${occ.expense_id}/${occ.task_id} date_status=${payment.date_status} (esperado estimated)`,
+        });
       }
     }
     return {
       id: "gantt_payday",
       ok: violations.length === 0,
-      allocated_count: expectedByExpense.size,
+      allocated_count: expected.length,
       violation_count: violations.length,
       violations,
     };
