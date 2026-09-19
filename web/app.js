@@ -5020,8 +5020,21 @@
   }
 
   function clientGanttPaydayGate() {
+    const tasks = state.tasks || [];
+    const expenses = state.expenses || [];
+    // Avoid false positives while /api/state and /api/tasks are still racing in.
+    if (!tasks.length || !expenses.length) {
+      return {
+        id: "gantt_payday",
+        ok: true,
+        deferred: true,
+        allocated_count: 0,
+        violation_count: 0,
+        violations: [],
+      };
+    }
     const expectedByExpense = new Map();
-    for (const task of state.tasks || []) {
+    for (const task of tasks) {
       if (task.activity_type === "macro") continue;
       const startDate = String(task.start_date || "").trim();
       if (!startDate) continue;
@@ -5035,7 +5048,7 @@
       }
     }
     const expenseById = new Map(
-      (state.expenses || []).map((expense) => [expense.id, expense]),
+      expenses.map((expense) => [expense.id, expense]),
     );
     const violations = [];
     for (const [expenseId, expectedDate] of expectedByExpense) {
@@ -5045,6 +5058,7 @@
           code: "missing_expense",
           expense_id: expenseId,
           expected_date: expectedDate,
+          message: `${expenseId} alocada no Gantt mas ausente nas despesas`,
         });
         continue;
       }
@@ -5054,6 +5068,7 @@
           code: "missing_payment",
           expense_id: expenseId,
           expected_date: expectedDate,
+          message: `${expenseId} no Gantt sem pagamento no Pay Day`,
         });
         continue;
       }
@@ -5064,6 +5079,7 @@
             expense_id: expenseId,
             payment_date: payment.date,
             expected_date: expectedDate,
+            message: `${expenseId} Pay Day ${payment.date} ≠ início Gantt ${expectedDate}`,
           });
         }
         if (payment.source !== "task_start") {
@@ -5071,6 +5087,7 @@
             code: "source_mismatch",
             expense_id: expenseId,
             source: payment.source,
+            message: `${expenseId} source=${payment.source} (esperado task_start)`,
           });
         }
         if (payment.date_status !== "estimated") {
@@ -5078,18 +5095,9 @@
             code: "status_mismatch",
             expense_id: expenseId,
             date_status: payment.date_status,
+            message: `${expenseId} date_status=${payment.date_status} (esperado estimated)`,
           });
         }
-      }
-    }
-    const events = paymentEvents();
-    for (const payment of events) {
-      if (!expectedByExpense.has(payment.expenseId)) {
-        violations.push({
-          code: "orphan_payday_event",
-          expense_id: payment.expenseId,
-          payment_date: payment.date,
-        });
       }
     }
     return {
@@ -5103,14 +5111,16 @@
 
   function reportGanttPaydayGate(serverGate) {
     const clientGate = clientGanttPaydayGate();
-    const gate =
-      serverGate?.ok === false
-        ? serverGate
-        : clientGate.ok === false
-          ? clientGate
-          : serverGate?.ok != null
-            ? serverGate
-            : clientGate;
+    let gate;
+    if (clientGate.deferred) {
+      gate = serverGate?.ok != null ? serverGate : clientGate;
+    } else if (clientGate.ok === false) {
+      gate = clientGate;
+    } else if (serverGate?.ok === false) {
+      gate = serverGate;
+    } else {
+      gate = serverGate?.ok != null ? serverGate : clientGate;
+    }
     state.qualityGates = {
       ...(state.qualityGates || {}),
       gantt_payday: gate,
@@ -5119,16 +5129,21 @@
     const base =
       els.paymentProjectionSummary.dataset.baseSummary ||
       els.paymentProjectionSummary.textContent;
-    if (gate.ok) {
+    const violationCount = Number(
+      gate.violation_count ?? gate.violations?.length ?? 0,
+    );
+    if (gate.ok || gate.deferred) {
       if (els.paymentProjectionSummary.dataset.baseSummary) {
         els.paymentProjectionSummary.textContent =
           els.paymentProjectionSummary.dataset.baseSummary;
       }
       els.paymentProjectionSummary.classList.remove("quality-gate-fail");
       els.paymentProjectionSummary.removeAttribute("title");
+      if (els.appStatus?.textContent?.startsWith("Quality gate: Pay Day")) {
+        setStatus(els.appStatus, "", "");
+      }
       return;
     }
-    const count = gate.violation_count || gate.violations?.length || 0;
     const sample = (gate.violations || [])
       .slice(0, 3)
       .map((item) => item.message || item.code)
@@ -5136,11 +5151,11 @@
     els.paymentProjectionSummary.dataset.baseSummary = base;
     els.paymentProjectionSummary.classList.add("quality-gate-fail");
     els.paymentProjectionSummary.title = sample || "Pay Day fora do Gantt";
-    els.paymentProjectionSummary.textContent = `⚠ Pay Day ≠ Gantt (${count})`;
+    els.paymentProjectionSummary.textContent = `⚠ Pay Day ≠ Gantt (${violationCount})`;
     setStatus(
       els.appStatus,
       "warn",
-      `Quality gate: Pay Day não reflete o Gantt (${count} divergência${count === 1 ? "" : "s"}).`,
+      `Quality gate: Pay Day não reflete o Gantt (${violationCount} divergência${violationCount === 1 ? "" : "s"}).`,
     );
   }
 
@@ -5177,7 +5192,10 @@
         ]);
         renderMacroTimeline();
         renderDashboard();
-        setStatus(els.appStatus, "ok", "Dashboard atualizado.");
+        reportGanttPaydayGate(state.qualityGates?.gantt_payday);
+        if (state.qualityGates?.gantt_payday?.ok !== false) {
+          setStatus(els.appStatus, "ok", "Dashboard atualizado.");
+        }
       } catch (error) {
         setStatus(els.appStatus, "err", error.message);
       } finally {
@@ -7483,6 +7501,7 @@
   ])
     .then(() => {
       renderContractCenter();
+      reportGanttPaydayGate(state.qualityGates?.gantt_payday);
       showView(location.hash.slice(1) || "dashboard");
     })
     .catch((error) => setStatus(els.appStatus, "err", error.message));
