@@ -3,11 +3,18 @@
   "tasks": [
     {
       "id": "QUICK_0001",
-      "title": "My first task!",
+      "title": "orçar quanto que ficaria o carreto de mudança",
       "done": false,
-      "created_at": "2026-09-16 22:24:03",
-      "updated_at": "2026-09-16 22:24:07"
+      "created_at": "2026-09-18 21:13:59",
+      "updated_at": "2026-09-18 21:13:59"
+    },
+    {
+      "id": "QUICK_0002",
+      "title": "Multa do contrato do aluguel",
+      "done": false,
+      "created_at": "2026-09-18 21:13:59",
+      "updated_at": "2026-09-18 21:13:59"
     }
   ],
-  "updated_at": "2026-09-16 22:24:07"
+  "updated_at": "2026-09-18 21:13:59"
 }
