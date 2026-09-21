@@ -1541,10 +1541,17 @@ select[multiple] {
 .dashboard-pets {
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 8px;
   min-width: 0;
   color: var(--muted);
   font-size: 8px;
+}
+
+.dashboard-pet {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  min-width: 0;
 }
 
 .dashboard-pets img {
@@ -1555,6 +1562,10 @@ select[multiple] {
   object-position: center 42%;
   border: 1px solid rgba(241, 196, 15, 0.32);
   border-radius: 7px;
+}
+
+.dashboard-pet:last-child img {
+  object-position: center 28%;
 }
 
 .dashboard-savings-card {
