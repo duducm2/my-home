@@ -22,9 +22,7 @@
       "activity_type": "task",
       "parent_id": "TASK_0097",
       "progress": 0,
-      "source_refs": [
-        "project.purchase_workflow"
-      ],
+      "source_refs": ["project.purchase_workflow"],
       "created_at": "2026-09-15 23:51:00",
       "updated_at": "2026-09-18 15:52:32"
     },
@@ -53,9 +51,7 @@
       "activity_type": "task",
       "parent_id": "TASK_0097",
       "progress": 0,
-      "source_refs": [
-        "project.purchase_workflow"
-      ],
+      "source_refs": ["project.purchase_workflow"],
       "created_at": "2026-09-15 23:51:00",
       "updated_at": "2026-09-18 15:52:24"
     },
@@ -75,9 +71,7 @@
       "activity_type": "macro",
       "parent_id": "",
       "progress": 0,
-      "source_refs": [
-        "project.purchase_workflow"
-      ],
+      "source_refs": ["project.purchase_workflow"],
       "created_at": "2026-09-15 23:51:00",
       "updated_at": "2026-09-18 17:44:11"
     },
@@ -102,9 +96,7 @@
       "activity_type": "task",
       "parent_id": "TASK_0097",
       "progress": 0,
-      "source_refs": [
-        "project.purchase_workflow"
-      ],
+      "source_refs": ["project.purchase_workflow"],
       "created_at": "2026-09-15 23:51:00",
       "updated_at": "2026-09-18 17:41:09"
     },
@@ -129,9 +121,7 @@
       "activity_type": "task",
       "parent_id": "TASK_0097",
       "progress": 0,
-      "source_refs": [
-        "project.purchase_workflow"
-      ],
+      "source_refs": ["project.purchase_workflow"],
       "created_at": "2026-09-15 23:51:00",
       "updated_at": "2026-09-18 15:52:24"
     },
@@ -156,9 +146,7 @@
       "activity_type": "task",
       "parent_id": "TASK_0099",
       "progress": 0,
-      "source_refs": [
-        "project.purchase_workflow"
-      ],
+      "source_refs": ["project.purchase_workflow"],
       "created_at": "2026-09-15 23:51:00",
       "updated_at": "2026-09-18 13:56:20"
     },
@@ -178,9 +166,7 @@
       "activity_type": "macro",
       "parent_id": "",
       "progress": 0,
-      "source_refs": [
-        "project.purchase_workflow"
-      ],
+      "source_refs": ["project.purchase_workflow"],
       "created_at": "2026-09-15 23:51:00",
       "updated_at": "2026-09-18 17:35:00"
     },
@@ -200,9 +186,7 @@
       "activity_type": "macro",
       "parent_id": "",
       "progress": 0,
-      "source_refs": [
-        "project.purchase_workflow"
-      ],
+      "source_refs": ["project.purchase_workflow"],
       "created_at": "2026-09-15 23:51:00",
       "updated_at": "2026-09-18 17:35:00"
     },
@@ -222,10 +206,7 @@
       "activity_type": "macro",
       "parent_id": "",
       "progress": 0,
-      "source_refs": [
-        "project.purchase_workflow",
-        "project.work_plan"
-      ],
+      "source_refs": ["project.purchase_workflow", "project.work_plan"],
       "created_at": "2026-09-15 23:51:00",
       "updated_at": "2026-09-18 17:35:00"
     },
@@ -262,9 +243,7 @@
       "activity_type": "task",
       "parent_id": "TASK_0003",
       "progress": 0,
-      "source_refs": [
-        "project.work_plan"
-      ],
+      "source_refs": ["project.work_plan"],
       "created_at": "2026-09-15 23:51:00",
       "updated_at": "2026-09-18 17:56:17"
     },
@@ -289,9 +268,7 @@
       "activity_type": "task",
       "parent_id": "TASK_0003",
       "progress": 0,
-      "source_refs": [
-        "project.work_plan"
-      ],
+      "source_refs": ["project.work_plan"],
       "created_at": "2026-09-15 23:51:00",
       "updated_at": "2026-09-18 17:56:17"
     },
@@ -316,9 +293,7 @@
       "activity_type": "task",
       "parent_id": "TASK_0003",
       "progress": 0,
-      "source_refs": [
-        "project.priority_work"
-      ],
+      "source_refs": ["project.priority_work"],
       "created_at": "2026-09-15 23:51:00",
       "updated_at": "2026-09-18 17:58:34"
     },
@@ -343,9 +318,7 @@
       "activity_type": "task",
       "parent_id": "TASK_0003",
       "progress": 0,
-      "source_refs": [
-        "project.priority_work"
-      ],
+      "source_refs": ["project.priority_work"],
       "created_at": "2026-09-15 23:51:00",
       "updated_at": "2026-09-18 18:00:43"
     },
@@ -365,9 +338,7 @@
       "activity_type": "task",
       "parent_id": "TASK_0010",
       "progress": 0,
-      "source_refs": [
-        "project.work_plan"
-      ],
+      "source_refs": ["project.work_plan"],
       "created_at": "2026-09-15 23:51:00",
       "updated_at": "2026-09-18 17:26:21"
     },
@@ -387,9 +358,7 @@
       "activity_type": "task",
       "parent_id": "TASK_0010",
       "progress": 0,
-      "source_refs": [
-        "project.work_plan"
-      ],
+      "source_refs": ["project.work_plan"],
       "created_at": "2026-09-15 23:51:00",
       "updated_at": "2026-09-18 17:27:12"
     },
@@ -409,9 +378,7 @@
       "activity_type": "task",
       "parent_id": "TASK_0010",
       "progress": 0,
-      "source_refs": [
-        "project.work_plan"
-      ],
+      "source_refs": ["project.work_plan"],
       "created_at": "2026-09-15 23:51:00",
       "updated_at": "2026-09-18 17:27:25"
     },
@@ -431,9 +398,7 @@
       "activity_type": "macro",
       "parent_id": "",
       "progress": 0,
-      "source_refs": [
-        "project.purchase_workflow"
-      ],
+      "source_refs": ["project.purchase_workflow"],
       "created_at": "2026-09-16 15:19:49",
       "updated_at": "2026-09-18 17:35:15"
     },
@@ -765,7 +730,7 @@
     {
       "id": "TASK_0112",
       "title": "External part of the house painting",
-      "description": "",
+      "description": "Somente fachada externa (sem pintura interna). Área líquida estimada ~70,6 m² (perímetro 30,1 m × 2,7 m - aberturas 10,7 m²). Rendimento efetivo do projeto: 6 m²/L (2 demãos) -> ~11,8 L -> 1 lata de 18 L.",
       "priority": 1,
       "sequence": 6,
       "start_date": "2026-12-21",
@@ -785,8 +750,8 @@
       "progress": 0,
       "source_refs": [],
       "created_at": "2026-09-20 21:27:43",
-      "updated_at": "2026-09-20 21:27:56"
+      "updated_at": "2026-09-20 21:35:57"
     }
   ],
-  "updated_at": "2026-09-20 21:27:56"
+  "updated_at": "2026-09-20 21:35:57"
 }
