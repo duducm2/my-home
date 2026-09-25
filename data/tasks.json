@@ -22,9 +22,7 @@
       "activity_type": "task",
       "parent_id": "TASK_0097",
       "progress": 0,
-      "source_refs": [
-        "project.purchase_workflow"
-      ],
+      "source_refs": ["project.purchase_workflow"],
       "created_at": "2026-09-15 23:51:00",
       "updated_at": "2026-09-18 15:52:32"
     },
@@ -53,9 +51,7 @@
       "activity_type": "task",
       "parent_id": "TASK_0097",
       "progress": 0,
-      "source_refs": [
-        "project.purchase_workflow"
-      ],
+      "source_refs": ["project.purchase_workflow"],
       "created_at": "2026-09-15 23:51:00",
       "updated_at": "2026-09-18 15:52:24"
     },
@@ -75,9 +71,7 @@
       "activity_type": "macro",
       "parent_id": "",
       "progress": 0,
-      "source_refs": [
-        "project.purchase_workflow"
-      ],
+      "source_refs": ["project.purchase_workflow"],
       "created_at": "2026-09-15 23:51:00",
       "updated_at": "2026-09-25 19:00:16"
     },
@@ -102,9 +96,7 @@
       "activity_type": "task",
       "parent_id": "TASK_0097",
       "progress": 0,
-      "source_refs": [
-        "project.purchase_workflow"
-      ],
+      "source_refs": ["project.purchase_workflow"],
       "created_at": "2026-09-15 23:51:00",
       "updated_at": "2026-09-18 17:41:09"
     },
@@ -129,9 +121,7 @@
       "activity_type": "task",
       "parent_id": "TASK_0097",
       "progress": 0,
-      "source_refs": [
-        "project.purchase_workflow"
-      ],
+      "source_refs": ["project.purchase_workflow"],
       "created_at": "2026-09-15 23:51:00",
       "updated_at": "2026-09-18 15:52:24"
     },
@@ -156,9 +146,7 @@
       "activity_type": "task",
       "parent_id": "TASK_0099",
       "progress": 0,
-      "source_refs": [
-        "project.purchase_workflow"
-      ],
+      "source_refs": ["project.purchase_workflow"],
       "created_at": "2026-09-15 23:51:00",
       "updated_at": "2026-09-25 18:55:15"
     },
@@ -178,9 +166,7 @@
       "activity_type": "macro",
       "parent_id": "",
       "progress": 0,
-      "source_refs": [
-        "project.purchase_workflow"
-      ],
+      "source_refs": ["project.purchase_workflow"],
       "created_at": "2026-09-15 23:51:00",
       "updated_at": "2026-09-25 19:00:16"
     },
@@ -200,9 +186,7 @@
       "activity_type": "macro",
       "parent_id": "",
       "progress": 0,
-      "source_refs": [
-        "project.purchase_workflow"
-      ],
+      "source_refs": ["project.purchase_workflow"],
       "created_at": "2026-09-15 23:51:00",
       "updated_at": "2026-09-25 19:00:16"
     },
@@ -222,10 +206,7 @@
       "activity_type": "macro",
       "parent_id": "",
       "progress": 0,
-      "source_refs": [
-        "project.purchase_workflow",
-        "project.work_plan"
-      ],
+      "source_refs": ["project.purchase_workflow", "project.work_plan"],
       "created_at": "2026-09-15 23:51:00",
       "updated_at": "2026-09-25 19:00:16"
     },
@@ -262,9 +243,7 @@
       "activity_type": "task",
       "parent_id": "TASK_0003",
       "progress": 0,
-      "source_refs": [
-        "project.work_plan"
-      ],
+      "source_refs": ["project.work_plan"],
       "created_at": "2026-09-15 23:51:00",
       "updated_at": "2026-09-25 18:38:22"
     },
@@ -289,9 +268,7 @@
       "activity_type": "task",
       "parent_id": "TASK_0003",
       "progress": 0,
-      "source_refs": [
-        "project.work_plan"
-      ],
+      "source_refs": ["project.work_plan"],
       "created_at": "2026-09-15 23:51:00",
       "updated_at": "2026-09-25 18:38:22"
     },
@@ -316,9 +293,7 @@
       "activity_type": "task",
       "parent_id": "TASK_0009",
       "progress": 0,
-      "source_refs": [
-        "project.priority_work"
-      ],
+      "source_refs": ["project.priority_work"],
       "created_at": "2026-09-15 23:51:00",
       "updated_at": "2026-09-25 18:37:26"
     },
@@ -343,9 +318,7 @@
       "activity_type": "task",
       "parent_id": "TASK_0009",
       "progress": 0,
-      "source_refs": [
-        "project.priority_work"
-      ],
+      "source_refs": ["project.priority_work"],
       "created_at": "2026-09-15 23:51:00",
       "updated_at": "2026-09-25 18:37:45"
     },
@@ -365,9 +338,7 @@
       "activity_type": "task",
       "parent_id": "TASK_0010",
       "progress": 0,
-      "source_refs": [
-        "project.work_plan"
-      ],
+      "source_refs": ["project.work_plan"],
       "created_at": "2026-09-15 23:51:00",
       "updated_at": "2026-09-18 17:26:21"
     },
@@ -387,9 +358,7 @@
       "activity_type": "task",
       "parent_id": "TASK_0010",
       "progress": 0,
-      "source_refs": [
-        "project.work_plan"
-      ],
+      "source_refs": ["project.work_plan"],
       "created_at": "2026-09-15 23:51:00",
       "updated_at": "2026-09-18 17:27:12"
     },
@@ -409,9 +378,7 @@
       "activity_type": "task",
       "parent_id": "TASK_0010",
       "progress": 0,
-      "source_refs": [
-        "project.work_plan"
-      ],
+      "source_refs": ["project.work_plan"],
       "created_at": "2026-09-15 23:51:00",
       "updated_at": "2026-09-18 17:27:25"
     },
@@ -431,9 +398,7 @@
       "activity_type": "macro",
       "parent_id": "",
       "progress": 0,
-      "source_refs": [
-        "project.purchase_workflow"
-      ],
+      "source_refs": ["project.purchase_workflow"],
       "created_at": "2026-09-16 15:19:49",
       "updated_at": "2026-09-25 19:00:16"
     },

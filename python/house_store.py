@@ -322,6 +322,27 @@ class HouseStore:
             )
         return result
 
+    def _validate_removed_keys(self, payload: Any) -> list[str]:
+        if payload is None:
+            return []
+        if not isinstance(payload, list):
+            raise ValueError("removed_layout_keys must be an array")
+        if len(payload) > 300:
+            raise ValueError("removed_layout_keys exceeds 300 elements")
+        result: list[str] = []
+        seen: set[str] = set()
+        for raw in payload:
+            key = str(raw or "")
+            if not re.fullmatch(
+                r"(room|wall|zone|fixture|roof):[A-Za-z0-9_:-]{1,100}", key
+            ):
+                raise ValueError(f"invalid removed layout key: {key}")
+            if key in seen:
+                continue
+            seen.add(key)
+            result.append(key)
+        return result
+
     def save_model3d_layout(self, payload: dict[str, Any]) -> dict[str, Any]:
         if not isinstance(payload, dict):
             raise ValueError("layout payload must be an object")
@@ -340,6 +361,9 @@ class HouseStore:
             model["placed_assets"] = self._validate_assets(
                 payload.get("placed_assets", []), lot_width, lot_depth
             )
+            model["removed_layout_keys"] = self._validate_removed_keys(
+                payload.get("removed_layout_keys", [])
+            )
             model["editor_updated_at"] = now_stamp()
             house["model_3d"] = model
             house["updated_at"] = now_stamp()
@@ -348,5 +372,6 @@ class HouseStore:
                 "ok": True,
                 "layout_overrides": model["layout_overrides"],
                 "placed_assets": model["placed_assets"],
+                "removed_layout_keys": model["removed_layout_keys"],
                 "updated_at": model["editor_updated_at"],
             }

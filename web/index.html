@@ -97,8 +97,8 @@
           <section class="panel dashboard-timeline-section">
             <div class="section-heading-row">
               <div>
-                <h2 class="section-title">Linha do tempo do projeto</h2>
-                <p class="section-sub">Visão resumida das macroatividades.</p>
+                <h2 class="section-title">Cronograma macro</h2>
+                <p class="section-sub">Mini Gantt só com as macroatividades.</p>
               </div>
               <button
                 type="button"
@@ -111,8 +111,8 @@
             </div>
             <div
               id="macro-timeline"
-              class="macro-timeline"
-              aria-label="Resumo das macroatividades"
+              class="macro-mini-gantt"
+              aria-label="Mini Gantt das macroatividades"
             ></div>
           </section>
 
@@ -1192,7 +1192,7 @@
               </div>
               <div>
                 <dt><kbd>Delete</kbd></dt>
-                <dd>Excluir um objeto adicionado</dd>
+                <dd>Excluir o objeto selecionado (pede confirmação)</dd>
               </div>
             </dl>
           </section>
@@ -1215,6 +1215,30 @@
               casa, depois baixe ou compartilhe o arquivo.
             </p>
           </section>
+        </div>
+      </form>
+    </dialog>
+
+    <dialog
+      id="scene-delete-dialog"
+      class="scene-delete-dialog"
+      aria-labelledby="scene-delete-title"
+    >
+      <form method="dialog" id="scene-delete-form">
+        <h2 id="scene-delete-title">Excluir objeto?</h2>
+        <p id="scene-delete-message">Deseja excluir este objeto da cena?</p>
+        <div class="dialog-actions">
+          <button type="submit" class="btn" value="no" id="scene-delete-no">
+            Não
+          </button>
+          <button
+            type="submit"
+            class="btn danger"
+            value="yes"
+            id="scene-delete-yes"
+          >
+            Sim
+          </button>
         </div>
       </form>
     </dialog>

@@ -89,6 +89,7 @@ class HouseViewer {
     this.placementType = "";
     this.layoutOverrides = structuredClone(model.layout_overrides || {});
     this.placedAssets = structuredClone(model.placed_assets || []);
+    this.removedKeys = new Set(model.removed_layout_keys || []);
     this.renderPending = false;
     this.pointerStart = null;
     this.selectedFloor = null;
@@ -264,6 +265,8 @@ class HouseViewer {
     this.sceneRoot.add(lotEdges);
 
     for (const zone of this.model.outdoor_zones || []) {
+      const zoneKey = `zone:${zone.id}`;
+      if (this.removedKeys.has(zoneKey)) continue;
       const zoneCenterX = zone.x_m + zone.width_m / 2;
       const zoneCenterZ = zone.z_m + zone.depth_m / 2;
       const slab = this.addBox({
@@ -278,11 +281,13 @@ class HouseViewer {
       });
       slab.userData.zone = zone;
       this.sceneRoot.add(slab);
-      this.registerTargetPart(`zone:${zone.id}`, zone.label, "zone", slab, {
+      this.registerTargetPart(zoneKey, zone.label, "zone", slab, {
         source: zone,
       });
 
       for (const fixture of zone.fixtures || []) {
+        const fixtureKey = `fixture:${zone.id}:${fixture.id}`;
+        if (this.removedKeys.has(fixtureKey)) continue;
         this.addOutdoorFixture(zone, fixture);
       }
 
@@ -307,13 +312,15 @@ class HouseViewer {
         label.renderOrder = 11;
         this.labelSprites.push(label);
         this.sceneRoot.add(label);
-        this.registerTargetPart(`zone:${zone.id}`, zone.label, "zone", label, {
+        this.registerTargetPart(zoneKey, zone.label, "zone", label, {
           source: zone,
         });
       }
     }
 
     for (const room of this.model.rooms || []) {
+      const roomKey = `room:${room.id}`;
+      if (this.removedKeys.has(roomKey)) continue;
       const globalX = building.origin_x_m + room.x_m;
       const globalZ = building.origin_z_m + room.z_m;
       const floor = this.addBox({
@@ -331,7 +338,7 @@ class HouseViewer {
       floor.material.emissiveIntensity = 0;
       this.roomMeshes.push(floor);
       this.sceneRoot.add(floor);
-      this.registerTargetPart(`room:${room.id}`, room.label, "room", floor, {
+      this.registerTargetPart(roomKey, room.label, "room", floor, {
         source: room,
       });
 
@@ -355,29 +362,36 @@ class HouseViewer {
       label.renderOrder = 10;
       this.labelSprites.push(label);
       this.sceneRoot.add(label);
-      this.registerTargetPart(`room:${room.id}`, room.label, "room", label, {
+      this.registerTargetPart(roomKey, room.label, "room", label, {
         source: room,
       });
     }
 
-    for (const wall of this.model.walls || []) this.buildWall(wall);
+    for (const wall of this.model.walls || []) {
+      if (this.removedKeys.has(`wall:${wall.id}`)) continue;
+      this.buildWall(wall);
+    }
 
-    this.roof = this.addBox({
-      width: building.width_m + 0.3,
-      height: 0.1,
-      depth: building.depth_m + 0.3,
-      x: this.worldX(building.origin_x_m + building.width_m / 2),
-      y: building.roof?.height_m || 2.88,
-      z: this.worldZ(building.origin_z_m + building.depth_m / 2),
-      color: "#a96f50",
-      opacity: 0.34,
-      roughness: 0.7,
-    });
-    this.roof.visible = this.roofVisible;
-    this.sceneRoot.add(this.roof);
-    this.registerTargetPart("roof:main", "Cobertura", "roof", this.roof, {
-      source: building.roof || {},
-    });
+    if (!this.removedKeys.has("roof:main")) {
+      this.roof = this.addBox({
+        width: building.width_m + 0.3,
+        height: 0.1,
+        depth: building.depth_m + 0.3,
+        x: this.worldX(building.origin_x_m + building.width_m / 2),
+        y: building.roof?.height_m || 2.88,
+        z: this.worldZ(building.origin_z_m + building.depth_m / 2),
+        color: "#a96f50",
+        opacity: 0.34,
+        roughness: 0.7,
+      });
+      this.roof.visible = this.roofVisible;
+      this.sceneRoot.add(this.roof);
+      this.registerTargetPart("roof:main", "Cobertura", "roof", this.roof, {
+        source: building.roof || {},
+      });
+    } else {
+      this.roof = null;
+    }
 
     const buildingCenterX = this.worldX(
       building.origin_x_m + building.width_m / 2,
@@ -737,6 +751,7 @@ class HouseViewer {
                 label: editor.label,
                 kind: editor.kind,
                 isPlacedAsset: editor.isPlacedAsset,
+                canDelete: this.canDeleteEditor(editor),
                 dimensions: this.selectionDimensions(),
               }
             : null,
@@ -921,25 +936,91 @@ class HouseViewer {
     return true;
   }
 
-  deleteSelected() {
-    const target = this.selectedTarget;
-    const editor = target?.userData.editor;
-    if (!editor?.isPlacedAsset) return false;
-    this.selectTarget(null);
+  canDeleteEditor(editor) {
+    return Boolean(editor?.key);
+  }
+
+  disposeEditorTarget(target) {
+    if (!target) return;
     this.sceneRoot.remove(target);
     this.editorTargets = this.editorTargets.filter((item) => item !== target);
     this.placedAssetGroups = this.placedAssetGroups.filter(
       (item) => item !== target,
     );
-    this.placedAssets = this.placedAssets.filter(
-      (item) => item.id !== editor.asset.id,
-    );
+    this.roomMeshes = this.roomMeshes.filter((mesh) => {
+      let belongs = false;
+      target.traverse((object) => {
+        if (object === mesh) belongs = true;
+      });
+      return !belongs;
+    });
+    this.wallMeshes = this.wallMeshes.filter((mesh) => {
+      let belongs = false;
+      target.traverse((object) => {
+        if (object === mesh) belongs = true;
+      });
+      return !belongs;
+    });
+    this.labelSprites = this.labelSprites.filter((sprite) => {
+      let belongs = false;
+      target.traverse((object) => {
+        if (object === sprite) belongs = true;
+      });
+      return !belongs;
+    });
+    if (this.roof) {
+      let roofBelongs = false;
+      target.traverse((object) => {
+        if (object === this.roof) roofBelongs = true;
+      });
+      if (roofBelongs) this.roof = null;
+    }
     target.traverse((object) => {
       if (object.userData.sharedAssetResource) return;
       object.geometry?.dispose();
       disposeMaterial(object.material);
     });
+  }
+
+  deleteSelected() {
+    const target = this.selectedTarget;
+    const editor = target?.userData.editor;
+    if (!this.canDeleteEditor(editor)) return false;
+
+    const groupsToRemove = [target];
+    if (editor.kind === "zone") {
+      const zoneId = String(
+        editor.source?.id || editor.key.replace(/^zone:/, ""),
+      );
+      for (const group of this.editorTargets) {
+        const other = group.userData.editor;
+        if (
+          other &&
+          group !== target &&
+          other.kind === "fixture" &&
+          String(other.key).startsWith(`fixture:${zoneId}:`)
+        ) {
+          groupsToRemove.push(group);
+        }
+      }
+    }
+
+    this.selectTarget(null);
+    for (const group of groupsToRemove) {
+      const groupEditor = group.userData.editor;
+      if (!groupEditor) continue;
+      if (groupEditor.isPlacedAsset) {
+        this.placedAssets = this.placedAssets.filter(
+          (item) => item.id !== groupEditor.asset.id,
+        );
+      } else {
+        this.removedKeys.add(groupEditor.key);
+        delete this.layoutOverrides[groupEditor.key];
+      }
+      this.disposeEditorTarget(group);
+    }
     this.notifyEditor("Objeto excluído. Salve o layout para persistir.");
+    this.requestRender();
     return true;
   }
 
@@ -1014,6 +1095,7 @@ class HouseViewer {
       placed_assets: this.placedAssetGroups.map((group) =>
         this.serializeAsset(group),
       ),
+      removed_layout_keys: [...this.removedKeys].sort(),
     };
   }
 
@@ -1356,6 +1438,13 @@ class HouseViewer {
       if (action === "zoom-in") this.zoomCamera(0.82);
       if (action === "zoom-out") this.zoomCamera(1.22);
       if (action === "roof") {
+        if (!this.roof) {
+          this.setStatus(
+            "Cobertura excluída. Salve o layout para manter, ou recarregue sem salvar para desfazer.",
+            "err",
+          );
+          return;
+        }
         this.roofVisible = !this.roofVisible;
         this.roof.visible = this.roofVisible;
         button.setAttribute("aria-pressed", String(this.roofVisible));
@@ -1807,6 +1896,18 @@ export function duplicateSceneSelection() {
   return activeViewer?.duplicateSelected() || false;
 }
 
+export function getSceneSelection() {
+  const editor = activeViewer?.selectedTarget?.userData?.editor;
+  if (!editor || !activeViewer) return null;
+  return {
+    key: editor.key,
+    label: editor.label,
+    kind: editor.kind,
+    isPlacedAsset: editor.isPlacedAsset,
+    canDelete: activeViewer.canDeleteEditor(editor),
+  };
+}
+
 export function deleteSceneSelection() {
   return activeViewer?.deleteSelected() || false;
 }
@@ -1825,6 +1926,7 @@ export function getSceneLayoutState() {
     activeViewer?.getLayoutState() || {
       layout_overrides: {},
       placed_assets: [],
+      removed_layout_keys: [],
     }
   );
 }

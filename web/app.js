@@ -315,6 +315,11 @@
     btnResetObject: $("btn-reset-object"),
     btnDeleteObject: $("btn-delete-object"),
     btnSaveLayout: $("btn-save-layout"),
+    sceneDeleteDialog: $("scene-delete-dialog"),
+    sceneDeleteForm: $("scene-delete-form"),
+    sceneDeleteMessage: $("scene-delete-message"),
+    sceneDeleteYes: $("scene-delete-yes"),
+    sceneDeleteNo: $("scene-delete-no"),
     btnToggleMedia: $("btn-toggle-media"),
     btnCloseMedia: $("btn-close-media"),
     mediaExportPanel: $("media-export-panel"),
@@ -2443,29 +2448,104 @@
         '<p class="muted">Nenhuma macroatividade cadastrada.</p>';
       return;
     }
-    const start = macros.reduce(
+
+    const today = iso(new Date());
+    let rangeStart = macros.reduce(
       (value, item) => (item.start_date < value ? item.start_date : value),
       macros[0].start_date,
     );
-    const end = macros.reduce(
+    let rangeEnd = macros.reduce(
       (value, item) => (item.end_date > value ? item.end_date : value),
       macros[0].end_date,
     );
-    const totalDays = Math.max(1, dayDiff(start, end) + 1);
-    els.macroTimeline.innerHTML = macros
-      .map((macro) => {
-        const left = (dayDiff(start, macro.start_date) / totalDays) * 100;
-        const width =
-          (Math.max(1, dayDiff(macro.start_date, macro.end_date) + 1) /
-            totalDays) *
-          100;
-        return `<button type="button" class="macro-timeline-row" data-open-macro="${macro.id}">
-          <span class="macro-timeline-copy"><strong>${escapeHtml(macro.title)}</strong><small>${escapeHtml(macro.start_date)} — ${escapeHtml(macro.end_date)} · ${macro.progress || 0}%</small></span>
-          <span class="macro-timeline-track"><i class="status-${macro.status}" style="left:${left}%;width:${width}%"></i></span>
-          <span class="task-count status-${macro.status}">${escapeHtml(statusLabels[macro.status])}</span>
-        </button>`;
-      })
-      .join("");
+    if (today < rangeStart) rangeStart = today;
+    if (today > rangeEnd) rangeEnd = today;
+    rangeStart = addDays(rangeStart, -7);
+    rangeEnd = addDays(rangeEnd, 14);
+    const totalDays = Math.max(1, dayDiff(rangeStart, rangeEnd) + 1);
+    const todayPct = Math.min(
+      100,
+      Math.max(0, (dayDiff(rangeStart, today) / totalDays) * 100),
+    );
+
+    const monthTicks = [];
+    let cursor = rangeStart.slice(0, 8) + "01";
+    if (cursor < rangeStart) cursor = addDays(cursor, 32).slice(0, 8) + "01";
+    while (cursor <= rangeEnd) {
+      const left = (dayDiff(rangeStart, cursor) / totalDays) * 100;
+      const date = parseDate(cursor);
+      monthTicks.push({
+        left,
+        label: date.toLocaleDateString("pt-BR", {
+          month: "short",
+          year: "2-digit",
+        }),
+      });
+      const next = new Date(date);
+      next.setMonth(next.getMonth() + 1);
+      cursor = iso(next);
+    }
+
+    const startLabel = parseDate(rangeStart).toLocaleDateString("pt-BR", {
+      day: "2-digit",
+      month: "short",
+      year: "2-digit",
+    });
+    const endLabel = parseDate(rangeEnd).toLocaleDateString("pt-BR", {
+      day: "2-digit",
+      month: "short",
+      year: "2-digit",
+    });
+
+    els.macroTimeline.innerHTML = `<div class="macro-mini-gantt-inner">
+      <div class="macro-mini-gantt-axis" aria-hidden="true">
+        <span class="macro-mini-gantt-axis-spacer"></span>
+        <div class="macro-mini-gantt-axis-track">
+          <span class="macro-mini-gantt-range">${escapeHtml(startLabel)} → ${escapeHtml(endLabel)}</span>
+          ${monthTicks
+            .map(
+              (tick) =>
+                `<span class="macro-mini-gantt-tick" style="left:${tick.left}%">${escapeHtml(tick.label)}</span>`,
+            )
+            .join("")}
+          <i class="macro-mini-gantt-today" style="left:${todayPct}%" title="Hoje"></i>
+        </div>
+      </div>
+      <div class="macro-mini-gantt-rows">
+        ${macros
+          .map((macro) => {
+            const left =
+              (dayDiff(rangeStart, macro.start_date) / totalDays) * 100;
+            const width =
+              (Math.max(1, dayDiff(macro.start_date, macro.end_date) + 1) /
+                totalDays) *
+              100;
+            const childCount = childTasks(macro.id).length;
+            const startText = parseDate(macro.start_date).toLocaleDateString(
+              "pt-BR",
+              { day: "2-digit", month: "short" },
+            );
+            const endText = parseDate(macro.end_date).toLocaleDateString(
+              "pt-BR",
+              { day: "2-digit", month: "short" },
+            );
+            return `<button type="button" class="macro-mini-gantt-row" data-open-macro="${escapeAttr(macro.id)}" title="${escapeAttr(macro.title)} · ${escapeAttr(statusLabels[macro.status] || macro.status)}">
+              <span class="macro-mini-gantt-label">
+                <strong>${escapeHtml(macro.title)}</strong>
+                <small>${escapeHtml(startText)} – ${escapeHtml(endText)}${childCount ? ` · ${childCount} atv.` : ""}</small>
+              </span>
+              <span class="macro-mini-gantt-track">
+                <i class="macro-mini-gantt-today" style="left:${todayPct}%" aria-hidden="true"></i>
+                <span class="macro-mini-gantt-bar status-${escapeAttr(macro.status)}" style="left:${left}%;width:${Math.max(width, 1.2)}%">
+                  <em>${escapeHtml(statusLabels[macro.status] || macro.status)}</em>
+                </span>
+              </span>
+            </button>`;
+          })
+          .join("")}
+      </div>
+    </div>`;
+
     els.macroTimeline.querySelectorAll("[data-open-macro]").forEach((row) => {
       row.addEventListener("click", () => {
         state.expandedMacros.add(row.dataset.openMacro);
@@ -5995,9 +6075,28 @@
       els.editorDepth.value = "";
     }
     els.btnDuplicateObject.disabled = !detail.selected?.isPlacedAsset;
-    els.btnDeleteObject.disabled = !detail.selected?.isPlacedAsset;
+    els.btnDeleteObject.disabled = !detail.selected?.canDelete;
     els.btnResetObject.disabled = !hasSelection;
     els.assetPalette.classList.toggle("placing", Boolean(detail.placing));
+  }
+
+  function requestSceneDelete() {
+    const selection = house3dModule?.getSceneSelection?.();
+    if (!selection?.canDelete) {
+      els.editorStatus.textContent = selection
+        ? "Não foi possível excluir este objeto."
+        : "Selecione um objeto para excluir.";
+      return;
+    }
+    if (!els.sceneDeleteDialog) {
+      if (!house3dModule?.deleteSceneSelection())
+        els.editorStatus.textContent = "Não foi possível excluir este objeto.";
+      return;
+    }
+    if (els.sceneDeleteDialog.open) return;
+    els.sceneDeleteMessage.textContent = `Deseja excluir “${selection.label}” da cena?`;
+    els.sceneDeleteDialog.showModal();
+    els.sceneDeleteNo?.focus();
   }
 
   async function saveSceneLayout() {
@@ -6621,9 +6720,9 @@
           document.querySelector(`[data-editor-mode="${mode}"]`)?.click();
           return;
         }
-        if (event.key === "Delete") {
+        if (event.key === "Delete" || event.key === "Backspace") {
           event.preventDefault();
-          els.btnDeleteObject.click();
+          requestSceneDelete();
           return;
         }
       }
@@ -6724,10 +6823,12 @@
       els.editorStatus.textContent =
         "Somente objetos adicionados podem ser duplicados.";
   });
-  els.btnDeleteObject.addEventListener("click", () => {
-    if (!house3dModule?.deleteSceneSelection())
-      els.editorStatus.textContent =
-        "A arquitetura original não pode ser excluída.";
+  els.btnDeleteObject.addEventListener("click", () => requestSceneDelete());
+  els.sceneDeleteDialog?.addEventListener("close", () => {
+    if (els.sceneDeleteDialog.returnValue !== "yes") return;
+    if (!house3dModule?.deleteSceneSelection()) {
+      els.editorStatus.textContent = "Não foi possível excluir este objeto.";
+    }
   });
   els.btnResetObject.addEventListener("click", () =>
     house3dModule?.resetSceneSelection(),
