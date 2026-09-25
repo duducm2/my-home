@@ -390,7 +390,7 @@
     ]
   },
   "notes": "",
-  "updated_at": "2026-09-25 19:31:33",
+  "updated_at": "2026-09-25 19:33:36",
   "model_3d": {
     "version": 2,
     "model_type": "schematic_architectural_dollhouse",
@@ -899,12 +899,13 @@
       "normalized_at": "2026-09-15",
       "accuracy": "blueprint_aligned_with_measured_rooms_and_marked_proportional_openings"
     },
-    "editor_updated_at": "2026-09-25 19:31:33",
+    "editor_updated_at": "2026-09-25 19:33:36",
     "removed_layout_keys": [
       "fixture:laundry:floor_drain",
       "fixture:laundry:laundry_counter",
       "fixture:laundry:washing_machine",
       "roof:main",
+      "zone:gate",
       "zone:gourmet",
       "zone:laundry",
       "zone:left_yard",

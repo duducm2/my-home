@@ -6760,6 +6760,14 @@
         typing
       )
         return;
+      const onModel3D = !document
+        .getElementById("view-model3d")
+        ?.classList.contains("hidden");
+      if (onModel3D && event.key.toLowerCase() === "e") {
+        event.preventDefault();
+        setSceneEditorOpen(true);
+        return;
+      }
       const view = {
         d: "dashboard",
         e: "expenses",
