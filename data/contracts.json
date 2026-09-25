@@ -291,7 +291,8 @@
       "title": "Contrato 02 — Reforma e melhorias definitivas",
       "provider_id": "PROVIDER_GELSON",
       "expense_ids": [
-        "EXP_0013"
+        "EXP_0013",
+        "EXP_0060"
       ],
       "status": "draft",
       "amount": 7500.0,
@@ -488,7 +489,7 @@
         }
       },
       "created_at": "2026-09-16 14:01:46",
-      "updated_at": "2026-09-16 14:01:46",
+      "updated_at": "2026-09-25 19:44:25",
       "payment_schedule": [
         {
           "id": "PAY_001",
@@ -503,5 +504,5 @@
       "payment_frequency": "monthly"
     }
   ],
-  "updated_at": "2026-09-25 18:59:48"
+  "updated_at": "2026-09-25 19:44:25"
 }
