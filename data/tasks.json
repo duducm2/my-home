@@ -213,7 +213,7 @@
       "priority": 1,
       "sequence": 10,
       "start_date": "2027-01-30",
-      "end_date": "2027-02-16",
+      "end_date": "2027-03-12",
       "status": "pending",
       "expense_allocations": [],
       "icon_key": "moving-service",
@@ -355,8 +355,8 @@
       "description": "Mudança. Casa estruturalmente pronta",
       "priority": 3,
       "sequence": 4,
-      "start_date": "2027-02-11",
-      "end_date": "2027-02-16",
+      "start_date": "2027-03-07",
+      "end_date": "2027-03-12",
       "status": "pending",
       "expense_allocations": [],
       "icon_key": "cleaning-service",
@@ -369,7 +369,7 @@
         "project.work_plan"
       ],
       "created_at": "2026-09-15 23:51:00",
-      "updated_at": "2026-09-25 19:39:35"
+      "updated_at": "2026-09-25 20:18:13"
     },
     {
       "id": "TASK_0079",
@@ -377,8 +377,8 @@
       "description": "Mudança. Casa estruturalmente pronta",
       "priority": 3,
       "sequence": 5,
-      "start_date": "2027-02-11",
-      "end_date": "2027-02-16",
+      "start_date": "2027-03-07",
+      "end_date": "2027-03-12",
       "status": "pending",
       "expense_allocations": [],
       "icon_key": "moving-service",
@@ -391,7 +391,7 @@
         "project.work_plan"
       ],
       "created_at": "2026-09-15 23:51:00",
-      "updated_at": "2026-09-25 19:39:38"
+      "updated_at": "2026-09-25 20:18:21"
     },
     {
       "id": "TASK_0080",
@@ -399,8 +399,8 @@
       "description": "Mudança. Casa estruturalmente pronta",
       "priority": 3,
       "sequence": 6,
-      "start_date": "2027-02-11",
-      "end_date": "2027-02-16",
+      "start_date": "2027-03-07",
+      "end_date": "2027-03-12",
       "status": "pending",
       "expense_allocations": [],
       "icon_key": "moving-service",
@@ -413,7 +413,7 @@
         "project.work_plan"
       ],
       "created_at": "2026-09-15 23:51:00",
-      "updated_at": "2026-09-25 19:39:41"
+      "updated_at": "2026-09-25 20:18:28"
     },
     {
       "id": "TASK_0097",
@@ -668,8 +668,8 @@
       "description": "",
       "priority": 1,
       "sequence": 2,
-      "start_date": "2027-01-30",
-      "end_date": "2027-02-07",
+      "start_date": "2027-02-17",
+      "end_date": "2027-02-25",
       "status": "pending",
       "expense_allocations": [
         {
@@ -685,7 +685,7 @@
       "progress": 0,
       "source_refs": [],
       "created_at": "2026-09-18 17:20:48",
-      "updated_at": "2026-09-25 19:39:06"
+      "updated_at": "2026-09-25 20:18:04"
     },
     {
       "id": "TASK_0110",
@@ -693,8 +693,8 @@
       "description": "",
       "priority": 1,
       "sequence": 3,
-      "start_date": "2027-02-06",
-      "end_date": "2027-02-16",
+      "start_date": "2027-03-02",
+      "end_date": "2027-03-12",
       "status": "pending",
       "expense_allocations": [
         {
@@ -710,7 +710,7 @@
       "progress": 0,
       "source_refs": [],
       "created_at": "2026-09-18 17:22:48",
-      "updated_at": "2026-09-25 19:39:28"
+      "updated_at": "2026-09-25 20:18:01"
     },
     {
       "id": "TASK_0111",
@@ -1038,5 +1038,5 @@
       "updated_at": "2026-09-25 20:07:18"
     }
   ],
-  "updated_at": "2026-09-25 20:12:38"
+  "updated_at": "2026-09-25 20:18:28"
 }
