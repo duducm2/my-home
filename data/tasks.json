@@ -266,14 +266,14 @@
         "project.work_plan"
       ],
       "created_at": "2026-09-15 23:51:00",
-      "updated_at": "2026-09-24 18:45:15"
+      "updated_at": "2026-09-25 17:49:25"
     },
     {
       "id": "TASK_0020",
       "title": "Revisão completa das telhas e substituição das quebradas",
       "description": "Regularizar, corrigir problemas existentes, melhorar a conservação e deixar o imóvel adequado para Prefeitura e Caixa. Após assinatura do contrato com a imobiliária",
       "priority": 1,
-      "sequence": 2,
+      "sequence": 3,
       "start_date": "2026-10-03",
       "end_date": "2026-10-05",
       "status": "pending",
@@ -293,7 +293,7 @@
         "project.work_plan"
       ],
       "created_at": "2026-09-15 23:51:00",
-      "updated_at": "2026-09-18 17:56:17"
+      "updated_at": "2026-09-25 17:49:25"
     },
     {
       "id": "TASK_0027",
@@ -320,7 +320,7 @@
         "project.priority_work"
       ],
       "created_at": "2026-09-15 23:51:00",
-      "updated_at": "2026-09-18 17:58:34"
+      "updated_at": "2026-09-25 17:49:25"
     },
     {
       "id": "TASK_0035",
@@ -347,7 +347,7 @@
         "project.priority_work"
       ],
       "created_at": "2026-09-15 23:51:00",
-      "updated_at": "2026-09-18 18:00:43"
+      "updated_at": "2026-09-25 17:49:25"
     },
     {
       "id": "TASK_0076",
@@ -742,7 +742,7 @@
       "title": "Pedreiro parte 2",
       "description": "",
       "priority": 1,
-      "sequence": 3,
+      "sequence": 2,
       "start_date": "2026-11-10",
       "end_date": "2026-11-10",
       "status": "pending",
@@ -760,7 +760,7 @@
       "progress": 0,
       "source_refs": [],
       "created_at": "2026-09-18 17:52:11",
-      "updated_at": "2026-09-18 17:56:17"
+      "updated_at": "2026-09-25 17:49:25"
     },
     {
       "id": "TASK_0112",
@@ -785,8 +785,8 @@
       "progress": 0,
       "source_refs": [],
       "created_at": "2026-09-20 21:27:43",
-      "updated_at": "2026-09-20 21:35:57"
+      "updated_at": "2026-09-25 17:49:25"
     }
   ],
-  "updated_at": "2026-09-24 18:45:15"
+  "updated_at": "2026-09-25 17:49:25"
 }
