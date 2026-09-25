@@ -75,8 +75,6 @@ class HouseViewer {
     this.model = model;
     this.host = byId("house-3d-canvas");
     this.status = byId("house-3d-status");
-    this.detail = byId("house-3d-room-detail");
-    this.legend = byId("house-3d-legend");
     this.toolbar = byId("house-3d-toolbar");
     this.roomMeshes = [];
     this.wallMeshes = [];
@@ -151,7 +149,6 @@ class HouseViewer {
     this.buildLighting();
     this.buildModel();
     this.buildEditor();
-    this.buildLegend();
     this.bindInteractions();
     this.resizeObserver = new ResizeObserver(() => this.resize());
     this.resizeObserver.observe(this.host);
@@ -1399,34 +1396,6 @@ class HouseViewer {
     );
   }
 
-  buildLegend() {
-    if (!this.legend) return;
-    this.legend.replaceChildren();
-    const kinds = new Map();
-    for (const room of this.model.rooms || []) {
-      if (!kinds.has(room.kind)) kinds.set(room.kind, room);
-    }
-    for (const room of kinds.values()) {
-      const item = document.createElement("span");
-      const swatch = document.createElement("i");
-      swatch.style.backgroundColor = room.color;
-      item.append(swatch, document.createTextNode(this.kindLabel(room.kind)));
-      this.legend.appendChild(item);
-    }
-  }
-
-  kindLabel(kind) {
-    return (
-      {
-        bedroom: "Quarto",
-        bathroom: "Banheiro",
-        circulation: "Circulação",
-        office: "Escritório",
-        living: "Sala",
-      }[kind] || kind
-    );
-  }
-
   bindInteractions() {
     this.onToolbarClick = (event) => {
       const button = event.currentTarget;
@@ -1545,17 +1514,6 @@ class HouseViewer {
     this.selectedFloor = floor;
     floor.material.emissive.set("#f1c40f");
     floor.material.emissiveIntensity = 0.36;
-    const room = floor.userData.room;
-    if (this.detail) {
-      this.detail.replaceChildren();
-      const title = document.createElement("strong");
-      title.textContent = room.label;
-      const dimensions = document.createElement("span");
-      dimensions.textContent = `${room.width_m.toFixed(2)} × ${room.depth_m.toFixed(2)} m · ${room.area_m2.toFixed(2)} m²`;
-      const source = document.createElement("small");
-      source.textContent = `Geometria: ${room.geometry_source}`;
-      this.detail.append(title, dimensions, source);
-    }
     this.requestRender();
   }
 

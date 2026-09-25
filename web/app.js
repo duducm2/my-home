@@ -294,7 +294,6 @@
     houseExterior: $("house-exterior"),
     houseRooms: $("house-rooms"),
     house3dStatus: $("house-3d-status"),
-    house3dAssumptions: $("house-3d-assumptions"),
     btnModel3dHome: $("btn-model3d-home"),
     btnModel3dHelp: $("btn-model3d-help"),
     model3dHelpDialog: $("model3d-help-dialog"),
@@ -6016,9 +6015,6 @@
 
   async function renderHouse3D() {
     const model = state.house?.model_3d;
-    els.house3dAssumptions.innerHTML = (model?.assumptions || [])
-      .map((item) => `<li>${escapeHtml(item)}</li>`)
-      .join("");
     if (!model)
       return setStatus(els.house3dStatus, "warn", "Geometria 3D indisponível.");
     try {
@@ -6099,10 +6095,11 @@
     els.sceneDeleteNo?.focus();
   }
 
-  async function saveSceneLayout() {
-    if (!house3dModule) return;
-    els.btnSaveLayout.disabled = true;
-    els.editorStatus.textContent = "Salvando layout…";
+  async function saveSceneLayout({ quiet = false } = {}) {
+    if (!house3dModule) return false;
+    if (!quiet && els.btnSaveLayout) els.btnSaveLayout.disabled = true;
+    if (!quiet && els.editorStatus)
+      els.editorStatus.textContent = "Salvando layout…";
     try {
       const layout = house3dModule.getSceneLayoutState();
       const result = await request("/api/house/model3d-layout", {
@@ -6110,15 +6107,41 @@
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(layout),
       });
+      if (!state.house.model_3d) state.house.model_3d = {};
       state.house.model_3d.layout_overrides = result.layout_overrides;
       state.house.model_3d.placed_assets = result.placed_assets;
-      els.editorStatus.textContent =
-        "Layout salvo localmente. Use “Salvar tudo” para enviar a cópia segura.";
+      state.house.model_3d.removed_layout_keys =
+        result.removed_layout_keys || [];
+      if (!quiet && els.editorStatus) {
+        els.editorStatus.textContent =
+          "Layout salvo localmente. Use “Salvar tudo” para enviar a cópia segura.";
+      }
+      return true;
     } catch (error) {
-      els.editorStatus.textContent = `Erro ao salvar: ${error.message}`;
+      if (!quiet && els.editorStatus)
+        els.editorStatus.textContent = `Erro ao salvar: ${error.message}`;
+      if (quiet) console.warn("Falha ao salvar layout 3D:", error);
+      return false;
     } finally {
-      els.btnSaveLayout.disabled = false;
+      if (!quiet && els.btnSaveLayout) els.btnSaveLayout.disabled = false;
     }
+  }
+
+  async function leaveModel3DView() {
+    const status = $("house-3d-status");
+    if (status) {
+      status.textContent = "Salvando layout antes de sair…";
+      status.classList.remove("err", "ok");
+    }
+    const saved = await saveSceneLayout({ quiet: true });
+    if (status) {
+      status.textContent = saved
+        ? "Layout salvo."
+        : "Não foi possível salvar o layout.";
+      status.classList.toggle("ok", saved);
+      status.classList.toggle("err", !saved);
+    }
+    refreshDashboard();
   }
 
   function setMediaPanelOpen(open) {
@@ -6473,13 +6496,16 @@
         els.btnModel3dHome.focus({ preventScroll: true }),
       );
     } else {
+      const leavingModel3D = wasModel3D && !isModel3D;
       if (sceneEditorOpen) setSceneEditorOpen(false);
       if (mediaPanelOpen) setMediaPanelOpen(false);
       window.scrollTo(0, 0);
-      if (wasModel3D)
+      if (leavingModel3D) {
+        void saveSceneLayout({ quiet: true });
         requestAnimationFrame(() =>
           $("home-link").focus({ preventScroll: true }),
         );
+      }
     }
   }
 
@@ -6681,7 +6707,7 @@
         !document.getElementById("view-model3d").classList.contains("hidden")
       ) {
         event.preventDefault();
-        refreshDashboard();
+        leaveModel3DView();
         return;
       }
       const ganttVisible = !document
@@ -6751,7 +6777,7 @@
     },
     true,
   );
-  els.btnModel3dHome.addEventListener("click", () => refreshDashboard());
+  els.btnModel3dHome.addEventListener("click", () => leaveModel3DView());
   els.btnModel3dHelp.addEventListener("click", () =>
     els.model3dHelpDialog.showModal(),
   );

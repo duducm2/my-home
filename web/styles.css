@@ -2495,83 +2495,6 @@ th {
   gap: 8px;
 }
 
-.house-3d-room-detail,
-.house-3d-legend {
-  min-height: 54px;
-  padding: 8px 9px;
-  background: var(--bg);
-  border: 1px solid var(--line);
-  border-radius: 5px;
-}
-
-.house-3d-room-detail {
-  display: grid;
-  align-content: center;
-  gap: 2px;
-}
-
-.house-3d-room-detail strong {
-  color: var(--gold);
-  font-size: 12px;
-}
-
-.house-3d-room-detail span {
-  color: var(--text);
-  font-size: 11px;
-  font-variant-numeric: tabular-nums;
-}
-
-.house-3d-room-detail small {
-  color: var(--muted);
-  font-size: 9px;
-}
-
-.house-3d-legend {
-  display: flex;
-  align-items: center;
-  align-content: center;
-  flex-wrap: wrap;
-  gap: 6px 12px;
-}
-
-.house-3d-legend span {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  color: var(--muted);
-  font-size: 10px;
-}
-
-.house-3d-legend i {
-  width: 9px;
-  height: 9px;
-  border: 1px solid rgba(255, 255, 255, 0.24);
-  border-radius: 2px;
-}
-
-.house-3d-assumptions-wrap {
-  color: var(--muted);
-  background: var(--bg);
-  border: 1px solid var(--line);
-  border-radius: 5px;
-  font-size: 10px;
-}
-
-.house-3d-assumptions-wrap summary {
-  padding: 7px 9px;
-  color: #c8c8c8;
-  cursor: pointer;
-  font-weight: 600;
-}
-
-.house-3d-assumptions {
-  display: grid;
-  gap: 4px;
-  margin: 0;
-  padding: 0 24px 9px;
-  line-height: 1.4;
-}
-
 @media (max-width: 760px) {
   .house-3d-stage {
     min-height: 450px;
@@ -2715,7 +2638,7 @@ body.model3d-active {
   inset: 0;
   z-index: 1000;
   display: grid;
-  grid-template-rows: auto minmax(0, 1fr) auto;
+  grid-template-rows: auto minmax(0, 1fr);
   width: 100dvw;
   height: 100dvh;
   min-width: 0;
@@ -2725,7 +2648,6 @@ body.model3d-active {
 }
 
 .model3d-header,
-.model3d-footer,
 .model3d-title {
   display: flex;
   align-items: center;
@@ -2912,25 +2834,6 @@ body.model3d-active {
   overflow: hidden;
 }
 
-.model3d-footer {
-  display: grid;
-  grid-template-columns: minmax(180px, 0.7fr) minmax(260px, 1.3fr) auto;
-  align-items: stretch;
-  padding-top: 8px;
-}
-
-.model3d-footer .house-3d-room-detail,
-.model3d-footer .house-3d-legend,
-.model3d-footer .house-3d-assumptions-wrap {
-  min-height: 48px;
-  max-height: 132px;
-}
-
-.model3d-footer .house-3d-assumptions-wrap {
-  min-width: 130px;
-  overflow-y: auto;
-}
-
 @media (max-width: 900px) {
   .model3d-view {
     padding: 6px;
@@ -2944,14 +2847,6 @@ body.model3d-active {
 
   .model3d-header .house-3d-toolbar .btn {
     flex: 1 1 auto;
-  }
-
-  .model3d-footer {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
-  }
-
-  .model3d-footer .house-3d-assumptions-wrap {
-    display: none;
   }
 }
 
@@ -2983,18 +2878,6 @@ body.model3d-active {
     grid-template-columns: 1fr;
     max-height: min(72vh, 620px);
     overflow-y: auto;
-  }
-
-  .model3d-footer {
-    grid-template-columns: 1fr;
-  }
-
-  .model3d-footer .house-3d-legend {
-    display: none;
-  }
-
-  .model3d-footer .house-3d-room-detail {
-    min-height: 42px;
   }
 }
 
