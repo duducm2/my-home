@@ -6575,29 +6575,6 @@
       "response_status": "received"
     },
     {
-      "expense_id": "EXP_0032",
-      "id": "QUOTE_001",
-      "source": "manual",
-      "vendor": "",
-      "unit_price": 3500.0,
-      "quantity": 1,
-      "unit": "serviço",
-      "shipping_cost": 0.0,
-      "total_price": 3500.0,
-      "product_url": "",
-      "checked_at": "2026-09-16 21:45:31",
-      "notes": "",
-      "metadata": {
-        "currency": "BRL",
-        "source_type": "manual",
-        "source_name": "manual",
-        "ambiguities": "",
-        "measurement_unit_source": "semantic review 2026-09-16",
-        "measurement_unit_inferred": true
-      },
-      "response_status": "received"
-    },
-    {
       "expense_id": "EXP_0042",
       "id": "QUOTE_001",
       "source": "manual",
@@ -8087,7 +8064,48 @@
         "source_name": "",
         "ambiguities": ""
       }
+    },
+    {
+      "expense_id": "EXP_0032",
+      "id": "QUOTE_001",
+      "source": "manual",
+      "provider_id": "",
+      "vendor": "homem",
+      "unit_price": 5000.0,
+      "quantity": 1.0,
+      "unit": "serviço",
+      "shipping_cost": 0.0,
+      "total_price": 5000.0,
+      "product_url": "",
+      "checked_at": "2026-09-16",
+      "notes": "",
+      "response_status": "received",
+      "response_channel": "",
+      "received_at": "",
+      "response_date": "",
+      "validity": "",
+      "references": [],
+      "archived": false,
+      "attachments": [],
+      "vendor_snapshot": {},
+      "metadata": {
+        "currency": "BRL",
+        "source_type": "manual",
+        "source_name": "manual",
+        "ambiguities": "",
+        "measurement_unit_source": "semantic review 2026-09-16",
+        "measurement_unit_inferred": true,
+        "quote_valid_until": "",
+        "source_page": null,
+        "extraction_confidence": null,
+        "brand": "",
+        "model": "",
+        "specifications": "",
+        "package_size": "",
+        "availability": "",
+        "seller_location": ""
+      }
     }
   ],
-  "updated_at": "2026-09-25 19:48:06"
+  "updated_at": "2026-09-25 20:13:48"
 }
