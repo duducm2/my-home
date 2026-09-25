@@ -169,7 +169,7 @@
       "priority": 1,
       "sequence": 8,
       "start_date": "2026-12-03",
-      "end_date": "2027-01-28",
+      "end_date": "2027-02-16",
       "status": "pending",
       "expense_allocations": [],
       "icon_key": "home-expense",
@@ -1007,7 +1007,57 @@
       "source_refs": [],
       "created_at": "2026-09-25 19:29:41",
       "updated_at": "2026-09-25 19:43:13"
+    },
+    {
+      "id": "TASK_0122",
+      "title": "Pedreiro 3",
+      "description": "",
+      "priority": 1,
+      "sequence": 2,
+      "start_date": "2026-12-03",
+      "end_date": "2026-12-18",
+      "status": "pending",
+      "expense_allocations": [
+        {
+          "expense_id": "EXP_0060",
+          "expected_quantity": 1.0
+        }
+      ],
+      "icon_key": "mason-service",
+      "icon_mode": "auto",
+      "date_status": "confirmed",
+      "activity_type": "task",
+      "parent_id": "TASK_0007",
+      "progress": 0,
+      "source_refs": [],
+      "created_at": "2026-09-25 19:45:49",
+      "updated_at": "2026-09-25 19:46:12"
+    },
+    {
+      "id": "TASK_0123",
+      "title": "Pedreiro 4",
+      "description": "",
+      "priority": 1,
+      "sequence": 3,
+      "start_date": "2027-01-30",
+      "end_date": "2027-02-16",
+      "status": "pending",
+      "expense_allocations": [
+        {
+          "expense_id": "EXP_0061",
+          "expected_quantity": 1.0
+        }
+      ],
+      "icon_key": "mason-service",
+      "icon_mode": "auto",
+      "date_status": "confirmed",
+      "activity_type": "task",
+      "parent_id": "TASK_0007",
+      "progress": 0,
+      "source_refs": [],
+      "created_at": "2026-09-25 19:46:01",
+      "updated_at": "2026-09-25 19:46:26"
     }
   ],
-  "updated_at": "2026-09-25 19:43:13"
+  "updated_at": "2026-09-25 19:46:26"
 }
