@@ -8048,7 +8048,46 @@
         "source_name": "",
         "ambiguities": ""
       }
+    },
+    {
+      "expense_id": "EXP_0062",
+      "id": "QUOTE_001",
+      "source": "manual",
+      "provider_id": "",
+      "vendor": "Mercado Livre",
+      "unit_price": 80.0,
+      "quantity": 1.0,
+      "unit": "unidade",
+      "shipping_cost": 0.0,
+      "total_price": 80.0,
+      "product_url": "",
+      "checked_at": "2026-09-25",
+      "notes": "https://www.mercadolivre.com.br/1000-espacador-nivelador-piso-2mm-mais-100-cunhas-slim-branco/p/MLB63513291?pdp_filters=item_id%3AMLB4385913875&matt_event_ts=1790376053443&matt_d2id=17383149-93aa-49d0-a042-48e1bc7ee646&matt_tracing_id=e681ed1f-2f3d-4136-91cf-02a3fd34db98#polycard_client=recommendations_home_affiliate-profile&wid=MLB4385913875&sid=recos&reco_backend=item_decorator&reco_client=home_affiliate-profile&matt_tool_id=32567200&reco_item_pos=0&source=affiliate-profile&reco_backend_type=function&reco_id=fe1f1368-8ea0-4440-83ab-83b0bf66b390&tracking_id=181ddba1-1f78-41ba-ae30-7b81b5dc8fdb&c_id=/home/card-featured/element&c_uid=1184549a-5f18-4f23-bbf3-96e0971c16da",
+      "response_status": "received",
+      "response_channel": "",
+      "received_at": "",
+      "response_date": "",
+      "validity": "",
+      "references": [],
+      "archived": false,
+      "attachments": [],
+      "vendor_snapshot": {},
+      "metadata": {
+        "currency": "BRL",
+        "source_type": "manual",
+        "quote_valid_until": "",
+        "source_page": null,
+        "extraction_confidence": null,
+        "brand": "",
+        "model": "",
+        "specifications": "",
+        "package_size": "",
+        "availability": "",
+        "seller_location": "",
+        "source_name": "",
+        "ambiguities": ""
+      }
     }
   ],
-  "updated_at": "2026-09-25 19:45:24"
+  "updated_at": "2026-09-25 19:48:06"
 }

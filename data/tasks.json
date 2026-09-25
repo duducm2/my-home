@@ -996,6 +996,10 @@
         {
           "expense_id": "EXP_0025",
           "expected_quantity": 50.0
+        },
+        {
+          "expense_id": "EXP_0062",
+          "expected_quantity": 1.0
         }
       ],
       "icon_key": "porcelain-tiles",
@@ -1006,7 +1010,7 @@
       "progress": 0,
       "source_refs": [],
       "created_at": "2026-09-25 19:29:41",
-      "updated_at": "2026-09-25 19:43:13"
+      "updated_at": "2026-09-25 19:48:27"
     },
     {
       "id": "TASK_0122",
@@ -1059,5 +1063,5 @@
       "updated_at": "2026-09-25 19:46:26"
     }
   ],
-  "updated_at": "2026-09-25 19:46:26"
+  "updated_at": "2026-09-25 19:48:27"
 }
