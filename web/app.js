@@ -139,6 +139,7 @@
     btnExpandAll: $("btn-expand-all"),
     btnCollapseAll: $("btn-collapse-all"),
     btnPrintGantt: $("btn-print-gantt"),
+    btnExportGanttJson: $("btn-export-gantt-json"),
     generalNotes: $("general-notes"),
     generalNotesStatus: $("general-notes-status"),
     taskDialog: $("task-dialog"),
@@ -6368,6 +6369,144 @@
     renderBlueprintTransform();
   }
 
+  function ganttExportExpenseRow(allocation) {
+    const expense = expenseById(allocation.expense_id);
+    const quantity = Number(allocation.expected_quantity || 0);
+    const spend = expense ? allocationSpend(expense, quantity) : null;
+    return {
+      expense_id: allocation.expense_id,
+      description: expense?.description || "",
+      unit: expense?.unit || "",
+      expected_quantity: quantity,
+      estimated_total_brl: spend?.total ?? null,
+      unit_price_brl: spend?.unitPrice ?? expense?.median_unit_price ?? null,
+      category: expense?.category || "",
+      record_type: expense?.record_type || "",
+    };
+  }
+
+  function ganttExportTaskRow(task, { includeChildren = false } = {}) {
+    const allocations = (task.expense_allocations || []).map(
+      ganttExportExpenseRow,
+    );
+    const estimatedSpend = allocations.reduce(
+      (sum, row) => sum + (Number(row.estimated_total_brl) || 0),
+      0,
+    );
+    const row = {
+      id: task.id,
+      title: task.title,
+      description: task.description || "",
+      activity_type: task.activity_type,
+      parent_id: task.parent_id || "",
+      status: task.status,
+      status_label: statusLabels[task.status] || task.status,
+      priority: Number(task.priority || 0),
+      sequence: Number(task.sequence || 0),
+      start_date: task.start_date,
+      end_date: task.end_date,
+      duration_days: Math.max(1, dayDiff(task.start_date, task.end_date) + 1),
+      progress_percent: Number(task.progress || 0),
+      date_status: task.date_status || "",
+      expense_allocations: allocations,
+      estimated_spend_brl: roundMoney(estimatedSpend),
+    };
+    if (includeChildren) {
+      row.children = childTasks(task.id).map((child) =>
+        ganttExportTaskRow(child),
+      );
+      row.child_count = row.children.length;
+    }
+    return row;
+  }
+
+  function buildGanttAiExport() {
+    const macros = macroTasks().map((macro) =>
+      ganttExportTaskRow(macro, { includeChildren: true }),
+    );
+    const allTasks = macros.flatMap((macro) => [
+      macro,
+      ...(macro.children || []),
+    ]);
+    const dates = allTasks
+      .flatMap((task) => [task.start_date, task.end_date])
+      .filter(Boolean)
+      .sort();
+    const byStatus = Object.fromEntries(
+      Object.keys(statusLabels).map((status) => [
+        status,
+        allTasks.filter((task) => task.status === status).length,
+      ]),
+    );
+    return {
+      schema: "my-home/gantt-ai-export",
+      version: 1,
+      exported_at: new Date().toISOString(),
+      purpose:
+        "Self-contained Gantt / project schedule export for AI assistants to read, reason about, and discuss with the homeowner.",
+      how_to_use_this_file: [
+        "This JSON is the project schedule (cronograma) for a Brazilian home purchase/renovation app called my-home.",
+        "Read macros first: each macro is a phase. children[] are detailed activities under that phase.",
+        "Dates are ISO YYYY-MM-DD. duration_days is inclusive.",
+        "status values: pending | in_progress | blocked | completed (see status_glossary).",
+        "expense_allocations link schedule work to budget line items (materials/services) with estimated BRL totals when known.",
+        "Prefer answering in Portuguese (Brazil) unless the user asks otherwise.",
+        "When discussing the plan, keep macro → child hierarchy; do not flatten unless asked.",
+      ],
+      project: {
+        house_name: state.house?.display_name || "",
+        app: "my-home",
+        locale: "pt-BR",
+        currency: "BRL",
+      },
+      status_glossary: { ...statusLabels },
+      summary: {
+        macro_count: macros.length,
+        activity_count: allTasks.filter(
+          (task) => task.activity_type !== "macro",
+        ).length,
+        total_items: allTasks.length,
+        range_start: dates[0] || null,
+        range_end: dates[dates.length - 1] || null,
+        counts_by_status: byStatus,
+        estimated_spend_brl: roundMoney(
+          allTasks
+            .filter((task) => task.activity_type !== "macro")
+            .reduce(
+              (sum, task) => sum + (Number(task.estimated_spend_brl) || 0),
+              0,
+            ),
+        ),
+      },
+      macros,
+    };
+  }
+
+  function exportGanttJson() {
+    const payload = buildGanttAiExport();
+    const blob = new Blob([JSON.stringify(payload, null, 2)], {
+      type: "application/json;charset=utf-8",
+    });
+    const url = URL.createObjectURL(blob);
+    const anchor = document.createElement("a");
+    const houseName = String(state.house?.display_name || "my-home")
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .replace(/[^a-z0-9]+/gi, "-")
+      .replace(/^-|-$/g, "")
+      .toLowerCase();
+    const stamp = new Date().toISOString().slice(0, 10);
+    anchor.href = url;
+    anchor.download = `${houseName || "my-home"}-gantt-${stamp}.json`;
+    anchor.click();
+    URL.revokeObjectURL(url);
+    setStatus(
+      els.appStatus,
+      "ok",
+      "JSON do cronograma exportado para conversar com outros assistentes.",
+    );
+  }
+
   function exportBlueprintJson() {
     if (!state.house) return;
     const payload = {
@@ -7554,6 +7693,17 @@
       els.btnPrintGantt.disabled = false;
       setStatus(els.appStatus, "err", error.message);
     });
+  });
+  els.btnExportGanttJson?.addEventListener("click", () => {
+    try {
+      exportGanttJson();
+    } catch (error) {
+      setStatus(
+        els.appStatus,
+        "err",
+        error.message || "Falha ao exportar JSON",
+      );
+    }
   });
   els.taskSummary.addEventListener("click", (event) => {
     const button = event.target.closest("[data-gantt-status]");
