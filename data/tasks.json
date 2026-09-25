@@ -64,7 +64,7 @@
       "title": "FASE 1",
       "description": "Marco da compra e transição do imóvel.",
       "priority": 1,
-      "sequence": 4,
+      "sequence": 5,
       "start_date": "2026-09-17",
       "end_date": "2026-10-31",
       "status": "pending",
@@ -79,7 +79,7 @@
         "project.purchase_workflow"
       ],
       "created_at": "2026-09-15 23:51:00",
-      "updated_at": "2026-09-25 18:54:56"
+      "updated_at": "2026-09-25 19:00:16"
     },
     {
       "id": "TASK_0004",
@@ -167,7 +167,7 @@
       "title": "FASE 2",
       "description": "Marco da compra e transição do imóvel.",
       "priority": 1,
-      "sequence": 8,
+      "sequence": 9,
       "start_date": "2026-12-03",
       "end_date": "2027-01-28",
       "status": "pending",
@@ -182,14 +182,14 @@
         "project.purchase_workflow"
       ],
       "created_at": "2026-09-15 23:51:00",
-      "updated_at": "2026-09-25 18:54:56"
+      "updated_at": "2026-09-25 19:00:16"
     },
     {
       "id": "TASK_0009",
       "title": "FASE 3",
       "description": "Marco da compra e transição do imóvel.",
       "priority": 1,
-      "sequence": 9,
+      "sequence": 10,
       "start_date": "2027-01-29",
       "end_date": "2027-02-16",
       "status": "pending",
@@ -204,14 +204,14 @@
         "project.purchase_workflow"
       ],
       "created_at": "2026-09-15 23:51:00",
-      "updated_at": "2026-09-25 18:54:56"
+      "updated_at": "2026-09-25 19:00:16"
     },
     {
       "id": "TASK_0010",
       "title": "Mudança",
       "description": "Marco da compra e transição do imóvel.",
       "priority": 1,
-      "sequence": 3,
+      "sequence": 4,
       "start_date": "2026-12-06",
       "end_date": "2026-12-28",
       "status": "pending",
@@ -227,7 +227,7 @@
         "project.work_plan"
       ],
       "created_at": "2026-09-15 23:51:00",
-      "updated_at": "2026-09-25 18:54:56"
+      "updated_at": "2026-09-25 19:00:16"
     },
     {
       "id": "TASK_0011",
@@ -420,7 +420,7 @@
       "title": "Compra",
       "description": "Compra, regularizações documentais, Caixa e transição do imóvel.",
       "priority": 1,
-      "sequence": 2,
+      "sequence": 3,
       "start_date": "2026-10-15",
       "end_date": "2026-10-21",
       "status": "pending",
@@ -435,7 +435,7 @@
         "project.purchase_workflow"
       ],
       "created_at": "2026-09-16 15:19:49",
-      "updated_at": "2026-09-25 18:54:56"
+      "updated_at": "2026-09-25 19:00:16"
     },
     {
       "id": "TASK_0098",
@@ -467,7 +467,7 @@
       "title": "Financiamento",
       "description": "",
       "priority": 1,
-      "sequence": 7,
+      "sequence": 8,
       "start_date": "2026-12-02",
       "end_date": "2027-04-03",
       "status": "pending",
@@ -480,7 +480,7 @@
       "progress": 0,
       "source_refs": [],
       "created_at": "2026-09-18 13:54:33",
-      "updated_at": "2026-09-25 18:54:56"
+      "updated_at": "2026-09-25 19:00:16"
     },
     {
       "id": "TASK_0100",
@@ -562,7 +562,7 @@
       "title": "👱‍♀️ Jane",
       "description": "",
       "priority": 1,
-      "sequence": 6,
+      "sequence": 7,
       "start_date": "2026-12-03",
       "end_date": "2027-02-16",
       "status": "pending",
@@ -575,7 +575,7 @@
       "progress": 0,
       "source_refs": [],
       "created_at": "2026-09-18 13:58:18",
-      "updated_at": "2026-09-25 18:54:56"
+      "updated_at": "2026-09-25 19:00:16"
     },
     {
       "id": "TASK_0104",
@@ -640,7 +640,7 @@
       "progress": 100,
       "source_refs": [],
       "created_at": "2026-09-18 15:25:38",
-      "updated_at": "2026-09-25 18:54:56"
+      "updated_at": "2026-09-25 19:00:16"
     },
     {
       "id": "TASK_0107",
@@ -850,7 +850,7 @@
       "title": "Visita da CAIXA",
       "description": "",
       "priority": 1,
-      "sequence": 5,
+      "sequence": 6,
       "start_date": "2026-11-01",
       "end_date": "2026-12-01",
       "status": "pending",
@@ -863,7 +863,7 @@
       "progress": 0,
       "source_refs": [],
       "created_at": "2026-09-25 18:26:28",
-      "updated_at": "2026-09-25 18:54:56"
+      "updated_at": "2026-09-25 19:00:16"
     },
     {
       "id": "TASK_0116",
@@ -934,7 +934,47 @@
       "source_refs": [],
       "created_at": "2026-09-25 18:52:45",
       "updated_at": "2026-09-25 18:52:53"
+    },
+    {
+      "id": "TASK_0119",
+      "title": "Contrato",
+      "description": "",
+      "priority": 1,
+      "sequence": 2,
+      "start_date": "2026-09-16",
+      "end_date": "2026-09-16",
+      "status": "completed",
+      "expense_allocations": [],
+      "icon_key": "document-paper",
+      "icon_mode": "manual",
+      "date_status": "confirmed",
+      "activity_type": "macro",
+      "parent_id": "",
+      "progress": 100,
+      "source_refs": [],
+      "created_at": "2026-09-25 19:00:13",
+      "updated_at": "2026-09-25 19:00:16"
+    },
+    {
+      "id": "TASK_0120",
+      "title": "Assinatura do contrato",
+      "description": "",
+      "priority": 1,
+      "sequence": 1,
+      "start_date": "2026-09-16",
+      "end_date": "2026-09-16",
+      "status": "completed",
+      "expense_allocations": [],
+      "icon_key": "document-paper",
+      "icon_mode": "auto",
+      "date_status": "confirmed",
+      "activity_type": "task",
+      "parent_id": "TASK_0119",
+      "progress": 0,
+      "source_refs": [],
+      "created_at": "2026-09-25 19:00:35",
+      "updated_at": "2026-09-25 19:00:35"
     }
   ],
-  "updated_at": "2026-09-25 18:55:37"
+  "updated_at": "2026-09-25 19:00:35"
 }

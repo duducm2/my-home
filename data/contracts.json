@@ -296,7 +296,7 @@
       "status": "draft",
       "amount": 7500.0,
       "start_date": "2027-10-05",
-      "end_date": "2027-10-09",
+      "end_date": "2027-10-05",
       "notes": "",
       "archived": false,
       "document_versions": [
@@ -493,15 +493,7 @@
         {
           "id": "PAY_001",
           "date": "2027-10-05",
-          "amount": 3750.0,
-          "date_status": "estimated",
-          "source": "contract_monthly",
-          "notes": ""
-        },
-        {
-          "id": "PAY_002",
-          "date": "2027-10-09",
-          "amount": 3750.0,
+          "amount": 7500.0,
           "date_status": "estimated",
           "source": "contract_monthly",
           "notes": ""
@@ -511,5 +503,5 @@
       "payment_frequency": "monthly"
     }
   ],
-  "updated_at": "2026-09-18 21:12:40"
+  "updated_at": "2026-09-25 18:59:48"
 }
