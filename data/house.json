@@ -50,14 +50,18 @@
       "label": "QUINTAL LIVRE",
       "location": "Left side setback",
       "kind": "yard",
-      "features": ["Marked with dashed green bounding box"]
+      "features": [
+        "Marked with dashed green bounding box"
+      ]
     },
     {
       "id": "quintal_livre_fundo",
       "label": "QUINTAL LIVRE",
       "location": "Rear yard",
       "kind": "yard",
-      "features": ["Marked with dashed green bounding box"]
+      "features": [
+        "Marked with dashed green bounding box"
+      ]
     },
     {
       "id": "area_gourmet",
@@ -168,7 +172,9 @@
         "left": 2.15
       },
       "approx_area_m2": 1.72,
-      "features": ["Central circulation spine"],
+      "features": [
+        "Central circulation spine"
+      ],
       "openings": []
     },
     {
@@ -181,7 +187,10 @@
       },
       "wall_height_m": 2.7,
       "approx_area_m2": 3.52,
-      "features": ["Small window on left wall", "Door to hallway (corredor)"],
+      "features": [
+        "Small window on left wall",
+        "Door to hallway (corredor)"
+      ],
       "architectural_notes": "Dimensões oficiais consolidadas no resumo-mestre: 1,89 × 1,86 m. Altura de parede anotada na planta: 2,70 m. A janela lateral esquerda não possui cota própria; largura, peitoril e altura permanecem estimativas proporcionais explícitas.",
       "openings": [
         {
@@ -208,7 +217,10 @@
         "right": 3.0
       },
       "approx_area_m2": 8.82,
-      "features": ["Window on right wall", "Door to hallway (corredor)"],
+      "features": [
+        "Window on right wall",
+        "Door to hallway (corredor)"
+      ],
       "openings": [
         {
           "type": "window",
@@ -378,7 +390,7 @@
     ]
   },
   "notes": "",
-  "updated_at": "2026-09-18 11:56:02",
+  "updated_at": "2026-09-25 19:28:13",
   "model_3d": {
     "version": 2,
     "model_type": "schematic_architectural_dollhouse",
@@ -504,8 +516,14 @@
     "walls": [
       {
         "id": "outer_front",
-        "start": [0.0, 0.0],
-        "end": [5.94, 0.0],
+        "start": [
+          0.0,
+          0.0
+        ],
+        "end": [
+          5.94,
+          0.0
+        ],
         "kind": "exterior",
         "openings": [
           {
@@ -521,8 +539,14 @@
       },
       {
         "id": "outer_right",
-        "start": [5.94, 0.0],
-        "end": [5.94, 9.11],
+        "start": [
+          5.94,
+          0.0
+        ],
+        "end": [
+          5.94,
+          9.11
+        ],
         "kind": "exterior",
         "openings": [
           {
@@ -556,24 +580,42 @@
       },
       {
         "id": "outer_rear_quarto_2",
-        "start": [5.94, 9.11],
-        "end": [3.0, 9.11],
+        "start": [
+          5.94,
+          9.11
+        ],
+        "end": [
+          3.0,
+          9.11
+        ],
         "kind": "exterior",
         "openings": [],
         "geometry_source": "solid rear wall shown on blueprint"
       },
       {
         "id": "outer_rear_transition",
-        "start": [3.0, 9.11],
-        "end": [2.35, 9.11],
+        "start": [
+          3.0,
+          9.11
+        ],
+        "end": [
+          2.35,
+          9.11
+        ],
         "kind": "exterior",
         "openings": [],
         "geometry_source": "solid transition preserving continuous rear facade across schematic room-coordinate gap"
       },
       {
         "id": "outer_rear_sala",
-        "start": [2.35, 9.11],
-        "end": [0.0, 9.11],
+        "start": [
+          2.35,
+          9.11
+        ],
+        "end": [
+          0.0,
+          9.11
+        ],
         "kind": "exterior",
         "openings": [
           {
@@ -591,8 +633,14 @@
       },
       {
         "id": "outer_left",
-        "start": [0.0, 9.11],
-        "end": [0.0, 0.0],
+        "start": [
+          0.0,
+          9.11
+        ],
+        "end": [
+          0.0,
+          0.0
+        ],
         "kind": "exterior",
         "openings": [
           {
@@ -617,8 +665,14 @@
       },
       {
         "id": "partition_left_front",
-        "start": [0.0, 3.36],
-        "end": [3.0, 3.36],
+        "start": [
+          0.0,
+          3.36
+        ],
+        "end": [
+          3.0,
+          3.36
+        ],
         "kind": "interior",
         "openings": [
           {
@@ -631,8 +685,14 @@
       },
       {
         "id": "partition_left_rear",
-        "start": [0.0, 5.22],
-        "end": [3.0, 5.22],
+        "start": [
+          0.0,
+          5.22
+        ],
+        "end": [
+          3.0,
+          5.22
+        ],
         "kind": "interior",
         "openings": [
           {
@@ -645,8 +705,14 @@
       },
       {
         "id": "partition_wc",
-        "start": [1.89, 3.36],
-        "end": [1.89, 5.22],
+        "start": [
+          1.89,
+          3.36
+        ],
+        "end": [
+          1.89,
+          5.22
+        ],
         "kind": "interior",
         "openings": [
           {
@@ -659,8 +725,14 @@
       },
       {
         "id": "partition_center",
-        "start": [3.0, 0.0],
-        "end": [3.0, 9.11],
+        "start": [
+          3.0,
+          0.0
+        ],
+        "end": [
+          3.0,
+          9.11
+        ],
         "kind": "interior",
         "openings": [
           {
@@ -685,15 +757,27 @@
       },
       {
         "id": "partition_right_front",
-        "start": [3.0, 2.47],
-        "end": [5.94, 2.47],
+        "start": [
+          3.0,
+          2.47
+        ],
+        "end": [
+          5.94,
+          2.47
+        ],
         "kind": "interior",
         "openings": []
       },
       {
         "id": "partition_right_rear",
-        "start": [3.0, 5.47],
-        "end": [5.94, 5.47],
+        "start": [
+          3.0,
+          5.47
+        ],
+        "end": [
+          5.94,
+          5.47
+        ],
         "kind": "interior",
         "openings": []
       }
@@ -809,29 +893,22 @@
       "Quintais, portão e recuos sem cotas foram posicionados de modo aproximado; a Lavanderia no Corredor também usa footprint e equipamentos esquemáticos para ficar visível no modelo."
     ],
     "layout_overrides": {},
-    "placed_assets": [
-      {
-        "id": "asset_mu4eih6y_vumf",
-        "asset_type": "sofa",
-        "label": "Sofá",
-        "x_m": 4.25,
-        "y_m": 0.11,
-        "z_m": 14.325,
-        "width_m": 2.0,
-        "height_m": 0.78,
-        "depth_m": 0.85,
-        "rotation_y_deg": 0.0,
-        "color": "#8f6f61",
-        "parent_kind": "lot",
-        "parent_id": "",
-        "status": "user_placed"
-      }
-    ],
+    "placed_assets": [],
     "source": {
       "blueprint": "data/blueprint.jpg",
       "normalized_at": "2026-09-15",
       "accuracy": "blueprint_aligned_with_measured_rooms_and_marked_proportional_openings"
     },
-    "editor_updated_at": "2026-09-16 14:55:37"
+    "editor_updated_at": "2026-09-25 19:28:13",
+    "removed_layout_keys": [
+      "fixture:laundry:floor_drain",
+      "fixture:laundry:laundry_counter",
+      "fixture:laundry:washing_machine",
+      "roof:main",
+      "zone:gourmet",
+      "zone:laundry",
+      "zone:left_yard",
+      "zone:rear_yard"
+    ]
   }
 }
