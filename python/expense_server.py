@@ -7,6 +7,7 @@ import json
 import math
 import mimetypes
 import os
+import socket
 import sys
 import traceback
 import webbrowser
@@ -120,7 +121,9 @@ def get_quotation_planning(data_dir: Path) -> QuotationPlanningStore:
     return _QUOTATION_PLANNING
 
 
-def save_cashflow_projected_total(data_dir: Path, projected_total: Any) -> dict[str, Any]:
+def save_cashflow_projected_total(
+    data_dir: Path, projected_total: Any
+) -> dict[str, Any]:
     try:
         total = float(projected_total)
     except (TypeError, ValueError) as exc:
@@ -810,6 +813,17 @@ class ExpenseHandler(BaseHTTPRequestHandler):
             )
 
 
+class HomeHTTPServer(ThreadingHTTPServer):
+    """One listener on 8768. A second start must fail instead of sharing the port."""
+
+    allow_reuse_address = False
+
+    def server_bind(self) -> None:
+        if sys.platform == "win32" and hasattr(socket, "SO_EXCLUSIVEADDRUSE"):
+            self.socket.setsockopt(socket.SOL_SOCKET, socket.SO_EXCLUSIVEADDRUSE, 1)
+        super().server_bind()
+
+
 def make_handler(data_dir: Path):
     class BoundHandler(ExpenseHandler):
         pass
@@ -830,7 +844,7 @@ def main() -> int:
     get_providers(args.data_dir)
     get_contracts(args.data_dir)
     get_quick_tasks(args.data_dir)
-    server = ThreadingHTTPServer((args.host, args.port), make_handler(args.data_dir))
+    server = HomeHTTPServer((args.host, args.port), make_handler(args.data_dir))
     url = f"http://{args.host}:{args.port}/"
     print(f"my-home server listening on {url}", flush=True)
     print(f"Data: {args.data_dir.resolve()}", flush=True)

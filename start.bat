@@ -11,28 +11,38 @@ if not defined PY (
   exit /b 1
 )
 
-REM Start server in a new console if not already healthy
-powershell -NoProfile -Command "try { $r = Invoke-WebRequest -UseBasicParsing -Uri 'http://127.0.0.1:8768/health' -TimeoutSec 1; if ($r.StatusCode -eq 200) { exit 0 } else { exit 1 } } catch { exit 1 }" >nul 2>&1
-if errorlevel 1 (
-  echo Iniciando servidor my-home...
-  start "my-home expenses" %PY% "%~dp0python\expense_server.py"
-  set "READY="
-  for /L %%I in (1,1,15) do (
-    if not defined READY (
-      timeout /t 1 /nobreak >nul
-      powershell -NoProfile -Command "try { $r = Invoke-WebRequest -UseBasicParsing -Uri 'http://127.0.0.1:8768/health' -TimeoutSec 1; if ($r.StatusCode -eq 200) { exit 0 } else { exit 1 } } catch { exit 1 }" >nul 2>&1
-      if not errorlevel 1 set "READY=1"
-    )
-  )
+call :health
+if not errorlevel 1 goto open
+
+echo O servidor em 8768 nao respondeu. Encerrando copias antigas...
+powershell -NoProfile -Command "$procs = @(Get-CimInstance Win32_Process | Where-Object { $_.CommandLine -like '*expense_server.py*' }); foreach ($p in $procs) { Stop-Process -Id $p.ProcessId -Force -ErrorAction SilentlyContinue }"
+powershell -NoProfile -Command "Start-Sleep -Seconds 1" >nul
+
+echo Iniciando servidor my-home...
+start "my-home expenses" /D "%~dp0" %PY% "%~dp0python\expense_server.py"
+
+set "READY="
+for /L %%I in (1,1,20) do (
   if not defined READY (
-    echo.
-    echo Falha ao iniciar o servidor em http://127.0.0.1:8768/
-    echo Veja a janela "my-home expenses" para o erro ^(ex.: tasks.json invalido^).
-    echo.
-    pause
-    exit /b 1
+    powershell -NoProfile -Command "Start-Sleep -Seconds 1" >nul
+    call :health
+    if not errorlevel 1 set "READY=1"
   )
 )
+if not defined READY (
+  echo.
+  echo Falha ao iniciar o servidor em http://127.0.0.1:8768/
+  echo Veja a janela "my-home expenses" para o erro.
+  echo.
+  pause
+  exit /b 1
+)
 
+:open
 start "" "http://127.0.0.1:8768/"
 endlocal
+exit /b 0
+
+:health
+powershell -NoProfile -Command "try { $r = Invoke-WebRequest -UseBasicParsing -Uri 'http://127.0.0.1:8768/health' -TimeoutSec 2; if ($r.StatusCode -eq 200) { exit 0 } else { exit 1 } } catch { exit 1 }" >nul 2>&1
+exit /b %errorlevel%
