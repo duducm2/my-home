@@ -84,9 +84,6 @@
     btnPush: $("btn-push"),
     pushStatus: $("push-status"),
     dashTotalAll: $("dash-total-all"),
-    dashTotalMinimum: $("dash-total-minimum"),
-    dashTotalMaximum: $("dash-total-maximum"),
-    dashUnpricedCount: $("dash-unpriced-count"),
     dashForecastAll: $("dash-forecast-all"),
     dashForecastMaterials: $("dash-forecast-materials"),
     dashForecastServices: $("dash-forecast-services"),
@@ -103,6 +100,9 @@
     fundingPie: $("funding-pie"),
     overallCoverage: $("overall-coverage"),
     coverageDonut: $("coverage-donut"),
+    coverageCard: $("coverage-card"),
+    coverageStatusLabel: $("coverage-status-label"),
+    coverageHeadline: $("coverage-headline"),
     overallGap: $("overall-gap"),
     categoryChart: $("category-chart"),
     dashMaterials: $("dash-materials"),
@@ -1340,84 +1340,78 @@
       .sort((left, right) => left.date.localeCompare(right.date));
   }
 
-  /** Dashboard budget = final cumulative of Gantt-linked payday events. */
-  function ganttSpendModel() {
-    const events = paymentEvents();
-    const expenseById = new Map(
-      (state.expenses || []).map((expense) => [expense.id, expense]),
+  function selectedQuotation(expense) {
+    const selectedId = String(expense?.selected_quotation_id || "");
+    if (!selectedId) return null;
+    return (
+      (expense.quotations || []).find(
+        (quote) =>
+          quote.id === selectedId &&
+          !quote.archived &&
+          quote.unit_price != null,
+      ) || null
     );
-    const spendByExpense = new Map();
-    for (const payment of events) {
-      const expenseId = payment.expenseId;
-      if (!expenseId) continue;
-      spendByExpense.set(
-        expenseId,
-        (spendByExpense.get(expenseId) || 0) + Number(payment.amount || 0),
-      );
+  }
+
+  function allocatedQuantity(expenseId) {
+    let quantity = 0;
+    for (const task of state.tasks || []) {
+      if (task.activity_type === "macro") continue;
+      for (const allocation of task.expense_allocations || []) {
+        if (String(allocation.expense_id || "") !== expenseId) continue;
+        const expected = Number(allocation.expected_quantity || 0);
+        if (Number.isFinite(expected) && expected > 0) quantity += expected;
+      }
     }
+    return quantity;
+  }
+
+  function selectedQuotationSpend(expense) {
+    const quote = selectedQuotation(expense);
+    if (!quote) return null;
+    const allocated = allocatedQuantity(expense.id);
+    const quantity = allocated > 0 ? allocated : Number(quote.quantity || 1);
+    return {
+      quantity,
+      total: roundMoney(
+        quantity * Number(quote.unit_price || 0) +
+          Number(quote.shipping_cost || 0),
+      ),
+    };
+  }
+
+  /** Dashboard budget = selected quotations of expenses linked on the Gantt. */
+  function ganttSpendModel() {
+    const allocatedIds = ganttAllocatedExpenseIds();
     let all = 0;
-    let minimum = 0;
-    let maximum = 0;
     let materials = 0;
     let services = 0;
-    let unpricedCount = 0;
     const lines = [];
-    for (const [expenseId, spend] of spendByExpense) {
-      const expense = expenseById.get(expenseId);
-      const amount = roundMoney(spend);
+    for (const expense of state.expenses || []) {
+      if (!allocatedIds.has(expense.id)) continue;
+      const spend = selectedQuotationSpend(expense);
+      if (!spend) continue;
+      const amount = spend.total;
       all += amount;
-      const planned = Number(expense?.scenario?.planned || expense?.value || 0);
-      const minSc = Number(expense?.scenario?.minimum);
-      const maxSc = Number(expense?.scenario?.maximum);
-      if (expense?.scenario?.unpriced) unpricedCount += 1;
-      if (
-        planned > 0 &&
-        Number.isFinite(minSc) &&
-        Number.isFinite(maxSc) &&
-        planned !== 0
-      ) {
-        minimum += amount * (minSc / planned);
-        maximum += amount * (maxSc / planned);
-      } else {
-        minimum += amount;
-        maximum += amount;
-      }
       const isMaterial =
-        expense?.record_type === "material" ||
-        expense?.cost_class === "variable_material";
+        expense.record_type === "material" ||
+        expense.cost_class === "variable_material";
       if (isMaterial) materials += amount;
       else services += amount;
       lines.push({
-        expense_id: expenseId,
-        description: expense?.description || "",
-        record_type: expense?.record_type,
-        cost_class: expense?.cost_class,
-        category: expense?.category,
-        icon_key: expense?.icon_key,
-        quantity: expense?.quantity,
+        expense_id: expense.id,
+        description: expense.description || "",
+        record_type: expense.record_type,
+        cost_class: expense.cost_class,
+        category: expense.category,
+        icon_key: expense.icon_key,
+        quantity: spend.quantity,
         forecast_total: amount,
         value: amount,
-        scenario: {
-          planned: amount,
-          minimum: roundMoney(
-            planned > 0 && Number.isFinite(minSc)
-              ? amount * (minSc / planned)
-              : amount,
-          ),
-          maximum: roundMoney(
-            planned > 0 && Number.isFinite(maxSc)
-              ? amount * (maxSc / planned)
-              : amount,
-          ),
-          unpriced: Boolean(expense?.scenario?.unpriced),
-        },
       });
     }
     return {
       all: roundMoney(all),
-      minimum: roundMoney(minimum),
-      maximum: roundMoney(maximum),
-      unpriced_count: unpricedCount,
       materials: roundMoney(materials),
       services: roundMoney(services),
       lines,
@@ -1725,15 +1719,7 @@
           (sum, item) => sum + Number(item.value || 0),
           0,
         );
-        const minimum = items.reduce(
-          (sum, item) => sum + Number(item.scenario?.minimum || 0),
-          0,
-        );
-        const maximum = items.reduce(
-          (sum, item) => sum + Number(item.scenario?.maximum || 0),
-          0,
-        );
-        const range = `${formatMoney(total)} · mín. ${formatMoney(minimum)} · máx. ${formatMoney(maximum)}`;
+        const range = formatMoney(total);
         return `<article class="dashboard-expense-category">
           <div class="dashboard-expense-category-head">
             <span class="expense-hover-target category-hover-target" tabindex="0" data-hover-name="${escapeAttr(group.label)}" data-hover-amount="${escapeAttr(range)}" aria-label="${escapeAttr(`${group.label}: ${range}`)}">${iconMarkup(group.icon, group.label)}</span>
@@ -1743,7 +1729,7 @@
             ${items
               .map(
                 (item) =>
-                  `<span class="expense-hover-target dashboard-expense-icon" tabindex="0" data-hover-name="${escapeAttr(item.description)}" data-hover-amount="${escapeAttr(`${formatMoney(item.value)} · mín. ${formatMoney(item.scenario?.minimum || 0)} · máx. ${formatMoney(item.scenario?.maximum || 0)}`)}" aria-label="${escapeAttr(`${item.description}: ${formatMoney(item.value)}`)}">${iconMarkup(item.icon_key, item.description)}</span>`,
+                  `<span class="expense-hover-target dashboard-expense-icon" tabindex="0" data-hover-name="${escapeAttr(item.description)}" data-hover-amount="${escapeAttr(formatMoney(item.value))}" aria-label="${escapeAttr(`${item.description}: ${formatMoney(item.value)}`)}">${iconMarkup(item.icon_key, item.description)}</span>`,
               )
               .join("")}
           </div>
@@ -1860,9 +1846,6 @@
   function renderDashboard() {
     const spend = ganttSpendModel();
     els.dashTotalAll.textContent = formatMoney(spend.all);
-    els.dashTotalMinimum.textContent = formatMoney(spend.minimum);
-    els.dashTotalMaximum.textContent = formatMoney(spend.maximum);
-    els.dashUnpricedCount.textContent = `${spend.unpriced_count} sem cotação`;
     els.dashForecastAll.textContent = formatMoney(spend.all);
     els.dashForecastMaterials.textContent = formatMoney(spend.materials);
     els.dashForecastServices.textContent = formatMoney(spend.services);
@@ -1888,7 +1871,7 @@
       : "<li><span>Nenhuma despesa vinculada ao cronograma</span><strong>—</strong></li>";
     if (els.dashForecastCaveat) {
       els.dashForecastCaveat.textContent =
-        "Acumulado final dos pagamentos das despesas vinculadas às atividades do Gantt.";
+        "Soma das cotações escolhidas nas despesas vinculadas ao cronograma.";
     }
     const funding = (state.project || {}).funding || {};
     const sources = funding.sources || [];
@@ -1969,22 +1952,41 @@
     );
     const projectedCovered = fundsTotal + projectedSavings;
     const budgetTotal = spend.all;
-    const coverage = budgetTotal ? (projectedCovered / budgetTotal) * 100 : 0;
-    els.overallCoverage.textContent = `${coverage.toFixed(1).replace(".", ",")}%`;
+    const shortfall = roundMoney(Math.max(0, budgetTotal - projectedCovered));
+    const margin = roundMoney(Math.max(0, projectedCovered - budgetTotal));
+    const overBudget = shortfall > 0;
+    const coverage = budgetTotal
+      ? Math.min(100, (projectedCovered / budgetTotal) * 100)
+      : 0;
+    const coverageLabel = `${coverage.toFixed(1).replace(".", ",")}%`;
+    els.overallCoverage.textContent = coverageLabel;
     els.coverageDonut.style.setProperty(
       "--coverage-angle",
-      `${Math.min(100, coverage) * 3.6}deg`,
+      `${coverage * 3.6}deg`,
     );
-    els.coverageDonut.setAttribute(
-      "aria-label",
-      `${coverage.toFixed(1).replace(".", ",")}% do orçamento coberto`,
-    );
-    const gap = projectedCovered - budgetTotal;
-    els.overallGap.textContent = `${formatMoney(fundsTotal)} atuais + ${formatMoney(projectedSavings)} projetados · ${
-      gap >= 0
-        ? `margem de ${formatMoney(gap)}`
-        : `lacuna de ${formatMoney(Math.abs(gap))}`
-    } · vs cronograma: ${formatMoney(budgetTotal)}`;
+    els.coverageDonut.classList.toggle("is-over", overBudget);
+    els.coverageCard?.classList.toggle("is-over", overBudget);
+    if (overBudget) {
+      els.coverageStatusLabel.textContent = "Ultrapassa a cooperação";
+      els.coverageHeadline.textContent = formatMoney(shortfall);
+      els.coverageHeadline.classList.add("negative");
+      els.coverageHeadline.classList.remove("positive");
+      els.overallGap.textContent = `Orçamento ${formatMoney(budgetTotal)} · cooperação ${formatMoney(projectedCovered)}`;
+      els.coverageDonut.setAttribute(
+        "aria-label",
+        `Orçamento ultrapassa a cooperação em ${formatMoney(shortfall)}. ${coverageLabel} coberto.`,
+      );
+    } else {
+      els.coverageStatusLabel.textContent = "Margem na cooperação";
+      els.coverageHeadline.textContent = formatMoney(margin);
+      els.coverageHeadline.classList.add("positive");
+      els.coverageHeadline.classList.remove("negative");
+      els.overallGap.textContent = `${formatMoney(fundsTotal)} atuais + ${formatMoney(projectedSavings)} projetados · orçamento ${formatMoney(budgetTotal)}`;
+      els.coverageDonut.setAttribute(
+        "aria-label",
+        `${coverageLabel} do orçamento coberto, margem de ${formatMoney(margin)}`,
+      );
+    }
     const categorySpend = Object.fromEntries(
       dashboardCategoryDefinitions.map((group) => [group.id, 0]),
     );

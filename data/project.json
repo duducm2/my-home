@@ -154,8 +154,8 @@
       {
         "id": "fgts",
         "label": "FGTS",
-        "amount": 55440.4,
-        "balance": 55440.4,
+        "amount": 55978.7,
+        "balance": 55978.7,
         "restriction": "house_entry_only",
         "restriction_note": "Uso restrito ao pagamento da entrada do imóvel."
       },
@@ -163,12 +163,12 @@
         "id": "flexible_funds",
         "label": "Recursos livres",
         "amount": 66046.6,
-        "balance": 52070.4,
+        "balance": 54232.21,
         "restriction": "other_project_costs",
         "restriction_note": "Disponível para documentação, obras, mudança, reservas e demais custos do projeto."
       }
     ],
-    "balance_updated_at": "2026-10-03 11:46:00"
+    "balance_updated_at": "2026-10-03 12:08:34"
   },
   "purchase_contract": {
     "title": "Instrumento Particular de Promessa de Venda e Compra de Bem Imóvel e Outras Avenças",

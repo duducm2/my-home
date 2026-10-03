@@ -6,7 +6,7 @@
     <meta name="color-scheme" content="dark" />
     <title>my-home</title>
     <link rel="stylesheet" href="/styles.css?v=20260918-dashboard-refresh" />
-    <link rel="stylesheet" href="/tasks.css?v=20260918-print-gantt" />
+    <link rel="stylesheet" href="/tasks.css?v=20261003-coverage-over-2" />
     <script type="importmap">
       { "imports": { "three": "/vendor/three/three.module.js" } }
     </script>
@@ -169,15 +169,6 @@
                 <h3>Orçamento total</h3>
               </div>
               <strong id="dash-total-all" class="hero-metric">R$ 0,00</strong>
-              <div class="scenario-summary" aria-label="Cenários de custo">
-                <span
-                  >Mínimo <strong id="dash-total-minimum">R$ 0,00</strong></span
-                >
-                <span
-                  >Máximo <strong id="dash-total-maximum">R$ 0,00</strong></span
-                >
-                <span id="dash-unpriced-count">0 sem cotação</span>
-              </div>
               <div
                 class="forecast-summary"
                 aria-label="Detalhe do orçamento no cronograma"
@@ -204,8 +195,8 @@
                   ></ol>
                 </details>
                 <p id="dash-forecast-caveat" class="forecast-caveat">
-                  Acumulado final dos pagamentos das despesas vinculadas às
-                  atividades do Gantt.
+                  Soma das cotações escolhidas nas despesas vinculadas ao
+                  cronograma.
                 </p>
               </div>
             </article>
@@ -288,7 +279,7 @@
                 </div>
               </div>
             </article>
-            <article class="panel bento-card bento-coverage">
+            <article class="panel bento-card bento-coverage" id="coverage-card">
               <div class="panel-head">
                 <h3>Cobertura projetada</h3>
                 <span class="panel-kicker">16 meses</span>
@@ -306,7 +297,10 @@
                   </div>
                 </div>
                 <div class="coverage-donut-copy">
-                  <span>Recursos atuais + reserva futura</span>
+                  <span id="coverage-status-label"
+                    >Recursos atuais + reserva futura</span
+                  >
+                  <strong id="coverage-headline">R$ 0,00</strong>
                   <p id="overall-gap" class="section-sub"></p>
                 </div>
               </div>
@@ -2143,6 +2137,6 @@
     </dialog>
 
     <datalist id="category-suggestions"></datalist>
-    <script src="/app.js?v=20260918-multi-payday"></script>
+    <script src="/app.js?v=20261003-coverage-over"></script>
   </body>
 </html>

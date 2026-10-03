@@ -1598,6 +1598,7 @@ select[multiple] {
 
 .coverage-donut {
   --coverage-angle: 0deg;
+  --coverage-shortfall: #ff4d4f;
   position: relative;
   display: grid;
   width: 112px;
@@ -1609,6 +1610,24 @@ select[multiple] {
     #353538 var(--coverage-angle) 360deg
   );
   box-shadow: inset 0 0 0 1px #ffffff0f;
+}
+
+.coverage-donut.is-over {
+  background: conic-gradient(
+    var(--gold) 0 var(--coverage-angle),
+    var(--coverage-shortfall) var(--coverage-angle) 360deg
+  );
+  box-shadow:
+    inset 0 0 0 1px #ffffff0f,
+    0 0 0 3px #ff4d4f33;
+}
+
+.bento-coverage.is-over {
+  outline: 1px solid #ff4d4f66;
+}
+
+.coverage-donut.is-over strong {
+  color: #ff8a84;
 }
 
 .coverage-donut::before {
@@ -1647,8 +1666,19 @@ select[multiple] {
 }
 
 .coverage-donut-copy strong {
-  font-size: 16px;
+  margin-top: 4px;
+  font-size: clamp(15px, 1.5vw, 22px);
+  line-height: 1.1;
   font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.coverage-donut-copy strong.negative {
+  color: #ff746c;
+}
+
+.coverage-donut-copy strong.positive {
+  color: #2ecc71;
 }
 
 .coverage-donut-copy .section-sub {

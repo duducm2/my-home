@@ -8071,11 +8071,11 @@
       "source": "manual",
       "provider_id": "",
       "vendor": "Caixa",
-      "unit_price": 55440.4,
+      "unit_price": 55978.7,
       "quantity": 1.0,
       "unit": "pagamento",
       "shipping_cost": 0.0,
-      "total_price": 55440.4,
+      "total_price": 55978.7,
       "product_url": "",
       "checked_at": "2026-09-16",
       "notes": "",
@@ -8107,5 +8107,5 @@
       }
     }
   ],
-  "updated_at": "2026-10-03 11:46:00"
+  "updated_at": "2026-10-03 11:48:17"
 }
