@@ -173,6 +173,50 @@ class HouseStore:
             os.replace(temporary, self.project_path)
         return self.load()
 
+    def save_funding_source_amount(
+        self, source_id: Any, amount: Any
+    ) -> dict[str, Any]:
+        source_id = str(source_id or "").strip()
+        if source_id != "flexible_funds":
+            raise ValueError("amount edits are only supported for flexible funds")
+        try:
+            value = float(amount)
+        except (TypeError, ValueError) as exc:
+            raise ValueError("amount must be numeric") from exc
+        if not math.isfinite(value) or value < 0:
+            raise ValueError("amount must be a finite nonnegative number")
+        value = round(value, 2)
+        with self._lock:
+            if not self.project_path.is_file():
+                raise ValueError("project.json missing")
+            project = json.loads(self.project_path.read_text(encoding="utf-8-sig"))
+            funding = dict(project.get("funding") or {})
+            sources = list(funding.get("sources") or [])
+            updated = False
+            for index, source in enumerate(sources):
+                if not isinstance(source, dict):
+                    continue
+                if str(source.get("id") or "") != source_id:
+                    continue
+                row = dict(source)
+                row["amount"] = value
+                sources[index] = row
+                updated = True
+                break
+            if not updated:
+                raise ValueError(f"funding source not found: {source_id}")
+            funding["sources"] = sources
+            funding["as_of"] = datetime.now().strftime("%Y-%m-%d")
+            project["funding"] = funding
+            temporary = self.project_path.with_suffix(".json.tmp")
+            temporary.write_text(
+                json.dumps(project, ensure_ascii=False, indent=2) + "\n",
+                encoding="utf-8",
+                newline="\n",
+            )
+            os.replace(temporary, self.project_path)
+        return self.load()
+
     def save_name(self, name: Any) -> dict[str, Any]:
         display_name = " ".join(str(name or "").split())
         if not display_name:

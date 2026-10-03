@@ -4710,6 +4710,39 @@ body.model3d-active {
   margin-top: 12px;
 }
 
+.finance-total-grid {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.finance-pair-grid {
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+}
+
+.finance-projection.is-hidden {
+  display: none;
+}
+
+.finance-view-toggle legend {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+.finance-block-title {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 650;
+}
+
+.finance-projection > .payment-projection-panel {
+  margin-top: 12px;
+}
+
 .finance-summary-grid > .bento-card {
   display: flex;
   flex-direction: column;
@@ -4768,8 +4801,13 @@ body.model3d-active {
 }
 
 @media (max-width: 900px) {
-  .finance-summary-grid {
+  .finance-summary-grid,
+  .finance-pair-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .finance-total-grid {
+    grid-template-columns: 1fr;
   }
 
   .finance-summary-grid .bento-coverage {
@@ -4791,7 +4829,8 @@ body.model3d-active {
   }
 
   .finance-summary-grid,
-  .dashboard-support-grid {
+  .finance-pair-grid,
+  .finance-total-grid {
     grid-template-columns: 1fr;
   }
 

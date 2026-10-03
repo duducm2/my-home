@@ -4,7 +4,9 @@ from __future__ import annotations
 
 import argparse
 import json
+import math
 import mimetypes
+import os
 import sys
 import traceback
 import webbrowser
@@ -116,6 +118,45 @@ def get_quotation_planning(data_dir: Path) -> QuotationPlanningStore:
     ):
         _QUOTATION_PLANNING = QuotationPlanningStore(data_dir)
     return _QUOTATION_PLANNING
+
+
+def save_cashflow_projected_total(data_dir: Path, projected_total: Any) -> dict[str, Any]:
+    try:
+        total = float(projected_total)
+    except (TypeError, ValueError) as exc:
+        raise ValueError("projected_total must be numeric") from exc
+    if not math.isfinite(total) or total < 0:
+        raise ValueError("projected_total must be a finite nonnegative number")
+    total = round(total, 2)
+    path = data_dir / "cashflow-projection.json"
+    if not path.is_file():
+        raise ValueError("cashflow-projection.json missing")
+    payload = json.loads(path.read_text(encoding="utf-8-sig"))
+    plan = dict(payload.get("house_savings_plan") or {})
+    installments = int(plan.get("installments") or 0)
+    if installments <= 0:
+        raise ValueError("house savings plan has no installments")
+    eduardo = float(plan.get("eduardo_monthly") or 0)
+    leonardo = float(plan.get("leonardo_monthly") or 0)
+    combined = float(plan.get("combined_monthly") or 0) or (eduardo + leonardo)
+    monthly = round(total / installments, 2)
+    eduardo_share = eduardo / combined if combined > 0 else 0.5
+    eduardo_monthly = round(monthly * eduardo_share, 2)
+    leonardo_monthly = round(monthly - eduardo_monthly, 2)
+    plan["projected_total"] = total
+    plan["combined_monthly"] = round(eduardo_monthly + leonardo_monthly, 2)
+    plan["eduardo_monthly"] = eduardo_monthly
+    plan["leonardo_monthly"] = leonardo_monthly
+    plan["installments"] = installments
+    payload["house_savings_plan"] = plan
+    temporary = path.with_suffix(".json.tmp")
+    temporary.write_text(
+        json.dumps(payload, ensure_ascii=False, indent=2) + "\n",
+        encoding="utf-8",
+        newline="\n",
+    )
+    os.replace(temporary, path)
+    return payload
 
 
 class ExpenseHandler(BaseHTTPRequestHandler):
@@ -564,6 +605,21 @@ class ExpenseHandler(BaseHTTPRequestHandler):
                 self._json(200, get_house(self.data_dir).save(house_payload))
             elif path == "/api/house/name":
                 self._json(200, get_house(self.data_dir).save_name(payload.get("name")))
+            elif path == "/api/project/funding/amount":
+                source_id = str(payload.get("source_id") or "").strip()
+                result = get_house(self.data_dir).save_funding_source_amount(
+                    source_id,
+                    payload.get("amount"),
+                )
+                self._json(200, result)
+            elif path == "/api/cashflow":
+                self._json(
+                    200,
+                    save_cashflow_projected_total(
+                        self.data_dir,
+                        payload.get("projected_total"),
+                    ),
+                )
             elif path == "/api/project/funding/balance":
                 source_id = str(payload.get("source_id") or "").strip()
                 result = get_house(self.data_dir).save_funding_source_balance(

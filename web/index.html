@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="color-scheme" content="dark" />
     <title>my-home</title>
-    <link rel="stylesheet" href="/styles.css?v=20260918-dashboard-refresh" />
-    <link rel="stylesheet" href="/tasks.css?v=20261003-coverage-over-2" />
+    <link rel="stylesheet" href="/styles.css?v=20261003-finance-toggle-2" />
+    <link rel="stylesheet" href="/tasks.css?v=20261003-finance-mirror" />
     <script type="importmap">
       { "imports": { "three": "/vendor/three/three.module.js" } }
     </script>
@@ -158,12 +158,32 @@
                 Visão financeira
               </h2>
               <p class="section-sub">
-                Orçamento, recursos, cobertura e categorias em uma única visão.
+                Alterne entre a projeção do início e o que ainda falta pagar.
               </p>
             </div>
-            <span class="panel-kicker">Agora</span>
+            <fieldset
+              id="finance-view-toggle"
+              class="gantt-segmented finance-view-toggle"
+            >
+              <legend>Leitura financeira</legend>
+              <label
+                ><input
+                  type="radio"
+                  name="finance-view"
+                  value="initial"
+                  checked
+                /><span>No início</span></label
+              >
+              <label
+                ><input
+                  type="radio"
+                  name="finance-view"
+                  value="remaining"
+                /><span>Agora</span></label
+              >
+            </fieldset>
           </div>
-          <div class="finance-summary-grid">
+          <div class="finance-summary-grid finance-total-grid">
             <article class="panel bento-card bento-overview">
               <div class="panel-head">
                 <h3>Orçamento total</h3>
@@ -200,166 +220,382 @@
                 </p>
               </div>
             </article>
-            <article class="panel bento-card bento-resources">
-              <div class="panel-head">
-                <h3>Cooperação financeira</h3>
-                <span class="panel-kicker">Confirmado + projetado</span>
-              </div>
-              <div class="funding-pie-layout">
-                <div
-                  id="funding-pie"
-                  class="funding-pie"
-                  role="img"
-                  aria-label="Composição dos recursos para a casa"
-                >
-                  <div>
-                    <strong id="funds-total">R$ 0,00</strong><span>total</span>
-                  </div>
-                </div>
-                <div class="funding-legend">
-                  <div
-                    id="funds-row-fgts"
-                    class="funding-legend-row funding-fgts-row"
-                  >
-                    <i class="funding-swatch fgts" aria-hidden="true"></i>
-                    <label for="fgts-amount">FGTS</label>
-                    <input
-                      id="fgts-amount"
-                      class="funding-balance-input funding-fgts-input"
-                      type="text"
-                      inputmode="decimal"
-                      autocomplete="off"
-                      aria-describedby="fgts-amount-hint fgts-amount-status"
-                    />
-                    <small id="fgts-amount-hint" class="funding-balance-hint"
-                      >Fonte única — a entrada no cronograma acompanha este
-                      valor</small
-                    >
-                    <small
-                      id="fgts-amount-status"
-                      class="funding-balance-status"
-                      aria-live="polite"
-                    ></small>
-                  </div>
-                  <div id="funds-row-flexible" class="funding-legend-row">
-                    <i class="funding-swatch flexible" aria-hidden="true"></i>
-                    <span>Recursos livres</span>
-                    <strong id="funds-flexible-value">R$ 0,00</strong>
-                  </div>
-                  <div class="funding-legend-row funding-balance-tracker">
-                    <span
-                      class="funding-balance-spacer"
-                      aria-hidden="true"
-                    ></span>
-                    <label for="flexible-funds-balance">Saldo atual</label>
-                    <input
-                      id="flexible-funds-balance"
-                      class="funding-balance-input"
-                      type="text"
-                      inputmode="decimal"
-                      autocomplete="off"
-                      aria-describedby="flexible-funds-opening flexible-funds-status"
-                    />
-                    <small
-                      id="flexible-funds-opening"
-                      class="funding-balance-hint"
-                      >Só acompanhamento — não altera totais nem gráficos</small
-                    >
-                    <small
-                      id="flexible-funds-status"
-                      class="funding-balance-status"
-                      aria-live="polite"
-                    ></small>
-                  </div>
-                  <div id="funds-row-projected" class="funding-legend-row">
-                    <i class="funding-swatch projected" aria-hidden="true"></i>
-                    <span>Economia projetada</span>
-                    <strong id="funds-projected-value">R$ 0,00</strong>
-                  </div>
-                </div>
-              </div>
-            </article>
-            <article class="panel bento-card bento-coverage" id="coverage-card">
-              <div class="panel-head">
-                <h3>Cobertura projetada</h3>
-                <span class="panel-kicker">16 meses</span>
-              </div>
-              <div class="coverage-donut-layout">
-                <div
-                  id="coverage-donut"
-                  class="coverage-donut"
-                  role="img"
-                  aria-label="Percentual do orçamento coberto pelos recursos disponíveis"
-                >
-                  <div>
-                    <strong id="overall-coverage">0%</strong
-                    ><span>coberto</span>
-                  </div>
-                </div>
-                <div class="coverage-donut-copy">
-                  <span id="coverage-status-label"
-                    >Recursos atuais + reserva futura</span
-                  >
-                  <strong id="coverage-headline">R$ 0,00</strong>
-                  <p id="overall-gap" class="section-sub"></p>
-                </div>
-              </div>
-            </article>
           </div>
 
           <section
-            class="payment-projection-panel"
-            aria-labelledby="payment-projection-title"
+            id="finance-initial-view"
+            class="finance-projection"
+            aria-labelledby="finance-initial-title"
           >
-            <div class="panel-head">
+            <div class="section-heading-row">
               <div>
-                <h3 id="payment-projection-title">
-                  Gastos por data de pagamento
+                <h3 id="finance-initial-title" class="finance-block-title">
+                  Projeção inicial
                 </h3>
                 <p class="section-sub">
-                  Acumulado dos pagamentos das despesas vinculadas ao Gantt
-                  (data = início da atividade). Clique em um ponto para revisar
-                  o período.
+                  Cooperação, cobertura e pagamentos da projeção completa.
                 </p>
               </div>
-              <div class="payment-projection-controls">
-                <fieldset id="payment-projection-scale" class="gantt-segmented">
-                  <legend>Escala</legend>
-                  <label
-                    ><input
-                      type="radio"
-                      name="payment-projection-scale"
-                      value="day"
-                      checked
-                    /><span>Dia</span></label
+            </div>
+            <div class="finance-summary-grid finance-pair-grid">
+              <article class="panel bento-card bento-resources">
+                <div class="panel-head">
+                  <h3>Cooperação financeira</h3>
+                  <span class="panel-kicker">Confirmado + projetado</span>
+                </div>
+                <div class="funding-pie-layout">
+                  <div
+                    id="funding-pie"
+                    class="funding-pie"
+                    role="img"
+                    aria-label="Composição dos recursos para a casa"
                   >
-                  <label
-                    ><input
-                      type="radio"
-                      name="payment-projection-scale"
-                      value="week"
-                    /><span>Semana</span></label
+                    <div>
+                      <strong id="funds-total">R$ 0,00</strong
+                      ><span>total</span>
+                    </div>
+                  </div>
+                  <div class="funding-legend">
+                    <div
+                      id="funds-row-fgts"
+                      class="funding-legend-row funding-fgts-row"
+                    >
+                      <i class="funding-swatch fgts" aria-hidden="true"></i>
+                      <label for="fgts-amount">FGTS</label>
+                      <input
+                        id="fgts-amount"
+                        class="funding-balance-input funding-fgts-input"
+                        type="text"
+                        inputmode="decimal"
+                        autocomplete="off"
+                        aria-describedby="fgts-amount-hint fgts-amount-status"
+                      />
+                      <small id="fgts-amount-hint" class="funding-balance-hint"
+                        >Fonte única — a entrada no cronograma acompanha este
+                        valor</small
+                      >
+                      <small
+                        id="fgts-amount-status"
+                        class="funding-balance-status"
+                        aria-live="polite"
+                      ></small>
+                    </div>
+                    <div
+                      id="funds-row-flexible"
+                      class="funding-legend-row funding-fgts-row"
+                    >
+                      <i class="funding-swatch flexible" aria-hidden="true"></i>
+                      <label for="flexible-funds-amount">Recursos livres</label>
+                      <input
+                        id="flexible-funds-amount"
+                        class="funding-balance-input funding-fgts-input"
+                        type="text"
+                        inputmode="decimal"
+                        autocomplete="off"
+                        aria-describedby="flexible-funds-amount-hint flexible-funds-amount-status"
+                      />
+                      <small
+                        id="flexible-funds-amount-hint"
+                        class="funding-balance-hint"
+                        >Fonte única — este valor entra na cooperação</small
+                      >
+                      <small
+                        id="flexible-funds-amount-status"
+                        class="funding-balance-status"
+                        aria-live="polite"
+                      ></small>
+                    </div>
+                    <div class="funding-legend-row funding-balance-tracker">
+                      <span
+                        class="funding-balance-spacer"
+                        aria-hidden="true"
+                      ></span>
+                      <label for="flexible-funds-balance">Saldo atual</label>
+                      <input
+                        id="flexible-funds-balance"
+                        class="funding-balance-input"
+                        type="text"
+                        inputmode="decimal"
+                        autocomplete="off"
+                        aria-describedby="flexible-funds-opening flexible-funds-status"
+                      />
+                      <small
+                        id="flexible-funds-opening"
+                        class="funding-balance-hint"
+                        >Só acompanhamento — não altera totais nem
+                        gráficos</small
+                      >
+                      <small
+                        id="flexible-funds-status"
+                        class="funding-balance-status"
+                        aria-live="polite"
+                      ></small>
+                    </div>
+                    <div
+                      id="funds-row-projected"
+                      class="funding-legend-row funding-fgts-row"
+                    >
+                      <i
+                        class="funding-swatch projected"
+                        aria-hidden="true"
+                      ></i>
+                      <label for="projected-savings-amount"
+                        >Economia projetada</label
+                      >
+                      <input
+                        id="projected-savings-amount"
+                        class="funding-balance-input funding-fgts-input"
+                        type="text"
+                        inputmode="decimal"
+                        autocomplete="off"
+                        aria-describedby="projected-savings-hint projected-savings-status"
+                      />
+                      <small
+                        id="projected-savings-hint"
+                        class="funding-balance-hint"
+                        >Fonte única — a reserva da casa acompanha este
+                        valor</small
+                      >
+                      <small
+                        id="projected-savings-status"
+                        class="funding-balance-status"
+                        aria-live="polite"
+                      ></small>
+                    </div>
+                  </div>
+                </div>
+              </article>
+              <article
+                class="panel bento-card bento-coverage"
+                id="coverage-card"
+              >
+                <div class="panel-head">
+                  <h3>Cobertura projetada</h3>
+                  <span class="panel-kicker">16 meses</span>
+                </div>
+                <div class="coverage-donut-layout">
+                  <div
+                    id="coverage-donut"
+                    class="coverage-donut"
+                    role="img"
+                    aria-label="Percentual do orçamento coberto pelos recursos disponíveis"
                   >
-                  <label
-                    ><input
-                      type="radio"
-                      name="payment-projection-scale"
-                      value="month"
-                    /><span>Mês</span></label
+                    <div>
+                      <strong id="overall-coverage">0%</strong
+                      ><span>coberto</span>
+                    </div>
+                  </div>
+                  <div class="coverage-donut-copy">
+                    <span id="coverage-status-label"
+                      >Recursos atuais + reserva futura</span
+                    >
+                    <strong id="coverage-headline">R$ 0,00</strong>
+                    <p id="overall-gap" class="section-sub"></p>
+                  </div>
+                </div>
+              </article>
+            </div>
+
+            <section
+              class="payment-projection-panel"
+              aria-labelledby="payment-projection-title"
+            >
+              <div class="panel-head">
+                <div>
+                  <h3 id="payment-projection-title">
+                    Gastos por data de pagamento
+                  </h3>
+                  <p class="section-sub">
+                    Acumulado dos pagamentos das despesas vinculadas ao Gantt
+                    (data = início da atividade). Clique em um ponto para
+                    revisar o período.
+                  </p>
+                </div>
+                <div class="payment-projection-controls">
+                  <fieldset
+                    id="payment-projection-scale"
+                    class="gantt-segmented"
                   >
-                </fieldset>
-                <span
-                  id="payment-projection-summary"
-                  class="panel-kicker"
-                ></span>
+                    <legend>Escala</legend>
+                    <label
+                      ><input
+                        type="radio"
+                        name="payment-projection-scale"
+                        value="day"
+                        checked
+                      /><span>Dia</span></label
+                    >
+                    <label
+                      ><input
+                        type="radio"
+                        name="payment-projection-scale"
+                        value="week"
+                      /><span>Semana</span></label
+                    >
+                    <label
+                      ><input
+                        type="radio"
+                        name="payment-projection-scale"
+                        value="month"
+                      /><span>Mês</span></label
+                    >
+                  </fieldset>
+                  <span
+                    id="payment-projection-summary"
+                    class="panel-kicker"
+                  ></span>
+                </div>
+              </div>
+              <div
+                id="payment-projection-chart"
+                class="payment-projection-chart"
+                aria-live="polite"
+              ></div>
+            </section>
+          </section>
+
+          <section
+            id="finance-remaining-view"
+            class="finance-projection is-hidden"
+            aria-labelledby="finance-remaining-title"
+          >
+            <div class="section-heading-row">
+              <div>
+                <h3 id="finance-remaining-title" class="finance-block-title">
+                  Ainda por gastar
+                </h3>
+                <p class="section-sub">
+                  A mesma leitura, sem pagamentos anteriores a hoje. A
+                  cooperação restante já desconta esse gasto.
+                </p>
               </div>
             </div>
-            <div
-              id="payment-projection-chart"
-              class="payment-projection-chart"
-              aria-live="polite"
-            ></div>
+            <div class="finance-summary-grid finance-pair-grid">
+              <article class="panel bento-card bento-resources">
+                <div class="panel-head">
+                  <h3>Cooperação restante</h3>
+                  <span class="panel-kicker">Depois do gasto</span>
+                </div>
+                <div class="funding-pie-layout">
+                  <div
+                    id="remaining-funding-pie"
+                    class="funding-pie"
+                    role="img"
+                    aria-label="Cooperação que ainda resta"
+                  >
+                    <div>
+                      <strong id="remaining-funds-total">R$ 0,00</strong
+                      ><span>resta</span>
+                    </div>
+                  </div>
+                  <div class="funding-legend">
+                    <div class="funding-legend-row">
+                      <i class="funding-swatch fgts" aria-hidden="true"></i>
+                      <span>FGTS</span>
+                      <strong id="remaining-fgts-value">R$ 0,00</strong>
+                    </div>
+                    <div class="funding-legend-row">
+                      <i class="funding-swatch flexible" aria-hidden="true"></i>
+                      <span>Recursos livres</span>
+                      <strong id="remaining-flexible-value">R$ 0,00</strong>
+                    </div>
+                    <div class="funding-legend-row">
+                      <i
+                        class="funding-swatch projected"
+                        aria-hidden="true"
+                      ></i>
+                      <span>Economia projetada</span>
+                      <strong id="remaining-projected-value">R$ 0,00</strong>
+                    </div>
+                  </div>
+                </div>
+              </article>
+              <article
+                class="panel bento-card bento-coverage"
+                id="remaining-coverage-card"
+              >
+                <div class="panel-head">
+                  <h3>Cobertura restante</h3>
+                  <span class="panel-kicker">De hoje em diante</span>
+                </div>
+                <div class="coverage-donut-layout">
+                  <div
+                    id="remaining-coverage-donut"
+                    class="coverage-donut"
+                    role="img"
+                    aria-label="Cobertura do que ainda falta pagar"
+                  >
+                    <div>
+                      <strong id="remaining-overall-coverage">0%</strong
+                      ><span>coberto</span>
+                    </div>
+                  </div>
+                  <div class="coverage-donut-copy">
+                    <span id="remaining-coverage-status-label"
+                      >Cooperação restante</span
+                    >
+                    <strong id="remaining-coverage-headline">R$ 0,00</strong>
+                    <p id="remaining-overall-gap" class="section-sub"></p>
+                  </div>
+                </div>
+              </article>
+            </div>
+            <section
+              class="payment-projection-panel"
+              aria-labelledby="remaining-payment-title"
+            >
+              <div class="panel-head">
+                <div>
+                  <h3 id="remaining-payment-title">
+                    Gastos por data de pagamento
+                  </h3>
+                  <p class="section-sub">
+                    Acumulado só do que ainda vai sair, a partir de hoje.
+                  </p>
+                </div>
+                <div class="payment-projection-controls">
+                  <fieldset
+                    id="remaining-payment-scale"
+                    class="gantt-segmented"
+                  >
+                    <legend>Escala</legend>
+                    <label
+                      ><input
+                        type="radio"
+                        name="remaining-payment-scale"
+                        value="day"
+                        checked
+                      /><span>Dia</span></label
+                    >
+                    <label
+                      ><input
+                        type="radio"
+                        name="remaining-payment-scale"
+                        value="week"
+                      /><span>Semana</span></label
+                    >
+                    <label
+                      ><input
+                        type="radio"
+                        name="remaining-payment-scale"
+                        value="month"
+                      /><span>Mês</span></label
+                    >
+                  </fieldset>
+                  <span
+                    id="remaining-payment-summary"
+                    class="panel-kicker"
+                  ></span>
+                </div>
+              </div>
+              <div
+                id="remaining-payment-chart"
+                class="payment-projection-chart"
+                aria-live="polite"
+              ></div>
+            </section>
           </section>
+
           <section
             class="dashboard-category-center"
             aria-labelledby="dashboard-category-center-title"
@@ -2137,6 +2373,6 @@
     </dialog>
 
     <datalist id="category-suggestions"></datalist>
-    <script src="/app.js?v=20261003-coverage-over"></script>
+    <script src="/app.js?v=20261003-finance-toggle"></script>
   </body>
 </html>

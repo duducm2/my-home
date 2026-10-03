@@ -48,6 +48,8 @@
     ganttIgnoringScroll: false,
     ganttScrollRestoreToken: 0,
     paymentProjectionScale: "day",
+    remainingPaymentScale: "day",
+    financeView: "initial",
     ganttStatusFilter: "",
     ganttPriorityFilter: 0,
     ganttQuickFilter: "",
@@ -92,8 +94,10 @@
     fundsTotal: $("funds-total"),
     fgtsAmount: $("fgts-amount"),
     fgtsAmountStatus: $("fgts-amount-status"),
-    fundsFlexibleValue: $("funds-flexible-value"),
-    fundsProjectedValue: $("funds-projected-value"),
+    flexibleFundsAmount: $("flexible-funds-amount"),
+    flexibleFundsAmountStatus: $("flexible-funds-amount-status"),
+    projectedSavingsAmount: $("projected-savings-amount"),
+    projectedSavingsStatus: $("projected-savings-status"),
     flexibleFundsBalance: $("flexible-funds-balance"),
     flexibleFundsOpening: $("flexible-funds-opening"),
     flexibleFundsStatus: $("flexible-funds-status"),
@@ -104,6 +108,21 @@
     coverageStatusLabel: $("coverage-status-label"),
     coverageHeadline: $("coverage-headline"),
     overallGap: $("overall-gap"),
+    remainingFundsTotal: $("remaining-funds-total"),
+    remainingFgtsValue: $("remaining-fgts-value"),
+    remainingFlexibleValue: $("remaining-flexible-value"),
+    remainingProjectedValue: $("remaining-projected-value"),
+    remainingFundingPie: $("remaining-funding-pie"),
+    remainingCoverage: $("remaining-overall-coverage"),
+    remainingCoverageDonut: $("remaining-coverage-donut"),
+    remainingCoverageCard: $("remaining-coverage-card"),
+    remainingCoverageStatusLabel: $("remaining-coverage-status-label"),
+    remainingCoverageHeadline: $("remaining-coverage-headline"),
+    remainingOverallGap: $("remaining-overall-gap"),
+    remainingPaymentChart: $("remaining-payment-chart"),
+    remainingPaymentSummary: $("remaining-payment-summary"),
+    remainingPaymentScale: $("remaining-payment-scale"),
+    financeViewToggle: $("finance-view-toggle"),
     categoryChart: $("category-chart"),
     dashMaterials: $("dash-materials"),
     dashboardHoverTooltip: $("dashboard-hover-tooltip"),
@@ -1418,18 +1437,27 @@
     };
   }
 
-  function renderPaymentProjection() {
-    if (!els.paymentProjectionChart) return;
-    const scale = state.paymentProjectionScale || "day";
-    if (els.paymentProjectionScale) {
-      const input = els.paymentProjectionScale.querySelector(
-        `input[name="payment-projection-scale"][value="${scale}"]`,
+  function renderPaymentSeries({
+    events,
+    scale,
+    series,
+    chartEl,
+    summaryEl,
+    scaleEl,
+    scaleInputName,
+    emptyMessage,
+    ariaLabel,
+  }) {
+    if (!chartEl) return;
+    if (scaleEl) {
+      const input = scaleEl.querySelector(
+        `input[name="${scaleInputName}"][value="${scale}"]`,
       );
       if (input) input.checked = true;
     }
     const scaleLabels = { day: "Dia", week: "Semana", month: "Mês" };
     const grouped = new Map();
-    for (const payment of paymentEvents()) {
+    for (const payment of events) {
       const key = paymentBucketKey(payment.date, scale);
       if (!key) continue;
       if (!grouped.has(key))
@@ -1438,6 +1466,7 @@
           amount: 0,
           payments: [],
           estimated: false,
+          scale,
         });
       const bucket = grouped.get(key);
       bucket.amount += payment.amount;
@@ -1450,11 +1479,15 @@
       running += day.amount;
       day.cumulative = running;
     }
+    if (!state.paymentSeriesByDate) state.paymentSeriesByDate = {};
+    state.paymentSeriesByDate[series] = new Map(
+      days.map((day) => [day.date, day]),
+    );
+    if (series === "initial")
+      state.paymentProjectionByDate = state.paymentSeriesByDate.initial;
     if (!days.length) {
-      els.paymentProjectionSummary.textContent =
-        "Vincule despesas a atividades no cronograma.";
-      els.paymentProjectionChart.innerHTML =
-        '<p class="payment-projection-empty">Nenhum pagamento de despesa vinculada ao cronograma.</p>';
+      if (summaryEl) summaryEl.textContent = emptyMessage;
+      chartEl.innerHTML = `<p class="payment-projection-empty">${escapeHtml(emptyMessage)}</p>`;
       return;
     }
     const pointGap = { day: 88, week: 110, month: 120 }[scale] || 88;
@@ -1488,11 +1521,11 @@
         : null;
     const periodWord =
       scale === "month" ? "meses" : scale === "week" ? "semanas" : "dias";
-    els.paymentProjectionSummary.textContent = `${days.length} ${periodWord} · acumulado ${formatMoney(total)}`;
-    els.paymentProjectionSummary.dataset.baseSummary =
-      els.paymentProjectionSummary.textContent;
-    state.paymentProjectionByDate = new Map(days.map((day) => [day.date, day]));
-    els.paymentProjectionChart.innerHTML = `<svg viewBox="0 0 ${width} ${height}" style="min-width:${width}px" role="img" aria-label="Gastos acumulados por data de pagamento">${grid}${todayX === null ? "" : `<line x1="${todayX}" y1="${margin.top}" x2="${todayX}" y2="${margin.top + plotHeight}" class="payment-today-line"></line><path d="M ${todayX - 7} ${margin.top + plotHeight + 9} L ${todayX + 7} ${margin.top + plotHeight + 9} L ${todayX} ${margin.top + plotHeight - 3} Z" class="payment-today-marker"><title>Hoje · ${formatPaymentDate(today)}</title></path>`}<polyline points="${polyline}" class="payment-projection-line"></polyline>${points
+    if (summaryEl) {
+      summaryEl.textContent = `${days.length} ${periodWord} · acumulado ${formatMoney(total)}`;
+      summaryEl.dataset.baseSummary = summaryEl.textContent;
+    }
+    chartEl.innerHTML = `<svg viewBox="0 0 ${width} ${height}" style="min-width:${width}px" role="img" aria-label="${escapeAttr(ariaLabel)}">${grid}${todayX === null ? "" : `<line x1="${todayX}" y1="${margin.top}" x2="${todayX}" y2="${margin.top + plotHeight}" class="payment-today-line"></line><path d="M ${todayX - 7} ${margin.top + plotHeight + 9} L ${todayX + 7} ${margin.top + plotHeight + 9} L ${todayX} ${margin.top + plotHeight - 3} Z" class="payment-today-marker"><title>Hoje · ${formatPaymentDate(today)}</title></path>`}<polyline points="${polyline}" class="payment-projection-line"></polyline>${points
       .map(({ x, y, item }, index) => {
         const isLast = index === points.length - 1;
         const labelClass = isLast
@@ -1500,15 +1533,58 @@
           : "payment-amount-label";
         const periodLabel = scaleLabels[scale] || "Dia";
         const aria = `${paymentBucketLabel(item.date, scale)}: ${periodLabel.toLowerCase()} ${formatMoney(item.amount)}, acumulado ${formatMoney(item.cumulative)}. Clique para revisar atividades.`;
-        return `<g class="payment-day-group${item.estimated ? " estimated" : ""}"><line x1="${x}" y1="${margin.top}" x2="${x}" y2="${margin.top + plotHeight}" class="payment-day-line"></line><g class="expense-hover-target payment-day-hover" tabindex="0" role="button" data-hover-payment-date="${escapeAttr(item.date)}" data-open-payment-period="${escapeAttr(item.date)}" aria-label="${escapeAttr(aria)}"><circle cx="${x}" cy="${y}" r="14" class="payment-day-hit"></circle><circle cx="${x}" cy="${y}" r="${isLast ? 7 : 6}" class="payment-day-point${isLast ? " payment-cumulative-point" : ""}"></circle><text x="${x}" y="${Math.max(18, y - 13)}" text-anchor="middle" class="${labelClass}">${escapeHtml(formatMoney(item.cumulative))}</text></g><text x="${x}" y="${height - 18}" text-anchor="middle" class="cashflow-axis-label">${escapeHtml(paymentBucketLabel(item.date, scale))}</text></g>`;
+        return `<g class="payment-day-group${item.estimated ? " estimated" : ""}"><line x1="${x}" y1="${margin.top}" x2="${x}" y2="${margin.top + plotHeight}" class="payment-day-line"></line><g class="expense-hover-target payment-day-hover" tabindex="0" role="button" data-payment-series="${escapeAttr(series)}" data-hover-payment-date="${escapeAttr(item.date)}" data-open-payment-period="${escapeAttr(item.date)}" aria-label="${escapeAttr(aria)}"><circle cx="${x}" cy="${y}" r="14" class="payment-day-hit"></circle><circle cx="${x}" cy="${y}" r="${isLast ? 7 : 6}" class="payment-day-point${isLast ? " payment-cumulative-point" : ""}"></circle><text x="${x}" y="${Math.max(18, y - 13)}" text-anchor="middle" class="${labelClass}">${escapeHtml(formatMoney(item.cumulative))}</text></g><text x="${x}" y="${height - 18}" text-anchor="middle" class="cashflow-axis-label">${escapeHtml(paymentBucketLabel(item.date, scale))}</text></g>`;
       })
       .join("")}</svg>`;
-    reportGanttPaydayGate(state.qualityGates?.gantt_payday);
+    if (series === "initial")
+      reportGanttPaydayGate(state.qualityGates?.gantt_payday);
+  }
+
+  function applyFinanceView() {
+    const view = state.financeView === "remaining" ? "remaining" : "initial";
+    state.financeView = view;
+    const initial = $("finance-initial-view");
+    const remaining = $("finance-remaining-view");
+    initial?.classList.toggle("is-hidden", view !== "initial");
+    remaining?.classList.toggle("is-hidden", view !== "remaining");
+    if (els.financeViewToggle) {
+      const input = els.financeViewToggle.querySelector(
+        `input[name="finance-view"][value="${view}"]`,
+      );
+      if (input) input.checked = true;
+    }
+  }
+
+  function renderPaymentProjection() {
+    const today = iso(new Date());
+    const events = paymentEvents();
+    renderPaymentSeries({
+      events,
+      scale: state.paymentProjectionScale || "day",
+      series: "initial",
+      chartEl: els.paymentProjectionChart,
+      summaryEl: els.paymentProjectionSummary,
+      scaleEl: els.paymentProjectionScale,
+      scaleInputName: "payment-projection-scale",
+      emptyMessage: "Nenhum pagamento de despesa vinculada ao cronograma.",
+      ariaLabel: "Gastos acumulados por data de pagamento",
+    });
+    renderPaymentSeries({
+      events: events.filter((payment) => String(payment.date) >= today),
+      scale: state.remainingPaymentScale || "day",
+      series: "remaining",
+      chartEl: els.remainingPaymentChart,
+      summaryEl: els.remainingPaymentSummary,
+      scaleEl: els.remainingPaymentScale,
+      scaleInputName: "remaining-payment-scale",
+      emptyMessage: "Nenhum pagamento a partir de hoje.",
+      ariaLabel: "Gastos que ainda faltam, acumulados por data",
+    });
   }
 
   function paymentDayTooltip(day) {
     if (!day?.payments?.length) return null;
-    const scale = state.paymentProjectionScale || "day";
+    const scale = day.scale || state.paymentProjectionScale || "day";
     const scaleLabels = { day: "Dia", week: "Semana", month: "Mês" };
     const periodLabel = scaleLabels[scale] || "Dia";
     const title =
@@ -1575,7 +1651,7 @@
 
   function paymentPeriodReviewModel(day) {
     if (!day) return null;
-    const scale = state.paymentProjectionScale || "day";
+    const scale = day.scale || state.paymentProjectionScale || "day";
     const range = paymentBucketRange(day.date, scale);
     const scaleLabels = { day: "Dia", week: "Semana", month: "Mês" };
     const periodTitle =
@@ -1638,9 +1714,9 @@
     };
   }
 
-  function openPaymentPeriodDialog(bucketDate) {
+  function openPaymentPeriodDialog(bucketDate, series = "initial") {
     if (!els.paymentPeriodDialog || !els.paymentPeriodBody) return;
-    const day = state.paymentProjectionByDate?.get(bucketDate);
+    const day = state.paymentSeriesByDate?.[series]?.get(bucketDate);
     const model = paymentPeriodReviewModel(day);
     if (!model) return;
     hideDashboardTooltip();
@@ -1809,7 +1885,8 @@
     if (!tooltip || !target) return;
     const paymentDate = target.dataset.hoverPaymentDate;
     if (paymentDate) {
-      const day = state.paymentProjectionByDate?.get(paymentDate);
+      const series = target.dataset.paymentSeries || "initial";
+      const day = state.paymentSeriesByDate?.[series]?.get(paymentDate);
       const tip = day ? paymentDayTooltip(day) : null;
       if (tip) {
         tooltip.innerHTML = tip.html;
@@ -1841,6 +1918,109 @@
   function hideDashboardTooltip() {
     els.dashboardHoverTooltip.classList.remove("visible");
     els.dashboardHoverTooltip.setAttribute("aria-hidden", "true");
+  }
+
+  function paintFundingPie(pie, totalEl, slices) {
+    const total = slices.reduce(
+      (sum, slice) => sum + Number(slice.value || 0),
+      0,
+    );
+    let angle = 0;
+    const stops = slices
+      .map((slice) => {
+        const start = angle;
+        angle += total ? (Number(slice.value || 0) / total) * 360 : 0;
+        return `var(--funding-${slice.id}) ${start}deg ${angle}deg`;
+      })
+      .join(", ");
+    if (totalEl) totalEl.textContent = formatMoney(total);
+    if (!pie) return roundMoney(total);
+    pie.style.background = total
+      ? `conic-gradient(${stops})`
+      : "conic-gradient(#353538 0deg 360deg)";
+    pie.setAttribute(
+      "aria-label",
+      slices
+        .map((slice) => `${slice.label}: ${formatMoney(slice.value)}`)
+        .join(" · "),
+    );
+    return roundMoney(total);
+  }
+
+  function renderCoverageCard(card, funds, budget, copy) {
+    if (!card?.donut || !card.percent) return;
+    const shortfall = roundMoney(Math.max(0, budget - funds));
+    const margin = roundMoney(Math.max(0, funds - budget));
+    const overBudget = shortfall > 0;
+    const coverage = budget ? Math.min(100, (funds / budget) * 100) : 0;
+    const coverageLabel = `${coverage.toFixed(1).replace(".", ",")}%`;
+    card.percent.textContent = coverageLabel;
+    card.donut.style.setProperty("--coverage-angle", `${coverage * 3.6}deg`);
+    card.donut.classList.toggle("is-over", overBudget);
+    card.card?.classList.toggle("is-over", overBudget);
+    if (overBudget) {
+      card.label.textContent = "Ultrapassa a cooperação";
+      card.headline.textContent = formatMoney(shortfall);
+      card.headline.classList.add("negative");
+      card.headline.classList.remove("positive");
+      card.gap.textContent = copy.over(shortfall);
+      card.donut.setAttribute(
+        "aria-label",
+        `Ultrapassa a cooperação em ${formatMoney(shortfall)}. ${coverageLabel} coberto.`,
+      );
+    } else {
+      card.label.textContent = "Margem na cooperação";
+      card.headline.textContent = formatMoney(margin);
+      card.headline.classList.add("positive");
+      card.headline.classList.remove("negative");
+      card.gap.textContent = copy.within(margin);
+      card.donut.setAttribute(
+        "aria-label",
+        `${coverageLabel} coberto, margem de ${formatMoney(margin)}`,
+      );
+    }
+  }
+
+  function remainingCooperation(
+    events,
+    fgtsValue,
+    flexiblePlanned,
+    projectedSavings,
+    entryExpenseId,
+  ) {
+    const today = iso(new Date());
+    let pastEntry = 0;
+    let pastOther = 0;
+    let futureTotal = 0;
+    for (const payment of events) {
+      const amount = Number(payment.amount || 0);
+      if (!Number.isFinite(amount) || amount <= 0) continue;
+      if (String(payment.date) >= today) {
+        futureTotal += amount;
+        continue;
+      }
+      if (payment.expenseId === entryExpenseId) pastEntry += amount;
+      else pastOther += amount;
+    }
+    let entryLeft = pastEntry;
+    const fgtsUsed = Math.min(Math.max(0, fgtsValue), entryLeft);
+    entryLeft -= fgtsUsed;
+    let rest = pastOther + entryLeft;
+    let flexibleLeft = Math.max(0, flexiblePlanned);
+    let savingsLeft = Math.max(0, projectedSavings);
+    const fromFlexible = Math.min(flexibleLeft, rest);
+    flexibleLeft -= fromFlexible;
+    rest -= fromFlexible;
+    const fromSavings = Math.min(savingsLeft, rest);
+    savingsLeft -= fromSavings;
+    rest -= fromSavings;
+    return {
+      fgts: roundMoney(Math.max(0, fgtsValue) - fgtsUsed),
+      flexible: roundMoney(flexibleLeft),
+      projected: roundMoney(savingsLeft),
+      futureTotal: roundMoney(futureTotal),
+      uncoveredPast: roundMoney(rest),
+    };
   }
 
   function renderDashboard() {
@@ -1918,20 +2098,31 @@
         value: projectedSavings,
       },
     ];
-    const projectedFundsTotal = fundsTotal + projectedSavings;
-    let pieAngle = 0;
-    const pieStops = fundingSlices
-      .map((slice) => {
-        const start = pieAngle;
-        pieAngle += projectedFundsTotal
-          ? (slice.value / projectedFundsTotal) * 360
-          : 0;
-        return `var(--funding-${slice.id}) ${start}deg ${pieAngle}deg`;
-      })
-      .join(", ");
-    els.fundsTotal.textContent = formatMoney(projectedFundsTotal);
-    els.fundsFlexibleValue.textContent = formatMoney(flexiblePlanned);
-    els.fundsProjectedValue.textContent = formatMoney(projectedSavings);
+    paintFundingPie(els.fundingPie, els.fundsTotal, fundingSlices);
+    if (persistedFlexibleAmount == null)
+      persistedFlexibleAmount = flexiblePlanned;
+    if (
+      els.flexibleFundsAmount &&
+      document.activeElement !== els.flexibleFundsAmount &&
+      !els.flexibleFundsAmount.dataset.dirty
+    ) {
+      els.flexibleFundsAmount.value = formatMoney(flexiblePlanned).replace(
+        /^R\$\s?/,
+        "",
+      );
+    }
+    if (persistedProjectedSavings == null)
+      persistedProjectedSavings = projectedSavings;
+    if (
+      els.projectedSavingsAmount &&
+      document.activeElement !== els.projectedSavingsAmount &&
+      !els.projectedSavingsAmount.dataset.dirty
+    ) {
+      els.projectedSavingsAmount.value = formatMoney(projectedSavings).replace(
+        /^R\$\s?/,
+        "",
+      );
+    }
     if (persistedFlexibleFunds == null)
       persistedFlexibleFunds = flexibleTracked;
     if (
@@ -1943,50 +2134,74 @@
         "",
       );
     }
-    els.fundingPie.style.background = `conic-gradient(${pieStops})`;
-    els.fundingPie.setAttribute(
-      "aria-label",
-      fundingSlices
-        .map((slice) => `${slice.label}: ${formatMoney(slice.value)}`)
-        .join(" · "),
-    );
     const projectedCovered = fundsTotal + projectedSavings;
     const budgetTotal = spend.all;
-    const shortfall = roundMoney(Math.max(0, budgetTotal - projectedCovered));
-    const margin = roundMoney(Math.max(0, projectedCovered - budgetTotal));
-    const overBudget = shortfall > 0;
-    const coverage = budgetTotal
-      ? Math.min(100, (projectedCovered / budgetTotal) * 100)
-      : 0;
-    const coverageLabel = `${coverage.toFixed(1).replace(".", ",")}%`;
-    els.overallCoverage.textContent = coverageLabel;
-    els.coverageDonut.style.setProperty(
-      "--coverage-angle",
-      `${coverage * 3.6}deg`,
+    renderCoverageCard(
+      {
+        card: els.coverageCard,
+        donut: els.coverageDonut,
+        percent: els.overallCoverage,
+        label: els.coverageStatusLabel,
+        headline: els.coverageHeadline,
+        gap: els.overallGap,
+      },
+      projectedCovered,
+      budgetTotal,
+      {
+        over: () =>
+          `Orçamento ${formatMoney(budgetTotal)} · cooperação ${formatMoney(projectedCovered)}`,
+        within: () =>
+          `${formatMoney(fundsTotal)} atuais + ${formatMoney(projectedSavings)} projetados · orçamento ${formatMoney(budgetTotal)}`,
+      },
     );
-    els.coverageDonut.classList.toggle("is-over", overBudget);
-    els.coverageCard?.classList.toggle("is-over", overBudget);
-    if (overBudget) {
-      els.coverageStatusLabel.textContent = "Ultrapassa a cooperação";
-      els.coverageHeadline.textContent = formatMoney(shortfall);
-      els.coverageHeadline.classList.add("negative");
-      els.coverageHeadline.classList.remove("positive");
-      els.overallGap.textContent = `Orçamento ${formatMoney(budgetTotal)} · cooperação ${formatMoney(projectedCovered)}`;
-      els.coverageDonut.setAttribute(
-        "aria-label",
-        `Orçamento ultrapassa a cooperação em ${formatMoney(shortfall)}. ${coverageLabel} coberto.`,
+    const entryExpenseId = String(funding.entry_expense_id || "EXP_0001");
+    const remaining = remainingCooperation(
+      paymentEvents(),
+      fgtsValue,
+      flexiblePlanned,
+      projectedSavings,
+      entryExpenseId,
+    );
+    paintFundingPie(els.remainingFundingPie, els.remainingFundsTotal, [
+      { id: "fgts", label: "FGTS", value: remaining.fgts },
+      { id: "flexible", label: "Recursos livres", value: remaining.flexible },
+      {
+        id: "projected",
+        label: "Economia projetada",
+        value: remaining.projected,
+      },
+    ]);
+    if (els.remainingFgtsValue)
+      els.remainingFgtsValue.textContent = formatMoney(remaining.fgts);
+    if (els.remainingFlexibleValue)
+      els.remainingFlexibleValue.textContent = formatMoney(remaining.flexible);
+    if (els.remainingProjectedValue)
+      els.remainingProjectedValue.textContent = formatMoney(
+        remaining.projected,
       );
-    } else {
-      els.coverageStatusLabel.textContent = "Margem na cooperação";
-      els.coverageHeadline.textContent = formatMoney(margin);
-      els.coverageHeadline.classList.add("positive");
-      els.coverageHeadline.classList.remove("negative");
-      els.overallGap.textContent = `${formatMoney(fundsTotal)} atuais + ${formatMoney(projectedSavings)} projetados · orçamento ${formatMoney(budgetTotal)}`;
-      els.coverageDonut.setAttribute(
-        "aria-label",
-        `${coverageLabel} do orçamento coberto, margem de ${formatMoney(margin)}`,
-      );
-    }
+    const remainingFunds =
+      remaining.fgts + remaining.flexible + remaining.projected;
+    const remainingBudget = remaining.futureTotal + remaining.uncoveredPast;
+    renderCoverageCard(
+      {
+        card: els.remainingCoverageCard,
+        donut: els.remainingCoverageDonut,
+        percent: els.remainingCoverage,
+        label: els.remainingCoverageStatusLabel,
+        headline: els.remainingCoverageHeadline,
+        gap: els.remainingOverallGap,
+      },
+      remainingFunds,
+      remainingBudget,
+      {
+        over: (shortfall) =>
+          remaining.uncoveredPast > 0
+            ? `Ainda ${formatMoney(remaining.futureTotal)} · gasto passado além da cooperação ${formatMoney(remaining.uncoveredPast)} · falta ${formatMoney(shortfall)}`
+            : `Ainda ${formatMoney(remaining.futureTotal)} · cooperação restante ${formatMoney(remainingFunds)}`,
+        within: () =>
+          `Ainda ${formatMoney(remaining.futureTotal)} · cooperação restante ${formatMoney(remainingFunds)}`,
+      },
+    );
     const categorySpend = Object.fromEntries(
       dashboardCategoryDefinitions.map((group) => [group.id, 0]),
     );
@@ -2021,6 +2236,7 @@
       .join("");
     renderDashboardExpenseCategories(spend);
     renderPaymentProjection();
+    applyFinanceView();
     renderGantt();
     renderMacroTimeline();
   }
@@ -5897,6 +6113,10 @@
 
   let flexibleFundsSaveTimer = 0;
   let persistedFlexibleFunds = null;
+  let flexibleAmountSaveTimer = 0;
+  let persistedFlexibleAmount = null;
+  let projectedSavingsSaveTimer = 0;
+  let persistedProjectedSavings = null;
   let fgtsSaveTimer = 0;
   let persistedFgtsAmount = null;
 
@@ -6034,6 +6254,148 @@
     window.clearTimeout(flexibleFundsSaveTimer);
     flexibleFundsSaveTimer = window.setTimeout(() => {
       saveFlexibleFundsBalance({ silent: true });
+    }, 450);
+  }
+
+  function currentFlexibleAmount() {
+    const source = ((state.project || {}).funding?.sources || []).find(
+      (item) => item.id === "flexible_funds",
+    );
+    return Number(source?.amount || 0);
+  }
+
+  async function saveFlexibleAmount({ silent = false } = {}) {
+    const parsed = parseMoneyInput(els.flexibleFundsAmount.value);
+    if (!Number.isFinite(parsed) || parsed < 0) {
+      els.flexibleFundsAmountStatus.textContent = "Informe um valor válido.";
+      els.flexibleFundsAmountStatus.classList.add("is-error");
+      return;
+    }
+    const rounded = Math.round(parsed * 100) / 100;
+    if (
+      persistedFlexibleAmount != null &&
+      Math.abs(rounded - persistedFlexibleAmount) < 0.001
+    ) {
+      delete els.flexibleFundsAmount.dataset.dirty;
+      els.flexibleFundsAmount.value = formatMoney(rounded).replace(
+        /^R\$\s?/,
+        "",
+      );
+      els.flexibleFundsAmountStatus.textContent = "";
+      els.flexibleFundsAmountStatus.classList.remove("is-error");
+      return;
+    }
+    if (!silent) {
+      els.flexibleFundsAmountStatus.textContent = "Salvando…";
+      els.flexibleFundsAmountStatus.classList.remove("is-error");
+    }
+    try {
+      const result = await request("/api/project/funding/amount", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          source_id: "flexible_funds",
+          amount: rounded,
+        }),
+      });
+      if (result.project) state.project = result.project;
+      persistedFlexibleAmount = rounded;
+      delete els.flexibleFundsAmount.dataset.dirty;
+      els.flexibleFundsAmount.value = formatMoney(rounded).replace(
+        /^R\$\s?/,
+        "",
+      );
+      els.flexibleFundsAmountStatus.textContent = "Salvo.";
+      els.flexibleFundsAmountStatus.classList.remove("is-error");
+      renderDashboard();
+      window.setTimeout(() => {
+        if (els.flexibleFundsAmountStatus.textContent === "Salvo.")
+          els.flexibleFundsAmountStatus.textContent = "";
+      }, 1600);
+    } catch (error) {
+      els.flexibleFundsAmountStatus.textContent = error.message;
+      els.flexibleFundsAmountStatus.classList.add("is-error");
+    }
+  }
+
+  function queueFlexibleAmountSave() {
+    els.flexibleFundsAmount.dataset.dirty = "1";
+    els.flexibleFundsAmountStatus.textContent = "Salvando…";
+    els.flexibleFundsAmountStatus.classList.remove("is-error");
+    window.clearTimeout(flexibleAmountSaveTimer);
+    flexibleAmountSaveTimer = window.setTimeout(() => {
+      saveFlexibleAmount({ silent: true });
+    }, 450);
+  }
+
+  function currentProjectedSavings() {
+    const plan = state.cashflow?.house_savings_plan || {};
+    const monthly =
+      Number(plan.combined_monthly) ||
+      Number(plan.eduardo_monthly || 0) + Number(plan.leonardo_monthly || 0);
+    return (
+      Number(plan.projected_total) || monthly * Number(plan.installments || 0)
+    );
+  }
+
+  async function saveProjectedSavings({ silent = false } = {}) {
+    const parsed = parseMoneyInput(els.projectedSavingsAmount.value);
+    if (!Number.isFinite(parsed) || parsed < 0) {
+      els.projectedSavingsStatus.textContent = "Informe um valor válido.";
+      els.projectedSavingsStatus.classList.add("is-error");
+      return;
+    }
+    const rounded = Math.round(parsed * 100) / 100;
+    if (
+      persistedProjectedSavings != null &&
+      Math.abs(rounded - persistedProjectedSavings) < 0.001
+    ) {
+      delete els.projectedSavingsAmount.dataset.dirty;
+      els.projectedSavingsAmount.value = formatMoney(rounded).replace(
+        /^R\$\s?/,
+        "",
+      );
+      els.projectedSavingsStatus.textContent = "";
+      els.projectedSavingsStatus.classList.remove("is-error");
+      return;
+    }
+    if (!silent) {
+      els.projectedSavingsStatus.textContent = "Salvando…";
+      els.projectedSavingsStatus.classList.remove("is-error");
+    }
+    try {
+      const result = await request("/api/cashflow", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ projected_total: rounded }),
+      });
+      persistedProjectedSavings = rounded;
+      delete els.projectedSavingsAmount.dataset.dirty;
+      els.projectedSavingsAmount.value = formatMoney(rounded).replace(
+        /^R\$\s?/,
+        "",
+      );
+      els.projectedSavingsStatus.textContent = "Salvo.";
+      els.projectedSavingsStatus.classList.remove("is-error");
+      renderCashflow(result);
+      renderDashboard();
+      window.setTimeout(() => {
+        if (els.projectedSavingsStatus.textContent === "Salvo.")
+          els.projectedSavingsStatus.textContent = "";
+      }, 1600);
+    } catch (error) {
+      els.projectedSavingsStatus.textContent = error.message;
+      els.projectedSavingsStatus.classList.add("is-error");
+    }
+  }
+
+  function queueProjectedSavingsSave() {
+    els.projectedSavingsAmount.dataset.dirty = "1";
+    els.projectedSavingsStatus.textContent = "Salvando…";
+    els.projectedSavingsStatus.classList.remove("is-error");
+    window.clearTimeout(projectedSavingsSaveTimer);
+    projectedSavingsSaveTimer = window.setTimeout(() => {
+      saveProjectedSavings({ silent: true });
     }, 450);
   }
 
@@ -6877,6 +7239,49 @@
       els.flexibleFundsBalance.blur();
     }
   });
+  els.flexibleFundsAmount?.addEventListener("input", queueFlexibleAmountSave);
+  els.flexibleFundsAmount?.addEventListener("blur", () => {
+    window.clearTimeout(flexibleAmountSaveTimer);
+    saveFlexibleAmount();
+  });
+  els.flexibleFundsAmount?.addEventListener("keydown", (event) => {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      els.flexibleFundsAmount.blur();
+    } else if (event.key === "Escape") {
+      event.preventDefault();
+      delete els.flexibleFundsAmount.dataset.dirty;
+      els.flexibleFundsAmount.value = formatMoney(
+        currentFlexibleAmount(),
+      ).replace(/^R\$\s?/, "");
+      els.flexibleFundsAmountStatus.textContent = "";
+      els.flexibleFundsAmountStatus.classList.remove("is-error");
+      els.flexibleFundsAmount.blur();
+    }
+  });
+  els.projectedSavingsAmount?.addEventListener(
+    "input",
+    queueProjectedSavingsSave,
+  );
+  els.projectedSavingsAmount?.addEventListener("blur", () => {
+    window.clearTimeout(projectedSavingsSaveTimer);
+    saveProjectedSavings();
+  });
+  els.projectedSavingsAmount?.addEventListener("keydown", (event) => {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      els.projectedSavingsAmount.blur();
+    } else if (event.key === "Escape") {
+      event.preventDefault();
+      delete els.projectedSavingsAmount.dataset.dirty;
+      els.projectedSavingsAmount.value = formatMoney(
+        currentProjectedSavings(),
+      ).replace(/^R\$\s?/, "");
+      els.projectedSavingsStatus.textContent = "";
+      els.projectedSavingsStatus.classList.remove("is-error");
+      els.projectedSavingsAmount.blur();
+    }
+  });
   document.addEventListener(
     "keydown",
     (event) => {
@@ -7216,44 +7621,51 @@
     const target = event.target.closest(".expense-hover-target");
     if (target && !target.contains(event.relatedTarget)) hideDashboardTooltip();
   });
-  if (els.paymentProjectionChart) {
-    els.paymentProjectionChart.addEventListener("mouseover", (event) => {
+  for (const chart of [els.paymentProjectionChart, els.remainingPaymentChart]) {
+    if (!chart) continue;
+    chart.addEventListener("mouseover", (event) => {
       const target = event.target.closest(".expense-hover-target");
       if (target) showDashboardTooltip(target, event.clientX, event.clientY);
     });
-    els.paymentProjectionChart.addEventListener("mousemove", (event) => {
+    chart.addEventListener("mousemove", (event) => {
       const target = event.target.closest(".expense-hover-target");
       if (target)
         positionDashboardTooltip(event.clientX, event.clientY, target);
     });
-    els.paymentProjectionChart.addEventListener("mouseout", (event) => {
+    chart.addEventListener("mouseout", (event) => {
       const target = event.target.closest(".expense-hover-target");
       if (target && !target.contains(event.relatedTarget))
         hideDashboardTooltip();
     });
-    els.paymentProjectionChart.addEventListener("focusin", (event) => {
+    chart.addEventListener("focusin", (event) => {
       const target = event.target.closest(".expense-hover-target");
       if (!target) return;
       const rect = target.getBoundingClientRect();
       showDashboardTooltip(target, rect.right, rect.top);
     });
-    els.paymentProjectionChart.addEventListener("focusout", (event) => {
+    chart.addEventListener("focusout", (event) => {
       const target = event.target.closest(".expense-hover-target");
       if (target && !target.contains(event.relatedTarget))
         hideDashboardTooltip();
     });
-    els.paymentProjectionChart.addEventListener("click", (event) => {
+    chart.addEventListener("click", (event) => {
       const target = event.target.closest("[data-open-payment-period]");
       if (!target) return;
       event.preventDefault();
-      openPaymentPeriodDialog(target.dataset.openPaymentPeriod);
+      openPaymentPeriodDialog(
+        target.dataset.openPaymentPeriod,
+        target.dataset.paymentSeries || "initial",
+      );
     });
-    els.paymentProjectionChart.addEventListener("keydown", (event) => {
+    chart.addEventListener("keydown", (event) => {
       if (event.key !== "Enter" && event.key !== " ") return;
       const target = event.target.closest("[data-open-payment-period]");
       if (!target) return;
       event.preventDefault();
-      openPaymentPeriodDialog(target.dataset.openPaymentPeriod);
+      openPaymentPeriodDialog(
+        target.dataset.openPaymentPeriod,
+        target.dataset.paymentSeries || "initial",
+      );
     });
   }
   els.btnClosePaymentPeriod?.addEventListener(
@@ -7833,6 +8245,19 @@
         'input[name="payment-projection-scale"]:checked',
       )?.value || "day";
     renderPaymentProjection();
+  });
+  els.remainingPaymentScale?.addEventListener("change", () => {
+    state.remainingPaymentScale =
+      els.remainingPaymentScale.querySelector(
+        'input[name="remaining-payment-scale"]:checked',
+      )?.value || "day";
+    renderPaymentProjection();
+  });
+  els.financeViewToggle?.addEventListener("change", () => {
+    state.financeView =
+      els.financeViewToggle.querySelector('input[name="finance-view"]:checked')
+        ?.value || "initial";
+    applyFinanceView();
   });
   els.btnGanttToday.addEventListener("click", () => {
     const scroll = $("gantt-scroll");
