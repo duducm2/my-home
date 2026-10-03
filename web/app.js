@@ -49,7 +49,7 @@
     ganttScrollRestoreToken: 0,
     paymentProjectionScale: "day",
     remainingPaymentScale: "day",
-    financeView: "initial",
+    financeView: "remaining",
     ganttStatusFilter: "",
     ganttPriorityFilter: 0,
     ganttQuickFilter: "",
@@ -1541,7 +1541,7 @@
   }
 
   function applyFinanceView() {
-    const view = state.financeView === "remaining" ? "remaining" : "initial";
+    const view = state.financeView === "initial" ? "initial" : "remaining";
     state.financeView = view;
     const initial = $("finance-initial-view");
     const remaining = $("finance-remaining-view");
@@ -8256,7 +8256,7 @@
   els.financeViewToggle?.addEventListener("change", () => {
     state.financeView =
       els.financeViewToggle.querySelector('input[name="finance-view"]:checked')
-        ?.value || "initial";
+        ?.value || "remaining";
     applyFinanceView();
   });
   els.btnGanttToday.addEventListener("click", () => {

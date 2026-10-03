@@ -167,18 +167,16 @@
             >
               <legend>Leitura financeira</legend>
               <label
-                ><input
-                  type="radio"
-                  name="finance-view"
-                  value="initial"
-                  checked
-                /><span>No início</span></label
+                ><input type="radio" name="finance-view" value="initial" /><span
+                  >No início</span
+                ></label
               >
               <label
                 ><input
                   type="radio"
                   name="finance-view"
                   value="remaining"
+                  checked
                 /><span>Agora</span></label
               >
             </fieldset>
@@ -224,7 +222,7 @@
 
           <section
             id="finance-initial-view"
-            class="finance-projection"
+            class="finance-projection is-hidden"
             aria-labelledby="finance-initial-title"
           >
             <div class="section-heading-row">
@@ -456,7 +454,7 @@
 
           <section
             id="finance-remaining-view"
-            class="finance-projection is-hidden"
+            class="finance-projection"
             aria-labelledby="finance-remaining-title"
           >
             <div class="section-heading-row">
@@ -2373,6 +2371,6 @@
     </dialog>
 
     <datalist id="category-suggestions"></datalist>
-    <script src="/app.js?v=20261003-finance-toggle"></script>
+    <script src="/app.js?v=20261003-finance-agora"></script>
   </body>
 </html>
