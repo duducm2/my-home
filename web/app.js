@@ -93,7 +93,8 @@
     dashForecastTopMaterials: $("dash-forecast-top-materials"),
     dashForecastCaveat: $("dash-forecast-caveat"),
     fundsTotal: $("funds-total"),
-    fundsFgtsValue: $("funds-fgts-value"),
+    fgtsAmount: $("fgts-amount"),
+    fgtsAmountStatus: $("fgts-amount-status"),
     fundsFlexibleValue: $("funds-flexible-value"),
     fundsProjectedValue: $("funds-projected-value"),
     flexibleFundsBalance: $("flexible-funds-balance"),
@@ -1895,6 +1896,14 @@
     const flexibleSource = sources.find((item) => item.id === "flexible_funds");
     // Pie/coverage use planned opening amounts only — live saldo is tracking-only.
     const fgtsValue = Number(fgtsSource?.amount || 0);
+    if (persistedFgtsAmount == null) persistedFgtsAmount = fgtsValue;
+    if (
+      els.fgtsAmount &&
+      document.activeElement !== els.fgtsAmount &&
+      !els.fgtsAmount.dataset.dirty
+    ) {
+      els.fgtsAmount.value = formatMoney(fgtsValue).replace(/^R\$\s?/, "");
+    }
     const flexiblePlanned = Number(flexibleSource?.amount || 0);
     const flexibleTracked = fundingSourceValue(flexibleSource);
     const fundsTotal = sources.reduce(
@@ -1938,7 +1947,6 @@
       })
       .join(", ");
     els.fundsTotal.textContent = formatMoney(projectedFundsTotal);
-    els.fundsFgtsValue.textContent = formatMoney(fgtsValue);
     els.fundsFlexibleValue.textContent = formatMoney(flexiblePlanned);
     els.fundsProjectedValue.textContent = formatMoney(projectedSavings);
     if (persistedFlexibleFunds == null)
@@ -5887,6 +5895,74 @@
 
   let flexibleFundsSaveTimer = 0;
   let persistedFlexibleFunds = null;
+  let fgtsSaveTimer = 0;
+  let persistedFgtsAmount = null;
+
+  function currentFgtsAmount() {
+    const source = ((state.project || {}).funding?.sources || []).find(
+      (item) => item.id === "fgts",
+    );
+    return Number(source?.amount || 0);
+  }
+
+  async function saveFgtsAmount({ silent = false } = {}) {
+    const parsed = parseMoneyInput(els.fgtsAmount.value);
+    if (!Number.isFinite(parsed) || parsed < 0) {
+      els.fgtsAmountStatus.textContent = "Informe um valor válido.";
+      els.fgtsAmountStatus.classList.add("is-error");
+      return;
+    }
+    const rounded = Math.round(parsed * 100) / 100;
+    if (
+      persistedFgtsAmount != null &&
+      Math.abs(rounded - persistedFgtsAmount) < 0.001
+    ) {
+      delete els.fgtsAmount.dataset.dirty;
+      els.fgtsAmount.value = formatMoney(rounded).replace(/^R\$\s?/, "");
+      els.fgtsAmountStatus.textContent = "";
+      els.fgtsAmountStatus.classList.remove("is-error");
+      return;
+    }
+    if (!silent) {
+      els.fgtsAmountStatus.textContent = "Salvando…";
+      els.fgtsAmountStatus.classList.remove("is-error");
+    }
+    try {
+      const result = await request("/api/project/funding/balance", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          source_id: "fgts",
+          balance: rounded,
+        }),
+      });
+      if (result.project) state.project = result.project;
+      persistedFgtsAmount = rounded;
+      delete els.fgtsAmount.dataset.dirty;
+      els.fgtsAmount.value = formatMoney(rounded).replace(/^R\$\s?/, "");
+      els.fgtsAmountStatus.textContent = "Salvo.";
+      els.fgtsAmountStatus.classList.remove("is-error");
+      if (result.expense_state) applyExpenseState(result.expense_state);
+      else renderDashboard();
+      window.setTimeout(() => {
+        if (els.fgtsAmountStatus.textContent === "Salvo.")
+          els.fgtsAmountStatus.textContent = "";
+      }, 1600);
+    } catch (error) {
+      els.fgtsAmountStatus.textContent = error.message;
+      els.fgtsAmountStatus.classList.add("is-error");
+    }
+  }
+
+  function queueFgtsSave() {
+    els.fgtsAmount.dataset.dirty = "1";
+    els.fgtsAmountStatus.textContent = "Salvando…";
+    els.fgtsAmountStatus.classList.remove("is-error");
+    window.clearTimeout(fgtsSaveTimer);
+    fgtsSaveTimer = window.setTimeout(() => {
+      saveFgtsAmount({ silent: true });
+    }, 450);
+  }
 
   function currentFlexibleFundsBalance() {
     const source = ((state.project || {}).funding?.sources || []).find(
@@ -6756,6 +6832,27 @@
       document.title = persistedHouseName;
       els.houseNameStatus.textContent = "";
       els.houseNameInput.blur();
+    }
+  });
+  els.fgtsAmount?.addEventListener("input", queueFgtsSave);
+  els.fgtsAmount?.addEventListener("blur", () => {
+    window.clearTimeout(fgtsSaveTimer);
+    saveFgtsAmount();
+  });
+  els.fgtsAmount?.addEventListener("keydown", (event) => {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      els.fgtsAmount.blur();
+    } else if (event.key === "Escape") {
+      event.preventDefault();
+      delete els.fgtsAmount.dataset.dirty;
+      els.fgtsAmount.value = formatMoney(currentFgtsAmount()).replace(
+        /^R\$\s?/,
+        "",
+      );
+      els.fgtsAmountStatus.textContent = "";
+      els.fgtsAmountStatus.classList.remove("is-error");
+      els.fgtsAmount.blur();
     }
   });
   els.flexibleFundsBalance.addEventListener("input", queueFlexibleFundsSave);

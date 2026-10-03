@@ -226,10 +226,29 @@
                   </div>
                 </div>
                 <div class="funding-legend">
-                  <div id="funds-row-fgts" class="funding-legend-row">
+                  <div
+                    id="funds-row-fgts"
+                    class="funding-legend-row funding-fgts-row"
+                  >
                     <i class="funding-swatch fgts" aria-hidden="true"></i>
-                    <span>FGTS</span>
-                    <strong id="funds-fgts-value">R$ 0,00</strong>
+                    <label for="fgts-amount">FGTS</label>
+                    <input
+                      id="fgts-amount"
+                      class="funding-balance-input funding-fgts-input"
+                      type="text"
+                      inputmode="decimal"
+                      autocomplete="off"
+                      aria-describedby="fgts-amount-hint fgts-amount-status"
+                    />
+                    <small id="fgts-amount-hint" class="funding-balance-hint"
+                      >Fonte única — a entrada no cronograma acompanha este
+                      valor</small
+                    >
+                    <small
+                      id="fgts-amount-status"
+                      class="funding-balance-status"
+                      aria-live="polite"
+                    ></small>
                   </div>
                   <div id="funds-row-flexible" class="funding-legend-row">
                     <i class="funding-swatch flexible" aria-hidden="true"></i>

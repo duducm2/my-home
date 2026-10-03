@@ -147,9 +147,14 @@ class HouseStore:
                 if str(source.get("id") or "") != source_id:
                     continue
                 row = dict(source)
-                if "amount" not in row or row.get("amount") in {None, ""}:
+                if source_id == "fgts":
+                    # One figure only: planned amount and tracked balance stay equal.
                     row["amount"] = amount
-                row["balance"] = amount
+                    row["balance"] = amount
+                else:
+                    if "amount" not in row or row.get("amount") in {None, ""}:
+                        row["amount"] = amount
+                    row["balance"] = amount
                 sources[index] = row
                 updated = True
                 break

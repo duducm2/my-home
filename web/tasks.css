@@ -1522,6 +1522,27 @@ select[multiple] {
   border-color: #2ecc71;
 }
 
+.funding-fgts-row {
+  align-items: center;
+}
+
+.funding-fgts-input {
+  grid-column: 3;
+  grid-row: 1;
+  width: 8.8rem;
+  text-align: right;
+}
+
+.funding-fgts-input:focus {
+  outline-color: #3498db;
+  border-color: #3498db;
+}
+
+.funding-fgts-row .funding-balance-hint,
+.funding-fgts-row .funding-balance-status {
+  grid-column: 2 / -1;
+}
+
 .funding-balance-hint,
 .funding-balance-status {
   grid-column: 2;

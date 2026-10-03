@@ -565,10 +565,50 @@ class ExpenseHandler(BaseHTTPRequestHandler):
             elif path == "/api/house/name":
                 self._json(200, get_house(self.data_dir).save_name(payload.get("name")))
             elif path == "/api/project/funding/balance":
+                source_id = str(payload.get("source_id") or "").strip()
                 result = get_house(self.data_dir).save_funding_source_balance(
-                    payload.get("source_id"),
+                    source_id,
                     payload.get("balance"),
                 )
+                if source_id == "fgts":
+                    funding = (result.get("project") or {}).get("funding") or {}
+                    fgts = next(
+                        (
+                            item
+                            for item in funding.get("sources") or []
+                            if isinstance(item, dict) and item.get("id") == "fgts"
+                        ),
+                        None,
+                    )
+                    amount = float((fgts or {}).get("amount") or 0)
+                    entry_id = str(funding.get("entry_expense_id") or "EXP_0001")
+                    store = get_store(self.data_dir)
+                    expense = next(
+                        (
+                            item
+                            for item in store.list_expenses()
+                            if item.get("id") == entry_id
+                        ),
+                        None,
+                    )
+                    if expense is None:
+                        raise ValueError(f"entry expense not found: {entry_id}")
+                    quotation_id = str(expense.get("selected_quotation_id") or "")
+                    if not quotation_id:
+                        raise ValueError(
+                            f"{entry_id} has no selected quotation to keep in sync"
+                        )
+                    store.upsert_quotation(
+                        entry_id,
+                        {
+                            "id": quotation_id,
+                            "unit_price": amount,
+                            "quantity": 1,
+                            "shipping_cost": 0,
+                            "total_price": amount,
+                        },
+                    )
+                    result["expense_state"] = store.sync_all_allocation_payments()
                 self._json(200, result)
             elif path == "/api/house/model3d-layout":
                 self._json(200, get_house(self.data_dir).save_model3d_layout(payload))
