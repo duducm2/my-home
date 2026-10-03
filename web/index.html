@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="color-scheme" content="dark" />
     <title>my-home</title>
-    <link rel="stylesheet" href="/styles.css?v=20261003-finance-toggle-2" />
+    <link rel="stylesheet" href="/styles.css?v=20261003-budget-help" />
     <link rel="stylesheet" href="/tasks.css?v=20261003-finance-mirror" />
     <script type="importmap">
       { "imports": { "three": "/vendor/three/three.module.js" } }
@@ -185,38 +185,57 @@
             <article class="panel bento-card bento-overview">
               <div class="panel-head">
                 <h3>Orçamento total</h3>
+                <div class="budget-help">
+                  <button
+                    type="button"
+                    class="budget-help-button"
+                    aria-describedby="budget-help-panel"
+                  >
+                    ?
+                  </button>
+                  <div
+                    id="budget-help-panel"
+                    class="budget-help-panel"
+                    role="tooltip"
+                  >
+                    <div
+                      class="forecast-summary"
+                      aria-label="Detalhe do orçamento no cronograma"
+                    >
+                      <div class="forecast-summary-head">
+                        <span>No cronograma</span>
+                        <strong id="dash-forecast-all">R$ 0,00</strong>
+                      </div>
+                      <div class="forecast-breakdown">
+                        <span
+                          >Materiais
+                          <strong id="dash-forecast-materials"
+                            >R$ 0,00</strong
+                          ></span
+                        >
+                        <span
+                          >Serviços e taxas
+                          <strong id="dash-forecast-services"
+                            >R$ 0,00</strong
+                          ></span
+                        >
+                      </div>
+                      <p class="forecast-details-label">
+                        Principais materiais no cronograma
+                      </p>
+                      <ol
+                        id="dash-forecast-top-materials"
+                        class="forecast-top-list"
+                      ></ol>
+                      <p id="dash-forecast-caveat" class="forecast-caveat">
+                        Soma das cotações escolhidas nas despesas vinculadas ao
+                        cronograma.
+                      </p>
+                    </div>
+                  </div>
+                </div>
               </div>
               <strong id="dash-total-all" class="hero-metric">R$ 0,00</strong>
-              <div
-                class="forecast-summary"
-                aria-label="Detalhe do orçamento no cronograma"
-              >
-                <div class="forecast-summary-head">
-                  <span>No cronograma</span>
-                  <strong id="dash-forecast-all">R$ 0,00</strong>
-                </div>
-                <div class="forecast-breakdown">
-                  <span
-                    >Materiais
-                    <strong id="dash-forecast-materials">R$ 0,00</strong></span
-                  >
-                  <span
-                    >Serviços e taxas
-                    <strong id="dash-forecast-services">R$ 0,00</strong></span
-                  >
-                </div>
-                <details class="forecast-details">
-                  <summary>Principais materiais no cronograma</summary>
-                  <ol
-                    id="dash-forecast-top-materials"
-                    class="forecast-top-list"
-                  ></ol>
-                </details>
-                <p id="dash-forecast-caveat" class="forecast-caveat">
-                  Soma das cotações escolhidas nas despesas vinculadas ao
-                  cronograma.
-                </p>
-              </div>
             </article>
           </div>
 
