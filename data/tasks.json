@@ -776,8 +776,8 @@
       "description": "",
       "priority": 1,
       "sequence": 2,
-      "start_date": "2026-09-28",
-      "end_date": "2026-10-05",
+      "start_date": "2026-10-05",
+      "end_date": "2026-10-12",
       "status": "pending",
       "expense_allocations": [
         {
@@ -793,7 +793,7 @@
       "progress": 0,
       "source_refs": [],
       "created_at": "2026-09-25 17:57:05",
-      "updated_at": "2026-09-25 18:38:22"
+      "updated_at": "2026-10-03 13:48:17"
     },
     {
       "id": "TASK_0114",
@@ -802,7 +802,7 @@
       "priority": 1,
       "sequence": 3,
       "start_date": "2026-10-05",
-      "end_date": "2026-10-10",
+      "end_date": "2026-10-12",
       "status": "pending",
       "expense_allocations": [
         {
@@ -818,7 +818,7 @@
       "progress": 0,
       "source_refs": [],
       "created_at": "2026-09-25 18:21:12",
-      "updated_at": "2026-09-25 18:38:22"
+      "updated_at": "2026-10-03 13:48:38"
     },
     {
       "id": "TASK_0115",
@@ -1038,5 +1038,5 @@
       "updated_at": "2026-09-25 20:07:18"
     }
   ],
-  "updated_at": "2026-09-25 20:18:28"
+  "updated_at": "2026-10-03 13:48:38"
 }
