@@ -718,8 +718,8 @@
       "description": "",
       "priority": 1,
       "sequence": 6,
-      "start_date": "2026-10-25",
-      "end_date": "2026-10-31",
+      "start_date": "2026-10-07",
+      "end_date": "2026-10-13",
       "status": "pending",
       "expense_allocations": [
         {
@@ -735,7 +735,7 @@
       "progress": 0,
       "source_refs": [],
       "created_at": "2026-09-18 17:52:11",
-      "updated_at": "2026-09-25 18:38:22"
+      "updated_at": "2026-10-10 15:08:40"
     },
     {
       "id": "TASK_0112",
@@ -1038,5 +1038,5 @@
       "updated_at": "2026-09-25 20:07:18"
     }
   ],
-  "updated_at": "2026-10-03 13:48:38"
+  "updated_at": "2026-10-10 15:08:40"
 }
