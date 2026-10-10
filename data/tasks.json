@@ -66,7 +66,7 @@
       "priority": 1,
       "sequence": 3,
       "start_date": "2026-09-17",
-      "end_date": "2026-10-31",
+      "end_date": "2026-11-03",
       "status": "pending",
       "expense_allocations": [],
       "icon_key": "home-expense",
@@ -1036,7 +1036,32 @@
       "source_refs": [],
       "created_at": "2026-09-25 19:46:01",
       "updated_at": "2026-09-25 20:07:18"
+    },
+    {
+      "id": "TASK_0124",
+      "title": "Pedreiro 3",
+      "description": "",
+      "priority": 1,
+      "sequence": 8,
+      "start_date": "2026-11-01",
+      "end_date": "2026-11-03",
+      "status": "pending",
+      "expense_allocations": [
+        {
+          "expense_id": "EXP_0063",
+          "expected_quantity": 1.0
+        }
+      ],
+      "icon_key": "mason-service",
+      "icon_mode": "manual",
+      "date_status": "confirmed",
+      "activity_type": "task",
+      "parent_id": "TASK_0003",
+      "progress": 0,
+      "source_refs": [],
+      "created_at": "2026-10-10 15:11:31",
+      "updated_at": "2026-10-10 15:11:35"
     }
   ],
-  "updated_at": "2026-10-10 15:09:32"
+  "updated_at": "2026-10-10 15:11:35"
 }
