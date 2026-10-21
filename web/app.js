@@ -120,6 +120,7 @@
     remainingCoverageHeadline: $("remaining-coverage-headline"),
     remainingOverallGap: $("remaining-overall-gap"),
     remainingPaymentChart: $("remaining-payment-chart"),
+    remainingPaymentAhead: $("remaining-payment-ahead"),
     remainingPaymentSummary: $("remaining-payment-summary"),
     remainingPaymentScale: $("remaining-payment-scale"),
     financeViewToggle: $("finance-view-toggle"),
@@ -1447,6 +1448,8 @@
     scaleInputName,
     emptyMessage,
     ariaLabel,
+    anchorToday = false,
+    aheadTotalEl = null,
   }) {
     if (!chartEl) return;
     if (scaleEl) {
@@ -1479,12 +1482,33 @@
       running += day.amount;
       day.cumulative = running;
     }
+    const today = iso(new Date());
+    const todayBucket = paymentBucketKey(today, scale);
+    if (
+      anchorToday &&
+      todayBucket &&
+      days.length &&
+      todayBucket < days[0].date
+    ) {
+      days.unshift({
+        date: todayBucket,
+        amount: 0,
+        payments: [],
+        estimated: false,
+        scale,
+        cumulative: 0,
+        anchor: true,
+      });
+    }
     if (!state.paymentSeriesByDate) state.paymentSeriesByDate = {};
     state.paymentSeriesByDate[series] = new Map(
       days.map((day) => [day.date, day]),
     );
     if (series === "initial")
       state.paymentProjectionByDate = state.paymentSeriesByDate.initial;
+    const paymentDays = days.filter((day) => !day.anchor);
+    const plannedTotal = paymentDays.at(-1)?.cumulative || 0;
+    if (aheadTotalEl) aheadTotalEl.textContent = formatMoney(plannedTotal);
     if (!days.length) {
       if (summaryEl) summaryEl.textContent = emptyMessage;
       chartEl.innerHTML = `<p class="payment-projection-empty">${escapeHtml(emptyMessage)}</p>`;
@@ -1493,13 +1517,13 @@
     const pointGap = { day: 88, week: 110, month: 120 }[scale] || 88;
     const width = Math.max(1000, days.length * pointGap);
     const height = 320;
-    const margin = { left: 72, right: 34, top: 52, bottom: 48 };
+    const margin = { left: 72, right: 96, top: 52, bottom: 48 };
     const plotWidth = width - margin.left - margin.right;
     const plotHeight = height - margin.top - margin.bottom;
     const firstDate = days[0].date;
     const lastDate = days.at(-1).date;
     const span = Math.max(1, dayDiff(firstDate, lastDate));
-    const total = days.at(-1).cumulative;
+    const total = plannedTotal;
     const maximum = Math.max(1, total);
     const points = days.map((item) => ({
       x: margin.left + (dayDiff(firstDate, item.date) / span) * plotWidth,
@@ -1513,8 +1537,6 @@
       })
       .join("");
     const polyline = points.map(({ x, y }) => `${x},${y}`).join(" ");
-    const today = iso(new Date());
-    const todayBucket = paymentBucketKey(today, scale);
     const todayX =
       todayBucket >= firstDate && todayBucket <= lastDate
         ? margin.left + (dayDiff(firstDate, todayBucket) / span) * plotWidth
@@ -1522,18 +1544,26 @@
     const periodWord =
       scale === "month" ? "meses" : scale === "week" ? "semanas" : "dias";
     if (summaryEl) {
-      summaryEl.textContent = `${days.length} ${periodWord} · acumulado ${formatMoney(total)}`;
+      const counted = paymentDays.length;
+      summaryEl.textContent = anchorToday
+        ? `${counted} ${periodWord} · previsto ${formatMoney(total)}`
+        : `${counted} ${periodWord} · acumulado ${formatMoney(total)}`;
       summaryEl.dataset.baseSummary = summaryEl.textContent;
     }
     chartEl.innerHTML = `<svg viewBox="0 0 ${width} ${height}" style="min-width:${width}px" role="img" aria-label="${escapeAttr(ariaLabel)}">${grid}${todayX === null ? "" : `<line x1="${todayX}" y1="${margin.top}" x2="${todayX}" y2="${margin.top + plotHeight}" class="payment-today-line"></line><path d="M ${todayX - 7} ${margin.top + plotHeight + 9} L ${todayX + 7} ${margin.top + plotHeight + 9} L ${todayX} ${margin.top + plotHeight - 3} Z" class="payment-today-marker"><title>Hoje · ${formatPaymentDate(today)}</title></path>`}<polyline points="${polyline}" class="payment-projection-line"></polyline>${points
       .map(({ x, y, item }, index) => {
+        if (item.anchor) {
+          return `<g class="payment-day-group"><text x="${x}" y="${height - 18}" text-anchor="middle" class="cashflow-axis-label">Hoje</text></g>`;
+        }
         const isLast = index === points.length - 1;
         const labelClass = isLast
           ? "payment-amount-label payment-cumulative-total"
           : "payment-amount-label";
+        const labelAnchor = isLast ? "end" : "middle";
+        const labelX = isLast ? x + 6 : x;
         const periodLabel = scaleLabels[scale] || "Dia";
         const aria = `${paymentBucketLabel(item.date, scale)}: ${periodLabel.toLowerCase()} ${formatMoney(item.amount)}, acumulado ${formatMoney(item.cumulative)}. Clique para revisar atividades.`;
-        return `<g class="payment-day-group${item.estimated ? " estimated" : ""}"><line x1="${x}" y1="${margin.top}" x2="${x}" y2="${margin.top + plotHeight}" class="payment-day-line"></line><g class="expense-hover-target payment-day-hover" tabindex="0" role="button" data-payment-series="${escapeAttr(series)}" data-hover-payment-date="${escapeAttr(item.date)}" data-open-payment-period="${escapeAttr(item.date)}" aria-label="${escapeAttr(aria)}"><circle cx="${x}" cy="${y}" r="14" class="payment-day-hit"></circle><circle cx="${x}" cy="${y}" r="${isLast ? 7 : 6}" class="payment-day-point${isLast ? " payment-cumulative-point" : ""}"></circle><text x="${x}" y="${Math.max(18, y - 13)}" text-anchor="middle" class="${labelClass}">${escapeHtml(formatMoney(item.cumulative))}</text></g><text x="${x}" y="${height - 18}" text-anchor="middle" class="cashflow-axis-label">${escapeHtml(paymentBucketLabel(item.date, scale))}</text></g>`;
+        return `<g class="payment-day-group${item.estimated ? " estimated" : ""}"><line x1="${x}" y1="${margin.top}" x2="${x}" y2="${margin.top + plotHeight}" class="payment-day-line"></line><g class="expense-hover-target payment-day-hover" tabindex="0" role="button" data-payment-series="${escapeAttr(series)}" data-hover-payment-date="${escapeAttr(item.date)}" data-open-payment-period="${escapeAttr(item.date)}" aria-label="${escapeAttr(aria)}"><circle cx="${x}" cy="${y}" r="14" class="payment-day-hit"></circle><circle cx="${x}" cy="${y}" r="${isLast ? 7 : 6}" class="payment-day-point${isLast ? " payment-cumulative-point" : ""}"></circle><text x="${labelX}" y="${Math.max(18, y - 13)}" text-anchor="${labelAnchor}" class="${labelClass}">${escapeHtml(formatMoney(item.cumulative))}</text></g><text x="${x}" y="${height - 18}" text-anchor="middle" class="cashflow-axis-label">${escapeHtml(paymentBucketLabel(item.date, scale))}</text></g>`;
       })
       .join("")}</svg>`;
     if (series === "initial")
@@ -1579,6 +1609,8 @@
       scaleInputName: "remaining-payment-scale",
       emptyMessage: "Nenhum pagamento a partir de hoje.",
       ariaLabel: "Gastos que ainda faltam, acumulados por data",
+      anchorToday: true,
+      aheadTotalEl: els.remainingPaymentAhead,
     });
   }
 

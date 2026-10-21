@@ -2152,6 +2152,26 @@ select[multiple] {
   gap: 3px;
 }
 
+.payment-ahead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 8px;
+  margin: 8px 0 0;
+}
+
+.payment-ahead span {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.payment-ahead strong {
+  color: var(--gold);
+  font-size: 22px;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.1;
+}
+
 .payment-projection-panel h3,
 .payment-projection-panel p {
   margin: 0;
