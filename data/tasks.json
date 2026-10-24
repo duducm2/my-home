@@ -7,8 +7,8 @@
       "description": "Marco da compra e transição do imóvel.",
       "priority": 1,
       "sequence": 1,
-      "start_date": "2026-12-03",
-      "end_date": "2026-12-09",
+      "start_date": "2026-12-24",
+      "end_date": "2026-12-30",
       "status": "pending",
       "expense_allocations": [
         {
@@ -26,7 +26,7 @@
         "project.purchase_workflow"
       ],
       "created_at": "2026-09-15 23:51:00",
-      "updated_at": "2026-09-25 20:00:48"
+      "updated_at": "2026-10-24 20:35:17"
     },
     {
       "id": "TASK_0002",
@@ -34,8 +34,8 @@
       "description": "Marco da compra e transição do imóvel.",
       "priority": 1,
       "sequence": 3,
-      "start_date": "2026-12-03",
-      "end_date": "2026-12-08",
+      "start_date": "2026-12-24",
+      "end_date": "2026-12-29",
       "status": "pending",
       "expense_allocations": [
         {
@@ -57,7 +57,7 @@
         "project.purchase_workflow"
       ],
       "created_at": "2026-09-15 23:51:00",
-      "updated_at": "2026-09-25 20:00:54"
+      "updated_at": "2026-10-24 20:35:27"
     },
     {
       "id": "TASK_0003",
@@ -79,7 +79,7 @@
         "project.purchase_workflow"
       ],
       "created_at": "2026-09-15 23:51:00",
-      "updated_at": "2026-09-25 20:08:47"
+      "updated_at": "2026-10-24 20:35:49"
     },
     {
       "id": "TASK_0004",
@@ -87,8 +87,8 @@
       "description": "Marco da compra e transição do imóvel.",
       "priority": 1,
       "sequence": 4,
-      "start_date": "2026-12-03",
-      "end_date": "2026-12-08",
+      "start_date": "2026-12-24",
+      "end_date": "2026-12-29",
       "status": "pending",
       "expense_allocations": [
         {
@@ -106,7 +106,7 @@
         "project.purchase_workflow"
       ],
       "created_at": "2026-09-15 23:51:00",
-      "updated_at": "2026-09-25 20:00:57"
+      "updated_at": "2026-10-24 20:35:30"
     },
     {
       "id": "TASK_0005",
@@ -114,8 +114,8 @@
       "description": "Marco da compra e transição do imóvel.",
       "priority": 1,
       "sequence": 5,
-      "start_date": "2026-12-03",
-      "end_date": "2026-12-08",
+      "start_date": "2026-12-24",
+      "end_date": "2026-12-29",
       "status": "pending",
       "expense_allocations": [
         {
@@ -133,7 +133,7 @@
         "project.purchase_workflow"
       ],
       "created_at": "2026-09-15 23:51:00",
-      "updated_at": "2026-09-25 20:01:02"
+      "updated_at": "2026-10-24 20:35:32"
     },
     {
       "id": "TASK_0006",
@@ -167,9 +167,9 @@
       "title": "FASE 2 (opcional)",
       "description": "Marco da compra e transição do imóvel.",
       "priority": 1,
-      "sequence": 5,
-      "start_date": "2026-11-10",
-      "end_date": "2026-12-01",
+      "sequence": 7,
+      "start_date": "2026-12-31",
+      "end_date": "2027-01-21",
       "status": "pending",
       "expense_allocations": [],
       "icon_key": "home-expense",
@@ -182,7 +182,7 @@
         "project.purchase_workflow"
       ],
       "created_at": "2026-09-15 23:51:00",
-      "updated_at": "2026-09-25 20:08:47"
+      "updated_at": "2026-10-24 20:35:49"
     },
     {
       "id": "TASK_0009",
@@ -190,8 +190,8 @@
       "description": "Marco da compra e transição do imóvel.",
       "priority": 1,
       "sequence": 9,
-      "start_date": "2027-01-29",
-      "end_date": "2027-03-05",
+      "start_date": "2027-03-04",
+      "end_date": "2027-03-22",
       "status": "pending",
       "expense_allocations": [],
       "icon_key": "home-expense",
@@ -204,7 +204,7 @@
         "project.purchase_workflow"
       ],
       "created_at": "2026-09-15 23:51:00",
-      "updated_at": "2026-09-25 20:08:47"
+      "updated_at": "2026-10-24 20:35:49"
     },
     {
       "id": "TASK_0010",
@@ -212,8 +212,8 @@
       "description": "Marco da compra e transição do imóvel.",
       "priority": 1,
       "sequence": 10,
-      "start_date": "2027-02-16",
-      "end_date": "2027-03-17",
+      "start_date": "2027-03-12",
+      "end_date": "2027-03-31",
       "status": "pending",
       "expense_allocations": [],
       "icon_key": "moving-service",
@@ -227,7 +227,7 @@
         "project.work_plan"
       ],
       "created_at": "2026-09-15 23:51:00",
-      "updated_at": "2026-09-25 20:08:47"
+      "updated_at": "2026-10-24 20:35:49"
     },
     {
       "id": "TASK_0011",
@@ -266,7 +266,7 @@
         "project.work_plan"
       ],
       "created_at": "2026-09-15 23:51:00",
-      "updated_at": "2026-10-24 20:19:39"
+      "updated_at": "2026-10-24 20:33:00"
     },
     {
       "id": "TASK_0020",
@@ -293,16 +293,16 @@
         "project.work_plan"
       ],
       "created_at": "2026-09-15 23:51:00",
-      "updated_at": "2026-10-24 20:19:39"
+      "updated_at": "2026-10-24 20:33:00"
     },
     {
       "id": "TASK_0027",
       "title": "Revisão elétrica completa",
       "description": "Elétrica",
       "priority": 1,
-      "sequence": 3,
-      "start_date": "2027-01-29",
-      "end_date": "2027-02-15",
+      "sequence": 1,
+      "start_date": "2027-03-04",
+      "end_date": "2027-03-21",
       "status": "pending",
       "expense_allocations": [
         {
@@ -320,16 +320,16 @@
         "project.priority_work"
       ],
       "created_at": "2026-09-15 23:51:00",
-      "updated_at": "2026-09-25 20:07:14"
+      "updated_at": "2026-10-24 20:38:57"
     },
     {
       "id": "TASK_0035",
       "title": "Novas tomadas",
       "description": "Elétrica",
       "priority": 1,
-      "sequence": 2,
-      "start_date": "2027-01-29",
-      "end_date": "2027-02-16",
+      "sequence": 3,
+      "start_date": "2027-03-04",
+      "end_date": "2027-03-22",
       "status": "pending",
       "expense_allocations": [
         {
@@ -347,7 +347,7 @@
         "project.priority_work"
       ],
       "created_at": "2026-09-15 23:51:00",
-      "updated_at": "2026-09-25 20:07:14"
+      "updated_at": "2026-10-24 20:39:08"
     },
     {
       "id": "TASK_0076",
@@ -355,8 +355,8 @@
       "description": "Mudança. Casa estruturalmente pronta",
       "priority": 3,
       "sequence": 4,
-      "start_date": "2027-03-12",
-      "end_date": "2027-03-17",
+      "start_date": "2027-03-21",
+      "end_date": "2027-03-26",
       "status": "pending",
       "expense_allocations": [],
       "icon_key": "cleaning-service",
@@ -369,7 +369,7 @@
         "project.work_plan"
       ],
       "created_at": "2026-09-15 23:51:00",
-      "updated_at": "2026-10-21 20:36:58"
+      "updated_at": "2026-10-24 20:40:57"
     },
     {
       "id": "TASK_0079",
@@ -377,8 +377,8 @@
       "description": "Mudança. Casa estruturalmente pronta",
       "priority": 3,
       "sequence": 5,
-      "start_date": "2027-03-12",
-      "end_date": "2027-03-17",
+      "start_date": "2027-03-21",
+      "end_date": "2027-03-26",
       "status": "pending",
       "expense_allocations": [],
       "icon_key": "moving-service",
@@ -391,7 +391,7 @@
         "project.work_plan"
       ],
       "created_at": "2026-09-15 23:51:00",
-      "updated_at": "2026-10-21 20:36:55"
+      "updated_at": "2026-10-24 20:40:59"
     },
     {
       "id": "TASK_0080",
@@ -399,8 +399,8 @@
       "description": "Mudança. Casa estruturalmente pronta",
       "priority": 3,
       "sequence": 6,
-      "start_date": "2027-03-12",
-      "end_date": "2027-03-17",
+      "start_date": "2027-03-21",
+      "end_date": "2027-03-26",
       "status": "pending",
       "expense_allocations": [],
       "icon_key": "moving-service",
@@ -413,16 +413,16 @@
         "project.work_plan"
       ],
       "created_at": "2026-09-15 23:51:00",
-      "updated_at": "2026-10-21 20:36:52"
+      "updated_at": "2026-10-24 20:41:02"
     },
     {
       "id": "TASK_0097",
       "title": "Compra",
       "description": "Compra, regularizações documentais, Caixa e transição do imóvel.",
       "priority": 1,
-      "sequence": 6,
-      "start_date": "2026-12-03",
-      "end_date": "2026-12-09",
+      "sequence": 5,
+      "start_date": "2026-12-24",
+      "end_date": "2026-12-30",
       "status": "pending",
       "expense_allocations": [],
       "icon_key": "mortgage-contract",
@@ -435,7 +435,7 @@
         "project.purchase_workflow"
       ],
       "created_at": "2026-09-16 15:19:49",
-      "updated_at": "2026-09-25 20:08:47"
+      "updated_at": "2026-10-24 20:35:49"
     },
     {
       "id": "TASK_0099",
@@ -455,7 +455,7 @@
       "progress": 0,
       "source_refs": [],
       "created_at": "2026-09-18 13:54:33",
-      "updated_at": "2026-09-25 20:08:47"
+      "updated_at": "2026-10-24 20:35:49"
     },
     {
       "id": "TASK_0100",
@@ -537,9 +537,9 @@
       "title": "👱‍♀️ Jane",
       "description": "",
       "priority": 1,
-      "sequence": 7,
-      "start_date": "2026-12-12",
-      "end_date": "2027-02-12",
+      "sequence": 6,
+      "start_date": "2026-12-31",
+      "end_date": "2027-03-03",
       "status": "pending",
       "expense_allocations": [],
       "icon_key": "home-expense",
@@ -550,7 +550,7 @@
       "progress": 0,
       "source_refs": [],
       "created_at": "2026-09-18 13:58:18",
-      "updated_at": "2026-09-25 20:08:47"
+      "updated_at": "2026-10-24 20:35:49"
     },
     {
       "id": "TASK_0104",
@@ -558,8 +558,8 @@
       "description": "",
       "priority": 1,
       "sequence": 1,
-      "start_date": "2026-12-12",
-      "end_date": "2027-02-12",
+      "start_date": "2026-12-31",
+      "end_date": "2027-03-03",
       "status": "pending",
       "expense_allocations": [],
       "icon_key": "home-expense",
@@ -570,7 +570,7 @@
       "progress": 0,
       "source_refs": [],
       "created_at": "2026-09-18 14:50:56",
-      "updated_at": "2026-09-25 20:11:39"
+      "updated_at": "2026-10-24 20:35:54"
     },
     {
       "id": "TASK_0105",
@@ -615,7 +615,7 @@
       "progress": 100,
       "source_refs": [],
       "created_at": "2026-09-18 15:25:38",
-      "updated_at": "2026-09-25 20:08:47"
+      "updated_at": "2026-10-24 20:35:49"
     },
     {
       "id": "TASK_0107",
@@ -623,8 +623,8 @@
       "description": "Marco da compra e transição do imóvel.",
       "priority": 1,
       "sequence": 2,
-      "start_date": "2026-12-03",
-      "end_date": "2026-12-09",
+      "start_date": "2026-12-24",
+      "end_date": "2026-12-30",
       "status": "pending",
       "expense_allocations": [
         {
@@ -640,7 +640,7 @@
       "progress": 0,
       "source_refs": [],
       "created_at": "2026-09-18 15:52:22",
-      "updated_at": "2026-09-25 20:00:52"
+      "updated_at": "2026-10-24 20:35:24"
     },
     {
       "id": "TASK_0108",
@@ -648,8 +648,8 @@
       "description": "",
       "priority": 1,
       "sequence": 1,
-      "start_date": "2027-02-16",
-      "end_date": "2027-02-25",
+      "start_date": "2027-03-12",
+      "end_date": "2027-03-21",
       "status": "pending",
       "expense_allocations": [],
       "icon_key": "moving-service",
@@ -660,7 +660,7 @@
       "progress": 0,
       "source_refs": [],
       "created_at": "2026-09-18 17:20:16",
-      "updated_at": "2026-10-21 20:37:35"
+      "updated_at": "2026-10-24 20:40:34"
     },
     {
       "id": "TASK_0109",
@@ -668,8 +668,8 @@
       "description": "",
       "priority": 1,
       "sequence": 2,
-      "start_date": "2027-02-26",
-      "end_date": "2027-03-06",
+      "start_date": "2027-03-21",
+      "end_date": "2027-03-29",
       "status": "pending",
       "expense_allocations": [
         {
@@ -685,7 +685,7 @@
       "progress": 0,
       "source_refs": [],
       "created_at": "2026-09-18 17:20:48",
-      "updated_at": "2026-10-21 20:37:17"
+      "updated_at": "2026-10-24 20:40:35"
     },
     {
       "id": "TASK_0110",
@@ -693,8 +693,8 @@
       "description": "",
       "priority": 1,
       "sequence": 3,
-      "start_date": "2027-03-07",
-      "end_date": "2027-03-17",
+      "start_date": "2027-03-21",
+      "end_date": "2027-03-31",
       "status": "pending",
       "expense_allocations": [
         {
@@ -710,7 +710,7 @@
       "progress": 0,
       "source_refs": [],
       "created_at": "2026-09-18 17:22:48",
-      "updated_at": "2026-10-21 20:37:02"
+      "updated_at": "2026-10-24 20:40:54"
     },
     {
       "id": "TASK_0111",
@@ -735,14 +735,14 @@
       "progress": 0,
       "source_refs": [],
       "created_at": "2026-09-18 17:52:11",
-      "updated_at": "2026-10-24 20:19:39"
+      "updated_at": "2026-10-24 20:33:00"
     },
     {
       "id": "TASK_0112",
       "title": "Pintura",
       "description": "Somente fachada externa (sem pintura interna). Área líquida estimada ~70,6 m² (perímetro 30,1 m × 2,7 m - aberturas 10,7 m²). Rendimento efetivo do projeto: 6 m²/L (2 demãos) -> ~11,8 L -> 1 lata de 18 L.",
       "priority": 1,
-      "sequence": 10,
+      "sequence": 11,
       "start_date": "2026-11-09",
       "end_date": "2026-11-22",
       "status": "pending",
@@ -772,7 +772,7 @@
       "progress": 0,
       "source_refs": [],
       "created_at": "2026-09-20 21:27:43",
-      "updated_at": "2026-10-24 20:19:39"
+      "updated_at": "2026-10-24 20:33:00"
     },
     {
       "id": "TASK_0113",
@@ -797,7 +797,7 @@
       "progress": 0,
       "source_refs": [],
       "created_at": "2026-09-25 17:57:05",
-      "updated_at": "2026-10-24 20:19:39"
+      "updated_at": "2026-10-24 20:33:00"
     },
     {
       "id": "TASK_0114",
@@ -826,7 +826,7 @@
       "progress": 0,
       "source_refs": [],
       "created_at": "2026-09-25 18:21:12",
-      "updated_at": "2026-10-24 20:21:58"
+      "updated_at": "2026-10-24 20:33:00"
     },
     {
       "id": "TASK_0115",
@@ -834,8 +834,8 @@
       "description": "",
       "priority": 1,
       "sequence": 4,
-      "start_date": "2026-11-01",
-      "end_date": "2026-12-01",
+      "start_date": "2026-11-23",
+      "end_date": "2026-12-23",
       "status": "pending",
       "expense_allocations": [],
       "icon_key": "architect-service",
@@ -846,7 +846,7 @@
       "progress": 0,
       "source_refs": [],
       "created_at": "2026-09-25 18:26:28",
-      "updated_at": "2026-09-25 20:08:47"
+      "updated_at": "2026-10-24 20:35:49"
     },
     {
       "id": "TASK_0116",
@@ -854,8 +854,8 @@
       "description": "",
       "priority": 1,
       "sequence": 1,
-      "start_date": "2026-11-01",
-      "end_date": "2026-12-01",
+      "start_date": "2026-11-23",
+      "end_date": "2026-12-23",
       "status": "pending",
       "expense_allocations": [],
       "icon_key": "mortgage-contract",
@@ -866,7 +866,7 @@
       "progress": 0,
       "source_refs": [],
       "created_at": "2026-09-25 18:27:00",
-      "updated_at": "2026-09-25 18:27:30"
+      "updated_at": "2026-10-24 20:34:28"
     },
     {
       "id": "TASK_0117",
@@ -874,8 +874,8 @@
       "description": "",
       "priority": 1,
       "sequence": 1,
-      "start_date": "2026-11-10",
-      "end_date": "2026-12-01",
+      "start_date": "2026-12-31",
+      "end_date": "2027-01-21",
       "status": "pending",
       "expense_allocations": [
         {
@@ -891,7 +891,7 @@
       "progress": 0,
       "source_refs": [],
       "created_at": "2026-09-25 18:34:13",
-      "updated_at": "2026-09-25 20:08:49"
+      "updated_at": "2026-10-24 20:35:42"
     },
     {
       "id": "TASK_0118",
@@ -916,7 +916,7 @@
       "progress": 0,
       "source_refs": [],
       "created_at": "2026-09-25 18:52:45",
-      "updated_at": "2026-10-24 20:19:39"
+      "updated_at": "2026-10-24 20:33:00"
     },
     {
       "id": "TASK_0119",
@@ -936,7 +936,7 @@
       "progress": 100,
       "source_refs": [],
       "created_at": "2026-09-25 19:00:13",
-      "updated_at": "2026-09-25 20:08:47"
+      "updated_at": "2026-10-24 20:35:49"
     },
     {
       "id": "TASK_0120",
@@ -964,8 +964,8 @@
       "description": "",
       "priority": 1,
       "sequence": 4,
-      "start_date": "2027-01-29",
-      "end_date": "2027-02-15",
+      "start_date": "2027-03-04",
+      "end_date": "2027-03-21",
       "status": "pending",
       "expense_allocations": [
         {
@@ -993,16 +993,16 @@
       "progress": 0,
       "source_refs": [],
       "created_at": "2026-09-25 19:29:41",
-      "updated_at": "2026-09-25 20:07:14"
+      "updated_at": "2026-10-24 20:39:11"
     },
     {
       "id": "TASK_0122",
       "title": "Pedreiro 3",
       "description": "",
       "priority": 1,
-      "sequence": 1,
-      "start_date": "2027-01-29",
-      "end_date": "2027-02-13",
+      "sequence": 2,
+      "start_date": "2027-03-04",
+      "end_date": "2027-03-19",
       "status": "pending",
       "expense_allocations": [
         {
@@ -1018,7 +1018,7 @@
       "progress": 0,
       "source_refs": [],
       "created_at": "2026-09-25 19:45:49",
-      "updated_at": "2026-09-25 20:12:38"
+      "updated_at": "2026-10-24 20:39:01"
     },
     {
       "id": "TASK_0123",
@@ -1026,8 +1026,8 @@
       "description": "",
       "priority": 1,
       "sequence": 5,
-      "start_date": "2027-02-16",
-      "end_date": "2027-03-05",
+      "start_date": "2027-03-04",
+      "end_date": "2027-03-21",
       "status": "pending",
       "expense_allocations": [
         {
@@ -1043,7 +1043,7 @@
       "progress": 0,
       "source_refs": [],
       "created_at": "2026-09-25 19:46:01",
-      "updated_at": "2026-10-21 20:37:41"
+      "updated_at": "2026-10-24 20:39:14"
     },
     {
       "id": "TASK_0124",
@@ -1076,7 +1076,7 @@
       "progress": 0,
       "source_refs": [],
       "created_at": "2026-10-10 15:11:31",
-      "updated_at": "2026-10-24 20:25:08"
+      "updated_at": "2026-10-24 20:33:00"
     },
     {
       "id": "TASK_0125",
@@ -1101,7 +1101,7 @@
       "progress": 0,
       "source_refs": [],
       "created_at": "2026-10-10 15:15:41",
-      "updated_at": "2026-10-24 20:19:39"
+      "updated_at": "2026-10-24 20:33:00"
     },
     {
       "id": "TASK_0127",
@@ -1126,8 +1126,33 @@
       "progress": 0,
       "source_refs": [],
       "created_at": "2026-10-21 20:38:16",
-      "updated_at": "2026-10-24 20:19:39"
+      "updated_at": "2026-10-24 20:33:00"
+    },
+    {
+      "id": "TASK_0128",
+      "title": "Muro da esquerda",
+      "description": "",
+      "priority": 1,
+      "sequence": 10,
+      "start_date": "2026-11-09",
+      "end_date": "2026-11-14",
+      "status": "pending",
+      "expense_allocations": [
+        {
+          "expense_id": "EXP_0069",
+          "expected_quantity": 1.0
+        }
+      ],
+      "icon_key": "mason-service",
+      "icon_mode": "auto",
+      "date_status": "confirmed",
+      "activity_type": "task",
+      "parent_id": "TASK_0003",
+      "progress": 0,
+      "source_refs": [],
+      "created_at": "2026-10-24 20:32:23",
+      "updated_at": "2026-10-24 20:33:18"
     }
   ],
-  "updated_at": "2026-10-24 20:25:08"
+  "updated_at": "2026-10-24 20:41:02"
 }
