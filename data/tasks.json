@@ -1062,6 +1062,10 @@
         {
           "expense_id": "EXP_0065",
           "expected_quantity": 1.0
+        },
+        {
+          "expense_id": "EXP_0068",
+          "expected_quantity": 1.0
         }
       ],
       "icon_key": "mason-service",
@@ -1072,7 +1076,7 @@
       "progress": 0,
       "source_refs": [],
       "created_at": "2026-10-10 15:11:31",
-      "updated_at": "2026-10-24 20:24:20"
+      "updated_at": "2026-10-24 20:25:08"
     },
     {
       "id": "TASK_0125",
@@ -1125,5 +1129,5 @@
       "updated_at": "2026-10-24 20:19:39"
     }
   ],
-  "updated_at": "2026-10-24 20:24:20"
+  "updated_at": "2026-10-24 20:25:08"
 }
