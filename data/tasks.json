@@ -266,14 +266,14 @@
         "project.work_plan"
       ],
       "created_at": "2026-09-15 23:51:00",
-      "updated_at": "2026-10-31 12:39:18"
+      "updated_at": "2026-10-31 12:45:35"
     },
     {
       "id": "TASK_0020",
       "title": "Revisão completa das telhas e substituição das quebradas",
       "description": "Regularizar, corrigir problemas existentes, melhorar a conservação e deixar o imóvel adequado para Prefeitura e Caixa. Após assinatura do contrato com a imobiliária",
       "priority": 1,
-      "sequence": 8,
+      "sequence": 9,
       "start_date": "2026-11-02",
       "end_date": "2026-11-06",
       "status": "pending",
@@ -293,7 +293,7 @@
         "project.work_plan"
       ],
       "created_at": "2026-09-15 23:51:00",
-      "updated_at": "2026-10-31 12:39:18"
+      "updated_at": "2026-10-31 12:45:35"
     },
     {
       "id": "TASK_0027",
@@ -735,14 +735,14 @@
       "progress": 0,
       "source_refs": [],
       "created_at": "2026-09-18 17:52:11",
-      "updated_at": "2026-10-31 12:39:18"
+      "updated_at": "2026-10-31 12:45:35"
     },
     {
       "id": "TASK_0112",
       "title": "Pintura",
       "description": "Somente fachada externa (sem pintura interna). Área líquida estimada ~70,6 m² (perímetro 30,1 m × 2,7 m - aberturas 10,7 m²). Rendimento efetivo do projeto: 6 m²/L (2 demãos) -> ~11,8 L -> 1 lata de 18 L.",
       "priority": 1,
-      "sequence": 12,
+      "sequence": 14,
       "start_date": "2026-11-09",
       "end_date": "2026-11-22",
       "status": "pending",
@@ -772,7 +772,7 @@
       "progress": 0,
       "source_refs": [],
       "created_at": "2026-09-20 21:27:43",
-      "updated_at": "2026-10-31 12:39:18"
+      "updated_at": "2026-10-31 12:45:35"
     },
     {
       "id": "TASK_0113",
@@ -797,7 +797,7 @@
       "progress": 0,
       "source_refs": [],
       "created_at": "2026-09-25 17:57:05",
-      "updated_at": "2026-10-31 12:39:18"
+      "updated_at": "2026-10-31 12:45:35"
     },
     {
       "id": "TASK_0114",
@@ -822,7 +822,7 @@
       "progress": 0,
       "source_refs": [],
       "created_at": "2026-09-25 18:21:12",
-      "updated_at": "2026-10-31 12:39:18"
+      "updated_at": "2026-10-31 12:45:35"
     },
     {
       "id": "TASK_0115",
@@ -912,7 +912,7 @@
       "progress": 0,
       "source_refs": [],
       "created_at": "2026-09-25 18:52:45",
-      "updated_at": "2026-10-31 12:39:18"
+      "updated_at": "2026-10-31 12:45:35"
     },
     {
       "id": "TASK_0119",
@@ -1064,7 +1064,7 @@
       "progress": 0,
       "source_refs": [],
       "created_at": "2026-10-10 15:11:31",
-      "updated_at": "2026-10-31 12:39:18"
+      "updated_at": "2026-10-31 12:45:35"
     },
     {
       "id": "TASK_0125",
@@ -1089,14 +1089,14 @@
       "progress": 0,
       "source_refs": [],
       "created_at": "2026-10-10 15:15:41",
-      "updated_at": "2026-10-31 12:39:18"
+      "updated_at": "2026-10-31 12:45:35"
     },
     {
       "id": "TASK_0127",
-      "title": "Aluguel do andaime (cópia)",
+      "title": "Aluguel do andaime 2",
       "description": "",
       "priority": 1,
-      "sequence": 10,
+      "sequence": 11,
       "start_date": "2026-11-02",
       "end_date": "2026-11-15",
       "status": "pending",
@@ -1114,14 +1114,14 @@
       "progress": 0,
       "source_refs": [],
       "created_at": "2026-10-21 20:38:16",
-      "updated_at": "2026-10-31 12:39:18"
+      "updated_at": "2026-10-31 12:45:35"
     },
     {
       "id": "TASK_0128",
       "title": "Muro da esquerda",
       "description": "",
       "priority": 1,
-      "sequence": 11,
+      "sequence": 13,
       "start_date": "2026-11-09",
       "end_date": "2026-11-14",
       "status": "pending",
@@ -1139,14 +1139,14 @@
       "progress": 0,
       "source_refs": [],
       "created_at": "2026-10-24 20:32:23",
-      "updated_at": "2026-10-31 12:39:18"
+      "updated_at": "2026-10-31 12:45:35"
     },
     {
       "id": "TASK_0129",
       "title": "Muro da frente, portão, lateral direita e contrapiso 2",
       "description": "",
       "priority": 1,
-      "sequence": 9,
+      "sequence": 10,
       "start_date": "2026-11-02",
       "end_date": "2026-11-15",
       "status": "pending",
@@ -1164,8 +1164,58 @@
       "progress": 0,
       "source_refs": [],
       "created_at": "2026-10-31 12:38:18",
-      "updated_at": "2026-10-31 12:39:18"
+      "updated_at": "2026-10-31 12:45:35"
+    },
+    {
+      "id": "TASK_0130",
+      "title": "Infiltração Interna e Instação de Janelas",
+      "description": "",
+      "priority": 1,
+      "sequence": 8,
+      "start_date": "2026-11-02",
+      "end_date": "2026-11-06",
+      "status": "pending",
+      "expense_allocations": [
+        {
+          "expense_id": "EXP_0071",
+          "expected_quantity": 1.0
+        }
+      ],
+      "icon_key": "mason-service",
+      "icon_mode": "auto",
+      "date_status": "confirmed",
+      "activity_type": "task",
+      "parent_id": "TASK_0003",
+      "progress": 0,
+      "source_refs": [],
+      "created_at": "2026-10-31 12:42:23",
+      "updated_at": "2026-10-31 12:45:35"
+    },
+    {
+      "id": "TASK_0131",
+      "title": "Sacos de cimento",
+      "description": "",
+      "priority": 1,
+      "sequence": 12,
+      "start_date": "2026-11-02",
+      "end_date": "2026-11-06",
+      "status": "pending",
+      "expense_allocations": [
+        {
+          "expense_id": "EXP_0016",
+          "expected_quantity": 11.0
+        }
+      ],
+      "icon_key": "cement",
+      "icon_mode": "auto",
+      "date_status": "confirmed",
+      "activity_type": "task",
+      "parent_id": "TASK_0003",
+      "progress": 0,
+      "source_refs": [],
+      "created_at": "2026-10-31 12:45:22",
+      "updated_at": "2026-10-31 12:45:45"
     }
   ],
-  "updated_at": "2026-10-31 12:39:18"
+  "updated_at": "2026-10-31 12:45:45"
 }
