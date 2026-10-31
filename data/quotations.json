@@ -7637,45 +7637,6 @@
       }
     },
     {
-      "expense_id": "EXP_0065",
-      "id": "QUOTE_001",
-      "source": "manual",
-      "provider_id": "",
-      "vendor": "A decidir",
-      "unit_price": 6000.0,
-      "quantity": 1.0,
-      "unit": "Homem",
-      "shipping_cost": 0.0,
-      "total_price": 6000.0,
-      "product_url": "",
-      "checked_at": "2026-10-24",
-      "notes": "",
-      "response_status": "received",
-      "response_channel": "",
-      "received_at": "",
-      "response_date": "",
-      "validity": "",
-      "references": [],
-      "archived": false,
-      "attachments": [],
-      "vendor_snapshot": {},
-      "metadata": {
-        "currency": "BRL",
-        "source_type": "manual",
-        "quote_valid_until": "",
-        "source_page": null,
-        "extraction_confidence": null,
-        "brand": "",
-        "model": "",
-        "specifications": "",
-        "package_size": "",
-        "availability": "",
-        "seller_location": "",
-        "source_name": "",
-        "ambiguities": ""
-      }
-    },
-    {
       "expense_id": "EXP_0066",
       "id": "QUOTE_001",
       "source": "manual",
@@ -8378,7 +8339,46 @@
         "extraction_confidence": 1.0,
         "currency": "BRL"
       }
+    },
+    {
+      "expense_id": "EXP_0065",
+      "id": "QUOTE_001",
+      "source": "manual",
+      "provider_id": "",
+      "vendor": "A decidir",
+      "unit_price": 2484.0,
+      "quantity": 1.0,
+      "unit": "Homem",
+      "shipping_cost": 0.0,
+      "total_price": 2484.0,
+      "product_url": "",
+      "checked_at": "2026-10-24",
+      "notes": "",
+      "response_status": "received",
+      "response_channel": "",
+      "received_at": "",
+      "response_date": "",
+      "validity": "",
+      "references": [],
+      "archived": false,
+      "attachments": [],
+      "vendor_snapshot": {},
+      "metadata": {
+        "currency": "BRL",
+        "source_type": "manual",
+        "quote_valid_until": "",
+        "source_page": null,
+        "extraction_confidence": null,
+        "brand": "",
+        "model": "",
+        "specifications": "",
+        "package_size": "",
+        "availability": "",
+        "seller_location": "",
+        "source_name": "",
+        "ambiguities": ""
+      }
     }
   ],
-  "updated_at": "2026-10-31 12:32:57"
+  "updated_at": "2026-10-31 12:36:16"
 }
