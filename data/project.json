@@ -147,7 +147,7 @@
     "language": "pt-BR"
   },
   "funding": {
-    "as_of": "2026-10-31",
+    "as_of": "2026-11-04",
     "currency": "BRL",
     "entry_expense_id": "EXP_0001",
     "sources": [
@@ -163,12 +163,12 @@
         "id": "flexible_funds",
         "label": "Recursos livres",
         "amount": 66046.6,
-        "balance": 46006.93,
+        "balance": 42702.93,
         "restriction": "other_project_costs",
         "restriction_note": "Disponível para documentação, obras, mudança, reservas e demais custos do projeto."
       }
     ],
-    "balance_updated_at": "2026-10-31 12:28:22"
+    "balance_updated_at": "2026-11-04 19:08:48"
   },
   "purchase_contract": {
     "title": "Instrumento Particular de Promessa de Venda e Compra de Bem Imóvel e Outras Avenças",
