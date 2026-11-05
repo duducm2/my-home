@@ -8495,7 +8495,46 @@
         "source_name": "",
         "ambiguities": ""
       }
+    },
+    {
+      "expense_id": "EXP_0073",
+      "id": "QUOTE_001",
+      "source": "manual",
+      "provider_id": "",
+      "vendor": "n",
+      "unit_price": 200.0,
+      "quantity": 1.0,
+      "unit": "unidade",
+      "shipping_cost": 0.0,
+      "total_price": 200.0,
+      "product_url": "",
+      "checked_at": "2026-11-04",
+      "notes": "",
+      "response_status": "received",
+      "response_channel": "",
+      "received_at": "",
+      "response_date": "",
+      "validity": "",
+      "references": [],
+      "archived": false,
+      "attachments": [],
+      "vendor_snapshot": {},
+      "metadata": {
+        "currency": "BRL",
+        "source_type": "manual",
+        "quote_valid_until": "",
+        "source_page": null,
+        "extraction_confidence": null,
+        "brand": "",
+        "model": "",
+        "specifications": "",
+        "package_size": "",
+        "availability": "",
+        "seller_location": "",
+        "source_name": "",
+        "ambiguities": ""
+      }
     }
   ],
-  "updated_at": "2026-11-04 19:47:06"
+  "updated_at": "2026-11-04 20:01:20"
 }

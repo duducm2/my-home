@@ -390,7 +390,7 @@
     ]
   },
   "notes": "",
-  "updated_at": "2026-11-04 19:45:41",
+  "updated_at": "2026-11-04 20:01:26",
   "model_3d": {
     "version": 2,
     "model_type": "schematic_architectural_dollhouse",
@@ -899,7 +899,7 @@
       "normalized_at": "2026-09-15",
       "accuracy": "blueprint_aligned_with_measured_rooms_and_marked_proportional_openings"
     },
-    "editor_updated_at": "2026-11-04 19:45:41",
+    "editor_updated_at": "2026-11-04 20:01:26",
     "removed_layout_keys": [
       "fixture:laundry:floor_drain",
       "fixture:laundry:laundry_counter",
