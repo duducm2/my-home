@@ -66,7 +66,7 @@
       "priority": 1,
       "sequence": 3,
       "start_date": "2026-09-17",
-      "end_date": "2026-11-30",
+      "end_date": "2026-11-26",
       "status": "pending",
       "expense_allocations": [],
       "icon_key": "home-expense",
@@ -163,33 +163,11 @@
       "updated_at": "2026-09-25 20:03:47"
     },
     {
-      "id": "TASK_0007",
-      "title": "FASE 2 (opcional)",
-      "description": "Marco da compra e transição do imóvel.",
-      "priority": 1,
-      "sequence": 7,
-      "start_date": "2027-01-01",
-      "end_date": "2027-01-22",
-      "status": "pending",
-      "expense_allocations": [],
-      "icon_key": "home-expense",
-      "icon_mode": "auto",
-      "date_status": "confirmed",
-      "activity_type": "macro",
-      "parent_id": "",
-      "progress": 0,
-      "source_refs": [
-        "project.purchase_workflow"
-      ],
-      "created_at": "2026-09-15 23:51:00",
-      "updated_at": "2026-10-24 20:35:49"
-    },
-    {
       "id": "TASK_0010",
       "title": "Mudança",
       "description": "Marco da compra e transição do imóvel.",
       "priority": 1,
-      "sequence": 9,
+      "sequence": 8,
       "start_date": "2027-01-01",
       "end_date": "2027-01-28",
       "status": "pending",
@@ -244,7 +222,7 @@
         "project.work_plan"
       ],
       "created_at": "2026-09-15 23:51:00",
-      "updated_at": "2026-11-10 18:48:23"
+      "updated_at": "2026-11-10 18:53:58"
     },
     {
       "id": "TASK_0027",
@@ -252,12 +230,16 @@
       "description": "Elétrica",
       "priority": 1,
       "sequence": 14,
-      "start_date": "2026-11-13",
-      "end_date": "2026-11-30",
+      "start_date": "2026-11-17",
+      "end_date": "2026-11-26",
       "status": "pending",
       "expense_allocations": [
         {
           "expense_id": "EXP_0032",
+          "expected_quantity": 1.0
+        },
+        {
+          "expense_id": "EXP_0075",
           "expected_quantity": 1.0
         }
       ],
@@ -271,34 +253,7 @@
         "project.priority_work"
       ],
       "created_at": "2026-09-15 23:51:00",
-      "updated_at": "2026-11-10 18:48:28"
-    },
-    {
-      "id": "TASK_0035",
-      "title": "Novas tomadas",
-      "description": "Elétrica",
-      "priority": 1,
-      "sequence": 1,
-      "start_date": "2027-01-01",
-      "end_date": "2027-01-19",
-      "status": "pending",
-      "expense_allocations": [
-        {
-          "expense_id": "EXP_0038",
-          "expected_quantity": 24.0
-        }
-      ],
-      "icon_key": "outlet",
-      "icon_mode": "auto",
-      "date_status": "confirmed",
-      "activity_type": "task",
-      "parent_id": "TASK_0007",
-      "progress": 0,
-      "source_refs": [
-        "project.priority_work"
-      ],
-      "created_at": "2026-09-15 23:51:00",
-      "updated_at": "2026-11-04 19:52:35"
+      "updated_at": "2026-11-10 18:53:58"
     },
     {
       "id": "TASK_0097",
@@ -327,9 +282,9 @@
       "title": "Parcelas de Financiamento",
       "description": "",
       "priority": 1,
-      "sequence": 8,
+      "sequence": 7,
       "start_date": "2026-12-31",
-      "end_date": "2027-05-10",
+      "end_date": "2027-04-07",
       "status": "pending",
       "expense_allocations": [],
       "icon_key": "document-paper",
@@ -391,31 +346,6 @@
       "source_refs": [],
       "created_at": "2026-09-18 13:56:39",
       "updated_at": "2026-09-25 20:03:56"
-    },
-    {
-      "id": "TASK_0102",
-      "title": "Parcelas do Financiamento - 4",
-      "description": "Marco da compra e transição do imóvel.",
-      "priority": 1,
-      "sequence": 4,
-      "start_date": "2027-04-09",
-      "end_date": "2027-05-10",
-      "status": "pending",
-      "expense_allocations": [
-        {
-          "expense_id": "EXP_0011",
-          "expected_quantity": 1.0
-        }
-      ],
-      "icon_key": "mortgage-installment",
-      "icon_mode": "auto",
-      "date_status": "confirmed",
-      "activity_type": "task",
-      "parent_id": "TASK_0099",
-      "progress": 0,
-      "source_refs": [],
-      "created_at": "2026-09-18 13:56:57",
-      "updated_at": "2026-09-25 20:04:06"
     },
     {
       "id": "TASK_0103",
@@ -620,7 +550,7 @@
       "progress": 0,
       "source_refs": [],
       "created_at": "2026-09-18 17:52:11",
-      "updated_at": "2026-11-10 18:48:23"
+      "updated_at": "2026-11-10 18:53:58"
     },
     {
       "id": "TASK_0112",
@@ -657,7 +587,7 @@
       "progress": 0,
       "source_refs": [],
       "created_at": "2026-09-20 21:27:43",
-      "updated_at": "2026-11-10 18:48:23"
+      "updated_at": "2026-11-10 18:53:58"
     },
     {
       "id": "TASK_0113",
@@ -682,7 +612,7 @@
       "progress": 0,
       "source_refs": [],
       "created_at": "2026-09-25 17:57:05",
-      "updated_at": "2026-11-10 18:48:23"
+      "updated_at": "2026-11-10 18:53:58"
     },
     {
       "id": "TASK_0114",
@@ -707,7 +637,7 @@
       "progress": 0,
       "source_refs": [],
       "created_at": "2026-09-25 18:21:12",
-      "updated_at": "2026-11-10 18:48:23"
+      "updated_at": "2026-11-10 18:53:58"
     },
     {
       "id": "TASK_0115",
@@ -750,31 +680,6 @@
       "updated_at": "2026-10-24 20:34:28"
     },
     {
-      "id": "TASK_0117",
-      "title": "Gordurinha para ajustes (portas, revestimento externo, buracos, etc.)",
-      "description": "",
-      "priority": 1,
-      "sequence": 2,
-      "start_date": "2027-01-01",
-      "end_date": "2027-01-22",
-      "status": "pending",
-      "expense_allocations": [
-        {
-          "expense_id": "EXP_0056",
-          "expected_quantity": 1.0
-        }
-      ],
-      "icon_key": "cement",
-      "icon_mode": "auto",
-      "date_status": "confirmed",
-      "activity_type": "task",
-      "parent_id": "TASK_0007",
-      "progress": 0,
-      "source_refs": [],
-      "created_at": "2026-09-25 18:34:13",
-      "updated_at": "2026-11-04 19:52:35"
-    },
-    {
       "id": "TASK_0118",
       "title": "Fixar portão",
       "description": "",
@@ -797,7 +702,7 @@
       "progress": 0,
       "source_refs": [],
       "created_at": "2026-09-25 18:52:45",
-      "updated_at": "2026-11-10 18:48:23"
+      "updated_at": "2026-11-10 18:53:58"
     },
     {
       "id": "TASK_0119",
@@ -840,68 +745,6 @@
       "updated_at": "2026-09-25 19:00:35"
     },
     {
-      "id": "TASK_0121",
-      "title": "Revestimento da casa",
-      "description": "",
-      "priority": 1,
-      "sequence": 3,
-      "start_date": "2027-01-01",
-      "end_date": "2027-01-18",
-      "status": "pending",
-      "expense_allocations": [
-        {
-          "expense_id": "EXP_0023",
-          "expected_quantity": 120.0
-        },
-        {
-          "expense_id": "EXP_0024",
-          "expected_quantity": 10.0
-        },
-        {
-          "expense_id": "EXP_0025",
-          "expected_quantity": 50.0
-        },
-        {
-          "expense_id": "EXP_0062",
-          "expected_quantity": 1.0
-        }
-      ],
-      "icon_key": "porcelain-tiles",
-      "icon_mode": "manual",
-      "date_status": "confirmed",
-      "activity_type": "task",
-      "parent_id": "TASK_0007",
-      "progress": 0,
-      "source_refs": [],
-      "created_at": "2026-09-25 19:29:41",
-      "updated_at": "2026-11-04 19:52:35"
-    },
-    {
-      "id": "TASK_0123",
-      "title": "Pedreiro 4",
-      "description": "",
-      "priority": 1,
-      "sequence": 4,
-      "start_date": "2027-01-02",
-      "end_date": "2027-01-19",
-      "status": "pending",
-      "expense_allocations": [
-        {
-          "expense_id": "EXP_0061",
-          "expected_quantity": 1.0
-        }
-      ],
-      "icon_key": "mason-service",
-      "icon_mode": "auto",
-      "date_status": "confirmed",
-      "activity_type": "task",
-      "parent_id": "TASK_0007",
-      "progress": 0,
-      "source_refs": [],
-      "created_at": "2026-09-25 19:46:01",
-      "updated_at": "2026-11-04 19:52:55"
-    },
-    {
       "id": "TASK_0124",
       "title": "Muro da frente, portão, lateral direita e contrapiso",
       "description": "",
@@ -924,7 +767,7 @@
       "progress": 0,
       "source_refs": [],
       "created_at": "2026-10-10 15:11:31",
-      "updated_at": "2026-11-10 18:48:23"
+      "updated_at": "2026-11-10 18:53:58"
     },
     {
       "id": "TASK_0125",
@@ -949,7 +792,7 @@
       "progress": 0,
       "source_refs": [],
       "created_at": "2026-10-10 15:15:41",
-      "updated_at": "2026-11-10 18:48:23"
+      "updated_at": "2026-11-10 18:53:58"
     },
     {
       "id": "TASK_0127",
@@ -974,7 +817,7 @@
       "progress": 0,
       "source_refs": [],
       "created_at": "2026-10-21 20:38:16",
-      "updated_at": "2026-11-10 18:48:23"
+      "updated_at": "2026-11-10 18:53:58"
     },
     {
       "id": "TASK_0128",
@@ -1003,7 +846,7 @@
       "progress": 0,
       "source_refs": [],
       "created_at": "2026-10-24 20:32:23",
-      "updated_at": "2026-11-10 18:48:23"
+      "updated_at": "2026-11-10 18:53:58"
     },
     {
       "id": "TASK_0130",
@@ -1028,7 +871,7 @@
       "progress": 0,
       "source_refs": [],
       "created_at": "2026-10-31 12:42:23",
-      "updated_at": "2026-11-10 18:48:23"
+      "updated_at": "2026-11-10 18:53:58"
     },
     {
       "id": "TASK_0131",
@@ -1053,7 +896,7 @@
       "progress": 0,
       "source_refs": [],
       "created_at": "2026-10-31 12:45:22",
-      "updated_at": "2026-11-10 18:48:23"
+      "updated_at": "2026-11-10 18:53:58"
     },
     {
       "id": "TASK_0132",
@@ -1078,8 +921,33 @@
       "progress": 0,
       "source_refs": [],
       "created_at": "2026-11-04 19:46:20",
-      "updated_at": "2026-11-10 18:48:23"
+      "updated_at": "2026-11-10 18:53:58"
+    },
+    {
+      "id": "TASK_0133",
+      "title": "Construção para a parte elétrica",
+      "description": "",
+      "priority": 1,
+      "sequence": 15,
+      "start_date": "2026-11-17",
+      "end_date": "2026-11-26",
+      "status": "pending",
+      "expense_allocations": [
+        {
+          "expense_id": "EXP_0074",
+          "expected_quantity": 1.0
+        }
+      ],
+      "icon_key": "mason-service",
+      "icon_mode": "auto",
+      "date_status": "confirmed",
+      "activity_type": "task",
+      "parent_id": "TASK_0003",
+      "progress": 0,
+      "source_refs": [],
+      "created_at": "2026-11-10 18:52:11",
+      "updated_at": "2026-11-10 18:53:58"
     }
   ],
-  "updated_at": "2026-11-10 18:48:28"
+  "updated_at": "2026-11-10 19:07:39"
 }
