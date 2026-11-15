@@ -430,10 +430,15 @@
     if (raw.includes(",")) return Number(raw.replace(",", "."));
     return Number(raw);
   };
+  const hasTrackedBalance = (source) =>
+    source != null &&
+    source.balance !== null &&
+    source.balance !== undefined &&
+    source.balance !== "" &&
+    Number.isFinite(Number(source.balance));
   const fundingSourceValue = (source) => {
     if (!source) return 0;
-    const balance = Number(source.balance);
-    if (Number.isFinite(balance)) return balance;
+    if (hasTrackedBalance(source)) return Number(source.balance);
     return Number(source.amount || 0);
   };
   const escapeHtml = (value) =>
@@ -2019,6 +2024,7 @@
     flexiblePlanned,
     projectedSavings,
     entryExpenseId,
+    flexibleBalance = null,
   ) {
     const today = iso(new Date());
     let pastEntry = 0;
@@ -2037,6 +2043,15 @@
     let entryLeft = pastEntry;
     const fgtsUsed = Math.min(Math.max(0, fgtsValue), entryLeft);
     entryLeft -= fgtsUsed;
+    if (flexibleBalance !== null && Number.isFinite(flexibleBalance)) {
+      return {
+        fgts: roundMoney(Math.max(0, fgtsValue) - fgtsUsed),
+        flexible: roundMoney(Math.max(0, flexibleBalance)),
+        projected: roundMoney(Math.max(0, projectedSavings)),
+        futureTotal: roundMoney(futureTotal),
+        uncoveredPast: 0,
+      };
+    }
     let rest = pastOther + entryLeft;
     let flexibleLeft = Math.max(0, flexiblePlanned);
     let savingsLeft = Math.max(0, projectedSavings);
@@ -2089,7 +2104,7 @@
     const sources = funding.sources || [];
     const fgtsSource = sources.find((item) => item.id === "fgts");
     const flexibleSource = sources.find((item) => item.id === "flexible_funds");
-    // Pie/coverage use planned opening amounts only — live saldo is tracking-only.
+    // Initial pie/coverage use planned opening amounts; remaining view uses live Saldo atual when present.
     const fgtsValue = Number(fgtsSource?.amount || 0);
     if (persistedFgtsAmount == null) persistedFgtsAmount = fgtsValue;
     if (
@@ -2193,6 +2208,7 @@
       flexiblePlanned,
       projectedSavings,
       entryExpenseId,
+      hasTrackedBalance(flexibleSource) ? flexibleTracked : null,
     );
     paintFundingPie(els.remainingFundingPie, els.remainingFundsTotal, [
       { id: "fgts", label: "FGTS", value: remaining.fgts },
