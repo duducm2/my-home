@@ -48,7 +48,7 @@ from quick_task_store import QuickTaskStore  # noqa: E402
 from task_store import TaskStore  # noqa: E402
 
 
-DEFAULT_PORT = 8768
+DEFAULT_PORT = 8769
 ROOT_DIR = Path(__file__).resolve().parent.parent
 WEB_DIR = ROOT_DIR / "web"
 DATA_DIR = ROOT_DIR / "data"
@@ -814,7 +814,7 @@ class ExpenseHandler(BaseHTTPRequestHandler):
 
 
 class HomeHTTPServer(ThreadingHTTPServer):
-    """One listener on 8768. A second start must fail instead of sharing the port."""
+    """One listener on 8769. A second start must fail instead of sharing the port."""
 
     allow_reuse_address = False
 

@@ -14,7 +14,7 @@ if not defined PY (
 call :health
 if not errorlevel 1 goto open
 
-echo O servidor em 8768 nao respondeu. Encerrando copias antigas...
+echo O servidor em 8769 nao respondeu. Encerrando copias antigas...
 powershell -NoProfile -Command "$procs = @(Get-CimInstance Win32_Process | Where-Object { $_.CommandLine -like '*expense_server.py*' }); foreach ($p in $procs) { Stop-Process -Id $p.ProcessId -Force -ErrorAction SilentlyContinue }"
 powershell -NoProfile -Command "Start-Sleep -Seconds 1" >nul
 
@@ -31,7 +31,7 @@ for /L %%I in (1,1,20) do (
 )
 if not defined READY (
   echo.
-  echo Falha ao iniciar o servidor em http://127.0.0.1:8768/
+  echo Falha ao iniciar o servidor em http://127.0.0.1:8769/
   echo Veja a janela "my-home expenses" para o erro.
   echo.
   pause
@@ -39,10 +39,10 @@ if not defined READY (
 )
 
 :open
-start "" "http://127.0.0.1:8768/"
+start "" "http://127.0.0.1:8769/"
 endlocal
 exit /b 0
 
 :health
-powershell -NoProfile -Command "try { $r = Invoke-WebRequest -UseBasicParsing -Uri 'http://127.0.0.1:8768/health' -TimeoutSec 2; if ($r.StatusCode -eq 200) { exit 0 } else { exit 1 } } catch { exit 1 }" >nul 2>&1
+powershell -NoProfile -Command "try { $r = Invoke-WebRequest -UseBasicParsing -Uri 'http://127.0.0.1:8769/health' -TimeoutSec 2; if ($r.StatusCode -eq 200) { exit 0 } else { exit 1 } } catch { exit 1 }" >nul 2>&1
 exit /b %errorlevel%

@@ -13,7 +13,7 @@ fi
 
 healthy=0
 if command -v curl >/dev/null 2>&1; then
-  if curl -fsS --max-time 1 "http://127.0.0.1:8768/health" >/dev/null 2>&1; then
+  if curl -fsS --max-time 1 "http://127.0.0.1:8769/health" >/dev/null 2>&1; then
     healthy=1
   fi
 fi
@@ -23,7 +23,7 @@ if [[ "$healthy" -eq 0 ]]; then
   sleep 2
 fi
 
-URL="http://127.0.0.1:8768/"
+URL="http://127.0.0.1:8769/"
 if command -v xdg-open >/dev/null 2>&1; then
   xdg-open "$URL" >/dev/null 2>&1 || true
 elif command -v open >/dev/null 2>&1; then
