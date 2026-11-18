@@ -8554,45 +8554,6 @@
       }
     },
     {
-      "expense_id": "EXP_0072",
-      "id": "QUOTE_001",
-      "source": "manual",
-      "provider_id": "",
-      "vendor": "X",
-      "unit_price": 941.0,
-      "quantity": 1.0,
-      "unit": "unidade",
-      "shipping_cost": 0.0,
-      "total_price": 941.0,
-      "product_url": "",
-      "checked_at": "2026-11-04",
-      "notes": "",
-      "response_status": "received",
-      "response_channel": "",
-      "received_at": "",
-      "response_date": "",
-      "validity": "",
-      "references": [],
-      "archived": false,
-      "attachments": [],
-      "vendor_snapshot": {},
-      "metadata": {
-        "currency": "BRL",
-        "source_type": "manual",
-        "quote_valid_until": "",
-        "source_page": null,
-        "extraction_confidence": null,
-        "brand": "",
-        "model": "",
-        "specifications": "",
-        "package_size": "",
-        "availability": "",
-        "seller_location": "",
-        "source_name": "",
-        "ambiguities": ""
-      }
-    },
-    {
       "expense_id": "EXP_0076",
       "id": "QUOTE_001",
       "source": "manual",
@@ -8669,7 +8630,46 @@
         "source_name": "",
         "ambiguities": ""
       }
+    },
+    {
+      "expense_id": "EXP_0072",
+      "id": "QUOTE_001",
+      "source": "manual",
+      "provider_id": "",
+      "vendor": "X",
+      "unit_price": 1091.0,
+      "quantity": 1.0,
+      "unit": "unidade",
+      "shipping_cost": 0.0,
+      "total_price": 1091.0,
+      "product_url": "",
+      "checked_at": "2026-11-04",
+      "notes": "",
+      "response_status": "received",
+      "response_channel": "",
+      "received_at": "",
+      "response_date": "",
+      "validity": "",
+      "references": [],
+      "archived": false,
+      "attachments": [],
+      "vendor_snapshot": {},
+      "metadata": {
+        "currency": "BRL",
+        "source_type": "manual",
+        "quote_valid_until": "",
+        "source_page": null,
+        "extraction_confidence": null,
+        "brand": "",
+        "model": "",
+        "specifications": "",
+        "package_size": "",
+        "availability": "",
+        "seller_location": "",
+        "source_name": "",
+        "ambiguities": ""
+      }
     }
   ],
-  "updated_at": "2026-11-15 14:25:31"
+  "updated_at": "2026-11-17 21:26:53"
 }

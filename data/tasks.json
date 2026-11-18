@@ -230,8 +230,8 @@
       "description": "Elétrica",
       "priority": 1,
       "sequence": 24,
-      "start_date": "2026-11-16",
-      "end_date": "2026-11-27",
+      "start_date": "2026-11-19",
+      "end_date": "2026-11-30",
       "status": "pending",
       "expense_allocations": [
         {
@@ -253,7 +253,7 @@
         "project.priority_work"
       ],
       "created_at": "2026-09-15 23:51:00",
-      "updated_at": "2026-11-15 14:40:01"
+      "updated_at": "2026-11-17 20:52:06"
     },
     {
       "id": "TASK_0097",
@@ -921,7 +921,7 @@
       "progress": 0,
       "source_refs": [],
       "created_at": "2026-11-04 19:46:20",
-      "updated_at": "2026-11-15 14:40:01"
+      "updated_at": "2026-11-17 21:25:55"
     },
     {
       "id": "TASK_0133",
@@ -954,8 +954,8 @@
       "description": "",
       "priority": 1,
       "sequence": 20,
-      "start_date": "2026-11-16",
-      "end_date": "2026-11-20",
+      "start_date": "2026-11-19",
+      "end_date": "2026-11-23",
       "status": "pending",
       "expense_allocations": [],
       "icon_key": "mason-service",
@@ -966,7 +966,7 @@
       "progress": 0,
       "source_refs": [],
       "created_at": "2026-11-15 14:03:28",
-      "updated_at": "2026-11-15 14:40:01"
+      "updated_at": "2026-11-17 21:21:37"
     },
     {
       "id": "TASK_0135",
@@ -974,8 +974,8 @@
       "description": "",
       "priority": 1,
       "sequence": 21,
-      "start_date": "2026-11-16",
-      "end_date": "2026-11-20",
+      "start_date": "2026-11-19",
+      "end_date": "2026-11-23",
       "status": "pending",
       "expense_allocations": [],
       "icon_key": "mason-service",
@@ -986,7 +986,7 @@
       "progress": 0,
       "source_refs": [],
       "created_at": "2026-11-15 14:03:44",
-      "updated_at": "2026-11-15 14:40:01"
+      "updated_at": "2026-11-17 21:21:36"
     },
     {
       "id": "TASK_0136",
@@ -994,8 +994,8 @@
       "description": "",
       "priority": 1,
       "sequence": 22,
-      "start_date": "2026-11-16",
-      "end_date": "2026-11-20",
+      "start_date": "2026-11-19",
+      "end_date": "2026-11-23",
       "status": "pending",
       "expense_allocations": [],
       "icon_key": "mason-service",
@@ -1006,7 +1006,7 @@
       "progress": 0,
       "source_refs": [],
       "created_at": "2026-11-15 14:04:00",
-      "updated_at": "2026-11-15 14:40:01"
+      "updated_at": "2026-11-17 21:21:35"
     },
     {
       "id": "TASK_0137",
@@ -1074,8 +1074,8 @@
       "description": "",
       "priority": 1,
       "sequence": 16,
-      "start_date": "2026-11-16",
-      "end_date": "2026-11-20",
+      "start_date": "2026-11-19",
+      "end_date": "2026-11-23",
       "status": "pending",
       "expense_allocations": [],
       "icon_key": "ladder",
@@ -1086,7 +1086,7 @@
       "progress": 0,
       "source_refs": [],
       "created_at": "2026-11-15 14:05:06",
-      "updated_at": "2026-11-15 14:40:01"
+      "updated_at": "2026-11-17 21:21:43"
     },
     {
       "id": "TASK_0141",
@@ -1094,8 +1094,8 @@
       "description": "",
       "priority": 1,
       "sequence": 17,
-      "start_date": "2026-11-16",
-      "end_date": "2026-11-20",
+      "start_date": "2026-11-19",
+      "end_date": "2026-11-23",
       "status": "pending",
       "expense_allocations": [],
       "icon_key": "laminate-flooring",
@@ -1106,7 +1106,7 @@
       "progress": 0,
       "source_refs": [],
       "created_at": "2026-11-15 14:05:19",
-      "updated_at": "2026-11-15 14:40:01"
+      "updated_at": "2026-11-17 21:21:42"
     },
     {
       "id": "TASK_0142",
@@ -1114,8 +1114,8 @@
       "description": "",
       "priority": 1,
       "sequence": 23,
-      "start_date": "2026-11-16",
-      "end_date": "2026-11-20",
+      "start_date": "2026-11-19",
+      "end_date": "2026-11-23",
       "status": "pending",
       "expense_allocations": [],
       "icon_key": "mason-service",
@@ -1126,7 +1126,7 @@
       "progress": 0,
       "source_refs": [],
       "created_at": "2026-11-15 14:05:46",
-      "updated_at": "2026-11-15 14:40:01"
+      "updated_at": "2026-11-17 21:21:33"
     },
     {
       "id": "TASK_0143",
@@ -1174,8 +1174,8 @@
       "description": "",
       "priority": 1,
       "sequence": 18,
-      "start_date": "2026-11-16",
-      "end_date": "2026-11-20",
+      "start_date": "2026-11-19",
+      "end_date": "2026-11-23",
       "status": "pending",
       "expense_allocations": [],
       "icon_key": "outlet",
@@ -1186,7 +1186,7 @@
       "progress": 0,
       "source_refs": [],
       "created_at": "2026-11-15 14:09:46",
-      "updated_at": "2026-11-15 14:40:01"
+      "updated_at": "2026-11-17 21:21:42"
     },
     {
       "id": "TASK_0146",
@@ -1194,8 +1194,8 @@
       "description": "",
       "priority": 1,
       "sequence": 19,
-      "start_date": "2026-11-16",
-      "end_date": "2026-11-20",
+      "start_date": "2026-11-19",
+      "end_date": "2026-11-23",
       "status": "pending",
       "expense_allocations": [],
       "icon_key": "architect-service",
@@ -1206,7 +1206,7 @@
       "progress": 0,
       "source_refs": [],
       "created_at": "2026-11-15 14:10:44",
-      "updated_at": "2026-11-15 14:40:01"
+      "updated_at": "2026-11-17 21:21:41"
     },
     {
       "id": "TASK_0148",
@@ -1214,8 +1214,8 @@
       "description": "",
       "priority": 1,
       "sequence": 15,
-      "start_date": "2026-11-16",
-      "end_date": "2026-11-30",
+      "start_date": "2026-11-19",
+      "end_date": "2026-12-03",
       "status": "pending",
       "expense_allocations": [
         {
@@ -1231,7 +1231,7 @@
       "progress": 0,
       "source_refs": [],
       "created_at": "2026-11-15 14:11:21",
-      "updated_at": "2026-11-15 14:40:01"
+      "updated_at": "2026-11-17 21:21:45"
     },
     {
       "id": "TASK_0149",
@@ -1259,5 +1259,5 @@
       "updated_at": "2026-11-15 14:40:01"
     }
   ],
-  "updated_at": "2026-11-15 14:47:35"
+  "updated_at": "2026-11-17 21:25:55"
 }
