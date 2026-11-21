@@ -19,6 +19,7 @@ from urllib.parse import unquote, urlparse
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from contract_store import ContractStore, MAX_PDF_BYTES  # noqa: E402
+from credit_card_plan_store import CreditCardPlanStore  # noqa: E402
 from expense_attachment_store import (  # noqa: E402
     MAX_PDF_BYTES as MAX_EXPENSE_PDF_BYTES,
     list_system_documents,
@@ -60,6 +61,7 @@ _PROVIDERS: ProviderStore | None = None
 _CONTRACTS: ContractStore | None = None
 _QUICK_TASKS: QuickTaskStore | None = None
 _QUOTATION_PLANNING: QuotationPlanningStore | None = None
+_CREDIT_CARD_PLAN: CreditCardPlanStore | None = None
 
 
 def get_store(data_dir: Path) -> ExpenseStore:
@@ -119,6 +121,16 @@ def get_quotation_planning(data_dir: Path) -> QuotationPlanningStore:
     ):
         _QUOTATION_PLANNING = QuotationPlanningStore(data_dir)
     return _QUOTATION_PLANNING
+
+
+def get_credit_card_plan(data_dir: Path) -> CreditCardPlanStore:
+    global _CREDIT_CARD_PLAN
+    if (
+        _CREDIT_CARD_PLAN is None
+        or _CREDIT_CARD_PLAN.data_dir != data_dir.resolve()
+    ):
+        _CREDIT_CARD_PLAN = CreditCardPlanStore(data_dir)
+    return _CREDIT_CARD_PLAN
 
 
 def save_cashflow_projected_total(
@@ -385,6 +397,9 @@ class ExpenseHandler(BaseHTTPRequestHandler):
             )
             self._json(200, payload)
             return
+        if path == "/api/credit-card-plan":
+            self._json(200, get_credit_card_plan(self.data_dir).load())
+            return
         if path == "/api/media/capabilities":
             self._json(200, media_capabilities())
             return
@@ -622,6 +637,11 @@ class ExpenseHandler(BaseHTTPRequestHandler):
                         self.data_dir,
                         payload.get("projected_total"),
                     ),
+                )
+            elif path == "/api/credit-card-plan":
+                self._json(
+                    200,
+                    get_credit_card_plan(self.data_dir).save(payload),
                 )
             elif path == "/api/project/funding/balance":
                 source_id = str(payload.get("source_id") or "").strip()

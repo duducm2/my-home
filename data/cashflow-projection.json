@@ -13,11 +13,11 @@
   "house_savings_plan": {
     "start": "2026-09",
     "end": "2027-12",
-    "eduardo_monthly": 312.5,
-    "leonardo_monthly": 312.5,
-    "combined_monthly": 625.0,
+    "eduardo_monthly": 375.0,
+    "leonardo_monthly": 375.0,
+    "combined_monthly": 750.0,
     "installments": 16,
-    "projected_total": 10000.0
+    "projected_total": 12000.0
   },
   "categories": [
     {

@@ -1,6 +1,6 @@
 {
   "document_type": "architectural_floor_plan",
-  "display_name": "Rainbow 🌈",
+  "display_name": "Home",
   "blueprint": {
     "image_path": "data/blueprint.jpg",
     "image_url": "/api/house/blueprint.jpg",
@@ -390,7 +390,7 @@
     ]
   },
   "notes": "",
-  "updated_at": "2026-11-15 12:23:26",
+  "updated_at": "2026-11-20 20:53:43",
   "model_3d": {
     "version": 2,
     "model_type": "schematic_architectural_dollhouse",
@@ -899,7 +899,7 @@
       "normalized_at": "2026-09-15",
       "accuracy": "blueprint_aligned_with_measured_rooms_and_marked_proportional_openings"
     },
-    "editor_updated_at": "2026-11-15 12:23:26",
+    "editor_updated_at": "2026-11-20 20:53:43",
     "removed_layout_keys": [
       "fixture:laundry:floor_drain",
       "fixture:laundry:laundry_counter",

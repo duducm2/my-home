@@ -4999,3 +4999,214 @@ body.model3d-active {
     grid-template-columns: 96px minmax(0, 1fr);
   }
 }
+
+.dashboard-credit-card-planner {
+  margin-top: 10px;
+  padding: 12px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 7px;
+}
+
+.credit-card-kpi-strip {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.credit-card-kpi {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 10px 12px;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 7px;
+}
+
+.credit-card-kpi span {
+  color: var(--muted);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.credit-card-kpi strong {
+  font-size: 18px;
+  line-height: 1.2;
+}
+
+.credit-card-kpi small {
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.credit-card-kpi.is-over-budget {
+  border-color: rgba(231, 76, 60, 0.55);
+  background: rgba(231, 76, 60, 0.08);
+}
+
+.credit-card-kpi.is-over-budget strong,
+.credit-card-treemap-panel .panel-kicker.is-over-budget {
+  color: #ff7b6b;
+}
+
+.credit-card-planner-grid {
+  display: grid;
+  grid-template-columns: minmax(280px, 0.95fr) minmax(0, 1.45fr);
+  gap: 10px;
+  align-items: stretch;
+}
+
+.credit-card-picker,
+.credit-card-treemap-panel {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  padding: 12px;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 7px;
+}
+
+.credit-card-picker .panel-head h3,
+.credit-card-treemap-panel .panel-head h3 {
+  margin: 0;
+  color: #bbb;
+  font-size: 12px;
+}
+
+.credit-card-picker-actions {
+  display: inline-flex;
+  gap: 6px;
+}
+
+.credit-card-filter-btn {
+  padding: 4px 9px;
+  font-size: 11px;
+}
+
+.credit-card-filter-btn.is-active {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.credit-card-filter-input {
+  width: 100%;
+  margin: 8px 0;
+  padding: 7px 10px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--panel);
+  color: var(--text);
+  font-size: 12px;
+}
+
+.credit-card-expense-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-height: 330px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+.credit-card-expense-row {
+  display: grid;
+  grid-template-columns: auto 24px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 9px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--panel);
+  cursor: pointer;
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.credit-card-expense-row:hover {
+  border-color: rgba(255, 255, 255, 0.24);
+}
+
+.credit-card-expense-row.is-selected {
+  border-color: var(--accent);
+  background: rgba(52, 152, 219, 0.12);
+}
+
+.credit-card-expense-row .item-icon {
+  width: 24px;
+  height: 24px;
+}
+
+.credit-card-expense-copy {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.credit-card-expense-copy strong {
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.credit-card-expense-copy small {
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.credit-card-expense-amount {
+  font-style: normal;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.credit-card-treemap {
+  flex: 1 1 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 280px;
+  margin-top: 6px;
+}
+
+.credit-card-treemap svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.credit-card-treemap-tile {
+  cursor: pointer;
+}
+
+.credit-card-treemap-tile.is-remaining {
+  cursor: default;
+}
+
+.credit-card-treemap-tile:hover rect {
+  stroke: #ffffff;
+  stroke-width: 1.5;
+}
+
+.credit-card-treemap-tile.is-remaining:hover rect {
+  stroke: #95a5bc;
+}
+
+.credit-card-empty {
+  color: var(--muted);
+  font-size: 12px;
+  margin: 16px 0;
+  text-align: center;
+}
+
+@media (max-width: 980px) {
+  .credit-card-kpi-strip,
+  .credit-card-planner-grid {
+    grid-template-columns: 1fr;
+  }
+}

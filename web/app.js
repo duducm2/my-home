@@ -58,6 +58,9 @@
     expenseQuickFilter: "",
     expenseVendorFilter: "",
     showExpenseQuotePills: true,
+    creditCardExpenseIds: new Set(),
+    creditCardFilter: "",
+    creditCardOnlySelected: false,
     systemDocuments: [],
     expandedMacros: new Set(),
     ganttSelectedId: "",
@@ -126,6 +129,20 @@
     financeViewToggle: $("finance-view-toggle"),
     categoryChart: $("category-chart"),
     dashMaterials: $("dash-materials"),
+    creditCardProjectedTotal: $("credit-card-projected-total"),
+    creditCardSelectedTotal: $("credit-card-selected-total"),
+    creditCardSelectedMeta: $("credit-card-selected-meta"),
+    creditCardRemainingKpi: $("credit-card-remaining-kpi"),
+    creditCardRemainingLabel: $("credit-card-remaining-label"),
+    creditCardRemainingValue: $("credit-card-remaining-value"),
+    creditCardRemainingHint: $("credit-card-remaining-hint"),
+    creditCardSaveStatus: $("credit-card-save-status"),
+    creditCardFilterInput: $("credit-card-filter"),
+    creditCardOnlySelectedBtn: $("credit-card-only-selected"),
+    creditCardClearBtn: $("credit-card-clear"),
+    creditCardExpenseList: $("credit-card-expense-list"),
+    creditCardTreemap: $("credit-card-treemap"),
+    creditCardTreemapMeta: $("credit-card-treemap-meta"),
     dashboardHoverTooltip: $("dashboard-hover-tooltip"),
     dashboardPeople: $("dashboard-people"),
     cashflowTotalSavings: $("cashflow-total-savings"),
@@ -1851,6 +1868,238 @@
       .join("");
   }
 
+  function expensePlannedAmount(expense) {
+    const spend = selectedQuotationSpend(expense);
+    if (spend && Number.isFinite(spend.total) && spend.total > 0) {
+      return roundMoney(spend.total);
+    }
+    const fallback = Number(expense?.scenario?.planned ?? expense?.value ?? 0);
+    return Number.isFinite(fallback) && fallback > 0 ? roundMoney(fallback) : 0;
+  }
+
+  async function loadCreditCardPlan() {
+    try {
+      const payload = await request("/api/credit-card-plan");
+      state.creditCardExpenseIds = new Set(payload.expense_ids || []);
+    } catch {
+      state.creditCardExpenseIds = new Set();
+    }
+  }
+
+  let creditCardSaveTimer = null;
+  async function saveCreditCardPlan() {
+    if (els.creditCardSaveStatus) {
+      els.creditCardSaveStatus.textContent = "Salvando…";
+      els.creditCardSaveStatus.classList.remove("is-error");
+    }
+    try {
+      const result = await request("/api/credit-card-plan", {
+        method: "POST",
+        body: JSON.stringify({
+          expense_ids: [...state.creditCardExpenseIds],
+        }),
+      });
+      state.creditCardExpenseIds = new Set(result.expense_ids || []);
+      if (els.creditCardSaveStatus) {
+        els.creditCardSaveStatus.textContent = "Salvo automaticamente";
+      }
+    } catch (error) {
+      if (els.creditCardSaveStatus) {
+        els.creditCardSaveStatus.textContent = error.message || "Erro ao salvar";
+        els.creditCardSaveStatus.classList.add("is-error");
+      }
+    }
+  }
+
+  function queueCreditCardPlanSave() {
+    if (els.creditCardSaveStatus) {
+      els.creditCardSaveStatus.textContent = "Salvando…";
+      els.creditCardSaveStatus.classList.remove("is-error");
+    }
+    window.clearTimeout(creditCardSaveTimer);
+    creditCardSaveTimer = window.setTimeout(() => {
+      saveCreditCardPlan();
+    }, 180);
+  }
+
+  function renderCreditCardPlanner() {
+    if (!els.creditCardExpenseList || !els.creditCardTreemap) return;
+    const projected = Math.max(0, roundMoney(currentProjectedSavings()));
+    const groupColors = {
+      materials: "#3498db",
+      diligences: "#9b59b6",
+      financing: "#e67e22",
+      services: "#2ecc71",
+      reserve: "#f1c40f",
+    };
+
+    const allPickable = (state.expenses || [])
+      .map((expense) => ({
+        expense,
+        amount: expensePlannedAmount(expense),
+        group: dashboardExpenseGroup(expense),
+      }))
+      .filter((item) => item.amount > 0)
+      .sort(
+        (a, b) =>
+          b.amount - a.amount ||
+          String(a.expense.description || "").localeCompare(
+            String(b.expense.description || ""),
+            "pt-BR",
+          ),
+      );
+
+    const selectedItems = allPickable.filter((item) =>
+      state.creditCardExpenseIds.has(item.expense.id),
+    );
+    const selectedTotal = roundMoney(
+      selectedItems.reduce((sum, item) => sum + item.amount, 0),
+    );
+    const diff = roundMoney(projected - selectedTotal);
+    const isOver = diff < 0;
+    const pct =
+      projected > 0 ? Math.round((selectedTotal / projected) * 100) : 0;
+
+    if (els.creditCardProjectedTotal) {
+      els.creditCardProjectedTotal.textContent = formatMoney(projected);
+    }
+    if (els.creditCardSelectedTotal) {
+      els.creditCardSelectedTotal.textContent = formatMoney(selectedTotal);
+    }
+    if (els.creditCardSelectedMeta) {
+      els.creditCardSelectedMeta.textContent = `${pct}% da economia · ${selectedItems.length} ${selectedItems.length === 1 ? "despesa" : "despesas"}`;
+    }
+    if (els.creditCardRemainingKpi) {
+      els.creditCardRemainingKpi.classList.toggle("is-over-budget", isOver);
+    }
+    if (els.creditCardRemainingLabel) {
+      els.creditCardRemainingLabel.textContent = isOver
+        ? "Excedente"
+        : "Saldo restante";
+    }
+    if (els.creditCardRemainingValue) {
+      els.creditCardRemainingValue.textContent = formatMoney(Math.abs(diff));
+    }
+    if (els.creditCardRemainingHint) {
+      els.creditCardRemainingHint.textContent = isOver
+        ? `Acima dos ${formatMoney(projected)} planejados`
+        : "Disponível na economia projetada";
+    }
+    if (els.creditCardOnlySelectedBtn) {
+      els.creditCardOnlySelectedBtn.setAttribute(
+        "aria-pressed",
+        state.creditCardOnlySelected ? "true" : "false",
+      );
+      els.creditCardOnlySelectedBtn.classList.toggle(
+        "is-active",
+        state.creditCardOnlySelected,
+      );
+    }
+    if (els.creditCardClearBtn) {
+      els.creditCardClearBtn.disabled = selectedItems.length === 0;
+    }
+
+    const query = String(state.creditCardFilter || "")
+      .trim()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .toLowerCase();
+
+    const visibleItems = allPickable.filter(({ expense }) => {
+      if (state.creditCardOnlySelected && !state.creditCardExpenseIds.has(expense.id)) {
+        return false;
+      }
+      if (!query) return true;
+      const haystack = `${expense.description || ""} ${expense.category || ""}`
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .toLowerCase();
+      return haystack.includes(query);
+    });
+
+    if (!visibleItems.length) {
+      els.creditCardExpenseList.innerHTML = `<p class="credit-card-empty">Nenhuma despesa encontrada para este filtro.</p>`;
+    } else {
+      els.creditCardExpenseList.innerHTML = visibleItems
+        .map(({ expense, amount }) => {
+          const checked = state.creditCardExpenseIds.has(expense.id);
+          const category = expense.category || "Despesa";
+          return `<label class="credit-card-expense-row${checked ? " is-selected" : ""}">
+            <input type="checkbox" data-credit-card-expense="${escapeAttr(expense.id)}"${checked ? " checked" : ""} />
+            ${iconMarkup(expense.icon_key, expense.description)}
+            <span class="credit-card-expense-copy">
+              <strong>${escapeHtml(expense.description || expense.id)}</strong>
+              <small>${escapeHtml(category)}</small>
+            </span>
+            <em class="credit-card-expense-amount">${formatMoney(amount)}</em>
+          </label>`;
+        })
+        .join("");
+    }
+
+    const treemapItems = selectedItems.map((item) => ({
+      id: item.expense.id,
+      label: item.expense.description || item.expense.id,
+      category: item.expense.category || "Despesa",
+      value: item.amount,
+      color: groupColors[item.group] || "#3498db",
+      remaining: false,
+    }));
+
+    if (diff > 0) {
+      treemapItems.push({
+        id: "__remaining__",
+        label: "Disponível na economia projetada",
+        category: "Saldo livre",
+        value: diff,
+        color: "#2b3340",
+        remaining: true,
+      });
+    }
+
+    const poolTotal = Math.max(projected, selectedTotal);
+    if (els.creditCardTreemapMeta) {
+      els.creditCardTreemapMeta.textContent = isOver
+        ? `Excedente ${formatMoney(Math.abs(diff))} sobre ${formatMoney(projected)}`
+        : `${formatMoney(selectedTotal)} de ${formatMoney(projected)}`;
+      els.creditCardTreemapMeta.classList.toggle("is-over-budget", isOver);
+    }
+
+    if (!treemapItems.length || poolTotal <= 0) {
+      els.creditCardTreemap.innerHTML = `<p class="credit-card-empty">Defina uma Economia projetada ou selecione despesas para visualizar o treemap.</p>`;
+      return;
+    }
+
+    const rectangles = treemapLayout(treemapItems, 0, 0, 1000, 360);
+    els.creditCardTreemap.innerHTML = `<svg viewBox="0 0 1000 360" role="img" aria-label="Treemap de despesas no cartão de crédito versus economia projetada">${rectangles
+      .map((item) => {
+        const w = Math.max(0, item.width - 4);
+        const h = Math.max(0, item.height - 4);
+        const tilePct =
+          projected > 0 ? Math.round((item.value / projected) * 100) : 0;
+        const hoverDetail = item.remaining
+          ? `${formatMoney(item.value)} (${tilePct}% livre da economia projetada)`
+          : `${formatMoney(item.value)} (${tilePct}% da economia projetada · ${item.category})`;
+        const showLabel = w >= 92 && h >= 42;
+        const showValue = w >= 72 && h >= 58;
+        const maxChars = Math.max(6, Math.floor((w - 24) / 7.5));
+        const shortLabel =
+          item.label.length > maxChars
+            ? `${item.label.slice(0, maxChars - 1)}…`
+            : item.label;
+        const tileClass = item.remaining
+          ? "expense-hover-target credit-card-treemap-tile is-remaining"
+          : "expense-hover-target credit-card-treemap-tile";
+        return `<g class="${tileClass}" tabindex="0" ${item.remaining ? "" : `data-credit-card-tile="${escapeAttr(item.id)}" role="button"`} data-hover-name="${escapeAttr(item.label)}" data-hover-amount="${escapeAttr(hoverDetail)}" aria-label="${escapeAttr(`${item.label}: ${hoverDetail}`)}">
+          <rect x="${item.x + 2}" y="${item.y + 2}" width="${w}" height="${h}" rx="8" fill="${item.color}" fill-opacity="${item.remaining ? "0.45" : "0.82"}"${item.remaining ? ' stroke="#6e7c91" stroke-dasharray="6 4" stroke-width="1.5"' : ""}></rect>
+          ${showLabel ? `<text x="${item.x + 14}" y="${item.y + 26}" class="treemap-label">${escapeHtml(shortLabel)}</text>` : ""}
+          ${showValue ? `<text x="${item.x + 14}" y="${item.y + 48}" class="treemap-value">${escapeHtml(formatMoney(item.value))} · ${tilePct}%</text>` : ""}
+          <title>${escapeHtml(item.label)}: ${escapeHtml(hoverDetail)}</title>
+        </g>`;
+      })
+      .join("")}</svg>`;
+  }
+
   function ganttTaskExpenseTooltip(task) {
     const rows = ganttAllocationRows(task);
     if (!rows.length) return null;
@@ -2283,6 +2532,7 @@
       )
       .join("");
     renderDashboardExpenseCategories(spend);
+    renderCreditCardPlanner();
     renderPaymentProjection();
     applyFinanceView();
     renderGantt();
@@ -8414,6 +8664,45 @@
       deleteQuickTask(row.dataset.quickTask);
   });
 
+  els.creditCardExpenseList?.addEventListener("change", (event) => {
+    const checkbox = event.target.closest("[data-credit-card-expense]");
+    if (!checkbox) return;
+    const expenseId = checkbox.dataset.creditCardExpense;
+    if (!expenseId) return;
+    if (checkbox.checked) state.creditCardExpenseIds.add(expenseId);
+    else state.creditCardExpenseIds.delete(expenseId);
+    renderCreditCardPlanner();
+    queueCreditCardPlanSave();
+  });
+
+  els.creditCardFilterInput?.addEventListener("input", () => {
+    state.creditCardFilter = els.creditCardFilterInput.value || "";
+    renderCreditCardPlanner();
+  });
+
+  els.creditCardOnlySelectedBtn?.addEventListener("click", () => {
+    state.creditCardOnlySelected = !state.creditCardOnlySelected;
+    renderCreditCardPlanner();
+  });
+
+  els.creditCardClearBtn?.addEventListener("click", () => {
+    if (!state.creditCardExpenseIds.size) return;
+    state.creditCardExpenseIds.clear();
+    renderCreditCardPlanner();
+    queueCreditCardPlanSave();
+  });
+
+  els.creditCardTreemap?.addEventListener("click", (event) => {
+    const tile = event.target.closest("[data-credit-card-tile]");
+    if (!tile) return;
+    const expenseId = tile.dataset.creditCardTile;
+    if (!expenseId || !state.creditCardExpenseIds.has(expenseId)) return;
+    state.creditCardExpenseIds.delete(expenseId);
+    hideDashboardTooltip();
+    renderCreditCardPlanner();
+    queueCreditCardPlanSave();
+  });
+
   loadExpenseQuotePillsPreference();
   Promise.all([
     loadState(),
@@ -8426,6 +8715,7 @@
     loadQuotationPlanning(),
     loadQuickTasks(),
     loadSystemDocuments(),
+    loadCreditCardPlan(),
   ])
     .then(() => {
       renderContractCenter();

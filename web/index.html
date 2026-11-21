@@ -657,6 +657,102 @@
               </article>
             </div>
           </section>
+
+          <section
+            class="dashboard-credit-card-planner"
+            aria-labelledby="credit-card-planner-title"
+          >
+            <div class="section-heading-row">
+              <div>
+                <h2 id="credit-card-planner-title" class="section-title">
+                  Planejamento no cartão de crédito
+                </h2>
+                <p class="section-sub">
+                  Selecione despesas já registradas para simular quais cabem na
+                  sua Economia projetada usando o cartão de crédito.
+                </p>
+              </div>
+              <span id="credit-card-save-status" class="notes-save-status"
+                >Salvo automaticamente</span
+              >
+            </div>
+
+            <div class="credit-card-kpi-strip">
+              <div class="credit-card-kpi">
+                <span>Economia projetada</span>
+                <strong id="credit-card-projected-total">R$ 0,00</strong>
+                <small>Limite planejado para o cartão</small>
+              </div>
+              <div class="credit-card-kpi">
+                <span>Planejado no cartão</span>
+                <strong id="credit-card-selected-total">R$ 0,00</strong>
+                <small id="credit-card-selected-meta">0% · 0 despesas</small>
+              </div>
+              <div class="credit-card-kpi" id="credit-card-remaining-kpi">
+                <span id="credit-card-remaining-label">Saldo restante</span>
+                <strong id="credit-card-remaining-value">R$ 0,00</strong>
+                <small id="credit-card-remaining-hint"
+                  >Disponível na economia projetada</small
+                >
+              </div>
+            </div>
+
+            <div class="credit-card-planner-grid">
+              <article class="credit-card-picker">
+                <div class="panel-head">
+                  <h3>Despesas registradas</h3>
+                  <div class="credit-card-picker-actions">
+                    <button
+                      type="button"
+                      id="credit-card-only-selected"
+                      class="btn credit-card-filter-btn"
+                      aria-pressed="false"
+                    >
+                      Selecionadas
+                    </button>
+                    <button
+                      type="button"
+                      id="credit-card-clear"
+                      class="btn credit-card-filter-btn"
+                    >
+                      Limpar
+                    </button>
+                  </div>
+                </div>
+                <input
+                  id="credit-card-filter"
+                  class="credit-card-filter-input"
+                  type="search"
+                  placeholder="Filtrar por nome ou categoria…"
+                  aria-label="Filtrar despesas registradas"
+                />
+                <div
+                  id="credit-card-expense-list"
+                  class="credit-card-expense-list"
+                  role="group"
+                  aria-label="Lista de despesas para o cartão de crédito"
+                ></div>
+              </article>
+
+              <article class="credit-card-treemap-panel">
+                <div class="panel-head">
+                  <h3>Mapa de uso da economia projetada</h3>
+                  <span id="credit-card-treemap-meta" class="panel-kicker"
+                    >Treemap proporcional</span
+                  >
+                </div>
+                <p class="section-sub">
+                  Passe o mouse para ver detalhes ou clique em um bloco para
+                  remover do cartão.
+                </p>
+                <div
+                  id="credit-card-treemap"
+                  class="credit-card-treemap"
+                  aria-live="polite"
+                ></div>
+              </article>
+            </div>
+          </section>
         </section>
 
         <section class="cockpit-grid dashboard-support-grid">
