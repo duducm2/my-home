@@ -3313,6 +3313,16 @@
       "--timeline-width",
       `${geometry.days * geometry.dayWidth}px`,
     );
+    const timelineStartDate = parseDate(geometry.start);
+    const startWeekdayIndex = (timelineStartDate.getDay() + 6) % 7;
+    const weekStartDate = new Date(timelineStartDate);
+    weekStartDate.setDate(weekStartDate.getDate() - startWeekdayIndex);
+    const weekNumber = Math.floor(dayDiff("1970-01-05", iso(weekStartDate)) / 7);
+    const weekParity = ((weekNumber % 2) + 2) % 2;
+    els.gantt.style.setProperty(
+      "--gantt-week-bg-offset",
+      `${-(startWeekdayIndex + weekParity * 7) * geometry.dayWidth}px`,
+    );
     const todayLeft =
       dayDiff(geometry.start, iso(new Date())) * geometry.dayWidth;
     const paymentDays = new Map();
@@ -3329,7 +3339,7 @@
       item.descriptions.push(payment.description);
     }
     els.gantt.innerHTML = `<div class="gantt-label-head">Macroatividade / atividade</div>
-      <div class="gantt-scroll" id="gantt-scroll"><div class="gantt-timeline">
+      <div class="gantt-scroll" id="gantt-scroll"><div class="gantt-timeline" data-zoom="${escapeAttr(state.zoom)}">
         <div class="gantt-header">${ganttHeader(geometry)}</div>
         <div class="gantt-today" style="left:${todayLeft}px"><span>Hoje</span></div>
         ${[...paymentDays.entries()]

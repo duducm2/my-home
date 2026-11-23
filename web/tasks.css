@@ -868,6 +868,27 @@ select[multiple] {
   );
 }
 
+.gantt-timeline[data-zoom="day"] {
+  background-image:
+    repeating-linear-gradient(
+      to right,
+      transparent 0,
+      transparent calc(var(--day-width) - 1px),
+      #29292d calc(var(--day-width) - 1px),
+      #29292d var(--day-width)
+    ),
+    repeating-linear-gradient(
+      to right,
+      rgba(56, 189, 248, 0.075) 0,
+      rgba(56, 189, 248, 0.075) calc(var(--day-width) * 7),
+      rgba(168, 85, 247, 0.06) calc(var(--day-width) * 7),
+      rgba(168, 85, 247, 0.06) calc(var(--day-width) * 14)
+    );
+  background-position:
+    0 0,
+    var(--gantt-week-bg-offset, 0px) 0;
+}
+
 .gantt-header {
   position: sticky;
   top: 0;

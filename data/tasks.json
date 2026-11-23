@@ -66,7 +66,7 @@
       "priority": 1,
       "sequence": 3,
       "start_date": "2026-09-17",
-      "end_date": "2026-12-13",
+      "end_date": "2026-12-27",
       "status": "pending",
       "expense_allocations": [],
       "icon_key": "home-expense",
@@ -222,16 +222,16 @@
         "project.work_plan"
       ],
       "created_at": "2026-09-15 23:51:00",
-      "updated_at": "2026-11-21 16:08:31"
+      "updated_at": "2026-11-21 16:34:04"
     },
     {
       "id": "TASK_0027",
       "title": "Revisão elétrica completa",
       "description": "Elétrica",
       "priority": 1,
-      "sequence": 22,
-      "start_date": "2026-11-25",
-      "end_date": "2026-12-06",
+      "sequence": 24,
+      "start_date": "2026-12-03",
+      "end_date": "2026-12-11",
       "status": "pending",
       "expense_allocations": [
         {
@@ -253,7 +253,7 @@
         "project.priority_work"
       ],
       "created_at": "2026-09-15 23:51:00",
-      "updated_at": "2026-11-21 16:08:31"
+      "updated_at": "2026-11-21 16:39:53"
     },
     {
       "id": "TASK_0097",
@@ -550,16 +550,16 @@
       "progress": 0,
       "source_refs": [],
       "created_at": "2026-09-18 17:52:11",
-      "updated_at": "2026-11-21 16:08:31"
+      "updated_at": "2026-11-21 16:34:04"
     },
     {
       "id": "TASK_0112",
       "title": "Pintura",
       "description": "Somente fachada externa (sem pintura interna). Área líquida estimada ~70,6 m² (perímetro 30,1 m × 2,7 m - aberturas 10,7 m²). Rendimento efetivo do projeto: 6 m²/L (2 demãos) -> ~11,8 L -> 1 lata de 18 L.",
       "priority": 1,
-      "sequence": 29,
-      "start_date": "2026-11-30",
-      "end_date": "2026-12-13",
+      "sequence": 30,
+      "start_date": "2026-12-14",
+      "end_date": "2026-12-27",
       "status": "pending",
       "expense_allocations": [
         {
@@ -587,7 +587,7 @@
       "progress": 0,
       "source_refs": [],
       "created_at": "2026-09-20 21:27:43",
-      "updated_at": "2026-11-21 16:08:31"
+      "updated_at": "2026-11-21 16:34:04"
     },
     {
       "id": "TASK_0113",
@@ -612,7 +612,7 @@
       "progress": 0,
       "source_refs": [],
       "created_at": "2026-09-25 17:57:05",
-      "updated_at": "2026-11-21 16:08:31"
+      "updated_at": "2026-11-21 16:34:04"
     },
     {
       "id": "TASK_0114",
@@ -637,7 +637,7 @@
       "progress": 0,
       "source_refs": [],
       "created_at": "2026-09-25 18:21:12",
-      "updated_at": "2026-11-21 16:08:31"
+      "updated_at": "2026-11-21 16:34:04"
     },
     {
       "id": "TASK_0115",
@@ -702,7 +702,7 @@
       "progress": 0,
       "source_refs": [],
       "created_at": "2026-09-25 18:52:45",
-      "updated_at": "2026-11-21 16:08:31"
+      "updated_at": "2026-11-21 16:34:04"
     },
     {
       "id": "TASK_0119",
@@ -767,7 +767,7 @@
       "progress": 0,
       "source_refs": [],
       "created_at": "2026-10-10 15:11:31",
-      "updated_at": "2026-11-21 16:08:31"
+      "updated_at": "2026-11-21 16:34:04"
     },
     {
       "id": "TASK_0125",
@@ -792,15 +792,15 @@
       "progress": 0,
       "source_refs": [],
       "created_at": "2026-10-10 15:15:41",
-      "updated_at": "2026-11-21 16:08:31"
+      "updated_at": "2026-11-21 16:34:04"
     },
     {
       "id": "TASK_0127",
       "title": "Aluguel do andaime 2",
       "description": "",
       "priority": 1,
-      "sequence": 12,
-      "start_date": "2026-11-23",
+      "sequence": 15,
+      "start_date": "2026-11-26",
       "end_date": "2026-11-26",
       "status": "pending",
       "expense_allocations": [
@@ -817,7 +817,7 @@
       "progress": 0,
       "source_refs": [],
       "created_at": "2026-10-21 20:38:16",
-      "updated_at": "2026-11-21 16:08:31"
+      "updated_at": "2026-11-23 19:47:19"
     },
     {
       "id": "TASK_0128",
@@ -846,7 +846,7 @@
       "progress": 0,
       "source_refs": [],
       "created_at": "2026-10-24 20:32:23",
-      "updated_at": "2026-11-21 16:08:31"
+      "updated_at": "2026-11-21 16:34:04"
     },
     {
       "id": "TASK_0131",
@@ -871,7 +871,7 @@
       "progress": 0,
       "source_refs": [],
       "created_at": "2026-10-31 12:45:22",
-      "updated_at": "2026-11-21 16:08:31"
+      "updated_at": "2026-11-21 16:34:04"
     },
     {
       "id": "TASK_0132",
@@ -896,16 +896,16 @@
       "progress": 0,
       "source_refs": [],
       "created_at": "2026-11-04 19:46:20",
-      "updated_at": "2026-11-21 16:08:31"
+      "updated_at": "2026-11-21 16:34:04"
     },
     {
       "id": "TASK_0133",
       "title": "Construção para a parte elétrica",
       "description": "",
       "priority": 1,
-      "sequence": 14,
-      "start_date": "2026-11-25",
-      "end_date": "2026-11-28",
+      "sequence": 18,
+      "start_date": "2026-11-26",
+      "end_date": "2026-12-05",
       "status": "pending",
       "expense_allocations": [
         {
@@ -921,16 +921,16 @@
       "progress": 0,
       "source_refs": [],
       "created_at": "2026-11-10 18:52:11",
-      "updated_at": "2026-11-21 16:08:36"
+      "updated_at": "2026-11-21 16:34:04"
     },
     {
       "id": "TASK_0134",
       "title": "Terminar o reboque do muro direito e fundo",
       "description": "",
       "priority": 1,
-      "sequence": 20,
-      "start_date": "2026-11-25",
-      "end_date": "2026-11-29",
+      "sequence": 13,
+      "start_date": "2026-11-16",
+      "end_date": "2026-11-26",
       "status": "pending",
       "expense_allocations": [],
       "icon_key": "mason-service",
@@ -941,16 +941,16 @@
       "progress": 0,
       "source_refs": [],
       "created_at": "2026-11-15 14:03:28",
-      "updated_at": "2026-11-21 16:08:31"
+      "updated_at": "2026-11-21 16:34:04"
     },
     {
       "id": "TASK_0135",
       "title": "Terminar o muro da frente com um portão",
       "description": "",
       "priority": 1,
-      "sequence": 21,
-      "start_date": "2026-11-25",
-      "end_date": "2026-12-01",
+      "sequence": 27,
+      "start_date": "2026-12-07",
+      "end_date": "2026-12-12",
       "status": "pending",
       "expense_allocations": [],
       "icon_key": "mason-service",
@@ -961,16 +961,16 @@
       "progress": 0,
       "source_refs": [],
       "created_at": "2026-11-15 14:03:44",
-      "updated_at": "2026-11-21 16:08:31"
+      "updated_at": "2026-11-21 16:34:04"
     },
     {
       "id": "TASK_0136",
       "title": "Fazer o contrapiso do corredor atrás da casa",
       "description": "",
       "priority": 1,
-      "sequence": 23,
-      "start_date": "2026-12-03",
-      "end_date": "2026-12-06",
+      "sequence": 29,
+      "start_date": "2026-12-14",
+      "end_date": "2026-12-19",
       "status": "pending",
       "expense_allocations": [],
       "icon_key": "mason-service",
@@ -981,16 +981,16 @@
       "progress": 0,
       "source_refs": [],
       "created_at": "2026-11-15 14:04:00",
-      "updated_at": "2026-11-21 16:08:31"
+      "updated_at": "2026-11-21 16:34:04"
     },
     {
       "id": "TASK_0137",
       "title": "Corrigir as infiltrações internas",
       "description": "",
       "priority": 1,
-      "sequence": 24,
-      "start_date": "2026-11-25",
-      "end_date": "2026-11-29",
+      "sequence": 25,
+      "start_date": "2026-12-07",
+      "end_date": "2026-12-12",
       "status": "pending",
       "expense_allocations": [],
       "icon_key": "mason-service",
@@ -1001,76 +1001,16 @@
       "progress": 0,
       "source_refs": [],
       "created_at": "2026-11-15 14:04:16",
-      "updated_at": "2026-11-21 16:08:31"
-    },
-    {
-      "id": "TASK_0138",
-      "title": "Colocar a caixa de energia interna",
-      "description": "",
-      "priority": 1,
-      "sequence": 25,
-      "start_date": "2026-11-25",
-      "end_date": "2026-11-29",
-      "status": "pending",
-      "expense_allocations": [],
-      "icon_key": "mason-service",
-      "icon_mode": "manual",
-      "date_status": "confirmed",
-      "activity_type": "task",
-      "parent_id": "TASK_0003",
-      "progress": 0,
-      "source_refs": [],
-      "created_at": "2026-11-15 14:04:26",
-      "updated_at": "2026-11-21 16:08:31"
-    },
-    {
-      "id": "TASK_0139",
-      "title": "Resolver o buraco do poste",
-      "description": "",
-      "priority": 1,
-      "sequence": 26,
-      "start_date": "2026-11-25",
-      "end_date": "2026-11-29",
-      "status": "pending",
-      "expense_allocations": [],
-      "icon_key": "mason-service",
-      "icon_mode": "manual",
-      "date_status": "confirmed",
-      "activity_type": "task",
-      "parent_id": "TASK_0003",
-      "progress": 0,
-      "source_refs": [],
-      "created_at": "2026-11-15 14:04:40",
-      "updated_at": "2026-11-21 16:08:31"
-    },
-    {
-      "id": "TASK_0140",
-      "title": "Retirar a lona que está à direita da casa",
-      "description": "",
-      "priority": 1,
-      "sequence": 16,
-      "start_date": "2026-11-25",
-      "end_date": "2026-11-29",
-      "status": "pending",
-      "expense_allocations": [],
-      "icon_key": "ladder",
-      "icon_mode": "manual",
-      "date_status": "confirmed",
-      "activity_type": "task",
-      "parent_id": "TASK_0003",
-      "progress": 0,
-      "source_refs": [],
-      "created_at": "2026-11-15 14:05:06",
-      "updated_at": "2026-11-21 16:08:31"
+      "updated_at": "2026-11-21 16:34:04"
     },
     {
       "id": "TASK_0141",
       "title": "Entender o que fazer com as madeiras que estão jogadas",
       "description": "",
       "priority": 1,
-      "sequence": 17,
-      "start_date": "2026-11-25",
-      "end_date": "2026-11-29",
+      "sequence": 31,
+      "start_date": "2026-12-14",
+      "end_date": "2026-12-18",
       "status": "pending",
       "expense_allocations": [],
       "icon_key": "laminate-flooring",
@@ -1081,14 +1021,14 @@
       "progress": 0,
       "source_refs": [],
       "created_at": "2026-11-15 14:05:19",
-      "updated_at": "2026-11-21 16:08:31"
+      "updated_at": "2026-11-21 16:34:04"
     },
     {
       "id": "TASK_0142",
-      "title": "Troca de tabeiras, cumeiras e corração das telhas",
+      "title": "Troca de tabeiras, cumeiras, corração das telhas e parte alta",
       "description": "",
       "priority": 1,
-      "sequence": 13,
+      "sequence": 16,
       "start_date": "2026-11-23",
       "end_date": "2026-11-25",
       "status": "pending",
@@ -1101,7 +1041,7 @@
       "progress": 0,
       "source_refs": [],
       "created_at": "2026-11-15 14:05:46",
-      "updated_at": "2026-11-21 16:08:31"
+      "updated_at": "2026-11-21 16:34:04"
     },
     {
       "id": "TASK_0143",
@@ -1109,8 +1049,8 @@
       "description": "",
       "priority": 1,
       "sequence": 28,
-      "start_date": "2026-11-30",
-      "end_date": "2026-12-04",
+      "start_date": "2026-12-07",
+      "end_date": "2026-12-12",
       "status": "pending",
       "expense_allocations": [],
       "icon_key": "mason-service",
@@ -1121,36 +1061,16 @@
       "progress": 0,
       "source_refs": [],
       "created_at": "2026-11-15 14:05:58",
-      "updated_at": "2026-11-21 16:08:31"
-    },
-    {
-      "id": "TASK_0144",
-      "title": "Tomadas internas",
-      "description": "",
-      "priority": 1,
-      "sequence": 27,
-      "start_date": "2026-11-25",
-      "end_date": "2026-11-29",
-      "status": "pending",
-      "expense_allocations": [],
-      "icon_key": "mason-service",
-      "icon_mode": "manual",
-      "date_status": "confirmed",
-      "activity_type": "task",
-      "parent_id": "TASK_0003",
-      "progress": 0,
-      "source_refs": [],
-      "created_at": "2026-11-15 14:06:12",
-      "updated_at": "2026-11-21 16:08:31"
+      "updated_at": "2026-11-21 16:34:04"
     },
     {
       "id": "TASK_0145",
       "title": "Contagem de tomadas por cômodo",
       "description": "",
       "priority": 1,
-      "sequence": 18,
-      "start_date": "2026-11-25",
-      "end_date": "2026-11-29",
+      "sequence": 12,
+      "start_date": "2026-11-15",
+      "end_date": "2026-11-19",
       "status": "pending",
       "expense_allocations": [],
       "icon_key": "outlet",
@@ -1161,16 +1081,16 @@
       "progress": 0,
       "source_refs": [],
       "created_at": "2026-11-15 14:09:46",
-      "updated_at": "2026-11-21 16:08:31"
+      "updated_at": "2026-11-21 16:34:04"
     },
     {
       "id": "TASK_0146",
       "title": "Agendamento da CPFL para desligamento da energia (dias úteis)",
       "description": "",
       "priority": 1,
-      "sequence": 19,
-      "start_date": "2026-11-25",
-      "end_date": "2026-11-29",
+      "sequence": 14,
+      "start_date": "2026-11-23",
+      "end_date": "2026-11-27",
       "status": "pending",
       "expense_allocations": [],
       "icon_key": "architect-service",
@@ -1181,16 +1101,16 @@
       "progress": 0,
       "source_refs": [],
       "created_at": "2026-11-15 14:10:44",
-      "updated_at": "2026-11-21 16:08:31"
+      "updated_at": "2026-11-21 16:34:04"
     },
     {
       "id": "TASK_0148",
       "title": "Caçamba para amanhã",
       "description": "",
       "priority": 1,
-      "sequence": 15,
-      "start_date": "2026-11-25",
-      "end_date": "2026-12-09",
+      "sequence": 26,
+      "start_date": "2026-12-07",
+      "end_date": "2026-12-12",
       "status": "pending",
       "expense_allocations": [
         {
@@ -1206,7 +1126,7 @@
       "progress": 0,
       "source_refs": [],
       "created_at": "2026-11-15 14:11:21",
-      "updated_at": "2026-11-21 16:08:31"
+      "updated_at": "2026-11-21 16:34:04"
     },
     {
       "id": "TASK_0149",
@@ -1231,8 +1151,128 @@
       "progress": 0,
       "source_refs": [],
       "created_at": "2026-11-15 14:22:15",
-      "updated_at": "2026-11-21 16:08:31"
+      "updated_at": "2026-11-21 16:34:04"
+    },
+    {
+      "id": "TASK_0150",
+      "title": "Troca de Poste",
+      "description": "",
+      "priority": 1,
+      "sequence": 22,
+      "start_date": "2026-11-30",
+      "end_date": "2026-12-02",
+      "status": "pending",
+      "expense_allocations": [],
+      "icon_key": "mason-service",
+      "icon_mode": "manual",
+      "date_status": "confirmed",
+      "activity_type": "task",
+      "parent_id": "TASK_0003",
+      "progress": 0,
+      "source_refs": [],
+      "created_at": "2026-11-21 16:13:53",
+      "updated_at": "2026-11-21 16:34:25"
+    },
+    {
+      "id": "TASK_0151",
+      "title": "Corte da caixa de luz",
+      "description": "",
+      "priority": 1,
+      "sequence": 19,
+      "start_date": "2026-11-26",
+      "end_date": "2026-11-28",
+      "status": "pending",
+      "expense_allocations": [],
+      "icon_key": "mason-service",
+      "icon_mode": "manual",
+      "date_status": "confirmed",
+      "activity_type": "task",
+      "parent_id": "TASK_0003",
+      "progress": 0,
+      "source_refs": [],
+      "created_at": "2026-11-21 16:14:06",
+      "updated_at": "2026-11-21 16:34:04"
+    },
+    {
+      "id": "TASK_0152",
+      "title": "Corte das tomadas",
+      "description": "",
+      "priority": 1,
+      "sequence": 23,
+      "start_date": "2026-12-03",
+      "end_date": "2026-12-05",
+      "status": "pending",
+      "expense_allocations": [],
+      "icon_key": "mason-service",
+      "icon_mode": "manual",
+      "date_status": "confirmed",
+      "activity_type": "task",
+      "parent_id": "TASK_0003",
+      "progress": 0,
+      "source_refs": [],
+      "created_at": "2026-11-21 16:14:17",
+      "updated_at": "2026-11-21 16:40:04"
+    },
+    {
+      "id": "TASK_0153",
+      "title": "👱‍♀️ Jane fora",
+      "description": "",
+      "priority": 1,
+      "sequence": 20,
+      "start_date": "2026-11-30",
+      "end_date": "2026-12-04",
+      "status": "pending",
+      "expense_allocations": [],
+      "icon_key": "home-expense",
+      "icon_mode": "auto",
+      "date_status": "confirmed",
+      "activity_type": "task",
+      "parent_id": "TASK_0003",
+      "progress": 0,
+      "source_refs": [],
+      "created_at": "2026-11-21 16:28:53",
+      "updated_at": "2026-11-21 16:34:17"
+    },
+    {
+      "id": "TASK_0154",
+      "title": "👱‍♀️🛋️ Móveis podem sujar",
+      "description": "",
+      "priority": 1,
+      "sequence": 17,
+      "start_date": "2026-11-26",
+      "end_date": "2026-12-11",
+      "status": "pending",
+      "expense_allocations": [],
+      "icon_key": "moving-service",
+      "icon_mode": "auto",
+      "date_status": "confirmed",
+      "activity_type": "task",
+      "parent_id": "TASK_0003",
+      "progress": 0,
+      "source_refs": [],
+      "created_at": "2026-11-21 16:29:49",
+      "updated_at": "2026-11-21 16:41:07"
+    },
+    {
+      "id": "TASK_0155",
+      "title": "👱‍♀️ Sem energia durante período útil",
+      "description": "",
+      "priority": 1,
+      "sequence": 21,
+      "start_date": "2026-12-07",
+      "end_date": "2026-12-11",
+      "status": "pending",
+      "expense_allocations": [],
+      "icon_key": "home-expense",
+      "icon_mode": "auto",
+      "date_status": "confirmed",
+      "activity_type": "task",
+      "parent_id": "TASK_0003",
+      "progress": 0,
+      "source_refs": [],
+      "created_at": "2026-11-21 16:33:58",
+      "updated_at": "2026-11-21 16:40:16"
     }
   ],
-  "updated_at": "2026-11-21 16:08:36"
+  "updated_at": "2026-11-23 19:47:19"
 }
